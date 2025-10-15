@@ -1,0 +1,988 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Senrytech - 专业激光设备制造商，提供高精度激光切割、焊接、打标设备，15年行业经验，服务500+工厂客户">
+    <meta name="keywords" content="激光设备,激光切割机,激光焊接机,激光打标机,工业激光解决方案">
+    <meta name="author" content="Senrytech">
+    <meta name="robots" content="index, follow">
+    <!-- 谷歌SEO优化 -->
+    <link rel="canonical" href="https://www.senrytech.com/">
+    <meta property="og:title" content="Senrytech - 专业激光设备制造商">
+    <meta property="og:description" content="高精度·高稳定性·24/7工业级激光解决方案">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.senrytech.com/">
+    
+    <title>Senrytech - 专业激光设备制造商</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b4c42',
+                        secondary: '#ff7a00',
+                        accent: '#3a8686',
+                        neutral: '#f5f5f5',
+                        dark: '#2c3e50'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            }
+            .transition-transform {
+                transition-property: transform;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+        }
+    </style>
+    <style>
+        /* 基础动画定义 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 导航栏滚动效果 */
+        .nav-scrolled {
+            background-color: rgba(27, 76, 66, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 轮播图样式 */
+        .carousel-item {
+            display: none;
+        }
+        
+        .carousel-item.active {
+            display: block;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* 解决方案卡片悬停效果 */
+        .solution-card {
+            transition: all 0.3s ease;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .solution-card:hover .solution-icon {
+            background-color: #1b4c42;
+            color: white;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+    <!-- 顶部固定导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- 品牌Logo -->
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                        <img src="https://picsum.photos/id/237/40/40" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                    </div>
+                    <span class="text-white font-bold text-xl">Senrytech</span>
+                </a>
+                
+                <!-- 桌面端导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-white hover:text-secondary transition-colors">首页</a>
+                    
+                    <!-- 产品中心下拉菜单 -->
+                    <div class="relative group">
+                        <a href="#" class="text-white hover:text-secondary transition-colors flex items-center">
+                            产品中心
+                            <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">切割机</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">焊接机</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">打标机</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#solutions" class="text-white hover:text-secondary transition-colors">解决方案</a>
+                    <a href="#" class="text-white hover:text-secondary transition-colors">关于我们</a>
+                    <a href="#cases" class="text-white hover:text-secondary transition-colors">案例展示</a>
+                    <a href="#contact" class="text-white hover:text-secondary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 移动端汉堡菜单 -->
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#" class="block text-gray-800 hover:text-primary font-medium">首页</a>
+                
+                <!-- 移动端产品中心下拉 -->
+                <div>
+                    <button id="mobile-products-toggle" class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium">
+                        产品中心
+                        <i class="fa fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="mobile-products-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <a href="#" class="block text-gray-600 hover:text-primary">切割机</a>
+                        <a href="#" class="block text-gray-600 hover:text-primary">焊接机</a>
+                        <a href="#" class="block text-gray-600 hover:text-primary">打标机</a>
+                    </div>
+                </div>
+                
+                <a href="#solutions" class="block text-gray-800 hover:text-primary font-medium">解决方案</a>
+                <a href="#" class="block text-gray-800 hover:text-primary font-medium">关于我们</a>
+                <a href="#cases" class="block text-gray-800 hover:text-primary font-medium">案例展示</a>
+                <a href="#contact" class="block text-gray-800 hover:text-primary font-medium">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero区（Banner图） -->
+        <section class="relative pt-16 md:pt-20 h-[90vh] min-h-[600px] overflow-hidden">
+            <div id="carousel" class="h-full">
+                <!-- 轮播图1 -->
+                <div class="carousel-item active h-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://picsum.photos/id/118/1920/1080'); filter: brightness(0.7);"></div>
+                    <div class="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                        <div class="max-w-2xl slide-up">
+                            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-4 text-shadow-lg">
+                                Senrytech 专业激光设备制造商
+                            </h1>
+                            <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 mb-8 max-w-xl text-shadow">
+                                高精度·高稳定性·24/7工业级解决方案
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#products" class="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium transition-all hover:shadow-lg">
+                                    查看核心产品
+                                </a>
+                                <a href="#contact" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-md font-medium transition-all">
+                                    获取选型报价
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播图2 -->
+                <div class="carousel-item h-full">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://picsum.photos/id/28/1920/1080'); filter: brightness(0.7);"></div>
+                    <div class="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                        <div class="max-w-2xl slide-up">
+                            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white mb-4 text-shadow-lg">
+                                工业级激光解决方案
+                            </h1>
+                            <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 mb-8 max-w-xl text-shadow">
+                                为您的生产效率提升40%，降低运营成本
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#solutions" class="bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium transition-all hover:shadow-lg">
+                                    探索解决方案
+                                </a>
+                                <a href="#cases" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-md font-medium transition-all">
+                                    查看成功案例
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 轮播控制按钮 -->
+            <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                <i class="fa fa-chevron-left"></i>
+            </button>
+            <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all">
+                <i class="fa fa-chevron-right"></i>
+            </button>
+            
+            <!-- 轮播指示器 -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-2">
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-100" data-index="0"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50" data-index="1"></button>
+            </div>
+        </section>
+
+        <!-- 核心优势区 -->
+        <section class="py-16 md:py-24 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 优势1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-lightbulb-o text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">15年研发经验</h3>
+                        <p class="text-gray-600">拥有100+项技术专利，核心团队来自行业顶尖专家，持续创新激光应用技术。</p>
+                    </div>
+                    
+                    <!-- 优势2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-shield text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">24小时售后</h3>
+                        <p class="text-gray-600">全国服务网络覆盖，核心部件质保3年，7×24小时技术支持，快速响应客户需求。</p>
+                    </div>
+                    
+                    <!-- 优势3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-line-chart text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">效率提升40%</h3>
+                        <p class="text-gray-600">服务500+工厂客户，平均为客户提升生产效率40%，降低运营成本25%以上。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行业解决方案区 -->
+        <section id="solutions" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">行业解决方案</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">针对不同行业特点，提供定制化激光加工解决方案，满足多样化生产需求</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 解决方案1 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/175/600/400" alt="汽车制造激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-car text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">汽车制造解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">针对汽车零部件的激光切割、焊接与打标，提升生产效率与连接强度，确保安全性能。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>车身框架激光焊接</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>精密零件激光切割</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>零部件追溯打标系统</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案2 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/180/600/400" alt="钣金加工激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-cogs text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">钣金加工解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">高效精准的钣金切割与成形解决方案，支持多种金属材料，满足复杂形状加工需求。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>高精度光纤激光切割</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>复杂轮廓快速加工</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>自动化生产线集成</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案3 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/160/600/400" alt="电子电器激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-microchip text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">电子电器解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">精密电子元件的激光焊接与打标，实现微型化、高可靠性的连接与标识。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>微电子元件激光焊接</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>PCB板精密打标</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>电子外壳激光雕刻</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案4 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/177/600/400" alt="医疗器械激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-medkit text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">医疗器械解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">满足医疗行业高洁净度、高精度要求的激光加工方案，确保产品安全可靠。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>医疗器件精密焊接</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>无菌标识激光打标</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>植入器械表面处理</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案5 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/163/600/400" alt="航空航天激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-rocket text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">航空航天解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">针对航空航天领域高强度材料的精密加工，确保零部件的可靠性与安全性。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>钛合金激光焊接</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>航空部件激光打孔</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>精密测量标记系统</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 解决方案6 -->
+                    <div class="solution-card bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/156/600/400" alt="珠宝首饰激光解决方案" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="solution-icon w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4">
+                                    <i class="fa fa-diamond text-xl text-primary"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800">珠宝首饰解决方案</h3>
+                            </div>
+                            <p class="text-gray-600 mb-4">高精度激光雕刻与焊接方案，满足珠宝首饰行业精细加工与个性化定制需求。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>珠宝激光焊接修复</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>个性化图案激光雕刻</span>
+                                </li>
+                                <li class="flex items-start text-sm text-gray-600">
+                                    <i class="fa fa-check text-primary mt-1 mr-2"></i>
+                                    <span>金属表面纹理处理</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center">
+                                了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-md font-medium transition-all inline-flex items-center">
+                        查看全部解决方案
+                        <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心产品展示区 -->
+        <section id="products" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">核心激光设备系列</h2>
+                    <p class="text-gray-600 max-w-2xl">覆盖切割/焊接/打标全场景，为不同行业提供定制化激光加工解决方案</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 产品卡片1 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="https://picsum.photos/id/96/600/400" alt="SY-1540S 1500w光纤切板机" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-800">SY-1540S 1500w光纤切板机</h3>
+                            <p class="text-gray-600 mb-4">适配不锈钢/铝，切割厚度≤30mm，高精度定位，速度提升30%</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品卡片2 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="https://picsum.photos/id/119/600/400" alt="SY-3000W 激光焊接机" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-800">SY-3000W 激光焊接机</h3>
+                            <p class="text-gray-600 mb-4">适用于金属材料精密焊接，焊缝平整美观，热影响区小</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 产品卡片3 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="https://picsum.photos/id/218/600/400" alt="SY-20W 光纤激光打标机" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold mb-2 text-gray-800">SY-20W 光纤激光打标机</h3>
+                            <p class="text-gray-600 mb-4">高精度标记，支持多种材料，永久标记，清晰耐磨</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="#" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-md font-medium transition-all inline-flex items-center">
+                        查看全部产品
+                        <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公司介绍/品牌背书区 -->
+        <section class="py-16 md:py-24 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-gray-800 mb-6">关于Senrytech</h2>
+                        <ul class="space-y-4 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>成立于2008年，专注激光设备研发与制造15年，行业领先企业</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>占地20000㎡现代化生产基地，年产能1000+台激光设备</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>通过ISO9001质量管理体系认证，产品获得CE、FCC等国际认证</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                                <span>客户遍布全球30多个国家和地区，提供本地化技术支持与服务</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-md text-sm font-medium transition-colors">
+                                了解更多
+                            </a>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <img src="https://picsum.photos/id/180/800/600" alt="Senrytech工厂车间" class="w-full h-auto rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户案例/评价区 -->
+        <section id="cases" class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-12">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">客户合作案例</h2>
+                    <p class="text-gray-600 max-w-2xl">从金属加工到航空航天，覆盖多行业的激光应用解决方案</p>
+                </div>
+                
+                <!-- 案例轮播 -->
+                <div id="cases-carousel" class="relative mb-16">
+                    <div class="overflow-hidden">
+                        <div class="cases-track flex transition-transform duration-500" style="transform: translateX(0);">
+                            <!-- 案例卡片1 -->
+                            <div class="cases-item min-w-full md:min-w-[50%] p-4">
+                                <div class="bg-white rounded-lg shadow-sm overflow-hidden h-full">
+                                    <div class="h-64 overflow-hidden">
+                                        <img src="https://picsum.photos/id/169/800/500" alt="汽车零部件厂激光切割方案" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center mr-4">
+                                                <span class="text-gray-600 font-medium">AC</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-800">XX汽车零部件厂</h3>
+                                                <p class="text-sm text-gray-500">汽车制造 · 山东</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600">采用20000w激光切割方案，替代传统加工工艺，生产效率提升40%，材料利用率提高15%。</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 案例卡片2 -->
+                            <div class="cases-item min-w-full md:min-w-[50%] p-4">
+                                <div class="bg-white rounded-lg shadow-sm overflow-hidden h-full">
+                                    <div class="h-64 overflow-hidden">
+                                        <img src="https://picsum.photos/id/177/800/500" alt="精密仪器激光焊接方案" class="w-full h-full object-cover">
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div class="w-12 h-12 bg-gray-200 rounded-md flex items-center justify-center mr-4">
+                                                <span class="text-gray-600 font-medium">PI</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-800">XX精密仪器公司</h3>
+                                                <p class="text-sm text-gray-500">电子制造 · 江苏</p>
+                                            </div>
+                                        </div>
+                                        <p class="text-gray-600">引入激光焊接解决方案，解决传统焊接变形问题，产品合格率从82%提升至99.5%。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 案例轮播控制 -->
+                    <button id="cases-prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all -ml-5 hidden md:flex">
+                        <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button id="cases-next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md hover:bg-gray-100 text-primary w-10 h-10 rounded-full flex items-center justify-center transition-all -mr-5 hidden md:flex">
+                        <i class="fa fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- 客户评价 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-primary text-3xl mb-4">"</div>
+                        <p class="text-gray-600 mb-6">设备运行1年零故障，切割精度稳定，售后服务响应迅速，有效保障了我们的生产计划。</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
+                                <img src="https://picsum.photos/id/1005/100/100" alt="客户头像" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">张总监</h4>
+                                <p class="text-sm text-gray-500">XX重型机械厂 采购总监</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="text-primary text-3xl mb-4">"</div>
+                        <p class="text-gray-600 mb-6">Senrytech的激光打标机为我们的产品追溯提供了可靠解决方案，标记清晰持久，操作简单。</p>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-gray-200 rounded-full overflow-hidden mr-3">
+                                <img src="https://picsum.photos/id/1012/100/100" alt="客户头像" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800">李经理</h4>
+                                <p class="text-sm text-gray-500">XX电子科技公司 生产经理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行动召唤（CTA）区 -->
+        <section id="contact" class="py-16 md:py-24 bg-primary relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0 bg-[url('https://picsum.photos/id/111/1920/1080')] bg-cover bg-center"></div>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-white mb-6">想知道你的工厂适合哪款设备？</h2>
+                    <p class="text-gray-200 text-lg mb-10">提供免费上门勘测+定制解决方案，专业团队为您推荐最适合的激光设备</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="#" class="bg-secondary hover:bg-secondary/90 text-white px-8 py-4 rounded-md font-medium transition-all text-lg shadow-lg hover:shadow-xl">
+                            免费获取选型方案
+                        </a>
+                        <a href="tel:400-XXX-XXXX" class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-md font-medium transition-all text-lg flex items-center justify-center">
+                            <i class="fa fa-phone mr-2"></i>
+                            拨打咨询热线：400-XXX-XXXX
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客/行业资讯区 -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
+                    <div>
+                        <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">激光行业资讯与技术干货</h2>
+                    </div>
+                    <a href="#" class="text-primary hover:text-primary/80 font-medium flex items-center mt-4 md:mt-0">
+                        查看更多
+                        <i class="fa fa-long-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 文章卡片1 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                        <span class="text-sm text-gray-500 mb-3 block">2024-06-15</span>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 hover:text-primary transition-colors">
+                            <a href="#">《激光切割机日常维护3步法》</a>
+                        </h3>
+                        <p class="text-gray-600">3个简单步骤，有效延长设备使用寿命，降低维护成本，提高生产效率。</p>
+                    </div>
+                    
+                    <!-- 文章卡片2 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                        <span class="text-sm text-gray-500 mb-3 block">2024-05-28</span>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 hover:text-primary transition-colors">
+                            <a href="#">《光纤激光技术在汽车制造中的应用》</a>
+                        </h3>
+                        <p class="text-gray-600">探讨激光焊接、切割技术如何提升汽车零部件生产效率与质量稳定性。</p>
+                    </div>
+                    
+                    <!-- 文章卡片3 -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                        <span class="text-sm text-gray-500 mb-3 block">2024-04-10</span>
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 hover:text-primary transition-colors">
+                            <a href="#">《如何选择适合的激光功率？》</a>
+                        </h3>
+                        <p class="text-gray-600">根据材料类型、厚度和加工要求，科学选择激光设备功率，避免资源浪费。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部固定区 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- 快速导航 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">快速导航</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#products" class="text-gray-300 hover:text-white transition-colors">产品中心</a></li>
+                        <li><a href="#solutions" class="text-gray-300 hover:text-white transition-colors">解决方案</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#cases" class="text-gray-300 hover:text-white transition-colors">案例展示</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 联系信息 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">联系信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-gray-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">济南市XX区XX街道XX工业园</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">400-XXX-XXXX</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">info@senrytech.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">周一至周日 8:00-20:00</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 资质链接 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">资质文件</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">营业执照</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">ISO9001认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">CE认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">FCC认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">隐私政策</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 社交媒体 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">关注我们</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-2 rounded-md text-center">
+                            <p class="text-gray-800 text-sm mb-1">微信公众号</p>
+                            <div class="w-32 h-32 bg-gray-200 mx-auto flex items-center justify-center text-gray-500 text-xs">
+                                微信二维码
+                            </div>
+                        </div>
+                        <div class="bg-white p-2 rounded-md text-center">
+                            <p class="text-gray-800 text-sm mb-1">抖音账号</p>
+                            <div class="w-32 h-32 bg-gray-200 mx-auto flex items-center justify-center text-gray-500 text-xs">
+                                抖音二维码
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-base font-medium mb-3">官方网站</h4>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                            <i class="fa fa-globe mr-2"></i>
+                            www.senrytech.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 版权信息 -->
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>©2024 Senrytech 保留所有权利 | 鲁ICP备XXXXXXXX号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+        
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 移动端产品菜单切换
+        document.getElementById('mobile-products-toggle').addEventListener('click', function() {
+            const mobileProductsMenu = document.getElementById('mobile-products-menu');
+            mobileProductsMenu.classList.toggle('hidden');
+        });
+        
+        // 轮播图功能
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            // 隐藏所有幻灯片
+            slides.forEach(slide => slide.classList.remove('active'));
+            // 重置所有指示器
+            indicators.forEach(indicator => indicator.classList.remove('opacity-100'));
+            indicators.forEach(indicator => indicator.classList.add('opacity-50'));
+            
+            // 显示当前幻灯片
+            slides[index].classList.add('active');
+            // 激活当前指示器
+            indicators[index].classList.remove('opacity-50');
+            indicators[index].classList.add('opacity-100');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        // 轮播控制按钮
+        document.getElementById('carousel-next').addEventListener('click', nextSlide);
+        document.getElementById('carousel-prev').addEventListener('click', prevSlide);
+        
+        // 指示器点击事件
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+        
+        // 自动轮播
+        let carouselInterval = setInterval(nextSlide, 5000);
+        
+        // 鼠标悬停时暂停轮播
+        document.getElementById('carousel').addEventListener('mouseenter', () => {
+            clearInterval(carouselInterval);
+        });
+        
+        // 鼠标离开时恢复轮播
+        document.getElementById('carousel').addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // 案例轮播
+        let currentCase = 0;
+        const caseItems = document.querySelectorAll('.cases-item');
+        const caseTrack = document.querySelector('.cases-track');
+        const totalCases = caseItems.length;
+        const caseItemsPerView = window.innerWidth >= 768 ? 2 : 1;
+        const maxCaseIndex = totalCases - caseItemsPerView;
+        
+        function updateCasePosition() {
+            const itemWidth = 100 / caseItemsPerView;
+            caseTrack.style.transform = `translateX(-${currentCase * itemWidth}%)`;
+        }
+        
+        function nextCase() {
+            currentCase = Math.min(currentCase + 1, maxCaseIndex);
+            updateCasePosition();
+        }
+        
+        function prevCase() {
+            currentCase = Math.max(currentCase - 1, 0);
+            updateCasePosition();
+        }
+        
+        // 案例轮播控制
+        document.getElementById('cases-next').addEventListener('click', nextCase);
+        document.getElementById('cases-prev').addEventListener('click', prevCase);
+        
+        // 窗口大小变化时重新计算
+        window.addEventListener('resize', () => {
+            const newItemsPerView = window.innerWidth >= 768 ? 2 : 1;
+            if (newItemsPerView !== caseItemsPerView) {
+                caseItemsPerView = newItemsPerView;
+                maxCaseIndex = totalCases - caseItemsPerView;
+                currentCase = 0;
+                updateCasePosition();
+            }
+        });
+        
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // 观察所有section
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+    

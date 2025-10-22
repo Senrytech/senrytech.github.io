@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Senrytech 激光切割机系列-11大系列覆盖全场景激光切割需求，高精度、高效能的专业激光切割设备">
+    <title>Senrytech-激光切割机系列</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b4c42',
+                        secondary: '#ff7a00',
+                        accent: '#3a8686',
+                        neutral: '#f5f5f5',
+                        dark: '#2c3e50'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            }
+            .transition-transform {
+                transition-property: transform;
+                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+                transition-duration: 300ms;
+            }
+        }
+    </style>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-scrolled {
+            background-color: rgba(27, 76, 66, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+    <!-- 导航栏（与原PRODUCTS INDEX完全一致） -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                        <img src="../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                    </div>
+                    <span class="text-white font-bold text-xl">Senrytech</span>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-white hover:text-secondary transition-colors">首页</a>
+                    <div class="relative group">
+                        <a href="#" class="text-white hover:text-secondary transition-colors flex items-center">
+                            产品中心
+                            <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+                            <!-- 激光切割机子菜单（新增） -->
+                            <div class="relative group/item">
+                                <a href="laser_cutting_index.html" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光切割机系列
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列1</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列2</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列3</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列4</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列5</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列6</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列7</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列8</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列9</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列10</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">系列11</a>
+                                </div>
+                            </div>
+                            <!-- 保留原产品中心其他子菜单 -->
+                            <div class="relative group/item">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光管材切割机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Plus系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Plus系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                </div>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光板管一体机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B ProMax系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Ultra系列</a>
+                                </div>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光焊接机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">R系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                </div>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光清洗机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">S系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">P系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                </div>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光打标机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">D系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">P系列</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../#solutions" class="text-white hover:text-secondary transition-colors">解决方案</a>
+                    <a href="../#about" class="text-white hover:text-secondary transition-colors">关于我们</a>
+                    <a href="../#cases" class="text-white hover:text-secondary transition-colors">案例展示</a>
+                    <a href="../#contact" class="text-white hover:text-secondary transition-colors">联系我们</a>
+                </nav>
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="../index.html" class="block text-gray-800 hover:text-primary font-medium">首页</a>
+                <div>
+                    <button id="mobile-products-toggle" class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium">
+                        产品中心
+                        <i class="fa fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="mobile-products-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <!-- 激光切割机移动端子菜单（新增） -->
+                        <div>
+                            <button id="mobile-laser-cutting-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光切割机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-laser-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列1</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列2</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列3</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列4</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列5</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列6</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列7</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列8</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列9</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列10</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">系列11</a>
+                            </div>
+                        </div>
+                        <!-- 保留原产品中心其他移动端子菜单 -->
+                        <div>
+                            <button id="mobile-tubecut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光管材切割机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-tubecut-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="mobile-sheetandtubecut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光板管一体机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-sheetandtubecut-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="mobile-welding-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光焊接机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-welding-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">R系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="mobile-cleaning-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光清洗机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-cleaning-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">S系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">P系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                            </div>
+                        </div>
+                        <div>
+                            <button id="mobile-marking-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光打标机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-marking-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">D系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">P系列</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="../#solutions" class="block text-gray-800 hover:text-primary font-medium">解决方案</a>
+                <a href="../#about" class="block text-gray-800 hover:text-primary font-medium">关于我们</a>
+                <a href="../#cases" class="block text-gray-800 hover:text-primary font-medium">案例展示</a>
+                <a href="../#contact" class="block text-gray-800 hover:text-primary font-medium">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 激光切割机系列英雄区域 -->
+        <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 mb-6 slide-up">Senrytech 激光切割机系列</h1>
+                    <p class="text-gray-600 text-lg mb-8 slide-up" style="animation-delay: 0.2s">11大系列，覆盖从精密加工到工业量产的全场景激光切割需求，为您提供高精度、高效率、高稳定性的激光切割解决方案</p>
+                    <a href="#series" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors slide-up" style="animation-delay: 0.4s">
+                        探索系列 <i class="fa fa-arrow-down ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 激光切割机核心优势（增加独特内容，利于SEO） -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">为什么选择 Senrytech 激光切割机？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-tachometer text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高效能切割</h3>
+                        <p class="text-gray-600">各系列针对不同材料（碳钢、不锈钢、铝合金等）优化切割参数，切割速度较行业平均提升20%-40%，大幅缩短生产周期。</p>
+                    </div>
+                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-crosshairs text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高精度定位</h3>
+                        <p class="text-gray-600">采用进口伺服电机与高精度导轨，重复定位精度可达±0.01mm，切割边缘光滑无毛刺，满足精密零部件加工需求。</p>
+                    </div>
+                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-cogs text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">智能易操作</h3>
+                        <p class="text-gray-600">集成智能排版与自动对焦系统，支持CAD文件直接导入，操作界面友好，新手也能快速上手，降低人工学习成本。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11大激光切割机系列展示 -->
+        <section id="series" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">11大激光切割机系列</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 系列1 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_1.jpg" alt="激光切割机系列1" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列1：精密型激光切割机</h3>
+                            <p class="text-gray-600 mb-4">专为电子元器件、医疗器械等精密行业设计，最小切割线宽0.1mm，热影响区＜0.05mm，确保精密部件不受热变形。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列2 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_2.jpg" alt="激光切割机系列2" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列2：薄板高速激光切割机</h3>
+                            <p class="text-gray-600 mb-4">针对厚度≤6mm的薄板批量切割优化，切割速度达80m/min，双工作台自动切换，大幅提升中小批量薄板生产效率。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列3 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_3.jpg" alt="激光切割机系列3" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列3：中厚板激光切割机</h3>
+                            <p class="text-gray-600 mb-4">功率覆盖3000W-6000W，可高效切割厚度≤20mm的碳钢、不锈钢，配备智能穿孔技术，厚板穿孔时间缩短50%。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列4 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_4.jpg" alt="激光切割机系列4" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列4：超高功率激光切割机</h3>
+                            <p class="text-gray-600 mb-4">功率≥12000W，可切割厚度≤50mm的碳钢，配备双激光源切换技术，厚板切割效率提升3倍，满足重工业大型构件需求。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列5 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_5.jpg" alt="激光切割机系列5" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列5：光纤激光切割机</h3>
+                            <p class="text-gray-600 mb-4">采用进口光纤激光器，电光转换效率＞30%，能耗比传统CO2切割机降低40%，维护成本低，适合长期连续生产。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列6 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_6.jpg" alt="激光切割机系列6" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列6：交换平台激光切割机</h3>
+                            <p class="text-gray-600 mb-4">配备双交换工作台，切割与上下料同步进行，有效减少停机时间，适合大规模连续化生产，产能提升60%以上。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列7 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_7.jpg" alt="激光切割机系列7" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列7：自动送料激光切割机</h3>
+                            <p class="text-gray-600 mb-4">集成自动送料系统，支持卷料连续切割，减少人工上料次数，尤其适合家电、厨具等行业的卷料加工场景。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列8 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_8.jpg" alt="激光切割机系列8" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列8：三维激光切割机</h3>
+                            <p class="text-gray-600 mb-4">配备多轴联动系统，可对曲面、异形三维工件进行精准切割，广泛应用于汽车车身、航空航天零部件加工。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列9 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_9.jpg" alt="激光切割机系列9" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列9：环保型激光切割机</h3>
+                            <p class="text-gray-600 mb-4">内置高效除尘与废气处理系统，切割过程中烟尘、废气排放远低于行业标准，打造绿色环保的生产环境。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列10 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_10.jpg" alt="激光切割机系列10" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列10：智能工厂激光切割机</h3>
+                            <p class="text-gray-600 mb-4">支持工业4.0互联，可与MES系统对接，实现生产数据实时监控、远程运维与智能排产，助力工厂数字化转型。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 系列11 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                        <div class="h-56 overflow-hidden">
+                            <img src="../img/products/laser_cutting/series_11.jpg" alt="激光切割机系列11" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">系列11：定制化激光切割机</h3>
+                            <p class="text-gray-600 mb-4">根据客户特殊工艺、产线布局与材料需求，提供从设备结构到软件算法的全流程定制，满足个性化生产需求。</p>
+                            <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 激光切割机常见问题（FAQ，增加独特内容，利于SEO抓取） -->
+        <section class="py-16 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光切割机常见问题</h2>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <details class="bg-white rounded-lg shadow-sm p-6">
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            <span>激光切割机适合切割哪些材料？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </summary>
+                        <div class="mt-4 text-gray-600">
+                            激光切割机可切割的材料非常广泛，包括碳钢、不锈钢、铝合金、铜、钛等金属材料，以及亚克力、木材、塑料等部分非金属材料。不同系列的激光切割机针对材料特性（如反射率、热导率）做了优化，比如光纤激光切割机更适合金属材料，而部分定制机型可兼顾非金属切割。
+                        </div>
+                    </details>
+                    <details class="bg-white rounded-lg shadow-sm p-6">
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            <span>如何选择适合自己的激光切割机系列？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </summary>
+                        <div class="mt-4 text-gray-600">
+                            选择激光切割机系列需考虑以下因素：① 切割材料（种类、厚度）；② 生产需求（批量、精度要求）；③ 产线布局（是否需要自动送料、交换平台）；④ 预算与长期成本（设备价格、能耗、维护成本）。我们的11大系列覆盖了从精密小批量到工业大规模生产的全场景，可联系技术顾问获取免费选型建议。
+                        </div>
+                    </details>
+                    <details class="bg-white rounded-lg shadow-sm p-6">
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            <span>激光切割机的维护成本高吗？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </summary>
+                        <div class="mt-4 text-gray-600">
+                            激光切割机的维护成本主要取决于机型与使用频率。Senrytech系列激光切割机采用模块化设计，核心部件（如激光器、伺服电机）均为国际知名品牌，可靠性高，故障概率低。同时，我们提供详细的维护手册与在线指导，常规维护（如镜片清洁、导轨润滑）可由客户自行完成，大幅降低长期维护成本。
+                        </div>
+                    </details>
+                    <details class="bg-white rounded-lg shadow-sm p-6">
+                        <summary class="font-semibold text-lg cursor-pointer flex justify-between items-center">
+                            <span>激光切割机的切割精度能达到多少？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </summary>
+                        <div class="mt-4 text-gray-600">
+                            Senrytech激光切割机的切割精度因系列而异：精密型系列重复定位精度可达±0.01mm，切割线宽最小0.1mm；工业量产型系列重复定位精度为±0.02mm，足以满足绝大多数工业零部件的切割需求。精度表现还与材料厚度、切割速度等工艺参数相关，我们的智能系统会自动匹配最优参数。
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系咨询模块（引导转化） -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto bg-primary text-white rounded-lg p-8 md:p-12 text-center">
+                    <h2 class="text-2xl font-semibold mb-4">需要选型建议或定制方案？</h2>
+                    <p class="text-white/80 mb-8">我们的技术顾问将为您提供免费的激光切割机选型指导，根据您的需求匹配最适合的系列与配置</p>
+                    <a href="../#contact" class="inline-block bg-white text-primary hover:bg-neutral px-6 py-3 rounded-md font-medium transition-colors">
+                        立即咨询 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚（与原PRODUCTS INDEX完全一致） -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">快速导航</h3>
+                    <ul class="space-y-3">
+                        <li><a href="../index.html" class="text-gray-300 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">产品中心</a></li>
+                        <li><a href="../#solutions" class="text-gray-300 hover:text-white transition-colors">解决方案</a></li>
+                        <li><a href="../#about" class="text-gray-300 hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="../#cases" class="text-gray-300 hover:text-white transition-colors">案例展示</a></li>
+                        <li><a href="../#contact" class="text-gray-300 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">联系信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker text-gray-400 mt-1 mr-3"></i>
+                            <span class="text-gray-300">济南市历城区舜华路街道综合产业工业园</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">134-6557-5719</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">info@senrytech.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o text-gray-400 mr-3"></i>
+                            <span class="text-gray-300">周一至周日 8:00-20:00</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">资质文件</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">营业执照</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">ISO9001认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">CE认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">FCC认证</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">隐私政策</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">关注我们</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-2 rounded-md text-center">
+                            <p class="text-gray-800 text-sm mb-1">微信公众号</p>
+                            <div class="w-32 h-32 bg-gray-200 mx-auto flex items-center justify-center text-gray-500 text-xs">
+                                微信二维码
+                            </div>
+                        </div>
+                        <div class="bg-white p-2 rounded-md text-center">
+                            <p class="text-gray-800 text-sm mb-1">抖音账号</p>
+                            <div class="w-32 h-32 bg-gray-200 mx-auto flex items-center justify-center text-gray-500 text-xs">
+                                抖音二维码
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-base font-medium mb-3">官方网站</h4>
+                        <a href="https://www.senrytech.com" class="text-gray-300 hover:text-white transition-colors flex items-center">
+                            <i class="fa fa-globe mr-2"></i>
+                            www.senrytech.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>©2024 Senrytech 保留所有权利 | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript（与原PRODUCTS INDEX完全一致） -->
+    <script>
+        // 移动端二级菜单切换（新增激光切割机系列的移动端菜单逻辑）
+        document.getElementById('mobile-laser-cutting-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-laser-cutting-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        document.getElementById('mobile-tubecut-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-tubecut-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        document.getElementById('mobile-sheetandtubecut-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-sheetandtubecut-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        document.getElementById('mobile-welding-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-welding-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        document.getElementById('mobile-cleaning-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-cleaning-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+        document.getElementById('mobile-marking-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-marking-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+
+        // FAQ折叠面板动画
+        document.querySelectorAll('details').forEach(detail => {
+            detail.addEventListener('toggle', () => {
+                const icon = detail.querySelector('i');
+                if (detail.open) {
+                    icon.classList.add('rotate-180');
+                } else {
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.getElementById('mobile-products-toggle').addEventListener('click', function() {
+            const mobileProductsMenu = document.getElementById('mobile-products-menu');
+            mobileProductsMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

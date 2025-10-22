@@ -36,10 +36,27 @@
             .text-shadow-lg {
                 text-shadow: 0 4px 8px rgba(0,0,0,0.25);
             }
-            .transition-transform {
-                transition-property: transform;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+            .pipe-illustration {
+                position: relative;
+                height: 8px;
+                background: linear-gradient(90deg, #1b4c42 0%, #3a8686 50%, #1b4c42 100%);
+                border-radius: 4px;
+            }
+            .pipe-illustration::before, .pipe-illustration::after {
+                content: '';
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                background-color: #1b4c42;
+                border-radius: 50%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .pipe-illustration::before {
+                left: -8px;
+            }
+            .pipe-illustration::after {
+                right: -8px;
             }
         }
     </style>
@@ -73,10 +90,16 @@
         .faq-content:not(.hidden) {
             max-height: 500px;
         }
+        .tube-shape {
+            transition: transform 0.3s ease;
+        }
+        .tube-card:hover .tube-shape {
+            transform: rotate(5deg) scale(1.05);
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 overflow-x-hidden">
-    <!-- 导航栏 -->
+    <!-- 1. 导航系统 -->
     <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
@@ -208,17 +231,17 @@
                                 <i class="fa fa-chevron-down text-xs"></i>
                             </button>
                             <div id="mobile-laser-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列1</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列2</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列3</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列4</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列5</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列6</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列7</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列8</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列9</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列10</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列11</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C 系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">G系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">S系列</a>
                             </div>
                         </div>
                         <!-- 激光管材切割机移动端子菜单（当前页面） -->
@@ -298,7 +321,7 @@
     </header>
 
     <main>
-        <!-- 激光管材切割机系列英雄区域 -->
+        <!-- 2. 英雄区域 -->
         <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
@@ -311,127 +334,307 @@
             </div>
         </section>
 
-        <!-- 激光管材切割机系列核心优势 -->
-        <section class="py-12 bg-white">
+        <!-- 3. 技术原理说明 -->
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">为什么选择 Senrytech 激光管材切割机系列？</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-cubes text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">多规格适配</h3>
-                        <p class="text-gray-600">支持直径Φ10-300mm的圆管、边长10-200mm的方管/矩形管，以及槽钢、角钢、椭圆管等异型管材，单台设备覆盖绝大多数管材加工场景。</p>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="../img/products/laser_tube_cutting/principle.jpg" alt="激光管材切割工作原理示意图" class="w-full h-auto rounded-lg shadow-md">
                     </div>
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-crosshairs text-primary text-2xl"></i>
+                    <div class="md:w-1/2">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">激光管材切割技术原理</h2>
+                        <p class="text-gray-600 mb-4">激光管材切割是利用高能量密度的激光束聚焦在管材表面，使材料瞬间熔化并蒸发，同时通过辅助气体将熔渣吹走，形成切口。配合管材旋转和轴向进给运动，实现各种复杂形状的精准切割。</p>
+                        <p class="text-gray-600 mb-4">相比传统的锯切、等离子切割等方式，激光切割具有切口光滑、精度高、速度快、材料适应性广等优势，特别适合复杂管材结构的加工。</p>
+                        <div class="mt-6 grid grid-cols-2 gap-4">
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">切割精度</div>
+                                <div class="text-sm text-gray-600">±0.1mm/m</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">切割速度</div>
+                                <div class="text-sm text-gray-600">最高60m/min</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">切口粗糙度</div>
+                                <div class="text-sm text-gray-600">Ra≤12.5μm</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">管材直径范围</div>
+                                <div class="text-sm text-gray-600">Φ10-300mm</div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">高精度切割</h3>
-                        <p class="text-gray-600">采用“双驱动伺服送料+旋转编码器定位”，切割长度精度±0.1mm/m，坡口角度误差≤0.5°，孔位同心度≤0.05mm，满足高精度装配需求。</p>
-                    </div>
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-refresh text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">智能高效</h3>
-                        <p class="text-gray-600">配备自动上料架（单次可放10根6米长管材）、自动尾料处理系统，切割速度最高60m/min，比传统锯切效率提升3-5倍，减少人工干预。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光管材切割机系列展示 -->
+        <!-- 4. 核心优势展示 -->
+        <section class="py-12 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">为什么选择 Senrytech 激光管材切割机系列？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-cubes text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">多规格全适配</h3>
+                        <p class="text-gray-600">支持直径Φ10-300mm的圆管、边长10-200mm的方管/矩形管，以及槽钢、角钢、椭圆管等异型管材，单台设备覆盖绝大多数管材加工场景，无需更换设备即可完成多种管材加工。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-crosshairs text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">微米级高精度</h3>
+                        <p class="text-gray-600">采用"双驱动伺服送料+旋转编码器定位"系统，切割长度精度±0.1mm/m，坡口角度误差≤0.5°，孔位同心度≤0.05mm，满足高精度装配需求，减少后续加工工序。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-refresh text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">智能高效生产</h3>
+                        <p class="text-gray-600">配备自动上料架（单次可放10根6米长管材）、自动尾料处理系统，切割速度最高60m/min，比传统锯切效率提升3-5倍，减少人工干预，实现连续化生产。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 产品系列展示 -->
         <section id="series" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光管材切割机系列</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- M系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- M系列：迷你型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_m.jpg" alt="激光管材切割机M系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">M系列：迷你型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-24"></div>
+                                <span class="text-sm text-gray-500">中小直径管材专用</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率1000W，适配管材直径Φ10-80mm，机身紧凑（长2.5m），适合中小直径管材（如家具扶手、护栏）的小批量加工。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>手动上料，操作简单</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>占地面积小，适合小车间</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>入门级价格，投资低</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- A系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- A系列：标准型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_a.jpg" alt="激光管材切割机A系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">A系列：标准型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-32"></div>
+                                <span class="text-sm text-gray-500">通用标准管径</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率1500-2000W，适配管材直径Φ10-150mm，支持圆管/方管/矩形管切割，配备手动上料架，适合中小批量生产。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>支持简单坡口切割</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>中英文操作界面</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>适合多品种小批量生产</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- A Plus系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- A Plus系列：进阶型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_a_plus.jpg" alt="激光管材切割机A Plus系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">A Plus系列：进阶型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-36"></div>
+                                <span class="text-sm text-gray-500">支持异型管材</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率2000-3000W，适配管材直径Φ10-200mm，支持异型管（槽钢、角钢）切割，配备自动送料系统，批量效率提升30%。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>自动送料，节省人工</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>支持复杂异型管切割</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>断点续切功能</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- A Pro系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- A Pro系列：高效型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_a_pro.jpg" alt="激光管材切割机A Pro系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">A Pro系列：高效型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-40"></div>
+                                <span class="text-sm text-gray-500">高速高效切割</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率3000W，适配管材直径Φ10-250mm，双伺服送料+自动坡口切割，切割速度达50m/min，适合中大型批量生产。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>双驱送料，稳定性更高</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>自动坡口切割0-60°</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>支持多管材连续加工</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- B系列：厚壁管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_b.jpg" alt="激光管材切割机B系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">B系列：厚壁管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-32" style="height:12px"></div>
+                                <span class="text-sm text-gray-500">厚壁管材专用</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率3000-4000W，适配管材直径Φ50-250mm、壁厚≤20mm，专为厚壁钢管（如钢结构立柱）设计，穿孔速度提升40%。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>厚壁专用切割工艺</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>高功率激光，穿透能力强</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>双焦距激光头，适应不同厚度</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B Plus系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
+                    <!-- B Plus系列：重型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_b_plus.jpg" alt="激光管材切割机B Plus系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">B Plus系列：重型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-2">
+                                <div class="pipe-illustration w-40" style="height:16px"></div>
+                                <span class="text-sm text-gray-500">大型重型管材</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率4000-5000W，适配管材直径Φ50-300mm、壁厚≤30mm，配备重型送料架（承重500kg），适合大型工程管材加工。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>重型机架，稳定性强</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>高强度送料机构</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>自动润滑系统，维护方便</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B Pro系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 col-span-1 sm:col-span-2 lg:col-span-3">
+                    <!-- B Pro系列：智能型管材切割机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 tube-card col-span-1 sm:col-span-2 lg:col-span-3">
                         <div class="h-56 overflow-hidden">
                             <img src="../img/products/laser_tube_cutting/series_b_pro.jpg" alt="激光管材切割机B Pro系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">B Pro系列：智能型管材切割机</h3>
+                            <div class="flex items-center mb-3 space-x-4">
+                                <div class="pipe-illustration w-24"></div>
+                                <div class="pipe-illustration w-32" style="height:12px"></div>
+                                <div class="pipe-illustration w-28" style="height:8px; transform: rotate(45deg)"></div>
+                                <span class="text-sm text-gray-500">全类型管材智能加工</span>
+                            </div>
                             <p class="text-gray-600 mb-4">激光功率5000-6000W，适配管材直径Φ10-300mm，集成AI视觉定位（自动识别管材偏差）、MES系统对接（生产数据监控）、全自动上下料线，实现无人化生产，适合大型工厂规模化加工。</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>AI视觉定位系统</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>全自动上下料</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>MES生产管理系统</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>远程诊断与维护</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>智能排料优化</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fa fa-check text-primary mr-2"></i>
+                                        <span>多机协同生产</span>
+                                    </div>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
@@ -441,61 +644,132 @@
             </div>
         </section>
 
-        <!-- 应用场景 -->
+        <!-- 6. 与传统工艺对比 -->
         <section class="py-16 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光管材切割 vs 传统切割方式</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white rounded-lg shadow-sm">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="py-4 px-6 text-left">对比项目</th>
+                                <th class="py-4 px-6 text-left">Senrytech激光切割</th>
+                                <th class="py-4 px-6 text-left">锯片切割</th>
+                                <th class="py-4 px-6 text-left">等离子切割</th>
+                                <th class="py-4 px-6 text-left">水切割</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-4 px-6 font-medium">切割精度</td>
+                                <td class="py-4 px-6">±0.1mm/m</td>
+                                <td class="py-4 px-6">±1mm</td>
+                                <td class="py-4 px-6">±0.5mm</td>
+                                <td class="py-4 px-6">±0.1mm</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">切割速度</td>
+                                <td class="py-4 px-6">10-60m/min</td>
+                                <td class="py-4 px-6">1-5m/min</td>
+                                <td class="py-4 px-6">5-20m/min</td>
+                                <td class="py-4 px-6">1-5m/min</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">切口质量</td>
+                                <td class="py-4 px-6">光滑无毛刺，无需二次加工</td>
+                                <td class="py-4 px-6">粗糙有毛刺，需打磨</td>
+                                <td class="py-4 px-6">有熔渣，需清理</td>
+                                <td class="py-4 px-6">光滑，但有斜度</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">材料适应性</td>
+                                <td class="py-4 px-6">钢、铝、铜等多种金属</td>
+                                <td class="py-4 px-6">主要适合钢材，易磨损</td>
+                                <td class="py-4 px-6">主要适合钢材，对高反光材料效果差</td>
+                                <td class="py-4 px-6">适应多种材料，但速度慢</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">复杂形状切割</td>
+                                <td class="py-4 px-6">容易，支持任意形状</td>
+                                <td class="py-4 px-6">困难，只能直线切割</td>
+                                <td class="py-4 px-6">较难，精度低</td>
+                                <td class="py-4 px-6">容易，但速度慢</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">运行成本</td>
+                                <td class="py-4 px-6">中（电费+少量耗材）</td>
+                                <td class="py-4 px-6">中高（锯片消耗快）</td>
+                                <td class="py-4 px-6">高（电极消耗+高耗电）</td>
+                                <td class="py-4 px-6">高（水、砂、高压泵维护）</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">自动化程度</td>
+                                <td class="py-4 px-6">高，可全自动生产</td>
+                                <td class="py-4 px-6">低，依赖人工</td>
+                                <td class="py-4 px-6">中，半自动化</td>
+                                <td class="py-4 px-6">中，半自动化为主</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 应用场景 -->
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光管材切割机应用场景</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-building text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">钢结构工程</h3>
                         <p class="text-gray-600 text-sm">切割钢结构框架的立柱、横梁、支撑管，精准加工坡口、连接板孔位，提升装配效率</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-home text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">家具制造</h3>
                         <p class="text-gray-600 text-sm">加工桌椅框架、衣柜挂杆、楼梯扶手等管材部件，支持异型切割，适配定制化家具需求</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-car text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">汽车制造</h3>
                         <p class="text-gray-600 text-sm">切割汽车底盘管、排气管、防撞梁等部件，高精度保证车身结构强度和装配精度</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-futbol-o text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">健身器材</h3>
                         <p class="text-gray-600 text-sm">加工跑步机支架、哑铃杆、健身车架等管材部件，支持多规格管材混合加工</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-briefcase text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">展示道具</h3>
                         <p class="text-gray-600 text-sm">制作商场展架、超市货架、户外广告牌的管材框架，快速响应小批量定制需求</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-ship text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">船舶制造</h3>
                         <p class="text-gray-600 text-sm">切割船舶护栏、管道支架、舱室框架等管材，耐海水腐蚀材料（如不锈钢）加工效果优异</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-tree text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">户外设施</h3>
                         <p class="text-gray-600 text-sm">加工公园长椅、路灯杆、护栏网框架等户外管材部件，适配大直径管材加工需求</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-medkit text-primary text-2xl"></i>
                         </div>
@@ -506,7 +780,7 @@
             </div>
         </section>
 
-        <!-- 激光管材切割机FAQ模块 -->
+        <!-- 8. FAQ模块 -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光管材切割机常见问题</h2>
@@ -518,7 +792,7 @@
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">完全可以。Senrytech激光管材切割机全系配备“高反材料专用激光头”，通过优化激光波长（1064nm）和脉冲频率，解决不锈钢、铝合金等材料的激光反射问题，切割效率与碳钢基本一致（仅降低5%-10%）；其中A Pro及以上系列还支持“双焦点切换”，针对高反材料自动调整焦点位置，避免激光头损伤，切割表面光滑无毛刺。</p>
+                            <p class="text-gray-600">完全可以。Senrytech激光管材切割机全系配备"高反材料专用激光头"，通过优化激光波长（1064nm）和脉冲频率，解决不锈钢、铝合金等材料的激光反射问题，切割效率与碳钢基本一致（仅降低5%-10%）；其中A Pro及以上系列还支持"双焦点切换"，针对高反材料自动调整焦点位置，避免激光头损伤，切割表面光滑无毛刺。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板2 -->
@@ -528,7 +802,7 @@
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">常规尾料长度≤100mm（针对6米长管材），远低于传统锯切（尾料≥300mm）。B Plus/B Pro系列还配备“尾料回收系统”：当尾料长度≤200mm时，设备会自动将其收集到专用料箱，同时系统可记录尾料尺寸，支持后续“小尺寸零件拼接切割”（如小支架、连接板），进一步降低材料浪费率，实际尾料利用率可达80%以上。</p>
+                            <p class="text-gray-600">常规尾料长度≤100mm（针对6米长管材），远低于传统锯切（尾料≥300mm）。B Plus/B Pro系列还配备"尾料回收系统"：当尾料长度≤200mm时，设备会自动将其收集到专用料箱，同时系统可记录尾料尺寸，支持后续"小尺寸零件拼接切割"（如小支架、连接板），进一步降低材料浪费率，实际尾料利用率可达80%以上。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板3 -->
@@ -538,7 +812,7 @@
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">自动送料速度0-60m/min可调（根据管材直径和壁厚自动匹配），稳定性方面：①采用“双伺服电机驱动+同步带传动”，送料误差≤0.05mm/m；②配备“管材纠偏装置”，自动修正管材弯曲导致的偏移；③支持“断点续切”，若中途停机，重启后可从断点继续切割，无需重新定位。正常运行时无需人工调整，仅需定期（每3个月）润滑送料导轨即可。</p>
+                            <p class="text-gray-600">自动送料速度0-60m/min可调（根据管材直径和壁厚自动匹配），稳定性方面：①采用"双伺服电机驱动+同步带传动"，送料误差≤0.05mm/m；②配备"管材纠偏装置"，自动修正管材弯曲导致的偏移；③支持"断点续切"，若中途停机，重启后可从断点继续切割，无需重新定位。正常运行时无需人工调整，仅需定期（每3个月）润滑送料导轨即可。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板4 -->
@@ -551,11 +825,22 @@
                             <p class="text-gray-600">占地面积：M系列（2.5m×1.2m）、A/A Plus系列（4m×1.5m）、B/B Plus系列（6m×1.8m）、B Pro系列（8m×2.2m，含自动上下料线）；场地要求：①地面平整（承重≥300kg/㎡，B Pro系列≥500kg/㎡）；②380V工业电源（M/A系列30kW，B/B Pro系列50-80kW）；③压缩空气（0.8MPa，流量≥0.5m³/min）；④通风良好（建议配备排烟系统，处理切割烟尘），无需单独地基，普通厂房即可安装。</p>
                         </div>
                     </div>
+                    <!-- FAQ折叠面板5 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq5">
+                            <span class="font-medium text-gray-800">如何选择适合的激光管材切割机型号？需要提供哪些参数？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div id="faq5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                            <p class="text-gray-600">选型需提供以下参数：①管材类型（圆管/方管/矩形管/异型管）；②管材材质（碳钢/不锈钢/铝合金等）；③管材规格（直径/边长范围、壁厚范围）；④最大管材长度；⑤每日产量需求；⑥切割工艺要求（是否需要坡口、复杂孔型等）。</p>
+                            <p class="text-gray-600 mt-2">我们的技术团队会根据您提供的参数，结合切割样品测试结果，为您推荐最适合的机型，并提供整线解决方案（包括上下料、仓储等辅助设备）。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系咨询 -->
+        <!-- 9. 联系咨询区域 -->
         <section class="py-16 bg-primary text-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">

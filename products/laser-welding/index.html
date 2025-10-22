@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Senrytech 激光焊接机系列-高精度、低变形的专业激光焊接设备，适配金属材料焊接，满足电子、汽车、医疗器械等行业需求">
+    <meta name="description" content="Senrytech激光焊接机-高精度激光焊接设备，适用于金属材料精密焊接，提供高效稳定的焊接解决方案">
     <title>Senrytech-激光焊接机系列</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -36,10 +36,11 @@
             .text-shadow-lg {
                 text-shadow: 0 4px 8px rgba(0,0,0,0.25);
             }
-            .transition-transform {
-                transition-property: transform;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+            .weld-pattern {
+                background-image: 
+                    radial-gradient(circle, rgba(27, 76, 66, 0.1) 1px, transparent 1px),
+                    linear-gradient(45deg, rgba(27, 76, 66, 0.05) 1px, transparent 1px);
+                background-size: 30px 30px;
             }
         }
     </style>
@@ -73,23 +74,40 @@
         .faq-content:not(.hidden) {
             max-height: 500px;
         }
-        .weld-bead {
+        .weld-seam {
             position: relative;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                rgba(27, 76, 66, 0) 0%, 
+                rgba(27, 76, 66, 0.3) 20%, 
+                rgba(27, 76, 66, 0.8) 50%, 
+                rgba(27, 76, 66, 0.3) 80%, 
+                rgba(27, 76, 66, 0) 100%);
+            border-radius: 2px;
         }
-        .weld-bead::after {
+        .weld-seam::after {
             content: '';
             position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #ff7a00, transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 122, 0, 0.6);
             border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 122, 0, 0.6);
+        }
+        .welding-spark {
+            animation: spark 1.5s infinite;
+        }
+        @keyframes spark {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
     </style>
 </head>
 <body class="font-sans text-gray-800 overflow-x-hidden">
-    <!-- 导航栏 -->
+    <!-- 1. 导航系统 -->
     <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
@@ -311,12 +329,12 @@
     </header>
 
     <main>
-        <!-- 激光焊接机系列英雄区域 -->
-        <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral">
+        <!-- 2. 英雄区域 -->
+        <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral weld-pattern">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
                     <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 mb-6 slide-up">Senrytech 激光焊接机系列</h1>
-                    <p class="text-gray-600 text-lg mb-8 slide-up" style="animation-delay: 0.2s">3大系列，支持不锈钢、铝合金、铜等金属材料的精密焊接，焊缝平整美观、热变形小，满足多行业高精度焊接需求</p>
+                    <p class="text-gray-600 text-lg mb-8 slide-up" style="animation-delay: 0.2s">高精度激光焊接技术，实现完美焊缝，适用于多种金属材料焊接，提升产品质量与生产效率</p>
                     <a href="#series" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors slide-up" style="animation-delay: 0.4s">
                         探索系列 <i class="fa fa-arrow-down ml-2"></i>
                     </a>
@@ -324,95 +342,99 @@
             </div>
         </section>
 
-        <!-- 激光焊接机工作原理 -->
+        <!-- 3. 技术原理说明 -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row items-center gap-12">
                     <div class="md:w-1/2">
-                        <img src="../img/products/laser_welding/principle.jpg" alt="激光焊接工作原理示意图" class="w-full h-auto rounded-lg shadow-md">
+                        <img src="../img/products/laser_welding/principle.jpg" alt="激光焊接机工作原理示意图" class="w-full h-auto rounded-lg shadow-md">
                     </div>
                     <div class="md:w-1/2">
                         <h2 class="text-2xl font-semibold text-gray-800 mb-6">激光焊接技术原理</h2>
-                        <p class="text-gray-600 mb-4">激光焊接是利用高能量密度的激光束作为热源的一种高效精密焊接方法。激光束照射到材料表面，通过热传导方式将热量传入材料内部，使材料熔化形成熔池，冷却后形成牢固的焊接接头。</p>
-                        <p class="text-gray-600 mb-4">相比传统焊接方法，激光焊接具有能量密度高、焊接速度快、热影响区小、焊接变形小等显著优势，特别适合精密零件的焊接。</p>
+                        <p class="text-gray-600 mb-4">激光焊接是利用高能量密度的激光束作为热源的一种高效精密焊接方法。激光束通过聚焦系统聚焦后，能量密度可达到10^5-10^7 W/cm²，瞬间将材料局部加热至熔化并形成焊接熔池。</p>
+                        <p class="text-gray-600 mb-4">激光焊接具有热输入量小、热影响区窄、焊接变形小、焊缝强度高、焊接速度快等特点，可实现传统焊接方法难以完成的精密构件焊接。</p>
                         <div class="mt-6 grid grid-cols-2 gap-4">
                             <div class="bg-neutral p-4 rounded-md">
-                                <div class="font-medium mb-1">能量密度</div>
-                                <div class="text-sm text-gray-600">10⁴-10⁶ W/mm²</div>
+                                <div class="font-medium mb-1">焊接厚度范围</div>
+                                <div class="text-sm text-gray-600">0.1-10mm(金属材料)</div>
                             </div>
                             <div class="bg-neutral p-4 rounded-md">
                                 <div class="font-medium mb-1">焊接速度</div>
-                                <div class="text-sm text-gray-600">0.5-10 m/min</div>
+                                <div class="text-sm text-gray-600">0.5-10m/min</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">定位精度</div>
+                                <div class="text-sm text-gray-600">±0.01mm</div>
                             </div>
                             <div class="bg-neutral p-4 rounded-md">
                                 <div class="font-medium mb-1">热影响区</div>
                                 <div class="text-sm text-gray-600">≤0.1mm</div>
                             </div>
-                            <div class="bg-neutral p-4 rounded-md">
-                                <div class="font-medium mb-1">焊接深度</div>
-                                <div class="text-sm text-gray-600">0.1-10mm</div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光焊接机系列核心优势 -->
+        <!-- 4. 核心优势展示 -->
         <section class="py-12 bg-neutral">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">为什么选择 Senrytech 激光焊接机系列？</h2>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光焊接相比传统焊接的核心优势</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-balance-scale text-primary text-2xl"></i>
+                            <i class="fa fa-crosshairs text-primary text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold mb-3">高精度焊接</h3>
-                        <p class="text-gray-600">激光聚焦光斑直径可小至0.1mm，定位精度±0.01mm，可实现精密零件的微小焊缝焊接，焊缝宽度均匀，热影响区小（≤0.1mm），工件变形量仅为传统焊接的1/5-1/10。</p>
+                        <p class="text-gray-600">激光束聚焦后光斑直径可小至0.1mm，能实现微小区域的精密焊接；热影响区小，仅为传统焊接的1/5-1/10；焊接变形极小，减少后续矫形工序；焊缝平整美观，强度高，通常可达母材强度的95%以上。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-bolt text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高效节能</h3>
+                        <p class="text-gray-600">焊接速度是传统电弧焊的3-10倍；非接触式加工，无电极磨损，减少耗材更换；能量利用率高，是传统焊接的2-3倍；可实现自动化连续焊接，适合批量生产；无需或仅需少量后续处理，节省工序成本。</p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                             <i class="fa fa-cogs text-primary text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">多材料适配</h3>
-                        <p class="text-gray-600">可焊接不锈钢、碳钢、铝合金、钛合金、铜等多种金属材料，支持同种材料及异种材料（如铜-铝、钢-铜）的焊接，配备高反材料专用模式，解决铝合金、铜等材料的焊接难题。</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-paint-brush text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">优质焊缝质量</h3>
-                        <p class="text-gray-600">焊缝强度达母材的90%以上，无气孔、裂纹等缺陷，表面光滑美观，减少后续打磨工序；支持连续焊接、点焊、叠焊、角焊等多种焊接方式，满足不同焊接需求。</p>
+                        <h3 class="text-xl font-semibold mb-3">灵活多样</h3>
+                        <p class="text-gray-600">可焊接多种金属材料，包括碳钢、不锈钢、铝合金、钛合金等；能实现异种材料焊接；适用于复杂形状工件和难以接近区域的焊接；可配合机器人系统，实现三维空间焊接；支持脉冲、连续、扫描等多种焊接模式。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光焊接机系列展示 -->
+        <!-- 5. 产品系列展示 -->
         <section id="series" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光焊接机系列</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- A系列：手持激光焊接机 -->
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-                        <div class="h-56 overflow-hidden">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_welding/series_a.jpg" alt="手持激光焊接机A系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">A系列：手持激光焊接机</h3>
-                            <p class="text-gray-600 mb-4">激光功率1000-2000W，手持焊枪设计，操作灵活，适合大型工件、复杂结构件的焊接，焊缝美观，替代传统氩弧焊，效率提升3-5倍，节省30%以上人工成本。</p>
+                            <div class="mb-3">
+                                <div class="weld-seam mb-2"></div>
+                                <span class="text-sm text-gray-500">灵活便捷的手持操作</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率1000-2000W，采用手持焊枪设计，适合大型工件、复杂结构和现场焊接，操作简单，无需专业焊工即可获得优质焊缝。</p>
                             <div class="space-y-2 mb-4">
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>焊接厚度：0.3-3mm</span>
+                                    <span>轻量化设计，操作舒适</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>重量轻（焊枪仅1.2kg）</span>
+                                    <span>多种焊接喷嘴可选</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>支持连续/脉冲模式</span>
+                                    <span>适合户外及大型工件</span>
                                 </div>
                             </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
@@ -422,24 +444,28 @@
                     </div>
                     <!-- R系列：机器人激光焊接机 -->
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-                        <div class="h-56 overflow-hidden">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_welding/series_r.jpg" alt="机器人激光焊接机R系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">R系列：机器人激光焊接机</h3>
-                            <p class="text-gray-600 mb-4">激光功率2000-4000W，搭载6轴工业机器人，工作半径可达1.4-2.0m，配备视觉定位系统，可实现复杂三维焊缝的自动化焊接，适合中大型批量生产。</p>
+                            <div class="mb-3">
+                                <div class="weld-seam mb-2" style="width: 80%"></div>
+                                <span class="text-sm text-gray-500">三维立体自动化焊接</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率2000-6000W，配备6轴工业机器人，可实现复杂三维焊缝焊接，适合批量生产，焊接路径精度可达±0.05mm。</p>
                             <div class="space-y-2 mb-4">
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>焊接厚度：0.5-8mm</span>
+                                    <span>6轴联动，灵活度高</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>重复定位精度±0.02mm</span>
+                                    <span>视觉定位系统</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>支持离线编程</span>
+                                    <span>适合复杂工件批量生产</span>
                                 </div>
                             </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
@@ -447,26 +473,30 @@
                             </a>
                         </div>
                     </div>
-                    <!-- M系列：模具激光焊接机 -->
+                    <!-- M系列：自动化激光焊接机 -->
                     <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-                        <div class="h-56 overflow-hidden">
-                            <img src="../img/products/laser_welding/series_m.jpg" alt="模具激光焊接机M系列" class="w-full h-full object-cover transition-transform hover:scale-105">
+                        <div class="h-64 overflow-hidden">
+                            <img src="../img/products/laser_welding/series_m.jpg" alt="自动化激光焊接机M系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">M系列：模具激光焊接机</h3>
-                            <p class="text-gray-600 mb-4">激光功率100-500W，配备精密工作台（定位精度±0.005mm）和显微镜观察系统，专为模具修复和精密零件焊接设计，可实现0.1mm以下微小缺陷的精准修复。</p>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">M系列：自动化激光焊接机</h3>
+                            <div class="mb-3">
+                                <div class="weld-seam mb-2" style="width: 100%"></div>
+                                <span class="text-sm text-gray-500">高精度自动化焊接生产线</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率4000-10000W，配备精密工作台和自动化送料系统，适合平面或规则工件的大批量高效焊接，可集成在线检测功能。</p>
                             <div class="space-y-2 mb-4">
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>焊接厚度：0.1-2mm</span>
+                                    <span>高精度工作台，定位精准</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>配备CCD监控系统</span>
+                                    <span>全自动上下料系统</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <i class="fa fa-check text-primary mr-2"></i>
-                                    <span>脉冲宽度可调</span>
+                                    <span>适合大批量标准化生产</span>
                                 </div>
                             </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
@@ -478,62 +508,74 @@
             </div>
         </section>
 
-        <!-- 激光焊接与传统焊接对比 -->
+        <!-- 6. 技术参数对比 -->
         <section class="py-16 bg-neutral">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光焊接 vs 传统焊接</h2>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">各系列激光焊接机技术参数对比</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full bg-white rounded-lg shadow-sm">
                         <thead>
                             <tr class="bg-primary text-white">
-                                <th class="py-4 px-6 text-left">对比项目</th>
-                                <th class="py-4 px-6 text-left">Senrytech激光焊接</th>
-                                <th class="py-4 px-6 text-left">氩弧焊</th>
-                                <th class="py-4 px-6 text-left">电阻焊</th>
+                                <th class="py-4 px-6 text-left">技术参数</th>
+                                <th class="py-4 px-6 text-left">A系列（手持）</th>
+                                <th class="py-4 px-6 text-left">R系列（机器人）</th>
+                                <th class="py-4 px-6 text-left">M系列（自动化）</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             <tr>
-                                <td class="py-4 px-6 font-medium">热影响区</td>
-                                <td class="py-4 px-6">极小（≤0.1mm）</td>
-                                <td class="py-4 px-6">较大（1-3mm）</td>
-                                <td class="py-4 px-6">中等（0.5-1.5mm）</td>
+                                <td class="py-4 px-6 font-medium">激光功率</td>
+                                <td class="py-4 px-6">1000W / 1500W / 2000W</td>
+                                <td class="py-4 px-6">2000W / 3000W / 4000W / 6000W</td>
+                                <td class="py-4 px-6">4000W / 6000W / 8000W / 10000W</td>
                             </tr>
                             <tr>
-                                <td class="py-4 px-6 font-medium">工件变形</td>
-                                <td class="py-4 px-6">极小</td>
-                                <td class="py-4 px-6">较大</td>
-                                <td class="py-4 px-6">中等</td>
+                                <td class="py-4 px-6 font-medium">激光波长</td>
+                                <td class="py-4 px-6">1064nm</td>
+                                <td class="py-4 px-6">1064nm</td>
+                                <td class="py-4 px-6">1064nm</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">焊接厚度（碳钢）</td>
+                                <td class="py-4 px-6">0.3-3mm</td>
+                                <td class="py-4 px-6">0.5-6mm</td>
+                                <td class="py-4 px-6">1-10mm</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">焊接厚度（铝合金）</td>
+                                <td class="py-4 px-6">0.3-2mm</td>
+                                <td class="py-4 px-6">0.5-4mm</td>
+                                <td class="py-4 px-6">1-8mm</td>
                             </tr>
                             <tr>
                                 <td class="py-4 px-6 font-medium">焊接速度</td>
-                                <td class="py-4 px-6">快（0.5-10m/min）</td>
-                                <td class="py-4 px-6">慢（0.1-0.5m/min）</td>
-                                <td class="py-4 px-6">较快（0.3-3m/min）</td>
+                                <td class="py-4 px-6">0.5-3m/min</td>
+                                <td class="py-4 px-6">1-8m/min</td>
+                                <td class="py-4 px-6">2-10m/min</td>
                             </tr>
                             <tr>
-                                <td class="py-4 px-6 font-medium">焊缝质量</td>
-                                <td class="py-4 px-6">光滑美观，强度高</td>
-                                <td class="py-4 px-6">较粗糙，需后续处理</td>
-                                <td class="py-4 px-6">一般，可能有压痕</td>
+                                <td class="py-4 px-6 font-medium">定位精度</td>
+                                <td class="py-4 px-6">手动控制</td>
+                                <td class="py-4 px-6">±0.05mm</td>
+                                <td class="py-4 px-6">±0.01mm</td>
                             </tr>
                             <tr>
-                                <td class="py-4 px-6 font-medium">材料适应性</td>
-                                <td class="py-4 px-6">广泛（钢、铝、铜等）</td>
-                                <td class="py-4 px-6">较广（主要是钢材）</td>
-                                <td class="py-4 px-6">有限（主要是薄板）</td>
+                                <td class="py-4 px-6 font-medium">工作范围</td>
+                                <td class="py-4 px-6">手持操作，无限制</td>
+                                <td class="py-4 px-6">根据机器人型号，最大可达2m</td>
+                                <td class="py-4 px-6">500×500mm至2000×3000mm</td>
                             </tr>
                             <tr>
-                                <td class="py-4 px-6 font-medium">后续处理</td>
-                                <td class="py-4 px-6">基本无需处理</td>
-                                <td class="py-4 px-6">需打磨、抛光</td>
-                                <td class="py-4 px-6">可能需要处理压痕</td>
+                                <td class="py-4 px-6 font-medium">冷却方式</td>
+                                <td class="py-4 px-6">水冷</td>
+                                <td class="py-4 px-6">水冷</td>
+                                <td class="py-4 px-6">水冷</td>
                             </tr>
                             <tr>
-                                <td class="py-4 px-6 font-medium">自动化程度</td>
-                                <td class="py-4 px-6">高，易实现自动化</td>
-                                <td class="py-4 px-6">低，依赖人工技能</td>
-                                <td class="py-4 px-6">中，可半自动化</td>
+                                <td class="py-4 px-6 font-medium">电力需求</td>
+                                <td class="py-4 px-6">AC220V 50Hz</td>
+                                <td class="py-4 px-6">AC380V 50Hz</td>
+                                <td class="py-4 px-6">AC380V 50Hz</td>
                             </tr>
                         </tbody>
                     </table>
@@ -541,7 +583,7 @@
             </div>
         </section>
 
-        <!-- 应用场景 -->
+        <!-- 7. 应用场景 -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光焊接机应用场景</h2>
@@ -551,62 +593,62 @@
                             <i class="fa fa-microchip text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">电子电器</h3>
-                        <p class="text-gray-600 text-sm">精密电子元件、传感器引线、电机绕组、电池极耳等微小零件的焊接，焊点小而精确</p>
+                        <p class="text-gray-600 text-sm">精密电子元件、传感器引线、电机绕组、电池极耳等微型部件的高精度焊接</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-car text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">汽车制造</h3>
-                        <p class="text-gray-600 text-sm">汽车车身框架、变速箱齿轮、排气管、传感器等部件的焊接，强度高且变形小</p>
+                        <p class="text-gray-600 text-sm">汽车车身部件、变速箱、发动机组件、传感器、电池组等的高效精密焊接</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-medkit text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">医疗器械</h3>
-                        <p class="text-gray-600 text-sm">手术器械、医疗设备部件的精密焊接，焊缝光滑无毛刺，满足卫生要求</p>
+                        <p class="text-gray-600 text-sm">手术器械、医疗设备部件、植入式医疗器械等高洁净度要求的精密焊接</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-cogs text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">五金模具</h3>
-                        <p class="text-gray-600 text-sm">模具的修复与制造，可精准修复微小裂纹、磨损等缺陷，延长模具使用寿命</p>
-                    </div>
-                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-plug text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="font-semibold mb-2">厨卫五金</h3>
-                        <p class="text-gray-600 text-sm">不锈钢水龙头、水槽、厨具等产品的焊接，焊缝美观，减少后续抛光工序</p>
+                        <h3 class="font-semibold mb-2">五金制造</h3>
+                        <p class="text-gray-600 text-sm">不锈钢制品、厨卫五金、门窗配件、工具配件等的高质量焊接</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-mobile text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">3C产品</h3>
-                        <p class="text-gray-600 text-sm">手机、电脑等电子产品的结构件焊接，如手机中框、笔记本电脑外壳的精密焊接</p>
+                        <h3 class="font-semibold mb-2">消费电子</h3>
+                        <p class="text-gray-600 text-sm">手机外壳、笔记本电脑结构件、相机部件、智能穿戴设备的精密焊接</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-bicycle text-primary text-2xl"></i>
+                            <i class="fa fa-plug text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">运动器材</h3>
-                        <p class="text-gray-600 text-sm">自行车车架、健身器材等铝合金部件的焊接，重量轻且强度高，焊缝美观</p>
+                        <h3 class="font-semibold mb-2">动力电池</h3>
+                        <p class="text-gray-600 text-sm">锂电池极耳、电池 PACK、电池外壳等的高速精密焊接，确保导电性和密封性</p>
                     </div>
                     <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-ship text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">航空航天</h3>
-                        <p class="text-gray-600 text-sm">钛合金、铝合金等航空材料的精密焊接，满足高强度、轻量化要求</p>
+                        <p class="text-gray-600 text-sm">钛合金、铝合金等高强度材料构件的高质量焊接，满足轻量化和高强度要求</p>
+                    </div>
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-home text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">家居装饰</h3>
+                        <p class="text-gray-600 text-sm">不锈钢护栏、铝合金门窗、金属家具等的美观焊接，减少后续打磨工序</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光焊接机FAQ模块 -->
+        <!-- 8. FAQ模块 -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光焊接机常见问题</h2>
@@ -614,68 +656,96 @@
                     <!-- FAQ折叠面板1 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq1">
-                            <span class="font-medium text-gray-800">激光焊接机可以焊接哪些材料？对材料厚度有什么要求？</span>
+                            <span class="font-medium text-gray-800">激光焊接可以焊接哪些材料？有什么限制吗？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">Senrytech激光焊接机可焊接多种金属材料，包括：①碳钢、不锈钢等黑色金属；②铝合金、钛合金等有色金属；③铜及铜合金等高反光材料。针对不同材料，设备会自动调整激光参数。</p>
-                            <p class="text-gray-600 mt-2">材料厚度范围：A系列手持焊可焊0.3-3mm，R系列机器人焊可焊0.5-8mm，M系列模具焊可焊0.1-2mm。对于超过8mm的厚板，可采用多道焊接工艺实现。</p>
+                            <p class="text-gray-600">激光焊接适用于大多数金属材料，包括：</p>
+                            <p class="text-gray-600 mt-2">• 碳钢、不锈钢、合金钢等黑色金属</p>
+                            <p class="text-gray-600 mt-2">• 铝合金、镁合金、铜合金等有色金属</p>
+                            <p class="text-gray-600 mt-2">• 钛合金、镍合金等特种合金</p>
+                            <p class="text-gray-600 mt-2">• 部分异种金属组合（如铜-铝、钢-铜等）</p>
+                            <p class="text-gray-600 mt-2">限制主要包括：</p>
+                            <p class="text-gray-600 mt-2">• 高反光材料（如铜、银）焊接难度较大，需要特殊工艺</p>
+                            <p class="text-gray-600 mt-2">• 非金属材料（如塑料）通常需要专用的绿光或紫外激光焊接机</p>
+                            <p class="text-gray-600 mt-2">• 厚度过大（超过10mm）的单一焊缝需要多道焊接或选择其他焊接方式</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板2 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq2">
-                            <span class="font-medium text-gray-800">激光焊接机的运行成本如何？相比传统焊接有哪些经济性优势？</span>
+                            <span class="font-medium text-gray-800">手持激光焊接机与传统电弧焊相比有什么优势？需要专业焊工吗？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">运行成本主要包括电费和耗材：①电费：以2000W设备为例，每小时耗电量约3度（含冷却系统）；②耗材：保护镜片（约100-300元/片，可使用1-3个月）、喷嘴等，月均耗材成本约500-1000元。</p>
-                            <p class="text-gray-600 mt-2">经济性优势：①效率高，比氩弧焊快3-5倍，减少设备台数和人工；②焊缝质量好，减少后续打磨工序（节省30%-50%抛光成本）；③热变形小，减少矫正工序；④材料浪费少，无需填充材料（特定情况除外）。</p>
+                            <p class="text-gray-600">手持激光焊接机相比传统电弧焊的优势：</p>
+                            <p class="text-gray-600 mt-2">1. 焊缝美观平整，几乎无飞溅，减少后续打磨工作量80%以上</p>
+                            <p class="text-gray-600 mt-2">2. 热输入量小，工件变形小，特别适合薄板焊接</p>
+                            <p class="text-gray-600 mt-2">3. 焊接速度快，是传统电弧焊的2-5倍</p>
+                            <p class="text-gray-600 mt-2">4. 能耗低，仅为传统电弧焊的1/3-1/2</p>
+                            <p class="text-gray-600 mt-2">5. 操作环境更清洁，烟尘少，改善工作环境</p>
+                            <p class="text-gray-600 mt-2">手持激光焊接机操作简单，不需要专业焊工技能，普通工人经过1-2天培训即可掌握基本操作，大大降低了对操作人员的技能要求。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板3 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq3">
-                            <span class="font-medium text-gray-800">激光焊接机操作复杂吗？需要专业培训吗？日常维护有哪些要点？</span>
+                            <span class="font-medium text-gray-800">如何选择适合的激光焊接机功率和类型？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">操作难度：手持激光焊接机操作简单，普通工人经1-2天培训即可上岗；机器人激光焊接机需学习编程，一般1周左右可掌握基本操作。我们提供免费的操作培训服务。</p>
-                            <p class="text-gray-600 mt-2">日常维护要点：①每周清洁激光头保护镜片；②保持冷却系统水位和水质清洁；③定期检查光路系统是否正常；④保持工作环境清洁，避免粉尘过多；⑤长期不用时，需定期开机预热。</p>
+                            <p class="text-gray-600">选择激光焊接机主要考虑以下因素：</p>
+                            <p class="text-gray-600 mt-2">1. 材料厚度：0.3-2mm可选1000-2000W；2-5mm可选3000-4000W；5-10mm可选6000-10000W</p>
+                            <p class="text-gray-600 mt-2">2. 材料类型：高反光材料（如铜）建议选择更高功率或专用机型</p>
+                            <p class="text-gray-600 mt-2">3. 工件大小：大型工件或不便移动的工件适合手持激光焊接机</p>
+                            <p class="text-gray-600 mt-2">4. 生产批量：小批量、多品种适合手持或简单自动化；大批量、标准化适合机器人或自动化生产线</p>
+                            <p class="text-gray-600 mt-2">5. 焊缝复杂度：简单直线焊缝适合自动化；复杂三维焊缝适合机器人系统</p>
+                            <p class="text-gray-600 mt-2">我们的技术团队可根据您的具体需求，提供专业的选型建议和工艺方案。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板4 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq4">
-                            <span class="font-medium text-gray-800">如何选择适合的激光焊接机型号？需要考虑哪些因素？</span>
+                            <span class="font-medium text-gray-800">激光焊接机的维护保养需要注意哪些方面？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq4" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">选型需考虑以下因素：①焊接材料（不锈钢、铝、铜等）和厚度；②工件大小和形状（小型精密件/大型结构件）；③生产批量（小批量/大批量）；④焊接精度要求；⑤自动化程度需求。</p>
-                            <p class="text-gray-600 mt-2">一般推荐：①小批量、大型/复杂工件→A系列手持焊；②大批量、标准化工件→R系列机器人焊；③精密模具修复、微小零件→M系列模具焊。我们的技术团队可根据您的具体需求提供定制化方案。</p>
+                            <p class="text-gray-600">激光焊接机的维护保养要点：</p>
+                            <p class="text-gray-600 mt-2">1. 冷却系统：定期检查冷却水液位，每3-6个月更换一次冷却液，保持水路清洁，防止堵塞</p>
+                            <p class="text-gray-600 mt-2">2. 激光头：保持激光头清洁，定期检查保护镜片，发现污染或损坏及时更换；避免碰撞激光头</p>
+                            <p class="text-gray-600 mt-2">3. 光学系统：定期清洁聚焦镜和反射镜，保持光学元件清洁，避免指纹和灰尘污染</p>
+                            <p class="text-gray-600 mt-2">4. 机械系统：定期润滑运动部件，检查传动系统的紧固情况</p>
+                            <p class="text-gray-600 mt-2">5. 环境要求：保持工作环境清洁，避免粉尘过多；温度控制在15-30℃，湿度控制在40-60%</p>
+                            <p class="text-gray-600 mt-2">6. 定期检查：建议每6个月进行一次全面的专业检查和校准</p>
+                            <p class="text-gray-600 mt-2">正确的维护保养可显著延长设备寿命，保证焊接质量稳定性。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板5 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq5">
-                            <span class="font-medium text-gray-800">激光焊接过程中会产生有害气体吗？需要哪些安全防护措施？</span>
+                            <span class="font-medium text-gray-800">激光焊接的初期投资较高，如何评估其投资回报周期？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">激光焊接过程中会产生少量金属蒸汽和烟尘，长期吸入对健康有害，建议配备局部排烟系统（我们可提供配套方案）。</p>
-                            <p class="text-gray-600 mt-2">安全防护措施：①操作人员需佩戴激光防护眼镜（根据激光波长选择）；②设置安全防护围栏，防止激光直射；③配备急停按钮和安全联锁装置；④定期检查激光光路系统，确保安全；⑤操作人员需经过安全培训，了解激光危害及防护知识。</p>
+                            <p class="text-gray-600">激光焊接机的投资回报周期通常可从以下几个方面评估：</p>
+                            <p class="text-gray-600 mt-2">1. 生产效率提升：激光焊接速度是传统焊接的3-10倍，可显著提高产能，按日产量增加计算收益</p>
+                            <p class="text-gray-600 mt-2">2. 人工成本降低：减少焊工数量，降低对高技能焊工的依赖，降低人工成本20-50%</p>
+                            <p class="text-gray-600 mt-2">3. 材料节省：热输入小，减少工件变形和报废率；焊缝窄，节省填充材料</p>
+                            <p class="text-gray-600 mt-2">4. 后续工序减少：焊缝美观，可减少80%以上的打磨、抛光等后续处理工序</p>
+                            <p class="text-gray-600 mt-2">5. 能源消耗：能耗仅为传统焊接的1/3-1/2，长期运行可节省大量电费</p>
+                            <p class="text-gray-600 mt-2">根据不同行业和应用，激光焊接机的投资回报周期通常为6个月至2年。批量生产越大、产品附加值越高，回报周期越短。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系咨询 -->
+        <!-- 9. 联系咨询区域 -->
         <section class="py-16 bg-primary text-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-2xl font-semibold mb-4">需要了解更多激光焊接机信息？</h2>
-                    <p class="mb-8 opacity-90">我们的技术顾问将为您提供免费焊接方案设计，根据您的材料和工艺需求推荐适配机型</p>
+                    <h2 class="text-2xl font-semibold mb-4">需要定制激光焊接解决方案？</h2>
+                    <p class="mb-8 opacity-90">我们的焊接工艺专家将为您提供材料焊接测试、工艺参数优化和设备配置建议，确保获得最佳焊接效果</p>
                     <a href="../#contact" class="inline-block bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors">
                         联系我们 <i class="fa fa-arrow-right ml-2"></i>
                     </a>
@@ -848,6 +918,15 @@
 
         document.querySelectorAll('section > div > div').forEach(section => {
             observer.observe(section);
+        });
+
+        // 焊接火花动画效果
+        document.querySelectorAll('.weld-seam').forEach(seam => {
+            const spark = document.createElement('div');
+            spark.className = 'absolute w-3 h-3 bg-secondary rounded-full welding-spark';
+            spark.style.top = '-6px';
+            spark.style.left = '50%';
+            seam.appendChild(spark);
         });
     </script>
 </body>

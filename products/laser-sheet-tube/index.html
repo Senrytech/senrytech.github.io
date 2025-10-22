@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Senrytech 激光板管一体机系列-集板材切割与管材切割于一体，高效适配多场景加工需求的专业激光设备">
+    <meta name="description" content="Senrytech 激光板管一体机-集板材与管材切割于一体的多功能设备，高效解决复杂工件加工需求">
     <title>Senrytech-激光板管一体机系列</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -36,10 +36,12 @@
             .text-shadow-lg {
                 text-shadow: 0 4px 8px rgba(0,0,0,0.25);
             }
-            .transition-transform {
-                transition-property: transform;
-                transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-                transition-duration: 300ms;
+            .combined-pattern {
+                background-image: 
+                    linear-gradient(rgba(27, 76, 66, 0.1) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(27, 76, 66, 0.1) 1px, transparent 1px),
+                    radial-gradient(rgba(27, 76, 66, 0.1) 1px, transparent 1px);
+                background-size: 20px 20px, 20px 20px, 40px 40px;
             }
         }
     </style>
@@ -73,10 +75,33 @@
         .faq-content:not(.hidden) {
             max-height: 500px;
         }
+        .machine-card:hover .machine-illustration {
+            transform: scale(1.05) rotate(1deg);
+        }
+        .machine-illustration {
+            transition: transform 0.3s ease;
+        }
+        .tube-illustration {
+            position: relative;
+            height: 24px;
+            width: 80px;
+        }
+        .tube-illustration::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 12px;
+            border: 2px solid rgba(27, 76, 66, 0.2);
+            border-radius: 6px;
+            background-color: rgba(27, 76, 66, 0.05);
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 overflow-x-hidden">
-    <!-- 导航栏 -->
+    <!-- 1. 导航系统 -->
     <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16 md:h-20">
@@ -116,7 +141,7 @@
                             </div>
                             <!-- 激光管材切割机子菜单 -->
                             <div class="relative group/item">
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                <a href="https://www.senrytech.com/products/laser-tube-cutting/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
                                     激光管材切割机
                                     <i class="fa fa-chevron-right ml-1 text-xs"></i>
                                 </a>
@@ -145,7 +170,7 @@
                             </div>
                             <!-- 激光焊接机子菜单 -->
                             <div class="relative group/item">
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                <a href="https://www.senrytech.com/products/laser-welding/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
                                     激光焊接机
                                     <i class="fa fa-chevron-right ml-1 text-xs"></i>
                                 </a>
@@ -208,26 +233,26 @@
                                 <i class="fa fa-chevron-down text-xs"></i>
                             </button>
                             <div id="mobile-laser-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列1</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列2</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列3</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列4</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列5</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列6</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列7</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列8</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列9</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列10</a>
-                                <a href="#" class="block text-gray-600 hover:text-primary">系列11</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C 系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">G系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">S系列</a>
                             </div>
                         </div>
                         <!-- 激光管材切割机移动端子菜单 -->
                         <div>
-                            <button id="mobile-tubecut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
-                                激光管材切割机
+                            <button id="mobile-tube-cutting-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光管材切割机系列
                                 <i class="fa fa-chevron-down text-xs"></i>
                             </button>
-                            <div id="mobile-tubecut-menu" class="hidden pl-4 mt-1 space-y-2">
+                            <div id="mobile-tube-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
                                 <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
                                 <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
                                 <a href="#" class="block text-gray-600 hover:text-primary">A Plus系列</a>
@@ -253,7 +278,7 @@
                         <!-- 激光焊接机移动端子菜单 -->
                         <div>
                             <button id="mobile-welding-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
-                                激光焊接机
+                                激光焊接机系列
                                 <i class="fa fa-chevron-down text-xs"></i>
                             </button>
                             <div id="mobile-welding-menu" class="hidden pl-4 mt-1 space-y-2">
@@ -298,12 +323,12 @@
     </header>
 
     <main>
-        <!-- 激光板管一体机系列英雄区域 -->
+        <!-- 2. 英雄区域 -->
         <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
                     <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 mb-6 slide-up">Senrytech 激光板管一体机系列</h1>
-                    <p class="text-gray-600 text-lg mb-8 slide-up" style="animation-delay: 0.2s">4大系列，集板材切割与管材切割功能于一体，无需更换设备即可完成多形态工件加工，大幅提升生产效率，适配钢结构、家具、健身器材等多场景需求</p>
+                    <p class="text-gray-600 text-lg mb-8 slide-up" style="animation-delay: 0.2s">一台设备，两种功能，同时满足板材与管材切割需求，节省空间与成本，提升生产效率，完美解决复杂工件加工难题</p>
                     <a href="#series" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors slide-up" style="animation-delay: 0.4s">
                         探索系列 <i class="fa fa-arrow-down ml-2"></i>
                     </a>
@@ -311,88 +336,198 @@
             </div>
         </section>
 
-        <!-- 激光板管一体机系列核心优势 -->
-        <section class="py-12 bg-white">
+        <!-- 3. 技术原理说明 -->
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">为什么选择 Senrytech 激光板管一体机系列？</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-cogs text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">一体化设计</h3>
-                        <p class="text-gray-600">同一台设备实现板材（碳钢、不锈钢、铝合金等）和管材（圆管、方管、矩形管等）切割，省去设备切换时间，节省车间占地空间（比单独两台设备节省40%空间）。</p>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <img src="../img/products/laser_sheet_tube/principle.jpg" alt="激光板管一体机工作原理示意图" class="w-full h-auto rounded-lg shadow-md">
                     </div>
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-bolt text-primary text-2xl"></i>
+                    <div class="md:w-1/2">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-6">激光板管一体机技术原理</h2>
+                        <p class="text-gray-600 mb-4">激光板管一体机整合了激光板材切割与管材切割的双重功能，通过可切换的加工模式和专用夹具系统，实现同一台设备对板材和管材的高精度加工。</p>
+                        <p class="text-gray-600 mb-4">设备采用先进的数控系统，可自动识别加工模式并优化切割参数。板材加工时使用平面工作台，管材加工时切换至旋转夹具系统，配合高精度激光头，实现复杂形状的无缝切割。</p>
+                        <div class="mt-6 grid grid-cols-2 gap-4">
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">板材加工范围</div>
+                                <div class="text-sm text-gray-600">0.5-30mm(金属)</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">管材加工范围</div>
+                                <div class="text-sm text-gray-600">Φ10-300mm</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">切换时间</div>
+                                <div class="text-sm text-gray-600">≤5分钟</div>
+                            </div>
+                            <div class="bg-neutral p-4 rounded-md">
+                                <div class="font-medium mb-1">定位精度</div>
+                                <div class="text-sm text-gray-600">±0.05mm</div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold mb-3">双功能高效</h3>
-                        <p class="text-gray-600">板材切割速度最高80m/min，管材切割速度最高60m/min，且支持“一键切换”切割模式（板材/管材），切换时间≤3分钟；配备自动上下料系统，可实现24小时连续生产。</p>
-                    </div>
-                    <div class="bg-neutral p-6 rounded-lg shadow-sm">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-crosshairs text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold mb-3">精准协同控制</h3>
-                        <p class="text-gray-600">采用双驱伺服电机+光栅尺闭环控制，板材切割精度±0.1mm/m，管材切割精度±0.2mm；支持CAD/DXF文件直接导入，自动生成切割路径，减少人工编程误差。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光板管一体机系列展示 -->
+        <!-- 4. 核心优势展示 -->
+        <section class="py-12 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">为什么选择 Senrytech 激光板管一体机？</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-cubes text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">节省空间与成本</h3>
+                        <p class="text-gray-600">一台设备替代传统两台设备功能，节省50%以上占地面积；减少设备投资成本30-40%；降低安装调试、维护保养等后续费用；节省人力成本，一人即可操作。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-exchange text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高效切换与协同</h3>
+                        <p class="text-gray-600">创新快速切换系统，板材/管材模式切换时间≤5分钟；统一数据管理，同一工件的板管部分可连续加工；减少物料搬运和流转时间，提升整体生产效率20%以上。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-puzzle-piece text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">复杂工件加工优势</h3>
+                        <p class="text-gray-600">完美解决板管组合件加工难题，确保部件间尺寸匹配精度；支持复杂连接结构（如管板相贯线）的高精度加工；适合制作货架、框架、护栏等组合结构产品。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 产品系列展示 -->
         <section id="series" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光板管一体机系列</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- B系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                        <div class="h-56 overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- B系列：标准型激光板管一体机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 machine-card">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_sheet_tube/series_b.jpg" alt="激光板管一体机B系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B系列：基础款板管一体机</h3>
-                            <p class="text-gray-600 mb-4">激光功率1000-1500W，板材加工尺寸1500×3000mm，管材直径≤160mm，适合中小批量、常规厚度（≤8mm碳钢）加工需求。</p>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B系列：标准型激光板管一体机</h3>
+                            <div class="flex flex-wrap items-center gap-4 mb-3">
+                                <div class="machine-illustration w-32 h-16 bg-primary/5 border border-primary/20"></div>
+                                <div class="tube-illustration"></div>
+                                <span class="text-sm text-gray-500">通用型板管加工</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率3000-6000W，板材工作台1500×3000mm，管材加工范围Φ10-150mm，适合中小批量的板管组合件加工，如货架、框架等产品。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>手动管材送料装置</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>快速模式切换系统</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>适合多品种小批量生产</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B Pro系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                        <div class="h-56 overflow-hidden">
+                    <!-- B Pro系列：专业型激光板管一体机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 machine-card">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_sheet_tube/series_b_pro.jpg" alt="激光板管一体机B Pro系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B Pro系列：进阶款板管一体机</h3>
-                            <p class="text-gray-600 mb-4">激光功率2000-3000W，板材加工尺寸2000×4000mm，管材直径≤220mm，支持厚板（≤16mm碳钢）切割，配备自动调焦激光头。</p>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B Pro系列：专业型激光板管一体机</h3>
+                            <div class="flex flex-wrap items-center gap-4 mb-3">
+                                <div class="machine-illustration w-36 h-18 bg-primary/5 border border-primary/20"></div>
+                                <div class="tube-illustration" style="width: 100px;"></div>
+                                <span class="text-sm text-gray-500">高性能板管加工</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率6000-12000W，板材工作台2000×4000mm，管材加工范围Φ10-200mm，配备自动送料系统，适合中大批量的板管组合件加工。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>全自动管材送料系统</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>双交换工作台</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>智能相贯线切割软件</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B ProMax系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                        <div class="h-56 overflow-hidden">
+                    <!-- B ProMax系列：增强型激光板管一体机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 machine-card">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_sheet_tube/series_b_promax.jpg" alt="激光板管一体机B ProMax系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B ProMax系列：高效款板管一体机</h3>
-                            <p class="text-gray-600 mb-4">激光功率3000-4000W，板材加工尺寸2500×6000mm，管材直径≤300mm，搭载双工作台（交替上下料），切割效率提升50%。</p>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B ProMax系列：增强型激光板管一体机</h3>
+                            <div class="flex flex-wrap items-center gap-4 mb-3">
+                                <div class="machine-illustration w-40 h-20 bg-primary/5 border border-primary/20"></div>
+                                <div class="tube-illustration" style="width: 120px;"></div>
+                                <span class="text-sm text-gray-500">大尺寸板管加工</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率10000-20000W，板材工作台2500×6000mm，管材加工范围Φ20-250mm，可切割厚板与厚壁管材，适合重型机械行业的大型结构件加工。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>重型管材夹持系统</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>高功率专用激光头</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>板材自动上料系统</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
                         </div>
                     </div>
-                    <!-- B Ultra系列 -->
-                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1">
-                        <div class="h-56 overflow-hidden">
+                    <!-- B Ultra系列：顶级激光板管一体机 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 machine-card">
+                        <div class="h-64 overflow-hidden">
                             <img src="../img/products/laser_sheet_tube/series_b_ultra.jpg" alt="激光板管一体机B Ultra系列" class="w-full h-full object-cover transition-transform hover:scale-105">
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B Ultra系列：高端款板管一体机</h3>
-                            <p class="text-gray-600 mb-4">激光功率4000-6000W，板材加工尺寸3000×8000mm，管材直径≤400mm，支持特种合金（不锈钢、钛合金）切割，配备智能诊断系统。</p>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-800">B Ultra系列：顶级激光板管一体机</h3>
+                            <div class="flex flex-wrap items-center gap-4 mb-3">
+                                <div class="machine-illustration w-44 h-22 bg-primary/5 border border-primary/20"></div>
+                                <div class="tube-illustration" style="width: 140px;"></div>
+                                <span class="text-sm text-gray-500">超大尺寸板管加工</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">激光功率15000-30000W，板材工作台3000×12000mm，管材加工范围Φ30-300mm，配备全自动生产线，适合大型工程结构件的高效加工。</p>
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>双激光头协同加工</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>智能仓储与物流系统</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <i class="fa fa-check text-primary mr-2"></i>
+                                    <span>远程监控与诊断系统</span>
+                                </div>
+                            </div>
                             <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-md font-medium transition-colors">
                                 查看详情
                             </a>
@@ -402,72 +537,137 @@
             </div>
         </section>
 
-        <!-- 应用场景 -->
+        <!-- 6. 与传统方案对比 -->
         <section class="py-16 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光板管一体机 vs 传统分体方案</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full bg-white rounded-lg shadow-sm">
+                        <thead>
+                            <tr class="bg-primary text-white">
+                                <th class="py-4 px-6 text-left">对比项目</th>
+                                <th class="py-4 px-6 text-left">Senrytech激光板管一体机</th>
+                                <th class="py-4 px-6 text-left">传统分体方案（板材机+管材机）</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-4 px-6 font-medium">设备投资</td>
+                                <td class="py-4 px-6">1台设备，投资成本降低30-40%</td>
+                                <td class="py-4 px-6">2台设备，总投资高</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">占地面积</td>
+                                <td class="py-4 px-6">约60-100㎡，节省50%空间</td>
+                                <td class="py-4 px-6">约120-200㎡，空间需求大</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">操作人员</td>
+                                <td class="py-4 px-6">1人即可操作</td>
+                                <td class="py-4 px-6">至少需要2名操作人员</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">板管组合件加工</td>
+                                <td class="py-4 px-6">同一设备连续加工，精度匹配好</td>
+                                <td class="py-4 px-6">需要两台设备分别加工，精度匹配差</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">数据管理</td>
+                                <td class="py-4 px-6">统一数据系统，无需文件转换</td>
+                                <td class="py-4 px-6">两套系统，需数据转换，易出错</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">能源消耗</td>
+                                <td class="py-4 px-6">总能耗降低25-30%</td>
+                                <td class="py-4 px-6">总能耗高</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">维护成本</td>
+                                <td class="py-4 px-6">单设备维护，成本降低40%</td>
+                                <td class="py-4 px-6">双设备维护，成本高</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">生产效率</td>
+                                <td class="py-4 px-6">减少物料搬运，效率提升20%以上</td>
+                                <td class="py-4 px-6">需物料转运，效率低</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 px-6 font-medium">适合场景</td>
+                                <td class="py-4 px-6">板管组合件加工、中小批量多品种</td>
+                                <td class="py-4 px-6">纯板材或纯管材的大批量单一生产</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. 应用场景 -->
+        <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光板管一体机应用场景</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-building text-primary text-2xl"></i>
+                            <i class="fa fa-shopping-cart text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">钢结构行业</h3>
-                        <p class="text-gray-600 text-sm">切割钢结构框架的板材部件（连接板、法兰）和管材部件（支撑管、立柱），实现一体化加工</p>
+                        <h3 class="font-semibold mb-2">仓储货架</h3>
+                        <p class="text-gray-600 text-sm">加工货架立柱、横梁、层板等组件，实现板管一体化生产，确保组件间精准配合</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-home text-primary text-2xl"></i>
                         </div>
                         <h3 class="font-semibold mb-2">家具制造</h3>
-                        <p class="text-gray-600 text-sm">加工家具框架的板材（桌面、侧板）和管材（桌腿、椅架），支持异形切割，适配定制化需求</p>
+                        <p class="text-gray-600 text-sm">加工家具框架、桌腿、支架等，板管结合处精度高，提升家具整体品质与稳定性</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-futbol-o text-primary text-2xl"></i>
+                            <i class="fa fa-car text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">健身器材</h3>
-                        <p class="text-gray-600 text-sm">切割健身器材的板材部件（配重块、面板）和管材部件（支架、扶手），保证尺寸精度和装配性</p>
+                        <h3 class="font-semibold mb-2">汽车配件</h3>
+                        <p class="text-gray-600 text-sm">加工汽车车架、排气管支架、防护栏等，板管组合结构一次成型，提升生产效率</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-truck text-primary text-2xl"></i>
+                            <i class="fa fa-building text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">汽车改装</h3>
-                        <p class="text-gray-600 text-sm">加工汽车改装件的板材（底盘护板、保险杠）和管材（防滚架、排气管），支持高强度钢切割</p>
+                        <h3 class="font-semibold mb-2">建筑装饰</h3>
+                        <p class="text-gray-600 text-sm">加工幕墙支撑结构、栏杆、楼梯扶手等建筑装饰件，满足复杂造型需求</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-briefcase text-primary text-2xl"></i>
+                            <i class="fa fa-industry text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">展示道具</h3>
-                        <p class="text-gray-600 text-sm">制作商场展示架、展台的板材（面板、隔板）和管材（支架、挂杆），实现快速定制和批量生产</p>
+                        <h3 class="font-semibold mb-2">工程机械</h3>
+                        <p class="text-gray-600 text-sm">加工工程机械的操作平台、防护框架、连接件等，板管结构强度高，精度好</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-ship text-primary text-2xl"></i>
+                            <i class="fa fa-music text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">船舶配件</h3>
-                        <p class="text-gray-600 text-sm">切割船舶轻量化部件的板材（舱壁板、甲板）和管材（管路、支架），适配海洋环境耐腐蚀需求</p>
+                        <h3 class="font-semibold mb-2">舞台设备</h3>
+                        <p class="text-gray-600 text-sm">加工舞台框架、灯光支架、音响架等，轻便且强度高，适合频繁组装拆卸</p>
                     </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fa fa-bus text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="font-semibold mb-2">轨道交通</h3>
-                        <p class="text-gray-600 text-sm">加工轨道交通设备的板材（车厢部件、连接板）和管材（扶手、支撑结构），满足高强度标准</p>
-                    </div>
-                    <div class="bg-white p-5 rounded-lg text-center">
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
                         <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fa fa-medkit text-primary text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold mb-2">医疗设备</h3>
-                        <p class="text-gray-600 text-sm">切割医疗床、器械架的板材（床板、面板）和管材（支架、立柱），支持不锈钢等卫生级材料加工</p>
+                        <h3 class="font-semibold mb-2">医疗器械</h3>
+                        <p class="text-gray-600 text-sm">加工医疗设备的支架、框架、操作台等，板管结合处光滑无毛刺，符合医疗标准</p>
+                    </div>
+                    <div class="bg-neutral p-5 rounded-lg text-center transform transition-all hover:-translate-y-1 hover:shadow-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-futbol-o text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">体育器材</h3>
+                        <p class="text-gray-600 text-sm">加工健身器材框架、运动场馆护栏、看台结构等，兼顾强度与美观要求</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 激光板管一体机FAQ模块 -->
+        <!-- 8. FAQ模块 -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光板管一体机常见问题</h2>
@@ -475,53 +675,85 @@
                     <!-- FAQ折叠面板1 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq1">
-                            <span class="font-medium text-gray-800">激光板管一体机是否支持不同形状管材（如椭圆管、异型管）的切割？</span>
+                            <span class="font-medium text-gray-800">激光板管一体机与纯板材机、纯管材机相比，在加工性能上有差距吗？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">支持。Senrytech激光板管一体机配备“异型管材专用夹具”和“3D轮廓扫描系统”，可自动识别椭圆管、矩形管、槽钢、角钢等异型管材的截面形状，生成适配的切割路径；其中B Pro及以上系列还支持“自定义管材截面”导入，满足特殊异型管材（如D型管、多边管）的切割需求，管材截面最大尺寸≤400mm（B Ultra系列）。</p>
+                            <p class="text-gray-600">Senrytech激光板管一体机采用模块化设计，其板材加工性能与同功率纯板材机相当，管材加工性能与同功率纯管材机相当，不会因集成两种功能而降低加工质量。</p>
+                            <p class="text-gray-600 mt-2">我们的B Pro及以上系列板管一体机，在板材切割速度、精度和管材切割质量上，均可达到专业级单机水平。对于绝大多数用户而言，性能差异完全可以忽略，而一体化带来的便利和成本优势则非常显著。</p>
+                            <p class="text-gray-600 mt-2">仅对于极端专业场景（如超厚板或超大直径管材的大批量单一加工），我们才推荐使用专业单机设备。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板2 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq2">
-                            <span class="font-medium text-gray-800">板材和管材切割模式切换时，需要人工调整哪些参数？</span>
+                            <span class="font-medium text-gray-800">板管模式切换复杂吗？需要专业人员操作吗？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">无需人工调整核心参数。设备内置“板材/管材切割参数库”，包含不同材质（碳钢、不锈钢、铝合金等）和厚度的预设参数，切换模式时仅需在操作屏点击“板材模式”或“管材模式”，系统会自动调整激光功率、切割速度、辅助气体压力等参数；仅需人工更换“板材切割头”或“管材切割头”（更换时间≤2分钟，配备快速接头），新手也能轻松操作。</p>
+                            <p class="text-gray-600">Senrytech激光板管一体机采用快速切换设计，普通操作人员经过简单培训即可完成切换，整个过程非常简便：</p>
+                            <p class="text-gray-600 mt-2">1. 板材转管材模式：①按下切换按钮，系统自动收回板材工作台；②手动安装管材夹具（B Pro及以上系列为自动）；③放入管材，启动自动对中；④切换完成，约3-5分钟。</p>
+                            <p class="text-gray-600 mt-2">2. 管材转板材模式：①移除管材，卸下管材夹具；②按下切换按钮，系统自动伸出板材工作台；③切换完成，约2-3分钟。</p>
+                            <p class="text-gray-600 mt-2">B ProMax及以上系列配备全自动切换系统，整个过程无需人工干预，一键完成模式切换，耗时仅需90秒。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板3 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq3">
-                            <span class="font-medium text-gray-800">激光板管一体机的能耗和辅助气体消耗如何？</span>
+                            <span class="font-medium text-gray-800">如何判断企业是否适合使用激光板管一体机？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">能耗和气体消耗均低于“单独两台设备”。以B Pro系列（2000W）为例，板材切割时整机功耗约8kW，管材切割时约7.5kW（传统单独设备合计约12kW）；辅助气体（氧气/氮气）消耗方面，板材切割气体压力0.5-0.8MPa，管材切割0.6-0.9MPa，配备气体流量自动调节系统，比单独设备节省20%气体消耗；按每天8小时工作计算，每年可节省电费和气体费用约1.5万元。</p>
+                            <p class="text-gray-600">如果您的企业符合以下任一情况，使用激光板管一体机将带来显著效益：</p>
+                            <p class="text-gray-600 mt-2">1. 生产的产品同时包含板材和管材部件（如货架、家具、护栏等）；</p>
+                            <p class="text-gray-600 mt-2">2. 板材和管材加工量都不是特别大（单种材料日加工时间＜8小时）；</p>
+                            <p class="text-gray-600 mt-2">3. 车间空间有限，难以容纳两台设备；</p>
+                            <p class="text-gray-600 mt-2">4. 希望减少设备投资和人力成本；</p>
+                            <p class="text-gray-600 mt-2">5. 需要加工板管连接的复杂结构（如管板相贯线）。</p>
+                            <p class="text-gray-600 mt-2">反之，如果您只加工单一类型材料（纯板材或纯管材），或某类材料加工量极大（日加工时间＞12小时），则更适合选择专业单机设备。</p>
                         </div>
                     </div>
                     <!-- FAQ折叠面板4 -->
                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                         <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq4">
-                            <span class="font-medium text-gray-800">设备安装需要特殊场地条件吗，售后服务包含哪些内容？</span>
+                            <span class="font-medium text-gray-800">激光板管一体机可以加工哪些类型的管材？有直径限制吗？</span>
                             <i class="fa fa-chevron-down text-primary transition-transform"></i>
                         </button>
                         <div id="faq4" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">场地要求简单：仅需平整地面（承重≥500kg/㎡）、380V工业电源（50Hz，三相四线）、压缩空气（0.8MPa），无需单独地基；售后服务包含：①免费上门安装调试（全国范围内）；②操作人员免费培训（2-3人，为期3天）；③2年整机质保（激光发生器质保3年，伺服电机质保2年）；④7×24小时远程技术支持，故障响应≤24小时，上门维修≤48小时（省会城市及周边）。</p>
+                            <p class="text-gray-600">Senrytech激光板管一体机可加工多种类型的管材：①圆管（最常用）；②方管、矩形管；③椭圆管；④异形管（需定制夹具）。</p>
+                            <p class="text-gray-600 mt-2">不同系列的管材直径加工范围：</p>
+                            <p class="text-gray-600 mt-2">• B系列：圆管Φ10-150mm，方管30×30-120×120mm</p>
+                            <p class="text-gray-600 mt-2">• B Pro系列：圆管Φ10-200mm，方管30×30-150×150mm</p>
+                            <p class="text-gray-600 mt-2">• B ProMax系列：圆管Φ20-250mm，方管50×50-200×200mm</p>
+                            <p class="text-gray-600 mt-2">• B Ultra系列：圆管Φ30-300mm，方管50×50-250×250mm</p>
+                            <p class="text-gray-600 mt-2">对于超出标准范围的特殊管材，我们可提供定制化解决方案，最大可支持Φ400mm的圆管加工。</p>
+                        </div>
+                    </div>
+                    <!-- FAQ折叠面板5 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq5">
+                            <span class="font-medium text-gray-800">板管一体机的维护保养与单机相比有什么不同？</span>
+                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                        </button>
+                        <div id="faq5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                            <p class="text-gray-600">激光板管一体机的维护保养基本是板材机和管材机维护的结合，但整体更便捷高效：</p>
+                            <p class="text-gray-600 mt-2">1. 共用系统维护：激光器、冷水机、数控系统等共用部件只需一次维护，比两台单机节省50%时间；</p>
+                            <p class="text-gray-600 mt-2">2. 专用系统维护：板材工作台和管材夹具系统需分别维护，与对应单机维护方法相同；</p>
+                            <p class="text-gray-600 mt-2">3. 切换机构维护：需定期检查和润滑模式切换机构，确保切换顺畅；</p>
+                            <p class="text-gray-600 mt-2">4. 整体维护成本：虽然需要维护的部件更多，但总维护成本比两台单机低30-40%。</p>
+                            <p class="text-gray-600 mt-2">我们提供专用的维护手册和视频指导，也可选择年度维护套餐，由专业工程师定期上门维护。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 联系咨询 -->
+        <!-- 9. 联系咨询区域 -->
         <section class="py-16 bg-primary text-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
                     <h2 class="text-2xl font-semibold mb-4">需要了解更多激光板管一体机信息？</h2>
-                    <p class="mb-8 opacity-90">我们的技术顾问将为您提供专业的选型建议和解决方案，可免费获取设备参数表和加工案例视频</p>
+                    <p class="mb-8 opacity-90">我们的技术顾问将为您评估板管加工需求，分析一体机方案的适用性，并提供最优化的设备配置建议</p>
                     <a href="../#contact" class="inline-block bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors">
                         联系我们 <i class="fa fa-arrow-right ml-2"></i>
                     </a>
@@ -541,7 +773,7 @@
                         </div>
                         <span class="font-bold text-xl">Senrytech</span>
                     </div>
-                    <p class="text-gray-400 mb-4">专业的激光设备制造商，为全球客户提供高品质的激光切割、焊接、清洗、打标一体化解决方案</p>
+                    <p class="text-gray-400 mb-4">专业的激光设备制造商，专注于激光管材切割、板材切割、焊接等领域，提供全流程解决方案</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-colors">
                             <i class="fa fa-facebook"></i>
@@ -561,9 +793,9 @@
                     <h3 class="font-semibold text-lg mb-4">产品中心</h3>
                     <ul class="space-y-2">
                         <li><a href="https://www.senrytech.com/products/laser-sheet-cutting/" class="text-gray-400 hover:text-white transition-colors">激光板材切割机</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">激光管材切割机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-tube-cutting/" class="text-gray-400 hover:text-white transition-colors">激光管材切割机</a></li>
                         <li><a href="https://www.senrytech.com/products/laser-sheet-tube/" class="text-gray-400 hover:text-white transition-colors">激光板管一体机</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">激光焊接机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-welding/" class="text-gray-400 hover:text-white transition-colors">激光焊接机</a></li>
                         <li><a href="https://www.senrytech.com/products/laser-cleaning/" class="text-gray-400 hover:text-white transition-colors">激光清洗机</a></li>
                         <li><a href="https://www.senrytech.com/products/laser-marking/" class="text-gray-400 hover:text-white transition-colors">激光打标机</a></li>
                     </ul>
@@ -630,9 +862,9 @@
             const mobileLaserCuttingMenu = document.getElementById('mobile-laser-cutting-menu');
             mobileLaserCuttingMenu.classList.toggle('hidden');
         });
-        document.getElementById('mobile-tubecut-toggle').addEventListener('click', function() {
-            const mobileTubecutMenu = document.getElementById('mobile-tubecut-menu');
-            mobileTubecutMenu.classList.toggle('hidden');
+        document.getElementById('mobile-tube-cutting-toggle').addEventListener('click', function() {
+            const mobileTubeCuttingMenu = document.getElementById('mobile-tube-cutting-menu');
+            mobileTubeCuttingMenu.classList.toggle('hidden');
         });
         document.getElementById('mobile-sheet-tube-toggle').addEventListener('click', function() {
             const mobileSheetTubeMenu = document.getElementById('mobile-sheet-tube-menu');

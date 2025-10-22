@@ -39,22 +39,61 @@
             }
         }
     </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .timeline-dot {
-                @apply absolute left-[-11px] top-1 w-5 h-5 rounded-full bg-primary border-4 border-white z-10;
-            }
-            .timeline-line {
-                @apply absolute left-[-3px] top-0 bottom-0 w-1 bg-primary/20;
-            }
-        }
-    </style>
+    <style>
+  /* 基础动画 */
+  .fade-in {
+      animation: fadeIn 0.8s ease-in-out;
+  }
+  @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+  }
+  .slide-up {
+      animation: slideUp 0.6s ease-out;
+  }
+  @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+  }
+  /* 平滑滚动 */
+  html {
+      scroll-behavior: smooth;
+  }
+  /* 导航栏滚动效果 */
+  .nav-scrolled {
+      background-color: rgba(27, 76, 66, 0.95);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  /* 时间线样式（直接写CSS，不用@apply） */
+  .timeline-dot {
+      position: absolute;
+      left: -11px;
+      top: 1px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #1b4c42;
+      border: 4px solid white;
+      z-index: 10;
+  }
+  .timeline-line {
+      position: absolute;
+      left: -3px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: rgba(27, 76, 66, 0.2);
+  }
+  /* 响应式调整 */
+  @media (max-width: 767px) {
+      .timeline-dot {
+          left: -10px;
+      }
+      .timeline-line {
+          left: -2px;
+      }
+  }
+</style>
     <style>
         /* 基础动画：保持与主页一致的过渡效果 */
         .fade-in {

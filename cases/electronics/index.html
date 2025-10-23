@@ -1,0 +1,1103 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Senrytech - 电子制造激光解决方案，提供高精度精度激光切割、焊接与打标设备，提升电子元器件生产效率与质量">
+    <meta name="keywords" content="电子制造激光解决方案,激光焊接电子元件,精密激光切割设备">
+    <meta name="author" content="Senrytech">
+    <meta name="robots" content="index, follow">
+    
+    <!-- 谷歌SEO优化 -->
+    <link rel="canonical" href="https://www.senrytech.com/solutions/electronics/">
+    <meta property="og:title" content="电子制造激光解决方案 - Senrytech">
+    <meta property="og:description" content="为电子制造行业提供专业激光切割、焊接与打标解决方案，提升生产效率与产品质量">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.senrytech.com/solutions/electronics/">
+    <meta property="og:image" content="https://www.senrytech.com/img/electronics-solution-og.jpg">
+    
+    <title>电子制造激光解决方案 - Senrytech</title>
+    
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b4c42',
+                        secondary: '#ff7a00',
+                        accent: '#3a8686',
+                        neutral: '#f5f5f5',
+                        dark: '#2c3e50'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            }
+            .transition-custom {
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+    </style>
+    
+    <style>
+        /* 基础动画 */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 导航栏滚动效果 */
+        .nav-scrolled {
+            background-color: rgba(27, 76, 66, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 应用领域卡片 - 悬停效果（修复版：强制生效+兼容所有浏览器） */
+.feature-card {
+    transform: translateY(0) !important; /* 强制初始无位移，避免被覆盖 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important; /* 强制初始阴影 */
+    /* 过渡属性：明确所有要动画的属性，兼容 Safari */
+    transition: transform 0.3s ease, 
+                box-shadow 0.3s ease,
+                -webkit-transform 0.3s ease,
+                -webkit-box-shadow 0.3s ease !important;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px) !important; /* 强制上移效果 */
+    -webkit-transform: translateY(-8px) !important; /* 兼容 Safari */
+    box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important; /* 强制增强阴影 */
+    -webkit-box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important; /* 兼容 Safari */
+    z-index: 10 !important; /* 强制置顶，避免被遮挡 */
+}
+        
+        /* 数字计数动画 */
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .count-animate {
+            animation: countUp 0.8s ease-out forwards;
+        }
+
+        /* 设备卡片悬停效果 */
+        .equipment-card {
+            transition: all 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .equipment-img-container {
+            overflow: hidden;
+        }
+        
+        .equipment-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .equipment-card:hover .equipment-img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+    <!-- 顶部固定导航栏 (与主页完全一致) -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- 品牌Logo -->
+                <a href="https://www.senrytech.com/" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                        <img src="../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                    </div>
+                    <span class="text-white font-bold text-xl">Senrytech</span>
+                </a>
+                
+                <!-- 桌面端导航 -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="https://www.senrytech.com/" class="text-white hover:text-secondary transition-colors">首页</a>
+                    
+                    <!-- 产品中心下拉菜单 -->
+                    <div class="relative group">
+                        <a href="https://www.senrytech.com/products/" class="text-white hover:text-secondary transition-colors flex items-center">
+                            产品中心
+                            <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+                              <!-- 激光板材切割机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光板材切割机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Plus/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Plus系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Pro/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B ProMax系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Ultra/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Ultra系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">C系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C-Pro/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">C Pro系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-G/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">G系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-M/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">S系列</a>
+                              </div>
+                          </div>
+                              <!-- 激光管材切割机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光管材切割机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-M" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Plus系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Pro" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Pro系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Plus" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Plus系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                              </div>
+                          </div>
+                              <!-- 激光板管一体机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-sheet-tube/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光板管一体机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Pro" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-ProMax" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B ProMax系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Ultra" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Ultra系列</a>
+                              </div>
+                          </div>
+                              <!-- 激光焊接机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-welding/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光焊接机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-welding/Series-A" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-welding/Series-R" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">R系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-welding/Series-M" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                              </div>
+                          </div>
+                              <!-- 激光清洗机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光清洗机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/Series-A" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/Series-S" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">S系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/Series-B" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/Series-P" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">P系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-cleaning/Series-M" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                              </div>
+                          </div>
+                              <!-- 激光打标机带二级菜单 -->
+                              <div class="relative group/item">
+                                  <a href="https://www.senrytech.com/products/laser-marking/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                      激光打标机
+                                      <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                  </a>
+                                  <!-- 二级子菜单 -->
+                                  <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                  <a href="https://www.senrytech.com/products/laser-marking/Series-D" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">D系列</a>
+                                  <a href="https://www.senrytech.com/products/laser-marking/Series-P" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">P系列</a>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://www.senrytech.com/solutions/" class="text-secondary font-medium">解决方案</a>
+                    <a href="https://www.senrytech.com/about-us/" class="text-white hover:text-secondary transition-colors">关于我们</a>
+                    <a href="https://www.senrytech.com/applycation/" class="text-white hover:text-secondary transition-colors">案例展示</a>
+                    <a href="https://www.senrytech.com/contact-us/" class="text-white hover:text-secondary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 移动端汉堡菜单 -->
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="https://www.senrytech.com/" class="block text-gray-800 hover:text-primary font-medium">首页</a>
+                
+                <!-- 移动端产品中心下拉 -->
+                <div>
+                    <button id="mobile-products-toggle" class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium">
+                        产品中心
+                        <i class="fa fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="mobile-products-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <!-- 激光板材切割机带二级菜单 -->
+                        <div>
+                            <button id="mobile-sheetcut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光板材切割机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-sheetcut-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/" class="block text-gray-600 hover:text-primary">A系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B/" class="block text-gray-600 hover:text-primary">B系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Plus/" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Pro/" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Ultra/" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/" class="block text-gray-600 hover:text-primary">C系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C-Pro/" class="block text-gray-600 hover:text-primary">C Pro系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-G/" class="block text-gray-600 hover:text-primary">G系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-M/" class="block text-gray-600 hover:text-primary">M系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/" class="block text-gray-600 hover:text-primary">S系列</a>
+                             </div>
+                         </div>
+                        <!-- 激光管材切割机带二级菜单 -->
+                        <div>
+                            <button id="mobile-tubecut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光管材切割机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-tubecut-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-M" class="block text-gray-600 hover:text-primary">M系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A" class="block text-gray-600 hover:text-primary">A系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus" class="block text-gray-600 hover:text-primary">A Plus系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Pro" class="block text-gray-600 hover:text-primary">A Pro系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B" class="block text-gray-600 hover:text-primary">B系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Plus" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                             </div>
+                         </div>
+                        <!-- 激光板管一体机带二级菜单 -->
+                        <div>
+                            <button id="mobile-sheetandtubecut-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光板管一体机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-sheetandtubecut-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B" class="block text-gray-600 hover:text-primary">B系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Pro" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-ProMax" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Ultra" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                             </div>
+                         </div>    
+                        <!-- 激光焊接机带二级菜单 -->
+                        <div>
+                            <button id="mobile-welding-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光焊接机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-welding-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-welding/Series-A" class="block text-gray-600 hover:text-primary">A系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-welding/Series-R" class="block text-gray-600 hover:text-primary">R系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-welding/Series-M" class="block text-gray-600 hover:text-primary">M系列</a>
+                             </div>
+                         </div>
+                        <!-- 激光清洗机带二级菜单 -->
+                        <div>
+                            <button id="mobile-cleaning-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光清洗机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-cleaning-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-cleaning/Series-A" class="block text-gray-600 hover:text-primary">A系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-cleaning/Series-S" class="block text-gray-600 hover:text-primary">S系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-cleaning/Series-B" class="block text-gray-600 hover:text-primary">B系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-cleaning/Series-P" class="block text-gray-600 hover:text-primary">P系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-cleaning/Series-M" class="block text-gray-600 hover:text-primary">M系列</a>
+                             </div>
+                         </div>
+                        <!-- 激光打标机带二级菜单 -->
+                        <div>
+                            <button id="mobile-marking-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光打标机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-marking-menu" class="hidden pl-4 mt-1 space-y-2">
+                                 <a href="https://www.senrytech.com/products/laser-marking/Series-D" class="block text-gray-600 hover:text-primary">D系列</a>
+                                 <a href="https://www.senrytech.com/products/laser-marking/Series-P" class="block text-gray-600 hover:text-primary">P系列</a>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+                
+                <a href="https://www.senrytech.com/solutions/" class="block text-primary font-medium">解决方案</a>
+                <a href="https://www.senrytech.com/about-us/" class="block text-gray-800 hover:text-primary font-medium">关于我们</a>
+                <a href="https://www.senrytech.com/applycation/" class="block text-gray-800 hover:text-primary font-medium">案例展示</a>
+                <a href="https://www.senrytech.com/contact-us/" class="block text-gray-800 hover:text-primary font-medium">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 解决方案头部Banner -->
+        <section class="relative pt-16 md:pt-20 h-[60vh] min-h-[400px] overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../img/electronics-solution-banner.jpg'); filter: brightness(0.7);"></div>
+            <div class="relative h-full container mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+                <div class="max-w-3xl slide-up">
+                    <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-white mb-4 text-shadow-lg">
+                        电子制造激光解决方案
+                    </h1>
+                    <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-100 mb-8 max-w-2xl text-shadow">
+                        为电子元器件生产提供微米级激光加工解决方案，实现高精度切割、焊接与打标，满足微型化、高密度生产需求
+                    </p>
+                    <a href="#contact" class="inline-block bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium transition-all hover:shadow-lg">
+                        咨询解决方案 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行业痛点分析 -->
+        <section class="py-16 md:py-24 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">电子制造行业痛点</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">传统加工方式面临的挑战与瓶颈，激光技术如何提供突破性解决方案</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 痛点1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-microchip text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">微型化加工难题</h3>
+                        <p class="text-gray-600">电子元件日益微型化，传统加工方式难以实现0.1mm以下精度的切割与焊接，满足不了高密度封装需求。</p>
+                    </div>
+                    
+                    <!-- 痛点2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-fire text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">热损伤风险</h3>
+                        <p class="text-gray-600">电子元件对热敏感，传统焊接方式热影响区大，易导致元件性能退化或损坏，降低产品合格率。</p>
+                    </div>
+                    
+                    <!-- 痛点3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-random text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">材料兼容性差</h3>
+                        <p class="text-gray-600">难以处理PCB板、陶瓷、金属、塑料等多种材料的混合加工，限制了新型电子材料的应用范围。</p>
+                    </div>
+                    
+                    <!-- 痛点4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-barcode text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">标识清晰度不足</h3>
+                        <p class="text-gray-600">传统标识方式在微小电子元件上难以实现清晰、持久的标记，影响追溯系统的有效性。</p>
+                    </div>
+                    
+                    <!-- 痛点5 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-cogs text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">换型调整耗时</h3>
+                        <p class="text-gray-600">多品种小批量生产时，传统设备换型调整时间长，生产准备成本高，难以适应柔性制造需求。</p>
+                    </div>
+                    
+                    <!-- 痛点6 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-ban text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">加工污染问题</h3>
+                        <p class="text-gray-600">传统加工产生的粉尘、碎屑污染电子元件，影响产品性能和可靠性，增加清洁工序成本。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 解决方案详情 -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">我们的解决方案</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">针对电子制造行业特点，提供定制化激光加工解决方案</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="order-2 lg:order-1">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">PCB/FPC激光切割解决方案</h3>
+                        <p class="text-gray-600 mb-6">采用紫外激光切割技术，实现PCB和FPC板的高精度加工，切割边缘光滑无毛刺，热影响区小于5μm，满足高密度线路板的精细加工需求。</p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">切割精度可达±0.01mm，满足微型化电子元件加工需求</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">非接触式加工，避免机械应力导致的基板变形和微裂纹</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">支持任意复杂形状切割，无需模具，缩短产品开发周期</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#products" class="inline-block text-primary hover:text-primary/80 font-medium transition-colors">
+                            了解相关设备 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="order-1 lg:order-2">
+                        <img src="../img/electronics-pcb-cutting.jpg" alt="PCB激光切割解决方案" class="rounded-lg shadow-lg w-full h-auto object-cover">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                    <div>
+                        <img src="../img/electronics-micro-welding.jpg" alt="电子元件激光微焊接解决方案" class="rounded-lg shadow-lg w-full h-auto object-cover">
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">电子元件激光微焊接解决方案</h3>
+                        <p class="text-gray-600 mb-6">采用绿光和紫外激光焊接技术，实现电子元件的高精度连接，焊点直径可小至0.05mm，热影响区控制在10μm以内，适用于传感器、连接器等精密部件的焊接。</p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">可焊接金丝、铜线、铝线等多种材料，焊点强度高、导电性好</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">非接触式焊接，无机械应力，避免敏感元件损伤</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">可实现异种材料焊接，如铜-铝、金属-陶瓷等特殊连接</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#products" class="inline-block text-primary hover:text-primary/80 font-medium transition-colors">
+                            了解相关设备 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">电子元件激光打标解决方案</h3>
+                        <p class="text-gray-600 mb-6">采用光纤和紫外激光打标技术，在各种电子元件表面实现高精度、高清晰度的永久标记，标记线宽可小至20μm，满足追溯和防伪需求。</p>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">标记清晰持久，耐磨损、抗腐蚀，适应恶劣环境</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">支持二维码、条形码、字符、图案等多种标记类型</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="mt-1 mr-4 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <i class="fa fa-check text-primary text-sm"></i>
+                                </div>
+                                <span class="text-gray-700">非接触式加工，无耗材，对精密元件无损伤</span>
+                            </li>
+                        </ul>
+                        
+                        <a href="#products" class="inline-block text-primary hover:text-primary/80 font-medium transition-colors">
+                            了解相关设备 <i class="fa fa-long-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="order-1 lg:order-2">
+                        <img src="../img/electronics-laser-marking.jpg" alt="电子元件激光打标解决方案" class="rounded-lg shadow-lg w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推荐设备板块 -->
+        <section id="products" class="py-16 md:py-24 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">推荐设备</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">为汽车制造行业量身定制的高效激光加工设备</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 设备1 -->
+                    <div class="equipment-card bg-white rounded-lg overflow-hidden shadow-md">
+                        <div class="equipment-img-container">
+                            <img src="../img/equipment-welding-a.jpg" alt="激光焊接机A系列" class="equipment-img w-full h-60 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">激光焊接机A系列</h3>
+                                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">高效焊接</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">专为汽车车身框架焊接设计，具备高精度定位系统和实时质量监控功能，适合高强度钢和铝合金焊接。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>焊接速度：最高10m/min</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>定位精度：±0.02mm</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>激光功率：1000-3000W</span>
+                                </li>
+                            </ul>
+                            <a href="https://www.senrytech.com/products/laser-welding/Series-A" class="inline-block w-full text-center bg-primary hover:bg-primary/90 text-white py-2 rounded-md transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 设备2 -->
+                    <div class="equipment-card bg-white rounded-lg overflow-hidden shadow-md">
+                        <div class="equipment-img-container">
+                            <img src="../img/equipment-cutting-b.jpg" alt="激光板材切割机B Pro系列" class="equipment-img w-full h-60 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">激光板材切割机B Pro系列</h3>
+                                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">精密切割</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">高功率激光切割设备，适用于汽车覆盖件、结构件的精密加工，切割速度快，材料利用率高。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>切割厚度：0.3-25mm</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>定位精度：±0.05mm</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>激光功率：3000-12000W</span>
+                                </li>
+                            </ul>
+                            <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Pro/" class="inline-block w-full text-center bg-primary hover:bg-primary/90 text-white py-2 rounded-md transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- 设备3 -->
+                    <div class="equipment-card bg-white rounded-lg overflow-hidden shadow-md">
+                        <div class="equipment-img-container">
+                            <img src="../img/equipment-marking-d.jpg" alt="激光打标机D系列" class="equipment-img w-full h-60 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">激光打标机D系列</h3>
+                                <span class="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full">永久标识</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">用于汽车零部件追溯标识，标记清晰持久，抗磨损、抗腐蚀，满足汽车行业严格的追溯要求。</p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>标记速度：最高1200字符/秒</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>最小字符：0.1mm</span>
+                                </li>
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <i class="fa fa-check-circle text-primary mr-2"></i>
+                                    <span>激光类型：光纤激光</span>
+                                </li>
+                            </ul>
+                            <a href="https://www.senrytech.com/products/laser-marking/Series-D" class="inline-block w-full text-center bg-primary hover:bg-primary/90 text-white py-2 rounded-md transition-colors">
+                                查看详情
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="https://www.senrytech.com/products/" class="inline-flex items-center bg-white hover:bg-gray-50 text-primary border border-primary px-6 py-3 rounded-md font-medium transition-colors shadow-sm">
+                        查看全部设备 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 应用领域 -->
+        <section class="py-16 md:py-24 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">主要应用领域</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">我们的激光解决方案广泛应用于电子制造各环节，助力客户提升生产效率与产品质量</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 应用领域1 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-microchip text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">半导体封装</h3>
+                        <p class="text-gray-600">芯片引线键合、封装切割、二维码标记等高精度加工</p>
+                    </div>
+                    
+                    <!-- 应用领域2 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-mobile text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">消费电子</h3>
+                        <p class="text-gray-600">手机、电脑等精密结构件的切割、焊接与标记加工</p>
+                    </div>
+                    
+                    <!-- 应用领域3 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-battery-full text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">动力电池</h3>
+                        <p class="text-gray-600">极耳切割、壳体焊接、极片清洗等关键工艺环节</p>
+                    </div>
+                    
+                    <!-- 应用领域4 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-dot-circle-o text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">传感器制造</h3>
+                        <p class="text-gray-600">敏感元件的精密焊接、微型结构切割与标记</p>
+                    </div>
+                    
+                    <!-- 应用领域5 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-print text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">PCB/FPC加工</h3>
+                        <p class="text-gray-600">线路板切割、钻孔、开窗、外形加工等工艺</p>
+                    </div>
+                    
+                    <!-- 应用领域6 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-plug text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">连接器制造</h3>
+                        <p class="text-gray-600">精密接插件的焊接、触点成型与标记加工</p>
+                    </div>
+                    
+                    <!-- 应用领域7 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-wifi text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">通讯设备</h3>
+                        <p class="text-gray-600">射频元件、天线等精密部件的激光加工</p>
+                    </div>
+                    
+                    <!-- 应用领域8 -->
+                    <div class="feature-card bg-white p-6 rounded-lg shadow-sm">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-5">
+                            <i class="fa fa-medkit text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">医疗电子</h3>
+                        <p class="text-gray-600">微型医疗电子元件的高精度激光焊接与切割</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户收益 -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="mb-16 text-center">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-gray-800 mb-3">客户价值与收益</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">采用我们的激光解决方案，为电子制造企业带来显著竞争优势</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 收益1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">30%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">生产效率提升</h3>
+                        <p class="text-gray-600">非接触式加工减少换型时间，高速扫描系统提高加工效率，大幅提升生产线 throughput。</p>
+                    </div>
+                    
+                    <!-- 收益2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">25%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">产品良率提升</h3>
+                        <p class="text-gray-600">高精度加工减少废品率，热影响区小降低元件损伤，显著提高产品合格率。</p>
+                    </div>
+                    
+                    <!-- 收益3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">40%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">材料利用率提升</h3>
+                        <p class="text-gray-600">精密切割减少材料浪费，优化排版提高材料利用率，降低原材料成本。</p>
+                    </div>
+                    
+                    <!-- 收益4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">50%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">能耗降低</h3>
+                        <p class="text-gray-600">高能效激光源与智能控制技术，相比传统加工设备显著降低能耗。</p>
+                    </div>
+                    
+                    <!-- 收益5 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">60%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">工序减少</h3>
+                        <p class="text-gray-600">激光加工可集成多种工艺，减少后续处理工序，缩短生产流程。</p>
+                    </div>
+                    
+                    <!-- 收益6 -->
+                    <div class="bg-white p-8 rounded-lg shadow-sm border-t-4 border-primary">
+                        <div class="text-4xl font-bold text-primary mb-4 count-animate">35%</div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">维护成本降低</h3>
+                        <p class="text-gray-600">激光设备无接触磨损，易损件少，维护周期长，降低维护成本。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系咨询 -->
+        <section id="contact" class="py-16 md:py-24 bg-primary text-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                    <h2 class="text-[clamp(1.5rem,3vw,2.25rem)] font-bold mb-4">获取定制化电子制造激光解决方案</h2>
+                    <p class="text-gray-200 max-w-2xl mx-auto">填写下方表单，我们的技术专家将在24小时内与您联系，为您提供专业的解决方案咨询</p>
+                </div>
+                
+                <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <form action="https://www.senrytech.com/contact-send.php" method="post" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="company" class="block text-gray-700 font-medium mb-2">公司名称</label>
+                                    <input type="text" id="company" name="company" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入公司名称" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="phone" class="block text-gray-700 font-medium mb-2">联系电话</label>
+                                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入联系电话" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">电子邮箱</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入电子邮箱" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="application" class="block text-gray-700 font-medium mb-2">应用需求</label>
+                                <select id="application" name="application" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                                    <option value="">请选择您的主要应用</option>
+                                    <option value="pcb-cutting">PCB/FPC切割</option>
+                                    <option value="micro-welding">电子元件微焊接</option>
+                                    <option value="laser-marking">电子元件打标</option>
+                                    <option value="semiconductor">半导体封装加工</option>
+                                    <option value="battery">动力电池加工</option>
+                                    <option value="other">其他应用</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-700 font-medium mb-2">详细需求描述</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述您的加工需求、材料类型、精度要求等信息"></textarea>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="inline-block bg-secondary hover:bg-secondary/90 text-white px-8 py-3 rounded-md font-medium transition-all hover:shadow-lg">
+                                    提交咨询 <i class="fa fa-paper-plane ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                            <img src="../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                        </div>
+                        <span class="font-bold text-xl">Senrytech</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">专业的激光加工解决方案提供商，致力于为全球制造业客户提供高品质的激光设备与服务。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-primary/30 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.senrytech.com/" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="https://www.senrytech.com/products/" class="text-gray-400 hover:text-white transition-colors">产品中心</a></li>
+                        <li><a href="https://www.senrytech.com/solutions/" class="text-gray-400 hover:text-white transition-colors">解决方案</a></li>
+                        <li><a href="https://www.senrytech.com/about-us/" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="https://www.senrytech.com/applycation/" class="text-gray-400 hover:text-white transition-colors">案例展示</a></li>
+                        <li><a href="https://www.senrytech.com/contact-us/" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">产品系列</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.senrytech.com/products/laser-sheet-cutting/" class="text-gray-400 hover:text-white transition-colors">激光板材切割机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-tube-cutting/" class="text-gray-400 hover:text-white transition-colors">激光管材切割机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-sheet-tube/" class="text-gray-400 hover:text-white transition-colors">激光板管一体机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-welding/" class="text-gray-400 hover:text-white transition-colors">激光焊接机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-cleaning/" class="text-gray-400 hover:text-white transition-colors">激光清洗机</a></li>
+                        <li><a href="https://www.senrytech.com/products/laser-marking/" class="text-gray-400 hover:text-white transition-colors">激光打标机</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">联系我们</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker mt-1 mr-3 text-secondary"></i>
+                            <span class="text-gray-400">中国上海市浦东新区张江高科技园区博云路2号</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-3 text-secondary"></i>
+                            <span class="text-gray-400">+86 21 5888 7777</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-3 text-secondary"></i>
+                            <span class="text-gray-400">info@senrytech.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-clock-o mr-3 text-secondary"></i>
+                            <span class="text-gray-400">周一至周五: 9:00 - 18:00</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Senrytech. 保留所有权利.</p>
+                    <div class="flex space-x-6">
+                        <a href="https://www.senrytech.com/privacy-policy/" class="text-gray-500 hover:text-gray-300 text-sm">隐私政策</a>
+                        <a href="https://www.senrytech.com/terms-of-service/" class="text-gray-500 hover:text-gray-300 text-sm">服务条款</a>
+                        <a href="https://www.senrytech.com/cookie-policy/" class="text-gray-500 hover:text-gray-300 text-sm">Cookie政策</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // 返回顶部功能
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 移动端产品菜单切换
+        document.getElementById('mobile-products-toggle').addEventListener('click', function() {
+            const mobileProductsMenu = document.getElementById('mobile-products-menu');
+            mobileProductsMenu.classList.toggle('hidden');
+        });
+        
+        // 移动端子菜单切换
+        document.getElementById('mobile-sheetcut-toggle').addEventListener('click', function() {
+            const mobileSheetcutMenu = document.getElementById('mobile-sheetcut-menu');
+            mobileSheetcutMenu.classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-tubecut-toggle').addEventListener('click', function() {
+            const mobileTubecutMenu = document.getElementById('mobile-tubecut-menu');
+            mobileTubecutMenu.classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-sheetandtubecut-toggle').addEventListener('click', function() {
+            const mobileSheetandtubecutMenu = document.getElementById('mobile-sheetandtubecut-menu');
+            mobileSheetandtubecutMenu.classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-welding-toggle').addEventListener('click', function() {
+            const mobileWeldingMenu = document.getElementById('mobile-welding-menu');
+            mobileWeldingMenu.classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-cleaning-toggle').addEventListener('click', function() {
+            const mobileCleaningMenu = document.getElementById('mobile-cleaning-menu');
+            mobileCleaningMenu.classList.toggle('hidden');
+        });
+        
+        document.getElementById('mobile-marking-toggle').addEventListener('click', function() {
+            const mobileMarkingMenu = document.getElementById('mobile-marking-menu');
+            mobileMarkingMenu.classList.toggle('hidden');
+        });
+        
+        // 数字计数动画
+        const animateNumbers = () => {
+            const counters = document.querySelectorAll('.count-animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.innerText);
+                        let count = 0;
+                        const duration = 2000; // 动画持续时间（毫秒）
+                        const step = target / (duration / 16); // 每16ms的步长
+                        
+                        const updateCount = () => {
+                            count += step;
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count) + '%';
+                                requestAnimationFrame(updateCount);
+                            } else {
+                                counter.innerText = target + '%';
+                            }
+                        };
+                        
+                        updateCount();
+                        observer.unobserve(counter);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        };
+        
+        // 页面加载完成后执行
+        window.addEventListener('load', function() {
+            animateNumbers();
+        });
+    </script>
+</body>
+</html>

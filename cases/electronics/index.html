@@ -91,24 +91,23 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        /* 应用领域卡片 - 悬停效果（修复版：强制生效+兼容所有浏览器） */
-.feature-card {
-    transform: translateY(0) !important; /* 强制初始无位移，避免被覆盖 */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important; /* 强制初始阴影 */
-    /* 过渡属性：明确所有要动画的属性，兼容 Safari */
-    transition: transform 0.3s ease, 
-                box-shadow 0.3s ease,
-                -webkit-transform 0.3s ease,
-                -webkit-box-shadow 0.3s ease !important;
-}
-
-.feature-card:hover {
-    transform: translateY(-8px) !important; /* 强制上移效果 */
-    -webkit-transform: translateY(-8px) !important; /* 兼容 Safari */
-    box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important; /* 强制增强阴影 */
-    -webkit-box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important; /* 兼容 Safari */
-    z-index: 10 !important; /* 强制置顶，避免被遮挡 */
-}
+        /* 应用领域卡片 - 悬停效果 */
+        .feature-card {
+            transform: translateY(0) !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+            transition: transform 0.3s ease, 
+                        box-shadow 0.3s ease,
+                        -webkit-transform 0.3s ease,
+                        -webkit-box-shadow 0.3s ease !important;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px) !important;
+            -webkit-transform: translateY(-8px) !important;
+            box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important;
+            -webkit-box-shadow: 0 12px 20px -10px rgba(0, 0, 0, 0.15) !important;
+            z-index: 10 !important;
+        }
         
         /* 数字计数动画 */
         @keyframes countUp {

@@ -641,51 +641,6 @@
                             <div class="md:col-span-2">
                                 <button type="submit">提交咨询</button>
                             </form>
-
-                        <!-- 表单提交JS -->
-                        <script>
-                        document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-    const submitBtn = this.querySelector('button[type="submit"]'); // 获取提交按钮，避免重复点击
-    
-    // 禁用提交按钮，防止重复提交
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '提交中... <i class="fa fa-spinner fa-spin ml-2"></i>';
-
-    // 注意：这里的路径要根据你的实际文件位置修改（参考问题2）
-    fetch('../send-email.php', { // 若文件在API目录，则用'/API/send-email.php'
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        // 先判断HTTP状态码（比如404、500错误）
-        if (!response.ok) {
-            throw new Error(`请求失败（${response.status}）：${response.statusText}`);
-        }
-        return response.json(); // 只有状态码200才解析后端返回的JSON
-    })
-    .then(data => {
-        // 后端返回成功（比如{success: true, msg: "咨询已提交"}）
-        if (data.success) {
-            alert(data.msg); // 显示后端自定义的成功提示（更灵活）
-            this.reset(); // 清空表单内容
-        } else {
-            // 后端返回验证错误（比如{success: false, msg: "请填写姓名"}）
-            alert('⚠️ ' + data.msg);
-        }
-    })
-    .catch(error => {
-        // 网络错误、404、500等前端能捕获的错误
-        alert('⚠️ 提交失败：' + error.message + '，请检查网络或联系技术支持');
-        console.error('错误详情：', error); // 方便你在浏览器控制台查错
-    })
-    .finally(() => {
-        // 无论成功/失败，都恢复按钮可用
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '提交咨询 <i class="fa fa-paper-plane ml-2"></i>';
-    });
-});
                         </script>
                     </div>
                 </div>

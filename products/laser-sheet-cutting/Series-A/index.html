@@ -657,7 +657,7 @@
     submitBtn.innerHTML = '提交中... <i class="fa fa-spinner fa-spin ml-2"></i>';
 
     // 注意：这里的路径要根据你的实际文件位置修改（参考问题2）
-    fetch('/API/send-email.php', { // 若文件在API目录，则用'/API/send-email.php'
+    fetch('send-email.php', { // 若文件在API目录，则用'/API/send-email.php'
         method: 'POST',
         body: formData
     })

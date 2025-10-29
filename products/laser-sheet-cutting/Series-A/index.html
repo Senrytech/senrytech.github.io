@@ -8,6 +8,11 @@
     <title>Senrytech A系列 - 经济款激光板材切割机</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+  (function(){
+    emailjs.init("service_waa3l9d"); // 务必替换为自己的Account ID
+  })();
+</script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -602,10 +607,9 @@
             </div>
             
             <div class="bg-white p-8 rounded-xl shadow-md">
-                <!-- 1. 关键修改：form标签添加data-netlify="true"，移除原Formspree的action -->
-                <form name="laser-consult" method="POST" data-netlify="true" action="../../../success.html">
-                    <!-- 2. 关键隐藏字段：必须与form的name属性一致（此处为laser-consult），Netlify通过此字段识别表单 -->
-                    <input type="hidden" name="form-name" value="laser-consult">
+                <!-- 原表单标签修改：添加id、onsubmit事件，移除action -->
+<form id="laserForm" name="laser-consult" method="POST" onsubmit="sendEmail(event)">
+    <!-- 原有隐藏字段删除（Netlify的<inpu type="hidden" name="form-name" ...>） -->
 
                     <!-- 以下字段完全保留原样式，无需修改 -->
                     <div class="mb-6">
@@ -645,9 +649,11 @@
                     </div>
                     
                     <div class="md:col-span-2">
-                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2">
-                            提交咨询
-                        </button>
+        <!-- 可选：添加提交状态提示（默认隐藏） -->
+        <div id="submitTip" class="hidden mb-4 text-center"></div>
+        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2">
+            提交咨询
+        </button>
                     </div>
                 </form>
                 <!-- 注意：移除原代码中多余的</script>标签（原Formspree残留，Netlify无需此标签） -->
@@ -746,6 +752,33 @@
     </footer>
 
     <script>
+
+        function sendEmail(event) {
+  event.preventDefault(); // 阻止页面默认刷新
+
+  // 显示提交中提示
+  const submitTip = document.getElementById('submitTip');
+  submitTip.className = 'mb-4 text-center text-gray-600';
+  submitTip.innerText = '提交中，请稍候...';
+
+  // 调用EmailJS发送邮件（替换为你的Service ID和Template ID）
+  emailjs.sendForm(
+    "service_waa3l9d", // 你的Service ID（如service_wan3i9d）
+    "template_zvfvl5p", // 你的Template ID（如template_abc123）
+    "#laserForm" // 表单ID，与form标签的id="laserForm"一致
+  )
+  .then(function(response) {
+    // 提交成功
+    submitTip.className = 'mb-4 text-center text-green-600';
+    submitTip.innerText = '提交成功！我们将尽快与您联系~';
+    document.getElementById("laserForm").reset(); // 清空表单
+  }, function(error) {
+    // 提交失败
+    submitTip.className = 'mb-4 text-center text-red-600';
+    submitTip.innerText = '提交失败，请重试：' + error.text;
+  });
+}
+
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');

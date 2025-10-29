@@ -792,6 +792,33 @@
     </footer>
 
     <script>
+
+        function sendEmail(event) {
+  event.preventDefault(); // 阻止页面默认刷新
+
+  // 显示提交中提示
+  const submitTip = document.getElementById('submitTip');
+  submitTip.className = 'mb-4 text-center text-gray-600';
+  submitTip.innerText = '提交中，请稍候...';
+
+  // 调用EmailJS发送邮件（替换为你的Service ID和Template ID）
+  emailjs.sendForm(
+    "service_waa3l9d", // 你的Service ID（如service_wan3i9d）
+    "template_zvfvl5p", // 你的Template ID（如template_abc123）
+    "#laserForm" // 表单ID，与form标签的id="laserForm"一致
+  )
+  .then(function(response) {
+    // 提交成功
+    submitTip.className = 'mb-4 text-center text-green-600';
+    submitTip.innerText = '提交成功！我们将尽快与您联系~';
+    document.getElementById("laserForm").reset(); // 清空表单
+  }, function(error) {
+    // 提交失败
+    submitTip.className = 'mb-4 text-center text-red-600';
+    submitTip.innerText = '提交失败，请重试：' + error.text;
+  });
+}
+
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');

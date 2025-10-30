@@ -12,6 +12,12 @@
     <meta property="og:type" content="product">
     <title>Senrytech B Pro系列 - 高端自动上料激光板材切割机</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+		<script type="text/javascript">
+			(function() {
+				emailjs.init("w9wGWxQMCWP7H0YhL"); // 务必替换为自己的Account ID
+			})();
+		</script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -64,6 +70,15 @@
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+        }
+        /* 给 h1 新增 class：animate-gradient */
+        .animate-gradient {
+        animation: gradientFlow 8s ease infinite;
+        }
         html {
             scroll-behavior: smooth;
         }
@@ -90,7 +105,7 @@
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
         }
     </style>
 </head>
@@ -101,7 +116,7 @@
             <div class="flex justify-between items-center h-16 md:h-20">
                 <a href="../index.html" class="flex items-center space-x-2">
                     <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
-                        <img src="../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                        <img src="../../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
                     </div>
                     <span class="text-white font-bold text-xl">Senrytech</span>
                 </a>
@@ -309,62 +324,69 @@
     </header>
 
     <main>
-        <!-- 英雄区域 -->
-        <section class="py-16 md:py-24 pt-24 md:pt-32 hero-gradient text-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col lg:flex-row items-center gap-12">
-                    <div class="lg:w-1/2 fade-in">
-                        <span class="inline-block px-4 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-4">智能自动化升级</span>
-                        <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-6 leading-tight">Senrytech B Pro系列<br>自动上料激光板材切割机</h1>
-                        <p class="text-white/90 text-lg mb-8 max-w-xl">基于B系列升级的高端机型，配备全自动上料交换平台，实现无人化生产流程，为企业大幅提升生产效率，降低人工成本，是规模化生产的理想之选。</p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#specs" class="inline-block bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors">
-                                技术参数 <i class="fa fa-arrow-right ml-2"></i>
-                            </a>
-                            <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-md font-medium transition-colors">
-                                预约演示
-                            </a>
+        <!-- 英雄区域（已优化标题渐变：蓝色-红色-橙色） -->
+<section class="py-16 md:py-24 pt-24 md:pt-32 hero-gradient text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2 fade-in">
+                <span class="inline-block px-4 py-1 bg-white/20 text-white rounded-full text-sm font-medium mb-4">智能自动化升级</span>
+                <!-- 核心优化：渐变改为 蓝色→红色→橙色，通过 via-* 实现三色调过渡 -->
+                <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-6 leading-tight 
+                           bg-clip-text text-transparent 
+                           bg-gradient-to-r from-blue-400 via-red-500 to-orange-500 
+                           shadow-text-lg">
+                    Senrytech B Pro系列<br>自动上料激光板材切割机
+                </h1>
+                <p class="text-white/90 text-lg mb-8 max-w-xl">基于B系列升级的高端机型，配备全自动上料交换平台，实现无人化生产流程，为企业大幅提升生产效率，降低人工成本，是规模化生产的理想之选。</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#specs" class="inline-block bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-md font-medium transition-colors">
+                        技术参数 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white/10 px-6 py-3 rounded-md font-medium transition-colors">
+                        预约演示
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 fade-in" style="animation-delay: 0.3s">
+                <div class="relative">
+                    <img src="../../../img/products/laser sheet cutting/laser sheet cutting B Pro.jpg" alt="Senrytech B Pro系列激光板材切割机" class="w-full h-auto rounded-lg shadow-2xl">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg max-w-xs">
+                        <div class="flex items-center mb-2">
+                            <i class="fa fa-cogs text-primary text-xl mr-2"></i>
+                            <span class="font-semibold text-gray-800">全自动生产</span>
                         </div>
-                    </div>
-                    <div class="lg:w-1/2 fade-in" style="animation-delay: 0.3s">
-                        <div class="relative">
-                            <img src="../img/products/laser_sheet_cutting/series_b_pro_detail.jpg" alt="Senrytech B Pro系列激光板材切割机" class="w-full h-auto rounded-lg shadow-2xl">
-                            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg max-w-xs">
-                                <div class="flex items-center mb-2">
-                                    <i class="fa fa-cogs text-primary text-xl mr-2"></i>
-                                    <span class="font-semibold text-gray-800">全自动生产</span>
-                                </div>
-                                <p class="text-sm text-gray-600">配备智能上料交换平台，减少人工干预，提升30%生产效率</p>
-                            </div>
-                        </div>
+                        <p class="text-sm text-gray-600">配备智能上料交换平台，减少人工干预，提升30%生产效率</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
         <!-- 性能数据 -->
-        <section class="py-12 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <div class="stat-card p-6 rounded-xl text-center">
-                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">+30%</div>
-                        <div class="text-white/80">生产效率提升</div>
-                    </div>
-                    <div class="stat-card p-6 rounded-xl text-center">
-                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">-70%</div>
-                        <div class="text-white/80">人工成本降低</div>
-                    </div>
-                    <div class="stat-card p-6 rounded-xl text-center">
-                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">99.8%</div>
-                        <div class="text-white/80">设备利用率</div>
-                    </div>
-                    <div class="stat-card p-6 rounded-xl text-center">
-                        <div class="text-3xl md:text-4xl font-bold text-white mb-2">24/7</div>
-                        <div class="text-white/80">连续生产能力</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section class="py-12 bg-primary/10"> <!-- 用品牌主色的浅色调，如primary是#1b4c42，bg-primary/10即浅绿色 -->
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- 2. 保持stat-card结构不变，无需修改 -->
+      <div class="stat-card p-6 rounded-xl text-center">
+        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">+30%</div> <!-- 文字改为品牌主色，提升对比度 -->
+        <div class="text-primary/80">生产效率提升</div> <!-- 文字改为品牌主色的半透明版 -->
+      </div>
+      <div class="stat-card p-6 rounded-xl text-center">
+        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">-70%</div>
+        <div class="text-primary/80">人工成本降低</div>
+      </div>
+      <div class="stat-card p-6 rounded-xl text-center">
+        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">99.8%</div>
+        <div class="text-primary/80">设备利用率</div>
+      </div>
+      <div class="stat-card p-6 rounded-xl text-center">
+        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
+        <div class="text-primary/80">连续生产能力</div>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- 产品定位 -->
         <section class="py-16 bg-white">

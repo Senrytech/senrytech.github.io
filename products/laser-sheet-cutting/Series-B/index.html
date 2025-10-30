@@ -677,6 +677,129 @@
                     <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
                 </div>
             </div>
+
+            以下是从 **B60 到 B400** 完整的移动端折叠面板代码，严格遵循原页面表格的参数数据，保持与 B20、B30 一致的样式结构（边框、阴影、交互逻辑），确保移动端显示统一且参数准确：
+
+```html
+<!-- B60型号面板 -->
+<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <button class="w-full flex justify-between items-center p-4 bg-primary text-white font-medium" 
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+        <span>B60 技术参数</span>
+        <i class="fa fa-chevron-down transition-transform duration-300"></i>
+    </button>
+    <div class="p-4 space-y-3 hidden">
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">激光功率</span><span>6000W</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">工作台面尺寸</span><span class="text-right">1540x3050x50mm, 1540x6050x50mm, 2040x4050x50mm, 2040x6050x50mm, 2510x6150x50mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">最大切割速度</span><span>100m/min</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">定位精度</span><span>±0.05mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">重复定位精度</span><span>±0.03mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(碳钢)</span><span>22mm(特殊情况25mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(不锈钢)</span><span>14mm(特殊情况20mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铝合金)</span><span>10mm(特殊情况16mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铜)</span><span>10mm(特殊情况16mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">冷却方式</span><span>水冷</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">电力需求</span><span>380V/3PH 50/60HZ</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">加速度</span><span>1.5G</span></div>
+        <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
+    </div>
+</div>
+
+<!-- B120型号面板 -->
+<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <button class="w-full flex justify-between items-center p-4 bg-primary text-white font-medium" 
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+        <span>B120 技术参数</span>
+        <i class="fa fa-chevron-down transition-transform duration-300"></i>
+    </button>
+    <div class="p-4 space-y-3 hidden">
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">激光功率</span><span>12000W</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">工作台面尺寸</span><span class="text-right">1540x3050x50mm, 1540x6050x50mm, 2040x4050x50mm, 2040x6050x50mm, 2510x6150x50mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">最大切割速度</span><span>100m/min</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">定位精度</span><span>±0.05mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">重复定位精度</span><span>±0.03mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(碳钢)</span><span>35mm(特殊情况45mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(不锈钢)</span><span>25mm(特殊情况50mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铝合金)</span><span>18mm(特殊情况22mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铜)</span><span>18mm(特殊情况22mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">冷却方式</span><span>水冷</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">电力需求</span><span>380V/3PH 50/60HZ</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">加速度</span><span>1.5G</span></div>
+        <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
+    </div>
+</div>
+
+<!-- B200型号面板 -->
+<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <button class="w-full flex justify-between items-center p-4 bg-primary text-white font-medium" 
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+        <span>B200 技术参数</span>
+        <i class="fa fa-chevron-down transition-transform duration-300"></i>
+    </button>
+    <div class="p-4 space-y-3 hidden">
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">激光功率</span><span>20000W</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">工作台面尺寸</span><span class="text-right">1540x3050x50mm, 1540x6050x50mm, 2040x4050x50mm, 2040x6050x50mm, 2510x6150x50mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">最大切割速度</span><span>100m/min</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">定位精度</span><span>±0.05mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">重复定位精度</span><span>±0.03mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(碳钢)</span><span>50mm(特殊情况70mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(不锈钢)</span><span>35mm(特殊情况50mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铝合金)</span><span>30mm(特殊情况50mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铜)</span><span>20mm(特殊情况24mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">冷却方式</span><span>水冷</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">电力需求</span><span>380V/3PH 50/60HZ</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">加速度</span><span>1.5G</span></div>
+        <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
+    </div>
+</div>
+
+<!-- B300型号面板 -->
+<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <button class="w-full flex justify-between items-center p-4 bg-primary text-white font-medium" 
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+        <span>B300 技术参数</span>
+        <i class="fa fa-chevron-down transition-transform duration-300"></i>
+    </button>
+    <div class="p-4 space-y-3 hidden">
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">激光功率</span><span>30000W</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">工作台面尺寸</span><span class="text-right">1540x3050x50mm, 1540x6050x50mm, 2040x4050x50mm, 2040x6050x50mm, 2510x6150x50mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">最大切割速度</span><span>100m/min</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">定位精度</span><span>±0.05mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">重复定位精度</span><span>±0.03mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(碳钢)</span><span>50mm(特殊情况70mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(不锈钢)</span><span>40mm(特殊情况55mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铝合金)</span><span>30mm(特殊情况50mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铜)</span><span>20mm(特殊情况24mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">冷却方式</span><span>水冷</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">电力需求</span><span>380V/3PH 50/60HZ</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">加速度</span><span>1.5G</span></div>
+        <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
+    </div>
+</div>
+
+<!-- B400型号面板 -->
+<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <button class="w-full flex justify-between items-center p-4 bg-primary text-white font-medium" 
+            onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('i').classList.toggle('rotate-180')">
+        <span>B400 技术参数</span>
+        <i class="fa fa-chevron-down transition-transform duration-300"></i>
+    </button>
+    <div class="p-4 space-y-3 hidden">
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">激光功率</span><span>40000W</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">工作台面尺寸</span><span class="text-right">1540x3050x50mm, 1540x6050x50mm, 2040x4050x50mm, 2040x6050x50mm, 2510x6150x50mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">最大切割速度</span><span>100m/min</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">定位精度</span><span>±0.05mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">重复定位精度</span><span>±0.03mm</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(碳钢)</span><span>50mm(特殊情况70mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(不锈钢)</span><span>50mm(特殊情况70mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铝合金)</span><span>40mm(特殊情况60mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">批量加工最大切割厚度(铜)</span><span>20mm(特殊情况24mm)</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">冷却方式</span><span>水冷</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">电力需求</span><span>380V/3PH 50/60HZ</span></div>
+        <div class="flex justify-between py-2 border-b border-gray-100"><span class="text-gray-600">加速度</span><span>1.5G</span></div>
+        <div class="flex justify-between py-2"><span class="text-gray-600">床身结构</span><span>板管一体+时效处理</span></div>
+    </div>
+</div>
                             </tr>
                         </tbody>
                     </table>

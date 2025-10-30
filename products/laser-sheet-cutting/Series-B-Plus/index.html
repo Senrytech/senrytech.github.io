@@ -593,73 +593,76 @@
 				</div>
 			</section>
 			<!-- 产品对比 -->
-			<section class="py-16 bg-white highlight-box">
-				<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-					<h2 class="text-3xl font-semibold text-gray-800 mb-12 text-center">B Plus vs B系列</h2>
-					<div class="bg-neutral rounded-xl p-6 lg:p-8 shadow-sm">
-						<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-							<div>
-								<h3 class="text-xl font-semibold mb-6 text-center">B系列</h3>
-								<ul class="space-y-4">
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>开放式结构设计</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>4000-8000W激光功率</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>高精度切割性能</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>适合中小型生产需求</span>
-									</li>
-									<li class="flex items-start text-gray-400">
-										<i class="fa fa-times-circle mt-1 mr-3"></i>
-										<span>无专用上料平台</span>
-									</li>
-									<li class="flex items-start text-gray-400">
-										<i class="fa fa-times-circle mt-1 mr-3"></i>
-										<span>无全包围安全结构</span>
-									</li>
-								</ul>
-							</div>
-							<div>
-								<h3 class="text-xl font-semibold mb-6 text-center">B Plus系列</h3>
-								<ul class="space-y-4">
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>全封闭钣金包围结构</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>集成式侧面上料平台</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>4000-8000W激光功率</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>更高的操作安全性</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>优化的上料效率</span>
-									</li>
-									<li class="flex items-start">
-										<i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
-										<span>适合中大型生产车间</span>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+<section class="py-16 bg-white highlight-box">
+	<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+		<h2 class="text-3xl font-semibold text-gray-800 mb-12 text-center">B Plus vs B系列</h2>
+		<div class="bg-neutral rounded-xl p-6 lg:p-8 shadow-sm">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div>
+					<h3 class="text-xl font-semibold mb-6 text-center">B系列</h3>
+					<!-- 1. 给ul加 mx-auto 和 max-w-sm：控制列表整体在父容器中水平居中，避免过宽 -->
+					<ul class="space-y-4 mx-auto max-w-sm">
+						<!-- 2. 把 items-start 改成 items-center：让图标和文字垂直居中；加 justify-start 保证水平左对齐（也可按需改 justify-center） -->
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>开放式结构设计</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>1000-40000W激光功率</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>高精度切割性能</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>适合中小型生产需求</span>
+						</li>
+						<li class="flex items-center justify-start text-gray-400">
+							<i class="fa fa-times-circle mr-3"></i>
+							<span>无专用上料平台</span>
+						</li>
+						<li class="flex items-center justify-start text-gray-400">
+							<i class="fa fa-times-circle mr-3"></i>
+							<span>无全包围安全结构</span>
+						</li>
+					</ul>
 				</div>
-			</section>
+				<div>
+					<h3 class="text-xl font-semibold mb-6 text-center">B Plus系列</h3>
+					<!-- 同左侧调整：ul加 mx-auto max-w-sm，li改 items-center justify-start -->
+					<ul class="space-y-4 mx-auto max-w-sm">
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>全封闭钣金包围结构</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>集成式侧面上料平台</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>1000-40000W激光功率</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>更高的操作安全性</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>优化的上料效率</span>
+						</li>
+						<li class="flex items-center justify-start">
+							<i class="fa fa-check-circle text-primary mr-3"></i>
+							<span>适合中大型生产车间</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 			<!-- 联系咨询 -->
 			<section id="contact" class="py-16 bg-primary/5">
 				<div class="container mx-auto px-4 sm:px-6 lg:px-8">

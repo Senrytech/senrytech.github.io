@@ -88,7 +88,7 @@
 				<div class="flex justify-between items-center h-16 md:h-20">
 					<a href="../index.html" class="flex items-center space-x-2">
 						<div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
-							<img src="../../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+							<img src="../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
 						</div>
 						<span class="text-white font-bold text-xl">Senrytech</span>
 					</a>
@@ -853,69 +853,171 @@
         </section>
 
         <!-- 8. FAQ模块 -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-12 text-center">激光板材切割机常见问题</h2>
-                <div class="max-w-3xl mx-auto space-y-4">
-                    <!-- FAQ折叠面板1 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq1">
-                            <span class="font-medium text-gray-800">不同功率的激光板材切割机适合切割多厚的板材？</span>
-                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
-                        </button>
-                        <div id="faq1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">激光功率与可切割板材厚度对应关系如下：1000W可切割碳钢≤6mm、不锈钢≤3mm；2000W可切割碳钢≤10mm、不锈钢≤5mm；3000W可切割碳钢≤16mm、不锈钢≤8mm；6000W可切割碳钢≤25mm、不锈钢≤12mm；12000W可切割碳钢≤35mm、不锈钢≤20mm；20000W及以上可切割碳钢≤50mm、不锈钢≤30mm。</p>
-                            <p class="text-gray-600 mt-2">实际切割厚度还受材料材质、切割速度、辅助气体等因素影响，我们会根据您的具体需求提供最佳配置方案。</p>
-                        </div>
+        <!-- 8. 避坑指南模块（替换原有FAQ模块，完全适配原有页面脚本） -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 标题：适配原有页面字体/响应式逻辑 -->
+        <h2 class="text-2xl md:text-[clamp(1.8rem,3vw,2.2rem)] font-bold text-gray-800 mb-4 text-center">激光切割机选购&使用避坑指南</h2>
+        <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">30+行业老兵总结的真实经验：避开90%人踩过的坑，少花冤枉钱！</p>
+        
+        <!-- 避坑面板容器：保持原有max-w-3xl mx-auto，避免布局错乱 -->
+        <div class="max-w-3xl mx-auto space-y-6">
+            <!-- 避坑点1：功率选择坑（关键修复：ID唯一，兼容原有折叠脚本） -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="avoid-pit1">
+                    <span class="font-medium text-gray-800 flex items-center">
+                        <i class="fa fa-exclamation-triangle text-secondary mr-3"></i>
+                        选功率只看“能切多厚”？买错白花几万！
+                    </span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                </button>
+                <div id="avoid-pit1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                    <div class="flex items-start mb-3">
+                        <i class="fa fa-user-circle text-primary mt-1 mr-3"></i>
+                        <p class="text-gray-700 font-medium">过来人说：</p>
                     </div>
-                    <!-- FAQ折叠面板2 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq2">
-                            <span class="font-medium text-gray-800">激光板材切割机的运行成本包括哪些？如何降低？</span>
-                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
-                        </button>
-                        <div id="faq2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">运行成本主要包括：①电费（占比约50%，1000W设备每小时约1度电，12000W设备每小时约15度电）；②激光发生器耗材（占比约30%，光纤激光器寿命约10万小时）；③辅助气体（氧气、氮气等，占比约15%）；④其他耗材（喷嘴、镜片等，占比约5%）。</p>
-                            <p class="text-gray-600 mt-2">降低成本方法：①使用智能排版软件提高材料利用率；②根据材料厚度选择合适功率设备；③采用氮气回收系统；④定期维护延长耗材寿命；⑤非生产时段关闭部分设备电源。</p>
-                        </div>
+                    <p class="text-gray-600 mb-4 ml-8">之前帮一个做钣金的客户选机器，他非要买12000W的，说“能切35mm碳钢，以后业务能扩展”，结果平时只切5-8mm的板，每月电费比同行多花2000+，机器还总“大材小用”导致损耗加快！</p>
+                    
+                    <div class="ml-8 bg-neutral/5 p-4 rounded-md mb-2">
+                        <p class="text-gray-700 font-medium mb-2">✅ 正确做法（按实际需求选）：</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>小批量精密件（0.3-6mm）：选1000-2000W，够用不浪费</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>常规加工（0.5-20mm）：3000-6000W，性价比最高</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>厚板刚需（20-50mm）：再考虑8000W以上，别盲目追高功率</span></li>
+                        </ul>
                     </div>
-                    <!-- FAQ折叠面板3 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq3">
-                            <span class="font-medium text-gray-800">交换工作台和自动上下料系统有什么区别？如何选择？</span>
-                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
-                        </button>
-                        <div id="faq3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">交换工作台：设备配备两个工作台面，一个台面加工时，可在另一个台面进行上下料，减少约30%的辅助时间，适合中小批量、多种类生产，需1-2名操作员。</p>
-                            <p class="text-gray-600 mt-2">自动上下料系统：包括上料机器人、板材仓库、输送辊道等，实现全自动上下料，可减少约80%的辅助时间，适合大批量、单一品种生产，可实现无人化操作。</p>
-                            <p class="text-gray-600 mt-2">选择建议：每日产量＜500张选交换工作台；每日产量≥500张选自动上下料系统；多品种小批量生产优先选交换工作台；单一品种大批量生产优先选自动上下料系统。</p>
-                        </div>
+                    <p class="text-gray-500 text-sm ml-8">提示：实际切割厚度还和材料硬度、辅助气体有关，不确定就找厂家要“试切样件”，别只看参数表！</p>
+                </div>
+            </div>
+
+            <!-- 避坑点2：运行成本坑（关键修复：ID唯一，避免与原有FAQ冲突） -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="avoid-pit2">
+                    <span class="font-medium text-gray-800 flex items-center">
+                        <i class="fa fa-exclamation-triangle text-secondary mr-3"></i>
+                        买机器只看报价？隐性成本能吞掉利润！
+                    </span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                </button>
+                <div id="avoid-pit2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                    <div class="flex items-start mb-3">
+                        <i class="fa fa-user-circle text-primary mt-1 mr-3"></i>
+                        <p class="text-gray-700 font-medium">过来人说：</p>
                     </div>
-                    <!-- FAQ折叠面板4 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq4">
-                            <span class="font-medium text-gray-800">如何选择合适的工作台面尺寸？</span>
-                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
-                        </button>
-                        <div id="faq4" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">工作台面尺寸选择主要依据您常用的板材尺寸：①若主要加工1220×2440mm标准板，可选1500×3000mm台面；②若主要加工1500×3000mm板材，可选2000×4000mm台面；③若加工大型板材（如2000×6000mm），需选2500×6000mm及以上台面。</p>
-                            <p class="text-gray-600 mt-2">建议工作台面比最大加工板材大300-500mm，预留装夹和定位空间。同时考虑车间空间大小，确保设备安装和操作有足够空间（设备周围至少预留1.5m通道）。</p>
-                        </div>
+                    <p class="text-gray-600 mb-4 ml-8">有个客户当初贪便宜买了台二手6000W机器，报价比新机器低3万，结果用了半年：激光头坏了换一个花8000，氮气每月比同行多耗5罐（每罐120元），算下来1年就把“省的钱”全赔进去了！</p>
+                    
+                    <div class="ml-8 bg-neutral/5 p-4 rounded-md mb-2">
+                        <p class="text-gray-700 font-medium mb-2">⚠️ 必算3大隐性成本：</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fa fa-money text-secondary mt-1 mr-2"></i><span>电费：1000W每小时1度，12000W每小时15度，按每天8小时算，每月差3000+</span></li>
+                            <li class="flex items-start"><i class="fa fa-money text-secondary mt-1 mr-2"></i><span>耗材：喷嘴（每月2-3个，每个50-100元）、镜片（每半年1换，几百到几千）</span></li>
+                            <li class="flex items-start"><i class="fa fa-money text-secondary mt-1 mr-2"></i><span>气体：切碳钢用氧气（便宜），切不锈钢用氮气（贵），批量生产建议装“气体回收机”</span></li>
+                        </ul>
                     </div>
-                    <!-- FAQ折叠面板5 -->
-                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                        <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="faq5">
-                            <span class="font-medium text-gray-800">激光切割后的板材会有变形吗？如何控制？</span>
-                            <i class="fa fa-chevron-down text-primary transition-transform"></i>
-                        </button>
-                        <div id="faq5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
-                            <p class="text-gray-600">激光切割属于热切割，会产生一定热影响，但相比等离子切割等方式，热影响区小（通常＜0.1mm），薄板（＜3mm）切割后变形可忽略不计，厚板（＞10mm）可能产生轻微变形。</p>
-                            <p class="text-gray-600 mt-2">控制变形的方法：①采用"分层切割"工艺，减少热积累；②优化切割路径（从内到外、对称切割）；③使用辅助冷却系统；④对高要求零件，切割后进行应力消除处理；⑤B Pro及以上系列配备"智能变形补偿系统"，可自动调整切割参数减少变形。</p>
+                    <p class="text-gray-600 ml-8">✅ 降成本技巧：用智能排版软件提高材料利用率（能省10%材料），非生产时段关激光发生器（别待机耗电）。</p>
+                </div>
+            </div>
+
+            <!-- 避坑点3：上下料系统选择坑 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="avoid-pit3">
+                    <span class="font-medium text-gray-800 flex items-center">
+                        <i class="fa fa-exclamation-triangle text-secondary mr-3"></i>
+                        盲目选“全自动上下料”？小厂根本用不上！
+                    </span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                </button>
+                <div id="avoid-pit3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                    <div class="flex items-start mb-3">
+                        <i class="fa fa-user-circle text-primary mt-1 mr-3"></i>
+                        <p class="text-gray-700 font-medium">过来人说：</p>
+                    </div>
+                    <p class="text-gray-600 mb-4 ml-8">一个做小批量五金件的客户，听销售推荐装了全自动上下料系统，多花了12万，结果每天就加工20-30张板，系统大部分时间闲置，还得专门雇人维护，后来后悔说“还不如人工上下料划算”！</p>
+                    
+                    <div class="ml-8 grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+                        <div class="bg-neutral/5 p-4 rounded-md">
+                            <p class="text-gray-700 font-medium mb-2">✅ 选交换工作台（加1-2万）：</p>
+                            <p class="text-gray-600 text-sm">适合：每日产量＜500张、多品种小批量</p>
+                            <p class="text-gray-600 text-sm mt-1">优势：1人能操作，加工时可同步上下料，省30%时间</p>
+                        </div>
+                        <div class="bg-neutral/5 p-4 rounded-md">
+                            <p class="text-gray-700 font-medium mb-2">✅ 选全自动上下料（加10万+）：</p>
+                            <p class="text-gray-600 text-sm">适合：每日产量≥500张、单一品种批量生产</p>
+                            <p class="text-gray-600 text-sm mt-1">优势：可无人化作业，省80%人工，适合大厂</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- 避坑点4：工作台尺寸坑 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="avoid-pit4">
+                    <span class="font-medium text-gray-800 flex items-center">
+                        <i class="fa fa-exclamation-triangle text-secondary mr-3"></i>
+                        工作台“越大越好”？车间放不下还浪费！
+                    </span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                </button>
+                <div id="avoid-pit4" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                    <div class="flex items-start mb-3">
+                        <i class="fa fa-user-circle text-primary mt-1 mr-3"></i>
+                        <p class="text-gray-700 font-medium">过来人说：</p>
+                    </div>
+                    <p class="text-gray-600 mb-4 ml-8">之前有个客户车间只有20㎡，非要买2500×6000mm的大台面机器，结果机器运到现场，门都进不去，最后花了5000块拆门、挪设备，而且平时只切1220×2440mm的板，大台面一半空着，浪费空间还增加能耗！</p>
+                    
+                    <div class="ml-8 bg-neutral/5 p-4 rounded-md mb-2">
+                        <p class="text-gray-700 font-medium mb-2">✅ 按“常用板材+车间空间”选：</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>常用1220×2440mm板：选1500×3000mm台面（留装夹空间）</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>常用1500×3000mm板：选2000×4000mm台面</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>车间空间紧张：优先选“紧凑款”，别硬凑大台面</span></li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-500 text-sm ml-8">提示：设备周围至少留1.5m通道，方便操作和维护，买之前让厂家出“车间布局图”！</p>
+                </div>
+            </div>
+
+            <!-- 避坑点5：板材变形坑 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                <button class="faq-toggle w-full flex justify-between items-center p-6 text-left bg-neutral hover:bg-gray-100 transition-colors" data-target="avoid-pit5">
+                    <span class="font-medium text-gray-800 flex items-center">
+                        <i class="fa fa-exclamation-triangle text-secondary mr-3"></i>
+                        切厚板必变形？90%人不知道有补救办法！
+                    </span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                </button>
+                <div id="avoid-pit5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                    <div class="flex items-start mb-3">
+                        <i class="fa fa-user-circle text-primary mt-1 mr-3"></i>
+                        <p class="text-gray-700 font-medium">过来人说：</p>
+                    </div>
+                    <p class="text-gray-600 mb-4 ml-8">之前帮一个做机械零件的客户解决问题：他切16mm碳钢时，零件总变形，导致后续装配不上，差点丢了大订单！后来调整了切割路径，加了辅助冷却，变形量从0.5mm降到0.1mm以内，问题全解决了。</p>
+                    
+                    <div class="ml-8 bg-neutral/5 p-4 rounded-md mb-2">
+                        <p class="text-gray-700 font-medium mb-2">✅ 3个防变形技巧（亲测有效）：</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>切厚板（＞10mm）：用“分层切割”，别一次性切透，减少热积累</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>改切割路径：从零件内部往外切，对称切割（比如先切中心孔，再切外轮廓）</span></li>
+                            <li class="flex items-start"><i class="fa fa-check text-primary mt-1 mr-2"></i><span>选对机器：B Pro及以上系列有“智能变形补偿”，能自动调整参数</span></li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-600 ml-8">提示：如果是高精密零件，切割后可以做“应力消除处理”，变形基本能忽略！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行动引导：适配原有页面按钮样式和链接 -->
+        <div class="max-w-3xl mx-auto mt-12 bg-primary/5 p-6 rounded-lg border border-primary/20 text-center">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">还在为选机器纠结？</h3>
+            <p class="text-gray-600 mb-6">发送您的加工需求（材料/厚度/产量），免费获取“定制避坑方案”+ 试切样件！</p>
+            <!-- 链接用原有页面的“联系我们”链接，保持跳转一致性 -->
+            <a href="https://www.senrytech.com/contact-us/" class="inline-block bg-primary text-white px-8 py-3 rounded-md font-medium hover:bg-primary/90 transition-colors shadow-md hover:shadow-lg">
+                免费获取避坑方案
+                <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
     <!-- 页脚 -->
 		<footer class="bg-primary text-white pt-16 pb-8">
 			<div class="container mx-auto px-4 sm:px-6 lg:px-8">

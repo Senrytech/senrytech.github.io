@@ -92,9 +92,20 @@
 
 			/* 导航栏滚动效果 */
 			.nav-scrolled {
-				background-color: rgba(27, 76, 66, 0.95);
-				box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-			}
+    background-color: rgba(245, 245, 245, 1) !important; /* 强制覆盖透明背景 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 明确过渡属性 */
+}
+
+/* 滚动后导航栏文字颜色（保持原逻辑，确保生效） */
+.nav-scrolled nav a,
+.nav-scrolled #menu-toggle {
+    color: #1b4c42 !important; /* 强制覆盖白色文字 */
+}
+
+.nav-scrolled nav a:hover {
+    color: #ff7a00 !important;
+}
 
 			/* 轮播图样式 */
 			.carousel-item {
@@ -123,9 +134,9 @@
 	</head>
 	<body class="font-sans text-gray-800 overflow-x-hidden">
 		<!-- 顶部固定导航栏 -->
-		<header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
+		<header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent">
 			<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-				<div class="flex justify-between items-center h-16 md:h-20">
+				<div class="flex justify-between items-center h-12 md:h-16">
 					<!-- 品牌Logo -->
 					<a href="https://www.senrytech.com/" class="flex items-center space-x-2">
 						<div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
@@ -1023,15 +1034,6 @@
 				icon.classList.toggle('fa-chevron-down');
 				icon.classList.toggle('fa-chevron-up');
 			});
-			// 导航栏滚动效果
-			window.addEventListener('scroll', function() {
-				const navbar = document.getElementById('navbar');
-				if (window.scrollY > 50) {
-					navbar.classList.add('nav-scrolled');
-				} else {
-					navbar.classList.remove('nav-scrolled');
-				}
-			});
 			// 移动端菜单切换
 			document.getElementById('menu-toggle').addEventListener('click', function() {
 				const mobileMenu = document.getElementById('mobile-menu');
@@ -1042,6 +1044,7 @@
 				const mobileProductsMenu = document.getElementById('mobile-products-menu');
 				mobileProductsMenu.classList.toggle('hidden');
 			});
+			
 			// 轮播图功能
 			let currentSlide = 0;
 			const slides = document.querySelectorAll('.carousel-item');
@@ -1141,6 +1144,26 @@
 			document.querySelectorAll('section').forEach(section => {
 				observer.observe(section);
 			});
+			// 放在底部<script>区域，替换原有的导航栏滚动代码
+document.addEventListener('DOMContentLoaded', function() {
+    // 确保DOM完全加载后再获取导航栏元素
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return; // 防止元素不存在导致报错
+
+    // 监听滚动事件
+    window.addEventListener('scroll', function() {
+        // 调试：可以先打印滚动距离，确认事件是否触发（测试用）
+        console.log('滚动距离：', window.scrollY);
+        
+        if (window.scrollY > 50) {
+            navbar.classList.add('nav-scrolled');
+            console.log('添加nav-scrolled类'); // 测试用
+        } else {
+            navbar.classList.remove('nav-scrolled');
+            console.log('移除nav-scrolled类'); // 测试用
+        }
+    });
+});
 		</script>
 	</body>
 </html>

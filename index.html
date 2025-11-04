@@ -647,53 +647,80 @@
 <!-- 3. 板管一体切割机产品 (默认隐藏) -->
 <div class="product-content hidden" id="sheet-tube-content">
   <div class="flex flex-col lg:flex-row gap-8">
-    <!-- 左侧玻璃态介绍框 -->
-    <div class="hidden lg:block w-64 
-                bg-[rgba(80,80,80,0.9)] backdrop-blur-md -webkit-backdrop-filter: blur(8px);
-                border-l-4 border-secondary rounded-r-lg p-6 flex flex-col justify-between 
-                transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)]">
-      <div>
+    <!-- 左侧竖条：按管材切割机样式改为“图片背景+文字”结构，替换原玻璃态 -->
+    <div class="hidden lg:block w-64 rounded-lg p-6 flex flex-col justify-between transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)] relative overflow-hidden">
+      <!-- 核心：A标签包裹背景图片，解决背景显示问题，与管材切割机逻辑一致 -->
+      <a href="https://www.senrytech.com/products/laser-sheet-tube/" class="absolute inset-0 z-0">
+        <img src="img/products/laser sheet & tube/sheet tube 1.png" 
+             alt="板管一体切割机背景图" 
+             class="w-full h-full object-cover opacity-40"> <!-- opacity与管材切割机保持一致 -->
+      </a>
+      <!-- 暗化遮罩：压暗图片，确保白色文字清晰 -->
+      <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+      <!-- 文字内容层：z-20确保在图片上方，样式与管材切割机统一 -->
+      <div class="relative z-20">
         <h3 class="text-xl font-bold text-white mb-4">板管一体切割机</h3>
         <p class="text-gray-200 leading-relaxed">
           集板材、管材切割功能于一体，节省设备占地与采购成本，10分钟快速切换加工模式，适配中小批量多品类生产场景，兼顾灵活性与效率。
         </p>
       </div>
+      <!-- 底部“学习更多”链接：z-20确保可点击，样式与管材切割机统一 -->
       <a href="https://www.senrytech.com/products/laser-sheet-tube/" 
-         class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors">
+         class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors relative z-20">
         学习更多 <i class="fa fa-arrow-right ml-2"></i>
       </a>
     </div>
 
-    <!-- 右侧产品卡片 -->
+    <!-- 右侧产品卡片：按管材切割机样式添加左上角产品标识文字 -->
     <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- 1. B系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
+      <!-- 1. B系列卡片（添加左上角“Senrytech B”文字） -->
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+                  relative"> <!-- 关键：添加relative作为文字定位参考 -->
+        <!-- 左上角产品标识：样式与管材切割机完全一致 -->
+        <div class="absolute top-3 left-3 z-10 
+                    bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+                    shadow-sm">
+          Senrytech B
+        </div>
         <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B/">
           <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B.jpg" alt="板管一体切割机 B系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B.png" alt="板管一体切割机 B系列" class="w-full h-full object-contain transition-transform hover:scale-105">
           </div>
         </a>
       </div>
 
-	  <!-- 1. B PRO系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B/">
+      <!-- 2. B Pro系列卡片（添加左上角“Senrytech B Pro”文字） -->
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+                  relative">
+        <div class="absolute top-3 left-3 z-10 
+                    bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+                    shadow-sm">
+          Senrytech B Pro
+        </div>
+        <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Pro/">
           <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B Pro.jpg" alt="板管一体切割机 B PRO系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B Pro.png" alt="板管一体切割机 B Pro系列" class="w-full h-full object-contain transition-transform hover:scale-105">
           </div>
         </a>
       </div>
-	  <!-- 1. B PROMAX系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B/">
+
+      <!-- 3. B ProMax系列卡片（添加左上角“Senrytech B ProMax”文字） -->
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+                  relative">
+        <div class="absolute top-3 left-3 z-10 
+                    bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+                    shadow-sm">
+          Senrytech B ProMax
+        </div>
+        <a href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-ProMax/">
           <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B ProMax.jpg" alt="板管一体切割机 B PROMAX系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+            <img src="img/products/laser sheet & tube/laser sheet & tube cutting B ProMax.png" alt="板管一体切割机 B ProMax系列" class="w-full h-full object-contain transition-transform hover:scale-105">
           </div>
         </a>
-      </div>
       </div>
     </div>
   </div>
+</div>
 
 <!-- 4. 焊接机产品 (默认隐藏) -->
 <div class="product-content hidden" id="welding-content">

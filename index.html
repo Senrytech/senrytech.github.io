@@ -488,102 +488,158 @@
 
     <!-- 右侧产品卡片（保持不变，与左侧样式协调） -->
     <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- A系列 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet cutting/laser sheet cutting A 2.png" alt="激光板材切割机 A系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
+  <!-- A系列（已添加左上角文字“Senrytech A”） -->
+  <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+              relative"> <!-- 核心：给卡片容器添加relative，作为文字定位的参考 -->
+    <!-- 左上角文字：绝对定位到卡片顶部左侧，添加样式确保醒目且不遮挡图片 -->
+    <div class="absolute top-3 left-3 z-10 
+                bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+                shadow-sm"> <!-- 文字样式：品牌色背景+白色文字，适配卡片风格 -->
+      Senrytech A
+    </div>
+    
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/">
+      <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+        <img src="img/products/laser sheet cutting/laser sheet cutting A 2.png" alt="激光板材切割机 A系列" class="w-full h-full object-contain transition-transform hover:scale-105">
       </div>
+    </a>
+  </div>
 
       <!-- B ProMax系列 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet cutting/laser sheet cutting B ProMax.png" alt="激光板材切割机 B ProMax系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 relative">
+    <div class="absolute top-3 left-3 z-10 bg-primary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+      Senrytech B ProMax
+    </div>
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/">
+      <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+        <img src="img/products/laser sheet cutting/laser sheet cutting B ProMax.png" alt="激光板材切割机 B ProMax系列" class="w-full h-full object-contain transition-transform hover:scale-105">
       </div>
+    </a>
+  </div>
 
       <!-- C系列 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet cutting/laser sheet cutting C.png" alt="激光板材切割机 C系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 relative">
+    <div class="absolute top-3 left-3 z-10 bg-primary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+      Senrytech C
+    </div>
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/">
+      <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+        <img src="img/products/laser sheet cutting/laser sheet cutting C.png" alt="激光板材切割机 C系列" class="w-full h-full object-contain transition-transform hover:scale-105">
       </div>
+    </a>
+  </div>
 
       <!-- S系列 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser sheet cutting/laser sheet cutting S.png" alt="激光板材切割机 S系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 relative">
+    <div class="absolute top-3 left-3 z-10 bg-primary text-white text-xs font-bold px-2 py-1 rounded shadow-sm">
+      Senrytech S
+    </div>
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/">
+      <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+        <img src="img/products/laser sheet cutting/laser sheet cutting S.png" alt="激光板材切割机 S系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+      </div>
+    </a>
       </div>
     </div>
   </div>
 </div>
 
-    <!-- 2. 管材切割机产品 (默认隐藏) -->
+    <!-- 2. 管材切割机产品（封装为统一的product-content，默认显示） -->
 <div class="product-content hidden" id="tube-content">
   <div class="flex flex-col lg:flex-row gap-8">
-    <!-- 左侧玻璃态介绍框 -->
-    <div class="hidden lg:block w-64 
-                bg-[rgba(80,80,80,0.9)] backdrop-blur-md -webkit-backdrop-filter: blur(8px);
-                border-l-4 border-secondary rounded-r-lg p-6 flex flex-col justify-between 
-                transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)]">
-      <div>
+    <!-- 左侧竖条（改为A标签包裹图片的形式，彻底解决背景图不显示问题） -->
+    <div class="hidden lg:block w-64 rounded-lg p-6 flex flex-col justify-between transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)] relative overflow-hidden">
+      <!-- 核心修改：A标签包裹图片（作为背景层），href指向目标页面 -->
+      <a href="https://www.senrytech.com/products/laser-tube-cutting/" class="absolute inset-0 z-0">
+        <!-- 图片作为背景填充，object-cover确保图片不变形，opacity控制透明度避免遮挡文字 -->
+        <img src="img/products/laser tube cutting/tube cutting 1.png" 
+             alt="激光管材切割机背景图" 
+             class="w-full h-full object-cover opacity-40"> <!-- opacity可根据需求调整（0.1-1） -->
+      </a>
+
+      <!-- （可选）暗化遮罩：进一步压暗图片，让白色文字更清晰 -->
+      <div class="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+
+      <!-- 文字内容层：z-20确保在图片和遮罩上方，relative保持层级 -->
+      <div class="relative z-20">
         <h3 class="text-xl font-bold text-white mb-4">激光管材切割机</h3>
         <p class="text-gray-200 leading-relaxed">
           专注圆管、方管、矩形管等管材切割，支持多角度斜切、打孔、开槽，适配钢结构、家具、健身器材等行业，切割精度达±0.05mm。
         </p>
       </div>
+
+      <!-- 底部“学习更多”链接：z-20确保可点击，避免被图片层遮挡 -->
       <a href="https://www.senrytech.com/products/laser-tube-cutting/" 
-         class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors">
+         class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors relative z-20">
         学习更多 <i class="fa fa-arrow-right ml-2"></i>
       </a>
     </div>
 
     <!-- 右侧产品卡片 -->
     <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- 1. M系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-M/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser tube cutting/laser tube cutting M.jpg" alt="激光管材切割机 M系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
-      </div>
+      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+            relative"> <!-- 关键：添加relative作为文字定位参考 -->
+  <!-- 左上角产品标识文字：样式与板材切割机卡片完全一致 -->
+  <div class="absolute top-3 left-3 z-10 
+              bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+              shadow-sm">
+    Senrytech M
+  </div>
+  
+  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-M/">
+    <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+      <img src="img/products/laser tube cutting/laser tube cutting M.png" alt="激光管材切割机 M系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+    </div>
+  </a>
+</div>
 
-      <!-- 2. A Plus系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser tube cutting/laser tube cutting A Plus.jpg" alt="激光管材切割机 A Plus系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
-      </div>
+<!-- 2. A Plus系列卡片（已添加左上角文字“Senrytech A Plus”） -->
+<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+            relative">
+  <div class="absolute top-3 left-3 z-10 
+              bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+              shadow-sm">
+    Senrytech A Plus
+  </div>
+  
+  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus/">
+    <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+      <img src="img/products/laser tube cutting/laser tube cutting A Plus.png" alt="激光管材切割机 A Plus系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+    </div>
+  </a>
+</div>
 
-      <!-- 3. B系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser tube cutting/laser tube cutting B.jpg" alt="激光管材切割机 B系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
-      </div>
+<!-- 3. B系列卡片（已添加左上角文字“Senrytech B”） -->
+<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+            relative">
+  <div class="absolute top-3 left-3 z-10 
+              bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+              shadow-sm">
+    Senrytech B
+  </div>
+  
+  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B/">
+    <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+      <img src="img/products/laser tube cutting/laser tube cutting B.png" alt="激光管材切割机 B系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+    </div>
+  </a>
+</div>
 
-      <!-- 4. B Pro系列卡片 -->
-      <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
-        <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro/">
-          <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-            <img src="img/products/laser tube cutting/laser tube B Pro.jpg" alt="激光管材切割机 B Pro系列" class="w-full h-full object-contain transition-transform hover:scale-105">
-          </div>
-        </a>
-        </div>
+<!-- 4. B Pro系列卡片（已添加左上角文字“Senrytech B Pro”） -->
+<div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100 
+            relative">
+  <div class="absolute top-3 left-3 z-10 
+              bg-primary text-white text-xs font-bold px-2 py-1 rounded 
+              shadow-sm">
+    Senrytech B Pro
+  </div>
+  
+  <a href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro/">
+    <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
+      <img src="img/products/laser tube cutting/laser tube cutting B Pro.png" alt="激光管材切割机 B Pro系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+    </div>
+  </a>
+</div>
       </div>
     </div>
   </div>

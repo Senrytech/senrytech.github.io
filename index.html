@@ -1138,37 +1138,287 @@
   </div>
 </div>
 </section>
-			<!-- 核心优势区 -->
-			<section class="py-16 md:py-24 bg-neutral">
-				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<!-- 优势1 -->
-						<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-								<i class="fa fa-graduation-cap text-2xl text-primary"></i>
-							</div>
-							<h3 class="text-xl font-bold mb-4 text-gray-800">15年研发经验</h3>
-							<p class="text-gray-600">拥有60+项技术专利，核心团队来自行业优秀人才，持续创新激光应用技术。</p>
-						</div>
-						<!-- 优势2 -->
-						<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-								<i class="fa fa-shield text-2xl text-primary"></i>
-							</div>
-							<h3 class="text-xl font-bold mb-4 text-gray-800">24小时售后</h3>
-							<p class="text-gray-600">全国售后覆盖，核心部件质保1年，7×24小时技术支持，快速响应客户需求。</p>
-						</div>
-						<!-- 优势3 -->
-						<div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-								<i class="fa fa-line-chart text-2xl text-primary"></i>
-							</div>
-							<h3 class="text-xl font-bold mb-4 text-gray-800">效率提升40%</h3>
-							<p class="text-gray-600">服务500+工厂客户，平均为客户提升生产效率40%，降低运营成本25%以上。</p>
-						</div>
-					</div>
-				</div>
-			</section>
+			<!-- 核心技术区 -->
+<section class="py-16 bg-neutral">
+  <div class="container mx-auto px-4">
+    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary text-center mb-12">核心技术</h2>
+    
+    <!-- 技术展示轮播容器 -->
+    <div class="relative">
+      <!-- 左右箭头控制（调整垂直定位，适配网格高度） -->
+      <button id="tech-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center shadow-lg z-10 md:-left-5">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button id="tech-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 bg-white/80 hover:bg-white text-primary w-10 h-10 rounded-full flex items-center justify-center shadow-lg z-10 md:-right-5">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+      
+      <!-- 轮播轨道容器 -->
+      <div class="overflow-hidden">
+        <div id="tech-track" class="flex transition-transform duration-500 ease-out">
+          <!-- 第1页（2行4列，共8个技术项） -->
+          <div class="tech-page min-w-full px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- 技术项1 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech1.jpg" alt="激光切割技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">高精度激光切割技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项2 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech2.jpg" alt="光纤激光技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">光纤激光技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项3 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech3.jpg" alt="智能控制系统" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">智能数控系统</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项4 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech4.jpg" alt="自动对焦技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">自动对焦技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项5（第2行第1个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech5.jpg" alt="高速扫描技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">高速扫描技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项6（第2行第2个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech6.jpg" alt="冷却系统" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">高效冷却系统</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项7（第2行第3个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech7.jpg" alt="能量控制技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">激光能量控制技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项8（第2行第4个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech8.jpg" alt="金属表面处理技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">金属表面处理技术</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 第2页（2行4列，共8个技术项） -->
+          <div class="tech-page min-w-full px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- 技术项9 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech9.jpg" alt="双驱同步技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">双驱同步技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项10 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech10.jpg" alt="视觉定位系统" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">视觉定位系统</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项11 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech11.jpg" alt="智能诊断技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">智能诊断技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项12 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech12.jpg" alt="多轴联动控制" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">多轴联动控制</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项13（第2行第1个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech13.jpg" alt="粉尘过滤系统" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">粉尘过滤系统</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项14（第2行第2个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech14.jpg" alt="自适应切割参数" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">自适应切割参数</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项15（第2行第3个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech15.jpg" alt="远程监控技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">远程监控技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项16（第2行第4个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech16.jpg" alt="材料厚度检测" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">材料厚度检测</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 第3页（2行4列，共8个技术项，补全技术项24） -->
+          <div class="tech-page min-w-full px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <!-- 技术项17 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech17.jpg" alt="高频激光脉冲" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">高频激光脉冲</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项18 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech18.jpg" alt="防碰撞保护系统" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">防碰撞保护系统</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项19 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech19.jpg" alt="数据加密传输" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">数据加密传输</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项20 -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech20.jpg" alt="模块化设计技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">模块化设计技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项21（第2行第1个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech21.jpg" alt="低能耗优化技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">低能耗优化技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项22（第2行第2个） -->
+              <div class="tech-item group">
+                <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+                  <img src="img/tech22.jpg" alt="多材料兼容技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                  <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+                    <h3 class="text-white font-medium">多材料兼容技术</h3>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 技术项23（第2行第3个）- 补全闭合标签 -->
+<div class="tech-item group">
+  <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+    <img src="img/tech23.jpg" alt="切割路径优化算法" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+      <h3 class="text-white font-medium">切割路径优化算法</h3>
+    </div>
+  </div>
+</div>
+
+<!-- 技术项24（第2行第4个）- 新增完整项，匹配风格 -->
+<div class="tech-item group">
+  <div class="relative overflow-hidden rounded-xl shadow-md aspect-[4/3]">
+    <!-- 图片路径与alt文本：按实际图片调整，此处示例为“智能除尘技术” -->
+    <img src="img/tech24.jpg" alt="智能除尘技术" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+    <div class="absolute bottom-0 left-0 right-0 bg-black/30 backdrop-blur-md p-3">
+      <h3 class="text-white font-medium">智能除尘技术</h3>
+    </div>
+  </div>
+
+  <!-- 新增：横线页码指示器（绝对定位在轮播下方，居中显示） -->
+      <div class="absolute bottom-[-30px] left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
+        <!-- 3个横线指示器，对应3个轮播页，初始第1个激活 -->
+        <button class="tech-indicator w-12 h-1.5 rounded-full bg-primary transition-all duration-300" data-index="0"></button>
+        <button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="1"></button>
+        <button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="2"></button>
+      </div>
+    </div>
+  </div>
+</section>
 			<!-- 行业解决方案区 -->
 			<section id="solutions" class="py-16 md:py-24">
 				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1916,6 +2166,81 @@ document.querySelectorAll('#product-tabs .product-tab').forEach(tab => {
       behavior: 'auto' // 禁用平滑滚动（避免微小位移）
     });
   });
+});
+
+// 核心技术区轮播逻辑
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. 获取核心元素
+  const track = document.getElementById('tech-track'); // 轮播轨道
+  const pages = track.querySelectorAll('.tech-page'); // 所有轮播页（3个）
+  const prevBtn = document.getElementById('tech-prev'); // 左箭头
+  const nextBtn = document.getElementById('tech-next'); // 右箭头
+  const indicators = document.querySelectorAll('.tech-indicator'); // 所有横线指示器
+  const pageCount = pages.length; // 轮播页数（3）
+  let currentIndex = 0; // 当前显示的页码（初始第1页）
+  let autoPlayInterval; // 自动轮播计时器
+
+  // 2. 核心函数：切换到指定页码
+  function goToPage(index) {
+    // 边界处理：避免索引超出范围（比如第3页点下一页回到第1页）
+    if (index < 0) index = pageCount - 1;
+    if (index >= pageCount) index = 0;
+    
+    // 2.1 移动轮播轨道：通过transform实现滑动（每个页宽100%）
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    // 2.2 更新指示器状态：当前页激活，其他页未激活
+    indicators.forEach((indicator, i) => {
+      if (i === index) {
+        indicator.classList.remove('bg-gray-300', 'hover:bg-gray-400');
+        indicator.classList.add('bg-primary'); // 激活样式
+      } else {
+        indicator.classList.remove('bg-primary');
+        indicator.classList.add('bg-gray-300', 'hover:bg-gray-400'); // 未激活样式
+      }
+    });
+    
+    // 2.3 更新当前页码
+    currentIndex = index;
+  }
+
+  // 3. 绑定左箭头点击事件：上一页
+  prevBtn.addEventListener('click', function() {
+    goToPage(currentIndex - 1);
+    resetAutoPlay(); // 点击后重置自动轮播（避免用户操作后立即切换）
+  });
+
+  // 4. 绑定右箭头点击事件：下一页
+  nextBtn.addEventListener('click', function() {
+    goToPage(currentIndex + 1);
+    resetAutoPlay();
+  });
+
+  // 5. 绑定指示器点击事件：点击对应指示器跳转到指定页
+  indicators.forEach(indicator => {
+    indicator.addEventListener('click', function() {
+      const targetIndex = parseInt(this.dataset.index); // 获取指示器的data-index
+      goToPage(targetIndex);
+      resetAutoPlay();
+    });
+  });
+
+  // 6. 自动轮播功能（可选，如需关闭可删除此部分）
+  function startAutoPlay() {
+    // 每5秒切换到下一页（5000毫秒）
+    autoPlayInterval = setInterval(() => {
+      goToPage(currentIndex + 1);
+    }, 5000);
+  }
+
+  // 7. 重置自动轮播计时器（用户操作后重新计时）
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    startAutoPlay();
+  }
+
+  // 8. 初始化：启动自动轮播（如需关闭，注释这行即可）
+  startAutoPlay();
 });
 		</script>
 	</body>

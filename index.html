@@ -460,20 +460,34 @@
       <div class="flex flex-col lg:flex-row gap-8">
         <!-- 左侧竖条介绍框 -->
         <div class="hidden lg:block w-64 
-                    bg-[rgba(80,80,80,0.9)] backdrop-blur-md -webkit-backdrop-filter: blur(8px);
-                    border-l-4 border-secondary rounded-r-lg p-6 flex flex-col justify-between 
-                    transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)]">
-          <div>
-            <h3 class="text-xl font-bold text-white mb-4">激光板材切割机</h3>
-            <p class="text-gray-200 leading-relaxed">
-              适用于碳钢、不锈钢、铝、铜等多种金属板材切割，覆盖从入门级到工业级全场景需求，支持中小批量定制与大批量连续生产，切割精度达±0.03mm，效率较传统设备提升40%以上。
-            </p>
-          </div>
-          <a href="https://www.senrytech.com/products/laser-sheet-cutting/" 
-             class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors">
-            学习更多 <i class="fa fa-arrow-right ml-2"></i>
-          </a>
-        </div>
+            <!-- 1. 新增背景图：用激光设备相关纹理图，适配竖条比例，避免重复拉伸 -->
+            bg-[url('img/laser-texture-bg.png')] bg-cover bg-center bg-no-repeat relative
+            <!-- 2. 圆角优化：删除原 rounded-r-lg（仅右圆角），改为 rounded-lg（全圆角） -->
+            rounded-lg
+            <!-- 保留原玻璃态样式：半透明背景+毛玻璃，叠加在背景图上提升文字可读性 -->
+            bg-[rgba(80,80,80,0.9)] backdrop-blur-md -webkit-backdrop-filter: blur(8px);
+            <!-- 3. 边框优化：删除原 border-l-4（仅左侧橙色边框），改为全边框+橙色，与圆角适配 -->
+            border-2 border-secondary
+            p-6 flex flex-col justify-between 
+            transition-colors duration-300 hover:bg-[rgba(80,80,80,0.7)]">
+  
+  <!-- 新增半透明遮罩层：弱化背景图，避免文字与背景重叠导致看不清，不影响点击交互 -->
+  <div class="absolute inset-0 bg-[rgba(80,80,80,0.6)] rounded-lg pointer-events-none"></div>
+
+  <!-- 内容层加 relative：确保文字/链接在遮罩之上，层级最高 -->
+  <div class="relative">
+    <h3 class="text-xl font-bold text-white mb-4">激光板材切割机</h3>
+    <p class="text-gray-200 leading-relaxed">
+      适用于碳钢、不锈钢、铝、铜等多种金属板材切割，覆盖从入门级到工业级全场景需求，支持中小批量定制与大批量连续生产，切割精度达±0.03mm，效率较传统设备提升40%以上。
+    </p>
+  </div>
+
+  <!-- 链接加 relative：确保点击交互正常，不受遮罩影响 -->
+  <a href="https://www.senrytech.com/products/laser-sheet-cutting/" 
+     class="inline-block mt-6 text-white hover:text-secondary font-medium flex items-center transition-colors relative">
+    学习更多 <i class="fa fa-arrow-right ml-2"></i>
+  </a>
+</div>
 
         <!-- 右侧产品卡片 -->
         <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -508,7 +522,7 @@
           <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-gray-100">
             <a href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/">
               <div class="h-56 overflow-hidden bg-gray-50 hover:bg-primary/10 flex items-center justify-center transition-colors duration-300">
-                <img src="img/products/laser sheet cutting/laser sheet cutting S.jpg" alt="激光板材切割机 S系列" class="w-full h-full object-contain transition-transform hover:scale-105">
+                <img src="img/products/laser sheet cutting/laser sheet cutting S.png" alt="激光板材切割机 S系列" class="w-full h-full object-contain transition-transform hover:scale-105">
               </div>
             </a>
           </div>

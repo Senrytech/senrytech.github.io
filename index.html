@@ -105,17 +105,19 @@
     transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
 
-.nav-scrolled nav a,          
+/* 只影响顶部导航的一级链接（如“首页”“产品中心”“解决方案”） */
+.nav-scrolled nav > a,          
 .nav-scrolled #menu-toggle,   
-.nav-scrolled .flex.items-center.space-x-2 a span /* Senrytech 品牌名：滚动后变绿色 */
+.nav-scrolled .flex.items-center.space-x-2 a span 
 {
-    color: #ffffff !important; /* 目标绿色 */
+    color: #ffffff !important; 
     background-clip: border-box !important; 
     -webkit-background-clip: border-box !important;
 }
 
-.nav-scrolled nav a:hover {
-    color: #ff7a00 !important; /* 其他文字 hover 变橙色 */
+/* 一级导航链接 hover 样式（原橙色，与设计一致） */
+.nav-scrolled nav > a:hover {
+    color: #ff7a00 !important; 
 }
 
 .nav-scrolled a.flex.items-center.space-x-2 span {
@@ -146,6 +148,29 @@
 				color: white;
 			}
 			
+
+			/* 修复：下拉菜单样式隔离，不受 .nav-scrolled 全局影响 */
+/* 一级下拉菜单（如“产品中心”展开的菜单） */
+.group .absolute.bg-white.rounded-md.shadow-lg a {
+  color: #374151 !important; /* 恢复默认深灰色，与白色背景对比 */
+  background-color: transparent !important; /* 取消继承的背景色 */
+}
+/* 一级下拉菜单 hover 样式（绿底白字，与原设计一致） */
+.group .absolute.bg-white.rounded-md.shadow-lg a:hover {
+  color: #ffffff !important; /* hover 白色文字 */
+  background-color: #1b4c42 !important; /*  hover 绿色背景（primary色） */
+}
+
+/* 二级下拉菜单（如“激光板材切割机”展开的子菜单） */
+.group/item .absolute.left-full.bg-white.rounded-md.shadow-lg a {
+  color: #374151 !important; /* 恢复默认深灰色 */
+  background-color: transparent !important;
+}
+/* 二级下拉菜单 hover 样式 */
+.group/item .absolute.left-full.bg-white.rounded-md.shadow-lg a:hover {
+  color: #ffffff !important; /* hover 白色文字 */
+  background-color: #1b4c42 !important; /*  hover 绿色背景 */
+}
 		</style>
 	<header id="navbar" class="fixed top-0 left-0 z-50 transition-all duration-300 bg-transparent w-full">
   <div class="container px-4 sm:px-6 lg:px-8 ml-0 max-w-7xl">

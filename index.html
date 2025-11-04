@@ -1663,70 +1663,71 @@
 		</footer>
 		<!-- JavaScript -->
 		<script>
-			// 移动端激光板材切割机二级菜单切换
-			document.getElementById('mobile-sheetcut-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-sheetcut-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
-			// 移动端激光管材切割机子菜单切换
-			document.getElementById('mobile-tubecut-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-tubecut-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
-			// 移动端激光板管一体机子菜单切换
-			document.getElementById('mobile-sheetandtubecut-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-sheetandtubecut-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
-			// 移动端激光焊接机子菜单切换
-			document.getElementById('mobile-welding-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-welding-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
-			// 移动端激光清洗机子菜单切换
-			document.getElementById('mobile-cleaning-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-cleaning-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
-			// 移动端激光打标机子菜单切换
-			document.getElementById('mobile-marking-toggle').addEventListener('click', function() {
-				const menu = document.getElementById('mobile-marking-menu');
-				menu.classList.toggle('hidden');
-				// 切换箭头方向
-				const icon = this.querySelector('i');
-				icon.classList.toggle('fa-chevron-down');
-				icon.classList.toggle('fa-chevron-up');
-			});
 			// 移动端菜单切换
-			document.getElementById('menu-toggle').addEventListener('click', function() {
-				const mobileMenu = document.getElementById('mobile-menu');
-				mobileMenu.classList.toggle('hidden');
-			});
-			// 移动端产品菜单切换
-			document.getElementById('mobile-products-toggle').addEventListener('click', function() {
-				const mobileProductsMenu = document.getElementById('mobile-products-menu');
-				mobileProductsMenu.classList.toggle('hidden');
-			});
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenu.classList.toggle('hidden');
+});
+
+// 移动端产品中心菜单
+document.getElementById('mobile-products-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-products-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端板材切割机子菜单
+document.getElementById('mobile-sheetcut-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-sheetcut-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端管材切割机子菜单
+document.getElementById('mobile-tubecut-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-tubecut-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端板管一体机子菜单
+document.getElementById('mobile-sheetandtubecut-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-sheetandtubecut-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端焊接机子菜单
+document.getElementById('mobile-welding-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-welding-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端清洗机子菜单
+document.getElementById('mobile-cleaning-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-cleaning-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端打标机子菜单
+document.getElementById('mobile-marking-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-marking-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端解决方案菜单
+document.getElementById('mobile-solutions-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-solutions-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端关于我们菜单
+document.getElementById('mobile-about-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-about-menu');
+  menu.classList.toggle('hidden');
+});
+
+// 移动端语言切换菜单
+document.getElementById('mobile-lang-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-lang-menu');
+  menu.classList.toggle('hidden');
+});
 			
 			// 轮播图功能
 			let currentSlide = 0;

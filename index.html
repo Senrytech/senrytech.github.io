@@ -181,36 +181,47 @@
 				background-color: #1b4c42 !important;
 				/*  hover 绿色背景 */
 			}
-      #tech-track {
-    flex: 0 0 auto; /* 确保轨道不收缩，与页面宽度匹配 */
-    width: 100%; /* 每一页占满容器宽度 */
-    transform: translateZ(0); /* 触发GPU加速 */
-}
-nav a, .group a {
-  font-size: 0.75rem !important; /* 比原来的text-sm(0.875rem)更小可改为0.8125rem */
-}
-#mobile-menu a,
-#mobile-menu button {
-  font-size: 0.75rem !important;
-}
-/* 全局箭头样式覆盖 */
-.fa-chevron-down, .fa-chevron-right {
-  font-family: "FontAwesome" !important;
-  display: inline-block !important;
-  color: inherit !important;
-  font-size: 0.75rem !important;
-}
-/* 加到你现有的 <style> 标签里，比如在 .fa-chevron-down 样式后面 */
-.fa-globe {
-  font-family: "FontAwesome" !important; /* 强制使用 Font Awesome 字体 */
-  display: inline-block !important;
-  font-size: 12px !important;
-  color: white !important;
-  content: "\f0ac" !important; /* 这是 Font Awesome 4.7.0 中“地球”图标的 Unicode 编码，直接指定图标内容 */
-}
 
+			#tech-track {
+				flex: 0 0 auto;
+				/* 确保轨道不收缩，与页面宽度匹配 */
+				width: 100%;
+				/* 每一页占满容器宽度 */
+				transform: translateZ(0);
+				/* 触发GPU加速 */
+			}
 
+			nav a,
+			.group a {
+				font-size: 0.75rem !important;
+				/* 比原来的text-sm(0.875rem)更小可改为0.8125rem */
+			}
 
+			#mobile-menu a,
+			#mobile-menu button {
+				font-size: 0.75rem !important;
+			}
+
+			/* 全局箭头样式覆盖 */
+			.fa-chevron-down,
+			.fa-chevron-right {
+				font-family: "FontAwesome" !important;
+				display: inline-block !important;
+				color: inherit !important;
+				font-size: 0.75rem !important;
+			}
+
+			/* 加到你现有的 
+																<style> 标签里，比如在 .fa-chevron-down 样式后面 */
+			.fa-globe {
+				font-family: "FontAwesome" !important;
+				/* 强制使用 Font Awesome 字体 */
+				display: inline-block !important;
+				font-size: 12px !important;
+				color: white !important;
+				content: "\f0ac" !important;
+				/* 这是 Font Awesome 4.7.0 中“地球”图标的 Unicode 编码，直接指定图标内容 */
+			}
 		</style>
 		<header id="navbar" class="fixed top-0 left-0 z-50 transition-all duration-300 bg-transparent w-full">
 			<div class="container px-4 sm:px-6 lg:px-8 ml-0 md:ml-20 max-w-7xl">
@@ -345,41 +356,42 @@ nav a, .group a {
 						<a href="https://www.senrytech.com/contact-us/" class="text-white hover:text-secondary transition-colors text-sm">联系我们</a>
 					</nav>
 					<!-- 右侧功能区：搜索框、询价框、语言切换（已缩小两个字号） -->
-<div class="hidden md:flex items-center space-x-3"> <!-- 缩小元素间距：从space-x-4→space-x-3 -->
-    <!-- 搜索框：字体降为text-xs，框体同步缩小 -->
-    <div class="relative">
-        <!-- 输入框：text-xs（12px）+ 内边距缩小（py-1→原py-1.5，px-3→原px-4）+ 宽度缩减（w-28→原w-36，lg:w-36→原lg:w-44） -->
-        <input type="text" placeholder="搜索..." class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60">
-        <!-- 搜索图标：同步降为text-xs，位置微调（right-2.5→原right-3） -->
-        <i class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"></i>
-    </div>
-    <!-- 询价框：字体降为text-xs，按钮内边距/圆角同步缩小 -->
-    <a href="https://www.senrytech.com/quote/" class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"> 询价 </a>
-    <!-- 语言切换：字体/图标降为text-xs，下拉菜单同步适配 -->
-    <div class="relative group">
-        <button class="flex items-center text-white hover:text-secondary transition-colors">
-            <!-- 地球图标：缩小间距（mr-0.5→原mr-1）+ 同步text-xs -->
-            <i class="fa fa-globe mr-0.5 text-xs" style="display: inline-block !important; font-size: 12px !important; color: white !important;"></i>
-            <!-- 语言文字：降为text-xs（原text-sm） -->
-            <span class="text-xs">中文</span>
-            <!-- 下拉箭头：保持超小尺寸，间距缩小（ml-0.5→原ml-1） -->
-            <i class="fa fa-chevron-down ml-0.5 text-[10px]"></i>
-        </button>
-        <!-- 下拉菜单：宽度缩减（w-32→原w-36），菜单项内边距/字体同步缩小 -->
-        <div class="absolute right-0 mt-1.5 w-32 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
-            <!-- 菜单项：text-xs（原text-sm）+ 内边距缩小（px-3 py-1.5→原px-4 py-2） -->
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">中文</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">英语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">土耳其语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">西班牙语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">韩语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">葡萄牙语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">德语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">俄语</a>
-            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">法语</a>
-        </div>
-    </div>
-</div>
+					<div class="hidden md:flex items-center space-x-3">
+						<!-- 缩小元素间距：从space-x-4→space-x-3 -->
+						<!-- 搜索框：字体降为text-xs，框体同步缩小 -->
+						<div class="relative">
+							<!-- 输入框：text-xs（12px）+ 内边距缩小（py-1→原py-1.5，px-3→原px-4）+ 宽度缩减（w-28→原w-36，lg:w-36→原lg:w-44） -->
+							<input type="text" placeholder="搜索..." class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60">
+							<!-- 搜索图标：同步降为text-xs，位置微调（right-2.5→原right-3） -->
+							<i class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"></i>
+						</div>
+						<!-- 询价框：字体降为text-xs，按钮内边距/圆角同步缩小 -->
+						<a href="https://www.senrytech.com/quote/" class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"> 询价 </a>
+						<!-- 语言切换：字体/图标降为text-xs，下拉菜单同步适配 -->
+						<div class="relative group">
+							<button class="flex items-center text-white hover:text-secondary transition-colors">
+								<!-- 地球图标：缩小间距（mr-0.5→原mr-1）+ 同步text-xs -->
+								<i class="fa fa-globe mr-0.5 text-xs" style="display: inline-block !important; font-size: 12px !important; color: white !important;"></i>
+								<!-- 语言文字：降为text-xs（原text-sm） -->
+								<span class="text-xs">中文</span>
+								<!-- 下拉箭头：保持超小尺寸，间距缩小（ml-0.5→原ml-1） -->
+								<i class="fa fa-chevron-down ml-0.5 text-[10px]"></i>
+							</button>
+							<!-- 下拉菜单：宽度缩减（w-32→原w-36），菜单项内边距/字体同步缩小 -->
+							<div class="absolute right-0 mt-1.5 w-32 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+								<!-- 菜单项：text-xs（原text-sm）+ 内边距缩小（px-3 py-1.5→原px-4 py-2） -->
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">中文</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">英语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">土耳其语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">西班牙语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">韩语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">葡萄牙语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">德语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">俄语</a>
+								<a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">法语</a>
+							</div>
+						</div>
+					</div>
 					<!-- 移动端汉堡菜单 -->
 					<button id="menu-toggle" class="md:hidden text-white focus:outline-none">
 						<i class="fa fa-bars text-xl"></i>
@@ -1253,17 +1265,17 @@ nav a, .group a {
 													<h3 class="text-white text-center">防止切空技术</h3>
 												</div>
 											</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<!-- 新增：横线页码指示器（绝对定位在轮播下方，居中显示） -->
 						<div class="absolute bottom-[-30px] left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
-							    <!-- 3个横线指示器，对应3个轮播页，初始第1个激活 -->
-								  <button class="tech-indicator w-12 h-1.5 rounded-full bg-primary transition-all duration-300" data-index="0"></button>
-									<button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="1"></button>
-									<button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="2"></button>
+							<!-- 3个横线指示器，对应3个轮播页，初始第1个激活 -->
+							<button class="tech-indicator w-12 h-1.5 rounded-full bg-primary transition-all duration-300" data-index="0"></button>
+							<button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="1"></button>
+							<button class="tech-indicator w-12 h-1.5 rounded-full bg-gray-300 hover:bg-gray-400 transition-all duration-300" data-index="2"></button>
 						</div>
 					</div>
 				</div>
@@ -1666,22 +1678,22 @@ nav a, .group a {
 						<p class="opacity-80 mb-6">专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工解决方案。</p>
 						<div class="flex space-x-4">
 							<a href="#" class="text-white/80 hover:text-secondary transition-colors">
-    <svg class="w-6 h-6 text-xl" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19.812 11.163h-1.969v-3.318c0-1.585-.462-2.728-2.11-2.728-1.243 0-1.824.862-1.824 2.201v3.845H10.41v3.99h1.492v9.428h3.128V15.15h2.319l.379-3.99h-2.698v-2.646zM7.27 7.098H5.11v12.33h2.16V7.098zm1.284 9.265H6.4V8.363h2.154v7.999zM23.979 7.418c0-.795-.073-1.518-.2-2.166-.145-.715-.398-1.308-.748-1.768-.35-.46-.824-.812-1.412-1.047-.588-.235-1.22-.352-1.863-.352-1.772 0-3.2 1.144-3.2 3.2 0 1.772 1.144 3.2 3.2 3.2.644 0 1.275-.117 1.863-.352.588-.235 1.062-.587 1.412-1.047.35-.46.603-1.053.748-1.768.127-.648.2-1.371.2-2.166z"/>
-    </svg>
-</a>
-<a href="#" class="text-white/80 hover:text-secondary transition-colors">
-    <!-- Facebook（脸书）：官方图标 fa-facebook -->
-    <i class="fa fa-facebook text-xl"></i>
-</a>
-<a href="#" class="text-white/80 hover:text-secondary transition-colors">
-    <!-- Instagram（Ins）：官方图标 fa-instagram -->
-    <i class="fa fa-instagram text-xl"></i>
-</a>
-<a href="#" class="text-white/80 hover:text-secondary transition-colors">
-    <!-- YouTube：保留原官方图标 fa-youtube-play，保持视觉一致性 -->
-    <i class="fa fa-youtube-play text-xl"></i>
-</a>
+								<svg class="w-6 h-6 text-xl" fill="currentColor" viewBox="0 0 24 24">
+									<path d="M19.812 11.163h-1.969v-3.318c0-1.585-.462-2.728-2.11-2.728-1.243 0-1.824.862-1.824 2.201v3.845H10.41v3.99h1.492v9.428h3.128V15.15h2.319l.379-3.99h-2.698v-2.646zM7.27 7.098H5.11v12.33h2.16V7.098zm1.284 9.265H6.4V8.363h2.154v7.999zM23.979 7.418c0-.795-.073-1.518-.2-2.166-.145-.715-.398-1.308-.748-1.768-.35-.46-.824-.812-1.412-1.047-.588-.235-1.22-.352-1.863-.352-1.772 0-3.2 1.144-3.2 3.2 0 1.772 1.144 3.2 3.2 3.2.644 0 1.275-.117 1.863-.352.588-.235 1.062-.587 1.412-1.047.35-.46.603-1.053.748-1.768.127-.648.2-1.371.2-2.166z" />
+								</svg>
+							</a>
+							<a href="#" class="text-white/80 hover:text-secondary transition-colors">
+								<!-- Facebook（脸书）：官方图标 fa-facebook -->
+								<i class="fa fa-facebook text-xl"></i>
+							</a>
+							<a href="#" class="text-white/80 hover:text-secondary transition-colors">
+								<!-- Instagram（Ins）：官方图标 fa-instagram -->
+								<i class="fa fa-instagram text-xl"></i>
+							</a>
+							<a href="#" class="text-white/80 hover:text-secondary transition-colors">
+								<!-- YouTube：保留原官方图标 fa-youtube-play，保持视觉一致性 -->
+								<i class="fa fa-youtube-play text-xl"></i>
+							</a>
 						</div>
 					</div>
 					<!-- 产品中心模块（不变） -->
@@ -1782,7 +1794,6 @@ nav a, .group a {
 						<p class="opacity-70 text-sm mb-4 md:mb-0">© 2024 Senrytech. 保留所有权利.</p>
 						<div class="flex space-x-6">
 							<a href="https://www.senrytech.com/privacy-policy/" class="opacity-70 hover:opacity-100 text-sm transition-colors">隐私政策</a>
-							<a href="#" class="opacity-70 hover:opacity-100 text-sm transition-colors">使用条款</a>
 							<a href="#" class="opacity-70 hover:opacity-100 text-sm transition-colors">网站地图</a>
 						</div>
 					</div>
@@ -2004,57 +2015,53 @@ nav a, .group a {
 				});
 			});
 			// 核心技术轮播逻辑
-document.addEventListener('DOMContentLoaded', function() {
-    const track = document.getElementById('tech-track');
-    const prevBtn = document.getElementById('tech-prev');
-    const nextBtn = document.getElementById('tech-next');
-    const indicators = document.querySelectorAll('.tech-indicator');
-    const pages = document.querySelectorAll('.tech-page');
-    const pageCount = pages.length;
-    let currentIndex = 0;
+			document.addEventListener('DOMContentLoaded', function() {
+				const track = document.getElementById('tech-track');
+				const prevBtn = document.getElementById('tech-prev');
+				const nextBtn = document.getElementById('tech-next');
+				const indicators = document.querySelectorAll('.tech-indicator');
+				const pages = document.querySelectorAll('.tech-page');
+				const pageCount = pages.length;
+				let currentIndex = 0;
 
-    function updateTrackPosition() {
-        const offsetPercentage = -currentIndex * 100;
-        track.style.willChange = 'transform'; // 提前优化渲染
-        track.style.transform = `translateX(${offsetPercentage}%)`; // 修复语法错误
-    }
+				function updateTrackPosition() {
+					const offsetPercentage = -currentIndex * 100;
+					track.style.willChange = 'transform'; // 提前优化渲染
+					track.style.transform = `translateX(${offsetPercentage}%)`; // 修复语法错误
+				}
 
-    function updateIndicators() {
-        indicators.forEach((indicator, index) => {
-            if (index === currentIndex) {
-                indicator.classList.remove('bg-gray-300', 'hover:bg-gray-400');
-                indicator.classList.add('bg-primary');
-            } else {
-                indicator.classList.remove('bg-primary');
-                indicator.classList.add('bg-gray-300', 'hover:bg-gray-400');
-            }
-        });
-    }
-
-    prevBtn.addEventListener('click', function() {
-        currentIndex = (currentIndex - 1 + pageCount) % pageCount;
-        updateTrackPosition();
-        updateIndicators();
-    });
-
-    nextBtn.addEventListener('click', function() {
-        currentIndex = (currentIndex + 1) % pageCount;
-        updateTrackPosition();
-        updateIndicators();
-    });
-
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', function() {
-            currentIndex = index;
-            updateTrackPosition();
-            updateIndicators();
-        });
-    });
-
-    // 初始化位置和指示器
-    updateTrackPosition();
-    updateIndicators();
-});
+				function updateIndicators() {
+					indicators.forEach((indicator, index) => {
+						if (index === currentIndex) {
+							indicator.classList.remove('bg-gray-300', 'hover:bg-gray-400');
+							indicator.classList.add('bg-primary');
+						} else {
+							indicator.classList.remove('bg-primary');
+							indicator.classList.add('bg-gray-300', 'hover:bg-gray-400');
+						}
+					});
+				}
+				prevBtn.addEventListener('click', function() {
+					currentIndex = (currentIndex - 1 + pageCount) % pageCount;
+					updateTrackPosition();
+					updateIndicators();
+				});
+				nextBtn.addEventListener('click', function() {
+					currentIndex = (currentIndex + 1) % pageCount;
+					updateTrackPosition();
+					updateIndicators();
+				});
+				indicators.forEach((indicator, index) => {
+					indicator.addEventListener('click', function() {
+						currentIndex = index;
+						updateTrackPosition();
+						updateIndicators();
+					});
+				});
+				// 初始化位置和指示器
+				updateTrackPosition();
+				updateIndicators();
+			});
 		</script>
 		</body>
 </html>

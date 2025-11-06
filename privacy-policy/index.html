@@ -91,10 +91,6 @@
 				scroll-behavior: smooth;
 			}
 
-			/* 额外补充：锁定品牌名初始状态为白色，优先级与滚动后规则对齐 */
-			.flex.items-center.space-x-2 a span {
-				color: white;
-			}
 
 			/* 以下保留你原有的 .nav-scrolled 相关规则 */
 			.nav-scrolled {
@@ -105,14 +101,7 @@
 				transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 			}
 
-			/* 只影响顶部导航的一级链接（如“首页”“产品中心”“解决方案”） */
-			.nav-scrolled nav>a,
-			.nav-scrolled #menu-toggle,
-			.nav-scrolled .flex.items-center.space-x-2 a span {
-				color: #ffffff !important;
-				background-clip: border-box !important;
-				-webkit-background-clip: border-box !important;
-			}
+			
 
 			/* 一级导航链接 hover 样式（原橙色，与设计一致） */
 			.nav-scrolled nav>a:hover {

@@ -17,7 +17,8 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
 		<!-- 引入Font Awesome -->
-		<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<!-- 删掉原来的引入，替换成这个 -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- 配置Tailwind -->
 		<script>
 			tailwind.config = {
@@ -185,13 +186,38 @@
     width: 100%; /* 每一页占满容器宽度 */
     transform: translateZ(0); /* 触发GPU加速 */
 }
+nav a, .group a {
+  font-size: 0.75rem !important; /* 比原来的text-sm(0.875rem)更小可改为0.8125rem */
+}
+#mobile-menu a,
+#mobile-menu button {
+  font-size: 0.75rem !important;
+}
+/* 全局箭头样式覆盖 */
+.fa-chevron-down, .fa-chevron-right {
+  font-family: "FontAwesome" !important;
+  display: inline-block !important;
+  color: inherit !important;
+  font-size: 0.75rem !important;
+}
+/* 加到你现有的 <style> 标签里，比如在 .fa-chevron-down 样式后面 */
+.fa-globe {
+  font-family: "FontAwesome" !important; /* 强制使用 Font Awesome 字体 */
+  display: inline-block !important;
+  font-size: 12px !important;
+  color: white !important;
+  content: "\f0ac" !important; /* 这是 Font Awesome 4.7.0 中“地球”图标的 Unicode 编码，直接指定图标内容 */
+}
+
+
+
 		</style>
 		<header id="navbar" class="fixed top-0 left-0 z-50 transition-all duration-300 bg-transparent w-full">
-			<div class="container px-4 sm:px-6 lg:px-8 ml-0 max-w-7xl">
+			<div class="container px-4 sm:px-6 lg:px-8 ml-0 md:ml-20 max-w-7xl">
 				<div class="flex justify-between items-center h-12 md:h-14 flex-nowrap">
 					<!-- 品牌名称 -->
 					<a href="https://www.senrytech.com/" class="flex items-center space-x-2">
-						<span class="font-bold text-sm md:text-base font-['Roboto',sans-serif] tracking-tight text-white"> Senrytech </span>
+						<span class="font-bold text-lg md:text-xl font-['Roboto',sans-serif] tracking-tight text-white"> Senrytech </span>
 					</a>
 					<!-- 桌面端导航 -->
 					<nav class="hidden md:flex items-center space-x-6">
@@ -318,35 +344,42 @@
 						<!-- 联系我们 -->
 						<a href="https://www.senrytech.com/contact-us/" class="text-white hover:text-secondary transition-colors text-sm">联系我们</a>
 					</nav>
-					<!-- 右侧功能区：搜索框、询价框、语言切换 -->
-					<div class="hidden md:flex items-center space-x-4">
-						<!-- 搜索框 -->
-						<div class="relative">
-							<input type="text" placeholder="搜索..." class="bg-white/10 backdrop-blur-sm text-white text-sm px-4 py-1.5 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-36 lg:w-44 placeholder-white/60">
-							<i class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-white/70 text-sm"></i>
-						</div>
-						<!-- 询价框 -->
-						<a href="https://www.senrytech.com/quote/" class="bg-secondary hover:bg-secondary/90 text-white px-4 py-1.5 rounded-full text-sm transition-colors"> 询价 </a>
-						<!-- 语言切换 -->
-						<div class="relative group">
-							<button class="flex items-center text-white hover:text-secondary transition-colors">
-								<i class="fa fa-globe mr-1"></i>
-								<span class="text-sm">中文</span>
-								<i class="fa fa-chevron-down ml-1 text-xs"></i>
-							</button>
-							<div class="absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">中文</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">英语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">土耳其语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">西班牙语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">韩语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">葡萄牙语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">德语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">俄语</a>
-								<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm">法语</a>
-							</div>
-						</div>
-					</div>
+					<!-- 右侧功能区：搜索框、询价框、语言切换（已缩小两个字号） -->
+<div class="hidden md:flex items-center space-x-3"> <!-- 缩小元素间距：从space-x-4→space-x-3 -->
+    <!-- 搜索框：字体降为text-xs，框体同步缩小 -->
+    <div class="relative">
+        <!-- 输入框：text-xs（12px）+ 内边距缩小（py-1→原py-1.5，px-3→原px-4）+ 宽度缩减（w-28→原w-36，lg:w-36→原lg:w-44） -->
+        <input type="text" placeholder="搜索..." class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60">
+        <!-- 搜索图标：同步降为text-xs，位置微调（right-2.5→原right-3） -->
+        <i class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"></i>
+    </div>
+    <!-- 询价框：字体降为text-xs，按钮内边距/圆角同步缩小 -->
+    <a href="https://www.senrytech.com/quote/" class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"> 询价 </a>
+    <!-- 语言切换：字体/图标降为text-xs，下拉菜单同步适配 -->
+    <div class="relative group">
+        <button class="flex items-center text-white hover:text-secondary transition-colors">
+            <!-- 地球图标：缩小间距（mr-0.5→原mr-1）+ 同步text-xs -->
+            <i class="fa fa-globe mr-0.5 text-xs" style="display: inline-block !important; font-size: 12px !important; color: white !important;"></i>
+            <!-- 语言文字：降为text-xs（原text-sm） -->
+            <span class="text-xs">中文</span>
+            <!-- 下拉箭头：保持超小尺寸，间距缩小（ml-0.5→原ml-1） -->
+            <i class="fa fa-chevron-down ml-0.5 text-[10px]"></i>
+        </button>
+        <!-- 下拉菜单：宽度缩减（w-32→原w-36），菜单项内边距/字体同步缩小 -->
+        <div class="absolute right-0 mt-1.5 w-32 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+            <!-- 菜单项：text-xs（原text-sm）+ 内边距缩小（px-3 py-1.5→原px-4 py-2） -->
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">中文</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">英语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">土耳其语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">西班牙语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">韩语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">葡萄牙语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">德语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">俄语</a>
+            <a href="#" class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs">法语</a>
+        </div>
+    </div>
+</div>
 					<!-- 移动端汉堡菜单 -->
 					<button id="menu-toggle" class="md:hidden text-white focus:outline-none">
 						<i class="fa fa-bars text-xl"></i>

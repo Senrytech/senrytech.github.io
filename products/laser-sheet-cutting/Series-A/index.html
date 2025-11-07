@@ -475,82 +475,43 @@ nav a, .group a {
     </header>
 
     <main>
-			<!-- 英雄区域 -->
-			<section class="py-16 md:py-24 pt-24 md:pt-32 bg-gradient-to-br from-primary/5 to-primary/10">
-				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="flex flex-col lg:flex-row items-center gap-12">
-						<div class="lg:w-1/2 fade-in">
-							<!-- 标签：微调背景色，与标题渐变呼应 -->
-							<span class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">经济款首选</span>
-							<!-- 标题：深绿→浅绿渐变，叠加细微文字阴影增强立体感 -->
-							<h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#1b4c42] to-[#3a8686] text-shadow"> Senrytech A系列 <br>激光板材切割机 </h1>
-							<!-- 描述：保持清晰可读性，仅微调字重增强质感 -->
-							<p class="text-gray-600 text-lg mb-8 max-w-xl font-medium"> 高性价比之选，兼顾性能与成本的经济款激光切割设备，为中小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。 </p>
-							<div class="flex flex-wrap gap-4">
-								<a href="#specs" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors"> 技术参数 <i class="fa fa-arrow-right ml-2"></i>
-								</a>
-								<a href="#contact" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-md font-medium transition-colors"> 咨询报价 </a>
-							</div>
-						</div>
-						<div class="lg:w-1/2 fade-in" style="animation-delay: 0.3s">
-  <div class="relative">
-    <!-- 替换原<img>为div，用background实现悬停切换 -->
-    <div 
-      class="w-full h-auto bg-center bg-cover rounded-lg shadow-xl"
-      style="
-        /* 默认显示的图片（原激光切割A2图） */
-        background-image: url('../../../img/products/laser sheet cutting/laser sheet cutting A 2.png');
-        /* 保持原图片比例，避免拉伸（需根据实际图片比例调整高度，这里以16:9为例） */
-        padding-top: 56.25%; /* 16:9比例 = 9/16*100%，若图片是4:3则设75% */
-      "
-      onmouseover="this.style.backgroundImage = 'url(\'../../../img/products/laser sheet cutting/laser sheet cutting A 2-1.png\')'"
-      onmouseout="this.style.backgroundImage = 'url(\'../../../img/products/laser sheet cutting/laser sheet cutting A 2.png\')'"
-    ></div>
-								<div class="absolute -bottom-6 -left-6 bg-gradient-to-br from-[#1b4c42] to-[#3a8686] p-4 rounded-lg shadow-lg max-w-xs">
-									<div class="flex items-center mb-2">
-										<i class="fa fa-trophy text-white text-xl mr-2"></i>
-										<!-- 白色图标对比清晰 -->
-										<span class="font-semibold text-white">性价比之王</span>
-									</div>
-									<p class="text-sm text-gray-100">同等配置下，成本降低20%，回本周期缩短至8个月</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- 产品定位 -->
-			<section class="py-16 bg-white">
-				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-					<div class="max-w-3xl mx-auto text-center mb-16">
-						<h2 class="text-3xl font-semibold text-gray-800 mb-4">经济款的专业表现</h2>
-						<p class="text-gray-600">A系列激光板材切割机专为预算有限但追求品质的中小型企业设计，以经济的价格提供专业级的切割性能，是性价比之选。</p>
-					</div>
-					<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div class="bg-neutral p-8 rounded-xl text-center feature-card transition-all duration-300">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-								<i class="fa fa-balance-scale text-primary text-2xl"></i>
-							</div>
-							<h3 class="text-xl font-semibold mb-3">平衡的性能价格比</h3>
-							<p class="text-gray-600">在保证核心性能的前提下优化配置，降低采购成本，同时保持切割精度和效率，为企业创造更大利润空间。</p>
-						</div>
-						<div class="bg-neutral p-8 rounded-xl text-center feature-card transition-all duration-300">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-								<i class="fa fa-industry text-primary text-2xl"></i>
-							</div>
-							<h3 class="text-xl font-semibold mb-3">中小企业理想之选</h3>
-							<p class="text-gray-600">针对中小型企业加工需求定制，占地面积适中，能耗更低，维护成本少，降低生产运营压力。</p>
-						</div>
-						<div class="bg-neutral p-8 rounded-xl text-center feature-card transition-all duration-300">
-							<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 mx-auto">
-								<i class="fa fa-line-chart text-primary text-2xl"></i>
-							</div>
-							<h3 class="text-xl font-semibold mb-3">快速投资回报</h3>
-							<p class="text-gray-600">优化的价格策略配合稳定的生产效率，大幅缩短投资回报周期，帮助企业更快实现盈利增长。</p>
-						</div>
-					</div>
-				</div>
-			</section>
+			<!-- 英雄区域 - 接近满屏显示修改 -->
+<section class="relative overflow-hidden min-h-screen flex items-center">
+    <!-- 背景Banner图 -->
+    <div class="absolute inset-0 z-0">
+        <img src="../../../img/products/laser sheet cutting/laser sheet cutting A banner.png" 
+             alt="激光板材切割机A系列" 
+             class="w-full h-full object-cover" />
+        <!-- 半透明遮罩增强文字可读性 -->
+        <div class="absolute inset-0 bg-black/30"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-0">
+        <div class="max-w-2xl fade-in">
+            <!-- 标签：微调背景色，与标题呼应 -->
+            <span class="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">经济款首选</span>
+            
+            <!-- 标题：白色文字增强对比度 -->
+            <h1 class="text-[clamp(2rem,6vw,4rem)] font-bold mb-6 text-white text-shadow-lg"> 
+                Senrytech A系列 <br>激光板材切割机 
+            </h1>
+            
+            <!-- 描述：保持清晰可读性 -->
+            <p class="text-gray-100 text-lg md:text-xl mb-8 max-w-xl font-medium"> 
+                高性价比之选，兼顾性能与成本的经济款激光切割设备，为中小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。 
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                <a href="#specs" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors"> 
+                    技术参数 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white hover:text-primary px-6 py-3 rounded-md font-medium transition-colors"> 
+                    咨询报价 
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 			<!-- 核心优势 -->
 			<section class="py-16 bg-primary/5">
 				<div class="container mx-auto px-4 sm:px-6 lg:px-8">

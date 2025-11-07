@@ -536,7 +536,7 @@ nav a, .group a {
 <section class="relative overflow-hidden min-h-screen flex items-center">
     <!-- 背景Banner图 -->
     <div class="absolute inset-0 z-0">
-        <img src="../../../img/products/laser sheet cutting/B Plus/banner/laser sheet cutting B Plus 1-1 FINAL.jpg" 
+        <img src="../../../img/products/laser sheet cutting/B Plus/banner/laser sheet cutting B Plus 1-2-1 FINAL.jpg" 
              alt="激光板材切割机B Plus系列" 
              class="w-full h-full object-cover" />
         <!-- 半透明遮罩增强文字可读性 -->
@@ -565,6 +565,64 @@ nav a, .group a {
                 <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white hover:text-primary px-6 py-3 rounded-md font-medium transition-colors"> 
                     咨询报价 
                 </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 切割能力，求真务实（SERIES-B专用） -->
+<section class="py-16 bg-neutral">
+    <div class="text-center mb-12">
+        <!-- 主标题：保留“┌道┘”核心视觉，与A系列统一 -->
+        <h2 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 leading-tight">
+            切割有<span class="text-secondary mx-1">┌</span>
+            <span class="text-primary text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-wide">道</span>
+            <span class="text-secondary mx-1">┘</span>
+        </h2>
+        <!-- 副标题：延续“杜绝虚假宣传”价值传递 -->
+        <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 mt-2 font-medium">
+            杜绝虚假宣传
+            <span class="inline-block w-20 h-0.5 bg-primary/30 ml-3 vertical-align-middle"></span>
+        </p>
+        <!-- 网格布局：保持4列结构（4种金属），与A系列一致 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 1. 碳钢切割厚度（B系列图表ID加“B”后缀，避免冲突） -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="h-64 p-4">
+                    <canvas id="carbonSteelChartB"></canvas>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-semibold text-lg mb-2">碳钢切割厚度</h3>
+                </div>
+            </div>
+
+            <!-- 2. 不锈钢切割厚度 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="h-64 p-4">
+                    <canvas id="stainlessSteelChartB"></canvas>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-semibold text-lg mb-2">不锈钢切割厚度</h3>
+                </div>
+            </div>
+
+            <!-- 3. 铝合金切割厚度 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="h-64 p-4">
+                    <canvas id="aluminumChartB"></canvas>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-semibold text-lg mb-2">铝合金切割厚度</h3>
+                </div>
+            </div>
+
+            <!-- 4. 铜切割厚度 -->
+            <div class="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div class="h-64 p-4">
+                    <canvas id="copperChartB"></canvas>
+                </div>
+                <div class="p-5">
+                    <h3 class="font-semibold text-lg mb-2">铜切割厚度</h3>
+                </div>
             </div>
         </div>
     </div>
@@ -1317,18 +1375,18 @@ nav a, .group a {
 
     // 1. 碳钢切割厚度数据（B系列7个型号，功率递增→厚度递增）
     const carbonSteelDataB = {
-        labels: ['B20', 'B30', 'B60', 'B120', 'B200', 'B300', 'B400'],
+        labels: ['B10 Plus', 'B15 Plus', 'B20 Plus', 'B30 Plus', 'B60 Plus'],
         datasets: [
             {
                 label: 'batch', // 批量加工（基础能力）
-                data: [16, 18, 22, 35, 50, 50, 50], // 2000W→40000W的批量切割厚度
+                data: [8, 12, 16, 18, 22], // 2000W→40000W的批量切割厚度
                 backgroundColor: 'rgba(34, 197, 94, 0.9)',
                 borderColor: 'rgba(22, 163, 74, 1)',
                 borderWidth: 1
             },
             {
                 label: 'smallBatch', // 小批量加工（增量能力）
-                data: [2, 2, 3, 5, 10, 10, 10],
+                data: [2, 2, 2, 2, 3],
                 backgroundColor: 'rgba(251, 146, 60, 0.9)',
                 borderColor: 'rgba(249, 115, 22, 1)',
                 borderWidth: 1,
@@ -1336,7 +1394,7 @@ nav a, .group a {
             },
             {
                 label: 'prototype', // 偶尔打样（极限能力）
-                data: [2, 5, 5, 5, 10, 10, 10],
+                data: [2, 2, 2, 5, 0],
                 backgroundColor: 'rgba(239, 68, 68, 0.9)',
                 borderColor: 'rgba(220, 38, 38, 1)',
                 borderWidth: 1,
@@ -1353,11 +1411,11 @@ nav a, .group a {
 
     // 2. 不锈钢切割厚度数据
     const stainlessSteelDataB = {
-        labels: ['B20', 'B30', 'B60', 'B120', 'B200', 'B300', 'B400'],
+        labels: ['B10 Plus', 'B15 Plus', 'B20 Plus', 'B30 Plus', 'B60 Plus'],
         datasets: [
-            { label: 'batch', data: [6, 8, 14, 25, 35, 40, 50], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
-            { label: 'smallBatch', data: [2, 2, 2, 5, 5, 5, 10], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
-            { label: 'prototype', data: [2, 2, 4, 10, 10, 10, 10], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
+            { label: 'batch', data: [4, 5, 6, 8, 14], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
+            { label: 'smallBatch', data: [1, 1, 2, 2, 2], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
+            { label: 'prototype', data: [1, 2, 2, 2, 4], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
         ]
     };
 
@@ -1368,11 +1426,11 @@ nav a, .group a {
 
     // 3. 铝合金切割厚度数据
     const aluminumDataB = {
-        labels: ['B20', 'B30', 'B60', 'B120', 'B200', 'B300', 'B400'],
+        labels: ['B10 Plus', 'B15 Plus', 'B20 Plus', 'B30 Plus', 'B60 Plus'],
         datasets: [
-            { label: 'batch', data: [4, 4, 10, 18, 30, 30, 40], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
-            { label: 'smallBatch', data: [2, 2, 2, 2, 10, 0, 0], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
-            { label: 'prototype', data: [0, 2, 4, 2, 10, 0, 0], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
+            { label: 'batch', data: [2, 3, 4, 4, 10], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
+            { label: 'smallBatch', data: [1, 1, 2, 2, 2], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
+            { label: 'prototype', data: [0, 1, 0, 2, 4], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
         ]
     };
 
@@ -1383,11 +1441,11 @@ nav a, .group a {
 
     // 4. 铜切割厚度数据（铜导热性强，切割厚度略低于铝合金）
     const copperDataB = {
-        labels: ['B20', 'B30', 'B60', 'B120', 'B200', 'B300', 'B400'],
+        labels: ['B10 Plus', 'B15 Plus', 'B20 Plus', 'B30 Plus', 'B60 Plus'],
         datasets: [
-            { label: 'batch', data: [4, 4, 10, 18, 20, 20, 20], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
-            { label: 'smallBatch', data: [2, 2, 2, 2, 0, 0, 0], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
-            { label: 'prototype', data: [0, 2, 4, 2, 0, 0, 0], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
+            { label: 'batch', data: [2, 3, 4, 4, 10], backgroundColor: 'rgba(34, 197, 94, 0.9)', borderColor: 'rgba(22, 163, 74, 1)', borderWidth: 1 },
+            { label: 'smallBatch', data: [1, 1, 2, 2, 2], backgroundColor: 'rgba(251, 146, 60, 0.9)', borderColor: 'rgba(249, 115, 22, 1)', borderWidth: 1, hidden: true },
+            { label: 'prototype', data: [0, 0, 0, 2, 4], backgroundColor: 'rgba(239, 68, 68, 0.9)', borderColor: 'rgba(220, 38, 38, 1)', borderWidth: 1, hidden: true }
         ]
     };
 

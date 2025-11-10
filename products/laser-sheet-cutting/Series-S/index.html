@@ -432,34 +432,88 @@ nav a, .group a {
         </div>
     </header>
 
-    <!-- 英雄区域：替换为S系列型钢切割核心信息 -->
-    <section class="relative overflow-hidden min-h-screen flex items-center">
-        <div class="absolute inset-0 z-0">
-            <img src="../../../img/products/laser sheet cutting/S/banner/laser sheet cutting S db.jpg" 
-                 alt="S系列型钢激光切割机" 
-                 class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-black/40"></div>
-        </div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-0">
-            <div class="max-w-2xl fade-in">
-                <span class="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">型钢切割专用款</span>
-                <h1 class="text-[clamp(2rem,6vw,4rem)] font-bold mb-6 text-gradient-blue text-shadow-lg">
-                    Senrytech S系列 <br>型钢专用激光切割机 
-                </h1>
-                <p class="text-gray-100 text-lg md:text-xl mb-8 max-w-xl font-medium"> 
-                    专切H型钢、槽钢、C型钢，大加工幅面适配12m+超长型钢，精准定位+一次成型切割，解决型钢传统加工效率低、精度差的痛点。 
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#specs" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors"> 
-                        技术参数 <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
-                    <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white hover:text-primary px-6 py-3 rounded-md font-medium transition-colors"> 
-                        咨询报价 
-                    </a>
-                </div>
+    <!-- 英雄区域：新增聚光灯开灯效果 -->
+<section class="relative overflow-hidden min-h-screen flex items-center">
+    <!-- 1. 背景图层（z-0）：保持不变 -->
+    <div class="absolute inset-0 z-0">
+        <img src="../../../img/products/laser sheet cutting/S/banner/laser sheet cutting S db.jpg" 
+             alt="S系列型钢激光切割机" 
+             class="w-full h-full object-cover" />
+    </div>
+
+    <!-- 2. 聚光灯+遮罩合并层（z-10）：新增开灯动画，调整动画属性 -->
+    <div class="absolute inset-0 z-10" style="
+        /* 聚光灯基础样式：初始状态接近全黑（模拟未开灯） */
+        background: radial-gradient(
+            circle at 55% 45%, 
+            rgba(255,255,255,0.02) 0%,  /* 初始光斑极暗（接近熄灭） */
+            rgba(0,0,0,0.9) 40%,        /* 初始遮罩极深 */
+            rgba(0,0,0,0.95) 100%       /* 边缘完全漆黑 */
+        );
+        /* 关键：先执行“开灯动画”，再执行“移动动画”，总时长18s（3s开灯+15s移动） */
+        animation: 
+            spotlightTurnOn 1s ease-out forwards,  /* 开灯动画：3秒点亮，结束后保持状态 */
+            spotlightMove 15s ease-in-out infinite 1s; /* 移动动画：延迟3秒启动，循环执行 */
+        background-size: 220% 220%; /* 扩大背景尺寸，确保开灯和移动时光斑不被截断 */
+    "></div>
+
+    <!-- 3. 文字内容层（z-20）：保持不变，确保层级最高 -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-24 md:py-0">
+        <div class="max-w-2xl fade-in">
+            <span class="inline-block px-4 py-1 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-4">型钢切割专用款</span>
+            <h1 class="text-[clamp(2rem,6vw,4rem)] font-bold mb-6 text-gradient-blue text-shadow-lg">
+                Senrytech S系列 <br>型钢专用激光切割机 
+            </h1>
+            <p class="text-gray-100 text-lg md:text-xl mb-8 max-w-xl font-medium"> 
+                专切H型钢、槽钢、C型钢，大加工幅面适配12m+超长型钢，精准定位+一次成型切割，解决型钢传统加工效率低、精度差的痛点。 
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="#specs" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors"> 
+                    技术参数 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="inline-block border-2 border-white text-white hover:bg-white hover:text-primary px-6 py-3 rounded-md font-medium transition-colors"> 
+                    咨询报价 
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- 动画样式：新增“开灯”关键帧，保留原有移动关键帧 -->
+    <style>
+        /* 1. 聚光灯开灯动画：从极暗→点亮，模拟开灯效果 */
+        @keyframes spotlightTurnOn {
+            0% {
+                /* 初始状态：光斑极暗，遮罩极深，光斑范围小 */
+                background: radial-gradient(
+                    circle at 55% 45%, 
+                    rgba(255,255,255,0.02) 0%,  /* 几乎看不见的光斑 */
+                    rgba(0,0,0,0.9) 40%,        /* 大面积深黑遮罩 */
+                    rgba(0,0,0,0.95) 100%       /* 边缘完全漆黑 */
+                );
+                background-size: 220% 220%;
+            }
+            100% {
+                /* 结束状态：光斑正常亮度，遮罩正常深度（与原设计一致） */
+                background: radial-gradient(
+                    circle at 55% 45%, 
+                    rgba(255,255,255,0.15) 0%,  /* 正常光斑亮度 */
+                    rgba(0,0,0,0.5) 50%,        /* 正常过渡区 */
+                    rgba(0,0,0,0.7) 100%        /* 正常边缘遮罩 */
+                );
+                background-size: 200% 200%; /* 恢复到移动动画需要的尺寸 */
+            }
+        }
+
+        /* 2. 原有聚光灯移动动画：保持不变，延迟启动 */
+        @keyframes spotlightMove {
+            0% { background-position: 55% 45%; }   /* 初始位置（对准设备主体） */
+            25% { background-position: 65% 35%; }  /* 右上偏移 */
+            50% { background-position: 45% 55%; }  /* 左下偏移 */
+            75% { background-position: 55% 65%; }  /* 右下偏移 */
+            100% { background-position: 55% 45%; } /* 回到初始位置 */
+        }
+    </style>
+</section>
 
     <!-- 产品定位：突出S系列型钢切割三大核心差异 -->
     <section class="py-20 bg-white">

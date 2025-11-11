@@ -296,6 +296,8 @@ nav a, .group a {
             width: 100%;
             transform: translateZ(0);
         }
+
+        
     </style>
 </head>
 <body>
@@ -526,80 +528,80 @@ nav a, .group a {
     </header>
 
     <main>
-			<!-- 英雄区域 - 开灯效果优化（增强亮度版） -->
+			<!-- 英雄区域 - 按目标样式统一优化版 -->
 <section class="relative overflow-hidden min-h-screen flex items-center">
-    <!-- 背景Banner图：提高最终亮度，增强初始到亮态的反差 -->
+    <!-- 背景Banner图：保持原有开灯动画逻辑 -->
     <div class="absolute inset-0 z-0">
         <img src="../../../img/products/laser sheet cutting/A/banner/Senrytech Laser sheet banner 1.jpg" 
              alt="激光板材切割机A系列" 
              class="w-full h-full object-cover" 
-             style="filter: brightness(0.1); /* 初始更暗，突出亮灯效果 */
-                    animation: lightOn 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* 开灯动画 */" />
-        
-        <!-- 半透明遮罩：降低最终透明度，减少对图片亮度的遮挡 -->
+             style="filter: brightness(0.1); 
+                    animation: lightOn 2.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;" />
         <div class="absolute inset-0 bg-black/60" 
              style="animation: maskFade 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;"></div>
-        
-        <!-- 灯光扩散特效：增强亮度和扩散范围，突出光源感 -->
         <div class="absolute inset-0 z-0" 
-             style="background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 65%); /* 提高中心亮度，扩大范围 */
+             style="background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 65%); 
                     opacity: 0;
                     animation: lightSpread 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
                     pointer-events: none;"></div>
     </div>
     
-    <!-- 前景内容：苹果设计风格优化（极简视觉+细腻交互） -->
-<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-0">
-    <!-- 内容容器：苹果风格窄版布局，避免信息过度分散 -->
-    <div class="max-w-xl fade-in" 
-         style="opacity: 0;
-                animation: contentFade 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s forwards; /* 苹果标志性缓动曲线 */">
-        
-        <!-- 标签：橙色椭圆底框+白色文字，替代原白色半透明背景 -->
-<span class="inline-block px-3.5 py-1 
-            bg-secondary/90 backdrop-blur-md  /* 改用品牌橙色（secondary），保留90%不透明度 */
-            text-white rounded-full text-xs font-medium mb-5 tracking-tight
-            transition-all duration-300 hover:bg-secondary hover:scale-105">  <!-- 新增hover交互，增强质感 -->
-    经济款首选
-</span>
+    <!-- 前景内容：核心文本样式与“薄板 经济 小钢炮”完全对齐 -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-0">
+        <div class="max-w-xl fade-in" 
+             style="opacity: 0;
+                    animation: contentFade 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.6s forwards;">
+            
+            <!-- 标签：颜色适配背景，字体族同步统一 -->
+            <span class="inline-block px-3.5 py-1 
+                        bg-secondary/90 backdrop-blur-md 
+                        text-white rounded-full text-xs font-medium mb-5 tracking-tight
+                        transition-all duration-300 hover:bg-secondary hover:scale-105
+                        font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
+                经济款首选
+            </span>
 
-        <!-- 标题：苹果风格无衬线字体+轻量化阴影，突出层级不突兀 -->
-        <h1 class="text-[clamp(1.75rem,5vw,3.25rem)] font-semibold mb-6 text-white leading-tight tracking-tight
-                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
-            Senrytech A系列<br>激光板材切割机 
-        </h1>
+            <!-- 标题：与“薄板 经济 小钢炮”同款样式（字体族+字重+颜色透明度） -->
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)]  <!-- 字号范围对齐目标标题 -->
+                       font-normal  <!-- 字重：目标标题为font-normal，统一替换原font-semibold -->
+                       mb-6 text-white  <!-- 颜色：目标标题为白色，保持一致 -->
+                       leading-tight tracking-tight
+                       text-shadow-lg  <!-- 阴影：目标标题带text-shadow-lg，补充增强质感 -->
+                       font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
+                Senrytech A系列<br>激光板材切割机 
+            </h1>
 
-        <!-- 描述文本：低对比度浅灰+适中行高，提升阅读舒适度 -->
-        <p class="text-gray-200 text-base md:text-lg mb-8 max-w-lg font-normal leading-relaxed
-                  font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
-            薄板切割高性价比之选，兼顾性能与成本的经济款激光切割设备，为小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。 
-        </p>
+            <!-- 描述文本：与“每一次切割，都是对完美的极致追求”同款样式 -->
+            <p class="text-[#1d1d1f]/80  <!-- 颜色透明度：目标描述为#1d1d1f/80，替换原text-gray-200 -->
+                   text-[clamp(1rem,2vw,1.25rem)]  <!-- 字号范围对齐目标描述 -->
+                   mb-8 max-w-lg font-light text-white  <!-- 字重：目标描述为font-light，统一替换原font-normal -->
+                   leading-relaxed  <!-- 行高：目标描述为leading-relaxed，提升阅读舒适度 -->
+                   font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
+                薄板切割高性价比之选，兼顾性能与成本的经济款激光切割设备，为小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。 
+            </p>
 
-        <!-- 按钮组：苹果风格扁平化+微交互，拒绝厚重色块 -->
-        <div class="flex flex-wrap gap-3.5">
-            <!-- 主按钮：浅灰底+白字，hover时加深背景（苹果常用交互逻辑） -->
-            <a href="#specs" class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white 
-                                   rounded-lg font-medium text-sm md:text-base transition-all duration-300
-                                   hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0
-                                   font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
-               style="transform: translateY(15px); opacity: 0; 
-                      animation: btnUp 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s forwards;"> 
-                技术参数 
-                <i class="fa fa-arrow-right ml-2 text-xs"></i>
-            </a>
-
-            <!-- 次要按钮：白边框+白字，hover时填充背景（苹果Outline按钮风格） -->
-            <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white 
-                                   rounded-lg font-medium text-sm md:text-base transition-all duration-300
-                                   hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0
-                                   font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
-               style="transform: translateY(15px); opacity: 0; 
-                      animation: btnUp 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 1.4s forwards;"> 
-                咨询报价 
-            </a>
+            <!-- 按钮：字体族同步统一，保持交互逻辑 -->
+            <div class="flex flex-wrap gap-3.5">
+                <a href="#specs" class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white 
+                                       rounded-lg font-medium text-sm md:text-base transition-all duration-300
+                                       hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0
+                                       font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                   style="transform: translateY(15px); opacity: 0; 
+                          animation: btnUp 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 1.2s forwards;"> 
+                    技术参数 
+                    <i class="fa fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white 
+                                       rounded-lg font-medium text-sm md:text-base transition-all duration-300
+                                       hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0
+                                       font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                   style="transform: translateY(15px); opacity: 0; 
+                          animation: btnUp 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 1.4s forwards;"> 
+                    咨询报价 
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- 开灯效果关键CSS动画（亮度增强调整） -->
     <style>
@@ -645,27 +647,51 @@ nav a, .group a {
 <section class="py-16 bg-neutral">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8"> <!-- 补充容器，确保内容居中且不溢出 -->
         <div class="text-center mb-12">
-            <!-- 主标题：突出“┌道┘”核心 -->
-            <h2 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 leading-tight">
-                切割有<span class="text-secondary mx-1">┌</span>
-                <span class="text-primary text-[clamp(2rem,5vw,3.2rem)] font-extrabold tracking-wide">道</span>
-                <span class="text-secondary mx-1">┘</span>
-            </h2>
-            <!-- 副标题：传递“杜绝虚假”的价值，用短横线增强层次感 -->
-            <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 mt-2 font-medium">
-                杜绝虚假宣传
-                <span class="inline-block w-20 h-0.5 bg-primary/30 ml-3 vertical-align-middle"></span>
-            </p>
+            <!-- 主标题：突出“┌道┘”核心，与“薄板 经济 小钢炮”对齐字体族+字重+颜色 -->
+            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)]  <!-- 字号范围适配，与目标标题（2rem-3.5rem）比例协调 -->
+                   font-normal  <!-- 字重：统一为目标标题的font-normal，替代原semibold，弱化压迫感 -->
+                   text-[#1d1d1f]  <!-- 颜色：与目标标题“薄板 经济 小钢炮”的#1d1d1f一致，替代原gray-800 -->
+                   leading-tight 
+                   tracking-tight  <!-- 字间距：与目标标题的紧凑感保持一致 -->
+                   /* 统一苹果风格字体族，与目标标题完全匹配 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    切割有<span class="text-secondary mx-1">┌</span>
+    <!-- 调整“道”字：保持强调但不偏离目标风格 -->
+    <span class="text-primary 
+                 text-[clamp(2rem,4.5vw,2.8rem)]  /* 字号略大于主标题，保留视觉焦点 */
+                 font-normal  /* 字重同步改为font-normal，避免与目标风格脱节 */
+                 tracking-tight">道</span>
+    <span class="text-secondary mx-1">┘</span>
+</h2>
+
+<!-- 副标题：与“每一次切割，都是对完美的极致追求”对齐颜色透明度+字体族+字重 -->
+<p class="text-[clamp(1rem,2vw,1.125rem)]  /* 字号范围与目标描述（1rem-1.25rem）比例协调 */
+         text-[#1d1d1f]/80  /* 颜色透明度：完全匹配目标描述的#1d1d1f/80，替代原#86868b */
+         mt-4  /* 间距保持，与主标题层级舒适 */
+         font-light  /* 字重：统一为目标描述的font-light，替代原normal，增强细腻感 */
+         max-w-2xl mx-auto  /* 宽度限制+居中，优化阅读体验 */
+         leading-relaxed  /* 行高：同步目标描述的宽松行高，提升可读性 */
+         /* 统一苹果风格字体族，与目标描述完全匹配 */
+         font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+    杜绝虚假宣传
+    <!-- 短横线：颜色同步目标风格的近黑透明度，保持协调 -->
+    <span class="inline-block w-16 h-0.5 bg-[#1d1d1f]/20 ml-3 vertical-align-middle"></span>
+</p>
         </div>
-        <!-- 图表网格：保持布局不变，优化容器样式 -->
+        <!-- 图表网格：保持布局不变，优化容器内文本样式（若有文本需同步字体族） -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- 1. 碳钢切割厚度：圆角放大+玻璃效果 -->
+            <!-- 1. 碳钢切割厚度：图表标题同步字体族+颜色 -->
             <div class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20">
                 <div class="h-64 p-4">
                     <canvas id="carbonSteelChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-semibold text-lg mb-2">碳钢切割厚度</h3>
+                    <h3 class="font-normal  /* 字重同步目标风格 */
+                               text-lg mb-2 
+                               text-[#1d1d1f]  /* 颜色同步目标标题 */
+                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                        碳钢切割厚度
+                    </h3>
                 </div>
             </div>
 
@@ -675,7 +701,12 @@ nav a, .group a {
                     <canvas id="stainlessSteelChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-semibold text-lg mb-2">不锈钢切割厚度</h3>
+                    <h3 class="font-normal 
+                               text-lg mb-2 
+                               text-[#1d1d1f]
+                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                        不锈钢切割厚度
+                    </h3>
                 </div>
             </div>
 
@@ -685,7 +716,12 @@ nav a, .group a {
                     <canvas id="aluminumChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-semibold text-lg mb-2">铝合金切割厚度</h3>
+                    <h3 class="font-normal 
+                               text-lg mb-2 
+                               text-[#1d1d1f]
+                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                        铝合金切割厚度
+                    </h3>
                 </div>
             </div>
 
@@ -695,19 +731,45 @@ nav a, .group a {
                     <canvas id="copperChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-semibold text-lg mb-2">铜切割厚度</h3>
+                    <h3 class="font-normal 
+                               text-lg mb-2 
+                               text-[#1d1d1f]
+                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                        铜切割厚度
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
 </section>
-			<!-- 产品优势区域 - 容器&图片放大优化版 -->
+			<!-- 产品优势区域 - 容器&图片放大优化版（标题字体对齐苹果风格） -->
 <section class="py-16 bg-neutral">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- 标题：保持不变，与放大后的内容适配 -->
-        <div class="text-center mb-12">
-            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4">激光板材切割机A系列</h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">高精度切割设备，为您的生产带来高效与精准的完美结合</p>
+        <!-- 标题：完全对齐“切割有道”苹果风格（字体+排版双优化） -->
+        <div class="text-center mb-12 fade-in"
+             style="opacity: 0; animation: contentFade 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s forwards;">
+            <!-- 主标题：严格匹配“切割有道”字体参数，保留响应式逻辑 -->
+            <h2 class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            激光板材切割机A系列
+            </h2>
+
+            <!-- 副标题：匹配“杜绝虚假宣传”字体参数，强化细节统一 -->
+            <p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                高精度切割设备，为您的生产带来高效与精准的完美结合
+            </p>
         </div>
 
         <!-- 1. 容器放大：取消max-w限制，改为占满父容器（仅留小间距） -->
@@ -784,10 +846,142 @@ nav a, .group a {
         </div>
     </div>
 </section>
+
+<!-- 苹果风格满屏大图板块（保持不变，此板块设计为满屏背景，非正方形图片） -->
+<section class="relative h-screen w-full overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img src="../../../img/products/laser sheet cutting/A/banner/A 2-1.jpg" 
+             alt="激光板材切割机A系列展示" 
+             class="w-full h-full object-cover object-center" 
+             style="filter: contrast(1.05) brightness(1.02);">
+    </div>
+    <div class="relative z-10 h-full flex items-start">
+    <div class="container mx-auto px-6 md:px-12 pt-20 md:pt-32">
+        <!-- 主标题：优化字体族、字重、响应式范围，对齐“想怎么切”轻盈感 -->
+        <h2 class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            薄板 经济 性能小钢炮
+        </h2>
+        <!-- 副标题：优化颜色、字体族、行高，匹配“想怎么切”副标题柔和感 -->
+        <p class="text-[#1d1d1f]/80  /* 从text-black/90改为苹果风格近黑（#1d1d1f）+80%透明度，视觉更高级 */
+                 text-[clamp(1rem,2vw,1.25rem)]  /* 新增响应式字号，避免小屏换行、大屏失衡 */
+                 mt-2  /* 调整间距，与主标题形成舒适层级（原mt-4偏宽） */
+                 max-w-2xl 
+                 font-light 
+                 leading-relaxed  /* 新增宽松行高，提升长文本阅读舒适度 */
+                 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            每一次切割，都是对完美的极致追求
+        </p>
+    </div>
+</div>
+    <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/60 to-transparent z-0"></div>
+</section>
+
+<!-- 新增：“想怎么切，就怎么切”图片展示板块（修复正方形显示问题） -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="text-center mb-16">
+            <h2 class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            想怎么切，就怎么切
+            </h2>
+            <p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                适配多种切割场景，满足不同工艺需求
+            </p>
+        </div>
+
+        <!-- 图片容器：修复核心 - 增加父容器尺寸控制+强制aspect-square优先级 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <!-- 图片1：修复后 - 父容器限制宽度+子容器强制1:1比例 -->
+            <div class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+                <!-- 修复1：父容器添加max-w-full，避免大屏溢出；增加min-h-[200px]确保小屏不塌陷 -->
+                <div class="w-full max-w-full min-h-[200px] lg:w-[550px] lg:mx-auto">
+                    <!-- 修复2：用inline-block+aspect-square强制宽高比，!important提升优先级 -->
+                    <div class="w-full inline-block aspect-square !important">
+                        <img src="../../../img/products/laser sheet cutting/laser sheet cutting A 2-1.png" 
+                             alt="切割场景1" 
+                             class="w-full h-full object-cover object-center"
+                             <!-- 修复3：图片添加object-fit:cover!important，防止被外部样式覆盖 -->
+                             style="object-fit: cover !important;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片2：同修复规则统一 -->
+            <div class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+                <div class="w-full max-w-full min-h-[200px] lg:w-[550px] lg:mx-auto">
+                    <div class="w-full inline-block aspect-square !important">
+                        <img src="../../../img/products/laser sheet cutting/A/cut-scenes/scene2.jpg" 
+                             alt="切割场景2" 
+                             class="w-full h-full object-cover object-center"
+                             style="object-fit: cover !important;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片3：同修复规则统一 -->
+            <div class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+                <div class="w-full max-w-full min-h-[200px] lg:w-[550px] lg:mx-auto">
+                    <div class="w-full inline-block aspect-square !important">
+                        <img src="../../../img/products/laser sheet cutting/A/cut-scenes/scene3.jpg" 
+                             alt="切割场景3" 
+                             class="w-full h-full object-cover object-center"
+                             style="object-fit: cover !important;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片4：同修复规则统一 -->
+            <div class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1">
+                <div class="w-full max-w-full min-h-[200px] lg:w-[550px] lg:mx-auto">
+                    <div class="w-full inline-block aspect-square !important">
+                        <img src="../../../img/products/laser sheet cutting/A/cut-scenes/scene4.jpg" 
+                             alt="切割场景4" 
+                             class="w-full h-full object-cover object-center"
+                             style="object-fit: cover !important;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 flex justify-center">
+            <div class="w-16 h-28 bg-secondary/10 rounded-full flex flex-col items-center justify-center animate-bounce">
+                <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
 			<section id="specs" class="py-24 bg-[#f5f5f7]"> <!-- 苹果官网标志性浅灰背景，增强页面呼吸感 -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl"> <!-- 控制最大宽度，避免大屏拉伸导致内容松散 -->
-        <!-- 标题：苹果风格极简排版，弱化装饰，强化文字本身的视觉权重 -->
-        <h2 class="text-[clamp(1.75rem,3vw,2.25rem)] font-semibold text-[#1d1d1f] mb-16 text-center tracking-tight">
+        <!-- 标题：新增text-center实现标题居中，保留苹果风格排版 -->
+        <h2 class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张 */
+                   font-normal  /* 苹果风格轻盈字重，避免厚重感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-10  /* 增加底部间距，与表格拉开舒适距离（原mb-4偏近） */
+                   text-center  /* 核心：标题文本居中显示 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
             技术参数
         </h2>
         <!-- 表格容器：轻阴影+圆润边角，替代厚重阴影，符合苹果"隐形式设计" -->
@@ -886,11 +1080,25 @@ nav a, .group a {
 			<!-- 客户评价 -->
 			<section class="py-16 bg-white">
 				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-					<h2 class="text-3xl font-semibold text-gray-800 mb-12 text-center">客户评价</h2>
+					<h2 class="text-black text-center
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            客户评价</h2>
 					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 						<div class="bg-neutral p-6 rounded-lg relative">
 							<div class="text-primary text-5xl absolute -top-4 left-6 opacity-20">"</div>
-							<p class="text-gray-600 mb-6 relative z-10">作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。</p>
+							<p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。</p>
 							<div class="flex items-center">
 								<img src="../../../img/products/laser sheet cutting/A/customer/Mr.ZHANG.png" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
 								<div>
@@ -901,7 +1109,14 @@ nav a, .group a {
 						</div>
 						<div class="bg-neutral p-6 rounded-lg relative">
 							<div class="text-primary text-5xl absolute -top-4 left-6 opacity-20">"</div>
-							<p class="text-gray-600 mb-6 relative z-10">我们工厂从传统切割设备升级到Senrytech A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。</p>
+							<p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">我们工厂从传统切割设备升级到Senrytech A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。</p>
 							<div class="flex items-center">
 								<img src="../../../img/products/laser sheet cutting/A/customer/MS.LI.jpg" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
 								<div>
@@ -912,7 +1127,14 @@ nav a, .group a {
 						</div>
 						<div class="bg-neutral p-6 rounded-lg relative">
 							<div class="text-primary text-5xl absolute -top-4 left-6 opacity-20">"</div>
-							<p class="text-gray-600 mb-6 relative z-10">对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。</p>
+							<p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。</p>
 							<div class="flex items-center">
 								<img src="../../../img/products/laser sheet cutting/A/customer/MR. WANG.jpg" alt="客户头像" class="w-12 h-12 rounded-full object-cover mr-4">
 								<div>
@@ -929,8 +1151,22 @@ nav a, .group a {
 				<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 					<div class="max-w-5xl mx-auto">
 						<div class="text-center mb-12">
-							<h2 class="text-3xl font-semibold text-gray-800 mb-4">咨询A系列激光板材切割机</h2>
-							<p class="text-gray-600 max-w-2xl mx-auto">填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案</p>
+							<h2 class="text-black text-center
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+            联系专家</h2>
+							<p class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案</p>
 						</div>
 						<div class="bg-white p-8 rounded-xl shadow-md">
 							<!-- 原表单标签修改：添加id、onsubmit事件，移除action -->

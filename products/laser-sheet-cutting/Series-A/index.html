@@ -701,7 +701,7 @@ nav a, .group a {
         </div>
     </div>
 </section>
-			<!-- 产品展示区域 - 容器&图片放大优化版 -->
+			<!-- 产品优势区域 - 容器&图片放大优化版 -->
 <section class="py-16 bg-neutral">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <!-- 标题：保持不变，与放大后的内容适配 -->
@@ -716,24 +716,24 @@ nav a, .group a {
             <div class="product-slider relative h-[550px] sm:h-[600px] md:h-[700px] lg:h-[750px]">
                 <!-- 图片1：扩大显示范围+优化居中 -->
                 <div class="product-slide absolute inset-0 opacity-100 transition-opacity duration-500">
-                    <img src="../../../img/banner/laser sheet cutting banner/laser sheet banner.jpg" 
+                    <img src="../../../img/products/laser sheet cutting/A/core advangtage/Senrytech A 1.jpg" 
                          alt="激光板材切割机A系列展示图1" 
                          class="w-full h-full object-cover object-position-[50%_50%] scale-105">
-                    <!-- 文字层：随图片放大同步调整大小，避免比例失衡 -->
-                    <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-10 py-5 rounded-xl max-w-2xl text-center">
-                        <h3 class="text-2xl font-semibold mb-3">高精度切割技术</h3>
-                        <p class="text-base md:text-lg">定位精度达±0.03mm，重复定位精度±0.02mm，满足精密加工需求</p>
-                    </div>
+                    <!-- 文字层：调整为「右侧」位置，移除底框+文字改黑色 -->
+<div class="absolute top-1/4 right-8 transform-none bg-transparent text-black px-8 py-4 max-w-xl text-left">
+    <h3 class="text-2xl font-semibold mb-3">经济≠低性能≠劣质品</h3>
+    <p class="text-base md:text-lg">坚持使用原厂正版激光头，拒绝二手，拒绝翻新，拒绝假自研</p>
+</div>
                 </div>
                 
                 <!-- 图片2：同规则放大 -->
                 <div class="product-slide absolute inset-0 opacity-0 transition-opacity duration-500">
-                    <img src="../../../img/banner/laser sheet cutting banner/laser sheet banner.jpg" 
+                    <img src="../../../img/products/laser sheet cutting/A/core advangtage/Senrytech A 2.jpg" 
                          alt="激光板材切割机A系列展示图2" 
                          class="w-full h-full object-cover object-position-[50%_50%] scale-105">
                     <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-10 py-5 rounded-xl max-w-2xl text-center">
-                        <h3 class="text-2xl font-semibold mb-3">高效稳定运行</h3>
-                        <p class="text-base md:text-lg">采用进口激光器，切割速度提升30%，连续工作72小时无故障</p>
+                        <h3 class="text-2xl font-semibold mb-3">正版系统稳定运行</h3>
+                        <p class="text-base md:text-lg">操作简单，运行稳定，多语言可选</p>
                     </div>
                 </div>
                 
@@ -744,31 +744,42 @@ nav a, .group a {
                          class="w-full h-full object-cover object-position-[50%_50%] scale-105">
                     <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 bg-black/50 backdrop-blur-sm text-white px-10 py-5 rounded-xl max-w-2xl text-center">
                         <h3 class="text-2xl font-semibold mb-3">智能操作体验</h3>
-                        <p class="text-base md:text-lg">15寸触控屏+智能排版软件，操作简单，材料利用率提升15%</p>
+                        <p class="text-base md:text-lg">15寸触控屏+智能排版软件，，材料利用率提升15%</p>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. 滑动按钮放大：匹配容器尺寸，避免过小 -->
-            <button class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/30 backdrop-blur-sm text-white hover:bg-secondary transition-colors flex items-center justify-center focus:outline-none slide-prev">
-                <i class="fa fa-chevron-left text-2xl"></i>
-            </button>
-            <button class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/30 backdrop-blur-sm text-white hover:bg-secondary transition-colors flex items-center justify-center focus:outline-none slide-next">
-                <i class="fa fa-chevron-right text-2xl"></i>
-            </button>
+            <!-- 3. 滑动按钮放大：背景色改为橙色，适配白色背景图片 -->
+<!-- 左侧滑动按钮（SVG 左箭头） -->
+<button class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full 
+               bg-secondary backdrop-blur-sm text-white hover:bg-secondary/90 transition-colors 
+               flex items-center justify-center focus:outline-none slide-prev">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+</button>
 
-            <!-- 4. 底部指示器：新增椭圆背景框，包裹三个点 -->
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-                <!-- 椭圆背景框：保留原按钮的颜色（半透明白+圆角）和交互风格 -->
-                <div class="bg-white/30 backdrop-blur-sm rounded-full px-6 py-2.5 flex items-center gap-3">
-                    <!-- 指示器1：默认激活（对应第一张图） -->
-                    <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-secondary transition-all duration-300 focus:outline-none" data-target-index="0"></button>
-                    <!-- 指示器2：默认未激活 -->
-                    <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 focus:outline-none" data-target-index="1"></button>
-                    <!-- 指示器3：默认未激活 -->
-                    <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-white/50 hover:bg-white/80 transition-all duration-300 focus:outline-none" data-target-index="2"></button>
-                </div>
-            </div>
+<!-- 右侧滑动按钮（SVG 右箭头） -->
+<button class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full 
+               bg-secondary backdrop-blur-sm text-white hover:bg-secondary/90 transition-colors 
+               flex items-center justify-center focus:outline-none slide-next">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+</button>
+
+            <!-- 4. 底部指示器：椭圆背景框改为橙色，适配白色背景 -->
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+    <!-- 椭圆背景框：半透明橙色（与滑动按钮颜色呼应），保留毛玻璃效果 -->
+    <div class="bg-secondary/30 backdrop-blur-sm rounded-full px-6 py-2.5 flex items-center gap-3">
+        <!-- 指示器1：默认激活（橙色，与背景框颜色统一） -->
+        <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-secondary transition-all duration-300 focus:outline-none" data-target-index="0"></button>
+        <!-- 指示器2：默认未激活（深灰，与橙色背景形成对比，避免融合） -->
+        <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-600/50 hover:bg-gray-600/80 transition-all duration-300 focus:outline-none" data-target-index="1"></button>
+        <!-- 指示器3：默认未激活（同指示器2，保持样式统一） -->
+        <button class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-600/50 hover:bg-gray-600/80 transition-all duration-300 focus:outline-none" data-target-index="2"></button>
+    </div>
+</div>
         </div>
     </div>
 </section>

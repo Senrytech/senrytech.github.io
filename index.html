@@ -609,9 +609,9 @@
               >联系我们</a
             >
           </nav>
-          <!--右侧功能区-->
+          <!-- 右侧功能区（含移动端汉堡菜单+并列语言切换） -->
           <div class="hidden md:flex items-center space-x-3">
-            <!--搜索框-->
+            <!-- 电脑端搜索框、询价按钮、语言切换（原有代码保留） -->
             <div class="relative">
               <input
                 class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60"
@@ -622,13 +622,11 @@
                 class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"
               ></i>
             </div>
-            <!--询价按钮-->
             <a
               class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"
               href="https://www.senrytech.com/quote/"
               >询价</a
             >
-            <!--语言切换-->
             <div class="relative group">
               <button
                 class="flex items-center text-white hover:text-secondary transition-colors"
@@ -643,12 +641,14 @@
                 <a
                   class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs"
                   href="#"
+                  data-lang="zh"
                   >中文</a
                 >
                 <a
                   class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs"
                   href="#"
-                  >英语</a
+                  data-lang="en"
+                  >English</a
                 >
                 <a
                   class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs"
@@ -688,24 +688,80 @@
               </div>
             </div>
           </div>
-          <!--移动端汉堡菜单-->
-          <button
-            class="md:hidden text-white focus:outline-none"
-            id="menu-toggle"
-          >
-            <i class="fa fa-bars text-xl"></i>
-          </button>
-        </div>
-      </div>
-      <!--移动端导航菜单-->
-      <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
-        <div class="container mx-auto px-4 py-3 space-y-3">
-          <!-- 首页（一级菜单，直接跳转） -->
-          <a
-            class="block text-gray-800 hover:text-primary font-medium text-sm"
-            href="https://www.senrytech.com/"
-            >首页</a
-          >
+          <!-- 移动端功能区（汉堡菜单 + 并列语言切换按钮）- 修复版 -->
+<div class="md:hidden flex items-center space-x-4">
+  <!-- 语言切换按钮：新增relative容器，确保下拉菜单定位基准正确 -->
+  <div class="relative">
+    <button
+      class="text-white focus:outline-none flex items-center"
+      id="mobile-lang-btn"
+    >
+      <i class="fa fa-globe text-lg"></i>
+    </button>
+  </div>
+
+  <!-- 原有移动端汉堡菜单：保持不变 -->
+  <button
+    class="text-white focus:outline-none"
+    id="menu-toggle"
+  >
+    <i class="fa fa-bars text-xl"></i>
+  </button>
+</div>
+
+<!-- 关键修复：将语言下拉菜单移出功能区，作为body直接子元素（避免flex布局干扰） -->
+<!-- 移动端语言下拉菜单（默认隐藏，点击按钮展开） -->
+<div
+  class="absolute top-14 right-4 bg-white rounded-md shadow-lg opacity-0 invisible transition-all duration-300 transform origin-top-right scale-95 z-50 w-32 md:hidden"
+  id="mobile-lang-dropdown"
+>
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="zh"
+    >中文</a
+  >
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="en"
+    >English</a
+  >
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="tr"
+    >Türkçe</a
+  >
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="es"
+    >Español</a
+  >
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="pt"
+    >Português</a
+  >
+  <a
+    class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
+    href="#"
+    data-lang="fr"
+    >Français</a
+  >
+</div>
+</div>
+      <!-- 移动端导航菜单：保持原有结构，修复层级冲突 -->
+<div class="md:hidden hidden bg-white shadow-lg z-40" id="mobile-menu">
+  <!-- 原有菜单内容不变（首页、产品中心、解决方案等） -->
+  <div class="container mx-auto px-4 py-3 space-y-3">
+    <a
+      class="block text-gray-800 hover:text-primary font-medium text-sm"
+      href="https://www.senrytech.com/"
+      >首页</a
+    >
 
           <!-- 产品中心（一级菜单，带二级菜单） -->
           <div>
@@ -3544,6 +3600,69 @@
           observer.observe(section);
         });
       });
+
+      document.addEventListener('DOMContentLoaded', function() {
+  // 移动端语言切换元素
+  const mobileLangBtn = document.getElementById('mobile-lang-btn');
+  const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
+  const mobileLangLinks = mobileLangDropdown.querySelectorAll('a[data-lang]');
+  const LANG_STORAGE_KEY = "preferred_language";
+
+  // 1. 点击语言图标，展开/收起下拉菜单
+  mobileLangBtn.addEventListener('click', function(e) {
+    e.stopPropagation(); // 防止触发页面其他点击事件
+    const isVisible = mobileLangDropdown.classList.contains('opacity-100');
+    
+    if (isVisible) {
+      // 收起菜单
+      mobileLangDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+      mobileLangDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+    } else {
+      // 展开菜单
+      mobileLangDropdown.classList.remove('opacity-0', 'invisible', 'scale-95');
+      mobileLangDropdown.classList.add('opacity-100', 'visible', 'scale-100');
+    }
+  });
+
+  // 2. 点击语言选项，保存偏好并跳转（适配静态多文件架构）
+  mobileLangLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const selectedLang = this.getAttribute('data-lang');
+      
+      // 保存语言偏好到LocalStorage
+      localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+      
+      // 收起菜单
+      mobileLangDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+      mobileLangDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+      
+      // 跳转到对应语言的静态页面（需与你的文件夹路径匹配）
+      const langPathMap = {
+        'zh': '/zh-CN/index.html',   // 中文页面路径
+        'en': '/en-US/index.html',   // 英文页面路径（默认优先）
+        'tr': '/tr-TR/index.html',   // 土耳其语页面路径
+        'es': '/es-ES/index.html',   // 西班牙语页面路径
+        'pt': '/pt-PT/index.html',   // 葡萄牙语页面路径
+        'fr': '/fr-FR/index.html'    // 法语页面路径
+      };
+      window.location.href = langPathMap[selectedLang] || '/en-US/index.html'; // 默认跳转英文
+    });
+  });
+
+  // 3. 点击页面其他区域，收起语言菜单（优化体验）
+  document.addEventListener('click', function() {
+    mobileLangDropdown.classList.remove('opacity-100', 'visible', 'scale-100');
+    mobileLangDropdown.classList.add('opacity-0', 'invisible', 'scale-95');
+  });
+
+  // 4. 初始化：默认语言优先（若未保存偏好，默认英文）
+  const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+  if (!savedLang) {
+    // 首次访问时，默认跳转到英文页面（可根据需求改为中文）
+    // window.location.href = '/en-US/index.html';
+  }
+});
     </script>
   </body>
 </html>

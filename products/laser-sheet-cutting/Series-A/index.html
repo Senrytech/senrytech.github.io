@@ -16,6 +16,10 @@
     <!--引入必要的外部资源-->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet"
     />
@@ -489,6 +493,20 @@
         transform: translateY(-5px);
         box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
       }
+
+      :root {
+        --primary: #0071e3; /* 苹果风格主色（蓝色） */
+        --secondary: #86868b; /* 苹果风格次要色（灰色） */
+      }
+      .bg-primary {
+        background-color: var(--primary);
+      }
+      .text-primary {
+        color: var(--primary);
+      }
+      .text-secondary {
+        color: var(--secondary);
+      }
     </style>
   </head>
   <body>
@@ -613,7 +631,7 @@
                   </a>
                   <!--二级子菜单-->
                   <div
-                    class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                    class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
                     <a
                       class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm"
@@ -964,6 +982,7 @@
               </div>
             </div>
           </div>
+
           <!-- 移动端汉堡菜单按钮（保持原结构，增加图标样式保障） -->
           <button
             class="md:hidden text-white focus:outline-none"
@@ -2671,6 +2690,31 @@
             }
           );
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // 获取菜单按钮和移动菜单元素
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        // 如果元素存在则添加点击事件
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener("click", function () {
+            // 切换菜单显示状态
+            if (mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.remove("hidden");
+              mobileMenu.classList.add("block", "fade-in");
+              // 更改按钮图标（如果需要）
+              menuToggle.innerHTML = '<i class="fa fa-times text-white"></i>';
+            } else {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.classList.remove("block", "fade-in");
+              // 恢复按钮图标
+              menuToggle.innerHTML = '<i class="fa fa-bars text-white"></i>';
+            }
+          }); // 1. 闭合 click 事件的回调函数
+        } // 2. 闭合 if (menuToggle && mobileMenu) 条件块
+      }); // 3. 闭合 DOMContentLoaded 事件的回调函数
+
       // 导航栏滚动效果
       window.addEventListener("scroll", function () {
         const navbar = document.getElementById("navbar");
@@ -2680,54 +2724,106 @@
           navbar.classList.remove("nav-scrolled");
         }
       });
-      // 移动端菜单切换
-      document
-        .getElementById("menu-toggle")
-        .addEventListener("click", function () {
-          const mobileMenu = document.getElementById("mobile-menu");
-          mobileMenu.classList.toggle("hidden");
+      document.addEventListener("DOMContentLoaded", function () {
+        // 移动端语言切换元素
+        const mobileLangBtn = document.getElementById("mobile-lang-btn");
+        const mobileLangDropdown = document.getElementById(
+          "mobile-lang-dropdown"
+        );
+        const mobileLangLinks =
+          mobileLangDropdown.querySelectorAll("a[data-lang]");
+        const LANG_STORAGE_KEY = "preferred_language";
+
+        // 1. 点击语言图标，展开/收起下拉菜单
+        mobileLangBtn.addEventListener("click", function (e) {
+          e.stopPropagation(); // 防止触发页面其他点击事件
+          const isVisible =
+            mobileLangDropdown.classList.contains("opacity-100");
+
+          if (isVisible) {
+            // 收起菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+          } else {
+            // 展开菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+          }
         });
-      // 移动端产品菜单切换
-      document
-        .getElementById("mobile-products-toggle")
-        .addEventListener("click", function () {
-          const mobileProductsMenu = document.getElementById(
-            "mobile-products-menu"
+
+        // 2. 点击语言选项，保存偏好并跳转（适配静态多文件架构）
+        mobileLangLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const selectedLang = this.getAttribute("data-lang");
+
+            // 保存语言偏好到LocalStorage
+            localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+
+            // 收起菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+
+            // 跳转到对应语言的静态页面（需与你的文件夹路径匹配）
+            const langPathMap = {
+              zh: "/zh-CN/index.html", // 中文页面路径
+              en: "/en-US/index.html", // 英文页面路径（默认优先）
+              tr: "/tr-TR/index.html", // 土耳其语页面路径
+              es: "/es-ES/index.html", // 西班牙语页面路径
+              pt: "/pt-PT/index.html", // 葡萄牙语页面路径
+              fr: "/fr-FR/index.html", // 法语页面路径
+            };
+            window.location.href =
+              langPathMap[selectedLang] || "/en-US/index.html"; // 默认跳转英文
+          });
+        });
+
+        // 3. 点击页面其他区域，收起语言菜单（优化体验）
+        document.addEventListener("click", function () {
+          mobileLangDropdown.classList.remove(
+            "opacity-100",
+            "visible",
+            "scale-100"
           );
-          mobileProductsMenu.classList.toggle("hidden");
-        });
-      // 移动端激光板材切割机菜单切换
-      document
-        .getElementById("mobile-sheetcut-toggle")
-        .addEventListener("click", function () {
-          const mobileSheetcutMenu = document.getElementById(
-            "mobile-sheetcut-menu"
+          mobileLangDropdown.classList.add(
+            "opacity-0",
+            "invisible",
+            "scale-95"
           );
-          mobileSheetcutMenu.classList.toggle("hidden");
         });
-      // 移动端解决方案菜单切换
-      document
-        .getElementById("mobile-solutions-toggle")
-        .addEventListener("click", function () {
-          const mobileSolutionsMenu = document.getElementById(
-            "mobile-solutions-menu"
-          );
-          mobileSolutionsMenu.classList.toggle("hidden");
-        });
-      // 移动端关于我们菜单切换
-      document
-        .getElementById("mobile-about-toggle")
-        .addEventListener("click", function () {
-          const mobileAboutMenu = document.getElementById("mobile-about-menu");
-          mobileAboutMenu.classList.toggle("hidden");
-        });
-      // 移动端语言菜单切换
-      document
-        .getElementById("mobile-lang-toggle")
-        .addEventListener("click", function () {
-          const mobileLangMenu = document.getElementById("mobile-lang-menu");
-          mobileLangMenu.classList.toggle("hidden");
-        });
+
+        // 4. 初始化：默认语言优先（若未保存偏好，默认英文）
+        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+        if (!savedLang) {
+          // 首次访问时，默认跳转到英文页面（可根据需求改为中文）
+          // window.location.href = '/en-US/index.html';
+        }
+      });
+
       // 其他移动端子菜单的切换脚本...
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -3165,70 +3261,6 @@
         } else if (diffX < -50) {
           coreUpgradeCarousel.scrollBy({ left: 400, behavior: "smooth" });
         }
-      });
-
-      // 等待页面加载完成后执行
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. 汉堡菜单总开关（控制整个移动端菜单显示/隐藏）
-        const menuToggle = document.getElementById("mobile-menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-        menuToggle.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
-        });
-
-        // 2. 一级菜单：产品中心（控制二级菜单展开/隐藏 + 箭头旋转）
-        const productsToggle = document.getElementById(
-          "mobile-products-toggle"
-        );
-        const productsMenu = document.getElementById("mobile-products-menu");
-        const productsArrow = productsToggle.querySelector("i"); // 获取产品中心的箭头图标
-        productsToggle.addEventListener("click", function () {
-          productsMenu.classList.toggle("hidden");
-          productsArrow.classList.toggle("rotate-180"); // 点击时箭头旋转180度
-        });
-
-        // 3. 二级菜单：激光板材切割机（控制三级菜单展开/隐藏 + 箭头旋转）
-        const sheetCuttingToggle = document.getElementById(
-          "mobile-sheet-cutting-toggle"
-        );
-        const sheetCuttingMenu = document.getElementById(
-          "mobile-sheet-cutting-menu"
-        );
-        const sheetCuttingArrow = sheetCuttingToggle.querySelector("i");
-        sheetCuttingToggle.addEventListener("click", function () {
-          sheetCuttingMenu.classList.toggle("hidden");
-          sheetCuttingArrow.classList.toggle("rotate-180");
-        });
-
-        // 4. 二级菜单：激光管材切割机（控制三级菜单展开/隐藏 + 箭头旋转）
-        const tubecutToggle = document.getElementById("mobile-tubecut-toggle");
-        const tubecutMenu = document.getElementById("mobile-tubecut-menu");
-        const tubecutArrow = tubecutToggle.querySelector("i");
-        tubecutToggle.addEventListener("click", function () {
-          tubecutMenu.classList.toggle("hidden");
-          tubecutArrow.classList.toggle("rotate-180");
-        });
-
-        // 5. 其他一级菜单（解决方案/关于我们）展开逻辑
-        // 解决方案
-        const solutionsToggle = document.getElementById(
-          "mobile-solutions-toggle"
-        );
-        const solutionsMenu = document.getElementById("mobile-solutions-menu");
-        const solutionsArrow = solutionsToggle.querySelector("i");
-        solutionsToggle.addEventListener("click", function () {
-          solutionsMenu.classList.toggle("hidden");
-          solutionsArrow.classList.toggle("rotate-180");
-        });
-
-        // 关于我们
-        const aboutToggle = document.getElementById("mobile-about-toggle");
-        const aboutMenu = document.getElementById("mobile-about-menu");
-        const aboutArrow = aboutToggle.querySelector("i");
-        aboutToggle.addEventListener("click", function () {
-          aboutMenu.classList.toggle("hidden");
-          aboutArrow.classList.toggle("rotate-180");
-        });
       });
     </script>
   </body>

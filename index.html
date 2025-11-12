@@ -700,254 +700,302 @@
       <!--移动端导航菜单-->
       <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
         <div class="container mx-auto px-4 py-3 space-y-3">
+          <!-- 首页（一级菜单，直接跳转） -->
           <a
             class="block text-gray-800 hover:text-primary font-medium text-sm"
             href="https://www.senrytech.com/"
             >首页</a
           >
-          <!--移动端产品中心-->
+
+          <!-- 产品中心（一级菜单，带二级菜单） -->
           <div>
             <button
               class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
               id="mobile-products-toggle"
             >
               产品中心
-              <i class="fa fa-chevron-down text-xs"></i>
+              <i
+                class="fa fa-chevron-down text-xs transition-transform duration-300"
+              ></i>
             </button>
-            <div class="hidden pl-4 mt-2 space-y-2" id="mobile-products-menu">
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/"
-                >A系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B/"
-                >B系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Plus/"
-                >B Plus系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Pro/"
-                >B Pro系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/"
-                >B ProMax系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Ultra/"
-                >B Ultra系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/"
-                >C系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C-Pro/"
-                >C Pro系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-G/"
-                >G系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-M/"
-                >M系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/"
-                >S系列</a
-              >
+
+            <div class="hidden pl-4 mt-2 space-y-3" id="mobile-products-menu">
+              <!-- 激光板材切割机（二级菜单，带三级菜单） -->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-sheetcut-toggle"
+                >
+                  激光板材切割机
+                  <i
+                    class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  ></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-sheetcut-menu"
+                >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-A/"
+                    >A系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B/"
+                    >B系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Plus/"
+                    >B Plus系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Pro/"
+                    >B Pro系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-ProMax/"
+                    >B ProMax系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-B-Ultra/"
+                    >B Ultra系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C/"
+                    >C系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-C-Pro/"
+                    >C Pro系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-G/"
+                    >G系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-M/"
+                    >M系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/Series-S/"
+                    >S系列</a
+                  >
+                </div>
+              </div>
+
+              <!-- 激光管材切割机（二级菜单，带三级菜单） -->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-tubecut-toggle"
+                >
+                  激光管材切割机
+                  <i
+                    class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  ></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-tubecut-menu"
+                >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-M"
+                    >M系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-A"
+                    >A系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus"
+                    >A Plus系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Pro"
+                    >A Pro系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-B"
+                    >B系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Plus"
+                    >B Plus系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro"
+                    >B Pro系列</a
+                  >
+                </div>
+              </div>
+
+              <!-- 激光板管一体机（二级菜单，带三级菜单） -->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-sheetandtubecut-toggle"
+                >
+                  激光板管一体机
+                  <i
+                    class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  ></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-sheetandtubecut-menu"
+                >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/Series-B"
+                    >B系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Pro"
+                    >B Pro系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-ProMax"
+                    >B ProMax系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Ultra"
+                    >B Ultra系列</a
+                  >
+                </div>
+              </div>
+
+              <!-- 其他产品类型的二级菜单（激光焊接机、激光清洗机等） -->
+              <!-- 激光焊接机 -->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-welding-toggle"
+                >
+                  激光焊接机
+                  <i
+                    class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  ></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-welding-menu"
+                >
+                  <!-- 激光焊接机的三级菜单 -->
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-welding/Series-A"
+                    >A系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-welding/Series-R"
+                    >R系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-welding/Series-M"
+                    >M系列</a
+                  >
+                </div>
+              </div>
+              <!--激光清洗机带二级菜单-->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-cleaning-toggle"
+                >
+                  激光清洗机
+                  <i class="fa fa-chevron-down text-xs"></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-cleaning-menu"
+                >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-cleaning/Series-A"
+                    >A系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-cleaning/Series-S"
+                    >S系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-cleaning/Series-B"
+                    >B系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-cleaning/Series-P"
+                    >P系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-cleaning/Series-M"
+                    >M系列</a
+                  >
+                </div>
+              </div>
+              <!--激光打标机带二级菜单-->
+              <div>
+                <button
+                  class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
+                  id="mobile-marking-toggle"
+                >
+                  激光打标机
+                  <i class="fa fa-chevron-down text-xs"></i>
+                </button>
+                <div
+                  class="hidden pl-4 mt-1 space-y-2"
+                  id="mobile-marking-menu"
+                >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-marking/Series-D"
+                    >D系列</a
+                  >
+                  <a
+                    class="block text-gray-600 hover:text-primary text-sm"
+                    href="https://www.senrytech.com/products/laser-marking/Series-P"
+                    >P系列</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
-          <!--激光管材切割机带二级菜单-->
-          <div>
-            <button
-              class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
-              id="mobile-tubecut-toggle"
-            >
-              激光管材切割机
-              <i class="fa fa-chevron-down text-xs"></i>
-            </button>
-            <div class="hidden pl-4 mt-1 space-y-2" id="mobile-tubecut-menu">
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-M"
-                >M系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-A"
-                >A系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Plus"
-                >A Plus系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-A-Pro"
-                >A Pro系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-B"
-                >B系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Plus"
-                >B Plus系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-tube-cutting/Series-B-Pro"
-                >B Pro系列</a
-              >
-            </div>
-          </div>
-          <!--激光板管一体机带二级菜单-->
-          <div>
-            <button
-              class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
-              id="mobile-sheetandtubecut-toggle"
-            >
-              激光板管一体机
-              <i class="fa fa-chevron-down text-xs"></i>
-            </button>
-            <div
-              class="hidden pl-4 mt-1 space-y-2"
-              id="mobile-sheetandtubecut-menu"
-            >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-tube/Series-B"
-                >B系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Pro"
-                >B Pro系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-ProMax"
-                >B ProMax系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-sheet-tube/Series-B-Ultra"
-                >B Ultra系列</a
-              >
-            </div>
-          </div>
-          <!--激光焊接机带二级菜单-->
-          <div>
-            <button
-              class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
-              id="mobile-welding-toggle"
-            >
-              激光焊接机
-              <i class="fa fa-chevron-down text-xs"></i>
-            </button>
-            <div class="hidden pl-4 mt-1 space-y-2" id="mobile-welding-menu">
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-welding/Series-A"
-                >A系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-welding/Series-R"
-                >R系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-welding/Series-M"
-                >M系列</a
-              >
-            </div>
-          </div>
-          <!--激光清洗机带二级菜单-->
-          <div>
-            <button
-              class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
-              id="mobile-cleaning-toggle"
-            >
-              激光清洗机
-              <i class="fa fa-chevron-down text-xs"></i>
-            </button>
-            <div class="hidden pl-4 mt-1 space-y-2" id="mobile-cleaning-menu">
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-cleaning/Series-A"
-                >A系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-cleaning/Series-S"
-                >S系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-cleaning/Series-B"
-                >B系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-cleaning/Series-P"
-                >P系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-cleaning/Series-M"
-                >M系列</a
-              >
-            </div>
-          </div>
-          <!--激光打标机带二级菜单-->
-          <div>
-            <button
-              class="flex justify-between items-center w-full text-gray-600 hover:text-primary text-sm"
-              id="mobile-marking-toggle"
-            >
-              激光打标机
-              <i class="fa fa-chevron-down text-xs"></i>
-            </button>
-            <div class="hidden pl-4 mt-1 space-y-2" id="mobile-marking-menu">
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-marking/Series-D"
-                >D系列</a
-              >
-              <a
-                class="block text-gray-600 hover:text-primary text-sm"
-                href="https://www.senrytech.com/products/laser-marking/Series-P"
-                >P系列</a
-              >
-            </div>
-          </div>
-          <!--其他移动端菜单项...-->
+
+          <!-- 解决方案（一级菜单，带二级菜单） -->
           <div>
             <button
               class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
               id="mobile-solutions-toggle"
             >
               解决方案
-              <i class="fa fa-chevron-down text-xs"></i>
+              <i
+                class="fa fa-chevron-down text-xs transition-transform duration-300"
+              ></i>
             </button>
             <div class="hidden pl-4 mt-2 space-y-2" id="mobile-solutions-menu">
               <a
@@ -982,6 +1030,8 @@
               >
             </div>
           </div>
+
+          <!-- 其他一级菜单 -->
           <a
             class="block text-gray-800 hover:text-primary font-medium text-sm"
             href="https://www.senrytech.com/guides/"
@@ -997,23 +1047,71 @@
             href="https://www.senrytech.com/downloads/"
             >资料下载</a
           >
-          <!--移动端搜索框-->
-          <div class="relative mt-2">
-            <input
-              class="bg-gray-100 text-gray-800 text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary w-full"
-              placeholder="搜索..."
-              type="text"
-            />
-            <i
-              class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
-            ></i>
+
+          <!-- 关于我们（一级菜单，带二级菜单） -->
+          <div>
+            <button
+              class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
+              id="mobile-about-toggle"
+            >
+              关于我们
+              <i
+                class="fa fa-chevron-down text-xs transition-transform duration-300"
+              ></i>
+            </button>
+            <div class="hidden pl-4 mt-2 space-y-2" id="mobile-about-menu">
+              <a
+                class="block text-gray-600 hover:text-primary text-sm"
+                href="https://www.senrytech.com/about-us/company/"
+                >公司简介</a
+              >
+              <a
+                class="block text-gray-600 hover:text-primary text-sm"
+                href="https://www.senrytech.com/about-us/r-d/"
+                >研发实力</a
+              >
+              <a
+                class="block text-gray-600 hover:text-primary text-sm"
+                href="https://www.senrytech.com/about-us/factory/"
+                >生产基地</a
+              >
+              <a
+                class="block text-gray-600 hover:text-primary text-sm"
+                href="https://www.senrytech.com/about-us/qualifications/"
+                >荣誉资质</a
+              >
+            </div>
           </div>
-          <!--移动端询价按钮-->
+
           <a
-            class="block w-full bg-secondary hover:bg-secondary/90 text-white text-center px-4 py-2 rounded-full text-sm transition-colors mt-2"
-            href="https://www.senrytech.com/quote/"
-            >询价</a
+            class="block text-gray-800 hover:text-primary font-medium text-sm"
+            href="https://www.senrytech.com/careers/"
+            >加入我们</a
           >
+          <a
+            class="block text-gray-800 hover:text-primary font-medium text-sm"
+            href="https://www.senrytech.com/contact-us/"
+            >联系我们</a
+          >
+
+          <!-- 移动端搜索和询价 -->
+          <div class="pt-2 border-t border-gray-100">
+            <div class="relative mb-2">
+              <input
+                class="bg-gray-100 text-gray-800 text-xs px-3 py-1.5 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-full placeholder-gray-500"
+                placeholder="搜索..."
+                type="text"
+              />
+              <i
+                class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"
+              ></i>
+            </div>
+            <a
+              class="block bg-secondary hover:bg-secondary/90 text-white px-3 py-1.5 rounded-full text-xs text-center transition-colors"
+              href="https://www.senrytech.com/quote/"
+              >询价</a
+            >
+          </div>
         </div>
       </div>
     </header>

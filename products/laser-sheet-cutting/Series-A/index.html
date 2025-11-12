@@ -118,11 +118,39 @@
         /* 桌面端导航链接初始黑色 */
       }
 
+      /* 移动端菜单基础样式：深色文字 + 白色背景，确保可见 */
       #mobile-menu a,
       #mobile-menu button {
         font-size: 0.75rem !important;
-        color: #ffffff !important;
-        /* 移动端菜单初始黑色 */
+        color: #1d1d1f !important; /* 深灰色文字（苹果风格近黑色），与白色背景对比明显 */
+        transition: color 0.2s ease; /* hover 过渡效果，提升交互感 */
+      }
+
+      /* 移动端菜单项 hover 样式： hover 时变品牌橙色，增强交互反馈 */
+      #mobile-menu a:hover,
+      #mobile-menu button:hover {
+        color: #ff8a00 !important; /* 复用品牌 secondary 色（橙色），保持风格统一 */
+      }
+
+      /* 移动端子菜单文字样式（如产品中心子菜单）：继承父级样式，确保一致性 */
+      #mobile-products-menu a,
+      #mobile-tubecut-menu a,
+      #mobile-sheetandtubecut-menu a,
+      #mobile-welding-menu a,
+      #mobile-cleaning-menu a,
+      #mobile-marking-menu a,
+      #mobile-solutions-menu a {
+        color: #374151 !important; /* 稍浅的深灰色，区分主菜单与子菜单层级 */
+      }
+
+      #mobile-products-menu a:hover,
+      #mobile-tubecut-menu a:hover,
+      #mobile-sheetandtubecut-menu a:hover,
+      #mobile-welding-menu a:hover,
+      #mobile-cleaning-menu a:hover,
+      #mobile-marking-menu a:hover,
+      #mobile-solutions-menu a:hover {
+        color: #ff8a00 !important; /* 子菜单 hover 同样变橙色，保持交互统一 */
       }
 
       .fa-globe {
@@ -2708,44 +2736,58 @@
           navbar.classList.remove("nav-scrolled");
         }
       });
-      // 移动端菜单功能
-      document.addEventListener("DOMContentLoaded", function () {
-        // 移动端菜单切换
-        const menuToggle = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener("click", function () {
-            mobileMenu.classList.toggle("hidden");
-          });
-        }
-
-        // 移动端子菜单切换
-        const toggleButtons = [
-          "mobile-products-toggle",
-          "mobile-solutions-toggle",
-          "mobile-about-toggle",
-          "mobile-lang-toggle",
-          "mobile-sheetcut-toggle",
-          "mobile-tubecut-toggle",
-          "mobile-sheetandtubecut-toggle",
-          "mobile-welding-toggle",
-          "mobile-cleaning-toggle",
-          "mobile-marking-toggle",
-        ];
-
-        toggleButtons.forEach((buttonId) => {
-          const button = document.getElementById(buttonId);
-          if (button) {
-            const targetId = buttonId.replace("-toggle", "-menu");
-            const target = document.getElementById(targetId);
-            if (target) {
-              button.addEventListener("click", function () {
-                target.classList.toggle("hidden");
-              });
-            }
-          }
+      // 移动端菜单切换
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          const mobileMenu = document.getElementById("mobile-menu");
+          mobileMenu.classList.toggle("hidden");
         });
+      // 移动端产品菜单切换
+      document
+        .getElementById("mobile-products-toggle")
+        .addEventListener("click", function () {
+          const mobileProductsMenu = document.getElementById(
+            "mobile-products-menu"
+          );
+          mobileProductsMenu.classList.toggle("hidden");
+        });
+      // 移动端激光板材切割机菜单切换
+      document
+        .getElementById("mobile-sheetcut-toggle")
+        .addEventListener("click", function () {
+          const mobileSheetcutMenu = document.getElementById(
+            "mobile-sheetcut-menu"
+          );
+          mobileSheetcutMenu.classList.toggle("hidden");
+        });
+      // 移动端解决方案菜单切换
+      document
+        .getElementById("mobile-solutions-toggle")
+        .addEventListener("click", function () {
+          const mobileSolutionsMenu = document.getElementById(
+            "mobile-solutions-menu"
+          );
+          mobileSolutionsMenu.classList.toggle("hidden");
+        });
+      // 移动端关于我们菜单切换
+      document
+        .getElementById("mobile-about-toggle")
+        .addEventListener("click", function () {
+          const mobileAboutMenu = document.getElementById("mobile-about-menu");
+          mobileAboutMenu.classList.toggle("hidden");
+        });
+      // 移动端语言菜单切换
+      document
+        .getElementById("mobile-lang-toggle")
+        .addEventListener("click", function () {
+          const mobileLangMenu = document.getElementById("mobile-lang-menu");
+          mobileLangMenu.classList.toggle("hidden");
+        });
+      // 其他移动端子菜单的切换脚本...
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
       // 通用图表配置：苹果风格优化（平滑扁平化）
       const commonConfig = {
         type: "bar",

@@ -2708,58 +2708,44 @@
           navbar.classList.remove("nav-scrolled");
         }
       });
-      // 移动端菜单切换
-      document
-        .getElementById("menu-toggle")
-        .addEventListener("click", function () {
-          const mobileMenu = document.getElementById("mobile-menu");
-          mobileMenu.classList.toggle("hidden");
+      // 移动端菜单功能
+      document.addEventListener("DOMContentLoaded", function () {
+        // 移动端菜单切换
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
+
+        // 移动端子菜单切换
+        const toggleButtons = [
+          "mobile-products-toggle",
+          "mobile-solutions-toggle",
+          "mobile-about-toggle",
+          "mobile-lang-toggle",
+          "mobile-sheetcut-toggle",
+          "mobile-tubecut-toggle",
+          "mobile-sheetandtubecut-toggle",
+          "mobile-welding-toggle",
+          "mobile-cleaning-toggle",
+          "mobile-marking-toggle",
+        ];
+
+        toggleButtons.forEach((buttonId) => {
+          const button = document.getElementById(buttonId);
+          if (button) {
+            const targetId = buttonId.replace("-toggle", "-menu");
+            const target = document.getElementById(targetId);
+            if (target) {
+              button.addEventListener("click", function () {
+                target.classList.toggle("hidden");
+              });
+            }
+          }
         });
-      // 移动端产品菜单切换
-      document
-        .getElementById("mobile-products-toggle")
-        .addEventListener("click", function () {
-          const mobileProductsMenu = document.getElementById(
-            "mobile-products-menu"
-          );
-          mobileProductsMenu.classList.toggle("hidden");
-        });
-      // 移动端激光板材切割机菜单切换
-      document
-        .getElementById("mobile-sheetcut-toggle")
-        .addEventListener("click", function () {
-          const mobileSheetcutMenu = document.getElementById(
-            "mobile-sheetcut-menu"
-          );
-          mobileSheetcutMenu.classList.toggle("hidden");
-        });
-      // 移动端解决方案菜单切换
-      document
-        .getElementById("mobile-solutions-toggle")
-        .addEventListener("click", function () {
-          const mobileSolutionsMenu = document.getElementById(
-            "mobile-solutions-menu"
-          );
-          mobileSolutionsMenu.classList.toggle("hidden");
-        });
-      // 移动端关于我们菜单切换
-      document
-        .getElementById("mobile-about-toggle")
-        .addEventListener("click", function () {
-          const mobileAboutMenu = document.getElementById("mobile-about-menu");
-          mobileAboutMenu.classList.toggle("hidden");
-        });
-      // 移动端语言菜单切换
-      document
-        .getElementById("mobile-lang-toggle")
-        .addEventListener("click", function () {
-          const mobileLangMenu = document.getElementById("mobile-lang-menu");
-          mobileLangMenu.classList.toggle("hidden");
-        });
-      // 其他移动端子菜单的切换脚本...
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
       // 通用图表配置：苹果风格优化（平滑扁平化）
       const commonConfig = {
         type: "bar",

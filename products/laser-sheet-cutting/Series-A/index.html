@@ -297,6 +297,38 @@ nav a, .group a {
             transform: translateZ(0);
         }
 
+        /* 文字渐变：薄荷绿 → 奶白 → 浅蓝 */
+.text-gradient-mint-white-blue {
+  /* 1. 设置背景渐变（方向：水平从左到右，颜色过渡按需求排列） */
+  background: linear-gradient(90deg, 
+    #333333 0%,    /* 起始色：薄荷绿 */
+    #666666 50%,    /* 中间色：奶白（居中过渡） */
+    #999999 100%);  /* 结束色：浅蓝 */
+  /* 2. 将背景裁剪为文字形状（核心：只让文字显示背景渐变） */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* 3. 隐藏文字本身颜色，露出背景渐变 */
+  color: transparent;
+  /* 4. 兼容浏览器前缀（确保多端显示一致） */
+  -webkit-text-fill-color: transparent;
+}
+
+/* 新增：文字渐变 - 蓝 → 橙 → 红（适配“薄板 经济 性能小钢炮”） */
+.text-gradient-blue-orange-red {
+  /* 水平渐变方向，颜色按“蓝→橙→红”顺序过渡，中间橙色调在50%位置 */
+  background: linear-gradient(90deg, 
+    #1E90FF 0%,    /* 起始色：蓝色（标准蓝，与品牌科技感适配） */
+    #FF8A00 50%,   /* 中间色：橙色（复用现有 secondary 色值，保持风格统一） */
+    #FF4500 100%); /* 结束色：红色（鲜明红，增强视觉冲击力） */
+  /* 核心：将背景渐变裁剪为文字形状，只让文字显示渐变 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* 隐藏文字本身颜色，露出背景渐变（必须设置，否则原文字色会覆盖渐变） */
+  color: transparent;
+  /* 兼容 Safari 等浏览器，确保渐变正常显示 */
+  -webkit-text-fill-color: transparent;
+}
+
         
     </style>
 </head>
@@ -564,7 +596,8 @@ nav a, .group a {
             <!-- 标题：与“薄板 经济 小钢炮”同款样式（字体族+字重+颜色透明度） -->
             <h1 class="text-[clamp(2rem,5vw,3.5rem)]  <!-- 字号范围对齐目标标题 -->
                        font-normal  <!-- 字重：目标标题为font-normal，统一替换原font-semibold -->
-                       mb-6 text-white  <!-- 颜色：目标标题为白色，保持一致 -->
+                       mb-6 
+                       text-gradient-mint-white-blue  <!-- 颜色：目标标题为白色，保持一致 -->
                        leading-tight tracking-tight
                        text-shadow-lg  <!-- 阴影：目标标题带text-shadow-lg，补充增强质感 -->
                        font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"> 
@@ -648,19 +681,22 @@ nav a, .group a {
     <div class="container mx-auto px-4 sm:px-6 lg:px-8"> <!-- 补充容器，确保内容居中且不溢出 -->
         <div class="text-center mb-12">
             <!-- 主标题：突出“┌道┘”核心，与“薄板 经济 小钢炮”对齐字体族+字重+颜色 -->
-            <h2 class="text-[clamp(1.8rem,4vw,2.5rem)]  <!-- 字号范围适配，与目标标题（2rem-3.5rem）比例协调 -->
-                   font-normal  <!-- 字重：统一为目标标题的font-normal，替代原semibold，弱化压迫感 -->
-                   text-[#1d1d1f]  <!-- 颜色：与目标标题“薄板 经济 小钢炮”的#1d1d1f一致，替代原gray-800 -->
-                   leading-tight 
-                   tracking-tight  <!-- 字间距：与目标标题的紧凑感保持一致 -->
-                   /* 统一苹果风格字体族，与目标标题完全匹配 */
+            <h2 class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
                    font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
     切割有<span class="text-secondary mx-1">┌</span>
     <!-- 调整“道”字：保持强调但不偏离目标风格 -->
-    <span class="text-primary 
-                 text-[clamp(2rem,4.5vw,2.8rem)]  /* 字号略大于主标题，保留视觉焦点 */
-                 font-normal  /* 字重同步改为font-normal，避免与目标风格脱节 */
-                 tracking-tight">道</span>
+    <span class="text-black 
+                   text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */
+                   font-normal  /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */
+                   tracking-tight 
+                   text-shadow-lg
+                   mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">道</span>
     <span class="text-secondary mx-1">┘</span>
 </h2>
 
@@ -686,10 +722,14 @@ nav a, .group a {
                     <canvas id="carbonSteelChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-normal  /* 字重同步目标风格 */
-                               text-lg mb-2 
-                               text-[#1d1d1f]  /* 颜色同步目标标题 */
-                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                    <h3 class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
                         碳钢切割厚度
                     </h3>
                 </div>
@@ -701,10 +741,14 @@ nav a, .group a {
                     <canvas id="stainlessSteelChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-normal 
-                               text-lg mb-2 
-                               text-[#1d1d1f]
-                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                    <h3 class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
                         不锈钢切割厚度
                     </h3>
                 </div>
@@ -716,10 +760,14 @@ nav a, .group a {
                     <canvas id="aluminumChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-normal 
-                               text-lg mb-2 
-                               text-[#1d1d1f]
-                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                    <h3 class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
                         铝合金切割厚度
                     </h3>
                 </div>
@@ -731,10 +779,14 @@ nav a, .group a {
                     <canvas id="copperChart"></canvas>
                 </div>
                 <div class="p-5">
-                    <h3 class="font-normal 
-                               text-lg mb-2 
-                               text-[#1d1d1f]
-                               font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
+                    <h3 class="text-[#1d1d1f]/80  /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */
+                     text-[clamp(1rem,2vw,1.125rem)]  /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */
+                     max-w-2xl mx-auto  /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */
+                     font-light  /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */
+                     leading-relaxed  /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */
+                     mt-2  /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */
+                     /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */
+                     font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
                         铜切割厚度
                     </h3>
                 </div>
@@ -756,7 +808,7 @@ nav a, .group a {
                    text-shadow-lg
                    mb-4  /* 新增间距，避免与副标题过于紧凑 */
                    font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
-            激光板材切割机A系列
+            核心亮点
             </h2>
 
             <!-- 副标题：匹配“杜绝虚假宣传”字体参数，强化细节统一 -->
@@ -864,6 +916,7 @@ nav a, .group a {
                    tracking-tight 
                    text-shadow-lg
                    mb-4  /* 新增间距，避免与副标题过于紧凑 */
+                   text-gradient-blue-orange-red
                    font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">
             薄板 经济 性能小钢炮
         </h2>

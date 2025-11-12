@@ -1085,119 +1085,119 @@
 				</div>
 			</section>
 
-            <!-- 芯升级，更神奇 - 二次缩小+图片清晰版 -->
-<section class="py-8 md:py-12 bg-white"> <!-- 板块上下内边距缩减：原12/18→8/12 -->
-  <!-- 1. 标题区：进一步缩小字号，降低视觉占比 -->
-  <div class="px-4 sm:px-6 lg:px-8 text-center mb-6 md:mb-8"> <!-- 标题下间距缩减：原8/12→6/8 -->
+            <!-- 芯升级，更神奇 - 缩小版横向滚动板块 -->
+<section class="py-12 md:py-18 bg-white">
+  <!-- 1. 标题区：缩小字号，降低视觉占比 -->
+  <div class="px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-12">
     <h2 class="text-black 
-               text-[clamp(1.5rem,3vw,2.2rem)]  /* 字号二次缩小：原1.8/3rem→1.5/2.2rem */
+               text-[clamp(1.8rem,4vw,3rem)]  /* 字号缩小：原2.2rem→1.8rem，4rem→3rem，适配缩小后的板块 */
                font-normal  
                tracking-tight 
                text-shadow-lg
-               mb-2  /* 标题与副标题间距缩减：原3→2 */
+               mb-3  
                font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">芯升级，更神奇</h2>
     <p class="text-[#1d1d1f]/80  
-               text-[clamp(0.8rem,1.5vw,1rem)]  /* 副标题二次缩小：原0.9/1.1rem→0.8/1rem */
-               max-w-xl mx-auto  /* 宽度进一步收窄：原2xl→xl */
+               text-[clamp(0.9rem,2vw,1.1rem)]  /* 副标题同步缩小：原1rem→0.9rem，1.25rem→1.1rem */
+               max-w-2xl mx-auto  /* 宽度收窄，匹配缩小的标题 */
                font-light  
                leading-relaxed  
                font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">全新核心技术升级，带来更智能、更高效的激光切割体验</p>
   </div>
 
-  <!-- 2. 横向滚动容器：增加左右间距，进一步弱化“满屏”感 -->
-  <div class="relative px-6 md:px-10 lg:px-16"> <!-- 左右间距增加：原4/8/12→6/10/16 -->
-    <!-- 滚动容器：保持横向滚动逻辑，增加底部内边距适配缩小后的图片 -->
-    <div class="overflow-x-auto scrollbar-hide pb-4 md:pb-6" id="coreUpgradeCarousel"> <!-- 底部内边距缩减：原6/8→4/6 -->
-      <div class="flex space-x-3 md:space-x-4 py-2"> <!-- 图片间距二次缩小：原4/6→3/4 -->
-        <!-- 图片项1：核心优化 - 尺寸大幅缩减+图片防模糊处理 -->
-        <div class="core-upgrade-item min-w-[70vw] md:min-w-[50vw] lg:min-w-[45vw]  /* 宽度二次缩小：原80/65/55vw→70/50/45vw */
+  <!-- 2. 横向滚动容器：增加左右间距，弱化“满屏”感 -->
+  <div class="relative px-4 md:px-8 lg:px-12"> <!-- 原0→4/8/12，增加边缘留白，视觉上缩小板块范围 -->
+    <!-- 滚动容器：保持横向滚动逻辑 -->
+    <div class="overflow-x-auto scrollbar-hide pb-6 md:pb-8" id="coreUpgradeCarousel">
+      <div class="flex space-x-4 md:space-x-6 py-2"> <!-- 图片间距缩小：原8→6，适配小尺寸图片 -->
+        <!-- 图片项1：核心缩小 - 宽度收窄+高度降低 -->
+        <div class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw]  /* 宽度缩小：原90→80，75→65，65→55，减少单张图占屏比 */
                    rounded-xl overflow-hidden 
                    shadow-sm hover:shadow-md transition-all duration-300">
-          <!-- 图片高度大幅降低：原40/50/55vh→30/35/40vh，减少拉伸导致的模糊 -->
-          <div class="relative h-[30vh] md:h-[35vh] lg:h-[40vh]">
-            <img src="../../../img/core-advantage/一笔飞切.png" 
+          <!-- 图片高度降低：原60→40，70→50，75→55，避免纵向占比过大 -->
+          <div class="relative h-[40vh] md:h-[50vh] lg:h-[55vh]">
+            <img src="../../../img/core-advantage/high clear/一笔飞切.png" 
                  alt="智能切割系统" 
-                 class="w-full h-full object-cover object-center image-crisp" /> <!-- 新增防模糊类+保持object-cover避免拉伸 -->
-            <!-- 文字区二次缩小：字号、内边距适配更小图片 -->
+                 class="w-full h-full object-cover object-center" />
+            <!-- 文字区同步缩小：字号、内边距适配小图片 -->
             <div class="absolute bottom-0 left-0 right-0 
                        bg-gradient-to-t from-black/70 via-black/30 to-transparent 
-                       p-3 md:p-4 text-white"> <!-- 内边距二次缩小：原4/6→3/4 -->
-              <h3 class="text-lg md:text-xl font-semibold mb-1">智能切割系统</h3> <!-- 标题二次缩小：原xl/2xl→lg/xl -->
-              <p class="text-white/90 text-sm md:text-base font-light">AI算法优化切割路径，效率提升30%</p> <!-- 描述二次缩小：原base/lg→sm/base -->
+                       p-4 md:p-6 text-white"> <!-- 内边距缩小：原6→4，8→6 -->
+              <h3 class="text-xl md:text-2xl font-semibold mb-1">智能切割系统</h3> <!-- 标题缩小：原2xl→xl，3xl→2xl -->
+              <p class="text-white/90 text-base md:text-lg font-light">AI算法优化切割路径，效率提升30%</p> <!-- 描述缩小：原lg→base，xl→lg -->
             </div>
           </div>
         </div>
 
-        <!-- 图片项2：同二次缩小规则 -->
-        <div class="core-upgrade-item min-w-[70vw] md:min-w-[50vw] lg:min-w-[45vw] 
+        <!-- 图片项2：同缩小规则 -->
+        <div class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] 
                    rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="relative h-[30vh] md:h-[35vh] lg:h-[40vh]">
-            <img src="../../../img/core-advantage/包裹路线.png" 
+          <div class="relative h-[40vh] md:h-[50vh] lg:h-[55vh]">
+            <img src="../../../img/core-advantage/high clear/包裹路线.png" 
                  alt="高能激光源" 
-                 class="w-full h-full object-cover object-center image-crisp" />
+                 class="w-full h-full object-cover object-center" />
             <div class="absolute bottom-0 left-0 right-0 
                        bg-gradient-to-t from-black/70 via-black/30 to-transparent 
-                       p-3 md:p-4 text-white">
-              <h3 class="text-lg md:text-xl font-semibold mb-1">高能激光源</h3>
-              <p class="text-white/90 text-sm md:text-base font-light">功率稳定性提升，切割精度达±0.02mm</p>
+                       p-4 md:p-6 text-white">
+              <h3 class="text-xl md:text-2xl font-semibold mb-1">高能激光源</h3>
+              <p class="text-white/90 text-base md:text-lg font-light">功率稳定性提升，切割精度达±0.02mm</p>
             </div>
           </div>
         </div>
 
-        <!-- 图片项3：同二次缩小规则 -->
-        <div class="core-upgrade-item min-w-[70vw] md:min-w-[50vw] lg:min-w-[45vw] 
+        <!-- 图片项3：同缩小规则 -->
+        <div class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] 
                    rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="relative h-[30vh] md:h-[35vh] lg:h-[40vh]">
-            <img src="../../../img/core-advantage/圆盘寻中.png" 
+          <div class="relative h-[40vh] md:h-[50vh] lg:h-[55vh]">
+            <img src="../../../img/core-advantage/high clear/圆盘寻中.png" 
                  alt="自适应冷却" 
-                 class="w-full h-full object-cover object-center image-crisp" />
+                 class="w-full h-full object-cover object-center" />
             <div class="absolute bottom-0 left-0 right-0 
                        bg-gradient-to-t from-black/70 via-black/30 to-transparent 
-                       p-3 md:p-4 text-white">
-              <h3 class="text-lg md:text-xl font-semibold mb-1">自适应冷却</h3>
-              <p class="text-white/90 text-sm md:text-base font-light">实时监控温度，延长设备寿命50%</p>
+                       p-4 md:p-6 text-white">
+              <h3 class="text-xl md:text-2xl font-semibold mb-1">自适应冷却</h3>
+              <p class="text-white/90 text-base md:text-lg font-light">实时监控温度，延长设备寿命50%</p>
             </div>
           </div>
         </div>
 
-        <!-- 图片项4：同二次缩小规则 -->
-        <div class="core-upgrade-item min-w-[70vw] md:min-w-[50vw] lg:min-w-[45vw] 
+        <!-- 图片项4：同缩小规则 -->
+        <div class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] 
                    rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
-          <div class="relative h-[30vh] md:h-[35vh] lg:h-[40vh]">
-            <img src="../../../img/core-advantage/无感穿孔.png" 
+          <div class="relative h-[40vh] md:h-[50vh] lg:h-[55vh]">
+            <img src="../../../img/core-advantage/high clear/无感穿孔.png" 
                  alt="云端互联" 
-                 class="w-full h-full object-cover object-center image-crisp" />
+                 class="w-full h-full object-cover object-center" />
             <div class="absolute bottom-0 left-0 right-0 
                        bg-gradient-to-t from-black/70 via-black/30 to-transparent 
-                       p-3 md:p-4 text-white">
-              <h3 class="text-lg md:text-xl font-semibold mb-1">云端互联</h3>
-              <p class="text-white/90 text-sm md:text-base font-light">远程运维，故障预警响应时间<5分钟</p>
+                       p-4 md:p-6 text-white">
+              <h3 class="text-xl md:text-2xl font-semibold mb-1">云端互联</h3>
+              <p class="text-white/90 text-base md:text-lg font-light">远程运维，故障预警响应时间<5分钟</p>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 3. 箭头按钮：二次缩小尺寸，适配更小板块 -->
-    <button class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full 
+    <!-- 3. 箭头按钮：缩小尺寸，适配板块体量 -->
+    <button class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full 
                bg-secondary/90 backdrop-blur-md text-white hover:bg-secondary transition-colors 
-               flex items-center justify-center focus:outline-none z-10 hidden md:flex" id="coreUpgradePrev"> <!-- 按钮二次缩小：原10/12→8/10 -->
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <!-- 图标二次缩小：原5→4 -->
+               flex items-center justify-center focus:outline-none z-10 hidden md:flex" id="coreUpgradePrev"> <!-- 按钮缩小：原12→10，14→12 -->
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <!-- 图标缩小：原6→5 -->
         <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
       </svg>
     </button>
-    <button class="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full 
+    <button class="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full 
                bg-secondary/90 backdrop-blur-md text-white hover:bg-secondary transition-colors 
                flex items-center justify-center focus:outline-none z-10 hidden md:flex" id="coreUpgradeNext">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
       </svg>
     </button>
 
-    <!-- 4. 移动端滚动提示：同步缩小 -->
-    <div class="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex items-center gap-1.5 text-[#1d1d1f]/60 text-[10px] font-light md:hidden"> <!-- 文字/间距二次缩小：原xs/2→10px/1.5 -->
+    <!-- 4. 移动端滚动提示：保持轻量引导 -->
+    <div class="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-[#1d1d1f]/60 text-xs font-light md:hidden"> <!-- 文字缩小：原sm→xs -->
       <span>滑动浏览</span>
-      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <!-- 图标二次缩小：原3.5→3 -->
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <!-- 图标缩小：原4→3.5 -->
         <path d="M13 5l7 7-7 7M5 12h14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
       </svg>
     </div>
@@ -1205,11 +1205,11 @@
 </section>
 
 			<section class="py-24 bg-[#f5f5f7]" id="specs">
-				<!--苹果官网标志性浅灰背景，增强页面呼吸感-->
-				<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-					<!--控制最大宽度，避免大屏拉伸导致内容松散-->
-					<!--标题：新增text-center实现标题居中，保留苹果风格排版-->
-					<h2 class="text-black 
+    <!--苹果官网标志性浅灰背景，增强页面呼吸感-->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+        <!--控制最大宽度，避免大屏拉伸导致内容松散-->
+        <!--标题：新增text-center实现标题居中，保留苹果风格排版-->
+        <h2 class="text-black 
                    text-[clamp(2rem,5vw,3.5rem)]  /* 调整响应式区间，小屏不拥挤、大屏不夸张 */
                    font-normal  /* 苹果风格轻盈字重，避免厚重感 */
                    tracking-tight 
@@ -1217,108 +1217,129 @@
                    mb-10  /* 增加底部间距，与表格拉开舒适距离（原mb-4偏近） */
                    text-center  /* 核心：标题文本居中显示 */
                    font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]">技术参数</h2>
-					<!--表格容器：轻阴影+圆润边角，替代厚重阴影，符合苹果"隐形式设计"-->
-					<div class="overflow-x-auto rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.02)]">
-						<table class="w-full border-collapse bg-white rounded-2xl overflow-hidden">
-							<!--表头：低饱和度底色，无强对比色，营造"克制高级"的视觉感-->
-							<thead>
-								<tr class="bg-[#f9f9fa] text-[#1d1d1f]">
-									<th class="py-6 px-6 sm:px-8 text-left w-[30%] font-medium text-[1rem]">型号</th>
-									<th class="py-6 px-6 sm:px-8 text-center w-[23%] font-medium text-[1rem]">A15</th>
-									<th class="py-6 px-6 sm:px-8 text-center w-[23%] font-medium text-[1rem]">A20</th>
-									<th class="py-6 px-6 sm:px-8 text-center w-[24%] font-medium text-[1rem]">A30</th>
-								</tr>
-							</thead>
-							<!--表体：无交替底色（苹果极少用条纹表），靠间距+细边框+hover效果提升可读性-->
-							<tbody class="text-[#424245] text-[0.9375rem]">
-								<!--表格行：统一高度+细边框分隔，hover时浅灰背景（交互细腻不突兀）-->
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">激光功率</td>
-									<td class="py-6 px-6 sm:px-8 text-center">1500W</td>
-									<td class="py-6 px-6 sm:px-8 text-center">2000W</td>
-									<td class="py-6 px-6 sm:px-8 text-center">3000W</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">工作台面尺寸</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">
-										<div class="flex flex-col sm:flex-row justify-center gap-y-1 sm:gap-x-4 text-sm">
-											<span>1350×1320×50mm</span>
-											<span>1310×2550×50mm</span>
-											<span>3050×1500×50mm</span>
-										</div>
-									</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">最大切割速度</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">80m/min</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">定位精度</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">±0.05mm</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">重复定位精度</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">±0.03mm</td>
-								</tr>
-								<!--切割厚度行：特殊标注"特殊情况"，用浅灰小字区分，提升信息层级-->
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(碳钢)</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 12mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况16mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 16mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况20mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 18mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况25mm)</span>
-									</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(不锈钢)</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 5mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 6mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况10mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 8mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况12mm)</span>
-									</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(铝合金)</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 3mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况5mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况6mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
-									</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(铜)</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 3mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况4mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况6mm)</span>
-									</td>
-									<td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
-									</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">冷却方式</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">水冷</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">电力需求</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">380V/3PH 50/60HZ</td>
-								</tr>
-								<tr class="border-t border-[#eeeeee] transition-colors duration-200 hover:bg-[#fafafa]">
-									<td class="py-6 px-6 sm:px-8 font-medium">加速度</td>
-									<td class="py-6 px-6 sm:px-8 text-center" colspan="3">1.0G</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!--补充说明：苹果风格"轻量级注释"，用浅灰小字+图标引导，不干扰主内容-->
-					<div class="mt-8 text-center text-sm text-[#86868b] flex items-center justify-center gap-2">
-						<i class="fa fa-info-circle"></i>
-						<span>参数数据基于标准测试环境，实际使用可能因材料特性、操作条件略有差异</span>
-					</div>
-				</div>
-			</section>
+        <!--表格容器：轻阴影+圆润边角，替代厚重阴影，符合苹果"隐形式设计"-->
+        <div class="overflow-x-auto rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.02)]">
+            <table class="w-full border-collapse bg-white rounded-2xl overflow-hidden">
+                <!--表头：低饱和度底色，无强对比色，营造"克制高级"的视觉感-->
+                <thead>
+                    <tr class="bg-[#f9f9fa] text-[#1d1d1f]">
+                        <th class="py-6 px-6 sm:px-8 text-left w-[30%] font-medium text-[1rem]">型号</th>
+                        <th class="py-6 px-6 sm:px-8 text-center w-[23%] font-medium text-[1rem]">A15</th>
+                        <th class="py-6 px-6 sm:px-8 text-center w-[23%] font-medium text-[1rem]">A20</th>
+                        <th class="py-6 px-6 sm:px-8 text-center w-[24%] font-medium text-[1rem]">A30</th>
+                    </tr>
+                </thead>
+                <!--表体：删除所有行的border-t横线，保留hover背景区分行，提升可读性-->
+                <tbody class="text-[#424245] text-[0.9375rem]">
+                    <!--表格行：删除border-t，保留hover效果（交互细腻不突兀）-->
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">激光功率</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">1500W</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">2000W</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">3000W</td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">工作台面尺寸</td>
+                        <!-- 在每个尺寸规格之间插入 <br> 实现换行，同时补充闭合 </td> -->
+                        <td class="py-6 px-6 sm:px-8 text-center">
+                            1350x1320mm<br> <!-- 第一个规格后换行 -->
+                            1310x2550mm<br> <!-- 第二个规格后换行 -->
+                            3050x1500mm
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center">
+                            1350x1320mm<br>
+                            1310x2550mm<br>
+                            3050x1500mm
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center">
+                            1350x1320mm<br>
+                            1310x2550mm<br>
+                            3050x1500mm
+                        </td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">最大切割速度</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">定位精度</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">重复定位精度</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
+                    </tr>
+                    <!--切割厚度行：特殊标注"特殊情况"，用浅灰小字区分，提升信息层级-->
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(碳钢)</td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 12mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况16mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 16mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况20mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 18mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况25mm)</span>
+                        </td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(不锈钢)</td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 5mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 6mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况10mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 8mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况12mm)</span>
+                        </td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(铝合金)</td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 3mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况5mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况6mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
+                        </td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">批量加工最大切割厚度(铜)</td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 3mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况4mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况6mm)</span>
+                        </td>
+                        <td class="py-6 px-6 sm:px-8 text-center"> 4mm <span class="block text-xs text-[#86868b] mt-1">(特殊情况8mm)</span>
+                        </td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">冷却方式</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">电力需求</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">380V/3PH 50/60HZ</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">380V/3PH 50/60HZ</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">380V/3PH 50/60HZ</td>
+                    </tr>
+                    <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                        <td class="py-6 px-6 sm:px-8 font-medium">加速度</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">1.0G</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">1.0G</td>
+                        <td class="py-6 px-6 sm:px-8 text-center">1.0G</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--补充说明：苹果风格"轻量级注释"，用浅灰小字+图标引导，不干扰主内容-->
+        <div class="mt-8 text-center text-sm text-[#86868b] flex items-center justify-center gap-2">
+            <i class="fa fa-info-circle"></i>
+            <span>参数数据基于标准测试环境，实际使用可能因材料特性、操作条件略有差异</span>
+        </div>
+    </div>
+</section>
 
 			<!--客户评价-->
 			<section class="py-16 bg-white">
@@ -1464,7 +1485,7 @@
 					<div>
 						<div class="flex items-center space-x-2 mb-6">
 							<div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
-								<img alt="Senrytech Logo" class="max-w-full max-h-full" src="../../../img/Senrytech公司Logo.jpg" />
+								<img alt="Senrytech Logo" class="max-w-full max-h-full" src="../../../img/LOGO/Senrytech公司Logo.jpg" />
 							</div>
 							<span class="font-bold text-xl">Senrytech</span>
 						</div>

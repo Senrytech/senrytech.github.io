@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended" // 集成 Prettier 规则
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error", // 将 Prettier 格式问题视为错误
+    "indent": "off", // 由 Prettier 控制缩进
+    "linebreak-style": ["error", "unix"], // 统一换行符为 LF
+    "quotes": ["error", "single"], // 强制单引号
+    "semi": ["error", "always"] // 强制分号结尾
+  },
+  "env": {
+    "browser": true, // 启用浏览器全局变量
+    "es2021": true // 启用 ES2021 语法支持
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  }
+}

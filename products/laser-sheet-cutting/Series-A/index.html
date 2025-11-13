@@ -688,14 +688,18 @@
             >
           </nav>
           <!--右侧功能区：搜索框、询价框、语言切换-->
-          <div class="hidden md:flex items-center space-x-3">
+          <div class="flex items-center space-x-3">
+            <!-- 菜单按钮在移动端显示 -->
             <button
               id="menu-toggle"
-              class="md:hidden text-white focus:outline-none"
+              class="text-white focus:outline-none z-50"
+              style="display: block !important"
             >
               <i class="fa fa-bars text-xl"></i>
             </button>
-            <div class="relative">
+
+            <!-- 搜索框、询价按钮在桌面端显示 -->
+            <div class="hidden md:block relative">
               <input
                 class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60"
                 placeholder="搜索..."
@@ -705,11 +709,13 @@
                 class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"
               ></i>
             </div>
+
             <a
-              class="bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"
+              class="hidden md:block bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-colors"
               href="https://www.senrytech.com/quote/"
               >询价</a
             >
+
             <div class="relative group">
               <button
                 class="flex items-center text-white hover:text-secondary transition-colors"
@@ -718,6 +724,7 @@
                 <span class="text-xs">中文</span>
                 <i class="fa fa-chevron-down ml-0.5 text-[10px]"></i>
               </button>
+
               <div
                 class="absolute right-0 mt-1.5 w-32 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
               >
@@ -2577,6 +2584,183 @@
     </footer>
     <!--导航交互脚本-->
     <script>
+      // 移动端菜单切换功能
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        // 确保元素存在再执行操作
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+            // 切换图标（可选）
+            const icon = menuToggle.querySelector("i");
+            if (icon.classList.contains("fa-bars")) {
+              icon.classList.replace("fa-bars", "fa-times");
+            } else {
+              icon.classList.replace("fa-times", "fa-bars");
+            }
+          });
+        }
+      });
+      // 产品中心子菜单切换
+      const productsToggle = document.getElementById("mobile-products-toggle");
+      const productsMenu = document.getElementById("mobile-products-menu");
+
+      productsToggle.addEventListener("click", () => {
+        productsMenu.classList.toggle("hidden");
+        const icon = productsToggle.querySelector("i");
+        icon.classList.toggle("rotate-180");
+      });
+
+      // 激光板材切割机子菜单
+      const sheetcutToggle = document.getElementById("mobile-sheetcut-toggle");
+      const sheetcutMenu = document.getElementById("mobile-sheetcut-menu");
+
+      sheetcutToggle.addEventListener("click", () => {
+        sheetcutMenu.classList.toggle("hidden");
+        const icon = sheetcutToggle.querySelector("i");
+        icon.classList.toggle("rotate-180");
+      });
+
+      // 激光管材切割机子菜单
+      const tubecutToggle = document.getElementById("mobile-tubecut-toggle");
+      const tubecutMenu = document.getElementById("mobile-tubecut-menu");
+
+      tubecutToggle.addEventListener("click", () => {
+        tubecutMenu.classList.toggle("hidden");
+        const icon = tubecutToggle.querySelector("i");
+        icon.classList.toggle("rotate-180");
+      });
+
+      // 解决方案子菜单
+      const solutionsToggle = document.getElementById(
+        "mobile-solutions-toggle"
+      );
+      const solutionsMenu = document.getElementById("mobile-solutions-menu");
+
+      solutionsToggle.addEventListener("click", () => {
+        solutionsMenu.classList.toggle("hidden");
+        const icon = solutionsToggle.querySelector("i");
+        icon.classList.toggle("rotate-180");
+      });
+      // 导航栏滚动效果
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("nav-scrolled");
+        } else {
+          navbar.classList.remove("nav-scrolled");
+        }
+      });
+      // 滚动动画：包裹在 DOMContentLoaded 事件中，避免 DOM 未加载时执行
+      document.addEventListener("DOMContentLoaded", function () {
+        const observerOptions = {
+          threshold: 0.1,
+        };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("fade-in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        document.querySelectorAll("section").forEach((section) => {
+          observer.observe(section);
+        });
+      }); // ✅ 补充了闭合，收尾 DOMContentLoaded 的回调函数
+      document.addEventListener("DOMContentLoaded", function () {
+        // 移动端语言切换元素
+        const mobileLangBtn = document.getElementById("mobile-lang-btn");
+        const mobileLangDropdown = document.getElementById(
+          "mobile-lang-dropdown"
+        );
+        const mobileLangLinks =
+          mobileLangDropdown.querySelectorAll("a[data-lang]");
+        const LANG_STORAGE_KEY = "preferred_language";
+        // 1. 点击语言图标，展开/收起下拉菜单
+        mobileLangBtn.addEventListener("click", function (e) {
+          e.stopPropagation(); // 防止触发页面其他点击事件
+          const isVisible =
+            mobileLangDropdown.classList.contains("opacity-100");
+          if (isVisible) {
+            // 收起菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+          } else {
+            // 展开菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+          }
+        });
+        // 2. 点击语言选项，保存偏好并跳转（适配静态多文件架构）
+        mobileLangLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const selectedLang = this.getAttribute("data-lang");
+            // 保存语言偏好到LocalStorage
+            localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+            // 收起菜单
+            mobileLangDropdown.classList.remove(
+              "opacity-100",
+              "visible",
+              "scale-100"
+            );
+            mobileLangDropdown.classList.add(
+              "opacity-0",
+              "invisible",
+              "scale-95"
+            );
+            // 跳转到对应语言的静态页面（需与你的文件夹路径匹配）
+            const langPathMap = {
+              zh: "/zh-CN/index.html", // 中文页面路径
+              en: "/en-US/index.html", // 英文页面路径（默认优先）
+              tr: "/tr-TR/index.html", // 土耳其语页面路径
+              es: "/es-ES/index.html", // 西班牙语页面路径
+              pt: "/pt-PT/index.html", // 葡萄牙语页面路径
+              fr: "/fr-FR/index.html", // 法语页面路径
+            };
+            window.location.href =
+              langPathMap[selectedLang] || "/en-US/index.html"; // 默认跳转英文
+          });
+        });
+        // 3. 点击页面其他区域，收起语言菜单（优化体验）
+        document.addEventListener("click", function () {
+          mobileLangDropdown.classList.remove(
+            "opacity-100",
+            "visible",
+            "scale-100"
+          );
+          mobileLangDropdown.classList.add(
+            "opacity-0",
+            "invisible",
+            "scale-95"
+          );
+        });
+        // 4. 初始化：默认语言优先（若未保存偏好，默认英文）
+        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+        if (!savedLang) {
+          // 首次访问时，默认跳转到英文页面（可根据需求改为中文）
+          // window.location.href = '/en-US/index.html';
+        }
+      });
       function sendEmail(event) {
         event.preventDefault(); // 阻止页面默认刷新
         // 显示提交中提示
@@ -3044,204 +3228,6 @@
             left: 400,
             behavior: "smooth",
           });
-        }
-      });
-    </script>
-    <script>
-      // 移动端菜单切换
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-        // 切换图标（汉堡/关闭）
-        const icon = menuToggle.querySelector("i");
-        if (icon.classList.contains("fa-bars")) {
-          icon.classList.replace("fa-bars", "fa-times");
-        } else {
-          icon.classList.replace("fa-times", "fa-bars");
-        }
-      });
-      // 产品中心子菜单切换
-      const productsToggle = document.getElementById("mobile-products-toggle");
-      const productsMenu = document.getElementById("mobile-products-menu");
-
-      productsToggle.addEventListener("click", () => {
-        productsMenu.classList.toggle("hidden");
-        const icon = productsToggle.querySelector("i");
-        icon.classList.toggle("rotate-180");
-      });
-
-      // 激光板材切割机子菜单
-      const sheetcutToggle = document.getElementById("mobile-sheetcut-toggle");
-      const sheetcutMenu = document.getElementById("mobile-sheetcut-menu");
-
-      sheetcutToggle.addEventListener("click", () => {
-        sheetcutMenu.classList.toggle("hidden");
-        const icon = sheetcutToggle.querySelector("i");
-        icon.classList.toggle("rotate-180");
-      });
-
-      // 激光管材切割机子菜单
-      const tubecutToggle = document.getElementById("mobile-tubecut-toggle");
-      const tubecutMenu = document.getElementById("mobile-tubecut-menu");
-
-      tubecutToggle.addEventListener("click", () => {
-        tubecutMenu.classList.toggle("hidden");
-        const icon = tubecutToggle.querySelector("i");
-        icon.classList.toggle("rotate-180");
-      });
-
-      // 解决方案子菜单
-      const solutionsToggle = document.getElementById(
-        "mobile-solutions-toggle"
-      );
-      const solutionsMenu = document.getElementById("mobile-solutions-menu");
-
-      solutionsToggle.addEventListener("click", () => {
-        solutionsMenu.classList.toggle("hidden");
-        const icon = solutionsToggle.querySelector("i");
-        icon.classList.toggle("rotate-180");
-      });
-      // 导航栏滚动效果
-      window.addEventListener("scroll", () => {
-        const navbar = document.getElementById("navbar");
-        if (window.scrollY > 50) {
-          navbar.classList.add("nav-scrolled");
-        } else {
-          navbar.classList.remove("nav-scrolled");
-        }
-      });
-      // 产品标签切换
-      const productTabs = document.querySelectorAll(".product-tab");
-      const productContents = document.querySelectorAll(".product-content");
-      productTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          const tabId = tab.getAttribute("data-tab");
-          const contentId = `${tabId}-content`;
-          // 更新标签状态
-          productTabs.forEach((t) => {
-            t.classList.remove("border-primary", "text-primary");
-            t.classList.add("border-transparent", "text-gray-500");
-          });
-          tab.classList.remove("border-transparent", "text-gray-500");
-          tab.classList.add("border-primary", "text-primary");
-          // 切换内容
-          productContents.forEach((content) => {
-            content.classList.add("hidden");
-          });
-          const targetContent = document.getElementById(contentId);
-          if (targetContent) {
-            targetContent.classList.remove("hidden");
-          }
-        });
-      });
-      // 滚动动画：包裹在 DOMContentLoaded 事件中，避免 DOM 未加载时执行
-      document.addEventListener("DOMContentLoaded", function () {
-        const observerOptions = {
-          threshold: 0.1,
-        };
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("fade-in");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-        document.querySelectorAll("section").forEach((section) => {
-          observer.observe(section);
-        });
-      }); // ✅ 补充了闭合，收尾 DOMContentLoaded 的回调函数
-      document.addEventListener("DOMContentLoaded", function () {
-        // 移动端语言切换元素
-        const mobileLangBtn = document.getElementById("mobile-lang-btn");
-        const mobileLangDropdown = document.getElementById(
-          "mobile-lang-dropdown"
-        );
-        const mobileLangLinks =
-          mobileLangDropdown.querySelectorAll("a[data-lang]");
-        const LANG_STORAGE_KEY = "preferred_language";
-        // 1. 点击语言图标，展开/收起下拉菜单
-        mobileLangBtn.addEventListener("click", function (e) {
-          e.stopPropagation(); // 防止触发页面其他点击事件
-          const isVisible =
-            mobileLangDropdown.classList.contains("opacity-100");
-          if (isVisible) {
-            // 收起菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-          } else {
-            // 展开菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-          }
-        });
-        // 2. 点击语言选项，保存偏好并跳转（适配静态多文件架构）
-        mobileLangLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const selectedLang = this.getAttribute("data-lang");
-            // 保存语言偏好到LocalStorage
-            localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
-            // 收起菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-            // 跳转到对应语言的静态页面（需与你的文件夹路径匹配）
-            const langPathMap = {
-              zh: "/zh-CN/index.html", // 中文页面路径
-              en: "/en-US/index.html", // 英文页面路径（默认优先）
-              tr: "/tr-TR/index.html", // 土耳其语页面路径
-              es: "/es-ES/index.html", // 西班牙语页面路径
-              pt: "/pt-PT/index.html", // 葡萄牙语页面路径
-              fr: "/fr-FR/index.html", // 法语页面路径
-            };
-            window.location.href =
-              langPathMap[selectedLang] || "/en-US/index.html"; // 默认跳转英文
-          });
-        });
-        // 3. 点击页面其他区域，收起语言菜单（优化体验）
-        document.addEventListener("click", function () {
-          mobileLangDropdown.classList.remove(
-            "opacity-100",
-            "visible",
-            "scale-100"
-          );
-          mobileLangDropdown.classList.add(
-            "opacity-0",
-            "invisible",
-            "scale-95"
-          );
-        });
-        // 4. 初始化：默认语言优先（若未保存偏好，默认英文）
-        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
-        if (!savedLang) {
-          // 首次访问时，默认跳转到英文页面（可根据需求改为中文）
-          // window.location.href = '/en-US/index.html';
         }
       });
     </script>

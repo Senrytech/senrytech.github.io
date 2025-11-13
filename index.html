@@ -3602,13 +3602,13 @@
       });
 
       document.addEventListener('DOMContentLoaded', function() {
-  // 移动端语言切换元素
-  const mobileLangBtn = document.getElementById('mobile-lang-btn');
-  const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
-  const mobileLangLinks = mobileLangDropdown.querySelectorAll('a[data-lang]');
-  const LANG_STORAGE_KEY = "preferred_language";
+      // 移动端语言切换元素
+        const mobileLangBtn = document.getElementById('mobile-lang-btn');
+        const mobileLangDropdown = document.getElementById('mobile-lang-dropdown');
+        const mobileLangLinks = mobileLangDropdown.querySelectorAll('a[data-lang]');
+        const LANG_STORAGE_KEY = "preferred_language";
 
-  // 1. 点击语言图标，展开/收起下拉菜单
+    // 1. 点击语言图标，展开/收起下拉菜单
   mobileLangBtn.addEventListener('click', function(e) {
     e.stopPropagation(); // 防止触发页面其他点击事件
     const isVisible = mobileLangDropdown.classList.contains('opacity-100');

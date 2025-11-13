@@ -309,6 +309,35 @@
       .text-apple-gray {
         color: var(--apple-gray);
       }
+      /* 表格外层容器：允许小屏横向滚动，避免单元格挤压 */
+      .tech-table-wrap {
+        overflow-x: auto; /* 核心：小屏时横向滚动 */
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 10px; /* 左右留边，提升视觉体验 */
+      }
+      /* 表格：确保内容不被压缩，文字不自动换行 */
+      .tech-table {
+        width: 100%;
+        min-width: 500px; /* 关键：设定最小宽度，小屏时触发横向滚动 */
+        border-collapse: collapse; /* 合并边框，减少杂乱 */
+      }
+
+      /* 单元格：控制内边距和文字显示 */
+      .tech-table th,
+      .tech-table td {
+        padding: 10px 8px; /* 合理内边距，避免单元格过高 */
+        border: 1px solid #f5f5f7; /* 浅色边框，区分单元格 */
+        text-align: center; /* 文字居中，提升可读性 */
+        white-space: nowrap; /* 核心：文字不换行，避免竖排 */
+        font-size: clamp(13px, 2.5vw, 15px); /* 动态字体大小，适配不同屏幕 */
+      }
+
+      /* 表头：突出样式，区分内容 */
+      .tech-table th {
+        background-color: #f5f5f7;
+        font-weight: 600;
+      }
     </style>
   </head>
   <body>
@@ -2060,25 +2089,26 @@
         </div>
       </section>
       <section class="py-24 bg-[#f5f5f7]" id="specs">
-        <!--苹果官网标志性浅灰背景，增强页面呼吸感-->
+        <!-- 苹果官网标志性浅灰背景，增强页面呼吸感 -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <!--控制最大宽度，避免大屏拉伸导致内容松散-->
-          <!--标题：新增text-center实现标题居中，保留苹果风格排版-->
+          <!-- 控制最大宽度，避免大屏拉伸导致内容松散 -->
+          <!-- 标题：新增text-center实现标题居中，保留苹果风格排版 -->
           <h2
-            class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张 */ font-normal /* 苹果风格轻盈字重，避免厚重感 */ tracking-tight text-shadow-lg mb-10 /* 增加底部间距，与表格拉开舒适距离（原mb-4偏近） */ text-center /* 核心：标题文本居中显示 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+            class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-10 text-center font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
           >
             技术参数
           </h2>
-          <!--表格容器：轻阴影+圆润边角，替代厚重阴影，符合苹果"隐形式设计"-->
+          <!-- 表格外层容器：添加类名tech-table-wrap，实现移动端横向滚动 -->
           <div
-            class="overflow-x-auto rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.02)]"
+            class="tech-table-wrap overflow-x-auto rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.02)]"
           >
+            <!-- 表格本身：添加类名tech-table，确保样式优先级和布局规则 -->
             <table
-              class="w-full border-collapse bg-white rounded-2xl overflow-hidden"
+              class="tech-table w-full border-collapse bg-[#f5f5f7] rounded-2xl overflow-hidden"
             >
-              <!--表头：低饱和度底色，无强对比色，营造"克制高级"的视觉感-->
+              <!-- 表头和表体内容保持不变 -->
               <thead>
-                <tr class="bg-[#f9f9fa] text-[#1d1d1f]">
+                <tr class="bg-[#f5f5f7] text-[#1d1d1f]">
                   <th
                     class="py-6 px-6 sm:px-8 text-left w-[30%] font-medium text-[1rem]"
                   >
@@ -2110,7 +2140,7 @@
                   <td class="py-6 px-6 sm:px-8 text-center">2000W</td>
                   <td class="py-6 px-6 sm:px-8 text-center">3000W</td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">工作台面尺寸</td>
                   <!-- 在每个尺寸规格之间插入 <br> 实现换行，同时补充闭合 </td> -->
                   <td class="py-6 px-6 sm:px-8 text-center">
@@ -2131,26 +2161,26 @@
                     3050x1500mm
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">最大切割速度</td>
                   <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
                   <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
                   <td class="py-6 px-6 sm:px-8 text-center">80m/min</td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">定位精度</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.05mm</td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">重复定位精度</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
                 </tr>
                 <!--切割厚度行：特殊标注"特殊情况"，用浅灰小字区分，提升信息层级-->
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">
                     批量加工最大切割厚度(碳钢)
                   </td>
@@ -2173,7 +2203,7 @@
                     >
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">
                     批量加工最大切割厚度(不锈钢)
                   </td>
@@ -2196,7 +2226,7 @@
                     >
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">
                     批量加工最大切割厚度(铝合金)
                   </td>
@@ -2219,7 +2249,7 @@
                     >
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">
                     批量加工最大切割厚度(铜)
                   </td>
@@ -2242,13 +2272,13 @@
                     >
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">冷却方式</td>
                   <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
                   <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
                   <td class="py-6 px-6 sm:px-8 text-center">水冷</td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">电力需求</td>
                   <td class="py-6 px-6 sm:px-8 text-center">
                     380V/3PH 50/60HZ
@@ -2260,7 +2290,7 @@
                     380V/3PH 50/60HZ
                   </td>
                 </tr>
-                <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
+                <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">加速度</td>
                   <td class="py-6 px-6 sm:px-8 text-center">1.0G</td>
                   <td class="py-6 px-6 sm:px-8 text-center">1.0G</td>
@@ -2269,7 +2299,7 @@
               </tbody>
             </table>
           </div>
-          <!--补充说明：苹果风格"轻量级注释"，用浅灰小字+图标引导，不干扰主内容-->
+          <!-- 补充说明：苹果风格"轻量级注释"，用浅灰小字+图标引导，不干扰主内容 -->
           <div
             class="mt-8 text-center text-sm text-[#86868b] flex items-center justify-center gap-2"
           >
@@ -3338,6 +3368,30 @@
             behavior: "smooth",
           });
         }
+      });
+
+      // 监听窗口大小，动态调整单元格内边距
+      window.addEventListener("resize", function () {
+        const cells = document.querySelectorAll(
+          ".tech-table th, .tech-table td"
+        );
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth < 360) {
+          cells.forEach((cell) => {
+            cell.style.padding = "8px 5px"; // 超小屏减少内边距
+          });
+        } else {
+          cells.forEach((cell) => {
+            cell.style.padding = "10px 8px"; // 恢复默认内边距
+          });
+        }
+      });
+
+      // 页面加载时执行一次
+      window.addEventListener("load", function () {
+        const event = new Event("resize");
+        window.dispatchEvent(event);
       });
     </script>
   </body>

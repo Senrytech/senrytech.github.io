@@ -49,6 +49,14 @@
               dark: "#2c3e50",
             },
             fontFamily: {
+              apple: [
+                "SF Pro Display",
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "sans-serif",
+              ],
               sans: ["Inter", "system-ui", "sans-serif"],
             },
           },
@@ -1329,7 +1337,7 @@
           >
             <!--标签：颜色适配背景，字体族同步统一-->
             <span
-              class="inline-block px-3.5 py-1 bg-secondary/90 backdrop-blur-md text-white rounded-full text-xs font-medium mb-5 tracking-tight transition-all duration-300 hover:bg-secondary hover:scale-105 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="inline-block px-3.5 py-1 bg-secondary/90 backdrop-blur-md text-white rounded-full text-xs font-medium mb-5 tracking-tight transition-all duration-300 hover:bg-secondary hover:scale-105 font-apple]"
               >经济款首选</span
             >
             <!--标题：与“薄板 经济 小钢炮”同款样式（字体族+字重+颜色透明度）-->
@@ -1341,14 +1349,14 @@
             </h1>
             <!--描述文本：与“每一次切割，都是对完美的极致追求”同款样式-->
             <p
-              class="text-[#1d1d1f]/80 <!-- 颜色透明度：目标描述为#1d1d1f/80，替换原text-gray-200 --> text-[clamp(1rem,2vw,1.25rem)] <!-- 字号范围对齐目标描述 --> mb-8 max-w-lg font-light text-white <!-- 字重：目标描述为font-light，统一替换原font-normal --> leading-relaxed <!-- 行高：目标描述为leading-relaxed，提升阅读舒适度 --> font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[#1d1d1f]/80 <!-- 颜色透明度：目标描述为#1d1d1f/80，替换原text-gray-200 --> text-[clamp(1rem,2vw,1.25rem)] <!-- 字号范围对齐目标描述 --> mb-8 max-w-lg font-light text-white <!-- 字重：目标描述为font-light，统一替换原font-normal --> leading-relaxed <!-- 行高：目标描述为leading-relaxed，提升阅读舒适度 --> font-apple]"
             >
               薄板切割高性价比之选，兼顾性能与成本的经济款激光切割设备，为小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。
             </p>
             <!--按钮：字体族同步统一，保持交互逻辑-->
             <div class="flex flex-wrap gap-3.5">
               <a
-                class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0 font-apple]"
                 href="#specs"
                 style="
                   transform: translateY(15px);
@@ -1360,7 +1368,7 @@
                 技术参数 <i class="fa fa-arrow-right ml-2 text-xs"></i>
               </a>
               <a
-                class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0 font-apple]"
                 href="#contact"
                 style="
                   transform: translateY(15px);
@@ -1489,7 +1497,7 @@
             </h2>
             <!--副标题：与“每一次切割，都是对完美的极致追求”对齐颜色透明度+字体族+字重-->
             <p
-              class="text-[clamp(1rem,2vw,1.125rem)] /* 字号范围与目标描述（1rem-1.25rem）比例协调 */ text-[#1d1d1f]/80 /* 颜色透明度：完全匹配目标描述的#1d1d1f/80，替代原#86868b */ mt-4 /* 间距保持，与主标题层级舒适 */ font-light /* 字重：统一为目标描述的font-light，替代原normal，增强细腻感 */ max-w-2xl mx-auto /* 宽度限制+居中，优化阅读体验 */ leading-relaxed /* 行高：同步目标描述的宽松行高，提升可读性 */ /* 统一苹果风格字体族，与目标描述完全匹配 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[clamp(1rem,2vw,1.125rem)] /* 字号范围与目标描述（1rem-1.25rem）比例协调 */ text-[#1d1d1f]/80 /* 颜色透明度：完全匹配目标描述的#1d1d1f/80，替代原#86868b */ mt-4 /* 间距保持，与主标题层级舒适 */ font-light /* 字重：统一为目标描述的font-light，替代原normal，增强细腻感 */ max-w-2xl mx-auto /* 宽度限制+居中，优化阅读体验 */ leading-relaxed /* 行高：同步目标描述的宽松行高，提升可读性 */ /* 统一苹果风格字体族，与目标描述完全匹配 */ font-apple]"
             >
               杜绝虚假宣传
               <!--短横线：颜色同步目标风格的近黑透明度，保持协调-->
@@ -1509,7 +1517,7 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
                 >
                   碳钢切割厚度
                 </h3>
@@ -1524,7 +1532,7 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
                 >
                   不锈钢切割厚度
                 </h3>
@@ -1539,7 +1547,7 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
                 >
                   铝合金切割厚度
                 </h3>
@@ -1554,7 +1562,7 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
                 >
                   铜切割厚度
                 </h3>
@@ -1583,7 +1591,7 @@
             </h2>
             <!--副标题：匹配“杜绝虚假宣传”字体参数，强化细节统一-->
             <p
-              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
             >
               高精度切割设备，为您的生产带来高效与精准的完美结合
             </p>
@@ -1736,7 +1744,7 @@
             </h2>
             <!--副标题：优化颜色、字体族、行高，匹配“想怎么切”副标题柔和感-->
             <p
-              class="text-[#1d1d1f]/80 /* 从text-black/90改为苹果风格近黑（#1d1d1f）+80%透明度，视觉更高级 */ text-[clamp(1rem,2vw,1.25rem)] /* 新增响应式字号，避免小屏换行、大屏失衡 */ mt-2 /* 调整间距，与主标题形成舒适层级（原mt-4偏宽） */ max-w-2xl font-light leading-relaxed /* 新增宽松行高，提升长文本阅读舒适度 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[#1d1d1f]/80 /* 从text-black/90改为苹果风格近黑（#1d1d1f）+80%透明度，视觉更高级 */ text-[clamp(1rem,2vw,1.25rem)] /* 新增响应式字号，避免小屏换行、大屏失衡 */ mt-2 /* 调整间距，与主标题形成舒适层级（原mt-4偏宽） */ max-w-2xl font-light leading-relaxed /* 新增宽松行高，提升长文本阅读舒适度 */ font-apple]"
             >
               每一次切割，都是对完美的极致追求
             </p>
@@ -1756,7 +1764,7 @@
               想怎么切，就怎么切
             </h2>
             <p
-              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
             >
               适配多种切割场景，满足不同工艺需求
             </p>
@@ -1871,7 +1879,7 @@
             芯升级，更神奇
           </h2>
           <p
-            class="text-[#1d1d1f]/80 text-[clamp(0.9rem,2vw,1.1rem)] /* 副标题同步缩小：原1rem→0.9rem，1.25rem→1.1rem */ max-w-2xl mx-auto /* 宽度收窄，匹配缩小的标题 */ font-light leading-relaxed font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+            class="text-[#1d1d1f]/80 text-[clamp(0.9rem,2vw,1.1rem)] /* 副标题同步缩小：原1rem→0.9rem，1.25rem→1.1rem */ max-w-2xl mx-auto /* 宽度收窄，匹配缩小的标题 */ font-light leading-relaxed font-apple]"
           >
             全新核心技术升级，带来更智能、更高效的激光切割体验
           </p>
@@ -2288,7 +2296,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
               >
                 作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。
               </p>
@@ -2313,7 +2321,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
               >
                 我们工厂从传统切割设备升级到Senrytech
                 A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。
@@ -2337,7 +2345,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
               >
                 对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。
               </p>
@@ -2367,7 +2375,7 @@
                 联系专家
               </h2>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
               >
                 填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案
               </p>

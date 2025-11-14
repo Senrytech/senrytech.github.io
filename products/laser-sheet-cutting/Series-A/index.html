@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta
-      content="Senrytech A系列激光板材切割机 - 经济款高精度金属切割设备，适配碳钢/不锈钢/铝合金，为小型企业降低加工门槛，提升生产效率"
+      content="Senrytech A系列激光板材切割机，经济款高精度金属切割设备，适配碳钢/不锈钢/铝合金，助力小企业降本提效"
       name="description"
     />
     <meta
-      content="激光板材切割机A系列,经济款激光切割机,小型企业金属切割,高精度激光切割设备,碳钢激光切割"
+      content="激光板材切割机Senrytech A系列,经济款激光切割机,小型企业金属切割,高精度激光切割设备,碳钢激光切割"
       name="keywords"
     />
     <link
@@ -17,10 +17,13 @@
     />
     <title>激光板材切割机A系列 - Senrytech</title>
     <!--Tailwind CSS-->
+    <!-- 外部资源引入 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <!--Font Awesome-->
     <link
@@ -28,9 +31,13 @@
       rel="stylesheet"
     />
     <!--Chart.js 新增：引入图表库-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"
+      defer
+    ></script>
     <script
       src="https://cdn.emailjs.com/dist/email.min.js"
+      defer
       type="text/javascript"
     ></script>
     <script type="text/javascript">
@@ -38,7 +45,7 @@
         emailjs.init("w9wGWxQMCWP7H0YhL"); // 务必替换为自己的Account ID
       })();
     </script>
-    <!--Tailwind配置和自定义样式-->
+    <!--自定义配置-->
     <script>
       tailwind.config = {
         theme: {
@@ -3427,52 +3434,27 @@
           showSlide(currentIndex);
         }, 5000);
       });
-      // 芯升级板块 - 横向滚动交互
-      const coreUpgradeCarousel = document.querySelector(
-        ".core-upgrade-carousel"
-      ); // 补充获取容器元素
-      const coreUpgradePrev = document.getElementById("coreUpgradePrev");
-      const coreUpgradeNext = document.getElementById("coreUpgradeNext");
-      const scrollItem = coreUpgradeCarousel
-        ? coreUpgradeCarousel.querySelector(".core-upgrade-item")
-        : null;
-      const itemWidth = scrollItem ? scrollItem.offsetWidth + 20 : 400; // 20 为项间距，可调整
-
-      if (coreUpgradePrev && coreUpgradeNext && coreUpgradeCarousel) {
-        coreUpgradePrev.addEventListener("click", () => {
+      // 移动端触摸滑动支持
+      let touchStartX = 0;
+      let touchEndX = 0;
+      coreUpgradeCarousel.addEventListener("touchstart", (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+      coreUpgradeCarousel.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchEndX - touchStartX;
+        if (diffX > 50) {
           coreUpgradeCarousel.scrollBy({
-            left: -itemWidth,
+            left: -400,
             behavior: "smooth",
           });
-        });
-        coreUpgradeNext.addEventListener("click", () => {
+        } else if (diffX < -50) {
           coreUpgradeCarousel.scrollBy({
-            left: itemWidth,
+            left: 400,
             behavior: "smooth",
           });
-        });
-        // 移动端触摸滑动支持
-        let touchStartX = 0;
-        let touchEndX = 0;
-        coreUpgradeCarousel.addEventListener("touchstart", (e) => {
-          touchStartX = e.touches[0].clientX;
-        });
-        coreUpgradeCarousel.addEventListener("touchend", (e) => {
-          touchEndX = e.changedTouches[0].clientX;
-          const diffX = touchEndX - touchStartX;
-          if (diffX > 50) {
-            coreUpgradeCarousel.scrollBy({
-              left: -400,
-              behavior: "smooth",
-            });
-          } else if (diffX < -50) {
-            coreUpgradeCarousel.scrollBy({
-              left: 400,
-              behavior: "smooth",
-            });
-          }
-        });
-      }
+        }
+      });
 
       // 监听窗口大小，动态调整单元格内边距
       window.addEventListener("resize", function () {
@@ -3561,6 +3543,76 @@
           prevBtn.style.opacity = "0";
           nextBtn.style.opacity = "0";
         });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 精准匹配DOM元素（与当前HTML的id完全对应）
+        const prevBtn = document.getElementById("coreUpgradePrev");
+        const nextBtn = document.getElementById("coreUpgradeNext");
+        const carousel = document.getElementById("coreUpgradeCarousel"); // 滚动内容容器
+        const cardContainer = carousel.querySelector(".flex"); // 卡片外层flex容器
+        const cards = carousel.querySelectorAll(".core-upgrade-item"); // 所有卡片
+
+        // 2. 计算单次滚动距离（完全适配当前卡片的min-width）
+        function getScrollStep() {
+          if (cards.length === 0) return 0;
+          // 获取当前屏幕下卡片的实际宽度（适配80vw/65vw/55vw）
+          const cardWidth = parseFloat(
+            window.getComputedStyle(cards[0]).minWidth
+          );
+          // 获取容器内边距（左右px-4/md:px-8）
+          const containerPadding =
+            parseFloat(
+              window.getComputedStyle(carousel.parentElement).paddingLeft
+            ) || 4;
+          // 单次滚动 = 卡片宽度 - 2*内边距（确保下一张卡片完全对齐可视区）
+          return cardWidth - 2 * containerPadding;
+        }
+
+        // 3. 修复滚动逻辑（确保滚动位置计算正确）
+        function scrollCarousel(direction) {
+          // 获取当前滚动位置（处理初始无transform的情况）
+          const currentTransform =
+            window.getComputedStyle(cardContainer).transform;
+          const currentX =
+            currentTransform === "none"
+              ? 0
+              : parseFloat(currentTransform.split(",")[4]);
+
+          // 计算新滚动位置（direction=1向右滚，direction=-1向左滚）
+          const step = getScrollStep() * direction;
+          const newX = currentX - step;
+
+          // 计算最大可滚动距离（避免滚出空白）
+          const maxScrollX = cardContainer.scrollWidth - carousel.clientWidth;
+          // 夹紧滚动位置（左不超过0，右不超过maxScrollX）
+          const clampedX = Math.max(-maxScrollX, Math.min(0, newX));
+
+          // 应用滚动（添加过渡动画）
+          cardContainer.style.transform = `translateX(${clampedX}px)`;
+          cardContainer.style.transition = "transform 0.5s ease";
+        }
+
+        // 4. 绑定按钮点击事件（确保按钮能触发滚动）
+        if (prevBtn && nextBtn) {
+          prevBtn.addEventListener("click", () => scrollCarousel(-1)); // 左滚
+          nextBtn.addEventListener("click", () => scrollCarousel(1)); // 右滚
+        }
+
+        // 5. 窗口缩放时重置滚动（避免屏幕尺寸变化导致错位）
+        window.addEventListener("resize", () => {
+          cardContainer.style.transform = "translateX(0)";
+        });
+
+        // 6. 确保按钮默认可见（方便测试，可保留）
+        if (prevBtn && nextBtn) {
+          prevBtn.style.opacity = "1";
+          prevBtn.style.visibility = "visible";
+          nextBtn.style.opacity = "1";
+          nextBtn.style.visibility = "visible";
+        }
       });
     </script>
 

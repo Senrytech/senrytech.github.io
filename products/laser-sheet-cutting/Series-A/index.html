@@ -27,6 +27,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <!--Chart.js 新增：引入图表库-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
     <script
       src="https://cdn.emailjs.com/dist/email.min.js"
       type="text/javascript"
@@ -36,7 +38,7 @@
         emailjs.init("w9wGWxQMCWP7H0YhL"); // 务必替换为自己的Account ID
       })();
     </script>
-    <!--Tailwind配置和自定义样式（与提供的导航样式保持一致）-->
+    <!--Tailwind配置和自定义样式-->
     <script>
       tailwind.config = {
         theme: {
@@ -77,7 +79,6 @@
       }
     </style>
     <style>
-      /* 保留提供的所有样式 */
       .fade-in {
         animation: fadeIn 0.8s ease-in-out;
       }
@@ -86,7 +87,6 @@
         from {
           opacity: 0;
         }
-
         to {
           opacity: 1;
         }
@@ -101,7 +101,6 @@
           transform: translateY(30px);
           opacity: 0;
         }
-
         to {
           transform: translateY(0);
           opacity: 1;
@@ -112,7 +111,6 @@
         scroll-behavior: smooth;
       }
 
-      /* 修复移动端菜单动画和层级问题 */
       #mobile-menu {
         position: absolute;
         top: 100%;
@@ -138,7 +136,6 @@
         font-size: 12px !important;
       }
 
-      /* 2. 滚动后状态：导航所有元素改为白色（原有规则保留，补充右侧功能区白色样式-改） */
       .nav-scrolled {
         background-color: rgba(43, 49, 63, 0.9) !important;
         backdrop-filter: blur(8px);
@@ -173,13 +170,11 @@
         color: white;
       }
 
-      /* 下拉菜单字体样式 */
       .group .absolute.bg-white.rounded-md.shadow-lg a {
         color: #374151 !important;
         background-color: transparent !important;
       }
 
-      /* 下拉菜单放置鼠标后字体变色样式 */
       .group .absolute.bg-white.rounded-md.shadow-lg a:hover {
         color: #ffffff !important;
         background-color: #ff8a00 !important;
@@ -195,7 +190,6 @@
         background-color: #ff8a00 !important;
       }
 
-      /* 字体大小调整 */
       nav a,
       .group a {
         font-size: 0.75rem !important;
@@ -212,7 +206,6 @@
         transform: translateZ(0);
       }
 
-      /* 确保Font Awesome图标正确显示 */
       .flex.space-x-4 a .fa,
       .space-y-3 li .fa,
       .solution-icon .fa,
@@ -223,7 +216,6 @@
         color: inherit !important;
       }
 
-      /* 文本阴影效果 */
       .text-shadow {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
@@ -232,46 +224,32 @@
         text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
       }
 
-      /* 文字渐变：薄荷绿 → 奶白 → 浅蓝 */
       .text-gradient-mint-white-blue {
-        /* 1. 设置背景渐变（方向：水平从左到右，颜色过渡按需求排列） */
         background: linear-gradient(
           90deg,
           #98fb98 0%,
           #fffddc 50%,
           #87ceeb 100%
         );
-        /* 结束色：浅蓝 */
-        /* 2. 将背景裁剪为文字形状（核心：只让文字显示背景渐变） */
         -webkit-background-clip: text;
         background-clip: text;
-        /* 3. 隐藏文字本身颜色，露出背景渐变 */
         color: transparent;
-        /* 4. 兼容浏览器前缀（确保多端显示一致） */
         -webkit-text-fill-color: transparent;
       }
 
-      /* 新增：文字渐变 - 蓝 → 橙 → 红（适配“薄板 经济 性能小钢炮”） */
       .text-gradient-blue-orange-red {
-        /* 水平渐变方向，颜色按“蓝→橙→红”顺序过渡，中间橙色调在50%位置 */
         background: linear-gradient(
           90deg,
           #1e90ff 0%,
-          /* 起始色：蓝色（标准蓝，与品牌科技感适配） */ #ff8a00 50%,
-          /* 中间色：橙色（复用现有 secondary 色值，保持风格统一） */ #ff4500
-            100%
+          #ff8a00 50%,
+          #ff4500 100%
         );
-        /* 结束色：红色（鲜明红，增强视觉冲击力） */
-        /* 核心：将背景渐变裁剪为文字形状，只让文字显示渐变 */
         -webkit-background-clip: text;
         background-clip: text;
-        /* 隐藏文字本身颜色，露出背景渐变（必须设置，否则原文字色会覆盖渐变） */
         color: transparent;
-        /* 兼容 Safari 等浏览器，确保渐变正常显示 */
         -webkit-text-fill-color: transparent;
       }
 
-      /* 横向滚动容器 - 隐藏滚动条 */
       .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -281,7 +259,6 @@
         display: none;
       }
 
-      /* 芯升级板块图片项 hover 效果 */
       .core-upgrade-item {
         transition: all 0.3s ease;
       }
@@ -293,9 +270,7 @@
 
       :root {
         --apple-blue: #0071e3;
-        /* 苹果风格主色（蓝色） */
         --apple-gray: #86868b;
-        /* 苹果风格次要色（灰色） */
       }
 
       .bg-apple-blue {
@@ -309,31 +284,29 @@
       .text-apple-gray {
         color: var(--apple-gray);
       }
-      /* 表格外层容器：允许小屏横向滚动，避免单元格挤压 */
+
       .tech-table-wrap {
-        overflow-x: auto; /* 核心：小屏时横向滚动 */
+        overflow-x: auto;
         width: 100%;
         box-sizing: border-box;
-        padding: 0 10px; /* 左右留边，提升视觉体验 */
+        padding: 0 10px;
       }
-      /* 表格：确保内容不被压缩，文字不自动换行 */
+
       .tech-table {
         width: 100%;
-        min-width: 500px; /* 关键：设定最小宽度，小屏时触发横向滚动 */
-        border-collapse: collapse; /* 合并边框，减少杂乱 */
+        min-width: 500px;
+        border-collapse: collapse;
       }
 
-      /* 单元格：控制内边距和文字显示 */
       .tech-table th,
       .tech-table td {
-        padding: 10px 8px; /* 合理内边距，避免单元格过高 */
-        border: 1px solid #f5f5f7; /* 浅色边框，区分单元格 */
-        text-align: center; /* 文字居中，提升可读性 */
-        white-space: nowrap; /* 核心：文字不换行，避免竖排 */
-        font-size: clamp(13px, 2.5vw, 15px); /* 动态字体大小，适配不同屏幕 */
+        padding: 10px 8px;
+        border: 1px solid #f5f5f7;
+        text-align: center;
+        white-space: nowrap;
+        font-size: clamp(13px, 2.5vw, 15px);
       }
 
-      /* 表头：突出样式，区分内容 */
       .tech-table th {
         background-color: #f5f5f7;
         font-weight: 600;
@@ -341,7 +314,6 @@
     </style>
   </head>
   <body>
-    <!--替换为提供的完整导航栏代码-->
     <header
       class="fixed top-0 left-0 z-50 w-full transition-all duration-400 cubic-bezier(0.25, 0.1, 0.25, 1) bg-transparent"
       id="navbar"
@@ -350,7 +322,6 @@
         class="container mx-auto px-4 sm:px-6 lg:px-8 ml-0 md:ml-20 max-w-7xl"
       >
         <div class="flex justify-between items-center h-12 md:h-14 flex-nowrap">
-          <!--品牌名称：苹果风格极简排版-->
           <a
             aria-label="Senrytech官网"
             class="flex items-center space-x-2"
@@ -361,15 +332,12 @@
               >Senrytech</span
             >
           </a>
-          <!--桌面端导航：苹果风格均匀间距与精致交互-->
           <nav class="hidden md:flex items-center space-x-8">
-            <!--首页-->
             <a
               class="nav-link text-white text-sm transition-colors duration-200"
               href="https://www.senrytech.com/"
               >首页</a
             >
-            <!--产品中心下拉菜单：苹果风格多级展开动画-->
             <div class="relative dropdown-trigger group">
               <a
                 class="nav-link text-white flex items-center text-sm"
@@ -383,7 +351,6 @@
               <div
                 class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
               >
-                <!--激光板材切割机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -392,7 +359,6 @@
                     激光板材切割机
                     <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -453,7 +419,6 @@
                     >
                   </div>
                 </div>
-                <!--激光管材切割机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -462,7 +427,6 @@
                     激光管材切割机
                     <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -503,7 +467,6 @@
                     >
                   </div>
                 </div>
-                <!--激光板管一体机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -512,7 +475,6 @@
                     激光板管一体机
                     <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -538,7 +500,6 @@
                     >
                   </div>
                 </div>
-                <!--激光焊接机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -546,7 +507,6 @@
                   >
                     激光焊接机 <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -567,7 +527,6 @@
                     >
                   </div>
                 </div>
-                <!--激光清洗机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -575,7 +534,6 @@
                   >
                     激光清洗机 <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -606,7 +564,6 @@
                     >
                   </div>
                 </div>
-                <!--激光打标机带二级菜单-->
                 <div class="relative group/item">
                   <a
                     class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm"
@@ -614,7 +571,6 @@
                   >
                     激光打标机 <i class="fa fa-chevron-right ml-1 text-xs"></i>
                   </a>
-                  <!--二级子菜单-->
                   <div
                     class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
                   >
@@ -632,7 +588,6 @@
                 </div>
               </div>
             </div>
-            <!--解决方案下拉菜单-->
             <div class="relative group">
               <a
                 class="text-white hover:text-secondary transition-colors flex items-center text-sm"
@@ -675,25 +630,21 @@
                 >
               </div>
             </div>
-            <!--避坑指南-->
             <a
               class="text-white hover:text-secondary transition-colors text-sm"
               href="https://www.senrytech.com/guides/"
               >避坑指南</a
             >
-            <!--新闻动态-->
             <a
               class="text-white hover:text-secondary transition-colors text-sm"
               href="https://www.senrytech.com/news/"
               >新闻动态</a
             >
-            <!--资料下载-->
             <a
               class="text-white hover:text-secondary transition-colors text-sm"
               href="https://www.senrytech.com/downloads/"
               >资料下载</a
             >
-            <!--关于我们下拉菜单-->
             <div class="relative group">
               <a
                 class="text-white hover:text-secondary transition-colors flex items-center text-sm"
@@ -726,22 +677,18 @@
                 >
               </div>
             </div>
-            <!--加入我们-->
             <a
               class="text-white hover:text-secondary transition-colors text-sm"
               href="https://www.senrytech.com/careers/"
               >加入我们</a
             >
-            <!--联系我们-->
             <a
               class="text-white hover:text-secondary transition-colors text-sm"
               href="https://www.senrytech.com/contact-us/"
               >联系我们</a
             >
           </nav>
-          <!--右侧功能区：搜索框、询价框、语言切换-->
           <div class="flex items-center space-x-3">
-            <!-- 搜索框、询价按钮在桌面端显示 -->
             <div class="hidden md:block relative">
               <input
                 class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary w-28 lg:w-36 placeholder-white/60"
@@ -818,9 +765,7 @@
               </div>
             </div>
 
-            <!-- 移动端功能区（汉堡菜单 + 并列语言切换按钮）- 修复版 -->
             <div class="md:hidden flex items-center space-x-4">
-              <!-- 语言切换按钮：新增relative容器，确保下拉菜单定位基准正确 -->
               <div class="relative">
                 <button
                   id="mobile-lang-btn"
@@ -831,7 +776,6 @@
                 </button>
               </div>
 
-              <!-- 原有移动端汉堡菜单：保持不变 -->
               <button
                 id="menu-toggle"
                 aria-label="打开/关闭移动端菜单"
@@ -841,8 +785,6 @@
               </button>
             </div>
 
-            <!-- 关键修复：将语言下拉菜单移出功能区，作为body直接子元素（避免flex布局干扰） -->
-            <!-- 移动端语言下拉菜单（默认隐藏，点击按钮展开） -->
             <div
               class="absolute top-14 right-4 bg-white rounded-md shadow-lg opacity-0 invisible transition-all duration-300 transform origin-top-right scale-95 z-50 w-32 md:hidden"
               id="mobile-lang-dropdown"
@@ -885,12 +827,10 @@
               >
             </div>
           </div>
-          <!-- 移动端导航菜单：保持原有结构，修复层级冲突 -->
           <div
             class="md:hidden hidden bg-white shadow-lg z-40"
             id="mobile-menu"
           >
-            <!-- 原有菜单内容不变（首页、产品中心、解决方案等） -->
             <div class="container mx-auto px-4 py-3 space-y-3">
               <a
                 class="block text-gray-800 hover:text-primary font-medium text-sm"
@@ -898,7 +838,6 @@
                 >首页</a
               >
 
-              <!-- 产品中心（一级菜单，带二级菜单） -->
               <div>
                 <button
                   class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
@@ -914,7 +853,6 @@
                   class="hidden pl-4 mt-2 space-y-3"
                   id="mobile-products-menu"
                 >
-                  <!-- 激光板材切割机（二级菜单，带三级菜单） -->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -987,7 +925,6 @@
                     </div>
                   </div>
 
-                  <!-- 激光管材切割机（二级菜单，带三级菜单） -->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -1040,7 +977,6 @@
                     </div>
                   </div>
 
-                  <!-- 激光板管一体机（二级菜单，带三级菜单） -->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -1078,8 +1014,6 @@
                     </div>
                   </div>
 
-                  <!-- 其他产品类型的二级菜单（激光焊接机、激光清洗机等） -->
-                  <!-- 激光焊接机 -->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -1094,7 +1028,6 @@
                       class="hidden pl-4 mt-1 space-y-2"
                       id="mobile-welding-menu"
                     >
-                      <!-- 激光焊接机的三级菜单 -->
                       <a
                         class="block text-gray-800 hover:text-primary text-sm"
                         href="https://www.senrytech.com/products/laser-welding/Series-A"
@@ -1112,7 +1045,6 @@
                       >
                     </div>
                   </div>
-                  <!--激光清洗机带二级菜单-->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -1152,7 +1084,6 @@
                       >
                     </div>
                   </div>
-                  <!--激光打标机带二级菜单-->
                   <div>
                     <button
                       class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm"
@@ -1180,7 +1111,6 @@
                 </div>
               </div>
 
-              <!-- 解决方案（一级菜单，带二级菜单） -->
               <div>
                 <button
                   class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
@@ -1228,7 +1158,6 @@
                 </div>
               </div>
 
-              <!-- 其他一级菜单 -->
               <a
                 class="block text-gray-800 hover:text-primary font-medium text-sm"
                 href="https://www.senrytech.com/guides/"
@@ -1245,7 +1174,6 @@
                 >资料下载</a
               >
 
-              <!-- 关于我们（一级菜单，带二级菜单） -->
               <div>
                 <button
                   class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm"
@@ -1291,7 +1219,6 @@
                 >联系我们</a
               >
 
-              <!-- 移动端搜索和询价 -->
               <div class="pt-2 border-t border-gray-100">
                 <div class="relative mb-2">
                   <input
@@ -1316,9 +1243,7 @@
     </header>
 
     <main>
-      <!--英雄区域 - 按目标样式统一优化版-->
       <section class="relative overflow-hidden min-h-screen flex items-center">
-        <!--背景Banner图：保持原有开灯动画逻辑-->
         <div class="absolute inset-0 z-0">
           <img
             alt="激光板材切割机A系列"
@@ -1352,7 +1277,6 @@
             "
           ></div>
         </div>
-        <!--前景内容：核心文本样式与“薄板 经济 小钢炮”完全对齐-->
         <div
           class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24 md:py-0"
         >
@@ -1364,28 +1288,24 @@
                 forwards;
             "
           >
-            <!--标签：颜色适配背景，字体族同步统一-->
             <span
-              class="inline-block px-3.5 py-1 bg-secondary/90 backdrop-blur-md text-white rounded-full text-xs font-medium mb-5 tracking-tight transition-all duration-300 hover:bg-secondary hover:scale-105 font-apple]"
+              class="inline-block px-3.5 py-1 bg-secondary/90 backdrop-blur-md text-white rounded-full text-xs font-medium mb-5 tracking-tight transition-all duration-300 hover:bg-secondary hover:scale-105 font-apple"
               >经济款首选</span
             >
-            <!--标题：与“薄板 经济 小钢炮”同款样式（字体族+字重+颜色透明度）-->
             <h1
-              class="text-[clamp(2rem,5vw,3.5rem)] <!-- 字号范围对齐目标标题 --> font-normal <!-- 字重：目标标题为font-normal，统一替换原font-semibold --> mb-6 text-gradient-mint-white-blue <!-- 颜色：目标标题为白色，保持一致 --> leading-tight tracking-tight text-shadow-lg <!-- 阴影：目标标题带text-shadow-lg，补充增强质感 --> font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-[clamp(2rem,5vw,3.5rem)] font-normal mb-6 text-gradient-mint-white-blue leading-tight tracking-tight text-shadow-lg font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               Senrytech A系列 <br />
               激光板材切割机
             </h1>
-            <!--描述文本：与“每一次切割，都是对完美的极致追求”同款样式-->
             <p
-              class="text-[#1d1d1f]/80 <!-- 颜色透明度：目标描述为#1d1d1f/80，替换原text-gray-200 --> text-[clamp(1rem,2vw,1.25rem)] <!-- 字号范围对齐目标描述 --> mb-8 max-w-lg font-light text-white <!-- 字重：目标描述为font-light，统一替换原font-normal --> leading-relaxed <!-- 行高：目标描述为leading-relaxed，提升阅读舒适度 --> font-apple]"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-lg font-light text-white leading-relaxed font-apple"
             >
               薄板切割高性价比之选，兼顾性能与成本的经济款激光切割设备，为小型企业提供专业级金属加工解决方案，降低入门门槛，提升生产效率。
             </p>
-            <!--按钮：字体族同步统一，保持交互逻辑-->
             <div class="flex flex-wrap gap-3.5">
               <a
-                class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0 font-apple]"
+                class="inline-flex items-center justify-center px-6 py-3 bg-white/15 backdrop-blur-sm text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/20 hover:translate-y-[-1px] active:translate-y-0 font-apple"
                 href="#specs"
                 style="
                   transform: translateY(15px);
@@ -1397,7 +1317,7 @@
                 技术参数 <i class="fa fa-arrow-right ml-2 text-xs"></i>
               </a>
               <a
-                class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0 font-apple]"
+                class="inline-flex items-center justify-center px-6 py-3 border border-white/80 text-white rounded-lg font-medium text-sm md:text-base transition-all duration-300 hover:bg-white/10 hover:translate-y-[-1px] active:translate-y-0 font-apple"
                 href="#contact"
                 style="
                   transform: translateY(15px);
@@ -1410,69 +1330,48 @@
             </div>
           </div>
         </div>
-        <!--开灯效果关键CSS动画（亮度增强调整）-->
         <style>
-          /* 1. 图片亮度：最终亮度提高到1.2，中间过亮过渡更明显 */
           @keyframes lightOn {
             0% {
               filter: brightness(0.1) saturate(0.8);
             }
-
-            /* 初始更暗（原0.15→0.1） */
             60% {
               filter: brightness(1.1) saturate(1.1);
             }
-
-            /* 中间过亮增强（原0.8→1.1） */
             100% {
               filter: brightness(1.2) saturate(1.05);
             }
-
-            /* 最终亮度提高（原1→1.2） */
           }
 
-          /* 2. 遮罩透明度：最终遮罩更淡（原0.3→0.2），减少遮挡 */
           @keyframes maskFade {
             0% {
               background-color: rgba(0, 0, 0, 0.85);
             }
-
-            /* 初始不变 */
             100% {
               background-color: rgba(0, 0, 0, 0.2);
             }
-
-            /* 最终遮罩变浅 */
           }
 
-          /* 3. 灯光扩散：最大亮度提高，延长高亮持续时间 */
           @keyframes lightSpread {
             0% {
               opacity: 0;
               transform: scale(0.8);
             }
-
             60% {
               opacity: 1.2;
               transform: scale(1.2);
             }
-
-            /* 亮度增强（原1→1.2），范围扩大 */
             100% {
               opacity: 0.9;
               transform: scale(1);
             }
-
-            /* 最终亮度提高（原0.7→0.9） */
           }
 
-          /* 4. 内容淡入/按钮上移动画保持不变，确保与灯光节奏匹配 */
           @keyframes contentFade {
             0% {
               opacity: 0;
               transform: translateY(20px);
             }
-
             100% {
               opacity: 1;
               transform: translateY(0);
@@ -1484,60 +1383,48 @@
               opacity: 0;
               transform: translateY(15px);
             }
-
             100% {
               opacity: 1;
               transform: translateY(0);
             }
           }
 
-          /* 兼容性前缀同步调整 */
           @-webkit-keyframes lightOn {
             0% {
               -webkit-filter: brightness(0.1) saturate(0.8);
             }
-
             60% {
               -webkit-filter: brightness(1.1) saturate(1.1);
             }
-
             100% {
               -webkit-filter: brightness(1.2) saturate(1.05);
             }
           }
         </style>
       </section>
-      <!--切割能力，求真务实-->
       <section class="py-16 bg-neutral">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <!--补充容器，确保内容居中且不溢出-->
           <div class="text-center mb-12">
-            <!--主标题：突出“┌道┘”核心，与“薄板 经济 小钢炮”对齐字体族+字重+颜色-->
             <h2
-              class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               切割有 <span class="text-secondary mx-1">┌</span>
-              <!--调整“道”字：保持强调但不偏离目标风格-->
               <span
-                class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
                 >道</span
               >
               <span class="text-secondary mx-1">┘</span>
             </h2>
-            <!--副标题：与“每一次切割，都是对完美的极致追求”对齐颜色透明度+字体族+字重-->
             <p
-              class="text-[clamp(1rem,2vw,1.125rem)] /* 字号范围与目标描述（1rem-1.25rem）比例协调 */ text-[#1d1d1f]/80 /* 颜色透明度：完全匹配目标描述的#1d1d1f/80，替代原#86868b */ mt-4 /* 间距保持，与主标题层级舒适 */ font-light /* 字重：统一为目标描述的font-light，替代原normal，增强细腻感 */ max-w-2xl mx-auto /* 宽度限制+居中，优化阅读体验 */ leading-relaxed /* 行高：同步目标描述的宽松行高，提升可读性 */ /* 统一苹果风格字体族，与目标描述完全匹配 */ font-apple]"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
             >
               杜绝虚假宣传
-              <!--短横线：颜色同步目标风格的近黑透明度，保持协调-->
               <span
                 class="inline-block w-16 h-0.5 bg-[#1d1d1f]/20 ml-3 vertical-align-middle"
               ></span>
             </p>
           </div>
-          <!--图表网格：保持布局不变，优化容器内文本样式（若有文本需同步字体族）-->
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!--1. 碳钢切割厚度：图表标题同步字体族+颜色-->
             <div
               class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
             >
@@ -1546,13 +1433,12 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                  class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
                 >
                   碳钢切割厚度
                 </h3>
               </div>
             </div>
-            <!--2. 不锈钢切割厚度：同规则优化-->
             <div
               class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
             >
@@ -1561,13 +1447,12 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                  class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
                 >
                   不锈钢切割厚度
                 </h3>
               </div>
             </div>
-            <!--3. 铝合金切割厚度：同规则优化-->
             <div
               class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
             >
@@ -1576,13 +1461,12 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                  class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
                 >
                   铝合金切割厚度
                 </h3>
               </div>
             </div>
-            <!--4. 铜切割厚度：同规则优化-->
             <div
               class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
             >
@@ -1591,7 +1475,7 @@
               </div>
               <div class="p-5">
                 <h3
-                  class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                  class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
                 >
                   铜切割厚度
                 </h3>
@@ -1600,10 +1484,8 @@
           </div>
         </div>
       </section>
-      <!--产品优势区域 - 容器&图片放大优化版（标题字体对齐苹果风格）-->
       <section class="py-16 bg-neutral">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-          <!--标题：完全对齐“切割有道”苹果风格（字体+排版双优化）-->
           <div
             class="text-center mb-12 fade-in"
             style="
@@ -1612,28 +1494,23 @@
                 forwards;
             "
           >
-            <!--主标题：严格匹配“切割有道”字体参数，保留响应式逻辑-->
             <h2
-              class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               核心亮点
             </h2>
-            <!--副标题：匹配“杜绝虚假宣传”字体参数，强化细节统一-->
             <p
-              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
             >
               高精度切割设备，为您的生产带来高效与精准的完美结合
             </p>
           </div>
-          <!--1. 容器放大：取消max-w限制，改为占满父容器（仅留小间距）-->
           <div
             class="relative max-w-none mx-4 sm:mx-6 lg:mx-8 rounded-2xl overflow-hidden shadow-2xl"
           >
-            <!--2. 轮播高度放大：提升移动端/桌面端高度，匹配放大后的容器-->
             <div
               class="product-slider relative h-[550px] sm:h-[600px] md:h-[700px] lg:h-[750px]"
             >
-              <!--图片1：扩大显示范围+优化居中-->
               <div
                 class="product-slide absolute inset-0 opacity-100 transition-opacity duration-500"
               >
@@ -1642,7 +1519,6 @@
                   class="w-full h-full object-cover object-position-[50%_50%] scale-105"
                   src="../../../img/products/laser sheet cutting/A/core advangtage/Senrytech A 1.jpg"
                 />
-                <!--文字层：调整为「右侧」位置，移除底框+文字改黑色-->
                 <div
                   class="absolute top-1/4 right-8 transform-none bg-transparent text-black px-8 py-4 max-w-xl text-left"
                 >
@@ -1652,7 +1528,6 @@
                   </p>
                 </div>
               </div>
-              <!--图片2：同规则放大-->
               <div
                 class="product-slide absolute inset-0 opacity-0 transition-opacity duration-500"
               >
@@ -1670,7 +1545,6 @@
                   </p>
                 </div>
               </div>
-              <!--图片3：同规则放大-->
               <div
                 class="product-slide absolute inset-0 opacity-0 transition-opacity duration-500"
               >
@@ -1679,7 +1553,6 @@
                   class="w-full h-full object-cover object-position-[50%_50%] scale-105"
                   src="../../../img/products/laser sheet cutting/A/core advangtage/Senrytech A 3.jpg"
                 />
-                <!--文字层：调整为「右侧」位置，移除底框+文字改黑色-->
                 <div
                   class="absolute top-1/4 right-8 transform-none bg-transparent text-black px-8 py-4 max-w-xl text-left"
                 >
@@ -1690,8 +1563,6 @@
                 </div>
               </div>
             </div>
-            <!--3. 滑动按钮放大：背景色改为橙色，适配白色背景图片-->
-            <!--左侧滑动按钮（SVG 左箭头）-->
             <button
               class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary backdrop-blur-sm text-white hover:bg-secondary/90 transition-colors flex items-center justify-center focus:outline-none slide-prev"
             >
@@ -1709,7 +1580,6 @@
                 ></path>
               </svg>
             </button>
-            <!--右侧滑动按钮（SVG 右箭头）-->
             <button
               class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-secondary backdrop-blur-sm text-white hover:bg-secondary/90 transition-colors flex items-center justify-center focus:outline-none slide-next"
             >
@@ -1727,23 +1597,18 @@
                 ></path>
               </svg>
             </button>
-            <!--4. 底部指示器：椭圆背景框改为橙色，适配白色背景-->
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
-              <!--椭圆背景框：半透明橙色（与滑动按钮颜色呼应），保留毛玻璃效果-->
               <div
                 class="bg-secondary/30 backdrop-blur-sm rounded-full px-6 py-2.5 flex items-center gap-3"
               >
-                <!--指示器1：默认激活（橙色，与背景框颜色统一）-->
                 <button
                   class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-secondary transition-all duration-300 focus:outline-none"
                   data-target-index="0"
                 ></button>
-                <!--指示器2：默认未激活（深灰，与橙色背景形成对比，避免融合）-->
                 <button
                   class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-600/50 hover:bg-gray-600/80 transition-all duration-300 focus:outline-none"
                   data-target-index="1"
                 ></button>
-                <!--指示器3：默认未激活（同指示器2，保持样式统一）-->
                 <button
                   class="carousel-dot w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gray-600/50 hover:bg-gray-600/80 transition-all duration-300 focus:outline-none"
                   data-target-index="2"
@@ -1753,7 +1618,6 @@
           </div>
         </div>
       </section>
-      <!--苹果风格满屏大图板块（保持不变，此板块设计为满屏背景，非正方形图片）-->
       <section class="relative h-screen w-full overflow-hidden">
         <div class="absolute inset-0 z-0">
           <img
@@ -1765,15 +1629,13 @@
         </div>
         <div class="relative z-10 h-full flex items-start">
           <div class="container mx-auto px-6 md:px-12 pt-20 md:pt-32">
-            <!--主标题：优化字体族、字重、响应式范围，对齐“想怎么切”轻盈感-->
             <h2
-              class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ text-gradient-blue-orange-red font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 text-gradient-blue-orange-red font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               薄板 经济 性能小钢炮
             </h2>
-            <!--副标题：优化颜色、字体族、行高，匹配“想怎么切”副标题柔和感-->
             <p
-              class="text-[#1d1d1f]/80 /* 从text-black/90改为苹果风格近黑（#1d1d1f）+80%透明度，视觉更高级 */ text-[clamp(1rem,2vw,1.25rem)] /* 新增响应式字号，避免小屏换行、大屏失衡 */ mt-2 /* 调整间距，与主标题形成舒适层级（原mt-4偏宽） */ max-w-2xl font-light leading-relaxed /* 新增宽松行高，提升长文本阅读舒适度 */ font-apple]"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.25rem)] mt-2 max-w-2xl font-light leading-relaxed font-apple"
             >
               每一次切割，都是对完美的极致追求
             </p>
@@ -1783,34 +1645,29 @@
           class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/60 to-transparent z-0"
         ></div>
       </section>
-      <!--新增：“想怎么切，就怎么切”图片展示板块（修复正方形显示问题）-->
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div class="text-center mb-16">
             <h2
-              class="text-black text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               想怎么切，就怎么切
             </h2>
             <p
-              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2 font-apple"
             >
               适配多种切割场景，满足不同工艺需求
             </p>
           </div>
-          <!--图片容器：修复核心 - 增加父容器尺寸控制+强制aspect-square优先级-->
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
           >
-            <!--图片1：修复后 - 父容器限制宽度+子容器强制1:1比例-->
             <div
               class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1"
             >
-              <!--修复1：父容器添加max-w-full，避免大屏溢出；增加min-h-[200px]确保小屏不塌陷-->
               <div
                 class="w-full max-w-full min-h-[200px] lg:w-[550px] lg:mx-auto"
               >
-                <!--修复2：用inline-block+aspect-square强制宽高比，!important提升优先级-->
                 <div class="w-full inline-block aspect-square !important">
                   <img
                     alt="切割场景1"
@@ -1822,7 +1679,6 @@
                 </div>
               </div>
             </div>
-            <!--图片2：同修复规则统一-->
             <div
               class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1"
             >
@@ -1840,7 +1696,6 @@
                 </div>
               </div>
             </div>
-            <!--图片3：同修复规则统一-->
             <div
               class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1"
             >
@@ -1858,7 +1713,6 @@
                 </div>
               </div>
             </div>
-            <!--图片4：同修复规则统一-->
             <div
               class="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-300 hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] hover:-translate-y-1"
             >
@@ -1898,61 +1752,48 @@
           </div>
         </div>
       </section>
-      <!-- 芯升级，更神奇 - 缩小版横向滚动板块 -->
       <section class="py-12 md:py-18 bg-white">
-        <!-- 1. 标题区：缩小字号，降低视觉占比 -->
         <div class="px-4 sm:px-6 lg:px-8 text-center mb-8 md:mb-12">
           <h2
-            class="text-black text-[clamp(1.8rem,4vw,3rem)] /* 字号缩小：原2.2rem→1.8rem，4rem→3rem，适配缩小后的板块 */ font-normal tracking-tight text-shadow-lg mb-3 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+            class="text-black text-[clamp(1.8rem,4vw,3rem)] font-normal tracking-tight text-shadow-lg mb-3 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
           >
             芯升级，更神奇
           </h2>
           <p
-            class="text-[#1d1d1f]/80 text-[clamp(0.9rem,2vw,1.1rem)] /* 副标题同步缩小：原1rem→0.9rem，1.25rem→1.1rem */ max-w-2xl mx-auto /* 宽度收窄，匹配缩小的标题 */ font-light leading-relaxed font-apple]"
+            class="text-[#1d1d1f]/80 text-[clamp(0.9rem,2vw,1.1rem)] max-w-2xl mx-auto font-light leading-relaxed font-apple"
           >
             全新核心技术升级，带来更智能、更高效的激光切割体验
           </p>
         </div>
-        <!-- 2. 横向滚动容器：增加左右间距，弱化“满屏”感 -->
         <div class="relative px-4 md:px-8 lg:px-12">
-          <!-- 原0→4/8/12，增加边缘留白，视觉上缩小板块范围 -->
-          <!-- 滚动容器：保持横向滚动逻辑 -->
           <div
             class="overflow-x-auto scrollbar-hide pb-6 md:pb-8"
             id="coreUpgradeCarousel"
           >
             <div class="flex space-x-4 md:space-x-6 py-2">
-              <!-- 图片间距缩小：原8→6，适配小尺寸图片 -->
-              <!-- 图片项1：核心缩小 - 宽度收窄+高度降低 -->
               <div
-                class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] /* 宽度缩小：原90→80，75→65，65→55，减少单张图占屏比 */ rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <!-- 图片高度降低：原60→40，70→50，75→55，避免纵向占比过大 -->
                 <div class="relative h-[40vh] md:h-[50vh] lg:h-[55vh]">
                   <img
                     src="../../../img/core-advantage/high clear/一笔飞切.png"
                     alt="一笔飞切技术"
                     class="w-full h-full object-cover object-center"
                   />
-                  <!-- 文字区同步缩小：字号、内边距适配小图片 -->
                   <div
                     class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 md:p-6 text-white"
                   >
-                    <!-- 内边距缩小：原6→4，8→6 -->
                     <h3 class="text-xl md:text-2xl font-semibold mb-1">
                       一笔飞切技术
                     </h3>
-                    <!-- 标题缩小：原2xl→xl，3xl→2xl -->
                     <p class="text-white/90 text-base md:text-lg font-light">
                       传统切割或普通飞行切割可能会对每个独立图形单独切割，切割完一个图形后激光头要调整位置再切下一个，存在较多启停和空行程。而一笔飞切会通过软件算法优化路径，将多个阵列排布的图形（如腰型孔、圆角矩形孔等）用连续的轨迹串联起来。激光头在切割过程中持续移动，仅在需要切割的位置保持激光开启，换向时还会通过圆弧过渡（默认推荐
                       3mm 最大半径）避免急停急转，实现类似 “一笔画完所有图形”
                       的切割效果。
                     </p>
-                    <!-- 描述缩小：原lg→base，xl→lg -->
                   </div>
                 </div>
               </div>
-              <!-- 图片项2：同缩小规则 -->
               <div
                 class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
@@ -1976,7 +1817,6 @@
                   </div>
                 </div>
               </div>
-              <!-- 图片项3：同缩小规则 -->
               <div
                 class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
@@ -2002,7 +1842,6 @@
                   </div>
                 </div>
               </div>
-              <!-- 图片项4：同缩小规则 -->
               <div
                 class="core-upgrade-item min-w-[80vw] md:min-w-[65vw] lg:min-w-[55vw] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
               >
@@ -2026,19 +1865,16 @@
               </div>
             </div>
           </div>
-          <!-- 3. 箭头按钮：缩小尺寸，适配板块体量 -->
           <button
             class="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary/90 backdrop-blur-md text-white hover:bg-secondary transition-colors flex items-center justify-center focus:outline-none z-10 hidden md:flex"
             id="coreUpgradePrev"
           >
-            <!-- 按钮缩小：原12→10，14→12 -->
             <svg
               class="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <!-- 图标缩小：原6→5 -->
               <path
                 d="M15 19l-7-7 7-7"
                 stroke-linecap="round"
@@ -2065,11 +1901,9 @@
               ></path>
             </svg>
           </button>
-          <!-- 4. 移动端滚动提示：保持轻量引导 -->
           <div
             class="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex items-center gap-2 text-[#1d1d1f]/60 text-xs font-light md:hidden"
           >
-            <!-- 文字缩小：原sm→xs -->
             <span>滑动浏览</span>
             <svg
               class="w-3.5 h-3.5"
@@ -2077,7 +1911,6 @@
               stroke="currentColor"
               viewBox="0 0 24 24"
             >
-              <!-- 图标缩小：原4→3.5 -->
               <path
                 d="M13 5l7 7-7 7M5 12h14"
                 stroke-linecap="round"
@@ -2089,24 +1922,18 @@
         </div>
       </section>
       <section class="py-24 bg-[#f5f5f7]" id="specs">
-        <!-- 苹果官网标志性浅灰背景，增强页面呼吸感 -->
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-          <!-- 控制最大宽度，避免大屏拉伸导致内容松散 -->
-          <!-- 标题：新增text-center实现标题居中，保留苹果风格排版 -->
           <h2
             class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-10 text-center font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
           >
             技术参数
           </h2>
-          <!-- 表格外层容器：添加类名tech-table-wrap，实现移动端横向滚动 -->
           <div
             class="tech-table-wrap overflow-x-auto rounded-2xl shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_8px_rgba(0,0,0,0.02)]"
           >
-            <!-- 表格本身：添加类名tech-table，确保样式优先级和布局规则 -->
             <table
               class="tech-table w-full border-collapse bg-[#f5f5f7] rounded-2xl overflow-hidden"
             >
-              <!-- 表头和表体内容保持不变 -->
               <thead>
                 <tr class="bg-[#f5f5f7] text-[#1d1d1f]">
                   <th
@@ -2131,9 +1958,7 @@
                   </th>
                 </tr>
               </thead>
-              <!--表体：删除所有行的border-t横线，保留hover背景区分行，提升可读性-->
               <tbody class="text-[#424245] text-[0.9375rem]">
-                <!--表格行：删除border-t，保留hover效果（交互细腻不突兀）-->
                 <tr class="transition-colors duration-200 hover:bg-[#fafafa]">
                   <td class="py-6 px-6 sm:px-8 font-medium">激光功率</td>
                   <td class="py-6 px-6 sm:px-8 text-center">1500W</td>
@@ -2142,12 +1967,9 @@
                 </tr>
                 <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">工作台面尺寸</td>
-                  <!-- 在每个尺寸规格之间插入 <br> 实现换行，同时补充闭合 </td> -->
                   <td class="py-6 px-6 sm:px-8 text-center">
                     1350x1320mm <br />
-                    <!-- 第一个规格后换行 -->
                     1310x2550mm <br />
-                    <!-- 第二个规格后换行 -->
                     3050x1500mm
                   </td>
                   <td class="py-6 px-6 sm:px-8 text-center">
@@ -2179,7 +2001,6 @@
                   <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
                   <td class="py-6 px-6 sm:px-8 text-center">±0.03mm</td>
                 </tr>
-                <!--切割厚度行：特殊标注"特殊情况"，用浅灰小字区分，提升信息层级-->
                 <tr class="transition-colors duration-200 hover:bg-[#f5f5f7]">
                   <td class="py-6 px-6 sm:px-8 font-medium">
                     批量加工最大切割厚度(碳钢)
@@ -2326,7 +2147,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
               >
                 作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。
               </p>
@@ -2351,7 +2172,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
               >
                 我们工厂从传统切割设备升级到Senrytech
                 A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。
@@ -2375,7 +2196,7 @@
                 "
               </div>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
               >
                 对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。
               </p>
@@ -2679,7 +2500,7 @@
                 联系专家
               </h2>
               <p
-                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple]"
+                class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
               >
                 填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案
               </p>
@@ -3607,42 +3428,51 @@
         }, 5000);
       });
       // 芯升级板块 - 横向滚动交互
-      const scrollItem =
-        coreUpgradeCarousel.querySelector(".core-upgrade-item");
+      const coreUpgradeCarousel = document.querySelector(
+        ".core-upgrade-carousel"
+      ); // 补充获取容器元素
+      const coreUpgradePrev = document.getElementById("coreUpgradePrev");
+      const coreUpgradeNext = document.getElementById("coreUpgradeNext");
+      const scrollItem = coreUpgradeCarousel
+        ? coreUpgradeCarousel.querySelector(".core-upgrade-item")
+        : null;
       const itemWidth = scrollItem ? scrollItem.offsetWidth + 20 : 400; // 20 为项间距，可调整
-      coreUpgradePrev.addEventListener("click", () => {
-        coreUpgradeCarousel.scrollBy({
-          left: -itemWidth,
-          behavior: "smooth",
-        });
-      });
-      coreUpgradeNext.addEventListener("click", () => {
-        coreUpgradeCarousel.scrollBy({
-          left: itemWidth,
-          behavior: "smooth",
-        });
-      });
-      // 移动端触摸滑动支持
-      let touchStartX = 0;
-      let touchEndX = 0;
-      coreUpgradeCarousel.addEventListener("touchstart", (e) => {
-        touchStartX = e.touches[0].clientX;
-      });
-      coreUpgradeCarousel.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].clientX;
-        const diffX = touchEndX - touchStartX;
-        if (diffX > 50) {
+
+      if (coreUpgradePrev && coreUpgradeNext && coreUpgradeCarousel) {
+        coreUpgradePrev.addEventListener("click", () => {
           coreUpgradeCarousel.scrollBy({
-            left: -400,
+            left: -itemWidth,
             behavior: "smooth",
           });
-        } else if (diffX < -50) {
+        });
+        coreUpgradeNext.addEventListener("click", () => {
           coreUpgradeCarousel.scrollBy({
-            left: 400,
+            left: itemWidth,
             behavior: "smooth",
           });
-        }
-      });
+        });
+        // 移动端触摸滑动支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+        coreUpgradeCarousel.addEventListener("touchstart", (e) => {
+          touchStartX = e.touches[0].clientX;
+        });
+        coreUpgradeCarousel.addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].clientX;
+          const diffX = touchEndX - touchStartX;
+          if (diffX > 50) {
+            coreUpgradeCarousel.scrollBy({
+              left: -400,
+              behavior: "smooth",
+            });
+          } else if (diffX < -50) {
+            coreUpgradeCarousel.scrollBy({
+              left: 400,
+              behavior: "smooth",
+            });
+          }
+        });
+      }
 
       // 监听窗口大小，动态调整单元格内边距
       window.addEventListener("resize", function () {

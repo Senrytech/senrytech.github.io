@@ -3621,66 +3621,81 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        const scrollContainer = document.getElementById("productScroll");
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
-        const productScroll = document.getElementById("productScroll");
-        const scrollContainer = productScroll.parentElement;
 
-        // 计算单个卡片宽度（含间距）- 响应式适配
-        function getCardWidth() {
-          const card = productScroll.querySelector("div");
-          const cardStyle = window.getComputedStyle(card);
-          const cardWidth = parseFloat(cardStyle.width);
-          const gap = parseFloat(cardStyle.marginRight); // 取卡片右侧间距（与父容器gap一致）
+        // 关键参数：获取单张卡片宽度（含响应式）和卡片间距
+        const getCardWidth = () => {
+          // 获取第一个卡片的实际宽度（包含padding/margin）
+          const firstCard = scrollContainer.querySelector(".product-card");
+          if (!firstCard) return 0;
+          // 卡片宽度 + 卡片右侧间距（gap）
+          const cardWidth = firstCard.offsetWidth;
+          const gap = parseInt(getComputedStyle(scrollContainer).gap) || 0;
           return cardWidth + gap;
-        }
+        };
 
-        // 计算每次滚动距离（一行4个卡片）
-        function getScrollStep() {
+        // 滚动容器的可视宽度（父容器宽度，即屏幕可显示的范围）
+        const getVisibleWidth = () => {
+          return scrollContainer.parentElement.offsetWidth;
+        };
+
+        // 初始滚动位置（0 = 最左侧）
+        let currentScroll = 0;
+        // 最大滚动距离（避免滚动到空白区域）
+        const getMaxScroll = () => {
+          // 总内容宽度 - 可视宽度 = 最大可滚动距离
+          return scrollContainer.offsetWidth - getVisibleWidth();
+        };
+
+        // 更新箭头状态（禁用/启用）
+        const updateBtnState = () => {
+          // 滚动到最左：禁用左箭头
+          prevBtn.disabled = currentScroll <= 0;
+          prevBtn.style.opacity = currentScroll <= 0 ? "0.5" : "1";
+          prevBtn.style.cursor = currentScroll <= 0 ? "not-allowed" : "pointer";
+
+          // 滚动到最右：禁用右箭头
+          nextBtn.disabled = currentScroll >= getMaxScroll();
+          nextBtn.style.opacity = currentScroll >= getMaxScroll() ? "0.5" : "1";
+          nextBtn.style.cursor =
+            currentScroll >= getMaxScroll() ? "not-allowed" : "pointer";
+        };
+
+        // 滚动函数（核心修复：按「卡片宽度」滚动，而非固定值）
+        const scrollToPosition = (newScroll) => {
+          // 限制滚动范围（避免超出边界）
+          newScroll = Math.max(0, Math.min(newScroll, getMaxScroll()));
+          currentScroll = newScroll;
+          // 应用滚动（transform: translateX(-currentScroll) 实现向左滚动）
+          scrollContainer.style.transform = `translateX(-${currentScroll}px)`;
+          // 更新箭头状态
+          updateBtnState();
+        };
+
+        // 右箭头点击事件：每次滚动「一张卡片宽度」
+        nextBtn.addEventListener("click", () => {
           const cardWidth = getCardWidth();
-          return cardWidth * 4;
-        }
+          scrollToPosition(currentScroll + cardWidth);
+        });
 
-        // 滚动逻辑
-        function scrollProducts(step) {
-          const currentTransform =
-            window.getComputedStyle(productScroll).transform;
-          const currentX =
-            currentTransform === "none"
-              ? 0
-              : parseFloat(currentTransform.split(",")[4]);
-          const newX = currentX - step;
+        // 左箭头点击事件：每次回滚「一张卡片宽度」
+        prevBtn.addEventListener("click", () => {
+          const cardWidth = getCardWidth();
+          scrollToPosition(currentScroll - cardWidth);
+        });
 
-          // 边界控制：左边界（不超过0）、右边界（不超过容器可滚动最大值）
-          const maxScrollX =
-            scrollContainer.scrollWidth - scrollContainer.clientWidth;
-          const clampedX = Math.max(-maxScrollX, Math.min(0, newX));
-
-          productScroll.style.transform = `translateX(${clampedX}px)`;
-        }
-
-        // 按钮点击事件
-        prevBtn.addEventListener("click", () =>
-          scrollProducts(-getScrollStep())
-        );
-        nextBtn.addEventListener("click", () =>
-          scrollProducts(getScrollStep())
-        );
-
-        // 响应式调整：窗口大小变化时重置滚动位置
+        // 窗口 resize 时重新计算（适配响应式）
         window.addEventListener("resize", () => {
-          productScroll.style.transform = "translateX(0)";
+          // 重新计算最大滚动距离，避免resize后出现空白
+          const maxScroll = getMaxScroll();
+          currentScroll = Math.min(currentScroll, maxScroll);
+          scrollToPosition(currentScroll);
         });
 
-        // 初始显示箭头（ hover时显示，非hover时隐藏，符合苹果极简交互）
-        scrollContainer.addEventListener("mouseenter", () => {
-          prevBtn.style.opacity = "1";
-          nextBtn.style.opacity = "1";
-        });
-        scrollContainer.addEventListener("mouseleave", () => {
-          prevBtn.style.opacity = "0";
-          nextBtn.style.opacity = "0";
-        });
+        // 初始加载时更新箭头状态
+        updateBtnState();
       });
     </script>
 

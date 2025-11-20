@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Senrytech 激光管材切割机B系列-创新侧置加工设计，高效精准切割各类管材，引领行业技术革新">
+    <meta name="keywords" content="激光切管机,B系列激光切管机,侧置加工激光切管机,高端管材切割设备,精准激光切割">
+    <title>Senrytech 激光管材切割机B系列 - 创新侧置加工激光切管设备</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1b4c42',
+                        secondary: '#ff7a00',
+                        accent: '#3a8686',
+                        neutral: '#f5f5f5',
+                        dark: '#2c3e50'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            }
+            .pipe-illustration {
+                position: relative;
+                height: 8px;
+                background: linear-gradient(90deg, #1b4c42 0%, #3a8686 50%, #1b4c42 100%);
+                border-radius: 4px;
+            }
+            .pipe-illustration::before, .pipe-illustration::after {
+                content: '';
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                background-color: #1b4c42;
+                border-radius: 50%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .pipe-illustration::before {
+                left: -8px;
+            }
+            .pipe-illustration::after {
+                right: -8px;
+            }
+        }
+    </style>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .slide-up {
+            animation: slideUp 0.6s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-scrolled {
+            background-color: rgba(27, 76, 66, 0.95);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        .specs-table tr:nth-child(even) {
+            background-color: rgba(27, 76, 66, 0.03);
+        }
+        .gallery-item img {
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .innovation-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff7a00;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 overflow-x-hidden">
+    <!-- 导航系统 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-primary/90">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="../index.html" class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                        <img src="../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                    </div>
+                    <span class="text-white font-bold text-xl">Senrytech</span>
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-white hover:text-secondary transition-colors">首页</a>
+                    <div class="relative group">
+                        <a href="https://www.senrytech.com/products/" class="text-white hover:text-secondary transition-colors flex items-center">
+                            产品中心
+                            <i class="fa fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50">
+                            <!-- 激光板材切割机系列子菜单 -->
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-sheet-cutting/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光板材切割机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Plus系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B ProMax系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Ultra系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">C 系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">C Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">G系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">S系列</a>
+                                </div>
+                            </div>
+                            <!-- 激光管材切割机子菜单（当前页面） -->
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-tube-cutting/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光管材切割机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">M系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Plus系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">A Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 bg-primary text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Plus系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                </div>
+                            </div>
+                            <!-- 激光板管一体机子菜单 -->
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-sheet-tube/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光板管一体机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                                <div class="absolute left-full top-0 mt-0 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50">
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Pro系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B ProMax系列</a>
+                                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white">B Ultra系列</a>
+                                </div>
+                            </div>
+                            <!-- 其他产品子菜单 -->
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-welding/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光焊接机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-cleaning/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光清洗机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                            <div class="relative group/item">
+                                <a href="https://www.senrytech.com/products/laser-marking/" class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center">
+                                    激光打标机
+                                    <i class="fa fa-chevron-right ml-1 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="../#solutions" class="text-white hover:text-secondary transition-colors">解决方案</a>
+                    <a href="../#about" class="text-white hover:text-secondary transition-colors">关于我们</a>
+                    <a href="../#cases" class="text-white hover:text-secondary transition-colors">案例展示</a>
+                    <a href="../#contact" class="text-white hover:text-secondary transition-colors">联系我们</a>
+                </nav>
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="../index.html" class="block text-gray-800 hover:text-primary font-medium">首页</a>
+                <div>
+                    <button id="mobile-products-toggle" class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium">
+                        产品中心
+                        <i class="fa fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="mobile-products-menu" class="hidden pl-4 mt-2 space-y-2">
+                        <!-- 激光板材切割机系列移动端子菜单 -->
+                        <div>
+                            <button id="mobile-laser-cutting-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光板材切割机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-laser-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B ProMax系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Ultra系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C 系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">C Pro系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">G系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">S系列</a>
+                            </div>
+                        </div>
+                        <!-- 激光管材切割机移动端子菜单（当前页面） -->
+                        <div>
+                            <button id="mobile-tube-cutting-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光管材切割机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                            <div id="mobile-tube-cutting-menu" class="hidden pl-4 mt-1 space-y-2">
+                                <a href="#" class="block text-gray-600 hover:text-primary">M系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">A Pro系列</a>
+                                <a href="#" class="block text-primary font-medium">B系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Plus系列</a>
+                                <a href="#" class="block text-gray-600 hover:text-primary">B Pro系列</a>
+                            </div>
+                        </div>
+                        <!-- 其他产品移动端子菜单 -->
+                        <div>
+                            <button id="mobile-sheet-tube-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光板管一体机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button id="mobile-welding-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光焊接机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button id="mobile-cleaning-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光清洗机系列
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <button id="mobile-marking-toggle" class="flex justify-between items-center w-full text-gray-600 hover:text-primary">
+                                激光打标机
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <a href="../#solutions" class="block text-gray-800 hover:text-primary font-medium">解决方案</a>
+                <a href="../#about" class="block text-gray-800 hover:text-primary font-medium">关于我们</a>
+                <a href="../#cases" class="block text-gray-800 hover:text-primary font-medium">案例展示</a>
+                <a href="../#contact" class="block text-gray-800 hover:text-primary font-medium">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 英雄区域 -->
+        <section class="py-16 md:py-24 pt-24 md:pt-32 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 slide-up">
+                        <span class="inline-block px-4 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">创新侧置加工设计</span>
+                        <h1 class="text-[clamp(1.8rem,4vw,3rem)] font-bold text-gray-800 mb-6">Senrytech<br>激光管材切割机 B系列</h1>
+                        <p class="text-gray-600 text-lg mb-8">革命性侧置加工方式，重新定义管材切割效率与精度标准，为大规模生产提供卓越性能保障。</p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#specs" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-md font-medium transition-colors">
+                                技术参数 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#contact" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-md font-medium transition-colors">
+                                咨询报价
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 fade-in relative">
+                        <img src="../img/products/laser_tube_cutting/series_b_detail.jpg" alt="Senrytech激光管材切割机B系列侧置加工设计产品图" class="w-full h-auto rounded-lg shadow-xl">
+                        <div class="innovation-badge">全新设计</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品简介 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">创新侧置，卓越性能</h2>
+                    <p class="text-gray-600 text-lg">B系列激光管材切割机采用突破性侧置加工设计，颠覆传统上置式加工理念，为客户带来更高效率、更优精度的管材切割体验。</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-neutral p-8 rounded-lg shadow-sm feature-card">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-rocket text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">突破性设计</h3>
+                        <p class="text-gray-600">创新侧置加工方式，优化管材进给路径，减少辅助时间，显著提升整体加工效率达30%以上。</p>
+                    </div>
+                    
+                    <div class="bg-neutral p-8 rounded-lg shadow-sm feature-card">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-diamond text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">超精密切割</h3>
+                        <p class="text-gray-600">采用双驱同步控制系统和高精度导向结构，配合智能切割算法，实现微米级切割精度。</p>
+                    </div>
+                    
+                    <div class="bg-neutral p-8 rounded-lg shadow-sm feature-card">
+                        <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                            <i class="fa fa-cogs text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">智能自动化</h3>
+                        <p class="text-gray-600">搭载工业级智能控制系统，支持全自动上下料、智能排料和远程监控，大幅降低人工成本。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术参数 -->
+        <section id="specs" class="py-16 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">技术参数</h2>
+                    <p class="text-gray-600 text-lg">B系列激光管材切割机以创新侧置设计，重新定义管材切割的效率与精度标准</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full specs-table">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th class="py-4 px-6 text-left">参数项</th>
+                                    <th class="py-4 px-6 text-left">B2000</th>
+                                    <th class="py-4 px-6 text-left">B3000</th>
+                                    <th class="py-4 px-6 text-left">B4000</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">激光功率</td>
+                                    <td class="py-4 px-6">2000W</td>
+                                    <td class="py-4 px-6">3000W</td>
+                                    <td class="py-4 px-6">4000W</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">激光波长</td>
+                                    <td class="py-4 px-6" colspan="3">1064nm</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">最大管材直径</td>
+                                    <td class="py-4 px-6" colspan="3">Φ200mm</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">最大方管边长</td>
+                                    <td class="py-4 px-6" colspan="3">150×150mm</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">切割长度</td>
+                                    <td class="py-4 px-6" colspan="3">6000-9000mm（可选）</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">切割精度</td>
+                                    <td class="py-4 px-6" colspan="3">±0.05mm/m</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">重复定位精度</td>
+                                    <td class="py-4 px-6" colspan="3">±0.03mm</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">最大切割速度</td>
+                                    <td class="py-4 px-6">50m/min</td>
+                                    <td class="py-4 px-6">60m/min</td>
+                                    <td class="py-4 px-6">70m/min</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">冷却方式</td>
+                                    <td class="py-4 px-6" colspan="3">智能恒温水冷</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">电力需求</td>
+                                    <td class="py-4 px-6">AC 380V/50Hz/25kW</td>
+                                    <td class="py-4 px-6">AC 380V/50Hz/30kW</td>
+                                    <td class="py-4 px-6">AC 380V/50Hz/35kW</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">设备尺寸</td>
+                                    <td class="py-4 px-6">9500×2200×1800mm</td>
+                                    <td class="py-4 px-6">9500×2200×1800mm</td>
+                                    <td class="py-4 px-6">10500×2400×1900mm</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品特点 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 order-2 lg:order-1">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">B系列核心创新</h2>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">侧置加工革命性设计</h3>
+                                    <p class="text-gray-600">创新侧置式管材进给系统，改变传统上置式加工模式，大幅提升材料装卸效率，优化车间空间利用率。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">双驱同步伺服系统</h3>
+                                    <p class="text-gray-600">采用进口双驱同步伺服电机和高精度滚珠丝杠，确保高速运动下的稳定性和切割精度。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">智能管材识别技术</h3>
+                                    <p class="text-gray-600">自动识别管材类型、尺寸和材质，智能匹配最佳切割参数，无需人工调整，确保切割质量一致性。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fa fa-check text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">工业4.0智能集成</h3>
+                                    <p class="text-gray-600">支持IoT物联网连接，可实现远程监控、故障诊断和生产数据分析，为智能化工厂提供完美解决方案。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 order-1 lg:order-2">
+                        <img src="../img/products/laser_tube_cutting/series_b_features.jpg" alt="B系列激光管材切割机侧置加工特点展示" class="w-full h-auto rounded-lg shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 切割样品展示 -->
+        <section class="py-16 bg-neutral">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">精密切割样品展示</h2>
+                    <p class="text-gray-600 text-lg">B系列激光管材切割机凭借侧置加工优势，实现复杂形状的超高精度切割，切口光滑无毛刺</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+                        <img src="../img/products/laser_tube_cutting/samples/b_round-1.jpg" alt="B系列圆管精密切割样品" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+                        <img src="../img/products/laser_tube_cutting/samples/b_square-1.jpg" alt="B系列方管精密切割样品" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+                        <img src="../img/products/laser_tube_cutting/samples/b_rectangle-1.jpg" alt="B系列矩形管精密切割样品" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="gallery-item overflow-hidden rounded-lg shadow-md">
+                        <img src="../img/products/laser_tube_cutting/samples/b_complex-1.jpg" alt="B系列复杂形状精密切割样品" class="w-full h-64 object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 应用行业 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">高端应用领域</h2>
+                    <p class="text-gray-600 text-lg">B系列激光管材切割机凭借其创新设计和卓越性能，成为高端制造领域的理想选择</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-plane text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">航空航天</h3>
+                        <p class="text-gray-600">用于航空航天领域精密管材部件切割，满足高要求的精度和表面质量标准。</p>
+                    </div>
+                    
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-car text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">汽车制造</h3>
+                        <p class="text-gray-600">适用于汽车排气管、底盘结构件等高精度管材加工，提升装配精度和产品质量。</p>
+                    </div>
+                    
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-building text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">高端建筑</h3>
+                        <p class="text-gray-600">用于大型建筑项目中的复杂管材结构切割，确保安装精度和视觉效果的完美呈现。</p>
+                    </div>
+                    
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-medkit text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">医疗器械</h3>
+                        <p class="text-gray-600">满足医疗器械领域对管材切割的超高精度要求，确保产品安全性和可靠性。</p>
+                    </div>
+                    
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-cubes text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">精密机械</h3>
+                        <p class="text-gray-600">用于精密机械制造中的复杂管状部件加工，保证机械系统的精准配合和高效运行。</p>
+                    </div>
+                    
+                    <div class="border border-gray-100 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            <i class="fa fa-lightbulb-o text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">新能源设备</h3>
+                        <p class="text-gray-600">适用于新能源设备中的特殊管材切割加工，满足高可靠性和长寿命的使用要求。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 技术优势对比 -->
+        <section class="py-16 bg-primary/5">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">侧置加工 vs 传统上置加工</h2>
+                    <p class="text-gray-600 text-lg">B系列创新侧置加工设计相比传统上置式加工，带来全方位性能提升</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full specs-table">
+                            <thead>
+                                <tr class="bg-primary text-white">
+                                    <th class="py-4 px-6 text-left">性能指标</th>
+                                    <th class="py-4 px-6 text-left">B系列侧置加工</th>
+                                    <th class="py-4 px-6 text-left">传统上置加工</th>
+                                    <th class="py-4 px-6 text-left">提升幅度</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">加工效率</td>
+                                    <td class="py-4 px-6">50-70m/min</td>
+                                    <td class="py-4 px-6">20-40m/min</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">30-75%</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">换料时间</td>
+                                    <td class="py-4 px-6">≤30秒</td>
+                                    <td class="py-4 px-6">≥60秒</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">≥50%</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">切割精度</td>
+                                    <td class="py-4 px-6">±0.05mm/m</td>
+                                    <td class="py-4 px-6">±0.1mm/m</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">提高50%</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">材料利用率</td>
+                                    <td class="py-4 px-6">≥98%</td>
+                                    <td class="py-4 px-6">≤95%</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">提高3%+</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">能耗水平</td>
+                                    <td class="py-4 px-6">优化节能设计</td>
+                                    <td class="py-4 px-6">传统能耗水平</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">节能20%</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 px-6 font-medium">操作便利性</td>
+                                    <td class="py-4 px-6">人机工程优化设计</td>
+                                    <td class="py-4 px-6">传统操作方式</td>
+                                    <td class="py-4 px-6 text-secondary font-medium">显著提升</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系咨询 -->
+        <section id="contact" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-6xl mx-auto">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">咨询B系列激光管材切割机</h2>
+                            <p class="text-gray-600 text-lg mb-8">填写下方表单，我们的技术顾问将在24小时内与您联系，为您提供详细产品资料和专属解决方案</p>
+                            
+                            <form class="space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div>
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名" required>
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-gray-700 font-medium mb-2">电话</label>
+                                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话" required>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="company" class="block text-gray-700 font-medium mb-2">公司名称</label>
+                                    <input type="text" id="company" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称" required>
+                                </div>
+                                
+                                <div>
+                                    <label for="需求" class="block text-gray-700 font-medium mb-2">您的需求</label>
+                                    <textarea id="需求" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请描述您的加工需求、材料类型、产量等信息"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-md font-medium transition-colors">
+                                    提交咨询 <i class="fa fa-paper-plane ml-2"></i>
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <div class="lg:w-1/2">
+                            <div class="bg-neutral h-full rounded-lg p-8 shadow-lg">
+                                <h3 class="text-2xl font-semibold mb-6">联系方式</h3>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <i class="fa fa-map-marker text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-1">公司地址</h4>
+                                            <p class="text-gray-600">中国·江苏省·苏州市·工业园区智能装备产业园88号</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <i class="fa fa-phone text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-1">联系电话</h4>
+                                            <p class="text-gray-600">400-888-9999</p>
+                                            <p class="text-gray-600">0512-88887777</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <i class="fa fa-envelope text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-1">电子邮箱</h4>
+                                            <p class="text-gray-600">sales@senrytech.com</p>
+                                            <p class="text-gray-600">support@senrytech.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start gap-4">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                            <i class="fa fa-clock-o text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-1">工作时间</h4>
+                                            <p class="text-gray-600">周一至周五: 8:30 - 18:00</p>
+                                            <p class="text-gray-600">周六: 9:00 - 16:00（节假日除外）</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-10">
+                                    <h4 class="font-medium text-gray-800 mb-4">关注我们</h4>
+                                    <div class="flex gap-4">
+                                        <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                                            <i class="fa fa-weixin"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                                            <i class="fa fa-weibo"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                                            <i class="fa fa-youtube-play"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-white rounded-md flex items-center justify-center">
+                            <img src="../../img/Senrytech公司Logo.jpg" alt="Senrytech公司Logo" class="max-w-full max-h-full">
+                        </div>
+                        <span class="font-bold text-xl">Senrytech</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">专业激光切割设备制造商，致力于为全球客户提供高品质、高性能的激光加工解决方案。</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fa fa-weixin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fa fa-weibo text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fa fa-youtube-play text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fa fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">产品中心</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光板材切割机</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光管材切割机</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光板管一体机</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光焊接机</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光清洗机</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">激光打标机</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">关于我们</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">公司简介</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">研发实力</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">生产基地</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">全球服务</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">新闻动态</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">加入我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fa fa-map-marker mt-1"></i>
+                            <span class="text-gray-300">中国·江苏省·苏州市·工业园区智能装备产业园88号</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-phone"></i>
+                            <span class="text-gray-300">400-888-9999</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa fa-envelope"></i>
+                            <span class="text-gray-300">sales@senrytech.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2023 Senrytech 激光设备有限公司 版权所有 | 苏ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 移动端产品菜单切换
+        document.getElementById('mobile-products-toggle').addEventListener('click', function() {
+            const mobileProductsMenu = document.getElementById('mobile-products-menu');
+            mobileProductsMenu.classList.toggle('hidden');
+        });
+
+        // 移动端激光切割菜单切换
+        document.getElementById('mobile-laser-cutting-toggle').addEventListener('click', function() {
+            const mobileLaserCuttingMenu = document.getElementById('mobile-laser-cutting-menu');
+            mobileLaserCuttingMenu.classList.toggle('hidden');
+        });
+
+        // 移动端管材切割菜单切换
+        document.getElementById('mobile-tube-cutting-toggle').addEventListener('click', function() {
+            const mobileTubeCuttingMenu = document.getElementById('mobile-tube-cutting-menu');
+            mobileTubeCuttingMenu.classList.toggle('hidden');
+        });
+
+        // 图片懒加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.gallery-item, .feature-card');
+                elements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    // 元素进入视口
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        element.classList.add('fade-in');
+                    }
+                });
+            };
+
+            // 初始加载时检查
+            animateOnScroll();
+            // 滚动时检查
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>

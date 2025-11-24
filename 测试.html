@@ -1,0 +1,3326 @@
+# 修复后代码（第1-1000行）
+```html
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 优化viewport配置：增加viewport-fit=cover适配刘海屏 -->
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+    <meta
+      content="Senrytech - 专业激光设备制造商，15年行业经验提供高精度激光切割、焊接、打标设备，服务500+工厂客户"
+      name="description"
+    />
+    <meta
+      content="激光设备,激光切割机,激光焊接机,激光打标机,工业激光解决方案,Senrytech"
+      name="keywords"
+    />
+    <meta content="Senrytech" name="author" />
+    <meta content="index, follow" name="robots" />
+    <!--SEO优化：补充og:image提升社交分享效果-->
+    <link href="https://www.senrytech.com/" rel="canonical" />
+    <meta content="Senrytech - 专业激光设备制造商" property="og:title" />
+    <meta
+      content="高精度·高稳定性·24/7工业级激光解决方案"
+      property="og:description"
+    />
+    <meta content="website" property="og:type" />
+    <meta content="https://www.senrytech.com/" property="og:url" />
+    <meta content="https://www.senrytech.com/img/index/og-image.webp" property="og:image" />
+    <title>Senrytech - 专业激光设备制造商</title>
+    
+    <!-- 外部资源优化：按「样式→功能」顺序加载，补充Inter字体（Tailwind配置中已指定） -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous" <!-- 增加跨域标识提升加载安全性 -->
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 预加载优化：修正路径（原路径层级错误），统一为项目相对路径 -->
+    <link
+      as="image"
+      href="img/index/banner/BANNER 1 FINAL.webp"
+      rel="preload"
+      type="image/webp"
+      imagesrcset="img/index/banner/BANNER 1 FINAL.webp 1x, img/index/banner/BANNER 1 FINAL@2x.webp 2x" <!-- 增加2x图适配高清屏 -->
+    />
+    <link
+      as="image"
+      href="img/index/banner/BANNER 1 FINAL.jpg"
+      rel="preload"
+      type="image/jpeg"
+    />
+    
+    <!-- Tailwind配置：优化结构，增加注释说明 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            // 统一颜色体系，增加注释便于维护
+            colors: {
+              primary: "#2B313F",    // 主色调：深蓝灰
+              secondary: "#ff8a00",  // 辅助色：橙色（强调、按钮）
+              accent: "#3a8686",     // 点缀色：青色
+              neutral: "#f5f5f5",    // 中性色：浅灰（背景）
+              dark: "#2c3e50",       // 深色：备用
+            },
+            // 字体配置：确保Inter字体生效（原代码仅引入Montserrat未用）
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],  // 正文字体
+              montserrat: ["Montserrat", "sans-serif"]     // 标题/强调字体
+            },
+          },
+        },
+        // 增加安全配置：防止Tailwind污染第三方组件
+        corePlugins: {
+          preflight: true
+        }
+      };
+    </script>
+    
+    <style>
+      /* 样式优化：1. 合并冗余样式 2. 减少!important 3. 增加性能优化 4. 统一命名规范 */
+      
+      /* 基础动画：提取公共动画，增加will-change优化性能 */
+      .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+        will-change: opacity;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      .slide-up {
+        animation: slideUp 0.6s ease-out;
+        will-change: transform, opacity;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      /* 平滑滚动：仅对现代浏览器生效 */
+      @supports (scroll-behavior: smooth) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      
+      /* 移动端菜单：优化定位，增加z-index层级控制 */
+      #mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        z-index: 40; /* 低于导航栏z-50，避免遮挡 */
+        background-color: #fff; /* 补充背景色，防止透明穿透 */
+      }
+      
+      /* 移动端文本：优化选择器（原代码!important可移除，通过层级优先级实现） */
+      #mobile-menu a,
+      #mobile-menu button {
+        font-size: 0.75rem;
+        line-height: 1.5; /* 增加行高提升可读性 */
+      }
+      
+      /* 移动端图标颜色：统一选择器，减少重复 */
+      #menu-toggle i,
+      #mobile-lang-btn i {
+        color: white;
+      }
+      #mobile-products-toggle i,
+      #mobile-sheetcut-toggle i,
+      #mobile-tubecut-toggle i {
+        color: #374151;
+      }
+      
+      /* 导航栏滚动效果：优化过渡性能，补充初始状态 */
+      #navbar {
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+      }
+      .nav-scrolled {
+        background-color: rgba(43, 49, 63, 0.9) !important; /* 必要!important：覆盖初始透明 */
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px); /* 兼容Safari */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+      }
+      .nav-scrolled nav > a,
+      .nav-scrolled #menu-toggle,
+      .nav-scrolled .flex.items-center.space-x-2 a span {
+        color: #ffffff;
+      }
+      .nav-scrolled nav > a:hover {
+        color: #ff8a00;
+      }
+      
+      /* 轮播图样式：补充过渡效果，优化显示逻辑 */
+      .carousel-item {
+        display: none;
+        height: 100%; /* 确保轮播图占满父容器 */
+      }
+      .carousel-item.active {
+        display: block;
+        animation: fadeIn 1s ease-in-out;
+      }
+      
+      /* 解决方案卡片：优化hover性能，增加阴影过渡 */
+      .solution-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .solution-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); /* 补充阴影提升层次感 */
+      }
+      .solution-card:hover .solution-icon {
+        background-color: #ff8a00;
+        color: white;
+      }
+      
+      /* 下拉菜单：合并重复样式，统一hover效果 */
+      .group .absolute.bg-white.rounded-md.shadow-lg a,
+      .group/item .absolute.left-full.bg-white.rounded-md.shadow-lg a {
+        color: #374151;
+        background-color: transparent;
+        transition: all 0.2s ease; /* 增加过渡提升体验 */
+      }
+      .group .absolute.bg-white.rounded-md.shadow-lg a:hover,
+      .group/item .absolute.left-full.bg-white.rounded-md.shadow-lg a:hover {
+        color: #ffffff;
+        background-color: #ff8a00;
+      }
+      
+      /* 导航文本：优化选择器，移除不必要的!important */
+      nav a,
+      .group a {
+        font-size: 0.75rem;
+        transition: color 0.2s ease; /* 增加颜色过渡 */
+      }
+      
+      /* Font Awesome图标：统一样式，修复显示问题 */
+      .fa-chevron-down,
+      .fa-chevron-right,
+      .fa-globe,
+      .flex.space-x-4 a .fa,
+      .space-y-3 li .fa,
+      .solution-icon .fa,
+      .solution-card .space-y-2 li .fa,
+      .mt-12.text-center a .fa {
+        font-family: "FontAwesome" !important; /* 必要!important：确保图标字体生效 */
+        display: inline-block;
+        color: inherit;
+      }
+      .fa-chevron-down,
+      .fa-chevron-right {
+        font-size: 0.75rem;
+      }
+      .fa-globe {
+        font-size: 12px;
+      }
+      
+      /* 文本阴影：优化阴影参数，提升可读性 */
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* 下拉箭头：合并重复样式，统一过渡效果 */
+      .dropdown-arrow,
+      .nav-link i.fa-chevron-down,
+      .group button i.fa-chevron-down,
+      #mobile-products-toggle i,
+      #mobile-sheetcut-toggle i,
+      #mobile-tubecut-toggle i {
+        transition: transform 0.3s ease !important; /* 必要!important：确保过渡生效 */
+        transform-origin: center;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .dropdown-arrow.down,
+      .fa-chevron-down {
+        transform: rotate(0deg);
+      }
+      .dropdown-arrow.up,
+      .dropdown-open i.fa-chevron-down {
+        transform: rotate(180deg);
+      }
+      .dropdown-arrow.right {
+        transform: rotate(90deg);
+      }
+      
+      /* 下拉箭头hover：优化颜色逻辑，与品牌色统一 */
+      .group:hover .fa-chevron-down,
+      .nav-link:hover .fa-chevron-down {
+        color: #ff8a00;
+      }
+      
+      /* 技术轮播轨道：补充will-change优化滚动性能 */
+      #tech-track {
+        flex: 0 0 auto;
+        width: 100%;
+        transform: translateZ(0); /* 开启硬件加速 */
+        will-change: transform;
+      }
+    </style>
+  </head>
+  
+  <body class="font-sans text-gray-800 antialiased"> <!-- 补充body基础样式，提升全局一致性 -->
+    <!-- 导航栏优化：1. 修正容器margin（原md:ml-20导致布局偏移）2. 补充aria标签 3. 优化响应式逻辑 -->
+    <header
+      class="fixed top-0 left-0 z-50 w-full transition-all duration-400 cubic-bezier(0.25, 0.1, 0.25, 1) bg-transparent"
+      id="navbar"
+      aria-label="主导航"
+    >
+      <div
+        class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-12 md:h-14 flex-nowrap"
+      >
+        <!-- Logo区域：优化a标签交互，增加焦点样式 -->
+        <a
+          aria-label="Senrytech官网-首页"
+          class="flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+          href="https://www.senrytech.com/"
+        >
+          <span
+            class="font-semibold text-lg md:text-xl font-montserrat tracking-tight text-white transition-colors duration-300"
+          >Senrytech</span
+          >
+        </a>
+        
+        <!-- 桌面端导航：优化hover交互，补充焦点状态 -->
+        <nav class="hidden md:flex items-center space-x-8" aria-label="桌面端导航">
+          <a
+            class="nav-link text-white text-sm transition-colors duration-200 hover:text-secondary focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/"
+          >首页</a>
+          
+          <!-- 产品中心下拉：优化结构，补充aria标签 -->
+          <div class="relative dropdown-trigger group" aria-haspopup="true" aria-expanded="false">
+            <a
+              class="nav-link text-white flex items-center text-sm hover:text-secondary focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+              href="https://www.senrytech.com/products/"
+            >
+              产品中心
+              <i
+                class="fa fa-chevron-down ml-1 text-[10px] transition-transform duration-200 group-hover:rotate-180"
+                aria-hidden="true"
+              ></i>
+            </a>
+            
+            <!-- 一级下拉菜单：优化定位，补充阴影层次 -->
+            <div
+              class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
+              aria-label="产品分类"
+            >
+              <!-- 激光板材切割机：优化嵌套逻辑，补充焦点管理 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-sheet-cutting/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光板材切割机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <!-- 二级下拉菜单：修正定位（原mt-0导致偏移），优化显示逻辑 -->
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光板材切割机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                  >A系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                  >B系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                  >B Plus系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                  >B Pro系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                  >B ProMax系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                  >B Ultra系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                  >C系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                  >C Pro系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                  >G系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                  >M系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                  >S系列</a>
+                </div>
+              </div>
+              
+              <!-- 激光管材切割机：与板材切割机样式统一 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-tube-cutting/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光管材切割机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光管材切割机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-m"
+                  >M系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a"
+                  >A系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-plus"
+                  >A Plus系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-pro"
+                  >A Pro系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b"
+                  >B系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-plus"
+                  >B Plus系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-pro"
+                  >B Pro系列</a>
+                </div>
+              </div>
+              
+              <!-- 激光板管一体机：统一样式 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-sheet-tube/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光板管一体机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光板管一体机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b"
+                  >B系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b-pro"
+                  >B Pro系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b-promax"
+                  >B ProMax系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b-ultra"
+                  >B Ultra系列</a>
+                </div>
+              </div>
+              
+              <!-- 激光焊接机：统一样式 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-welding/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光焊接机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光焊接机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-welding/series-a"
+                  >A系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-welding/series-r"
+                  >R系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-welding/series-m"
+                  >M系列</a>
+                </div>
+              </div>
+              
+              <!-- 激光清洗机：统一样式 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-cleaning/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光清洗机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光清洗机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-cleaning/series-a"
+                  >A系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-cleaning/series-s"
+                  >S系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-cleaning/series-b"
+                  >B系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-cleaning/series-p"
+                  >P系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-cleaning/series-m"
+                  >M系列</a>
+                </div>
+              </div>
+              
+              <!-- 激光打标机：统一样式 -->
+              <div class="relative group/item">
+                <a
+                  class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white flex justify-between items-center text-sm focus:outline-none focus:bg-primary focus:text-white"
+                  href="https://www.senrytech.com/products/laser-marking/"
+                  aria-haspopup="true" aria-expanded="false"
+                >
+                  激光打标机
+                  <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                </a>
+                
+                <div
+                  class="absolute left-full top-0 mt-[-2px] w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-50"
+                  aria-label="激光打标机系列"
+                >
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-marking/series-d"
+                  >D系列</a>
+                  <a
+                    class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                    href="https://www.senrytech.com/products/laser-marking/series-p"
+                  >P系列</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 解决方案下拉：统一下拉菜单样式 -->
+          <div class="relative group" aria-haspopup="true" aria-expanded="false">
+            <a
+              class="text-white hover:text-secondary transition-colors flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+              href="https://www.senrytech.com/solutions/"
+            >
+              解决方案
+              <i class="fa fa-chevron-down ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+            
+            <div
+              class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
+              aria-label="行业解决方案"
+            >
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/automotive/"
+              >汽车制造</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/sheet-metal/"
+              >钣金加工</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/electronics/"
+              >电子电器</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/medical/"
+              >医疗器械</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/aerospace/"
+              >航空航天</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/solutions/jewelry/"
+              >珠宝首饰</a>
+            </div>
+          </div>
+          
+          <!-- 导航链接：统一hover/focus样式，补充过渡效果 -->
+          <a
+            class="text-white hover:text-secondary transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/guides/"
+          >避坑指南</a>
+          <a
+            class="text-white hover:text-secondary transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/news/"
+          >新闻动态</a>
+          <a
+            class="text-white hover:text-secondary transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/downloads/"
+          >资料下载</a>
+          
+          <!-- 关于我们下拉：统一样式 -->
+          <div class="relative group" aria-haspopup="true" aria-expanded="false">
+            <a
+              class="text-white hover:text-secondary transition-colors flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+              href="https://www.senrytech.com/about-us/"
+            >
+              关于我们
+              <i class="fa fa-chevron-down ml-1 text-xs" aria-hidden="true"></i>
+            </a>
+            
+            <div
+              class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
+              aria-label="关于我们子菜单"
+            >
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/about-us/company/"
+              >公司简介</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/about-us/r-d/"
+              >研发实力</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/about-us/factory/"
+              >生产基地</a>
+              <a
+                class="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+                href="https://www.senrytech.com/about-us/qualifications/"
+              >荣誉资质</a>
+            </div>
+          </div>
+          
+          <a
+            class="text-white hover:text-secondary transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/careers/"
+          >加入我们</a>
+          <a
+            class="text-white hover:text-secondary transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/contact-us/"
+          >联系我们</a>
+        </nav>
+        
+        <!-- 右侧功能区：优化布局，补充响应式逻辑 -->
+        <div class="flex items-center space-x-3">
+          <!-- 桌面端搜索：优化样式，补充焦点状态 -->
+          <div class="hidden md:block relative">
+            <input
+              class="bg-white/10 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary focus:bg-white/15 w-28 lg:w-36 placeholder-white/60"
+              placeholder="搜索..."
+              type="text"
+              aria-label="搜索产品或解决方案"
+            />
+            <i
+              class="fa fa-search absolute right-2.5 top-1/2 -translate-y-1/2 text-white/70 text-xs"
+              aria-hidden="true"
+            ></i>
+          </div>
+          
+          <!-- 桌面端询价按钮：优化交互，补充焦点样式 -->
+          <a
+            class="hidden md:block bg-secondary hover:bg-secondary/90 text-white px-3 py-1 rounded-full text-xs transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+            href="https://www.senrytech.com/quote/"
+            aria-label="获取产品报价"
+          >询价</a>
+          
+          <!-- 桌面端语言选择：统一下拉样式 -->
+          <div class="relative group hidden md:block" aria-haspopup="true" aria-expanded="false">
+            <button
+              class="flex items-center text-white hover:text-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-1 focus:ring-offset-primary"
+              aria-label="切换网站语言"
+            >
+              <i class="fa fa-globe mr-0.5 text-xs" aria-hidden="true"></i>
+              <i class="fa fa-chevron-down ml-0.5 text-[10px]" aria-hidden="true"></i>
+            </button>
+            
+            <div
+              class="absolute right-0 mt-1.5 w-32 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top scale-95 group-hover:scale-100 z-50"
+              aria-label="选择语言"
+            >
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="zh"
+              >中文</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="en"
+              >英语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="tr"
+              >土耳其语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="es"
+              >西班牙语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="ko"
+              >韩语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="pt"
+              >葡萄牙语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="de"
+              >德语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="ru"
+              >俄语</a>
+              <a
+                class="block px-3 py-1.5 text-gray-800 hover:bg-primary hover:text-white text-xs focus:outline-none focus:bg-primary focus:text-white"
+                href="#"
+                lang="fr"
+              >法语</a>
+            </div>
+          </div>
+          
+          <!-- 移动端功能区：优化布局，补充aria标签 -->
+          <div class="md:hidden flex items-center space-x-4">
+            <!-- 移动端语言按钮：优化交互 -->
+            <div class="relative">
+              <button
+                id="mobile-lang-btn"
+                aria-label="切换网站语言"
+                aria-expanded="false"
+                class="focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+              >
+                <i class="fa fa-globe text-lg" aria-hidden="true"></i>
+              </button>
+            </div>
+            
+            <!-- 移动端菜单按钮：优化交互 -->
+            <button
+              id="menu-toggle"
+              aria-label="打开/关闭移动端菜单"
+              aria-expanded="false"
+              class="focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+            >
+              <i class="fa fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+          </div>
+          
+          <!-- 移动端语言下拉：优化样式，修正定位（原top-14可能偏移） -->
+          <div
+            class="absolute top-full right-4 mt-1 bg-white rounded-md shadow-lg opacity-0 invisible transition-all duration-300 transform origin-top-right scale-95 z-50 w-32 md:hidden"
+            id="mobile-lang-dropdown"
+            aria-label="移动端语言选择"
+          >
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="zh"
+              lang="zh"
+            >中文</a>
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="en"
+              lang="en"
+            >English</a>
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="tr"
+              lang="tr"
+            >Türkçe</a>
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="es"
+              lang="es"
+            >Español</a>
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="pt"
+              lang="pt"
+            >Português</a>
+            <a
+              class="block px-3 py-2 text-gray-800 hover:bg-primary hover:text-white text-sm focus:outline-none focus:bg-primary focus:text-white"
+              href="#"
+              data-lang="fr"
+              lang="fr"
+            >Français</a>
+          </div>
+        </div>
+        
+        <!-- 移动端菜单：优化显示逻辑（原hidden未关联JS），补充aria标签 -->
+        <div
+          class="md:hidden hidden bg-white shadow-lg z-40"
+          id="mobile-menu"
+          aria-label="移动端导航菜单"
+        >
+          <div class="container mx-auto px-4 py-3 space-y-3">
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/"
+            >首页</a>
+            
+            <!-- 移动端产品中心：优化折叠逻辑，补充aria标签 -->
+            <div>
+              <button
+                class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                id="mobile-products-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-products-menu"
+              >
+                产品中心
+                <i
+                  class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  aria-hidden="true"
+                ></i>
+              </button>
+
+              <div
+                class="hidden pl-4 mt-2 space-y-3"
+                id="mobile-products-menu"
+                aria-label="移动端产品分类"
+              >
+                <!-- 移动端激光板材切割机：统一折叠样式 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-sheetcut-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-sheetcut-menu"
+                  >
+                    激光板材切割机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-sheetcut-menu"
+                    aria-label="移动端激光板材切割机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    >A系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    >B系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    >B Plus系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    >B Pro系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    >B ProMax系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    >B Ultra系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    >C系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                    >C Pro系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    >G系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    >M系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    >S系列</a>
+                  </div>
+                </div>
+
+                <!-- 移动端激光管材切割机：统一样式 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-tubecut-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-tubecut-menu"
+                  >
+                    激光管材切割机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-tubecut-menu"
+                    aria-label="移动端激光管材切割机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-m"
+                    >M系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a"
+                    >A系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-plus"
+                    >A Plus系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-pro"
+                    >A Pro系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b"
+                    >B系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-plus"
+                    >B Plus系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-pro"
+                    >B Pro系列</a>
+                  </div>
+                </div>
+
+                <!-- 移动端激光板管一体机：补充折叠按钮ID和关联 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-sheetandtubecut-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-sheetandtubecut-menu"
+                  >
+                    激光板管一体机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-sheetandtubecut-menu"
+                    aria-label="移动端激光板管一体机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-b"
+                    >B系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-b-pro"
+                    >B Pro系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-b-promax"
+                    >B ProMax系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-b-ultra"
+                    >B Ultra系列</a>
+                  </div>
+                </div>
+
+                <!-- 移动端激光焊接机：补充折叠逻辑 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-welding-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-welding-menu"
+                  >
+                    激光焊接机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-welding-menu"
+                    aria-label="移动端激光焊接机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-welding/series-a"
+                    >A系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-welding/series-r"
+                    >R系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-welding/series-m"
+                    >M系列</a>
+                  </div>
+                </div>
+                                <!-- 移动端激光清洗机：优化折叠逻辑，补充aria关联 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-cleaning-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-cleaning-menu"
+                  >
+                    激光清洗机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-cleaning-menu"
+                    aria-label="移动端激光清洗机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-cleaning/series-a"
+                    >A系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-cleaning/series-s"
+                    >S系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-cleaning/series-b"
+                    >B系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-cleaning/series-p"
+                    >P系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-cleaning/series-m"
+                    >M系列</a>
+                  </div>
+                </div>
+
+                <!-- 移动端激光打标机：统一折叠菜单样式 -->
+                <div>
+                  <button
+                    class="flex justify-between items-center w-full text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                    id="mobile-marking-toggle"
+                    aria-expanded="false"
+                    aria-controls="mobile-marking-menu"
+                  >
+                    激光打标机
+                    <i
+                      class="fa fa-chevron-down text-xs transition-transform duration-300"
+                      aria-hidden="true"
+                    ></i>
+                  </button>
+                  <div
+                    class="hidden pl-4 mt-1 space-y-2"
+                    id="mobile-marking-menu"
+                    aria-label="移动端激光打标机系列"
+                  >
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-marking/series-d"
+                    >D系列</a>
+                    <a
+                      class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                      href="https://www.senrytech.com/products/laser-marking/series-p"
+                    >P系列</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 移动端解决方案：优化折叠逻辑 -->
+            <div>
+              <button
+                class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                id="mobile-solutions-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-solutions-menu"
+              >
+                解决方案
+                <i
+                  class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  aria-hidden="true"
+                ></i>
+              </button>
+              <div
+                class="hidden pl-4 mt-2 space-y-3"
+                id="mobile-solutions-menu"
+                aria-label="移动端行业解决方案"
+              >
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/automotive/"
+                >汽车制造</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/sheet-metal/"
+                >钣金加工</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/electronics/"
+                >电子电器</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/medical/"
+                >医疗器械</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/aerospace/"
+                >航空航天</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/solutions/jewelry/"
+                >珠宝首饰</a>
+              </div>
+            </div>
+
+            <!-- 移动端导航链接：统一hover/focus样式 -->
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/guides/"
+            >避坑指南</a>
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/news/"
+            >新闻动态</a>
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/downloads/"
+            >资料下载</a>
+
+            <!-- 移动端关于我们：优化折叠逻辑 -->
+            <div>
+              <button
+                class="flex justify-between items-center w-full text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                id="mobile-about-toggle"
+                aria-expanded="false"
+                aria-controls="mobile-about-menu"
+              >
+                关于我们
+                <i
+                  class="fa fa-chevron-down text-xs transition-transform duration-300"
+                  aria-hidden="true"
+                ></i>
+              </button>
+              <div
+                class="hidden pl-4 mt-2 space-y-3"
+                id="mobile-about-menu"
+                aria-label="移动端关于我们子菜单"
+              >
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/about-us/company/"
+                >公司简介</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/about-us/r-d/"
+                >研发实力</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/about-us/factory/"
+                >生产基地</a>
+                <a
+                  class="block text-gray-800 hover:text-primary text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+                  href="https://www.senrytech.com/about-us/qualifications/"
+                >荣誉资质</a>
+              </div>
+            </div>
+
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/careers/"
+            >加入我们</a>
+            <a
+              class="block text-gray-800 hover:text-primary font-medium text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
+              href="https://www.senrytech.com/contact-us/"
+            >联系我们</a>
+
+            <!-- 移动端搜索：与桌面端样式呼应，补充语义 -->
+            <div class="mt-3 relative">
+              <input
+                class="bg-gray-100 text-gray-800 text-sm px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white w-full placeholder-gray-500"
+                placeholder="搜索产品或解决方案..."
+                type="text"
+                aria-label="移动端搜索产品或解决方案"
+              />
+              <i
+                class="fa fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"
+                aria-hidden="true"
+              ></i>
+            </div>
+
+            <!-- 移动端询价按钮：强化视觉层级，统一交互 -->
+            <a
+              class="block bg-secondary hover:bg-secondary/90 text-white text-center px-4 py-2 rounded-full text-sm font-medium transition-all mt-2 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+              href="https://www.senrytech.com/quote/"
+              aria-label="移动端获取产品报价"
+            >
+              立即询价
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 轮播图区域：优化结构、性能与可访问性 -->
+    <section
+      class="relative h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden"
+      aria-label="产品展示轮播"
+    >
+      <!-- 轮播容器：优化定位，确保子元素溢出隐藏 -->
+      <div class="absolute inset-0 w-full h-full" id="carousel-container">
+        <!-- 轮播项1：补充alt文本，提供webp+jpg降级，添加active默认状态 -->
+        <div class="carousel-item active absolute inset-0 w-full h-full">
+          <picture class="w-full h-full">
+            <source
+              srcset="img/index/banner/BANNER 1 FINAL.webp"
+              type="image/webp"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 1 FINAL-mobile.webp"
+              type="image/webp"
+              media="(max-width: 767px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 1 FINAL.jpg"
+              type="image/jpeg"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 1 FINAL-mobile.jpg"
+              type="image/jpeg"
+              media="(max-width: 767px)"
+            />
+            <img
+              src="img/index/banner/BANNER 1 FINAL.jpg"
+              alt="Senrytech激光切割机系列 - 高精度工业级激光加工设备"
+              class="w-full h-full object-cover"
+              loading="eager" <!-- 首屏轮播图优先加载 -->
+            />
+          </picture>
+
+          <!-- 轮播文本：优化响应式定位，提升可读性 -->
+          <div
+            class="absolute left-4 md:left-10 lg:left-16 top-1/2 -translate-y-1/2 max-w-md md:max-w-lg text-white"
+          >
+            <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-montserrat font-bold leading-tight text-shadow-lg mb-2">
+              高精度激光加工设备
+            </h1>
+            <p class="text-[clamp(0.875rem,2vw,1rem)] text-white/90 text-shadow mb-6">
+              15年行业经验，为汽车制造、钣金加工、电子电器等领域提供定制化激光解决方案，服务500+全球工厂客户
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href="https://www.senrytech.com/products/"
+                class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+                aria-label="查看全部激光产品"
+              >
+                查看产品
+              </a>
+              <a
+                href="https://www.senrytech.com/quote/"
+                class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                aria-label="咨询产品报价"
+              >
+                咨询报价
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 轮播项2：与轮播项1结构统一，补充语义 -->
+        <div class="carousel-item absolute inset-0 w-full h-full">
+          <picture class="w-full h-full">
+            <source
+              srcset="img/index/banner/BANNER 2 FINAL.webp"
+              type="image/webp"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 2 FINAL-mobile.webp"
+              type="image/webp"
+              media="(max-width: 767px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 2 FINAL.jpg"
+              type="image/jpeg"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 2 FINAL-mobile.jpg"
+              type="image/jpeg"
+              media="(max-width: 767px)"
+            />
+            <img
+              src="img/index/banner/BANNER 2 FINAL.jpg"
+              alt="激光板管一体机 - 一机双用，兼顾板材与管材加工"
+              class="w-full h-full object-cover"
+              loading="lazy" <!-- 非首屏轮播图延迟加载 -->
+            />
+          </picture>
+
+          <div
+            class="absolute left-4 md:left-10 lg:left-16 top-1/2 -translate-y-1/2 max-w-md md:max-w-lg text-white"
+          >
+            <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-montserrat font-bold leading-tight text-shadow-lg mb-2">
+              激光板管一体机
+            </h1>
+            <p class="text-[clamp(0.875rem,2vw,1rem)] text-white/90 text-shadow mb-6">
+              突破传统加工限制，一台设备实现板材、管材双重加工，节省车间空间与设备成本，加工效率提升30%
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-tube/"
+                class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+                aria-label="了解激光板管一体机详情"
+              >
+                产品详情
+              </a>
+              <a
+                href="https://www.senrytech.com/contact-us/"
+                class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                aria-label="联系顾问获取方案"
+              >
+                联系顾问
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 轮播项3：统一结构，优化图片加载策略 -->
+        <div class="carousel-item absolute inset-0 w-full h-full">
+          <picture class="w-full h-full">
+            <source
+              srcset="img/index/banner/BANNER 3 FINAL.webp"
+              type="image/webp"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 3 FINAL-mobile.webp"
+              type="image/webp"
+              media="(max-width: 767px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 3 FINAL.jpg"
+              type="image/jpeg"
+              media="(min-width: 768px)"
+            />
+            <source
+              srcset="img/index/banner/BANNER 3 FINAL-mobile.jpg"
+              type="image/jpeg"
+              media="(max-width: 767px)"
+            />
+            <img
+              src="img/index/banner/BANNER 3 FINAL.jpg"
+              alt="激光焊接与清洗方案 - 绿色环保，无耗材加工工艺"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </picture>
+
+          <div
+            class="absolute left-4 md:left-10 lg:left-16 top-1/2 -translate-y-1/2 max-w-md md:max-w-lg text-white"
+          >
+            <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-montserrat font-bold leading-tight text-shadow-lg mb-2">
+              激光焊接 & 清洗
+            </h1>
+            <p class="text-[clamp(0.875rem,2vw,1rem)] text-white/90 text-shadow mb-6">
+              无接触、无耗材加工，焊接强度高、清洗无残留，满足医疗、航空航天等高精度领域需求，符合环保标准
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <a
+                href="https://www.senrytech.com/solutions/medical/"
+                class="bg-secondary hover:bg-secondary/90 text-white px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2"
+                aria-label="查看医疗行业激光方案"
+              >
+                行业方案
+              </a>
+              <a
+                href="https://www.senrytech.com/downloads/"
+                class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-5 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                aria-label="下载产品技术手册"
+              >
+                下载手册
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 轮播控制按钮：优化定位，补充可访问性 -->
+      <button
+        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all z-10"
+        id="carousel-prev"
+        aria-label="切换到上一张轮播图"
+      >
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <button
+        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-8 h-8 md:w-10 md:h-10 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full flex items-center justify-center text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all z-10"
+        id="carousel-next"
+        aria-label="切换到下一张轮播图"
+      >
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </button>
+
+      <!-- 轮播指示器：优化交互，关联轮播项 -->
+      <div
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10"
+        aria-label="轮播图页码指示器"
+      >
+        <button
+          class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all"
+          data-index="0"
+          aria-label="切换到第1张轮播图"
+        ></button>
+        <button
+          class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white/50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all"
+          data-index="1"
+          aria-label="切换到第2张轮播图"
+        ></button>
+        <button
+          class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-white/50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all"
+          data-index="2"
+          aria-label="切换到第3张轮播图"
+        ></button>
+      </div>
+    </section>
+
+    <!-- 核心优势区域：优化布局一致性，强化视觉层级 -->
+    <section class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 区域标题：统一标题样式，提升语义 -->
+        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14" aria-labelledby="advantage-title">
+          <h2
+            class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+            id="advantage-title"
+          >
+            选择Senrytech的核心优势
+          </h2>
+          <p class="text-gray-600 text-sm md:text-base">
+            从研发到生产，从方案到服务，我们以技术为基石，以客户需求为导向，提供全周期激光加工解决方案
+          </p>
+        </div>
+
+        <!-- 优势卡片容器：优化响应式网格，避免拉伸 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <!-- 优势卡片1：优化hover效果，统一图标样式 -->
+          <div
+            class="bg-neutral rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="15年行业经验优势"
+          >
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <i class="fa fa-calendar text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">15年行业深耕</h3>
+            <p class="text-gray-600 text-sm">
+              累计服务500+全球客户，覆盖20+行业，沉淀丰富的激光加工场景解决方案经验
+            </p>
+          </div>
+
+          <!-- 优势卡片2：统一卡片结构 -->
+          <div
+            class="bg-neutral rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="自主研发优势"
+          >
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <i class="fa fa-lightbulb-o text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">自主研发实力</h3>
+            <p class="text-gray-600 text-sm">
+              拥有50+项专利技术，核心部件自主研发生产，可根据客户需求定制化功能模块
+            </p>
+          </div>
+
+          <!-- 优势卡片3：优化文本排版 -->
+          <div
+            class="bg-neutral rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="全流程服务优势"
+          >
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <i class="fa fa-handshake-o text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">全流程服务</h3>
+            <p class="text-gray-600 text-sm">
+              提供从需求分析、方案设计、设备生产到安装调试、操作培训、售后维护的全周期服务
+            </p>
+          </div>
+
+          <!-- 优势卡片4：统一视觉风格 -->
+          <div
+            class="bg-neutral rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="全球售后网络优势"
+          >
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-4">
+              <i class="fa fa-globe text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">全球售后网络</h3>
+            <p class="text-gray-600 text-sm">
+              在全球12个国家设立服务网点，提供7×24小时在线技术支持，售后响应时间不超过4小时
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 产品系列区域：优化分类展示，强化交互 -->
+    <section class="py-12 md:py-16 bg-neutral/50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 区域标题：统一标题结构 -->
+        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14" aria-labelledby="product-series-title">
+          <h2
+            class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+            id="product-series-title"
+          >
+            核心产品系列
+          </h2>
+          <p class="text-gray-600 text-sm md:text-base">
+            覆盖激光切割、焊接、清洗、打标全品类，满足不同行业、不同加工场景的多样化需求
+          </p>
+        </div>
+
+        <!-- 产品分类标签：优化交互，补充焦点状态 -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-10" id="product-tab-container" aria-label="产品分类切换">
+          <button
+            class="product-tab bg-primary text-white px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="sheet-cutting"
+            aria-selected="true"
+          >
+            激光板材切割
+          </button>
+          <button
+            class="product-tab bg-white text-gray-700 hover:bg-primary/10 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="tube-cutting"
+            aria-selected="false"
+          >
+            激光管材切割
+          </button>
+          <button
+            class="product-tab bg-white text-gray-700 hover:bg-primary/10 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="sheet-tube"
+            aria-selected="false"
+          >
+            激光板管一体
+          </button>
+          <button
+            class="product-tab bg-white text-gray-700 hover:bg-primary/10 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="welding"
+            aria-selected="false"
+          >
+            激光焊接
+          </button>
+          <button
+            class="product-tab bg-white text-gray-700 hover:bg-primary/10 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="cleaning"
+            aria-selected="false"
+          >
+            激光清洗
+          </button>
+          <button
+            class="product-tab bg-white text-gray-700 hover:bg-primary/10 px-4 py-2 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            data-target="marking"
+            aria-selected="false"
+          >
+            激光打标
+          </button>
+        </div>
+
+        <!-- 产品内容容器：优化切换逻辑，默认显示板材切割 -->
+        <div class="product-content active" id="sheet-cutting" aria-label="激光板材切割产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 板材切割产品1：优化图片展示，补充alt文本 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="A系列激光板材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet/A-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet/A-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet/A-series.jpg"
+                    alt="A系列激光板材切割机 - 入门级高性价比"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <!-- 产品标签：优化定位，强化视觉 -->
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  高性价比
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  A系列激光板材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  入门级优选，适合中小批量加工，切割速度快，稳定性强，支持碳钢、不锈钢等多种材质
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥128,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看A系列激光板材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 板材切割产品2：统一产品卡片结构 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="B系列激光板材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet/B-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet/B-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet/B-series.jpg"
+                    alt="B系列激光板材切割机 - 中高端全能型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  全能型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  B系列激光板材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  中高端主力机型，搭载智能切割系统，支持厚板切割，兼容更多材质，适合大批量连续生产
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥188,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看B系列激光板材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 板材切割产品3：优化价格展示，统一交互 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="B Pro系列激光板材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet/B-Pro-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet/B-Pro-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet/B-Pro-series.jpg"
+                    alt="B Pro系列激光板材切割机 - 高端旗舰型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  旗舰型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  B Pro系列激光板材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  高端旗舰机型，搭载双驱伺服系统与进口激光头，切割精度达±0.03mm，满足高精度加工需求
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥268,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看B Pro系列激光板材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：优化居中样式，强化交互 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-sheet-cutting/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光板材切割机产品"
+            >
+              查看全部板材切割产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 管材切割产品内容：默认隐藏，统一结构 -->
+        <div class="product-content hidden" id="tube-cutting" aria-label="激光管材切割产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 管材切割产品1：补充图片降级，优化alt文本 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="M系列激光管材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/tube/M-series.webp" type="image/webp" />
+                  <source srcset="img/products/tube/M-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/tube/M-series.jpg"
+                    alt="M系列激光管材切割机 - 圆管专用"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  圆管专用
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  M系列激光管材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  专注圆管切割，支持直径20-200mm圆管，可实现切斜口、切坡口、切孔等多种工艺，操作简单
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥158,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-m/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看M系列激光管材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 管材切割产品2：统一卡片样式 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="A系列激光管材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/tube/A-series.webp" type="image/webp" />
+                  <source srcset="img/products/tube/A-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/tube/A-series.jpg"
+                    alt="A系列激光管材切割机 - 多规格兼容"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  多规格兼容
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  A系列激光管材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  兼容圆管、方管、矩形管等多种管材，支持直径20-180mm、边长10-150mm，适合多品类加工
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥198,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看A系列激光管材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 管材切割产品3：优化交互效果 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="A Pro系列激光管材切割机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/tube/A-Pro-series.webp" type="image/webp" />
+                  <source srcset="img/products/tube/A-Pro-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/tube/A-Pro-series.jpg"
+                    alt="A Pro系列激光管材切割机 - 高精度高效"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  高精度
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  A Pro系列激光管材切割机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  搭载自动送料系统与智能定位装置，切割精度达±0.05mm，适合高精度管材加工，效率提升40%
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥258,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-pro/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看A Pro系列激光管材切割机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：统一样式 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-tube-cutting/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光管材切割机产品"
+            >
+              查看全部管材切割产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 板管一体产品内容：默认隐藏，统一结构 -->
+        <div class="product-content hidden" id="sheet-tube" aria-label="激光板管一体产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 板管一体产品1：补充图片格式，优化alt文本 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="B系列激光板管一体机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet-tube/B-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet-tube/B-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet-tube/B-series.jpg"
+                    alt="B系列激光板管一体机 - 基础型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  基础型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  B系列激光板管一体机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  基础型板管一体设备，支持板材与管材切换加工，适合中小批量、多品类加工需求，节省设备成本
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥228,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看B系列激光板管一体机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 板管一体产品2：统一卡片结构 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="B Pro系列激光板管一体机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet-tube/B-Pro-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet-tube/B-Pro-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet-tube/B-Pro-series.jpg"
+                    alt="B Pro系列激光板管一体机 - 进阶型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  进阶型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  B Pro系列激光板管一体机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  进阶型设备，搭载快速切换工作台，板材/管材加工切换时间≤5分钟，支持厚板与大直径管材加工
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥298,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b-pro/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看B Pro系列激光板管一体机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 板管一体产品3：优化交互效果 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="B ProMax系列激光板管一体机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/sheet-tube/B-ProMax-series.webp" type="image/webp" />
+                  <source srcset="img/products/sheet-tube/B-ProMax-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/sheet-tube/B-ProMax-series.jpg"
+                    alt="B ProMax系列激光板管一体机 - 旗舰型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  旗舰型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  B ProMax系列激光板管一体机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  旗舰型设备，双激光头配置，支持板材与管材同时加工，搭载智能生产管理系统，适合大批量生产
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥398,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-b-promax/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看B ProMax系列激光板管一体机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：统一样式 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-sheet-tube/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光板管一体机产品"
+            >
+              查看全部板管一体产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 激光焊接产品内容：默认隐藏，统一结构 -->
+        <div class="product-content hidden" id="welding" aria-label="激光焊接产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 焊接产品1：补充图片格式，优化alt文本 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="A系列激光焊接机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/welding/A-series.webp" type="image/webp" />
+                  <source srcset="img/products/welding/A-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/welding/A-series.jpg"
+                    alt="A系列激光焊接机 - 手持便携型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  手持便携
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  A系列激光焊接机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  手持便携设计，重量仅3.5kg，适合户外、大型工件焊接，支持碳钢、不锈钢、铝合金等材质，焊缝美观
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥88,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看A系列激光焊接机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 焊接产品2：统一卡片结构 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="R系列激光焊接机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/welding/R-series.webp" type="image/webp" />
+                  <source srcset="img/products/welding/R-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/welding/R-series.jpg"
+                    alt="R系列激光焊接机 - 机器人自动型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  自动型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  R系列激光焊接机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  搭载6轴机器人手臂，焊接精度达±0.02mm，支持复杂焊缝自动焊接，适合大批量标准化生产
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥258,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-r/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看R系列激光焊接机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 焊接产品3：优化交互效果 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="M系列激光焊接机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/welding/M-series.webp" type="image/webp" />
+                  <source srcset="img/products/welding/M-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/welding/M-series.jpg"
+                    alt="M系列激光焊接机 - 多功能型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  多功能
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  M系列激光焊接机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  集焊接、清洗、切割于一体，支持多种工艺切换，适合多工序加工场景，节省设备投入与车间空间
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥198,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-m/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看M系列激光焊接机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：统一样式 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-welding/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光焊接机产品"
+            >
+              查看全部激光焊接产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+            <!-- 激光清洗产品内容：默认隐藏，统一结构 -->
+        <div class="product-content hidden" id="cleaning" aria-label="激光清洗产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 清洗产品1：补充图片降级，优化功能描述 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="A系列激光清洗机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/cleaning/A-series.webp" type="image/webp" />
+                  <source srcset="img/products/cleaning/A-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/cleaning/A-series.jpg"
+                    alt="A系列激光清洗机 - 便携手持型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  便携手持
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  A系列激光清洗机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  重量仅4.2kg，无线续航3小时，适合除锈、除漆、除油污等场景，操作灵活，无化学污染
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥78,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/series-a/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看A系列激光清洗机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 清洗产品2：强化工业级属性描述 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="S系列激光清洗机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/cleaning/S-series.webp" type="image/webp" />
+                  <source srcset="img/products/cleaning/S-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/cleaning/S-series.jpg"
+                    alt="S系列激光清洗机 - 工业级固定式"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  工业级
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  S系列激光清洗机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  固定式机架设计，支持自动化流水线集成，清洗宽度可达50mm，适合大批量工业零件表面处理
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥158,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/series-s/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看S系列激光清洗机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 清洗产品3：突出高精度特性 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="P系列激光清洗机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/cleaning/P-series.webp" type="image/webp" />
+                  <source srcset="img/products/cleaning/P-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/cleaning/P-series.jpg"
+                    alt="P系列激光清洗机 - 高精度精密型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  精密型
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  P系列激光清洗机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  搭载CCD视觉定位系统，清洗精度达±0.01mm，适合医疗器械、航空零件等精密部件表面清洁
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥228,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/series-p/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看P系列激光清洗机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：保持样式统一 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-cleaning/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光清洗机产品"
+            >
+              查看全部激光清洗产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 激光打标产品内容：默认隐藏，统一结构 -->
+        <div class="product-content hidden" id="marking" aria-label="激光打标产品系列">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- 打标产品1：强调金属材质适配 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="D系列激光打标机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/marking/D-series.webp" type="image/webp" />
+                  <source srcset="img/products/marking/D-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/marking/D-series.jpg"
+                    alt="D系列激光打标机 - 金属专用型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-secondary/90 text-white text-xs px-2 py-1 rounded">
+                  金属专用
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  D系列激光打标机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  光纤激光源，打标深度可达0.5mm，支持不锈钢、铝合金、铜等金属材质，适合产品序列号、logo标识
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥58,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-d/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看D系列激光打标机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 打标产品2：突出非金属适配性 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="P系列激光打标机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/marking/P-series.webp" type="image/webp" />
+                  <source srcset="img/products/marking/P-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/marking/P-series.jpg"
+                    alt="P系列激光打标机 - 非金属通用型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-primary/90 text-white text-xs px-2 py-1 rounded">
+                  非金属通用
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  P系列激光打标机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  CO2激光源，支持塑料、玻璃、木材、皮革等非金属材质，打标速度快，图案清晰无耗材
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥68,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-p/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看P系列激光打标机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 打标产品3：强调高精度与自动化 -->
+            <div
+              class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="M系列激光打标机"
+            >
+              <div class="relative overflow-hidden h-48 md:h-56">
+                <picture>
+                  <source srcset="img/products/marking/M-series.webp" type="image/webp" />
+                  <source srcset="img/products/marking/M-series.jpg" type="image/jpeg" />
+                  <img
+                    src="img/products/marking/M-series.jpg"
+                    alt="M系列激光打标机 - 高精度自动化型"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </picture>
+                <div class="absolute top-3 left-3 bg-accent/90 text-white text-xs px-2 py-1 rounded">
+                  自动化
+                </div>
+              </div>
+              <div class="p-5">
+                <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                  M系列激光打标机
+                </h3>
+                <p class="text-gray-600 text-sm mb-4">
+                  搭载自动送料与视觉定位系统，支持流水线上料，打标精度达±0.005mm，适合高精度批量生产
+                </p>
+                <div class="flex justify-between items-center">
+                  <span class="text-primary font-medium">¥128,000起</span>
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-m/"
+                    class="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center transition-colors"
+                    aria-label="查看M系列激光打标机详情"
+                  >
+                    查看详情
+                    <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 查看更多按钮：保持交互一致性 -->
+          <div class="text-center mt-8 md:mt-10">
+            <a
+              href="https://www.senrytech.com/products/laser-marking/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              aria-label="查看全部激光打标机产品"
+            >
+              查看全部激光打标产品
+              <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 行业解决方案区域：强化场景化展示，优化响应式 -->
+    <section class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 区域标题：延续统一标题结构 -->
+        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14" aria-labelledby="solutions-title">
+          <h2
+            class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+            id="solutions-title"
+          >
+            行业解决方案
+          </h2>
+          <p class="text-gray-600 text-sm md:text-base">
+            基于15年行业经验，为不同领域客户提供定制化激光加工解决方案，解决实际生产痛点
+          </p>
+        </div>
+
+        <!-- 解决方案卡片容器：优化网格布局，移动端单列，桌面多列 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <!-- 汽车制造解决方案：强化行业属性 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="汽车制造行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/automotive.webp" type="image/webp" />
+                <source srcset="img/solutions/automotive.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/automotive.jpg"
+                  alt="汽车制造行业 - 激光焊接与切割应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <!-- 行业图标：增强视觉识别 -->
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-car" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                汽车制造
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供车身部件激光焊接、底盘零件切割、发动机部件打标等解决方案，提升焊接强度与加工精度，降低生产成本
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/automotive/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看汽车制造解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 钣金加工解决方案：突出效率优势 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="钣金加工行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/sheet-metal.webp" type="image/webp" />
+                <source srcset="img/solutions/sheet-metal.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/sheet-metal.jpg"
+                  alt="钣金加工行业 - 激光切割与折弯应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-scissors" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                钣金加工
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供高功率激光切割、板管一体加工解决方案，支持复杂异形件切割，加工效率提升30%，材料利用率提高15%
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/sheet-metal/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看钣金加工解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 电子电器解决方案：强调精密特性 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="电子电器行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/electronics.webp" type="image/webp" />
+                <source srcset="img/solutions/electronics.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/electronics.jpg"
+                  alt="电子电器行业 - 激光打标与微焊接应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-microchip" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                电子电器
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供PCB板激光打标、电子元件微焊接、外壳激光清洗解决方案，满足精密加工需求，避免热损伤
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/electronics/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看电子电器解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 医疗器械解决方案：突出合规性 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="医疗器械行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/medical.webp" type="image/webp" />
+                <source srcset="img/solutions/medical.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/medical.jpg"
+                  alt="医疗器械行业 - 激光焊接与表面处理应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-heartbeat" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                医疗器械
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供不锈钢器械激光焊接、植入物表面清洗、设备标识打标解决方案，符合GMP标准，无耗材无污染
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/medical/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看医疗器械解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 航空航天解决方案：强调高精度 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="航空航天行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/aerospace.webp" type="image/webp" />
+                <source srcset="img/solutions/aerospace.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/aerospace.jpg"
+                  alt="航空航天行业 - 钛合金激光加工应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-plane" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                航空航天
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供钛合金、铝合金构件激光焊接、精密部件切割、表面除氧化层解决方案，焊接强度达母材90%以上
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/aerospace/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看航空航天解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 珠宝首饰解决方案：突出美观性 -->
+          <div
+            class="bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="珠宝首饰行业激光解决方案"
+          >
+            <div class="relative h-40 md:h-48 overflow-hidden">
+              <picture>
+                <source srcset="img/solutions/jewelry.webp" type="image/webp" />
+                <source srcset="img/solutions/jewelry.jpg" type="image/jpeg" />
+                <img
+                  src="img/solutions/jewelry.jpg"
+                  alt="珠宝首饰行业 - 激光雕刻与焊接应用"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="absolute top-4 left-4 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-primary">
+                <i class="fa fa-diamond" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-montserrat font-semibold text-primary mb-2 group-hover:text-secondary transition-colors">
+                珠宝首饰
+              </h3>
+              <p class="text-gray-600 text-sm mb-4">
+                提供贵金属激光焊接、个性化图案雕刻、宝石切割解决方案，热影响区小，不损伤工件表面光泽
+              </p>
+              <a
+                href="https://www.senrytech.com/solutions/jewelry/"
+                class="inline-flex items-center text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看珠宝首饰解决方案详情"
+              >
+                查看详情
+                <i class="fa fa-chevron-right ml-1 text-xs" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 客户案例区域：增强可信度，优化展示形式 -->
+    <section class="py-12 md:py-16 bg-neutral/50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 区域标题：统一结构，突出案例价值 -->
+        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14" aria-labelledby="cases-title">
+          <h2
+            class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+            id="cases-title"
+          >
+            客户成功案例
+          </h2>
+          <p class="text-gray-600 text-sm md:text-base">
+            已为500+全球客户提供激光加工设备与解决方案，以下为部分典型案例分享
+          </p>
+        </div>
+
+        <!-- 案例展示容器：采用左右布局，左侧图片+右侧信息 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+          <!-- 案例1：汽车零部件厂商 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" aria-label="某汽车零部件厂商案例">
+            <div class="lg:h-64 overflow-hidden">
+              <picture>
+                <source srcset="img/cases/auto-part.webp" type="image/webp" />
+                <source srcset="img/cases/auto-part.jpg" type="image/jpeg" />
+                <img
+                  src="img/cases/auto-part.jpg"
+                  alt="某汽车零部件厂商 - 激光焊接生产线应用"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-primary/10 text-primary text-xs px-2.5 py-1 rounded-full">汽车制造</span>
+                <span class="ml-3 text-gray-500 text-sm">合作时间：2022年</span>
+              </div>
+              <h3 class="font-montserrat font-semibold text-primary mb-2">某汽车零部件厂商：激光焊接生产线升级</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                客户为国内知名汽车零部件供应商，原有焊接工艺采用传统电弧焊，存在焊缝质量不稳定、热变形大等问题。引入我司R系列激光焊接机器人生产线后，焊接合格率从85%提升至99.5%，生产效率提升40%，每年节省成本约200万元。
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">激光焊接机器人</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">自动化生产线</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">汽车零部件</span>
+              </div>
+              <a
+                href="https://www.senrytech.com/cases/auto-part/"
+                class="inline-block text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看某汽车零部件厂商案例详情"
+              >
+                查看完整案例 <i class="fa fa-angle-right ml-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 案例2：钣金加工企业 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" aria-label="某大型钣金加工企业案例">
+            <div class="lg:h-64 overflow-hidden">
+              <picture>
+                <source srcset="img/cases/sheet-metal-factory.webp" type="image/webp" />
+                <source srcset="img/cases/sheet-metal-factory.jpg" type="image/jpeg" />
+                <img
+                  src="img/cases/sheet-metal-factory.jpg"
+                  alt="某大型钣金加工企业 - 激光板管一体机应用"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-primary/10 text-primary text-xs px-2.5 py-1 rounded-full">钣金加工</span>
+                <span class="ml-3 text-gray-500 text-sm">合作时间：2021年</span>
+              </div>
+              <h3 class="font-montserrat font-semibold text-primary mb-2">某大型钣金企业：板管一体加工设备导入</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                客户为华东地区大型钣金加工企业，原有设备需分别配置板材切割机与管材切割机，占用车间空间大、切换工序繁琐。引入我司B ProMax系列激光板管一体机后，设备占地面积减少50%，工序切换时间从2小时缩短至5分钟，订单交付周期缩短30%。
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">激光板管一体机</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">钣金加工</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">效率提升</span>
+              </div>
+              <a
+                href="https://www.senrytech.com/cases/sheet-metal-factory/"
+                class="inline-block text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看某大型钣金加工企业案例详情"
+              >
+                查看完整案例 <i class="fa fa-angle-right ml-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 案例3：医疗器械厂商 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" aria-label="某医疗器械厂商案例">
+            <div class="lg:h-64 overflow-hidden">
+              <picture>
+                <source srcset="img/cases/medical-device.webp" type="image/webp" />
+                <source srcset="img/cases/medical-device.jpg" type="image/jpeg" />
+                <img
+                  src="img/cases/medical-device.jpg"
+                  alt="某医疗器械厂商 - 激光清洗与打标应用"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-primary/10 text-primary text-xs px-2.5 py-1 rounded-full">医疗器械</span>
+                <span class="ml-3 text-gray-500 text-sm">合作时间：2023年</span>
+              </div>
+              <h3 class="font-montserrat font-semibold text-primary mb-2">某医疗器械厂商：精密部件清洁与标识方案</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                客户为专业医疗器械制造商，生产外科手术器械，需解决不锈钢部件表面氧化层清洁与产品追溯标识问题。采用我司P系列激光清洗机与M系列激光打标机后，清洁无化学残留，符合医疗级标准，标识清晰度达0.1mm，实现全生命周期追溯。
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">激光清洗</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">激光打标</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">医疗器械</span>
+              </div>
+              <a
+                href="https://www.senrytech.com/cases/medical-device/"
+                class="inline-block text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看某医疗器械厂商案例详情"
+              >
+                查看完整案例 <i class="fa fa-angle-right ml-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- 案例4：航空零部件企业 -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" aria-label="某航空零部件企业案例">
+            <div class="lg:h-64 overflow-hidden">
+              <picture>
+                <source srcset="img/cases/aerospace-part.webp" type="image/webp" />
+                <source srcset="img/cases/aerospace-part.jpg" type="image/jpeg" />
+                <img
+                  src="img/cases/aerospace-part.jpg"
+                  alt="某航空零部件企业 - 钛合金激光切割应用"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="bg-primary/10 text-primary text-xs px-2.5 py-1 rounded-full">航空航天</span>
+                <span class="ml-3 text-gray-500 text-sm">合作时间：2022年</span>
+              </div>
+              <h3 class="font-montserrat font-semibold text-primary mb-2">某航空零部件企业：钛合金构件激光切割方案</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                客户为航空航天领域零部件供应商，需加工厚度15mm的钛合金构件，传统切割方式存在毛刺多、精度低等问题。引入我司B Pro系列高功率激光切割机后，切割精度达±0.03mm，无毛刺无需二次加工，材料利用率提升12%，满足航空级质量要求。
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">高功率激光切割</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">钛合金加工</span>
+                <span class="text-gray-500 text-xs bg-neutral/50 px-2 py-1 rounded">航空零部件</span>
+              </div>
+              <a
+                href="https://www.senrytech.com/cases/aerospace-part/"
+                class="inline-block text-secondary hover:text-secondary/80 text-sm font-medium transition-colors"
+                aria-label="查看某航空零部件企业案例详情"
+              >
+                查看完整案例 <i class="fa fa-angle-right ml-1" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 更多案例按钮：居中展示，强化交互 -->
+        <div class="text-center mt-10 md:mt-14">
+          <a
+            href="https://www.senrytech.com/cases/"
+            class="inline-block bg-white border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="查看更多客户案例"
+          >
+            查看更多案例
+            <i class="fa fa-long-arrow-right ml-1" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 技术支持区域：突出服务保障，优化信息层级 -->
+    <section class="py-12 md:py-16 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 区域标题：统一结构，强调服务价值 -->
+        <div class="text-center max-w-3xl mx-auto mb-10 md:mb-14" aria-labelledby="support-title">
+          <h2
+            class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+            id="support-title"
+          >
+            全周期技术支持
+          </h2>
+          <p class="text-gray-600 text-sm md:text-base">
+            从设备选型到售后维护，提供7×24小时全周期服务，确保设备稳定运行，保障客户生产效率
+          </p>
+        </div>
+
+        <!-- 服务卡片容器：网格布局，图标+文字组合 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <!-- 服务1：免费咨询与选型 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="免费咨询与选型服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-comments-o text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">免费咨询选型</h3>
+            <p class="text-gray-600 text-sm">
+              专业工程师根据客户需求、加工材质、产能规划，提供定制化设备选型方案与投资回报分析
+            </p>
+          </div>
+
+          <!-- 服务2：上门安装调试 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="上门安装调试服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-wrench text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">上门安装调试</h3>
+            <p class="text-gray-600 text-sm">
+              设备到货后，专业技术人员上门进行安装、调试与验收，确保设备达到最佳运行状态
+            </p>
+          </div>
+
+          <!-- 服务3：操作培训 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="操作培训服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-graduation-cap text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">操作技能培训</h3>
+            <p class="text-gray-600 text-sm">
+              提供设备操作、参数设置、日常维护等全流程培训，确保操作人员熟练掌握使用技能
+            </p>
+          </div>
+
+          <!-- 服务4：售后维护 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="售后维护服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-life-ring text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">7×24小时售后</h3>
+            <p class="text-gray-600 text-sm">
+              全球12个服务网点，7×24小时在线技术支持，4小时内响应，紧急情况48小时内上门服务
+            </p>
+          </div>
+
+          <!-- 服务5：配件供应 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="配件供应服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-cogs text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">原厂配件供应</h3>
+            <p class="text-gray-600 text-sm">
+              建立配件库存中心，提供原厂正品配件，确保配件供应及时，减少设备停机时间
+            </p>
+          </div>
+
+          <!-- 服务6：设备升级 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="设备升级服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-refresh text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">设备升级改造</h3>
+            <p class="text-gray-600 text-sm">
+              提供设备软件升级、功能模块扩展、老旧设备改造服务，延长设备使用寿命，提升性能
+            </p>
+          </div>
+
+          <!-- 服务7：工艺支持 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="工艺支持服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-lightbulb-o text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">加工工艺支持</h3>
+            <p class="text-gray-600 text-sm">
+              针对特殊加工需求，提供工艺参数优化、样品试切等技术支持，协助客户攻克加工难题
+            </p>
+          </div>
+
+          <!-- 服务8：终身维护 -->
+          <div
+            class="bg-neutral rounded-xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="终身维护服务"
+          >
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-4">
+              <i class="fa fa-calendar-check-o text-xl" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-montserrat font-semibold text-primary mb-2">终身维护保障</h3>
+            <p class="text-gray-600 text-sm">
+              设备整机保修1年，核心部件保修2年，提供终身维护服务，让客户使用更放心
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系咨询区域：强化转化引导，优化表单体验 -->
+    <section class="py-12 md:py-16 bg-primary/5">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+          <!-- 左侧：咨询信息 -->
+          <div aria-labelledby="contact-title">
+            <h2
+              class="text-[clamp(1.25rem,3vw,1.75rem)] font-montserrat font-bold text-primary mb-3"
+              id="contact-title"
+            >
+              立即咨询，获取定制方案
+            </h2>
+            <p class="text-gray-600 text-sm md:text-base mb-6">
+              无论您有设备选型、工艺优化还是投资预算疑问，我们的专业团队都将为您提供一对一服务，助力您提升生产效率
+            </p>
+
+            <!-- 联系方式列表：图标+文字组合，增强可读性 -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mt-0.5">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="font-medium text-gray-800 mb-1">咨询热线</h4>
+                  <a href="tel:+8613800138000" class="text-gray-600 text-sm hover:text-primary transition-colors">
+                    +86 138-0013-8000
+                  </a>
+                  <p class="text-gray-500 text-xs mt-1">7×24小时服务</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mt-0.5">
+                  <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="font-medium text-gray-800 mb-1">咨询邮箱</h4>
+                  <a href="mailto:info@senrytech.com" class="text-gray-600 text-sm hover:text-primary transition-colors">
+                    info@senrytech.com
+                  </a>
+                  <p class="text-gray-500 text-xs mt-1">24小时内回复</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary mt-0.5">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                </div>
+                <div class="ml-4">
+                  <h4 class="font-medium text-gray-800 mb-1">总部地址</h4>
+                  <p class="text-gray-600 text-sm">
+                    上海市浦东新区张江高科技园区科苑路88号
+                  </p>
+                  <p class="text-gray-500 text-xs mt-1">欢迎莅临考察</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 社交媒体链接：增强品牌触达 -->
+            <div>
+              <h4 class="font-medium text-gray-800 mb-3">关注我们</h4>
+              <div class="flex gap-3">
+                <a
+                  href="https://www.weixin.qq.com"
+                  class="w-8 h-8 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-full flex items-center justify-center transition-colors"
+                  aria-label="关注微信公众号"
+                >
+                  <i class="fa fa-weixin" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="https://www.weibo.com"
+                  class="w-8 h-8 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-full flex items-center justify-center transition-colors"
+                  aria-label="关注微博账号"
+                >
+                  <i class="fa fa-weibo" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com"
+                  class="w-8 h-8 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-full flex items-center justify-center transition-colors"
+                  aria-label="关注领英账号"
+                >
+                  <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com"
+                  class="w-8 h-8 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-full flex items-center justify-center transition-colors"
+                  aria-label="关注YouTube频道"
+                >
+                  <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右侧：咨询表单 -->
+          <div class="bg-white rounded-xl shadow-sm p-6 md:p-8" aria-label="在线咨询表单">
+            <h3 class="font-montserrat font-semibold text-primary mb-5">在线咨询</h3>
+            <form action="https://www.senrytech.com/contact/submit" method="post">
+              <!-- 姓名输入 -->
+              <div class="mb-4">
+                <label for="contact-name" class="block text-gray-700 text-sm font-medium mb-2">
+                  您的姓名 <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  placeholder="请输入您的姓名"
+                  required
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- 电话输入 -->
+              <div class="mb-4">
+                <label for="contact-phone" class="block text-gray-700 text-sm font-medium mb-2">
+                  联系电话 <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="contact-phone"
+                  name="phone"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  placeholder="请输入您的联系电话"
+                  required
+                  aria-required="true"
+                />
+              </div>
+
+              <!-- 邮箱输入 -->
+              <div class="mb-4">
+                <label for="contact-email" class="block text-gray-700 text-sm font-medium mb-2">
+                  电子邮箱
+                </label>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  placeholder="请输入您的电子邮箱"
+                />
+              </div>
+
+              <!-- 需求类型选择 -->
+              <div class="mb-4">
+                <label for="contact-type" class="block text-gray-700 text-sm font-medium mb-2">
+                  咨询类型 <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="contact-type"
+                  name="type"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm appearance-none bg-white"
+                  required
+                  aria-required="true"
+                >
+                  <option value="" disabled selected>请选择咨询类型</option>
+                  <option value="product">产品选型咨询</option>
+                  <option value="solution">行业解决方案咨询</option>
+                  <option value="price">产品报价咨询</option>
+                  <option value="after-sales">售后技术支持</option>
+                  <option value="other">其他咨询</option>
+                </select>
+                <!-- 自定义下拉图标 -->
+                <div class="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-gray-500">
+                  <i class="fa fa-chevron-down text-xs" aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <!-- 留言输入 -->
+              <div class="mb-6">
+                <label for="contact-message" class="block text-gray-700 text-sm font-medium mb-2">
+                  您的需求
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  rows="4"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm"
+                  placeholder="请简要描述您的需求（如加工材质、产能要求等）"
+                ></textarea>
+              </div>
+
+              <!-- 提交按钮 -->
+              <button
+                type="submit"
+                class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 text-sm"
+              >
+                提交咨询
+                <i class="fa fa-paper-plane ml-1" aria-hidden="true"></i>
+              </button>
+              <p class="text-gray-500 text-xs text-center mt-3">
+                提交即表示您同意我们的《隐私政策》，我们将保护您的信息安全
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚区域：优化导航结构，强化品牌信息 -->
+    <footer class="bg-gray-800 text-white pt-12 md:pt-16 pb-6">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 页脚导航网格：移动端堆叠，桌面多列 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-10">
+          <!-- 品牌信息 -->
+          <div aria-label="品牌信息与简介">
+            <div class="flex items-center mb-4">
+              <img
+                src="img/logo/senrytech-white.svg"
+                alt="Senrytech Logo"
+                class="h-8"
+                loading="lazy"
+              />
+              <span class="ml-2 font-montserrat font-bold text-lg">Senrytech</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">
+              专业激光加工设备制造商，致力于为全球客户提供高品质激光切割、焊接、清洗、打标解决方案
+            </p>
+            <div class="flex gap-3 mb-4">
+              <a
+                href="https://www.weixin.qq.com"
+                class="w-8 h-8 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"
+                aria-label="微信公众号"
+              >
+                <i class="fa fa-weixin" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://www.weibo.com"
+                class="w-8 h-8 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"
+                aria-label="微博账号"
+              >
+                <i class="fa fa-weibo" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com"
+                class="w-8 h-8 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"
+                aria-label="领英账号"
+              >
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://www.youtube.com"
+                class="w-8 h-8 bg-gray-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors"
+                aria-label="YouTube频道"
+              >
+                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+              </a>
+            </div>
+            <a
+              href="https://www.senrytech.com/quote/"
+              class="inline-block bg-primary hover:bg-primary/90 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all"
+              aria-label="立即获取报价"
+            >
+              立即获取报价
+            </a>
+          </div>
+
+          <!-- 产品导航 -->
+          <div aria-label="产品导航链接">
+            <h4 class="font-montserrat font-semibold text-lg mb-4">产品中心</h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="https://www.senrytech.com/products/laser-sheet-cutting/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光板材切割机
+                </a>
+              </li>
+              <li>
+                <a href="https://www.senrytech.com/products/laser-tube-cutting/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光管材切割机
+                </a>
+              </li>
+              <li>
+                <a href="https://www.senrytech.com/products/laser-sheet-tube/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光板管一体机
+                </a>
+              </li>
+              <li>
+                <a href="https://www.senrytech.com/products/laser-welding/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光焊接机
+                </a>
+              </li>
+              <li>
+                <a href="https://www.senrytech.com/products/laser-cleaning/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光清洗机
+                </a>
+              </li>
+              <li>
+                <a href="https://www.senrytech.com/products/laser-marking/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  激光打标机
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 解决方案导航 -->
+          <div aria-label="解决方案导航链接">
+            <h4 class="font-montserrat font-semibold text-lg mb-4">解决方案</h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="https://www.senrytech.com/solutions/automotive/" class="text-gray-400 hover:text-white text-sm transition-colors">
+                  汽车制造解决方案
+                </a>
+              </li>
+              <li>

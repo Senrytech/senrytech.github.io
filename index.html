@@ -3368,44 +3368,119 @@
     </footer>
     <!--JavaScript-->
     <script>
-      // 移动端菜单功能
       document.addEventListener("DOMContentLoaded", function () {
-        // 移动端菜单切换
-        const menuToggle = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
+  // 1. 移动端主菜单切换（原逻辑保留，添加元素存在性判断）
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener("click", function () {
+      mobileMenu.classList.toggle("hidden");
+      // （可选）主菜单按钮箭头切换，逻辑同子菜单
+      const menuArrow = this.querySelector(".fa-bars");
+      if (menuArrow) {
+        menuArrow.classList.toggle("fa-bars");
+        menuArrow.classList.toggle("fa-times");
+      }
+    });
+  }
 
-        if (menuToggle && mobileMenu) {
-          menuToggle.addEventListener("click", function () {
-            mobileMenu.classList.toggle("hidden");
-          });
-        }
+  // 2. 移动端子菜单切换（修复后）
+  const toggleButtons = [
+    "mobile-products-toggle",
+    "mobile-solutions-toggle",
+    "mobile-about-toggle",
+    "mobile-sheetcut-toggle",
+    "mobile-tubecut-toggle",
+    "mobile-sheetandtubecut-toggle",
+    "mobile-welding-toggle",
+    "mobile-cleaning-toggle",
+    "mobile-marking-toggle",
+  ];
 
-        // 移动端子菜单切换
-        const toggleButtons = [
-          "mobile-products-toggle",
-          "mobile-solutions-toggle",
-          "mobile-about-toggle",
-          "mobile-lang-toggle",
-          "mobile-sheetcut-toggle",
-          "mobile-tubecut-toggle",
-          "mobile-sheetandtubecut-toggle",
-          "mobile-welding-toggle",
-          "mobile-cleaning-toggle",
-          "mobile-marking-toggle",
-        ];
-
-        toggleButtons.forEach((buttonId) => {
-          const button = document.getElementById(buttonId);
-          if (button) {
-            const targetId = buttonId.replace("-toggle", "-menu");
-            const target = document.getElementById(targetId);
-            if (target) {
-              button.addEventListener("click", function () {
-                target.classList.toggle("hidden");
-              });
+  toggleButtons.forEach((buttonId) => {
+    const button = document.getElementById(buttonId);
+    if (button) {
+      const targetId = buttonId.replace("-toggle", "-menu");
+      const target = document.getElementById(targetId);
+      if (target) {
+        button.addEventListener("click", function () {
+          // 切换子菜单显示/隐藏
+          target.classList.toggle("hidden");
+          // 切换箭头方向
+          const arrowIcon = this.querySelector(".fa-chevron-down");
+          if (arrowIcon) {
+            if (target.classList.contains("hidden")) {
+              arrowIcon.classList.remove("fa-chevron-up");
+              arrowIcon.classList.add("fa-chevron-down");
+            } else {
+              arrowIcon.classList.remove("fa-chevron-down");
+              arrowIcon.classList.add("fa-chevron-up");
             }
           }
         });
+      }
+    }
+  });
+
+  // 3. 移动端语言菜单（修复后，添加元素存在性判断）
+  const mobileLangBtn = document.getElementById("mobile-lang-btn");
+  const mobileLangDropdown = document.getElementById("mobile-lang-dropdown");
+  let mobileLangLinks = [];
+  const LANG_STORAGE_KEY = "preferred_language";
+
+  if (mobileLangBtn && mobileLangDropdown) {
+    mobileLangLinks = mobileLangDropdown.querySelectorAll("a[data-lang]");
+
+    // 语言图标点击：展开/收起菜单
+    mobileLangBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      const isVisible = mobileLangDropdown.classList.contains("opacity-100");
+      if (isVisible) {
+        mobileLangDropdown.classList.remove("opacity-100", "visible", "scale-100");
+        mobileLangDropdown.classList.add("opacity-0", "invisible", "scale-95");
+      } else {
+        mobileLangDropdown.classList.remove("opacity-0", "invisible", "scale-95");
+        mobileLangDropdown.classList.add("opacity-100", "visible", "scale-100");
+      }
+    });
+
+    // 语言选项点击：保存偏好并跳转
+    mobileLangLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const selectedLang = this.getAttribute("data-lang");
+        localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
+
+        // 收起菜单
+        mobileLangDropdown.classList.remove("opacity-100", "visible", "scale-100");
+        mobileLangDropdown.classList.add("opacity-0", "invisible", "scale-95");
+
+        // 跳转逻辑
+        const langPathMap = {
+          zh: "/zh-CN/index.html",
+          en: "/en-US/index.html",
+          tr: "/tr-TR/index.html",
+          es: "/es-ES/index.html",
+          pt: "/pt-PT/index.html",
+          fr: "/fr-FR/index.html",
+        };
+        window.location.href = langPathMap[selectedLang] || "/en-US/index.html";
+      });
+    });
+
+    // 点击页面其他区域：收起语言菜单
+    document.addEventListener("click", function () {
+      mobileLangDropdown.classList.remove("opacity-100", "visible", "scale-100");
+      mobileLangDropdown.classList.add("opacity-0", "invisible", "scale-95");
+    });
+
+    // 初始化语言偏好
+    const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
+    if (!savedLang) {
+      // 首次访问默认逻辑（可选）
+    }
+  }
 
         // 轮播图功能
         let currentSlide = 0;
@@ -3583,106 +3658,6 @@
         document.querySelectorAll("section").forEach((section) => {
           observer.observe(section);
         });
-      });
-
-      document.addEventListener("DOMContentLoaded", function () {
-        // 移动端语言切换元素
-        const mobileLangBtn = document.getElementById("mobile-lang-btn");
-        const mobileLangDropdown = document.getElementById(
-          "mobile-lang-dropdown"
-        );
-        const mobileLangLinks =
-          mobileLangDropdown.querySelectorAll("a[data-lang]");
-        const LANG_STORAGE_KEY = "preferred_language";
-
-        // 1. 点击语言图标，展开/收起下拉菜单
-        mobileLangBtn.addEventListener("click", function (e) {
-          e.stopPropagation(); // 防止触发页面其他点击事件
-          const isVisible =
-            mobileLangDropdown.classList.contains("opacity-100");
-
-          if (isVisible) {
-            // 收起菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-          } else {
-            // 展开菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-          }
-        });
-
-        // 2. 点击语言选项，保存偏好并跳转（适配静态多文件架构）
-        mobileLangLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const selectedLang = this.getAttribute("data-lang");
-
-            // 保存语言偏好到LocalStorage
-            localStorage.setItem(LANG_STORAGE_KEY, selectedLang);
-
-            // 收起菜单
-            mobileLangDropdown.classList.remove(
-              "opacity-100",
-              "visible",
-              "scale-100"
-            );
-            mobileLangDropdown.classList.add(
-              "opacity-0",
-              "invisible",
-              "scale-95"
-            );
-
-            // 跳转到对应语言的静态页面（需与你的文件夹路径匹配）
-            const langPathMap = {
-              zh: "/zh-CN/index.html", // 中文页面路径
-              en: "/en-US/index.html", // 英文页面路径（默认优先）
-              tr: "/tr-TR/index.html", // 土耳其语页面路径
-              es: "/es-ES/index.html", // 西班牙语页面路径
-              pt: "/pt-PT/index.html", // 葡萄牙语页面路径
-              fr: "/fr-FR/index.html", // 法语页面路径
-            };
-            window.location.href =
-              langPathMap[selectedLang] || "/en-US/index.html"; // 默认跳转英文
-          });
-        });
-
-        // 3. 点击页面其他区域，收起语言菜单（优化体验）
-        document.addEventListener("click", function () {
-          mobileLangDropdown.classList.remove(
-            "opacity-100",
-            "visible",
-            "scale-100"
-          );
-          mobileLangDropdown.classList.add(
-            "opacity-0",
-            "invisible",
-            "scale-95"
-          );
-        });
-
-        // 4. 初始化：默认语言优先（若未保存偏好，默认英文）
-        const savedLang = localStorage.getItem(LANG_STORAGE_KEY);
-        if (!savedLang) {
-          // 首次访问时，默认跳转到英文页面（可根据需求改为中文）
-          // window.location.href = '/en-US/index.html';
-        }
       });
     </script>
   </body>

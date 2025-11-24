@@ -2077,19 +2077,19 @@
                   <td class="py-6 px-6 sm:px-8 text-center">
                     50mm
                     <span class="block text-xs text-[#86868b] mt-1"
-                      >(特殊情况75mm)</span
+                      >(特殊情况70mm)</span
                     >
                   </td>
                   <td class="py-6 px-6 sm:px-8 text-center">
                     55mm
                     <span class="block text-xs text-[#86868b] mt-1"
-                      >(特殊情况80mm)</span
+                      >(特殊情况75mm)</span
                     >
                   </td>
                   <td class="py-6 px-6 sm:px-8 text-center">
                     60mm
                     <span class="block text-xs text-[#86868b] mt-1"
-                      >(特殊情况85mm)</span
+                      >(特殊情况80mm)</span
                     >
                   </td>
                 </tr>
@@ -2157,21 +2157,21 @@
                     >
                   </td>
                   <td class="py-6 px-6 sm:px-8 text-center">
-                    30mm
-                    <span class="block text-xs text-[#86868b] mt-1"
-                      >(特殊情况50mm)</span
-                    >
-                  </td>
-                  <td class="py-6 px-6 sm:px-8 text-center">
-                    35mm
-                    <span class="block text-xs text-[#86868b] mt-1"
-                      >(特殊情况55mm)</span
-                    >
-                  </td>
-                  <td class="py-6 px-6 sm:px-8 text-center">
                     40mm
                     <span class="block text-xs text-[#86868b] mt-1"
                       >(特殊情况60mm)</span
+                    >
+                  </td>
+                  <td class="py-6 px-6 sm:px-8 text-center">
+                    50mm
+                    <span class="block text-xs text-[#86868b] mt-1"
+                      >(特殊情况70mm)</span
+                    >
+                  </td>
+                  <td class="py-6 px-6 sm:px-8 text-center">
+                    60mm
+                    <span class="block text-xs text-[#86868b] mt-1"
+                      >(特殊情况80mm)</span
                     >
                   </td>
                 </tr>
@@ -3445,7 +3445,7 @@
             y: {
               stacked: true,
               beginAtZero: true,
-              max: 45,
+              max: 80,
               stepSize: 5,
               grid: {
                 color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）
@@ -3493,18 +3493,18 @@
       };
       // 1. 碳钢切割厚度（保留原数据/颜色/动画，仅应用苹果风格配置）
       const carbonSteelData = {
-        labels: ["C15 PRO", "G200", "G300", "G400"],
+        labels: ["G120", "G200", "G300", "G400", "G500", "G600"],
         datasets: [
           {
             label: "batch",
-            data: [12, 16, 18, 22],
+            data: [35, 50, 50, 50, 55, 60],
             backgroundColor: "rgba(34, 197, 94, 0.85)", // 轻微降低不透明度，更柔和
             borderColor: "transparent", // 移除边框
             borderWidth: 0,
           },
           {
             label: "smallBatch",
-            data: [2, 2, 2, 3],
+            data: [5, 10, 10, 10, ],
             backgroundColor: "rgba(251, 146, 60, 0.85)",
             borderColor: "transparent",
             borderWidth: 0,

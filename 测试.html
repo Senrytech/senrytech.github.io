@@ -48,6 +48,10 @@
       rel="preload"
       type="image/jpeg"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+    />
     <!--Tailwind配置-->
     <script>
       tailwind.config = {
@@ -88,11 +92,9 @@
 
       @keyframes slideUp {
         from {
-          transform: translateY(30px);
-          opacity: 0;
+          opacity: 0; /* 只保留透明度动画，删除translateY */
         }
         to {
-          transform: translateY(0);
           opacity: 1;
         }
       }
@@ -130,8 +132,8 @@
 
       /* 导航栏样式 */
       .nav-scrolled {
-        background-color: rgba(43, 49, 63, 0.9) !important;
-        backdrop-filter: blur(8px);
+        background-color: rgba(245, 245, 247, 0.8) !important;
+        backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(8px);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
         transition:
@@ -294,6 +296,14 @@
       .group:hover .fa-chevron-down,
       .nav-link:hover .fa-chevron-down {
         color: #ff8a00 !important;
+      }
+
+      .container {
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 1200px; /* 根据需要调整 */
       }
     </style>
   </head>
@@ -1236,92 +1246,87 @@
           <div class="carousel-item active h-full relative">
             <!--Banner图：优先加载，且用WebP+JPG降级-->
             <picture class="absolute inset-0 z-0">
-              <!--支持WebP的浏览器加载-->
               <source
                 srcset="img/banner/BANNER 1 FINAL.webp"
                 type="image/webp"
               />
-              <!--不支持则加载原JPG-->
               <img
                 alt="Senrytech专业激光设备"
                 class="w-full h-full object-cover filter brightness-90"
                 loading="eager"
-                src="../senrytech.github.io/img/index/banner/网站设计与谷歌 SEO 评估.png"
+                src="../senrytech.github.io/img/index/banner/未标题-1.webp"
               />
-              <!--eager：优先加载（Banner在首屏，必须立即加载）-->
             </picture>
-            <div
-              class="relative h-full container px-4 sm:px-6 lg:px-8 flex items-center"
-            >
-              <div class="max-w-2xl slide-up">
-                <h1
-                  class="text-[clamp(1.4rem,3.5vw,2.6rem)] font-bold text-white mb-4 text-shadow-lg"
-                >
-                  Senrytech 专业激光设备制造商
-                </h1>
-                <p
-                  class="text-[clamp(0.9rem,1.6vw,1rem)] text-gray-100 mb-8 max-w-xl text-shadow"
-                >
-                  高精度·高稳定性·24/7工业级解决方案
-                </p>
-                <div class="flex flex-wrap gap-4">
-                  <a
-                    class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg text-sm"
-                    href="#products"
-                    >查看核心产品</a
+
+            <!-- 重构后的内容容器：解决居中+向上偏移问题 -->
+            <div class="relative h-full w-full container px-4 sm:px-6 lg:px-8">
+              <div class="h-full flex items-center justify-center">
+                <div class="w-full slide-up text-center mt-[-500px]">
+                  <h1
+                    class="text-[clamp(1.4rem,3.5vw,2.6rem)] font-bold text-white mb-4 text-shadow-lg"
+                    style="
+                      font-family:
+                        &quot;Inter&quot;,
+                        -apple-system,
+                        BlinkMacSystemFont,
+                        &quot;Segoe UI&quot;,
+                        Roboto,
+                        sans-serif;
+                      letter-spacing: -0.02em;
+                      -webkit-font-smoothing: antialiased;
+                    "
                   >
-                  <a
-                    class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-2 rounded-full font-medium transition-all text-sm"
-                    href="#contact"
-                    >获取选型报价</a
+                    Senrytech A系列 激光板材切割机
+                  </h1>
+                  <p
+                    class="text-[clamp(0.9rem,1.6vw,1rem)] text-gray-100 mb-8 max-w-xl mx-auto text-shadow"
+                    style="
+                      font-family:
+                        &quot;Inter&quot;,
+                        -apple-system,
+                        BlinkMacSystemFont,
+                        &quot;Segoe UI&quot;,
+                        Roboto,
+                        sans-serif;
+                    "
                   >
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--轮播图2-->
-          <div class="carousel-item h-full relative">
-            <picture class="absolute inset-0 z-0">
-              <source srcset="img/banner/BANNER 2.webp" type="image/webp" />
-              <img
-                alt="Senrytech激光解决方案"
-                class="w-full h-full object-cover filter brightness-90"
-                loading="lazy"
-                src="../senrytech.github.io/img/index/banner/banner-2.webp"
-              />
-              <!--lazy：第二张Banner非首屏，延迟加载（节省首屏资源）-->
-            </picture>
-            <div
-              class="relative h-full container px-4 sm:px-6 lg:px-8 flex items-center"
-            >
-              <div class="max-w-2xl slide-up">
-                <h1
-                  class="text-[clamp(1.4rem,3.5vw,2.6rem)] font-bold text-white mb-4 text-shadow-lg"
-                >
-                  溯五千年文化风骨，融东方雅致与现代精度
-                </h1>
-                <p
-                  class="text-[clamp(0.9rem,1.6vw,1rem)] text-gray-100 mb-8 max-w-xl text-shadow"
-                >
-                  为您的生产效率提升40%，降低运营成本
-                </p>
-                <div class="flex flex-wrap gap-4">
-                  <a
-                    class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg text-sm"
-                    href="#solutions"
-                    >探索解决方案</a
-                  >
-                  <a
-                    class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-6 py-2 rounded-full font-medium transition-all text-sm"
-                    href="#cases"
-                    >查看成功案例</a
-                  >
+                    薄板·经济·性能小钢炮
+                  </p>
+                  <div class="flex flex-wrap gap-4 justify-center">
+                    <!-- 主按钮：灰色磨砂玻璃填充样式 -->
+                    <a
+                      class="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg text-sm"
+                      href="#products"
+                      style="
+                        font-family:
+                          -apple-system, BlinkMacSystemFont,
+                          &quot;Segoe UI&quot;, Roboto, sans-serif;
+                        letter-spacing: 0.02em;
+                        border: 1px solid rgba(255, 255, 255, 1);
+                      "
+                    >
+                      查看核心产品
+                    </a>
+                    <!-- 次要按钮：灰色磨砂玻璃边框样式 -->
+                    <a
+                      class="bg-transparent border-2 border-white/30 hover:border-white/50 text-white hover:bg-white/5 px-6 py-2 rounded-full font-medium transition-all text-sm"
+                      href="#contact"
+                      style="
+                        font-family:
+                          -apple-system, BlinkMacSystemFont,
+                          &quot;Segoe UI&quot;, Roboto, sans-serif;
+                        letter-spacing: 0.02em;
+                      "
+                    >
+                      获取选型报价
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!--轮播控制-->
+        <!--轮播控制（不变）-->
         <button
           class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all z-10"
           id="carousel-prev"
@@ -1334,7 +1339,7 @@
         >
           <i class="fa fa-chevron-right text-lg"></i>
         </button>
-        <!--轮播指示器-->
+        <!--轮播指示器（不变）-->
         <div
           class="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10"
         >

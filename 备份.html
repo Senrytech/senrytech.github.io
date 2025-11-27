@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>网站首页</title>
+    <!-- 引入类似SF Pro的免费商用字体Public Sans（无需下载，直接加载） -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 引入思源黑体字体文件 -->
+    <link
+      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* 全局样式重置（避免浏览器默认样式差异） */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          "Public Sans", "Noto Sans SC", sans-serif; /* 全局使用类似SF Pro的字体 */
+      }
+
+      /* 1. 导航栏样式 */
+      .navbar {
+        position: sticky; /* 滚动时固定在顶部 */
+        top: 0;
+        height: 45px; /* 窄版导航，高度按需求设置 */
+        background-color: #121212; /* 初始背景色 */
+        color: #ffffff; /* 文字白色 */
+        z-index: 1000; /* 确保导航在最上层，不被遮挡 */
+        transition: all 0.3s ease; /* 滚动效果平滑过渡 */
+        display: flex;
+        justify-content: center; /* 内容水平居中 */
+        align-items: center; /* 内容垂直居中 */
+        gap: 38px; /* 导航项之间的间距 */
+        padding: 0 20px; /* 左右留白，避免内容贴边 */
+        overflow-x: auto; /* 小屏幕时可横向滚动，不换行 */
+      }
+      /* 滚动后添加透视模糊效果 */
+      .navbar.scrolled {
+        background-color: rgba(18, 18, 18, 0.8); /* 半透明背景 */
+        backdrop-filter: blur(8px); /* 透视模糊（兼容现代浏览器） */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 增加阴影，提升层次 */
+      }
+      /* LOGO样式（字体粗细从500→400，更轻盈） */
+      .navbar .logo {
+        font-weight: 200; /* 关键调整：从中等粗（500）改为常规（200） */
+        font-size: 16px;
+      }
+      /* 导航字体样式（新增font-weight:400，确保常规粗细） */
+      .navbar a {
+        color: #ffffff;
+        text-decoration: none; /* 去掉下划线 */
+        font-size: 11px; /* 你当前设置的字号 */
+        font-weight: 400; /* 关键添加：明确常规粗细，避免显粗 */
+        transition: color 0.2s ease;
+      }
+      .navbar a:hover {
+        color: #e0e0e0; /* hover时文字变浅 */
+      }
+      /* 按钮样式（新增font-weight:400，与链接保持一致） */
+      .navbar .btn {
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 11px; /* 你当前设置的字号 */
+        font-weight: 400; /* 关键添加：按钮文字不再显粗 */
+        cursor: pointer;
+        border: none;
+      }
+      .language-btn {
+        background-color: transparent;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+      }
+      .inquiry-btn {
+        background-color: #0071e3; /* 苹果蓝，与BANNER按钮呼应 */
+        color: #ffffff;
+      }
+
+      /* 2. BANNER轮播样式 */
+      .banner-carousel {
+        position: relative; /* 作为子元素绝对定位的容器 */
+        width: 100%;
+        height: 80vh; /* 轮播高度（可调整，建议占屏幕80%高度） */
+        overflow: hidden; /* 隐藏超出容器的内容 */
+      }
+      /* 轮播图片容器 */
+      .carousel-slides {
+        width: 100%;
+        height: 100%;
+      }
+      /* 轮播图片样式（2500x1600尺寸，自动适配容器） */
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* 默认隐藏 */
+        transition: opacity 0.5s ease; /* 切换时淡入淡出 */
+      }
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 保持图片比例，填满容器（不会拉伸变形） */
+      }
+      /* 激活的图片显示 */
+      .carousel-slide.active {
+        opacity: 1;
+      }
+      /* BANNER文字内容（居中偏上） */
+      .banner-text {
+        position: absolute;
+        top: 10%; /* 距离顶部30%，实现“偏上”效果 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        color: #ffffff;
+        text-align: center;
+        z-index: 10; /* 确保文字在图片上层 */
+      }
+      .banner-text h1 {
+        font-size: 42pt; /* 第一行文字大小 */
+        margin-bottom: 14pt; /* 与第二行间距36pt */
+      }
+      .banner-text p {
+        font-size: 18pt; /* 第二行文字大小 */
+        margin-bottom: 14pt; /* 与按钮组间距28pt */
+      }
+      /* BANNER按钮组 */
+      .banner-btns {
+        display: flex;
+        justify-content: center;
+        gap: 16px; /* 两个按钮间距 */
+      }
+      .banner-btn {
+        padding: 8px 24px;
+        border-radius: 9999px; /* 椭圆形按钮 */
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.2s ease;
+      }
+      .learn-more-btn {
+        background-color: #0071e3; /* 蓝色打底 */
+        color: #ffffff; /* 白色文字 */
+      }
+      .buy-btn {
+        background-color: transparent; /* 无背景 */
+        color: #0071e3; /* 蓝色文字 */
+        border: 2px solid #0071e3; /* 蓝色边框 */
+      }
+      .banner-btn:hover {
+        opacity: 0.9; /* hover时轻微变透明 */
+      }
+      /* 轮播手动切换按钮（左右箭头） */
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        transition: background-color 0.2s ease;
+      }
+      .carousel-control:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+      .prev-btn {
+        left: 20px; /* 左箭头位置 */
+      }
+      .next-btn {
+        right: 20px; /* 右箭头位置 */
+      }
+
+      /* 圆点容器：固定在轮播底部居中 */
+      .dot-container {
+        position: absolute;
+        bottom: 20px; /* 距离轮播底部20px，可调整 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        display: flex;
+        gap: 8px; /* 圆点之间的间距，可调整 */
+        z-index: 20; /* 确保在图片上层，不被遮挡 */
+      }
+
+      /* 单个圆点默认样式：灰色圆形 */
+      .banner-dot {
+        width: 10px; /* 圆点直径，可调整大小 */
+        height: 10px;
+        border-radius: 50%; /* 圆形关键属性 */
+        background-color: rgba(255, 255, 255, 0.5); /* 默认半透明白色（显灰） */
+        cursor: pointer; /* 鼠标悬浮变指针，提示可点击 */
+        transition: background-color 0.3s ease; /* 颜色切换平滑过渡 */
+      }
+
+      /* 激活状态的圆点：纯白色（突出当前BANNER） */
+      .banner-dot.active {
+        background-color: #ffffff; /* 激活时变白，与BANNER文字颜色一致 */
+      }
+
+      /* 3. 底部导航栏样式 */
+      .footer-nav {
+        background-color: #121212; /* 底部背景色#121212 */
+        color: #ffffff;
+        padding: 40px 20px;
+        margin-top: auto; /* 确保底部导航在页面最下方 */
+      }
+      /* 底部内容容器（保持原格局，这里用多列布局示例） */
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto; /* 水平居中 */
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* 小屏幕自动换行 */
+        gap: 40px;
+      }
+      /* 底部导航组样式 */
+      .footer-section {
+        flex: 1;
+        min-width: 150px; /* 最小宽度，避免太窄 */
+      }
+      .footer-section h3 {
+        font-size: 16px;
+        margin-bottom: 16px;
+        color: #e0e0e0;
+      }
+      .footer-section ul {
+        list-style: none; /* 去掉列表点 */
+      }
+      .footer-section li {
+        margin-bottom: 8px;
+      }
+      .footer-section a {
+        color: #a0a0a0;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+      }
+      .footer-section a:hover {
+        color: #ffffff; /* hover时文字变白 */
+      }
+      /* 版权信息 */
+      .copyright {
+        max-width: 1200px;
+        margin: 20px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #333333; /* 分割线 */
+        text-align: center;
+        font-size: 12px;
+        color: #a0a0a0;
+      }
+
+      /* 响应式适配（小屏幕优化） */
+      @media (max-width: 768px) {
+        .navbar {
+          gap: 16px; /* 小屏幕导航项间距缩小 */
+        }
+        .banner-text h1 {
+          font-size: 32pt; /* 小屏幕第一行文字缩小 */
+        }
+        .banner-text p {
+          font-size: 14pt; /* 小屏幕第二行文字缩小 */
+        }
+        .footer-content {
+          flex-direction: column; /* 小屏幕底部导航纵向排列 */
+          align-items: center; /* 水平居中 */
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 1. 导航栏 -->
+    <nav class="navbar">
+      <div class="logo">Senrytech</div>
+      <a href="#home">首页</a>
+      <a href="#products">产品中心</a>
+      <a href="#solutions">解决方案</a>
+      <a href="#tips">避坑指南</a>
+      <a href="#news">新闻动态</a>
+      <a href="#downloads">资料下载</a>
+      <a href="#about">关于我们</a>
+      <a href="#join">加入我们</a>
+      <a href="#contact">联系我们</a>
+      <button class="btn language-btn">中/EN</button>
+      <button class="btn inquiry-btn">询价</button>
+    </nav>
+
+    <!-- 2. BANNER轮播（3张图，替换src为你的图片链接） -->
+    <div class="banner-carousel" id="home">
+      <!-- 轮播图片 -->
+      <div class="carousel-slides">
+        <!-- 第1张BANNER图 -->
+        <div class="carousel-slide active">
+          <img
+            src="../senrytech.github.io/img/index/banner/未标题-1.webp"
+            alt="BANNER图1"
+          />
+          <div class="banner-text active">
+            <h1>Senrytech A</h1>
+            <p>激光板材切割机.</p>
+            <div class="banner-btns">
+              <button class="banner-btn learn-more-btn">Learn more</button>
+              <button class="banner-btn buy-btn">Buy</button>
+            </div>
+          </div>
+        </div>
+        <!-- 第2张BANNER图 -->
+        <div class="carousel-slide">
+          <img
+            src="../senrytech.github.io/img/index/banner/未标题-1.webp"
+            alt="BANNER图2"
+          />
+          <div class="banner-text active">
+            <h1>Senrytech B</h1>
+            <p>激光板材切割机.</p>
+            <div class="banner-btns">
+              <button class="banner-btn learn-more-btn">Learn more</button>
+              <button class="banner-btn buy-btn">Buy</button>
+            </div>
+          </div>
+        </div>
+        <!-- 第3张BANNER图 -->
+        <div class="carousel-slide">
+          <img
+            src="../senrytech.github.io/img/index/banner/未标题-1.webp"
+            alt="BANNER图3"
+          />
+          <div class="banner-text active">
+            <h1>Senrytech C</h1>
+            <p>激光板材切割机.</p>
+            <div class="banner-btns">
+              <button class="banner-btn learn-more-btn">Learn more</button>
+              <button class="banner-btn buy-btn">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 轮播手动切换按钮 -->
+      <button class="carousel-control prev-btn">←</button>
+      <button class="carousel-control next-btn">→</button>
+
+      <!-- 新增：圆点指示器容器（居中显示在轮播底部） -->
+      <div class="dot-container"></div>
+    </div>
+
+    <!-- 3. 底部导航栏（保留原格局，内容可根据你的需求修改） -->
+    <footer class="footer-nav">
+      <div class="footer-content">
+        <!-- 底部导航组1：产品相关 -->
+        <div class="footer-section">
+          <h3>产品中心</h3>
+          <ul>
+            <li><a href="#phone">手机系列</a></li>
+            <li><a href="#pad">平板系列</a></li>
+            <li><a href="#watch">手表系列</a></li>
+            <li><a href="#accessories">配件</a></li>
+          </ul>
+        </div>
+        <!-- 底部导航组2：服务支持 -->
+        <div class="footer-section">
+          <h3>服务支持</h3>
+          <ul>
+            <li><a href="#warranty">保修政策</a></li>
+            <li><a href="#repair">维修服务</a></li>
+            <li><a href="#faq">常见问题</a></li>
+            <li><a href="#contact">联系客服</a></li>
+          </ul>
+        </div>
+        <!-- 底部导航组3：关于我们 -->
+        <div class="footer-section">
+          <h3>关于我们</h3>
+          <ul>
+            <li><a href="#company">公司简介</a></li>
+            <li><a href="#news">新闻动态</a></li>
+            <li><a href="#join">加入我们</a></li>
+            <li><a href="#privacy">隐私政策</a></li>
+          </ul>
+        </div>
+        <!-- 底部导航组4：联系我们 -->
+        <div class="footer-section">
+          <h3>联系我们</h3>
+          <ul>
+            <li><a href="tel:400-123-4567">400-123-4567</a></li>
+            <li>
+              <a href="mailto:support@example.com">support@example.com</a>
+            </li>
+            <li><a href="#address">公司地址</a></li>
+            <li><a href="#map">地图定位</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- 版权信息 -->
+      <div class="copyright">
+        © 2025 你的公司名称 版权所有 | 京ICP备12345678号
+      </div>
+    </footer>
+
+    <!-- JavaScript：实现导航滚动效果 + BANNER轮播 -->
+    <script>
+      // 1. 导航栏滚动透视效果
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        // 当页面滚动距离 > 0 时，添加scrolled类（触发透视效果）
+        if (window.scrollY > 0) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 2. BANNER轮播功能（含圆点指示器）
+      const slides = document.querySelectorAll(".carousel-slide"); // 所有轮播图
+      const bannerTexts = document.querySelectorAll(".banner-text"); // 所有BANNER文字
+      const prevBtn = document.querySelector(".prev-btn"); // 左按钮
+      const nextBtn = document.querySelector(".next-btn"); // 右按钮
+      const dotContainer = document.querySelector(".dot-container"); // 圆点容器（新增）
+      let currentIndex = 0;
+      const slideCount = slides.length; // BANNER数量（3张）
+
+      // 新增1：动态生成圆点（按BANNER数量生成）
+      function createDots() {
+        for (let i = 0; i < slideCount; i++) {
+          const dot = document.createElement("span"); // 创建圆点元素
+          dot.className = "banner-dot"; // 加默认样式类
+          if (i === 0) dot.classList.add("active"); // 第一张BANNER的圆点默认激活
+
+          // 新增2：点击圆点跳转到对应BANNER
+          dot.addEventListener("click", () => {
+            showSlide(i); // 点击时显示对应索引的BANNER
+          });
+
+          dotContainer.appendChild(dot); // 把圆点加入容器
+        }
+      }
+      // 页面加载时生成圆点（调用函数）
+      createDots();
+      // 获取所有生成的圆点（后续用于更新状态）
+      const dots = document.querySelectorAll(".banner-dot");
+
+      // 核心：显示指定索引的BANNER+文字+同步圆点状态（修改原有函数）
+      function showSlide(index) {
+        // 1. 隐藏所有BANNER、文字、圆点激活状态
+        slides.forEach((slide) => slide.classList.remove("active"));
+        bannerTexts.forEach((text) => text.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active")); // 新增：清除所有圆点激活
+
+        // 2. 计算当前索引（循环逻辑保留）
+        currentIndex = (index + slideCount) % slideCount;
+
+        // 3. 激活当前BANNER、文字、圆点
+        slides[currentIndex].classList.add("active");
+        bannerTexts[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active"); // 新增：激活当前BANNER的圆点
+      }
+
+      // 下一张BANNER（原有逻辑保留）
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+      // 上一张BANNER（原有逻辑保留）
+      function prevSlide() {
+        showSlide(currentIndex - 1);
+      }
+
+      // 绑定手动按钮点击事件（原有逻辑保留）
+      prevBtn.addEventListener("click", prevSlide);
+      nextBtn.addEventListener("click", nextSlide);
+
+      // 自动轮播（原有逻辑保留，3秒切换一次）
+      let autoSlideInterval = setInterval(nextSlide, 3000);
+
+      // 鼠标hover轮播图：暂停自动轮播；离开恢复（原有逻辑保留）
+      const carousel = document.querySelector(".banner-carousel");
+      carousel.addEventListener("mouseenter", () => {
+        clearInterval(autoSlideInterval);
+      });
+      carousel.addEventListener("mouseleave", () => {
+        autoSlideInterval = setInterval(nextSlide, 3000);
+      });
+    </script>
+  </body>
+</html>

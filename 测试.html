@@ -29,7 +29,7 @@
         position: sticky; /* 滚动时固定在顶部 */
         top: 0;
         height: 45px; /* 窄版导航，高度按需求设置 */
-        background-color: #121212; /* 初始背景色 */
+        background-color: #1d1d1f; /* 初始背景色 */
         color: #ffffff; /* 文字白色 */
         z-index: 1000; /* 确保导航在最上层，不被遮挡 */
         transition: all 0.3s ease; /* 滚动效果平滑过渡 */
@@ -57,8 +57,10 @@
         right: 0;
         width: 100%;
         max-width: 100vw;
-        background-color: #f5f5f7;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        background-color: rgba(245, 245, 247, 0.9); /* 浅灰半透明 */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 极淡阴影，避免厚重感 */
         z-index: 1001;
         border-radius: 0;
         overflow-y: hidden; /* 关键：隐藏超出max-height的内容，避免漏出 */
@@ -230,13 +232,14 @@
 
       /* 滚动后添加透视模糊效果 */
       .navbar.scrolled {
-        background-color: rgba(18, 18, 18, 0.8); /* 半透明背景 */
-        backdrop-filter: blur(8px); /* 透视模糊（兼容现代浏览器） */
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* 增加阴影，提升层次 */
+        background-color: rgba(29, 29, 31, 0.7); /* 深灰半透明 */
+        backdrop-filter: blur(20px); /* 加大模糊半径，更柔和 */
+        -webkit-backdrop-filter: blur(20px); /* 兼容Safari */
+        box-shadow: none; /* 苹果风格几乎不用阴影，靠模糊体现层次 */
       }
       /* LOGO样式（字体粗细从500→400，更轻盈） */
       .navbar .logo {
-        font-weight: 200; /* 关键调整：从中等粗（500）改为常规（200） */
+        font-weight: 500; /* 关键调整：从中等粗（500）改为常规（200） */
         font-size: 16px;
       }
       /* 导航字体样式（新增font-weight:400，确保常规粗细） */
@@ -244,7 +247,7 @@
         color: #ffffff;
         text-decoration: none; /* 去掉下划线 */
         font-size: 11px; /* 你当前设置的字号 */
-        font-weight: 400; /* 关键添加：明确常规粗细，避免显粗 */
+        font-weight: 300; /* 关键添加：明确常规粗细，避免显粗 */
         transition: color 0.2s ease;
       }
       .navbar a:hover {
@@ -255,7 +258,7 @@
         padding: 4px 12px;
         border-radius: 4px;
         font-size: 11px; /* 你当前设置的字号 */
-        font-weight: 400; /* 关键添加：按钮文字不再显粗 */
+        font-weight: 300; /* 关键添加：按钮文字不再显粗 */
         cursor: pointer;
         border: none;
       }
@@ -342,7 +345,8 @@
         border: 2px solid #0071e3; /* 蓝色边框 */
       }
       .banner-btn:hover {
-        opacity: 0.9; /* hover时轻微变透明 */
+        opacity: 1; /* 取消透明度过渡 */
+        background-color: #0066cc; /* 按钮加深10% */
       }
       /* 轮播手动切换按钮（左右箭头） */
       .carousel-control {
@@ -398,9 +402,11 @@
 
       /* 四. 产品中心板块：按需求重构（匹配探索同类产品风格） */
       .product-center-section {
-        background-color: #f5f5f7;
+        background-color: #1d1d1f;
         width: 100%;
         padding: 80px 0 120px;
+        position: relative; /* 原有定位保留，作为箭头的父容器 */
+        overflow: visible; /* 确保箭头不会被父容器裁剪（重要） */
       }
 
       .product-container {
@@ -413,8 +419,8 @@
       .product-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 64px;
-        font-weight: 500;
-        color: #1d1d1f;
+        font-weight: 300;
+        color: #f5f5f7;
         margin-bottom: 24px;
         text-align: left;
       }
@@ -423,11 +429,12 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background-color: rgba(18, 18, 18, 0.5);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        /* 苹果式半透明背景：纯白+低透明度+磨砂 blur */
+        background-color: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px); /* 模糊半径加大到12px，磨砂感更明显 */
+        -webkit-backdrop-filter: blur(12px); /* 兼容Safari浏览器 */
         padding: 4px 12px;
-        border-radius: 9999px;
+        border-radius: 9999px; /* 苹果标志性的“超圆圆角”，保留你的原有设置 */
         margin-bottom: 48px;
         position: relative;
       }
@@ -435,8 +442,8 @@
       .subtitle-item {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 11px;
-        font-weight: 400;
-        color: #ffffff;
+        font-weight: 300;
+        color: #f5f5f7;
         padding: 6px 16px;
         border-radius: 9999px;
         cursor: pointer;
@@ -513,7 +520,7 @@
         height: 280px; /* 固定高度，所有图片高度统一 */
         object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸变形） */
         border-radius: 20px; /* 统一圆角，视觉一致 */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 统一阴影 */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* 极淡阴影 */
         transition: all 0.3s ease; /* 统一过渡动画 */
         background-color: #f0f0f0; /* 统一加载占位背景 */
         margin-top: 20px; /* 之前设置的向下移动距离，保持不变 */
@@ -532,7 +539,7 @@
       /* 5. 卡片文字：调整字号和间距，更醒目 */
       .product-item p {
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 300;
         color: #1d1d1f;
         margin-top: 16px; /* 图片与文字间距统一 */
         line-height: 1.4;
@@ -551,16 +558,12 @@
         display: none !important; /* !important 确保优先级，避免被其他样式覆盖 */
       }
 
-      /* 需在 CSS 中补充的箭头样式（否则箭头会默认居左排列） */
+      /* 1. 箭头公共样式：保留原有样式，只改定位相关 */
       .product-nav-btn {
-        /* 关键：基于产品中心板块定位，脱离滚动容器 */
-        position: absolute;
-        top: 90%; /* 垂直位置：在产品卡片中间偏上，可按需微调 */
-        transform: translateY(-50%); /* 垂直居中校准 */
-        z-index: 999; /* 确保在最上层，不被卡片遮挡 */
-        bottom: auto; /* 取消之前的bottom定位，避免冲突 */
-
-        /* 保留原有基础样式 */
+        position: absolute; /* 父容器是.product-center-section（relative） */
+        top: 90%; /* 保留你当前的垂直高度，不修改 */
+        transform: translateY(-50%) !important; /* 垂直居中校准 */
+        bottom: auto !important;
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -574,36 +577,40 @@
         justify-content: center;
         align-items: center;
         padding: 0;
+        z-index: 999; /* 确保箭头在最上层，不被遮挡 */
       }
 
-      /* 左箭头：调整右侧距离，与右箭头对称 */
+      /* 2. 左箭头：匹配你原有的calc(85% + 40px)视觉位置，缩放同步 */
       .product-nav-btn.prev-btn {
-        right: 80px; /* 保持与右箭头间距 60px（80-20=60），视觉对称 */
-        left: auto;
+        /* 父容器是100%宽度，left: 15% 对应.product-container的左侧margin，加40px偏移=原位置 */
+        left: calc(85% + 40px);
+        right: auto;
+        display: flex !important; /* 强制显示，避免被隐藏 */
       }
 
-      /* 右箭头：保持右侧距离，避免贴边 */
+      /* 3. 右箭头：匹配你原有的calc(5% + 20px)视觉位置，缩放同步 */
       .product-nav-btn.next-btn {
-        right: 20px; /* 与左箭头间距稳定，视觉协调 */
+        /* 右箭头距离父容器右侧5% + 20px偏移，和原位置完全一致 */
+        right: calc(5% + 20px);
         left: auto;
       }
 
-      /* 新增：按钮 hover 效果，提示可点击 */
+      /* 保留原有hover和禁用样式 */
       .product-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9); /* hover 时加深背景 */
-        color: #333; /* 文字加深，更醒目 */
+        background-color: rgba(180, 180, 180, 0.9);
+        color: #333;
       }
-
-      /* 禁用状态样式：明确提示不可点击 */
       .product-nav-btn:disabled {
         background-color: rgba(240, 240, 240, 0.9);
         color: #aaa;
-        cursor: not-allowed; /* 鼠标变为“禁止”图标 */
+        cursor: not-allowed;
+        /* 禁用时也显示箭头，避免消失 */
+        display: flex !important;
       }
 
       /* 3. 底部导航栏样式 */
       .footer-nav {
-        background-color: #121212; /* 底部背景色#121212 */
+        background-color: #1d1d1f; /* 底部背景色#1D1D1F */
         color: #ffffff;
         padding: 40px 20px;
         margin-top: auto; /* 确保底部导航在页面最下方 */
@@ -1507,17 +1514,13 @@
         initItemWidth();
         updateBtnState();
 
-        // 10. 窗口缩放时重新计算（响应式）
+        // 窗口缩放时，实时更新箭头位置（补充到你现有的resize事件中）
         window.addEventListener("resize", () => {
+          // 保留你原有的resize逻辑（如calcEqualWidth、initActiveBg等）
           calcEqualWidth();
           initActiveBg();
           initItemWidth();
           updateBtnState();
-          // 窗口缩放时重新调整箭头位置（确保始终在可视区）
-          if (prevBtn && nextBtn) {
-            prevBtn.style.left = "17%";
-            nextBtn.style.right = "17%";
-          }
         });
       });
     </script>

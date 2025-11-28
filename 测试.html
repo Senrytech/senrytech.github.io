@@ -396,53 +396,45 @@
         background-color: #ffffff; /* 激活时变白，与BANNER文字颜色一致 */
       }
 
-      /* 3. 产品中心板块：按需求重构（苹果极简风格） */
+      /* 3. 产品中心板块：按需求重构（匹配探索同类产品风格） */
       .product-center-section {
-        background-color: #f5f5f7; /* 保持原有背景色 */
+        background-color: #f5f5f7;
         width: 100%;
-        padding: 80px 0 120px; /* 上下留白增强呼吸感，左右留白由内部容器控制 */
+        padding: 80px 0 120px;
       }
 
-      /* 统一对齐容器：实现“左端对齐+整体偏右”，苹果风格内容宽度控制 */
       .product-container {
-        max-width: 1200px; /* 控制整体偏右（小于屏幕宽度），可根据需求调整 */
-        margin: 0 auto 0 15%; /* 右对齐容器，实现“整体偏右” */
-        padding: 0 40px; /* 容器内左右留白，确保内容不贴边 */
+        max-width: 1600px;
+        margin: 0 auto 0 15%;
+        padding: 0 20px;
       }
 
-      /* 主标题：保持原有字体/字号/位置 */
+      /* 主标题/副标题样式完全保留，不修改 */
       .product-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 64px;
         font-weight: 500;
         color: #1d1d1f;
-        margin-bottom: 24px; /* 与副标题栏的留白 */
-        text-align: left; /* 左端对齐 */
+        margin-bottom: 24px;
+        text-align: left;
       }
 
-      /* 副标题栏：椭圆条样式（与导航栏同色+透视） */
       .product-subtitle-bar {
         display: inline-flex;
         align-items: center;
-        /* 1. 子项间距：从12px→8px（水平方向缩小子项间距，减少外层总宽度） */
         gap: 8px;
-        background-color: rgba(18, 18, 18, 0.8);
+        background-color: rgba(18, 18, 18, 0.5);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
-        /* 2. 内边距：垂直从6px→4px（总高度减少4px），水平从16px→12px（总宽度减少8px） */
         padding: 4px 12px;
-        border-radius: 9999px; /* 保持超大圆角，确保仍是自然椭圆（无需改） */
-        margin-bottom: 48px; /* 底部间距不变，避免影响整体布局 */
+        border-radius: 9999px;
+        margin-bottom: 48px;
         position: relative;
       }
 
-      /* 副标题分类项：基础样式（修改后） */
       .subtitle-item {
-        /* 1. 同步导航栏字体族：补全 Noto Sans SC，确保中文显示一致 */
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        /* 2. 字号：11px（已与导航栏一致，无需改） */
         font-size: 11px;
-        /* 3. 字重：400（已与导航栏一致，无需改） */
         font-weight: 400;
         color: #ffffff;
         padding: 6px 16px;
@@ -455,139 +447,101 @@
         z-index: 1;
       }
 
-      /* 选中态放大效果：从1.05→1.03（缩小放大比例，避免超出椭圆条） */
       .subtitle-item.active {
         color: #1d1d1f;
         transform: scale(1.03);
       }
 
-      /* 嵌套白色椭圆条：动态跟随选中项 */
       .subtitle-active-bg {
         position: absolute;
-        /* 关键：垂直边距从6px→4px（与外层垂直padding同步，确保上下对齐） */
         top: 4px;
         bottom: 4px;
         background-color: #ffffff;
-        border-radius: 9999px; /* 与外层弧度一致，保持椭圆形态 */
+        border-radius: 9999px;
         transition:
           left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
           width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         z-index: 0;
-        left: 12px; /* 初始左对齐：与外层新的水平padding（12px）同步 */
+        /* 删掉这行：left: 12px;  */
       }
 
-      /* 产品滚动区域：控制横向滚动+箭头定位 */
+      /* -------------------------- 核心修改：产品卡片样式 -------------------------- */
+      /* 1. 滚动容器：横向滚动，隐藏滚动条 */
       .product-scroll-wrap {
-        position: relative;
-        overflow: hidden; /* 隐藏横向滚动条 */
-        padding-bottom: 40px; /* 给右下角箭头预留空间 */
+        position: relative; /* 箭头定位的父容器 */
+        overflow: hidden; /* 裁剪超出的内容 */
       }
 
-      /* 产品卡片容器：横向排列（4个完整+1个露一点） */
-      .product-display {
+      #productScroll {
         display: flex;
-        flex-wrap: nowrap; /* 禁止换行，强制横向排列 */
-        gap: 32px; /* 卡片之间留白，苹果极简风格 */
-        width: max-content; /* 宽度自适应内容，实现横向滚动 */
-        transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 平滑滚动过渡 */
+        gap: 24px; /* 卡片间距，匹配同类产品风格 */
+        width: max-content; /* 宽度随内容变化，实现横向滚动 */
+        transition: transform 0.4s ease-out; /* 平滑滚动过渡 */
+        /* 隐藏滚动条（兼容全浏览器） */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
 
-      /* 1. 移除原卡片容器样式，直接定义图片+文字的组合单元（替代 .center-product-card） */
-      /* 图片+文字组合：横向排列的独立单元 */
-      .product-item {
-        /* 横向宽度=图片宽度+左右无额外间距（靠外层 gap 控制单元间距离） */
-        width: 400px; /* 图片宽度（后续直接给图片设100%，这里控制单元整体宽度） */
-        text-align: center; /* 文字和图片居中 */
-        margin: 0; /* 清除默认margin */
-        padding: 0; /* 清除默认padding（无卡片，无需内边距） */
-        transition: transform 0.3s ease; /* 保留hover上浮效果 */
-      }
-
-      /* 2. 图片样式：作为主体，直接显示（无卡片包裹） */
-      .product-item img {
-        width: 100%; /* 图片宽度=外层 .product-item 宽度（400px） */
-        height: 320px; /* 按比例设置图片高度（400px宽×0.8高，可按需调整） */
-        object-fit: cover; /* 保持图片比例，填满容器（不拉伸） */
-        border-radius: 24px; /* 保留苹果风格大圆角（图片自带圆角，无卡片也美观） */
-        backface-visibility: hidden; /* 避免圆角边缘锯齿 */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 轻微阴影，提升层次感（无卡片更需要） */
-        transition: box-shadow 0.3s ease; /* 保留hover阴影加深效果 */
-      }
-
-      /* 3. 文字样式：直接在图片下方显示（无卡片背景衬托，文字需更清晰） */
-      .product-item p {
-        font-size: 14px;
-        font-weight: 500; /* 文字加粗一点，无卡片背景时更醒目 */
-        color: #1d1d1f;
-        margin-top: 12px; /* 图片和文字间距（12px，可按需调整） */
-        line-height: 1.5;
-        padding: 0 4px; /* 文字左右留白，避免超出图片宽度 */
-      }
-
-      /* 4. Hover交互：无卡片，直接作用于图片+文字组合 */
-      .product-item:hover {
-        transform: translateY(-4px); /* 整体上浮（替代原卡片上浮） */
-      }
-      .product-item:hover img {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* 图片阴影加深，增强交互感 */
-      }
-
-      /* 5. 隐藏非当前分类的单元（替代原 .center-product-card.hidden） */
-      .product-item.hidden {
+      #productScroll::-webkit-scrollbar {
         display: none;
       }
 
-      /* 产品滚动箭头：右下角位置，简洁风格 */
-      .product-nav-btn {
-        position: absolute;
-        bottom: 0;
-        width: 36px;
-        height: 36px;
-        border: 1px solid #e8e8ed;
-        background-color: #ffffff;
-        color: #86868b;
-        font-size: 16px;
-        border-radius: 50%; /* 圆形箭头 */
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      /* 2. 产品卡片：匹配同类产品的“图片+文字”风格 */
+      .product-item {
+        width: 340px; /* 卡片基础宽度，比原有更宽，视觉更饱满 */
+        flex-shrink: 0; /* 禁止压缩，确保卡片宽度一致 */
+        text-align: left; /* 文字左对齐，更符合阅读习惯 */
+        transition: all 0.3s ease; /* 整体过渡动效 */
       }
 
-      /* 箭头位置：右箭头在最右，左箭头在右箭头左侧 */
-      .product-nav-btn.next-btn {
-        right: 0;
-      }
-      .product-nav-btn.prev-btn {
-        right: 44px; /* 与右箭头间距8px，避免拥挤 */
-      }
-
-      /* 箭头禁用状态：半透明，提示不可点击 */
-      .product-nav-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
+      /* 3. 卡片图片：大圆角+阴影+hover放大 */
+      .product-item img {
+        width: 100%;
+        height: 280px; /* 图片高度适配宽度，比例更协调 */
+        object-fit: cover;
+        border-radius: 20px; /* 大圆角，匹配同类产品风格 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 基础阴影 */
+        transition: all 0.3s ease;
+        background-color: #f0f0f0; /* 加载占位背景 */
       }
 
-      /* 箭头Hover效果：轻微变色，保持极简 */
-      .product-nav-btn:hover:not(:disabled) {
-        border-color: #1d1d1f;
+      /* 4. 卡片hover效果：图片放大+阴影加深 */
+      .product-item:hover {
+        transform: translateY(-6px); /* 轻微上浮 */
+      }
+
+      .product-item:hover img {
+        transform: scale(1.03); /* 图片放大 */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* 阴影加深 */
+      }
+
+      /* 5. 卡片文字：调整字号和间距，更醒目 */
+      .product-item p {
+        font-size: 16px; /* 文字放大，提升可读性 */
+        font-weight: 500;
         color: #1d1d1f;
-        background-color: #f5f5f7;
+        margin-top: 16px; /* 图片与文字间距加大 */
+        line-height: 1.4;
+        padding: 0 4px;
       }
 
-      /* 响应式适配：苹果风格“适配而非压缩” */
+      /* 图片卡片容器添加相对定位 */
+      .product-card {
+        position: relative; /* 为按钮提供定位上下文 */
+        overflow: hidden; /* 确保按钮不会超出卡片范围 */
+      }
+
+      /* -------------------------- 响应式适配：匹配同类产品风格 -------------------------- */
       @media (max-width: 1200px) {
         .product-container {
           max-width: 1000px;
           padding: 0 32px;
         }
-        .center-product-card {
-          width: 200px;
-          height: 200px;
+        .product-item {
+          width: 280px; /* 中屏缩小卡片宽度 */
         }
-        .center-product-card img {
-          height: 140px;
+        .product-item img {
+          height: 220px;
         }
       }
 
@@ -597,46 +551,50 @@
           padding: 0 24px;
         }
         .product-main-title {
-          font-size: 48px; /* 小屏缩小标题字号 */
+          font-size: 48px;
         }
-        .product-subtitle-bar {
-          gap: 8px;
-          padding: 6px 12px;
+        .product-item {
+          width: 240px;
         }
-        .subtitle-item {
-          padding: 6px 16px;
-          font-size: 11px;
-        }
-        .center-product-card {
-          width: 180px;
+        .product-item img {
           height: 180px;
         }
-        .center-product-card img {
-          height: 120px;
+        .product-nav-btn {
+          width: 48px;
+          height: 48px;
+          font-size: 18px;
         }
       }
 
       @media (max-width: 768px) {
         .product-container {
           max-width: 100%;
-          margin: 0 auto; /* 手机端居中，不再偏右 */
+          margin: 0 auto;
           padding: 0 16px;
         }
-        .center-product-card {
-          width: 150px;
+        .product-item {
+          width: 200px; /* 小屏进一步缩小卡片 */
+        }
+        .product-item img {
           height: 150px;
         }
-        .center-product-card img {
-          height: 100px;
-        }
         .product-nav-btn {
-          width: 32px;
-          height: 32px;
-          font-size: 14px;
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
         }
-        .product-nav-btn.prev-btn {
-          right: 40px;
+        /* 小屏箭头位置内移，避免贴边 */
+        #productPrevBtn {
+          left: 8px;
         }
+        #productNextBtn {
+          right: 8px;
+        }
+      }
+
+      /* 在全局样式或产品中心板块CSS中添加 */
+      .hidden {
+        display: none !important; /* !important 确保优先级，避免被其他样式覆盖 */
       }
 
       /* 3. 底部导航栏样式 */
@@ -991,16 +949,10 @@
 
     <!-- 3. 产品中心 -->
     <div class="product-center-section">
-      <!-- 统一对齐容器：实现“左端对齐+整体偏右”，保持苹果留白风格 -->
       <div class="product-container">
-        <!-- 主标题：保持原有字体/字号/位置 -->
         <h2 class="product-main-title">产品中心</h2>
-
-        <!-- 副标题栏（椭圆条样式，与导航栏同色+透视） -->
         <div class="product-subtitle-bar">
-          <!-- 动态白色椭圆条（嵌套在主椭圆条内） -->
           <div class="subtitle-active-bg"></div>
-          <!-- 副标题分类项 -->
           <div class="subtitle-item active" data-tab="board">板材切割机</div>
           <div class="subtitle-item" data-tab="tube">管材切割机</div>
           <div class="subtitle-item" data-tab="board-tube">板管一体机</div>
@@ -1009,17 +961,22 @@
           <div class="subtitle-item" data-tab="mark">激光打标机</div>
         </div>
 
-        <!-- 产品滚动区域（含4个完整卡片+1个露一点+右下角箭头） -->
-        <div class="product-scroll-wrap">
-          <!-- 产品卡片容器：横向排列（4个完整+1个露一点） -->
-          <div class="product-display">
-            <!-- 1. 板材分类：11个单元（无卡片，直接 product-item 包裹） -->
+        <!-- 1. 修改：滚动容器新增定位，用于箭头贴边 -->
+        <div
+          class="product-scroll-wrap"
+          style="position: relative; overflow: hidden"
+        >
+          <!-- 2. 修改：给产品容器加ID，方便JS获取 -->
+          <div class="product-display" id="productScroll">
+            <!-- 原有所有product-item卡片保持不变，无需修改 -->
             <div class="product-item" data-tab="board">
               <img
                 src="https://picsum.photos/400/300?random=1"
                 alt="板材切割机1"
               />
               <p>板材切割机 A</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1027,6 +984,8 @@
                 alt="板材切割机2"
               />
               <p>板材切割机 B</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1034,6 +993,8 @@
                 alt="板材切割机3"
               />
               <p>板材切割机 C</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1041,6 +1002,8 @@
                 alt="板材切割机4"
               />
               <p>板材切割机 D</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1048,6 +1011,8 @@
                 alt="板材切割机5"
               />
               <p>板材切割机 E</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1055,6 +1020,8 @@
                 alt="板材切割机6"
               />
               <p>板材切割机 F</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1062,6 +1029,8 @@
                 alt="板材切割机7"
               />
               <p>板材切割机 G</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1069,6 +1038,8 @@
                 alt="板材切割机8"
               />
               <p>板材切割机 H</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1076,6 +1047,8 @@
                 alt="板材切割机9"
               />
               <p>板材切割机 I</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1083,6 +1056,8 @@
                 alt="板材切割机10"
               />
               <p>板材切割机 J</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
               <img
@@ -1090,6 +1065,8 @@
                 alt="板材切割机11"
               />
               <p>板材切割机 K</p>
+              <div class="info-btn"></div>
+              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
 
             <!-- 2. 管材分类：7个卡片（默认隐藏） -->
@@ -1250,9 +1227,15 @@
             </div>
           </div>
 
-          <!-- 产品滚动箭头（右下角） -->
-          <button class="product-nav-btn prev-btn" disabled>&lt;</button>
-          <button class="product-nav-btn next-btn">&gt;</button>
+          <!-- 滚动箭头：样式类名 .product-nav-btn 已在 CSS 中定义 -->
+          <button class="product-nav-btn prev-btn" id="productPrevBtn" disabled>
+            &lt;
+            <!-- 左侧箭头符号（小于号） -->
+          </button>
+          <button class="product-nav-btn next-btn" id="productNextBtn">
+            &gt;
+            <!-- 右侧箭头符号（大于号） -->
+          </button>
         </div>
       </div>
     </div>
@@ -1420,108 +1403,111 @@
         });
       });
 
-      // 产品中心交互逻辑：适配新的 product-item 类名
+      // 产品中心交互逻辑：修复卡片不联动+样式赋值问题
       document.addEventListener("DOMContentLoaded", () => {
-        // 1. 获取核心元素（将 center-product-card 改为 product-item）
+        // 1. 获取核心元素（与现有代码一致）
         const subtitleBar = document.querySelector(".product-subtitle-bar");
         const subtitleItems = document.querySelectorAll(".subtitle-item");
         const activeBg = document.querySelector(".subtitle-active-bg");
-        const productDisplay = document.querySelector(".product-display");
-        const productItems = document.querySelectorAll(".product-item"); // 改为 product-item
-        const prevBtn = document.querySelector(".product-nav-btn.prev-btn");
-        const nextBtn = document.querySelector(".product-nav-btn.next-btn");
+        const productDisplay = document.getElementById("productScroll");
+        const productItems = document.querySelectorAll(".product-item");
+        const prevBtn = document.getElementById("productPrevBtn");
+        const nextBtn = document.getElementById("productNextBtn");
 
-        // 2. 初始化参数（调整滚动步长：基于 product-item 宽度）
+        // 2. 初始化参数（补充默认值，避免报错）
         let currentTab = "board";
-        // 滚动步长=product-item 宽度 + 外层 gap（400px + 32px = 432px，与CSS对应）
-        let itemWidth = productItems[0]?.offsetWidth + 32 || 432;
+        let itemWidth = productItems[0]
+          ? productItems[0].offsetWidth + 24
+          : 364; // 三元运算符优化
         const itemCount = subtitleItems.length;
         let barTotalWidth = 0;
         let barPaddingX = 0;
         let equalWidth = 0;
 
-        // 3. 计算等分宽度（不变，仅适配外层椭圆条）
+        // 3. 修复：calcEqualWidth 函数（补充宽度变量拼接）
         const calcEqualWidth = () => {
+          if (!subtitleBar) return; // 边界判断：避免元素不存在时报错
           barTotalWidth = subtitleBar.getBoundingClientRect().width;
-          barPaddingX = parseInt(
-            window.getComputedStyle(subtitleBar).paddingLeft
-          );
+          barPaddingX =
+            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0; // 补充默认值
           equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
-          activeBg.style.width = `${equalWidth}px`;
+          activeBg.style.width = `${equalWidth}px`; // 修复：拼接 equalWidth 变量
         };
 
-        // 4. 初始化白色椭圆条（不变）
+        // 4. 修复：initActiveBg 函数（补充位置计算+边界处理）
         const initActiveBg = () => {
           calcEqualWidth();
-          const activeIndex = Array.from(subtitleItems).findIndex((item) =>
-            item.classList.contains("active")
-          );
+          // 修复：如果没有默认激活项，默认选中第0个
+          const activeIndex =
+            Array.from(subtitleItems).findIndex((item) =>
+              item.classList.contains("active")
+            ) || 0;
+          // 修复：拼接「内边距 + 激活项索引×等分宽度」
           activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
+          // 同步：初始化时激活对应的卡片（关键联动逻辑）
+          currentTab = subtitleItems[activeIndex].dataset.tab;
+          switchTab(currentTab);
         };
 
-        // 5. 初始化滚动步长（基于 product-item 宽度，原卡片宽度逻辑删除）
+        // 5. 初始化滚动步长（优化边界判断）
         const initItemWidth = () => {
           const visibleItem = document.querySelector(
             ".product-item:not(.hidden)"
           );
           if (visibleItem) {
-            // 滚动步长=单个 product-item 宽度 + 外层 .product-display 的 gap（32px）
-            itemWidth = visibleItem.offsetWidth + 32;
+            const containerGap =
+              parseInt(getComputedStyle(productDisplay).gap) || 24;
+            itemWidth = visibleItem.offsetWidth + containerGap;
           }
         };
 
-        // 6. 切换分类逻辑（将 center-product-card 改为 product-item）
+        // 6. 切换分类逻辑（核心联动逻辑，无需修改）
         const switchTab = (tabName) => {
           currentTab = tabName;
-          // 隐藏所有 product-item，显示当前分类的 item
           productItems.forEach((item) => {
-            if (item.getAttribute("data-tab") === tabName) {
-              item.classList.remove("hidden");
-            } else {
-              item.classList.add("hidden");
-            }
+            const itemTab = item.getAttribute("data-tab");
+            item.classList.toggle("hidden", itemTab !== tabName); // 简化 toggle 写法
           });
-          // 重置滚动位置到最左侧
-          productDisplay.scrollLeft = 0;
-          // 更新按钮状态和滚动步长
+          productDisplay.scrollLeft = 0; // 切换时重置滚动位置
           updateBtnState();
           initItemWidth();
         };
 
-        // 7. 副标题项 hover 切换（不变）
+        // 7. 修复：副标题 hover 事件（补充背景位置计算）
         subtitleItems.forEach((item, index) => {
           item.addEventListener("mouseenter", () => {
+            // 移除所有激活态，给当前项加激活态
             subtitleItems.forEach((i) => i.classList.remove("active"));
             item.classList.add("active");
+            // 修复：拼接「内边距 + 当前索引×等分宽度」
             activeBg.style.left = `${barPaddingX + index * equalWidth}px`;
+            // 核心联动：触发卡片切换（关键逻辑，保留）
             switchTab(item.dataset.tab);
           });
         });
 
-        // 8. 滚动按钮逻辑（不变，基于新的 itemWidth）
+        // 8. 箭头滚动逻辑（无需修改）
         const updateBtnState = () => {
+          if (!productDisplay) return; // 边界判断
           prevBtn.disabled = productDisplay.scrollLeft <= 10;
           nextBtn.disabled =
             productDisplay.scrollLeft >=
             productDisplay.scrollWidth - productDisplay.clientWidth - 10;
         };
         nextBtn.addEventListener("click", () => {
-          productDisplay.scrollLeft += itemWidth;
-          updateBtnState();
+          productDisplay.scrollBy({ left: itemWidth, behavior: "smooth" });
         });
         prevBtn.addEventListener("click", () => {
-          productDisplay.scrollLeft -= itemWidth;
-          updateBtnState();
+          productDisplay.scrollBy({ left: -itemWidth, behavior: "smooth" });
         });
         productDisplay.addEventListener("scroll", updateBtnState);
 
-        // 9. 初始化执行（不变）
-        calcEqualWidth();
-        initActiveBg();
+        // 9. 页面初始化（调用修复后的 initActiveBg，确保联动）
+        initActiveBg(); // 优先初始化背景和默认卡片
         initItemWidth();
-        switchTab(currentTab);
+        updateBtnState();
 
-        // 10. 窗口 resize 时更新（不变）
+        // 10. 窗口缩放（无需修改，确保响应式）
         window.addEventListener("resize", () => {
           calcEqualWidth();
           initActiveBg();

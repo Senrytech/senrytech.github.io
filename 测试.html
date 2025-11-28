@@ -24,7 +24,7 @@
           "Public Sans", "Noto Sans SC", sans-serif; /* 全局使用类似SF Pro的字体 */
       }
 
-      /* 1. 导航栏样式 */
+      /* 一. 导航栏样式 */
       .navbar {
         position: sticky; /* 滚动时固定在顶部 */
         top: 0;
@@ -269,7 +269,7 @@
         color: #ffffff;
       }
 
-      /* 2. BANNER轮播样式 */
+      /* 三. BANNER轮播样式 */
       .banner-carousel {
         position: relative; /* 作为子元素绝对定位的容器 */
         width: 100%;
@@ -396,7 +396,7 @@
         background-color: #ffffff; /* 激活时变白，与BANNER文字颜色一致 */
       }
 
-      /* 3. 产品中心板块：按需求重构（匹配探索同类产品风格） */
+      /* 四. 产品中心板块：按需求重构（匹配探索同类产品风格） */
       .product-center-section {
         background-color: #f5f5f7;
         width: 100%;
@@ -466,10 +466,21 @@
       }
 
       /* -------------------------- 核心修改：产品卡片样式 -------------------------- */
-      /* 1. 滚动容器：横向滚动，隐藏滚动条 */
+      /* 1. 滚动容器：横向滚动，隐藏滚动条（补充 overflow-x） */
       .product-scroll-wrap {
         position: relative; /* 箭头定位的父容器 */
-        overflow: hidden; /* 裁剪超出的内容 */
+        overflow: visible; /* 裁剪超出的内容 */
+        overflow-x: auto; /* 关键补充：允许横向滚动 */
+        padding-bottom: 80px; /* 给箭头预留空间，避免箭头被父容器底部遮挡 */
+      }
+
+      /* 隐藏滚动容器的横向滚动条（保持美观） */
+      .product-scroll-wrap::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+      .product-scroll-wrap {
+        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none; /* Firefox */
       }
 
       #productScroll {
@@ -488,21 +499,24 @@
 
       /* 2. 产品卡片：匹配同类产品的“图片+文字”风格 */
       .product-item {
-        width: 340px; /* 卡片基础宽度，比原有更宽，视觉更饱满 */
-        flex-shrink: 0; /* 禁止压缩，确保卡片宽度一致 */
-        text-align: left; /* 文字左对齐，更符合阅读习惯 */
-        transition: all 0.3s ease; /* 整体过渡动效 */
+        /* 关键1：固定卡片容器宽度，确保所有卡片一致 */
+        width: 340px; /* 与你之前导航栏下拉菜单的产品卡片宽度保持一致，可按需调整 */
+        flex-shrink: 0; /* 禁止卡片被压缩，确保宽度不变化 */
+        display: flex;
+        flex-direction: column; /* 图片+文字垂直排列，避免错位 */
+        align-items: center; /* 图片和文字水平居中，视觉统一 */
+        text-align: center; /* 文字居中，避免因文字长度导致的视觉偏移 */
       }
 
-      /* 3. 卡片图片：大圆角+阴影+hover放大 */
       .product-item img {
-        width: 100%;
-        height: 280px; /* 图片高度适配宽度，比例更协调 */
-        object-fit: cover;
-        border-radius: 20px; /* 大圆角，匹配同类产品风格 */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 基础阴影 */
-        transition: all 0.3s ease;
-        background-color: #f0f0f0; /* 加载占位背景 */
+        width: 100%; /* 图片宽度继承父容器（340px），确保所有图片宽度一致 */
+        height: 280px; /* 固定高度，所有图片高度统一 */
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸变形） */
+        border-radius: 20px; /* 统一圆角，视觉一致 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 统一阴影 */
+        transition: all 0.3s ease; /* 统一过渡动画 */
+        background-color: #f0f0f0; /* 统一加载占位背景 */
+        margin-top: 20px; /* 之前设置的向下移动距离，保持不变 */
       }
 
       /* 4. 卡片hover效果：图片放大+阴影加深 */
@@ -517,12 +531,13 @@
 
       /* 5. 卡片文字：调整字号和间距，更醒目 */
       .product-item p {
-        font-size: 16px; /* 文字放大，提升可读性 */
+        font-size: 16px;
         font-weight: 500;
         color: #1d1d1f;
-        margin-top: 16px; /* 图片与文字间距加大 */
+        margin-top: 16px; /* 图片与文字间距统一 */
         line-height: 1.4;
         padding: 0 4px;
+        width: 100%; /* 文字容器宽度继承卡片，避免文字换行导致卡片高度变化 */
       }
 
       /* 图片卡片容器添加相对定位 */
@@ -531,70 +546,59 @@
         overflow: hidden; /* 确保按钮不会超出卡片范围 */
       }
 
-      /* -------------------------- 响应式适配：匹配同类产品风格 -------------------------- */
-      @media (max-width: 1200px) {
-        .product-container {
-          max-width: 1000px;
-          padding: 0 32px;
-        }
-        .product-item {
-          width: 280px; /* 中屏缩小卡片宽度 */
-        }
-        .product-item img {
-          height: 220px;
-        }
-      }
-
-      @media (max-width: 992px) {
-        .product-container {
-          max-width: 800px;
-          padding: 0 24px;
-        }
-        .product-main-title {
-          font-size: 48px;
-        }
-        .product-item {
-          width: 240px;
-        }
-        .product-item img {
-          height: 180px;
-        }
-        .product-nav-btn {
-          width: 48px;
-          height: 48px;
-          font-size: 18px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .product-container {
-          max-width: 100%;
-          margin: 0 auto;
-          padding: 0 16px;
-        }
-        .product-item {
-          width: 200px; /* 小屏进一步缩小卡片 */
-        }
-        .product-item img {
-          height: 150px;
-        }
-        .product-nav-btn {
-          width: 40px;
-          height: 40px;
-          font-size: 16px;
-        }
-        /* 小屏箭头位置内移，避免贴边 */
-        #productPrevBtn {
-          left: 8px;
-        }
-        #productNextBtn {
-          right: 8px;
-        }
-      }
-
       /* 在全局样式或产品中心板块CSS中添加 */
       .hidden {
         display: none !important; /* !important 确保优先级，避免被其他样式覆盖 */
+      }
+
+      /* 需在 CSS 中补充的箭头样式（否则箭头会默认居左排列） */
+      .product-nav-btn {
+        /* 关键：基于产品中心板块定位，脱离滚动容器 */
+        position: absolute;
+        top: 90%; /* 垂直位置：在产品卡片中间偏上，可按需微调 */
+        transform: translateY(-50%); /* 垂直居中校准 */
+        z-index: 999; /* 确保在最上层，不被卡片遮挡 */
+        bottom: auto; /* 取消之前的bottom定位，避免冲突 */
+
+        /* 保留原有基础样式 */
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(222, 222, 226, 0.9);
+        color: #696969;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+
+      /* 左箭头：调整右侧距离，与右箭头对称 */
+      .product-nav-btn.prev-btn {
+        right: 80px; /* 保持与右箭头间距 60px（80-20=60），视觉对称 */
+        left: auto;
+      }
+
+      /* 右箭头：保持右侧距离，避免贴边 */
+      .product-nav-btn.next-btn {
+        right: 20px; /* 与左箭头间距稳定，视觉协调 */
+        left: auto;
+      }
+
+      /* 新增：按钮 hover 效果，提示可点击 */
+      .product-nav-btn:hover {
+        background-color: rgba(180, 180, 180, 0.9); /* hover 时加深背景 */
+        color: #333; /* 文字加深，更醒目 */
+      }
+
+      /* 禁用状态样式：明确提示不可点击 */
+      .product-nav-btn:disabled {
+        background-color: rgba(240, 240, 240, 0.9);
+        color: #aaa;
+        cursor: not-allowed; /* 鼠标变为“禁止”图标 */
       }
 
       /* 3. 底部导航栏样式 */
@@ -947,8 +951,8 @@
       <div class="dot-container"></div>
     </div>
 
-    <!-- 3. 产品中心 -->
-    <div class="product-center-section">
+    <!-- 3. 产品中心（修改：给容器加 position: relative，用于箭头定位） -->
+    <div class="product-center-section" style="position: relative">
       <div class="product-container">
         <h2 class="product-main-title">产品中心</h2>
         <div class="product-subtitle-bar">
@@ -962,10 +966,7 @@
         </div>
 
         <!-- 1. 修改：滚动容器新增定位，用于箭头贴边 -->
-        <div
-          class="product-scroll-wrap"
-          style="position: relative; overflow: hidden"
-        >
+        <div class="product-scroll-wrap" style="position: relative">
           <!-- 2. 修改：给产品容器加ID，方便JS获取 -->
           <div class="product-display" id="productScroll">
             <!-- 原有所有product-item卡片保持不变，无需修改 -->
@@ -1226,18 +1227,18 @@
               <p>打标机 B</p>
             </div>
           </div>
-
-          <!-- 滚动箭头：样式类名 .product-nav-btn 已在 CSS 中定义 -->
-          <button class="product-nav-btn prev-btn" id="productPrevBtn" disabled>
-            &lt;
-            <!-- 左侧箭头符号（小于号） -->
-          </button>
-          <button class="product-nav-btn next-btn" id="productNextBtn">
-            &gt;
-            <!-- 右侧箭头符号（大于号） -->
-          </button>
         </div>
       </div>
+
+      <!-- 滚动箭头：样式类名 .product-nav-btn 已在 CSS 中定义 -->
+      <button class="product-nav-btn prev-btn" id="productPrevBtn" disabled>
+        &lt;
+        <!-- 左侧箭头符号（小于号） -->
+      </button>
+      <button class="product-nav-btn next-btn" id="productNextBtn">
+        &gt;
+        <!-- 右侧箭头符号（大于号） -->
+      </button>
     </div>
 
     <!-- 4. 底部导航栏（保留原格局，内容可根据你的需求修改） -->
@@ -1403,53 +1404,51 @@
         });
       });
 
-      // 产品中心交互逻辑：修复卡片不联动+样式赋值问题
+      // 产品中心交互逻辑：修复箭头固定+副标题背景+卡片联动
       document.addEventListener("DOMContentLoaded", () => {
-        // 1. 获取核心元素（与现有代码一致）
+        // 1. 获取核心元素
         const subtitleBar = document.querySelector(".product-subtitle-bar");
         const subtitleItems = document.querySelectorAll(".subtitle-item");
         const activeBg = document.querySelector(".subtitle-active-bg");
         const productDisplay = document.getElementById("productScroll");
+        const scrollContainer = document.querySelector(".product-scroll-wrap"); // 滚动容器（仅控制卡片，不控制箭头）
         const productItems = document.querySelectorAll(".product-item");
         const prevBtn = document.getElementById("productPrevBtn");
         const nextBtn = document.getElementById("productNextBtn");
 
-        // 2. 初始化参数（补充默认值，避免报错）
+        // 2. 初始化参数
         let currentTab = "board";
         let itemWidth = productItems[0]
           ? productItems[0].offsetWidth + 24
-          : 364; // 三元运算符优化
+          : 364; // 卡片宽度+间距
         const itemCount = subtitleItems.length;
         let barTotalWidth = 0;
         let barPaddingX = 0;
         let equalWidth = 0;
 
-        // 3. 修复：calcEqualWidth 函数（补充宽度变量拼接）
+        // 3. 计算副标题背景宽度（补全 equalWidth 变量）
         const calcEqualWidth = () => {
-          if (!subtitleBar) return; // 边界判断：避免元素不存在时报错
+          if (!subtitleBar) return;
           barTotalWidth = subtitleBar.getBoundingClientRect().width;
           barPaddingX =
-            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0; // 补充默认值
+            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0;
           equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
-          activeBg.style.width = `${equalWidth}px`; // 修复：拼接 equalWidth 变量
+          activeBg.style.width = `${equalWidth}px`; // 补全变量：背景宽度=等分宽度
         };
 
-        // 4. 修复：initActiveBg 函数（补充位置计算+边界处理）
+        // 4. 初始化副标题背景位置（补全 left 变量）
         const initActiveBg = () => {
           calcEqualWidth();
-          // 修复：如果没有默认激活项，默认选中第0个
           const activeIndex =
             Array.from(subtitleItems).findIndex((item) =>
               item.classList.contains("active")
             ) || 0;
-          // 修复：拼接「内边距 + 激活项索引×等分宽度」
-          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
-          // 同步：初始化时激活对应的卡片（关键联动逻辑）
+          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`; // 补全变量：背景左移=内边距+索引×等分宽度
           currentTab = subtitleItems[activeIndex].dataset.tab;
           switchTab(currentTab);
         };
 
-        // 5. 初始化滚动步长（优化边界判断）
+        // 5. 计算卡片滚动步长
         const initItemWidth = () => {
           const visibleItem = document.querySelector(
             ".product-item:not(.hidden)"
@@ -1461,58 +1460,64 @@
           }
         };
 
-        // 6. 切换分类逻辑（核心联动逻辑，无需修改）
+        // 6. 切换产品分类逻辑（不变）
         const switchTab = (tabName) => {
           currentTab = tabName;
           productItems.forEach((item) => {
             const itemTab = item.getAttribute("data-tab");
-            item.classList.toggle("hidden", itemTab !== tabName); // 简化 toggle 写法
+            item.classList.toggle("hidden", itemTab !== tabName);
           });
-          productDisplay.scrollLeft = 0; // 切换时重置滚动位置
+          scrollContainer.scrollLeft = 0; // 切换分类时重置卡片滚动位置
           updateBtnState();
           initItemWidth();
         };
 
-        // 7. 修复：副标题 hover 事件（补充背景位置计算）
+        // 7. 副标题hover切换（补全背景位置变量）
         subtitleItems.forEach((item, index) => {
           item.addEventListener("mouseenter", () => {
-            // 移除所有激活态，给当前项加激活态
             subtitleItems.forEach((i) => i.classList.remove("active"));
             item.classList.add("active");
-            // 修复：拼接「内边距 + 当前索引×等分宽度」
-            activeBg.style.left = `${barPaddingX + index * equalWidth}px`;
-            // 核心联动：触发卡片切换（关键逻辑，保留）
+            activeBg.style.left = `${barPaddingX + index * equalWidth}px`; // 补全变量：hover时背景跟随移动
             switchTab(item.dataset.tab);
           });
         });
 
-        // 8. 箭头滚动逻辑（无需修改）
+        // 8. 箭头滚动逻辑（仅控制卡片，箭头位置已固定）
         const updateBtnState = () => {
-          if (!productDisplay) return; // 边界判断
-          prevBtn.disabled = productDisplay.scrollLeft <= 10;
+          if (!scrollContainer) return;
+          // 控制箭头禁用状态（根据卡片滚动位置）
+          prevBtn.disabled = scrollContainer.scrollLeft <= 10;
           nextBtn.disabled =
-            productDisplay.scrollLeft >=
-            productDisplay.scrollWidth - productDisplay.clientWidth - 10;
+            scrollContainer.scrollLeft >=
+            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
         };
+        // 右箭头：滚动卡片
         nextBtn.addEventListener("click", () => {
-          productDisplay.scrollBy({ left: itemWidth, behavior: "smooth" });
+          scrollContainer.scrollBy({ left: itemWidth, behavior: "smooth" });
         });
+        // 左箭头：滚动卡片
         prevBtn.addEventListener("click", () => {
-          productDisplay.scrollBy({ left: -itemWidth, behavior: "smooth" });
+          scrollContainer.scrollBy({ left: -itemWidth, behavior: "smooth" });
         });
-        productDisplay.addEventListener("scroll", updateBtnState);
+        // 卡片滚动时更新箭头禁用状态
+        scrollContainer.addEventListener("scroll", updateBtnState);
 
-        // 9. 页面初始化（调用修复后的 initActiveBg，确保联动）
-        initActiveBg(); // 优先初始化背景和默认卡片
+        // 9. 页面初始化
+        initActiveBg();
         initItemWidth();
         updateBtnState();
 
-        // 10. 窗口缩放（无需修改，确保响应式）
+        // 10. 窗口缩放时重新计算（响应式）
         window.addEventListener("resize", () => {
           calcEqualWidth();
           initActiveBg();
           initItemWidth();
           updateBtnState();
+          // 窗口缩放时重新调整箭头位置（确保始终在可视区）
+          if (prevBtn && nextBtn) {
+            prevBtn.style.left = "17%";
+            nextBtn.style.right = "17%";
+          }
         });
       });
     </script>

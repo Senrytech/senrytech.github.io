@@ -2531,201 +2531,457 @@
             <!-- 第 1 个卡片：已添加 data-* 属性，预留内容位置 -->
             <div
               class="advantage-card"
-              data-modal-title="一笔飞切技术"
-              data-modal-content="传统切割或普通飞行切割可能会对每个独立图形单独切割，切割完一个图形后激光头要调整位置再切下一个，存在较多启停和空行程。而一笔飞切会通过软件算法优化路径，将多个阵列排布的图形（如腰型孔、圆角矩形孔等）用连续的轨迹串联起来。激光头在切割过程中持续移动，仅在需要切割的位置保持激光开启，换向时还会通过圆弧过渡（默认推荐
-        3mm 最大半径）避免急停急转，实现类似“一笔画完所有图形”的切割效果。"
+              data-modal-title="自动回切技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+集成切割质量检测与路径自动修正系统，通过视觉传感器或激光轮廓仪实时检测切割后的切口质量，当检测到未切断、毛刺超标等缺陷时，自动记录缺陷位置与范围。系统根据缺陷类型调用对应的回切参数库，生成局部回切路径（通常为原路径的1.2-1.5倍覆盖范围），驱动切割头返回缺陷区域，按优化后的功率与速度参数进行二次切割。回切完成后再次检测，确保缺陷消除，形成“切割-检测-回切-复检”的闭环控制。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头像有“透视眼”，能躲开工作台上的夹具和废料，再也不会撞坏设备或刮花工件；遇到障碍物自动绕路，不用人工暂停调整，加工过程更省心；避让时动作平稳，不会因为突然变向影响切割质量，特别适合多工件混排加工。</p>
+     "
             >
-              <!-- 预留：填写该卡片的弹出详情 -->
-              <img src="https://picsum.photos/340/280?random=1" alt="优势1" />
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/automatic-back-cutting.png"
+                alt="自动回切技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">自动回切技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="自动排样技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于智能优化算法（遗传算法与模拟退火算法结合）与材料利用率计算模型，将多个工件图形导入排样系统后，系统自动分析各工件的轮廓特征与尺寸参数，按预设的排样规则（如紧密排列、旋转优化、留白控制）进行图形嵌套。通过多轮迭代计算，生成材料利用率最高的排样方案，同时兼顾切割路径最短化。排样完成后自动输出排样图与加工清单，支持手动微调排样位置，确认后直接导入CNC系统生成切割程序，实现排样与加工的无缝衔接。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>把要切的工件图导进去，系统自动帮你把工件摆得最省料，材料利用率能提15%-20%；不用人工一点点排图，几十种工件几分钟就能排好；排完直接就能开始切割，不用再转格式、调路径，特别方便。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/automatic-nesting.png"
+                alt="自动排样技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">自动排样技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="避让切割技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+融合机器视觉识别与空间坐标校准技术，通过高清工业相机与激光位移传感器实时采集工作台及工件布局数据，构建三维空间模型。基于碰撞检测算法（如分离轴定理）预判切割路径上的障碍物（夹具、已加工工件、废料等），结合动态路径重规划模块，在不影响加工精度的前提下生成绕行轨迹，同时通过伺服系统的急停缓冲控制确保避让过程平稳无冲击。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>把要切的工件图导进去，系统自动帮你把工件摆得最省料，材料利用率能提15%-20%；不用人工一点点排图，几十种工件几分钟就能排好；排完直接就能开始切割，不用再转格式、调路径，特别方便。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/avoid-cutting-interference.png"
+                alt="避让切割技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">避让切割技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="坡口切割技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用多轴联动切割头（通常为3轴或5轴）与坡口角度参数化控制模块，通过CAD系统预设坡口角度（0°-60°可调）、坡面宽度等参数，结合激光切割头的姿态调整机构（旋转、倾斜），在切割过程中实时改变切割头与工件表面的夹角。利用动态聚焦系统补偿因切割头倾斜导致的光斑位置偏移，确保坡口表面的激光能量密度均匀，同时通过速度与功率的协同调节，保证坡口坡面的平整度与角度精度。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不用先切直边再单独磨坡口，一次就能切出符合焊接要求的斜面；坡口角度想调多少就调多少，不管是V型、U型还是复合型坡口都能做；坡面光滑平整，焊接时熔合更好，不用额外修磨，焊接效率和质量都提升不少。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/bevel-cutting.png"
+                alt="坡口切割技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">坡口切割技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="圆盘寻中技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+针对圆盘类工件的中心定位需求，采用三点式激光传感定位与圆拟合算法，通过三组周向均匀分布的激光位移传感器，分别检测圆盘工件的外圆表面坐标。将采集到的三个坐标点代入圆方程拟合模型，计算出圆盘的圆心坐标与半径偏差，与切割路径的基准圆心进行比对，生成X、Y轴方向的补偿值。CNC系统根据补偿值自动调整工作台位置，确保切割路径中心与圆盘实际中心重合，定位精度≤±0.015mm。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>圆盘工件随便放，传感器扫三下就知道圆心在哪，自动对齐切割；切出来的圆盘孔位、偏心结构特别精准，组装时能完美配合；比传统的卡盘定位快得多，适合大批量圆盘加工。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/disc-centering.png"
+                alt="圆盘寻中技术技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">圆盘寻中技术技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="双Y切割技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用双Y轴独立驱动结构与协同控制系统，两台切割头分别搭载于独立的Y轴导轨上，由各自的伺服电机驱动，共享X轴与Z轴运动机构。通过CNC系统的多轴联动控制模块，实现两台切割头的同步作业（切割相同工件）或异步作业（切割不同工件），同时支持路径冲突检测与动态避让功能。结合分区加工策略，将大幅面板材划分为两个区域，两台切割头分别负责对应区域加工，提升加工覆盖面与效率。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>一台设备相当于两台用，两个激光头能同时切相同的工件，效率直接翻倍；也能各自切不同的活儿，适合小批量多品种加工；大幅面板材不用来回移动，两个头分区切，又快又稳，还能减少设备占地面积。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/double-y-cutting.png"
+                alt="双Y切割技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">双Y切割技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="包络线路技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于先进路径规划算法与激光切割运动控制体系的深度融合，通过CAD/CAM系统导入工件图形数据后，利用轮廓提取算法完成加工区域特征识别（孔位、轮廓边缘、复杂型腔等），结合拓扑排序与路径优化算法（遗传算法、贪心算法等）将离散加工特征整合为连续包络轨迹。通过CNC系统与伺服驱动的实时协同，实现路径平滑过渡与速度自适应调节，配合激光功率与切割速度动态匹配模型，在保证±0.01mm轨迹贴合度误差的前提下，优化加工效率与质量。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头不再跑冤枉路，沿最优路线连续作业，批量加工效率至少提30%；工件边缘光滑无毛刺、不发黑，省掉后续打磨人工；厚板薄板、密集孔或不规则轮廓都能切得精准，不歪不变形；路径紧凑省材料，设备少启停更省电、损耗低，又快又好又省钱。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/envelope-line.png"
+                alt="包络线路技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">包络线路技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="飞行切割技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于高动态响应伺服驱动系统与前瞻控制算法，在切割过程中，当切割头完成一个工件的切割并跳转至下一个工件时，工作台与切割头保持高速运动状态（不停止），通过CNC系统的前瞻预判模块提前计算跳转路径的加速度与减速度。利用运动轨迹平滑过渡算法（如贝塞尔曲线插值）消除运动冲击，同时在飞行过程中完成激光功率的瞬时启停与参数切换，实现工件间的无停顿连续切割。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头切完一个工件不用停下来再挪位置，直接“飞”到下一个工件继续切；工作台一直保持高速动，不会因为启停浪费时间，批量加工效率能提40%以上；运动过程平稳，不会因为“飞移”导致切割精度下降。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/flying-cutting.png"
+                alt="飞行切割技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">飞行切割技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="四点寻边技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+通过安装在切割头四周的四组高精度激光位移传感器，分别对板材的四个边缘位置进行接触式或非接触式扫描，采集各边缘的坐标数据。利用坐标拟合算法计算出板材的实际中心点、旋转角度与尺寸偏差，与预设的加工坐标系进行比对，生成补偿参数。CNC系统根据补偿参数自动调整切割路径的坐标原点与方向，确保切割路径与板材实际位置完全匹配，适用于板材摆放不规整的场景。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>板材随便放不用摆得特别正，四个传感器扫一下就知道板材歪了多少、中心在哪；自动把切割图“对齐”到板材上，不会因为板材放斜导致切出来的工件偏边或作废；省了人工找正的时间，装夹效率提升一大截。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/four-point-edge-finding.png"
+                alt="四点寻边技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">四点寻边技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="智能穿孔技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于材料数据库与自适应控制算法，系统通过扫码或人工输入材料信息（类型、厚度、牌号）后，自动从数据库中调取匹配的基础穿孔参数。穿孔过程中，激光传感器实时检测穿孔区域的熔池状态与孔道形成情况，将数据反馈至控制系统，通过模糊控制算法动态调整激光功率、脉冲频率、气流压力等参数，针对不同材料特性（如碳钢的高导热性、不锈钢的高反光性）优化穿孔策略，确保穿孔成功率与质量。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不管是碳钢、不锈钢还是铝合金，输入材料信息就能自动调好穿孔参数，不用凭经验摸索；穿孔成功率几乎100%，不会因为参数不对导致穿孔失败、材料报废；不同厚度的材料都能精准穿孔，特别省心。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/intelligent-punching.png"
+                alt="智能穿孔技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">智能穿孔技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="智能收刀技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+在切割路径的终点位置，系统预设收刀参数模型，当切割头接近终点时，通过位置传感器检测距离，激光功率按预设曲线逐步降低，同时切割速度同步减缓。结合熔池凝固控制算法，在收刀瞬间延迟关闭激光，确保切口末端完全熔合，避免出现“尾坑”或未切断情况。收刀后切割头自动抬升并按优化路径返回原点，同时记录收刀位置与质量参数，用于后续工艺优化。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>切割到最后不会留个小坑或切不断，切口末端特别平整；收刀后激光头自动归位，不用人工操作；批量加工时所有工件的收刀质量都一样，特别稳定。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/intelligent-tool-retraction.png"
+                alt="智能收刀技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">智能收刀技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="闪电穿孔技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于超短脉冲激光技术与能量集中控制算法，采用纳秒级短脉冲激光（脉冲宽度50-200ns），通过激光谐振腔的能量压缩模块将激光能量集中于极小光斑（直径≤0.1mm），形成极高的能量密度（≥10^6 W/cm²）。瞬间击穿材料形成初始孔道后，通过脉冲能量梯度衰减控制，在孔道扩大过程中避免材料过度熔化，同时配合高速气流快速排出熔融物，实现毫秒级（10-50ms）的快速穿孔过程。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>穿孔速度快得像闪电，薄钢板穿孔也只要一眨眼的功夫，比传统穿孔省80%以上时间；穿孔时不会在材料表面烧出大熔坑，孔口整齐；批量加工时，光穿孔环节就能省出大量时间，整体效率直接翻倍。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/lightning-punching.png"
+                alt="闪电穿孔技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">闪电穿孔技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="一键切断技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+集成切割路径自动生成与一键触发模块，通过预设的切断工艺参数库（按材料类型、厚度分类），当需要对工件进行切断分离时，操作人员按下专用按钮或在系统界面点击“切断”指令，系统自动识别工件的待切断边缘，生成最短切断路径。同时加载匹配的激光功率、切割速度、气流压力等参数，驱动切割头沿预设路径完成切断作业，切断过程中支持自动检测切断效果，确保完全分离。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不用手动画切断线、调参数，按一下按钮就能自动把工件切下来；切断速度快，切口平整，不用再修磨；适合流水线作业，操作人员不用懂复杂设置，简单培训就能上手。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/one-click-cutting.png"
+                alt="一键切断技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">一键切断技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="一笔飞切技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于连续轨迹规划与运动控制一体化技术，通过CAD/CAM系统提取工件的所有加工特征（孔、轮廓、型腔等），利用全局路径优化算法（如蚁群算法）将分散的加工轨迹整合为一条连续无断点的切割路径。切割过程中，CNC系统实时控制伺服驱动实现切割头的平滑转向与速度自适应，激光功率根据加工位置的材料厚度与轮廓复杂度动态调整，同时通过轨迹前瞻控制消除启停冲击，实现“一次起刀、连续切割、一次收刀”的加工模式。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头从开始切割到结束，中途不用停，一口气切完工件上所有孔和轮廓；没有频繁启停导致的加工痕迹，工件表面特别光滑；空程时间几乎为零，加工一个复杂工件比传统方式省一半时间，效率超高。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
+                alt="一笔飞切技术"
+                loading="lazy"
+              />
               <div class="advantage-card-subtitle">一笔飞切技术</div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
-            <!-- 第2个优势卡片 -->
-            <div class="advantage-card">
+            <div
+              class="advantage-card"
+              data-modal-title="管头对齐技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用机器视觉定位与管端轮廓识别技术，通过工业相机拍摄管材端部图像，经图像处理算法（边缘检测、轮廓匹配）提取管端实际轮廓特征，与标准管端模型进行比对，计算出角度偏差、位置偏差等参数。由CNC系统驱动工作台进行旋转、平移补偿，确保管端与切割路径基准完全对齐，同时支持多根管材连续上料时的批量对齐校准。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>管材两头就算切得有点斜，也能自动对齐找准加工基准；多根管材一起加工时不用一根根手动调位置，省了大量装夹时间；对齐后切割的管口、管身轮廓能精准对接，组装时不用再修配，特别适合管道工程、钢结构加工。</p>
+     "
+            >
               <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/pipe-end-alignment.png"
+                alt="管头对齐技术"
+                loading="lazy"
               />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=39"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
-              <button class="advantage-plus-btn">+</button>
-            </div>
-            <div class="advantage-card">
-              <img
-                src="https://picsum.photos/400/270?random=40"
-                alt="一笔飞切技术"
-              />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
+              <div class="advantage-card-subtitle">管头对齐技术</div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
-            <!-- 第24个优势卡片 -->
-            <div class="advantage-card">
+            <div
+              class="advantage-card"
+              data-modal-title="防止切空技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+整合材料检测传感器（电容式或光电式）与路径预校验系统，在切割作业前通过传感器对加工区域进行面扫描，采集材料分布数据并与CAD设计图纸进行坐标比对，标记无材料的“空切区域”。切割过程中，传感器实时反馈切割头下方的材料存在状态，当检测到进入空切区域时，触发激光功率瞬时关闭与切割头抬升动作，同时系统自动跳转至下一有效加工段，避免无效切割动作。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头能“看”到哪里有材料、哪里是空的，不会对着空气瞎切；避免了空切时的能源浪费和设备空转损耗，还能减少激光头无谓的启停；就算板材拼接有缝隙或料片摆放有间隔，也能自动跳过，加工节奏不被打乱。</p>
+     "
+            >
               <img
-                src="https://picsum.photos/400/270?random=61"
-                alt="一笔飞切技术"
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/prevent-cutting-voids.png"
+                alt="防止切空技术"
+                loading="lazy"
               />
-              <p class="advantage-card-subtitle">一笔飞切技术</p>
+              <div class="advantage-card-subtitle">防止切空技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="穿孔除渣技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用“脉冲穿孔+高压气流辅助”的复合工艺，通过激光控制系统精准调节脉冲频率（500-2000Hz）、峰值功率与脉冲宽度，利用短脉冲高能量密度击穿材料形成初始孔，同时配套可调节气压的环形气流喷嘴，在穿孔过程中通过梯度气压控制（初始低压防熔渣飞溅，穿孔后高压吹除残渣），结合穿孔位置的微幅螺旋切割轨迹，确保熔渣被彻底排出孔外，避免熔渣附着孔壁影响后续切割。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>穿孔后孔里的废渣全被吹干净，不会堵孔或粘在工件上；不用人工后续掏渣、修孔，省了一道工序；穿孔处边缘整齐，不会出现“塌边”情况，尤其是厚钢板加工时，穿孔质量特别稳定，后续切割能顺利衔接。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/punching-slag-removal.png"
+                alt="穿孔除渣技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">穿孔除渣技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="扫码导图技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+集成工业扫码模块与CAD文件云同步系统，通过高清扫码枪扫描工件或加工单上的二维码/条形码，解析出对应的CAD图形文件ID与加工参数（材料类型、厚度、切割速度等）。系统自动从本地数据库或云端服务器调取匹配的图形文件，经格式自动转换（支持DXF、DWG等主流格式）后导入CNC控制系统，同时将预设加工参数加载至切割程序，实现“扫码-调图-设参”的全流程自动化。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不用手动找图、输参数，扫一下二维码就能自动调出加工图和设置好参数；再也不会因为选错图纸、输错参数导致工件报废；新员工也能快速上手，加工前的准备时间从几十分钟缩到几秒钟。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/scan-code-guidance.png"
+                alt="扫码导图技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">扫码导图技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="无感穿孔技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用低能量预热+渐进式能量提升的穿孔策略，通过激光控制系统先输出低功率激光（10%-30%额定功率）对材料表面进行预热，形成微小熔融区域，再逐步提升激光功率至穿孔阈值。同时配合特殊设计的双层气流喷嘴，内层喷出保护气体（如氮气）隔绝空气，外层喷出辅助气流吹除熔融物，整个过程中激光头与材料保持固定距离，无机械接触，且穿孔痕迹极小，实现“无感”效果。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>穿孔后工件表面几乎看不出痕迹，特别适合外观要求高的产品；不会因为穿孔时能量过大导致材料变形或留下凹坑；对于薄板、精密零件加工特别友好，不用后续处理穿孔痕迹。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/sensory-free-punching.png"
+                alt="无感穿孔技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">无感穿孔技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="单面寻中技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于单侧激光位移传感与坐标计算模型，通过安装在切割头侧方的高精度激光传感器，沿工件单侧表面进行线性扫描，采集距离数据并传输至运动控制单元。利用最小二乘法拟合扫描数据得到工件单侧基准线，结合预设的工件截面参数（如管材直径、板材宽度），计算出工件中心轴线或几何中心坐标，通过CNC系统自动校准切割路径与工件中心的偏差，实现单侧接触即可完成中心定位。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不用把工件翻来覆去测两边，激光头贴住工件一侧扫一下，就知道中心在哪儿；管材、异型材加工时定位特别快，比传统双边寻中省一半时间；就算工件摆放有点歪，也能自动找准中心，切割出来的孔和轮廓都能对齐，不会偏位。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/single-sided-centering.png"
+                alt="单面寻中技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">单面寻中技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="特殊钢寻中技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+针对不锈钢、钛合金等特殊钢材料的物理特性（高反光、高硬度），采用抗干扰激光传感与电磁感应复合检测技术。通过调整激光传感器的波长与功率，避免材料反光导致的检测误差，同时利用电磁感应模块检测材料的磁场分布，辅助确定材料中心位置。结合特殊钢的热传导系数预设补偿参数，在寻中过程中修正温度变化对检测精度的影响，确保中心定位误差≤±0.02mm。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>不管是不锈钢还是钛合金，都能精准找到中心，不会因为材料反光或硬度高导致定位不准；寻中完成后切割的孔位、轮廓特别正，符合特殊钢精密加工的要求；不用频繁校准传感器，适合大批量特殊钢工件加工。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/special-steel-centering.png"
+                alt="特殊钢寻中技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">特殊钢寻中技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="无痕微联技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+在工件切割路径的预设位置（通常为边角或非受力区域），通过CNC系统控制激光功率与切割速度进行精准调节，在即将切割完成时，将激光功率降低至临界切割值的50%-70%，同时提升切割速度，形成宽度0.1-0.3mm、厚度0.05-0.1mm的微小连接点（微联点）。微联点既能确保工件在切割过程中不脱落、不位移，又能在后续工序中通过人工轻掰或自动分离装置轻松断裂，且断裂后无明显痕迹。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>切割完的工件不会直接掉下来，靠 tiny 的连接点粘在板材上，避免碰撞刮花；后续掰下来特别轻松，连接点处几乎看不出痕迹，不用再打磨；批量加工时工件排列整齐，方便收集和后续处理。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/traceless-micro-connection.png"
+                alt="无痕微联技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">无痕微联技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="振动抑制技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+采用机械阻尼与主动振动控制相结合的技术方案，在切割头支架与工作台底座安装高阻尼减震器，吸收加工过程中产生的低频振动。同时通过加速度传感器实时采集切割头与工作台的振动数据，传输至振动控制模块，利用PID调节算法生成反向振动控制信号，驱动压电陶瓷执行器产生反向振动，抵消原有振动。配合切割速度与加速度的自适应调整，避免共振频率，确保切割过程中振动幅度≤0.005mm。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>激光头切割时特别稳，不会因为振动导致切口“波浪形”；厚板高速切割时也能保持精准，不会出现切歪、尺寸超差的情况；设备运行噪音也变小了，加工环境更舒适。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/vibration-suppression.png"
+                alt="振动抑制技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">振动抑制技术</div>
+              <button class="advantage-plus-btn">+</button>
+            </div>
+
+            <div
+              class="advantage-card"
+              data-modal-title="零尾料切技术"
+              data-modal-content="
+       <p><strong>技术原理（专业性表述）</strong>
+基于嵌套优化算法与材料边界识别技术，通过CAD/CAM系统对工件图形进行智能嵌套排版，充分利用板材边缘、角落等传统废料区域。结合切割头行程极限校准与工作台运动边界计算，在确保切割安全的前提下，将最后一个工件的切割路径延伸至板材边缘，同时通过微连接技术（保留极小连接点）防止工件掉落，切割完成后通过自动吹料装置分离工件与残余边料，实现材料利用率最大化。</p>
+       <br>
+       <p><strong>实现效果（大白话表述）</strong>板材从头到尾都能利用起来，不会剩下窄条、小角等废料；同等面积的板材能多切出10%-15%的工件，材料成本直接降下来；不用人工清理残余尾料，切割完成后工件自动分离，生产流程更顺畅。</p>
+     "
+            >
+              <img
+                src="../senrytech.github.io/img/index/core-advantage/high-clear/zero-tail-material-cutting.png"
+                alt="零尾料切技术"
+                loading="lazy"
+              />
+              <div class="advantage-card-subtitle">零尾料切技术</div>
               <button class="advantage-plus-btn">+</button>
             </div>
           </div>
@@ -3536,8 +3792,8 @@
           // 填充内容到弹出卡片
           const modalTitle = modal.querySelector(".advantage-modal-title");
           const modalContent = modal.querySelector(".advantage-modal-content");
-          if (modalTitle) modalTitle.textContent = cardTitle;
-          if (modalContent) modalContent.textContent = cardContent;
+          if (modalTitle) modalTitle.textContent = cardTitle; // 标题不需要HTML，保留textContent
+          if (modalContent) modalContent.innerHTML = cardContent; // 内容用innerHTML解析HTML标签
 
           // 显示弹出层+遮罩，固定页面滚动
           scrollTop = window.scrollY; // 保存当前滚动位置

@@ -1536,104 +1536,140 @@
         }
       }
 
-      /* ================================== 七、底部导航模块 ================================== */
-      /* 作用：页面底部导航，含产品/服务/关于我们等链接 + 版权信息 */
-
-      /* —— 6.1 底部导航容器基础样式 ——*/
+      /* ================================== 九、底部导航模块 ================================== */
+      /* —— 9.1 底部导航容器基础样式（不变） ——*/
       .footer-nav {
-        background-color: #1d1d1f; /* 深灰背景，与导航栏/产品板块统一 */
-        color: #f5f5f7; /* 文字默认白色 */
-        padding: 40px 20px; /* 上下40px，左右20px内边距 */
-        margin-top: auto; /* 确保底部导航在页面最下方（需配合body flex布局） */
+        background-color: #1d1d1f;
+        color: #f5f5f7;
+        padding: 40px 20px;
+        margin-top: auto;
       }
 
-      /* —— 6.2 底部内容容器（多列布局） ——*/
+      /* —— 9.2 底部内容容器（不变） ——*/
       .footer-content {
-        max-width: 1200px; /* 限制最大宽度，避免超宽屏幕内容过散 */
-        margin: 0 auto; /* 水平居中 */
-        display: flex; /* 导航组横向排列 */
-        justify-content: space-between; /* 导航组均匀分布 */
-        flex-wrap: wrap; /* 小屏幕自动换行，避免溢出 */
-        gap: 40px; /* 导航组之间的间距 */
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 30px;
       }
 
-      /* —— 6.3 底部导航组样式（单个分组：如“全系列产品细细看”） ——*/
+      /* —— 导航列专属容器（不变） ——*/
+      .footer-nav-columns {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        flex: 1;
+        min-width: 360px;
+        gap: 20px;
+      }
+
+      /* —— 9.3 底部导航组样式（核心修改：左对齐 + 优化列表内边距） ——*/
       .footer-section {
-        flex: 1; /* 导航组自适应宽度，占满剩余空间 */
-        min-width: 150px; /* 最小宽度，避免小屏幕时过窄 */
+        flex: 1;
+        min-width: 120px;
+        /* 1. 移除居中对齐，改为左对齐（关键） */
+        text-align: left;
+        /* 可选：给列容器加左内边距，避免项目贴容器边缘（根据需求调整，如10px） */
+        padding-left: 10px;
       }
-      /* 导航组标题样式 */
+      /* 导航组标题样式（不变，标题会跟随容器左对齐） */
       .footer-section h3 {
-        font-size: 16px; /* 标题字号，与导航栏LOGO一致 */
-        margin-bottom: 16px; /* 与下方链接的间距 */
-        color: #e0e0e0; /* 浅灰文字，与链接区分 */
+        font-size: 16px;
+        margin-bottom: 12px;
+        color: #e0e0e0;
       }
-      /* 导航组列表样式（清除默认列表样式） */
+      /* 列表容器样式（2. 清除默认左内边距，确保项目完全左对齐） */
       .footer-section ul {
         list-style: none;
+        padding-left: 0; /* 关键：移除ul默认的左padding，避免项目缩进 */
       }
-      /* 列表项间距 */
+      /* 列表项间距（不变） */
       .footer-section li {
-        margin-bottom: 8px; /* 链接之间的间距 */
+        margin-bottom: 8px;
       }
-      /* 列表链接样式 */
+      /* 列表链接样式（不变，链接会跟随li左对齐） */
       .footer-section a {
-        color: #a0a0a0; /* 灰色文字，比标题更浅 */
-        text-decoration: none; /* 去掉下划线 */
-        font-size: 14px; /* 链接字号，确保简洁 */
-        transition: color 0.2s ease; /* 颜色过渡 */
+        color: #a0a0a0;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
       }
-      /* 链接hover效果：文字变白 */
       .footer-section a:hover {
         color: #f5f5f7;
       }
-      /* —— 新增：社交图标样式 —— */
-      .social-icons {
-        display: flex;
-        gap: 16px; /* 图标之间的间距 */
-        margin: 16px 0; /* 上下留白，和上下内容区分 */
-      }
-      .social-icon {
-        font-size: 18px; /* 图标大小 */
-        color: #a0a0a0; /* 初始颜色，和底部链接统一 */
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-      .social-icon:hover {
-        color: #f5f5f7; /*  hover时变白，增强交互 */
-      }
 
-      /* —— 新增：微信二维码样式 —— */
-      .wechat-qrcodes {
+      /* —— 9.4 二维码区域（不变） ——*/
+      .footer-qrcodes {
         display: flex;
-        gap: 24px; /* 两个二维码的间距 */
-        margin-top: 8px;
+        gap: 20px;
+        margin-left: auto;
+        min-width: 220px;
+        justify-content: center;
       }
       .qrcode-item {
-        text-align: center; /* 二维码和文字居中 */
+        text-align: center;
       }
       .qrcode-img {
-        width: 100px; /* 二维码尺寸（可按需调整） */
-        height: 100px;
-        object-fit: contain; /* 保持二维码比例不拉伸 */
-        margin-bottom: 8px; /* 二维码和文字的间距 */
-        border: 1px solid #333; /* 加浅边框，避免二维码和深色背景融在一起 */
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        margin-bottom: 8px;
+        border: 1px solid #333;
       }
       .qrcode-item p {
         font-size: 14px;
-        color: #a0a0a0; /* 文字颜色和底部链接统一 */
+        color: #a0a0a0;
         margin: 0;
       }
+      /* 新增：联系方式模块样式 */
+      .contact-info {
+        display: flex;
+        flex-direction: column; /* 电话+邮件纵向排列 */
+        gap: 12px; /* 电话与邮件的垂直间距 */
+      }
+      .contact-item {
+        display: flex;
+        align-items: center; /* 图标与文字垂直居中 */
+        gap: 8px; /* 图标与文字的横向间距 */
+      }
+      .contact-icon {
+        font-size: 16px; /* 图标大小（与文字协调） */
+        color: #a0a0a0;
+      }
+      .contact-text {
+        font-size: 14px; /* 与二维码下方文字字号一致 */
+        color: #a0a0a0; /* 与二维码文字颜色统一，符合底部导航风格 */
+        white-space: nowrap; /* 避免电话/邮箱换行，保持横向紧凑 */
+      }
 
-      /* —— 6.4 版权信息样式 ——*/
+      /* 响应式适配：小屏幕下自动换行，避免溢出 */
+      @media (max-width: 768px) {
+        .footer-qrcodes {
+          min-width: 220px; /* 小屏幕恢复原最小宽度 */
+          flex-wrap: wrap; /* 允许换行 */
+          justify-content: center; /* 换行后居中对齐 */
+          margin-left: 0; /* 取消右对齐，避免小屏幕偏移 */
+          margin-top: 20px; /* 与上方导航列拉开间距 */
+        }
+        .contact-info {
+          width: 100%; /* 换行后联系方式占满宽度 */
+          align-items: center; /* 联系方式居中显示 */
+          margin-top: 10px;
+        }
+      }
+
+      /* —— 9.5 版权信息（不变） ——*/
       .copyright {
-        max-width: 1200px; /* 与底部内容容器宽度一致 */
-        margin: 20px auto 0; /* 顶部20px间距，水平居中 */
-        padding-top: 20px; /* 顶部内边距，与上方导航组分隔 */
-        border-top: 1px solid #333333; /* 分隔线：深灰，避免突兀 */
-        text-align: center; /* 文字居中 */
-        font-size: 12px; /* 小字号，次要信息 */
-        color: #a0a0a0; /* 灰色文字，与链接颜色统一 */
+        max-width: 1200px;
+        margin: 20px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #333333;
+        text-align: center;
+        font-size: 12px;
+        color: #a0a0a0;
       }
     </style>
   </head>
@@ -1917,7 +1953,7 @@
             alt="BANNER图3"
           />
           <div class="banner-text active">
-            <h1>Senrytech C</h1>
+            <h1>Senrytech A</h1>
             <p>手持激光焊接机.</p>
             <div class="banner-btns">
               <button class="banner-btn learn-more-btn">了解更多</button>
@@ -2643,102 +2679,91 @@
       </div>
     </section>
 
-    <!-- 4. 底部导航栏（已修复标签闭合问题，保留社交图标+微信二维码） -->
+    <!-- 板块9. 底部导航 -->
     <footer class="footer-nav">
-      <!-- 导航组容器：负责包裹所有导航板块（关于我们/产品中心/联系我们） -->
       <div class="footer-content">
-        <!-- 底部导航组1：关于我们 -->
-        <div class="footer-section">
-          <h3>关于我们</h3>
-          <ul>
-            <li><a href="#company">公司简介</a></li>
-            <li><a href="#news">新闻动态</a></li>
-            <li><a href="#join">加入我们</a></li>
-            <li><a href="#privacy">隐私政策</a></li>
-          </ul>
-        </div>
-
-        <!-- 底部导航组2：产品中心 -->
-        <div class="footer-section">
-          <h3>产品中心</h3>
-          <ul>
-            <li><a href="#phone">板材切割机</a></li>
-            <li><a href="#pad">管材切割机</a></li>
-            <li><a href="#watch">板管一体机</a></li>
-            <li><a href="#accessories">激光焊接机</a></li>
-            <li><a href="#pad">激光清洗机</a></li>
-            <li><a href="#watch">激光打标机</a></li>
-            <li><a href="#accessories">配件</a></li>
-          </ul>
-        </div>
-
-        <!-- 底部导航组3：联系我们（含社交图标+微信二维码） -->
-        <div class="footer-section">
-          <h3>联系我们</h3>
-          <ul>
-            <li><a href="tel:400-123-4567">400-123-4567</a></li>
-            <li>
-              <a href="mailto:support@example.com">support@example.com</a>
-            </li>
-            <li><a href="#address">公司地址</a></li>
-            <li><a href="#map">地图定位</a></li>
-          </ul>
-
-          <!-- 社交平台图标 -->
-          <div class="social-icons">
-            <a
-              href="https://www.tiktok.com/你的账号"
-              target="_blank"
-              class="social-icon"
-              >TK</a
-            >
-            <a
-              href="https://www.facebook.com/你的账号"
-              target="_blank"
-              class="social-icon"
-              >FB</a
-            >
-            <a
-              href="https://www.instagram.com/你的账号"
-              target="_blank"
-              class="social-icon"
-              >INS</a
-            >
-            <a
-              href="https://www.youtube.com/你的账号"
-              target="_blank"
-              class="social-icon"
-              >YT</a
-            >
+        <!-- 导航列专属容器（控制4列平均分布） -->
+        <div class="footer-nav-columns">
+          <!-- 1. 产品中心列（项目已左对齐） -->
+          <div class="footer-section">
+            <h3>产品中心</h3>
+            <ul>
+              <li><a href="#board">板材切割机</a></li>
+              <li><a href="#tube">管材切割机</a></li>
+              <li><a href="#board-tube">板管一体机</a></li>
+              <li><a href="#welding">激光焊接机</a></li>
+              <li><a href="#cleaning">激光清洗机</a></li>
+              <li><a href="#marking">激光打标机</a></li>
+            </ul>
           </div>
 
-          <!-- 微信二维码（售前+售后） -->
-          <div class="wechat-qrcodes">
-            <div class="qrcode-item">
-              <img
-                src="https://你的域名/售前二维码图片.png"
-                alt="售前微信二维码"
-                class="qrcode-img"
-              />
-              <p>售前咨询</p>
+          <!-- 2. 联系我们列（项目已左对齐） -->
+          <div class="footer-section">
+            <h3>联系我们</h3>
+            <ul>
+              <li><a href="#contact">联系我们</a></li>
+              <li><a href="#join">加入我们</a></li>
+              <li><a href="#tips">避坑指南</a></li>
+              <li><a href="#news">新闻动态</a></li>
+            </ul>
+          </div>
+
+          <!-- 3. 社交媒体列（项目已左对齐） -->
+          <div class="footer-section">
+            <h3>社交媒体</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Youtube</a></li>
+              <li><a href="#">Ins</a></li>
+              <li><a href="#">Tiktok</a></li>
+            </ul>
+          </div>
+
+          <!-- 4. 关于我们列（项目已左对齐） -->
+          <div class="footer-section">
+            <h3>关于我们</h3>
+            <ul>
+              <li><a href="#about">关于我们</a></li>
+              <li><a href="#solutions">解决方案</a></li>
+              <li><a href="#downloads">资料下载</a></li>
+              <li><a href="#home">返回首页</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 最右侧：售前/售后二维码（位置不变） -->
+        <div class="footer-qrcodes">
+          <div class="qrcode-item">
+            <img
+              src="https://picsum.photos/100/100?random=10"
+              alt="售前咨询二维码"
+              class="qrcode-img"
+            />
+            <p>售前咨询</p>
+          </div>
+          <div class="qrcode-item">
+            <img
+              src="https://picsum.photos/100/100?random=11"
+              alt="售后支持二维码"
+              class="qrcode-img"
+            />
+            <p>售后支持</p>
+          </div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span class="contact-text">电话：400-123-4567</span>
             </div>
-            <div class="qrcode-item">
-              <img
-                src="https://你的域名/售后二维码图片.png"
-                alt="售后微信二维码"
-                class="qrcode-img"
-              />
-              <p>售后支持</p>
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <span class="contact-text">邮箱：service@senrytech.com</span>
             </div>
           </div>
         </div>
       </div>
-      <!-- 关键修复：补充 footer-content 的闭合标签 -->
 
-      <!-- 版权信息：与 footer-content 同级（原错误嵌套在 footer-content 内） -->
-      <div class="copyright">
-        © 2025 Senrytech 版权所有 | 京ICP备12345678号
-      </div>
+      <!-- 版权信息 -->
+      <div class="copyright">© 2025 Senrytech. 保留所有权利。</div>
     </footer>
 
     <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->

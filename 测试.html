@@ -1944,11 +1944,11 @@
       <button class="btn inquiry-btn">询价</button>
     </nav>
 
-    <!-- 板块3. BANNER轮播（3张图，替换src为你的图片链接） -->
+    <!-- 板块3. BANNER轮播（修改后） -->
     <div class="banner-carousel" id="home">
       <!-- 轮播图片 -->
       <div class="carousel-slides">
-        <!-- 第1张BANNER图 -->
+        <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
         <div class="carousel-slide active">
           <img
             src="../senrytech.github.io/img/index/banner/banner-1-2032-1143.webp"
@@ -1958,12 +1958,18 @@
             <h1>Senrytech A</h1>
             <p>板材切割机3015</p>
             <div class="banner-btns">
-              <button class="banner-btn learn-more-btn">了解更多</button>
+              <!-- 关键修改：button → a，添加href，保留所有样式类 -->
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                class="banner-btn learn-more-btn"
+                >了解更多</a
+              >
               <button class="banner-btn buy-btn">询价</button>
             </div>
           </div>
         </div>
-        <!-- 第2张BANNER图 -->
+
+        <!-- 第2张BANNER图：了解更多 → 指向「Senrytech B ProMax 详情页」（示例用外部页面URL） -->
         <div class="carousel-slide">
           <img
             src="../senrytech.github.io/img/index/banner/banner-2-2032-1143.webp"
@@ -1973,12 +1979,18 @@
             <h1>Senrytech B ProMax</h1>
             <p>板材切割机6025</p>
             <div class="banner-btns">
-              <button class="banner-btn learn-more-btn">了解更多</button>
+              <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                class="banner-btn learn-more-btn"
+                >了解更多</a
+              >
               <button class="banner-btn buy-btn">询价</button>
             </div>
           </div>
         </div>
-        <!-- 第3张BANNER图 -->
+
+        <!-- 第3张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
         <div class="carousel-slide">
           <img
             src="../senrytech.github.io/img/index/banner/banner-3-2032-1143.webp"
@@ -1986,9 +1998,14 @@
           />
           <div class="banner-text active">
             <h1>Senrytech A</h1>
-            <p>手持激光焊接机.</p>
+            <p>手持激光焊接机</p>
             <div class="banner-btns">
-              <button class="banner-btn learn-more-btn">了解更多</button>
+              <!-- 跳转至页面内产品板块的锚点 -->
+              <a
+                href="https://www.senrytech.com/products/laser-welding/series-a"
+                class="banner-btn learn-more-btn"
+                >了解更多</a
+              >
               <button class="banner-btn buy-btn">询价</button>
             </div>
           </div>
@@ -2023,101 +2040,170 @@
           <div class="product-display" id="productScroll">
             <!-- 原有所有product-item卡片保持不变，无需修改 -->
             <div class="product-item" data-tab="board">
-              <img
-                src="../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
-                alt="senrytech a laser sheet cutting"
-              />
+              <!-- 唯一修改：<a>标签属性写在开始标签内，注释写在标签外 -->
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                  alt="senrytech a laser sheet cutting"
+                />
+              </a>
+              <!-- 以下内容和你原来一致，无需改动 -->
               <p>Senrytech A</p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
             </div>
+
             <div class="product-item" data-tab="board">
-              <img
-                src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                alt="senrytech b laser sheet cutting"
-              />
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="senrytech b laser sheet cutting"
+                />
+              </a>
               <p>Senrytech B</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
+
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=3"
-                alt="板材切割机3"
-              />
-              <p>板材切割机 C</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-c-plus-laser-sheet-cutting.webp"
+                  alt="板材切割机3"
+                />
+              </a>
+              <p>Senrytech B Plus</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=4"
-                alt="板材切割机4"
-              />
-              <p>板材切割机 D</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="板材切割机4"
+                />
+              </a>
+              <p>Senrytech B Pro</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=5"
-                alt="板材切割机5"
-              />
-              <p>板材切割机 E</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="板材切割机5"
+                />
+              </a>
+              <p>Senrytech B ProMax</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=6"
-                alt="板材切割机6"
-              />
-              <p>板材切割机 F</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="板材切割机6"
+                />
+              </a>
+              <p>Senrytech B Ultra</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=7"
-                alt="板材切割机7"
-              />
-              <p>板材切割机 G</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="板材切割机7"
+                />
+              </a>
+              <p>Senrytech C</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=8"
-                alt="板材切割机8"
-              />
-              <p>板材切割机 H</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="板材切割机8"
+                />
+              </a>
+              <p>Senrytech C Pro</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=9"
-                alt="板材切割机9"
-              />
-              <p>板材切割机 I</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="板材切割机9"
+                />
+              </a>
+              <p>Senrytech G</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=10"
-                alt="板材切割机10"
-              />
-              <p>板材切割机 J</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="板材切割机10"
+                />
+              </a>
+              <p>Senrytech M</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
             <div class="product-item" data-tab="board">
-              <img
-                src="https://picsum.photos/400/400?random=11"
-                alt="板材切割机11"
-              />
-              <p>板材切割机 K</p>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                class="product-img-link"
+                target="_blank"
+              >
+                <img
+                  src="../senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="板材切割机11"
+                />
+              </a>
+              <p>Senrytech S</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>

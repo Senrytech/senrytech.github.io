@@ -3524,8 +3524,27 @@
       carousel.addEventListener("mouseleave", () => {
         startAutoSlide(); // 重新启动定时器
       });
+      // 新增触摸滑动逻辑
+      let startX = 0; // 触摸起始位置
+      let endX = 0; // 触摸结束位置
 
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
+      // 触摸开始
+      carousel.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+
+      // 触摸结束
+      carousel.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        // 滑动距离>50px才判定为有效滑动
+        if (startX - endX > 50) {
+          nextSlide(); // 向左滑→下一张
+        } else if (endX - startX > 50) {
+          prevSlide(); // 向右滑→上一张
+        }
+      });
+
+      /* ================================== 三.下拉菜单分类切换（hover触发） ================================== */
       // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
       // 触发时机：分类项的mouseenter事件
 
@@ -3580,32 +3599,29 @@
         let barPaddingX = 0; // 副标题容器左右内边距（动态计算）
         let equalWidth = 0; // 单个分类项的宽度（用于背景跟随）
 
-        // —— 4.3 计算副标题激活背景宽度 ——
-        // 功能：根据副标题容器宽度和分类数量，均分每个分类的宽度（适配响应式）
+        // 4.3 calcEqualWidth 函数修复
         const calcEqualWidth = () => {
-          if (!subtitleBar) return; // 容错：容器不存在则不执行
-          barTotalWidth = subtitleBar.getBoundingClientRect().width; // 获取容器实际宽度
-          // 获取容器左内边距（转为数字，默认0）
+          if (!subtitleBar || !activeBg) return; // 新增：容错元素不存在
+          barTotalWidth = subtitleBar.getBoundingClientRect().width;
           barPaddingX =
             parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0;
-          // 计算单个分类项宽度：（容器总宽-2倍内边距）/分类数量
           equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
-          activeBg.style.width = `${equalWidth}px`; // 应用宽度到激活背景（修复原代码变量缺失）
+          activeBg.style.width = `${equalWidth}px`; // 补充 equalWidth 变量
         };
 
-        // —— 4.4 初始化副标题激活背景位置 ——
-        // 功能：页面加载时，将激活背景定位到默认分类（第1个）
+        // 4.4 initActiveBg 函数修复
         const initActiveBg = () => {
-          calcEqualWidth(); // 先计算宽度
-          // 找到默认激活的分类索引（若无则取0）
+          calcEqualWidth();
+          if (!activeBg) return; // 新增：容错元素不存在
           const activeIndex =
             Array.from(subtitleItems).findIndex((item) =>
               item.classList.contains("active")
             ) || 0;
-          // 计算背景左偏移：内边距+索引×单个分类宽度（修复原代码变量缺失）
-          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
-          currentTab = subtitleItems[activeIndex].dataset.tab; // 更新当前分类
-          switchTab(currentTab); // 切换到默认分类的产品
+          // 补充：左偏移 = 内边距 + 索引×单个分类宽度
+          const leftOffset = barPaddingX + activeIndex * equalWidth;
+          activeBg.style.left = `${leftOffset}px`;
+          currentTab = subtitleItems[activeIndex].dataset.tab;
+          switchTab(currentTab);
         };
 
         // —— 4.5 计算产品卡片滚动步长 ——
@@ -3925,16 +3941,15 @@
 
       // 6. 修复：副标题激活背景位置（动态计算数值，避免空白）
       function updateSubtitleActiveBg(activeItem) {
-        if (!sampleActiveBg || !activeItem) return;
+        if (!sampleActiveBg || !activeItem || !sampleSubtitleBar) return; // 容错元素不存在
 
-        // 计算背景的left（激活项的左边距）和width（激活项的宽度）
         const activeItemRect = activeItem.getBoundingClientRect();
         const barRect = sampleSubtitleBar.getBoundingClientRect();
-        const left = activeItemRect.left - barRect.left; // 相对父容器的左边距
-        const width = activeItemRect.width; // 激活项的实际宽度
+        const left = activeItemRect.left - barRect.left; // 相对父容器的左偏移
+        const width = activeItemRect.width; // 激活项实际宽度
 
-        sampleActiveBg.style.left = `${left}px`;
-        sampleActiveBg.style.width = `${width}px`;
+        sampleActiveBg.style.left = `${left}px`; // 补充 left 变量
+        sampleActiveBg.style.width = `${width}px`; // 补充 width 变量
       }
 
       // 7. 页面加载初始化（仅执行一次核心逻辑）
@@ -3957,7 +3972,34 @@
         const advantageScroll = document.getElementById("advantageScroll");
         const advantagePrevBtn = document.getElementById("advantagePrevBtn");
         const advantageNextBtn = document.getElementById("advantageNextBtn");
-        const advantageCardWidth = 340 + 24; // 卡片宽340px + 间距24px（与CSS一致）
+        let advantageCardWidth = 364; // 默认值（340+24）
+
+        // 新增：动态计算卡片宽度的函数
+        const calcCardWidth = () => {
+          const firstCard = document.querySelector(".advantage-card");
+          if (!firstCard) return;
+          const container = document.getElementById("advantageScroll");
+          const gap = parseInt(getComputedStyle(container).gap) || 24; // 动态获取间距
+          advantageCardWidth = firstCard.offsetWidth + gap; // 卡片实际宽度+间距
+        };
+
+        // 初始化时计算一次，窗口缩放时重新计算
+        calcCardWidth();
+        window.addEventListener("resize", calcCardWidth);
+
+        // 滚动函数中使用动态步长
+        function scrollAdvantageCards(direction) {
+          const currentScroll = advantageScroll.scrollLeft;
+          const maxScroll =
+            advantageScroll.scrollWidth - advantageScroll.clientWidth;
+          let newScroll =
+            direction === "next"
+              ? Math.min(currentScroll + advantageCardWidth, maxScroll)
+              : Math.max(currentScroll - advantageCardWidth, 0);
+
+          advantageScroll.scrollTo({ left: newScroll, behavior: "smooth" });
+          setTimeout(updateArrowStatus, 300);
+        }
 
         // 容错：元素未找到则不执行滚动逻辑
         if (advantageScroll && advantagePrevBtn && advantageNextBtn) {

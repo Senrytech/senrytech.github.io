@@ -17,7 +17,7 @@
     <!-- 引入Font Awesome图标库（商务图标依赖） -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
     />
     <style>
       /* ================================== 一、全局基础样式 ================================== */
@@ -28,6 +28,11 @@
         box-sizing: border-box; /* 统一盒模型：padding/margin不影响宽高 */
         /* 全局字体：优先使用Public Sans（类SF Pro）， fallback到思源黑体 */
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
+      }
+      /* 强制社媒图标和联系图标使用 Font Awesome 字体 */
+      .social-icons .icon i,
+      .footer-contact .contact-icon i {
+        font-family: "FontAwesome" !important; /* !important 确保优先级最高 */
       }
 
       /* 通用隐藏类：用于控制元素显示/隐藏（全局复用） */
@@ -3409,17 +3414,17 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../senrytech.github.io/img/qrcode/wechat1.jpg"
-                  alt="微信二维码1"
+                  src="../senrytech.github.io/img/qr-code/before-sales.jpg"
+                  alt="售前客服咨询"
                 />
-                <p>客服1</p>
+                <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../senrytech.github.io/img/qrcode/wechat2.jpg"
-                  alt="微信二维码2"
+                  src="../senrytech.github.io/img/qr-code/after-sales.jpg"
+                  alt="售后客户咨询"
                 />
-                <p>客服2</p>
+                <p>售后客户咨询</p>
               </div>
             </div>
           </div>

@@ -17,7 +17,7 @@
     <!-- 引入Font Awesome图标库（商务图标依赖） -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <style>
       /* ================================== 一、全局基础样式 ================================== */
@@ -3322,7 +3322,7 @@
       </div>
     </section>
 
-    <!-- 板块9. 底部导航（匹配参考图格式） -->
+    <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
       <div class="footer-container">
         <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
@@ -3338,20 +3338,16 @@
             专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工解决方案。
           </p>
           <div class="social-icons">
-            <a href="#" class="icon" title="LinkedIn">
-              <i class="fa-brands fa-linkedin-in"></i>
+            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
+            <a class="icon" href="#" title="Facebook">
+              <i class="fa fa-facebook text-xl"></i>
+              <!-- 4.7.0 支持的默认前缀 fa -->
             </a>
-            <a href="#" class="icon" title="Twitter">
-              <i class="fa-brands fa-twitter"></i>
+            <a class="icon" href="#" title="Instagram">
+              <i class="fa fa-instagram text-xl"></i>
             </a>
-            <a href="#" class="icon" title="Facebook">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="#" class="icon" title="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="#" class="icon" title="YouTube">
-              <i class="fa-brands fa-youtube"></i>
+            <a class="icon" href="#" title="YouTube">
+              <i class="fa fa-youtube-play text-xl"></i>
             </a>
           </div>
         </div>
@@ -3386,65 +3382,56 @@
         <div class="footer-column footer-contact">
           <h3>联系我们</h3>
           <ul class="contact-list">
-            <!-- 地址图标：替换📍为fa-map-marker-alt -->
+            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
             <li>
-              <span class="contact-icon"
-                ><i class="fa-solid fa-map-marker-alt"></i
-              ></span>
+              <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
               <span>中国·济南市历城区舜华路街道综合产业工业园</span>
             </li>
-            <!-- 电话图标：替换📞为fa-phone -->
+            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
             <li>
-              <span class="contact-icon"
-                ><i class="fa-solid fa-phone"></i
-              ></span>
+              <span class="contact-icon"><i class="fa fa-phone"></i></span>
               <span>+86 134 6557 5719</span>
             </li>
-            <!-- 邮箱图标：替换📧为fa-envelope -->
+            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
             <li>
-              <span class="contact-icon"
-                ><i class="fa-solid fa-envelope"></i
-              ></span>
+              <span class="contact-icon"><i class="fa fa-envelope"></i></span>
               <span>info@senrytech.com</span>
             </li>
-            <!-- 时间图标：替换⏰为fa-clock -->
+            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
             <li>
-              <span class="contact-icon"
-                ><i class="fa-solid fa-clock"></i
-              ></span>
+              <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
               <span>周一至周六: 9:00-18:00</span>
             </li>
           </ul>
-
-          <!-- 微信联系二维码 -->
+          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
           <div class="wechat-qrcode">
-            <h4>微信联系</h4>
+            <h4>微信咨询</h4>
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../senrytech.github.io/img/qr-code/before-sales.jpg"
-                  alt="售前客服咨询"
+                  src="../senrytech.github.io/img/qrcode/wechat1.jpg"
+                  alt="微信二维码1"
                 />
-                <p>售前客服咨询</p>
+                <p>客服1</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../senrytech.github.io/img/qr-code/after-sales.jpg"
-                  alt="售后客服咨询"
+                  src="../senrytech.github.io/img/qrcode/wechat2.jpg"
+                  alt="微信二维码2"
                 />
-                <p>售后客服咨询</p>
+                <p>客服2</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 底部版权+政策 -->
+      <!-- 底部版权信息（补充完整结构） -->
       <div class="footer-bottom">
-        <div class="bottom-left">© 2024 Senrytech. 保留所有权利.</div>
+        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
         <div class="bottom-right">
           <a href="#">隐私政策</a>
-          <span>|</span>
+          <a href="#">服务条款</a>
           <a href="#">网站地图</a>
         </div>
       </div>

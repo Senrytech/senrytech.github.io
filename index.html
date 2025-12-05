@@ -353,7 +353,7 @@
         display: block; /* 激活状态：显示对应内容区 */
       }
 
-      /* ================================== 新增：汉堡按钮样式 ================================== */
+      /* 2.20 ================================== 新增：汉堡按钮样式 ================================== */
       .hamburger-btn {
         display: none; /* 默认隐藏，小屏幕显示 */
         background: transparent;
@@ -381,7 +381,7 @@
         transform: rotate(-45deg) translate(0.4rem, -4rem);
       }
 
-      /* ================================== 新增：侧边菜单样式 ================================== */
+      /* 2.21 ================================== 新增：侧边菜单样式 ================================== */
       /* 遮罩层（默认隐藏） */
       .sidebar-overlay {
         position: fixed;
@@ -403,7 +403,7 @@
         visibility: visible;
       }
 
-      /* 侧边菜单容器（默认隐藏，右侧滑出） */
+      /* 2.22 侧边菜单容器（默认隐藏，右侧滑出） */
       .sidebar-menu {
         position: fixed;
         top: 0;
@@ -425,7 +425,7 @@
         transform: translateX(0); /* 展开时滑入屏幕 */
       }
 
-      /* 侧边栏头部（LOGO+关闭按钮） */
+      /* 2.23 侧边栏头部（LOGO+关闭按钮） */
       .sidebar-header {
         position: absolute;
         top: 0;
@@ -451,7 +451,7 @@
         cursor: pointer;
       }
 
-      /* 侧边栏菜单列表 */
+      /* 2.24 侧边栏菜单列表 */
       .sidebar-menu-list {
         list-style: none;
         padding: 0 2rem;
@@ -461,7 +461,7 @@
         margin-bottom: 0.4rem;
       }
 
-      /* 侧边栏菜单链接（带箭头） */
+      /* 2.25 侧边栏菜单链接（带箭头） */
       .sidebar-menu-link {
         display: flex;
         justify-content: space-between;
@@ -476,7 +476,7 @@
       .sidebar-menu-link:hover {
         background-color: rgba(255, 255, 255, 0.08);
       }
-      /* 箭头样式（默认向下，展开时向上） */
+      /* 2.26 箭头样式（默认向下，展开时向上） */
       .sidebar-arrow {
         font-size: 1rem; /* 改rem：12px÷10=1.2rem（箭头字号缩放） */
         transition: transform 0.3s ease;
@@ -485,7 +485,7 @@
         transform: rotate(180deg);
       }
 
-      /* 侧边栏子菜单（产品分类列表，默认隐藏） */
+      /* 2.27 侧边栏子菜单（产品分类列表，默认隐藏） */
       .sidebar-submenu {
         list-style: none;
         padding: 0 1.6rem; /* 改rem：16px÷10=1.6rem（内边距缩放） */
@@ -501,7 +501,7 @@
       .sidebar-submenu-item {
         margin-bottom: 0.4rem;
       }
-      /* 移动端二级菜单的文字大小调整 */
+      /* 2.28 移动端二级菜单的文字大小调整 */
       .sidebar-submenu-link {
         display: block;
         padding: 1.2rem 1.6rem;
@@ -529,7 +529,7 @@
         color: #f5f5f7;
       }
 
-      /* 调整：侧边栏子菜单内容（默认完全隐藏，仅分类项点击后展开） */
+      /* 2.29 调整：侧边栏子菜单内容（默认完全隐藏，仅分类项点击后展开） */
       .sidebar-submenu-content {
         padding: 0 1.6rem 1.6rem;
         display: none;
@@ -538,14 +538,14 @@
         transition: max-height 0.3s ease;
       }
 
-      /* 当“产品中心”展开 + 分类项激活时，显示对应的产品内容 */
+      /* 2.30 当“产品中心”展开 + 分类项激活时，显示对应的产品内容 */
       .sidebar-menu-item.has-submenu.active
         .sidebar-submenu-item.active
         ~ .sidebar-submenu-content {
         display: block;
         max-height: calc(100vh - 20rem); /* 解除高度限制 */
       }
-      /* 子菜单内容标题 */
+      /* 2.31 子菜单内容标题 */
       .submenu-content-title {
         font-size: 1.6rem;
         color: #f5f5f7;
@@ -553,13 +553,13 @@
         padding-bottom: 0.8rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      /* 三列产品列表 */
+      /* 2.32 三列产品列表 */
       .submenu-product-list {
         display: flex;
         flex-wrap: wrap;
         gap: 1.2rem; /* 小间距适配三列 */
       }
-      /* 产品卡片（三列布局） */
+      /* 2.33 产品卡片（三列布局） */
       .submenu-product-card {
         width: calc((100% - 2.4rem) / 3); /* 3列：总间距12px×2=24px */
         text-align: center;
@@ -568,7 +568,7 @@
       .submenu-product-card:hover {
         transform: translateY(-0.3rem);
       }
-      /* 产品图片 */
+      /* 2.34 产品图片 */
       .submenu-product-card img {
         width: 100%;
         height: 80px; /* 小图高度，适配侧边栏 */
@@ -577,13 +577,13 @@
         background-color: #f0f0f0;
         margin-bottom: 0.8rem;
       }
-      /* 产品文字 */
+      /* 2.35 产品文字 */
       .submenu-product-card p {
         font-size: 0.8rem;
         color: #f5f5f7;
         margin: 0;
       }
-      /* 子菜单内容项切换（默认隐藏，激活显示） */
+      /* 2.36 子菜单内容项切换（默认隐藏，激活显示） */
       .submenu-content-item {
         display: none;
       }
@@ -591,49 +591,66 @@
         display: block;
       }
 
-      /* ================================== 核心：媒体查询适配（Mobile S - Tablet：≤768px） ================================== */
+      .navbar-right {
+        /* 其他样式不变 */
+        flex-shrink: 0; /* 禁止按钮组收缩 */
+        min-width: fit-content; /* 确保按钮组宽度至少能容纳所有按钮 */
+      }
+
+      /* 2.37 ================================== 核心：媒体查询适配（Mobile S - Tablet：≤768px） ================================== */
       @media (max-width: 768px) {
-        /* 1. 小屏幕隐藏原有导航链接和下拉菜单 */
-        .navbar .nav-link, /* 首页、产品中心等文字链接 */
-        .navbar .dropdown-menu /* 原有下拉菜单 */ {
+        /* 1. 小屏幕隐藏原有导航链接和下拉菜单（保留） */
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
           display: none;
         }
 
-        /* 2. 小屏幕显示汉堡按钮 */
+        /* 2. 小屏幕显示汉堡按钮（保留，确保优先级） */
         .hamburger-btn {
-          display: block;
+          display: block !important; /* 强制显示，避免被其他样式覆盖 */
         }
 
-        /* 3. 调整导航栏布局：LOGO居左，按钮+汉堡居右 */
+        /* 3. 核心：调整导航栏布局 - LOGO + 按钮组容器 左右分布 */
         .navbar {
-          justify-content: space-between; /* 替换原center，实现左右分布 */
-          gap: 0.5rem; /* 缩小按钮间距 */
+          justify-content: space-between; /* LOGO居左，按钮组容器居右 */
+          align-items: center; /* 垂直居中（新增，避免元素错位） */
+          gap: 0; /* 取消父容器间距，由按钮组内部控制 */
           padding: 0 1rem;
         }
 
-        /* 4. 调整按钮尺寸，适配小屏幕 */
+        /* 4. 按钮组容器：内部按钮+汉堡横向排列（关键修复！） */
+        .navbar-right {
+          display: flex; /* 内部元素横向排列 */
+          align-items: center; /* 垂直居中，避免按钮/汉堡高度不一 */
+          gap: 0.2rem; /* 3个元素之间的间距，可调整 */
+        }
+
+        /* 5. 调整按钮尺寸，适配小屏幕（保留） */
         .navbar .btn {
-          padding: 0.3rem 1rem;
+          padding: 0.3rem 0.8rem;
           font-size: 0.8rem;
         }
 
-        /* 5. 侧边栏宽度适配Tablet（768px） */
+        /* 6. 侧边栏宽度适配（保留） */
         .sidebar-menu {
           width: 70%;
         }
 
-        /* 6. 产品卡片在小屏幕（≤425px）自动转为2列（优化Mobile L以下体验） */
+        /* 7. 小屏（≤425px）优化（保留） */
         @media (max-width: 425px) {
           .submenu-product-card {
-            width: calc((100% - 1.2rem) / 2); /* 2列：总间距12px×1=12px */
+            width: calc((100% - 1.2rem) / 2);
           }
           .sidebar-menu {
-            width: 90%; /* Mobile S/M/L占90%宽度，更友好 */
+            width: 90%;
+          }
+          .navbar-right {
+            gap: 0.15rem; /* 小屏进一步缩小间距 */
           }
         }
       }
 
-      /* ================================== 维持现有设计：Laptop及以上（≥1024px） ================================== */
+      /* 2.38 ================================== 维持现有设计：Laptop及以上（≥1024px） ================================== */
       @media (min-width: 1024px) {
         /* 隐藏汉堡按钮、侧边菜单、遮罩层 */
         .hamburger-btn,
@@ -654,7 +671,7 @@
         }
       }
 
-      /* ================================== 过渡区间（768px < 屏幕 < 1024px）：优化平板横屏/小笔记本 ================================== */
+      /* 2.39 ================================== 过渡区间（768px < 屏幕 < 1024px）：优化平板横屏/小笔记本 ================================== */
       @media (min-width: 769px) and (max-width: 1023px) {
         /* 同小屏幕逻辑，避免导航栏溢出 */
         .navbar .nav-link:not(.logo + a) {
@@ -3475,14 +3492,16 @@
       <a href="#about" class="nav-link">关于我们</a>
       <a href="#join" class="nav-link">加入我们</a>
       <a href="#contact" class="nav-link">联系我们</a>
-      <button class="btn language-btn">中/EN</button>
-      <button class="btn inquiry-btn">询价</button>
-      <!-- 新增：汉堡按钮（仅小屏幕显示） -->
-      <button class="hamburger-btn" id="hamburgerBtn">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+      <div class="navbar-right">
+        <button class="btn language-btn">中/EN</button>
+        <button class="btn inquiry-btn">询价</button>
+        <!-- 新增：汉堡按钮（仅小屏幕显示） -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
     </nav>
 
     <!-- 新增：侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->

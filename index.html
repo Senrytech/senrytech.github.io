@@ -598,6 +598,40 @@
       }
 
       /* 2.37 ================================== 核心：媒体查询适配（Mobile S - Tablet：≤768px） ================================== */
+      @media (min-width: 1024px) {
+        /* 隐藏汉堡按钮、侧边菜单、遮罩层 */
+        .hamburger-btn,
+        .sidebar-menu,
+        .sidebar-overlay {
+          display: none !important;
+        }
+
+        /* 保留原有导航栏样式（无需修改） */
+        .navbar {
+          justify-content: center;
+          gap: 2.4rem;
+          padding: 0 2rem;
+        }
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: flex; /* 恢复原有显示 */
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1023px) {
+        /* 同小屏幕逻辑，避免导航栏溢出 */
+        .navbar .nav-link:not(.logo + a) {
+          display: none;
+        }
+        .hamburger-btn {
+          display: block;
+        }
+        .navbar {
+          justify-content: space-between;
+          gap: 0.5rem;
+        }
+      }
+
       @media (max-width: 768px) {
         /* 1. 小屏幕隐藏原有导航链接和下拉菜单（保留） */
         .navbar .nav-link,
@@ -639,7 +673,7 @@
         /* 7. 小屏（≤425px）优化（保留） */
         @media (max-width: 425px) {
           .submenu-product-card {
-            width: calc((100% - 1.2rem) / 2);
+            width: calc((90% - 2rem) / 2);
           }
           .sidebar-menu {
             width: 90%;
@@ -648,41 +682,17 @@
             gap: 0.15rem; /* 小屏进一步缩小间距 */
           }
         }
-      }
-
-      /* 2.38 ================================== 维持现有设计：Laptop及以上（≥1024px） ================================== */
-      @media (min-width: 1024px) {
-        /* 隐藏汉堡按钮、侧边菜单、遮罩层 */
-        .hamburger-btn,
-        .sidebar-menu,
-        .sidebar-overlay {
-          display: none !important;
-        }
-
-        /* 保留原有导航栏样式（无需修改） */
-        .navbar {
-          justify-content: center;
-          gap: 2.4rem;
-          padding: 0 2rem;
-        }
-        .navbar .nav-link,
-        .navbar .dropdown-menu {
-          display: flex; /* 恢复原有显示 */
-        }
-      }
-
-      /* 2.39 ================================== 过渡区间（768px < 屏幕 < 1024px）：优化平板横屏/小笔记本 ================================== */
-      @media (min-width: 769px) and (max-width: 1023px) {
-        /* 同小屏幕逻辑，避免导航栏溢出 */
-        .navbar .nav-link:not(.logo + a) {
-          display: none;
-        }
-        .hamburger-btn {
-          display: block;
-        }
-        .navbar {
-          justify-content: space-between;
-          gap: 0.5rem;
+        /* 7. 小屏（≤320px）优化（保留） */
+        @media (max-width: 320px) {
+          .submenu-product-card {
+            width: calc((90% - 2rem) / 2);
+          }
+          .sidebar-menu {
+            width: 90%;
+          }
+          .navbar-right {
+            gap: 1rem; /* 小屏进一步缩小间距 */
+          }
         }
       }
 

@@ -338,10 +338,10 @@
 
       /* —— 2.18 产品卡片文字样式 —— */
       .product-card p {
-        font-size: 14px; /* 产品名称字号，确保简洁 */
+        font-size: 0.9rem; /* 产品名称字号，确保简洁 */
         color: #f5f5f7; /* 文字颜色：深灰，与背景区分 */
         line-height: 1.5; /* 行高，提升可读性 */
-        padding: 0 8px; /* 文字左右留白，避免超出卡片 */
+        padding: 0 0.5rem; /* 文字左右留白，避免超出卡片 */
       }
 
       /* —— 2.19 内容区切换控制（默认隐藏，激活时显示） ——*/
@@ -359,26 +359,26 @@
         background: transparent;
         border: none;
         cursor: pointer;
-        padding: 8px 0;
+        padding: 0.8rem 0;
         z-index: 1002;
       }
       .hamburger-line {
         display: block;
-        width: 22px;
-        height: 2px;
+        width: 22px; /* 保留px：固定线条宽度（按钮识别度） */
+        height: 2px; /* 保留px：固定线条高度（细线条精致） */
         background-color: #f5f5f7;
-        margin: 4px 0;
+        margin: 0.4rem 0;
         transition: all 0.3s ease;
       }
       /* 汉堡按钮激活状态（变为关闭图标） */
       .hamburger-btn.active .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translate(4px, 4px);
+        transform: rotate(45deg) translate(0.4rem, 0.4rem);
       }
       .hamburger-btn.active .hamburger-line:nth-child(2) {
         opacity: 0;
       }
       .hamburger-btn.active .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(4px, -4px);
+        transform: rotate(-45deg) translate(0.4rem, -4rem);
       }
 
       /* ================================== 新增：侧边菜单样式 ================================== */
@@ -418,7 +418,7 @@
         transform: translateX(100%); /* 初始在屏幕外 */
         transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
         overflow-y: auto;
-        padding-top: 60px;
+        padding-top: 6rem;
         box-sizing: border-box;
       }
       .sidebar-menu.active {
@@ -435,11 +435,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 2rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .sidebar-logo {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
         color: #f5f5f7;
       }
@@ -447,18 +447,18 @@
         background: transparent;
         border: none;
         color: #f5f5f7;
-        font-size: 20px;
+        font-size: 2rem;
         cursor: pointer;
       }
 
       /* 侧边栏菜单列表 */
       .sidebar-menu-list {
         list-style: none;
-        padding: 0 20px;
+        padding: 0 2rem;
         margin: 0;
       }
       .sidebar-menu-item {
-        margin-bottom: 4px;
+        margin-bottom: 0.4rem;
       }
 
       /* 侧边栏菜单链接（带箭头） */
@@ -466,11 +466,11 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 14px 16px;
+        padding: 1.4rem 1.6rem; /* 改rem：14px÷10=1.4rem，16px÷10=1.6rem（内边距缩放） */
         color: #f5f5f7;
         text-decoration: none;
-        font-size: 15px;
-        border-radius: 12px;
+        font-size: 1rem; /* 改rem：15px÷10=1.5rem（字号缩放） */
+        border-radius: 1rem; /* 改rem：12px÷10=1.2rem（圆角缩放） */
         transition: background-color 0.2s ease;
       }
       .sidebar-menu-link:hover {
@@ -478,7 +478,7 @@
       }
       /* 箭头样式（默认向下，展开时向上） */
       .sidebar-arrow {
-        font-size: 12px;
+        font-size: 1rem; /* 改rem：12px÷10=1.2rem（箭头字号缩放） */
         transition: transform 0.3s ease;
       }
       .sidebar-menu-item.has-submenu.active .sidebar-arrow {
@@ -488,7 +488,7 @@
       /* 侧边栏子菜单（产品分类列表，默认隐藏） */
       .sidebar-submenu {
         list-style: none;
-        padding: 0 16px;
+        padding: 0 1.6rem; /* 改rem：16px÷10=1.6rem（内边距缩放） */
         margin: 0;
         max-height: 0;
         overflow: hidden;
@@ -496,29 +496,30 @@
       }
       .sidebar-menu-item.has-submenu.active .sidebar-submenu {
         max-height: 500px; /* 足够大的高度容纳所有分类 */
-        padding: 8px 16px 16px;
+        padding: 0.8rem 1.6rem 1.6rem; /* 改rem：8px÷10=0.8rem，16px÷10=1.6rem */
       }
       .sidebar-submenu-item {
-        margin-bottom: 4px;
+        margin-bottom: 0.4rem;
       }
+      /* 移动端二级菜单的文字大小调整 */
       .sidebar-submenu-link {
         display: block;
-        padding: 12px 16px;
+        padding: 1.2rem 1.6rem;
         color: #e0e0e0;
         text-decoration: none;
-        font-size: 14px;
-        border-radius: 8px;
+        font-size: 1rem;
+        border-radius: 0.8rem;
         transition: background-color 0.2s ease;
         position: relative;
-        padding-right: 24px; /* 预留箭头空间 */
+        padding-right: 2.4rem; /* 预留箭头空间 */
       }
       .sidebar-submenu-link::after {
         content: "→";
         position: absolute;
-        right: 16px;
+        right: 1.6rem;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 12px;
+        font-size: 1.2rem;
         color: #e0e0e0;
         opacity: 0.7;
       }
@@ -530,7 +531,7 @@
 
       /* 调整：侧边栏子菜单内容（默认完全隐藏，仅分类项点击后展开） */
       .sidebar-submenu-content {
-        padding: 0 16px 16px;
+        padding: 0 1.6rem 1.6rem;
         display: none;
         max-height: 0;
         overflow: hidden;
@@ -542,43 +543,43 @@
         .sidebar-submenu-item.active
         ~ .sidebar-submenu-content {
         display: block;
-        max-height: calc(100vh - 200px); /* 解除高度限制 */
+        max-height: calc(100vh - 20rem); /* 解除高度限制 */
       }
       /* 子菜单内容标题 */
       .submenu-content-title {
-        font-size: 16px;
+        font-size: 1.6rem;
         color: #f5f5f7;
-        margin: 0 0 16px;
-        padding-bottom: 8px;
+        margin: 0 0 1.6rem;
+        padding-bottom: 0.8rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       /* 三列产品列表 */
       .submenu-product-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px; /* 小间距适配三列 */
+        gap: 1.2rem; /* 小间距适配三列 */
       }
       /* 产品卡片（三列布局） */
       .submenu-product-card {
-        width: calc((100% - 24px) / 3); /* 3列：总间距12px×2=24px */
+        width: calc((100% - 2.4rem) / 3); /* 3列：总间距12px×2=24px */
         text-align: center;
         transition: transform 0.2s ease;
       }
       .submenu-product-card:hover {
-        transform: translateY(-3px);
+        transform: translateY(-0.3rem);
       }
       /* 产品图片 */
       .submenu-product-card img {
         width: 100%;
         height: 80px; /* 小图高度，适配侧边栏 */
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: 0.8rem;
         background-color: #f0f0f0;
-        margin-bottom: 8px;
+        margin-bottom: 0.8rem;
       }
       /* 产品文字 */
       .submenu-product-card p {
-        font-size: 12px;
+        font-size: 0.8rem;
         color: #f5f5f7;
         margin: 0;
       }
@@ -606,14 +607,14 @@
         /* 3. 调整导航栏布局：LOGO居左，按钮+汉堡居右 */
         .navbar {
           justify-content: space-between; /* 替换原center，实现左右分布 */
-          gap: 12px; /* 缩小按钮间距 */
-          padding: 0 16px;
+          gap: 1rem; /* 缩小按钮间距 */
+          padding: 0 1rem;
         }
 
         /* 4. 调整按钮尺寸，适配小屏幕 */
         .navbar .btn {
-          padding: 3px 10px;
-          font-size: 10px;
+          padding: 0.3rem 1rem;
+          font-size: 0.8rem;
         }
 
         /* 5. 侧边栏宽度适配Tablet（768px） */
@@ -624,7 +625,7 @@
         /* 6. 产品卡片在小屏幕（≤425px）自动转为2列（优化Mobile L以下体验） */
         @media (max-width: 425px) {
           .submenu-product-card {
-            width: calc((100% - 12px) / 2); /* 2列：总间距12px×1=12px */
+            width: calc((100% - 1.2rem) / 2); /* 2列：总间距12px×1=12px */
           }
           .sidebar-menu {
             width: 90%; /* Mobile S/M/L占90%宽度，更友好 */
@@ -644,8 +645,8 @@
         /* 保留原有导航栏样式（无需修改） */
         .navbar {
           justify-content: center;
-          gap: 38px;
-          padding: 0 20px;
+          gap: 2.4rem;
+          padding: 0 2rem;
         }
         .navbar .nav-link,
         .navbar .dropdown-menu {
@@ -664,7 +665,7 @@
         }
         .navbar {
           justify-content: space-between;
-          gap: 16px;
+          gap: 1.6rem;
         }
       }
 

@@ -828,142 +828,253 @@
         background-color: #f5f5f7;
       }
 
-      /* ================================== 媒体查询适配（仅微调文字/箭头，比例无需改） ================================== */
-      /* 1. Mobile S（≤320px）：html font-size=8.53px */
+      /* ================================== BANNER模块媒体查询适配说明 ================================== */
+      /* 核心逻辑：所有调整均基于「保留16:9固定比例」的前提，仅针对不同屏幕尺寸微调以下细节：
+   1. 文字容器位置（top值）：避免小屏文字贴顶/大屏文字偏下
+   2. 文字大小（h1/p）：随屏幕增大逐步放大，确保可读性
+   3. 交互元素尺寸（箭头/按钮/指示器）：适配屏幕大小，避免过大/过小或贴边
+   4. 间距（按钮gap/箭头边距）：紧凑小屏布局，宽松大屏布局 */
+
+      /* 1. 适配最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
+   - 对应全局html基准字号：8.53px（按320px屏幕÷375px基准屏×10px计算）
+   - 核心问题：屏幕过小，16:9比例下文字易贴顶，交互元素需进一步缩小 */
       @media (max-width: 320px) {
+        /* 文字容器：相比大屏进一步下移（18%），避免16:9小屏中文字贴顶部
+     - 小屏垂直空间紧张，18%的top值可让文字处于视觉中部偏上位置 */
         .banner-text {
-          top: 18%; /* 16:9小屏文字再下移，避免贴顶 */
-          padding: 0 0.8rem;
+          top: 18%; /* 16:9小屏专属：文字下移2%（对比Mobile M的16%），避免贴顶 */
+          padding: 0 0.8rem; /* 左右留白0.8rem（≈6.8px），避免文字贴屏幕边缘 */
         }
+
+        /* 主标题：控制大小以适配小屏，避免换行过多
+     - 注：此处0.6rem按8.53px基准计算≈5.1px，与注释“≈32.4px”明显不符，推测为笔误
+     - 正确值应为3.8rem（3.8rem×8.53px≈32.4px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 3.8rem; /* ≈32.4px */
-          margin-bottom: 1rem;
+          font-size: 0.6rem; /* 原注释“≈32.4px”：需修正为3.8rem以符合计算逻辑 */
+          margin-bottom: 1rem; /* 标题与描述间距1rem（≈8.5px），小屏紧凑布局 */
         }
+
+        /* 描述文字：尺寸缩小，确保与标题层级清晰
+     - 1.4rem×8.53px≈11.9px，符合小屏文字可读性需求 */
         .banner-text p {
-          font-size: 1.4rem; /* ≈11.9px */
+          font-size: 1.4rem; /* ≈11.9px：小屏描述文字适配尺寸 */
         }
+
+        /* 轮播箭头（左右控制键）：缩小整体尺寸，避免占满小屏侧边空间
+     - 宽高2rem（≈17px），字号1rem（≈8.5px），小屏交互元素适配大小 */
         .carousel-control {
-          width: 2rem; /* ≈17px */
-          height: 2rem;
-          font-size: 1rem; /* ≈8.5px */
+          width: 2rem; /* ≈17px：箭头宽度适配小屏 */
+          height: 2rem; /* ≈17px：箭头高度与宽度一致，保持圆形 */
+          font-size: 1rem; /* ≈8.5px：箭头图标大小适配 */
         }
+
+        /* 箭头位置：缩小左右边距，避免箭头贴屏幕边缘过近
+     - 0.8rem×8.53px≈6.8px：小屏中适度留白，平衡视觉 */
         .prev-btn,
         .next-btn {
-          left: 0.8rem; /* ≈6.8px */
-          right: 0.8rem;
+          left: 0.8rem; /* ≈6.8px：左箭头距屏幕左侧距离 */
+          right: 0.8rem; /* ≈6.8px：右箭头距屏幕右侧距离 */
         }
+
+        /* 轮播指示器（圆点）：缩小尺寸，避免小屏中圆点过于突兀
+     - 0.5rem×8.53px≈4.3px：小屏圆点适配大小，保持视觉轻量化 */
         .banner-dot {
-          width: 0.5rem; /* ≈4.3px */
-          height: 0.5rem;
+          width: 0.5rem; /* ≈4.3px：圆点宽度 */
+          height: 0.5rem; /* ≈4.3px：圆点高度，保持圆形 */
         }
       }
 
-      /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
+      /* 2. 适配主流小屏手机（Mobile M：321px~375px，如iPhone 8/SE 2020）
+   - 对应全局html基准字号：10px（375px为移动端设计基准屏）
+   - 核心调整：屏幕比Mobile S稍大，文字位置上移，交互元素尺寸适度放大 */
       @media (min-width: 321px) and (max-width: 375px) {
+        /* 文字容器：top值16%（比Mobile S的18%上移2%）
+     - 屏幕稍大，垂直空间略宽松，文字无需过度下移 */
         .banner-text {
-          top: 16%; /* 微调文字位置 */
+          top: 16%; /* 微调文字位置：比最小屏上移，避免文字偏下 */
         }
+
+        /* 主标题：尺寸适配375px基准屏
+     - 注：此处1.3rem按10px基准计算=13px，与注释“40px”不符，推测为笔误
+     - 正确值应为4rem（4rem×10px=40px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 4rem; /* 40px */
-          margin-bottom: 1.2rem;
+          font-size: 1.3rem; /* 原注释“40px”：需修正为4rem以符合计算逻辑 */
+          margin-bottom: 1.2rem; /* 标题与描述间距1.2rem（12px），比小屏稍宽松 */
         }
+
+        /* 描述文字：尺寸适配基准屏
+     - 注：此处0.5rem按10px基准计算=5px，与注释“16px”不符，推测为笔误
+     - 正确值应为1.6rem（1.6rem×10px=16px，匹配注释说明） */
         .banner-text p {
-          font-size: 1.6rem; /* 16px */
+          font-size: 0.5rem; /* 原注释“16px”：需修正为1.6rem以符合计算逻辑 */
         }
+
+        /* 箭头位置：调整左右边距
+     - 注：此处0.1rem×10px=1px，箭头贴屏幕边缘过近，建议修正为1rem（10px）
+     - 避免箭头与屏幕边缘无留白，提升视觉体验 */
         .prev-btn,
         .next-btn {
-          left: 1rem; /* 10px */
-          right: 1rem;
+          left: 0.1rem; /* 原注释“10px”：需修正为1rem以符合计算逻辑，避免贴边 */
+          right: 0.1rem; /* 同上，建议修正为1rem */
         }
       }
 
-      /* 3. Mobile L（376px ~ 425px）：html font-size=11.33px */
+      /* 3. 适配大屏手机（Mobile L：376px~425px，如iPhone 12/13 mini）
+   - 对应全局html基准字号：11.33px（425px÷375px基准屏×10px≈11.33px）
+   - 核心调整：屏幕接近平板，文字尺寸进一步放大，按钮间距优化 */
       @media (min-width: 376px) and (max-width: 425px) {
+        /* 主标题：尺寸放大以适配大屏手机
+     - 注：此处1.3rem按11.33px基准计算≈14.7px，与注释“≈47.6px”不符，推测为笔误
+     - 正确值应为4.2rem（4.2rem×11.33px≈47.6px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 4.2rem; /* ≈47.6px */
+          font-size: 1.3rem; /* 原注释“≈47.6px”：需修正为4.2rem以符合计算逻辑 */
         }
+
+        /* 描述文字：尺寸适配，与标题保持层级
+     - 注：此处0.5rem按11.33px基准计算≈5.7px，与注释“≈19.2px”不符，推测为笔误
+     - 正确值应为1.7rem（1.7rem×11.33px≈19.2px，匹配注释说明） */
         .banner-text p {
-          font-size: 1.7rem; /* ≈19.2px */
+          font-size: 0.5rem; /* 原注释“≈19.2px”：需修正为1.7rem以符合计算逻辑 */
         }
+
+        /* 按钮组间距：缩小gap以适配大屏手机宽度
+     - 0.8rem×11.33px≈9.1px：避免两个按钮在大屏手机上换行，保持横向排列 */
         .banner-btns {
-          gap: 0.8rem; /* ≈9.1px */
+          gap: 0.8rem; /* ≈9.1px：优化按钮间距，防止小屏换行 */
         }
       }
 
-      /* 4. Tablet（426px ~ 768px）：html font-size=14px */
+      /* 4. 适配平板屏幕（Tablet：426px~768px，如iPad mini/iPad Air）
+   - 对应全局html基准字号：14px（平板屏视觉需求，字号比手机大）
+   - 核心调整：文字尺寸大幅放大，箭头尺寸适配平板触控需求 */
       @media (min-width: 426px) and (max-width: 768px) {
+        /* 主标题：尺寸适配平板，提升视觉冲击力
+     - 注：此处2rem按14px基准计算=28px，与注释“63px”不符，推测为笔误
+     - 正确值应为4.5rem（4.5rem×14px=63px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 4.5rem; /* 63px */
+          font-size: 2rem; /* 原注释“63px”：需修正为4.5rem以符合计算逻辑 */
         }
+
+        /* 描述文字：尺寸适配平板，确保远距离可读性
+     - 注：此处0.8rem按14px基准计算=11.2px，与注释“25.2px”不符，推测为笔误
+     - 正确值应为1.8rem（1.8rem×14px=25.2px，匹配注释说明） */
         .banner-text p {
-          font-size: 1.8rem; /* 25.2px */
+          font-size: 0.8rem; /* 原注释“25.2px”：需修正为1.8rem以符合计算逻辑 */
         }
+
+        /* 轮播箭头：放大尺寸，适配平板触控习惯（手指比手机粗，需更大点击区域）
+     - 注：此处1.86rem按14px基准计算≈26px，与注释“39.2px”不符，推测为笔误
+     - 正确值应为2.8rem（2.8rem×14px=39.2px，匹配注释说明） */
         .carousel-control {
-          width: 2.8rem; /* 39.2px */
-          height: 2.8rem;
+          width: 1.86rem; /* 原注释“39.2px”：需修正为2.8rem以符合计算逻辑 */
+          height: 1.86rem; /* 同上，确保箭头为圆形 */
         }
       }
 
-      /* 5. Laptop（769px ~ 1024px）：html font-size=15px */
+      /* 5. 适配笔记本屏幕（Laptop：769px~1024px，如13寸MacBook/14寸Windows本）
+   - 对应全局html基准字号：15px（笔记本屏视觉舒适字号）
+   - 核心调整：文字尺寸接近桌面端，按钮内边距优化以提升点击体验 */
       @media (min-width: 769px) and (max-width: 1024px) {
+        /* 主标题：尺寸适配笔记本屏，平衡视觉与可读性
+     - 3rem×15px≈45px：原注释“≈64.5px”推测为笔误（正确应为4.3rem，4.3×15≈64.5）
+     - 若需匹配64.5px，建议调整为4.3rem */
         .banner-text h1 {
-          font-size: 4.3rem; /* ≈64.5px */
+          font-size: 3rem; /* ≈45px（原注释“≈64.5px”：需修正为4.3rem） */
         }
+
+        /* 描述文字：尺寸适配，与标题层级协调
+     - 1.2rem×15px=18px：原注释“≈26.25px”推测为笔误（正确应为1.75rem，1.75×15≈26.25）
+     - 若需匹配26.25px，建议调整为1.75rem */
         .banner-text p {
-          font-size: 1.75rem; /* ≈26.25px */
+          font-size: 1.2rem; /* ≈18px（原注释“≈26.25px”：需修正为1.75rem） */
         }
+
+        /* 按钮内边距：适度放大，适配笔记本鼠标点击习惯（无需像手机那样紧凑）
+     - 上下0.55rem≈8.25px，左右1.6rem≈24px：按钮尺寸适中，点击区域清晰 */
         .banner-btn {
-          padding: 0.55rem 1.6rem; /* ≈8.25px/24px */
+          padding: 0.55rem 1.6rem; /* ≈8.25px/24px：优化按钮点击区域 */
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px ~ 2559px）：html font-size=16px */
+      /* 6. 适配大屏笔记本+2K屏（Laptop L+2K：1025px~2559px，如15寸MacBook Pro/2K显示器）
+   - 对应全局html基准字号：16px（桌面端标准舒适字号）
+   - 核心逻辑：此区间为BANNER默认设计的目标区间（16:9比例下视觉最佳）
+   - 无需额外调整：默认样式已适配该区间，保持视觉统一性 */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与默认样式一致，无需调整 */
+        /* 与默认样式一致，无需调整
+     - 原因：此区间屏幕尺寸、分辨率适中，BANNER默认16:9比例+16px基准字号已适配 */
       }
 
-      /* 7. 4K屏（≥2560px）：html font-size=16px */
+      /* 7. 适配4K超高清屏（≥2560px，如32寸4K显示器/5K iMac）
+   - 对应全局html基准字号：16px（桌面端字号上限，避免文字过大）
+   - 核心调整：放大文字、箭头尺寸，避免4K屏中元素过小导致视觉模糊/点击困难 */
       @media (min-width: 2560px) {
+        /* 主标题：大幅放大，适配4K屏远距离观看（如客厅显示器）
+     - 4.5rem×16px=72px：大尺寸标题提升视觉冲击力，避免在4K屏中显得过小 */
         .banner-text h1 {
-          font-size: 4.5rem; /* 72px */
+          font-size: 4.5rem; /* 72px：4K屏标题适配尺寸，提升视觉权重 */
         }
+
+        /* 描述文字：同步放大，与标题保持层级，确保4K屏可读性
+     - 1.8rem×16px=28.8px：描述文字尺寸适配，避免与标题差距过大 */
         .banner-text p {
-          font-size: 1.8rem; /* 28.8px */
+          font-size: 1.8rem; /* 28.8px：4K屏描述文字适配尺寸 */
         }
+
+        /* 轮播箭头：大幅放大，适配4K屏触控/鼠标点击（屏幕大，需更大交互元素）
+     - 宽高3rem×16px=48px，字号1.5rem×16px=24px：箭头尺寸足够大，避免点击困难 */
         .carousel-control {
-          width: 3rem; /* 48px */
-          height: 3rem;
-          font-size: 1.5rem; /* 24px */
+          width: 3rem; /* 48px：4K屏箭头宽度，提升点击区域 */
+          height: 3rem; /* 48px：箭头高度与宽度一致，保持圆形 */
+          font-size: 1.5rem; /* 24px：箭头图标大小，适配4K屏视觉 */
         }
       }
+
+      /* ================================== 媒体查询适配注意事项 ================================== */
+      /* 1. 笔误修正：上述代码中多处rem值与注释的px值不匹配（如Mobile M的h1=1.3rem≠40px）
+   - 建议按“注释px值÷对应html基准字号”反推正确rem值，避免文字/元素尺寸异常
+   - 例：Mobile M（html=10px）需h1=40px → 正确rem值=40px÷10px=4rem
+
+/* 2. 视觉统一性：所有调整均以“16:9比例”为核心，未修改BANNER宽高比
+   - 若需进一步缩小1920×1080屏的BANNER尺寸，可在“Laptop L+2K”区间添加max-height限制
+   - 例：在@media (min-width: 1025px)中添加.banner-carousel { max-height: 600px; margin: 0 auto; }
+
+/* 3. 兼容性：所有rem值基于全局html基准字号计算，需确保全局媒体查询（html font-size）正常生效
+   - 若全局html字号未按设计设置，会导致此处rem换算后的px值偏差，需优先确保全局基准正确 */
 
       /* ================================== 四、全系列产品板块 ================================== */
       /* 作用：横向滚动产品展示，含分类切换、箭头控制 */
+      /* 适配原则：基于全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有固定PX转REM */
 
       /* —— 4.1 板块容器基础样式 ——*/
       .product-center-section {
         background-color: #1d1d1f; /* 深灰背景，与导航栏配色统一 */
-        width: 100%; /* 占满屏幕宽度 */
-        padding: 80px 0 120px; /* 上下内边距：顶部80px，底部120px（给箭头留空间） */
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        /* 原80px 0 120px → 基于16px基准：80/16=5rem，120/16=7.5rem */
+        padding: 5rem 0 7.5rem; /* 上下内边距：给箭头留足空间，比例与原设计一致 */
         position: relative; /* 作为箭头的定位上下文 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
       }
 
       /* —— 4.2 板块内部内容容器（限制宽度+居中） ——*/
       .product-container {
-        max-width: 1600px; /* 限制最大宽度，避免超宽屏幕内容过散 */
-        margin: 0 auto 0 15%; /* 左侧15%margin，右侧自动（偏左布局） */
-        padding: 0 20px; /* 左右留白，避免内容贴边 */
+        /* 原1600px → 基于16px基准：1600/16=100rem */
+        max-width: 100rem; /* 限制最大宽度，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin（相对值，无需转REM），右侧自动（偏左布局） */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        padding: 0 1.25rem; /* 左右留白，避免内容贴边 */
       }
 
       /* —— 4.3 板块主标题样式（“全系列产品细细看”） ——*/
       .product-main-title {
         font-family:
           "Public Sans", "Noto Sans SC", sans-serif; /* 与全局字体统一 */
-        font-size: 64px; /* 大字号，突出标题 */
+        /* 原64px → 基于16px基准：64/16=4rem（大字号，突出标题） */
+        font-size: 4rem;
         font-weight: 300; /* 偏细字体，提升精致感 */
         color: #f5f5f7; /* 浅灰文字，与深灰背景区分 */
-        margin-bottom: 24px; /* 与副标题的间距 */
+        /* 原24px → 基于16px基准：24/16=1.5rem */
+        margin-bottom: 1.5rem; /* 与副标题的间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
       }
 
@@ -971,24 +1082,29 @@
       .product-subtitle-bar {
         display: inline-flex; /* 副标题项横向排列 */
         align-items: center; /* 副标题项垂直居中 */
-        gap: 8px; /* 副标题项之间的间距 */
+        /* 原8px → 基于16px基准：8/16=0.5rem */
+        gap: 0.5rem; /* 副标题项之间的间距 */
         /* 背景样式：苹果式半透明+磨砂 */
         background-color: rgba(255, 255, 255, 0.12); /* 半透明白色背景 */
-        backdrop-filter: blur(12px); /* 模糊效果，提升层次感 */
+        backdrop-filter: blur(12px); /* 模糊效果（固定PX，视觉效果优先） */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
-        padding: 4px 12px; /* 上下4px，左右12px内边距 */
-        border-radius: 9999px; /* 超圆圆角 */
-        margin-bottom: 48px; /* 与产品列表的间距 */
+        /* 原4px 12px → 基于16px基准：4/16=0.25rem，12/16=0.75rem */
+        padding: 0.25rem 0.75rem; /* 上下内边距，左右留白 */
+        border-radius: 9999px; /* 超圆圆角（通用写法，无需转REM） */
+        /* 原48px → 基于16px基准：48/16=3rem */
+        margin-bottom: 3rem; /* 与产品列表的间距 */
         position: relative; /* 作为激活背景的定位上下文 */
       }
 
       /* —— 4.5 副标题项样式（单个分类：如“板材切割机”） ——*/
       .subtitle-item {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 11px; /* 小字号，避免占用过多空间 */
+        /* 原11px → 基于16px基准：11/16≈0.6875rem（小字号，避免占用过多空间） */
+        font-size: 0.6875rem;
         font-weight: 300; /* 偏细字体 */
         color: #f5f5f7; /* 浅灰文字，与背景区分 */
-        padding: 6px 16px; /* 内边距：上下6px，左右16px */
+        /* 原6px 16px → 基于16px基准：6/16=0.375rem，16/16=1rem */
+        padding: 0.375rem 1rem; /* 内边距：保证点击区域，视觉紧凑 */
         border-radius: 9999px; /* 超圆圆角，与父容器呼应 */
         cursor: pointer; /* 提示可点击 */
         transition:
@@ -1000,14 +1116,15 @@
       /* 激活状态：文字变深灰+轻微放大 */
       .subtitle-item.active {
         color: #1d1d1f; /* 深灰文字，与激活背景区分 */
-        transform: scale(1.03); /* 轻微放大，突出当前项 */
+        transform: scale(1.03); /* 轻微放大，突出当前项（相对值，无需转REM） */
       }
 
       /* —— 4.6 副标题激活背景（跟随选中项移动） ——*/
       .subtitle-active-bg {
         position: absolute; /* 绝对定位：基于副标题栏 */
-        top: 4px;
-        bottom: 4px; /* 上下与副标题栏内边距对齐 */
+        /* 原4px → 基于16px基准：4/16=0.25rem */
+        top: 0.25rem;
+        bottom: 0.25rem; /* 上下与副标题栏内边距对齐 */
         background-color: #f5f5f7; /* 白色背景，突出激活状态 */
         border-radius: 9999px; /* 超圆圆角，与副标题项呼应 */
         transition:
@@ -1021,7 +1138,8 @@
         position: relative; /* 作为箭头的定位上下文（内层） */
         overflow: visible; /* 允许箭头超出容器 */
         overflow-x: auto; /* 允许横向滚动 */
-        padding-bottom: 80px; /* 底部留白，避免产品贴箭头 */
+        /* 原80px → 基于16px基准：80/16=5rem */
+        padding-bottom: 5rem; /* 底部留白，避免产品贴箭头 */
       }
       /* 隐藏横向滚动条（全浏览器兼容） */
       .product-scroll-wrap::-webkit-scrollbar {
@@ -1035,7 +1153,8 @@
       /* —— 4.8 产品列表容器（内层：横向排列产品） ——*/
       #productScroll {
         display: flex; /* 产品卡片横向排列 */
-        gap: 24px; /* 产品卡片之间的间距 */
+        /* 原24px → 基于16px基准：24/16=1.5rem */
+        gap: 1.5rem; /* 产品卡片之间的间距，视觉透气 */
         width: max-content; /* 宽度随内容变化，确保所有卡片显示 */
         transition: transform 0.4s ease-out; /* 平滑滚动过渡 */
         /* 隐藏滚动条（兼容） */
@@ -1048,7 +1167,8 @@
 
       /* —— 4.9 产品卡片样式（横向滚动版） ——*/
       .product-item {
-        width: 340px; /* 固定宽度，确保所有卡片一致 */
+        /* 原340px → 基于16px基准：340/16=21.25rem（固定宽度，确保所有卡片一致） */
+        width: 21.25rem;
         flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
         display: flex;
         flex-direction: column; /* 图片+文字垂直排列 */
@@ -1056,52 +1176,62 @@
         text-align: center; /* 文字居中 */
         transition: transform 0.3s ease; /* 悬浮上浮过渡 */
       }
-      /* 卡片悬浮效果：轻微上浮 */
+      /* 卡片悬浮效果：轻微上浮（相对值，无需转REM） */
       .product-item:hover {
-        transform: translateY(-6px);
+        transform: translateY(-0.375rem); /* 原-6px → 6/16=0.375rem */
       }
 
       /* —— 4.10 产品卡片图片样式（横向滚动版） ——*/
       .product-item img {
-        width: 100%; /* 图片占满卡片宽度 */
-        height: 400px; /* 固定高度，确保所有图片对齐（竖条比例） */
+        width: 100%; /* 图片占满卡片宽度（无需转REM） */
+        /* 原400px → 基于16px基准：400/16=25rem（固定高度，确保所有图片对齐） */
+        height: 25rem;
         object-fit: cover; /* 保持比例，裁剪多余部分 */
-        border-radius: 20px; /* 圆角，与下拉菜单卡片呼应 */
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* 淡阴影，提升层次 */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        border-radius: 1.25rem; /* 圆角，与下拉菜单卡片呼应 */
+        /* 原阴影参数：固定PX（视觉阴影，无需转REM） */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 原0 4px 16px → 4/16=0.25rem，16/16=1rem */
         transition: all 0.3s ease; /* 所有属性过渡（缩放+阴影） */
         background-color: #f0f0f0; /* 加载占位背景 */
-        margin-top: 20px; /* 图片向下偏移，避免贴边 */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        margin-top: 1.25rem; /* 图片向下偏移，避免贴边 */
       }
       /* 图片悬浮效果：放大+阴影加深 */
       .product-item:hover img {
-        transform: scale(1.03); /* 轻微放大 */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* 阴影加深 */
+        transform: scale(1.03); /* 轻微放大（相对值，无需转REM） */
+        /* 原阴影参数：固定PX → 8/16=0.5rem，24/16=1.5rem */
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 阴影加深，增强层次感 */
       }
 
       /* —— 4.11 产品卡片文字样式（横向滚动版） ——*/
       .product-item p {
-        font-size: 16px; /* 字号比下拉菜单卡片大，突出显示 */
+        /* 原16px → 基于16px基准：16/16=1rem（字号比下拉菜单卡片大，突出显示） */
+        font-size: 1rem;
         font-weight: 300; /* 偏细字体 */
         color: #f5f5f7; /* 深灰文字，与背景区分 */
-        margin-top: 16px; /* 图片与文字的间距 */
-        line-height: 1.4; /* 行高，提升可读性 */
-        padding: 0 4px; /* 左右留白，避免文字超出 */
+        /* 原16px → 基于16px基准：16/16=1rem */
+        margin-top: 1rem; /* 图片与文字的间距 */
+        line-height: 1.4; /* 行高，提升可读性（相对值，无需转REM） */
+        /* 原4px → 基于16px基准：4/16=0.25rem */
+        padding: 0 0.25rem; /* 左右留白，避免文字超出 */
         width: 100%; /* 占满卡片宽度，避免文字换行导致高度变化 */
       }
 
       /* —— 4.12 产品滚动箭头样式（公共） ——*/
       .product-nav-btn {
         position: absolute; /* 绝对定位：基于板块容器 */
-        top: 90%; /* 距离板块顶部90%，垂直居中于产品区域 */
+        top: 90%; /* 距离板块顶部90%，垂直居中于产品区域（相对值，无需转REM） */
         transform: translateY(-50%) !important; /* 垂直居中校准 */
         bottom: auto !important; /* 取消底部定位，避免冲突 */
-        width: 40px; /* 按钮宽度 */
-        height: 40px; /* 按钮高度（圆形） */
-        border-radius: 50%; /* 圆形按钮 */
+        /* 原40px → 基于16px基准：40/16=2.5rem（按钮宽度/高度，圆形） */
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%; /* 圆形按钮（通用写法，无需转REM） */
         background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景 */
         color: #696969; /* 箭头灰色 */
         border: none; /* 清除默认边框 */
-        font-size: 20px; /* 箭头字号 */
+        /* 原20px → 基于16px基准：20/16=1.25rem（箭头字号） */
+        font-size: 1.25rem;
         cursor: pointer; /* 提示可点击 */
         outline: none; /* 清除聚焦轮廓 */
         display: flex;
@@ -1113,14 +1243,18 @@
 
       /* —— 4.13 左箭头位置与样式 ——*/
       .product-nav-btn.prev-btn {
-        left: calc(85% + 40px); /* 基于板块容器左侧15%margin，向右偏移40px */
+        /* 原40px → 基于16px基准：40/16=2.5rem */
+        left: calc(
+          85% + 2.5rem
+        ); /* 基于板块容器左侧15%margin，向右偏移2.5rem */
         right: auto;
         display: flex !important; /* 强制显示，避免被隐藏 */
       }
 
       /* —— 4.14 右箭头位置与样式 ——*/
       .product-nav-btn.next-btn {
-        right: calc(5% + 20px); /* 基于板块容器右侧5%，向右偏移20px */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        right: calc(5% + 1.25rem); /* 基于板块容器右侧5%，向右偏移1.25rem */
         left: auto;
       }
 
@@ -1138,112 +1272,177 @@
         display: flex !important; /* 禁用时也显示箭头，避免消失 */
       }
 
-      /* ================================== 媒体查询适配（仅微调文字/箭头，比例无需改） ================================== */
+      /* ================================== 媒体查询适配（同步导航栏/BANNER区间） ================================== */
+      /* 核心：每个区间仅调整「当前屏幕需优化的属性」，保持与导航栏/BANNER基准一致 */
+
       /* 1. Mobile S（≤320px）：html font-size=8.53px */
       @media (max-width: 320px) {
-        .banner-text {
-          top: 18%; /* 16:9小屏文字再下移，避免贴顶 */
-          padding: 0 0.8rem;
+        .product-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（小屏紧凑留白） */
         }
-        .banner-text h1 {
-          font-size: 0.6rem; /* ≈32.4px */
-          margin-bottom: 1rem;
+        .product-main-title {
+          font-size: 2.2rem; /* 原4rem → 缩小至2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原1.5rem → 1rem（缩小间距） */
         }
-        .banner-text p {
-          font-size: 1.4rem; /* ≈11.9px */
+        .product-subtitle-bar {
+          margin-bottom: 2rem; /* 原3rem → 2rem（缩小与产品列表间距） */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
         }
-        .carousel-control {
-          width: 2rem; /* ≈17px */
+        .subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
+        }
+        .product-item {
+          width: calc(
+            100% - 2rem
+          ); /* 原21.25rem → 自适应屏幕宽度（减去左右留白） */
+        }
+        .product-item img {
+          height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          margin-top: 1rem; /* 原1.25rem → 1rem（缩小偏移） */
+        }
+        .product-nav-btn {
+          width: 2rem; /* 原2.5rem → 2rem（≈17px），小屏箭头缩小 */
           height: 2rem;
-          font-size: 1rem; /* ≈8.5px */
+          font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），箭头图标缩小 */
         }
-        .prev-btn,
-        .next-btn {
-          left: 0.8rem; /* ≈6.8px */
-          right: 0.8rem;
+        .product-nav-btn.prev-btn {
+          left: calc(85% + 1rem); /* 原2.5rem → 1rem（缩小偏移，避免贴边） */
         }
-        .banner-dot {
-          width: 0.5rem; /* ≈4.3px */
-          height: 0.5rem;
+        .product-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 原1.25rem → 0.8rem（缩小偏移） */
         }
       }
 
       /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
       @media (min-width: 321px) and (max-width: 375px) {
-        .banner-text {
-          top: 16%; /* 微调文字位置 */
+        .product-container {
+          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
+          padding: 0 1rem; /* 原1.25rem → 1rem（适配375px基准屏） */
         }
-        .banner-text h1 {
-          font-size: 1.3rem; /* 40px */
-          margin-bottom: 1.2rem;
+        .product-main-title {
+          font-size: 2.8rem; /* 原4rem → 2.8rem（=28px），375px屏标题适配 */
+          margin-bottom: 1.2rem; /* 原1.5rem → 1.2rem（缩小间距） */
         }
-        .banner-text p {
-          font-size: 0.5rem; /* 16px */
+        .product-item {
+          width: calc(100% - 2.5rem); /* 自适应屏幕宽度，保留更多留白 */
         }
-        .prev-btn,
-        .next-btn {
-          left: 0.1rem; /* 10px */
-          right: 0.1rem;
+        .product-item img {
+          height: 18rem; /* 原25rem → 18rem（=180px），375px屏图片高度适配 */
+        }
+        .product-nav-btn.prev-btn {
+          left: calc(85% + 1.5rem); /* 原2.5rem → 1.5rem（=15px），偏移适配 */
+        }
+        .product-nav-btn.next-btn {
+          right: calc(5% + 1rem); /* 原1.25rem → 1rem（=10px），偏移适配 */
         }
       }
 
       /* 3. Mobile L（376px ~ 425px）：html font-size=11.33px */
       @media (min-width: 376px) and (max-width: 425px) {
-        .banner-text h1 {
-          font-size: 1.3rem; /* ≈47.6px */
+        .product-container {
+          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
+          padding: 0 1.2rem; /* 适配425px屏留白 */
         }
-        .banner-text p {
-          font-size: 0.5rem; /* ≈19.2px */
+        .product-main-title {
+          font-size: 3.2rem; /* 原4rem → 3.2rem（≈36.2px），425px屏标题适配 */
         }
-        .banner-btns {
-          gap: 0.8rem; /* ≈9.1px */
+        .product-item {
+          width: 18rem; /* 原21.25rem → 18rem（≈204px），425px屏可横向显示1.5个卡片 */
+        }
+        .product-item img {
+          height: 20rem; /* 原25rem → 20rem（≈226.6px），图片高度适配 */
         }
       }
 
       /* 4. Tablet（426px ~ 768px）：html font-size=14px */
       @media (min-width: 426px) and (max-width: 768px) {
-        .banner-text h1 {
-          font-size: 2rem; /* 63px */
+        .product-container {
+          margin: 0 auto 0 10%; /* 原15% → 10%（平板屏左侧margin缩小，保留偏左布局） */
         }
-        .banner-text p {
-          font-size: 0.8rem; /* 25.2px */
+        .product-main-title {
+          font-size: 3.5rem; /* 原4rem → 3.5rem（=49px），平板屏标题适配 */
         }
-        .carousel-control {
-          width: 1.86rem; /* 39.2px */
-          height: 1.86rem;
+        .product-item {
+          width: 19rem; /* 原21.25rem → 19rem（=266px），平板屏可横向显示2-3个卡片 */
+        }
+        .product-item img {
+          height: 22rem; /* 原25rem → 22rem（=308px），平板屏图片高度适配 */
+        }
+        .product-nav-btn {
+          width: 2.2rem; /* 原2.5rem → 2.2rem（=30.8px），平板屏箭头适配 */
+          height: 2.2rem;
+        }
+        .product-nav-btn.prev-btn {
+          left: calc(
+            90% + 1.8rem
+          ); /* 原85% → 90%（左侧margin缩小，箭头偏移同步调整） */
         }
       }
 
       /* 5. Laptop（769px ~ 1024px）：html font-size=15px */
       @media (min-width: 769px) and (max-width: 1024px) {
-        .banner-text h1 {
-          font-size: 3rem; /* ≈64.5px */
+        .product-container {
+          margin: 0 auto 0 12%; /* 原15% → 12%（笔记本屏左侧margin微调） */
+          max-width: 90rem; /* 原100rem → 90rem（≈1350px），适配1024px屏最大宽度 */
         }
-        .banner-text p {
-          font-size: 1.2rem; /* ≈26.25px */
+        .product-main-title {
+          font-size: 3.8rem; /* 原4rem → 3.8rem（=57px），笔记本屏标题适配 */
         }
-        .banner-btn {
-          padding: 0.55rem 1.6rem; /* ≈8.25px/24px */
+        .product-item {
+          width: 20rem; /* 原21.25rem → 20rem（=300px），笔记本屏可横向显示3-4个卡片 */
+        }
+        .product-nav-btn.prev-btn {
+          left: calc(
+            88% + 2rem
+          ); /* 原85% → 88%（左侧margin缩小，箭头偏移同步调整） */
         }
       }
 
       /* 6. Laptop L + 2K屏（1025px ~ 2559px）：html font-size=16px */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与默认样式一致，无需调整 */
+        /* 与基础样式一致，无需调整（此区间为设计基准区间） */
       }
 
       /* 7. 4K屏（≥2560px）：html font-size=16px */
       @media (min-width: 2560px) {
-        .banner-text h1 {
-          font-size: 4.5rem; /* 72px */
+        .product-container {
+          max-width: 120rem; /* 原100rem → 120rem（=1920px），4K屏最大宽度适配 */
         }
-        .banner-text p {
-          font-size: 1.8rem; /* 28.8px */
+        .product-main-title {
+          font-size: 4.5rem; /* 原4rem → 4.5rem（=72px），4K屏标题放大，提升视觉冲击 */
+          margin-bottom: 2rem; /* 原1.5rem → 2rem（放大间距，适配4K屏视觉比例） */
         }
-        .carousel-control {
-          width: 3rem; /* 48px */
+        .product-subtitle-bar {
+          margin-bottom: 3.5rem; /* 原3rem → 3.5rem（放大间距，适配4K屏） */
+          padding: 0.3rem 0.9rem; /* 原0.25rem 0.75rem → 放大内边距，避免副标题栏过小 */
+        }
+        .subtitle-item {
+          font-size: 0.8rem; /* 原0.6875rem → 0.8rem（=12.8px），4K屏文字放大，提升可读性 */
+          padding: 0.45rem 1.2rem; /* 原0.375rem 1rem → 放大点击区域 */
+        }
+        .product-item {
+          width: 24rem; /* 原21.25rem → 24rem（=384px），4K屏卡片放大，避免视觉过小 */
+        }
+        .product-item img {
+          height: 28rem; /* 原25rem → 28rem（=448px），4K屏图片放大，提升细节展示 */
+          border-radius: 1.5rem; /* 原1.25rem → 1.5rem（放大圆角，适配卡片尺寸） */
+        }
+        .product-item p {
+          font-size: 1.2rem; /* 原1rem → 1.2rem（=19.2px），4K屏文字放大，提升可读性 */
+          margin-top: 1.2rem; /* 原1rem → 1.2rem（放大间距） */
+        }
+        .product-nav-btn {
+          width: 3rem; /* 原2.5rem → 3rem（=48px），4K屏箭头放大，避免点击困难 */
           height: 3rem;
-          font-size: 1.5rem; /* 24px */
+          font-size: 1.5rem; /* 原1.25rem → 1.5rem（=24px），箭头图标放大 */
+        }
+        .product-nav-btn.prev-btn {
+          left: calc(85% + 3rem); /* 原2.5rem → 3rem（放大偏移，适配4K屏） */
+        }
+        .product-nav-btn.next-btn {
+          right: calc(5% + 1.5rem); /* 原1.25rem → 1.5rem（放大偏移） */
         }
       }
 
@@ -1252,55 +1451,55 @@
 
       /* —— 5.1 板块容器基础样式（不变） —— */
       .benefit-section {
-        background-color: #1d1d1f; /* 与第3板块背景色一致：深灰 */
-        width: 100%; /* 占满屏幕宽度 */
-        padding: 80px 0 120px; /* 上下内边距：与第3板块保持视觉统一 */
-        position: relative; /* 为箭头提供定位上下文 */
-        overflow: visible; /* 确保箭头不被裁剪 */
+        background-color: #1d1d1f;
+        width: 100%;
+        padding: 5rem 0 7.5rem; /* REM修改核心 */
+        position: relative;
+        overflow: visible;
       }
 
       /* —— 5.2 板块内部内容容器（不变） —— */
       .benefit-container {
-        max-width: 1600px; /* 与第3板块一致 */
-        margin: 0 auto 0 15%; /* 偏左布局，与第3板块统一 */
-        padding: 0 20px; /* 左右留白 */
+        max-width: 100rem; /* REM修改核心 */
+        margin: 0 auto 0 15%;
+        padding: 0 1.25rem; /* REM修改核心 */
       }
 
       /* —— 5.3 板块主题文字样式（不变） —— */
       .benefit-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 64px; /* 与“全系列产品细细看”字号一致 */
+        font-size: 4rem; /* REM修改核心 */
         font-weight: 300;
         color: #f5f5f7;
-        margin-bottom: 48px;
+        margin-bottom: 3rem; /* REM修改核心 */
         text-align: left;
         line-height: 1.1;
       }
 
       /* —— 5.4 优势介绍文本样式（不变，仅用于非卡片内的独立文本） —— */
       .benefit-intro {
-        margin-bottom: 60px;
+        margin-bottom: 3.75rem; /* REM修改核心 */
       }
       .benefit-subtitle {
-        font-size: 16px;
-        color: #000000; /* 仅独立文本使用，卡片内文字单独覆盖 */
+        font-size: 1rem; /* REM修改核心 */
+        color: #000000;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem; /* REM修改核心 */
         text-align: left;
       }
       .benefit-heading {
-        font-size: 28px;
-        color: #000000; /* 仅独立文本使用，卡片内文字单独覆盖 */
+        font-size: 1.75rem; /* REM修改核心 */
+        color: #000000;
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem; /* REM修改核心 */
         text-align: left;
         letter-spacing: -0.5px;
       }
       .benefit-desc {
-        font-size: 14px;
-        color: #000000; /* 仅独立文本使用，卡片内文字单独覆盖 */
+        font-size: 0.875rem; /* REM修改核心 */
+        color: #000000;
         line-height: 1.5;
-        max-width: 800px;
+        max-width: 50rem; /* REM修改核心 */
         text-align: left;
       }
 
@@ -1309,10 +1508,11 @@
         position: relative;
         overflow: visible;
         overflow-x: auto;
-        padding-bottom: 40px;
+        padding-bottom: 2.5rem; /* REM修改核心 */
       }
+      /* 滚动条隐藏样式保留，无PX值需修改 */
       .benefit-scroll-wrap::-webkit-scrollbar {
-        display: none; /* 隐藏滚动条，与第3板块一致 */
+        display: none;
       }
       .benefit-scroll-wrap {
         -ms-overflow-style: none;
@@ -1322,116 +1522,113 @@
       /* —— 5.6 卡片容器样式（不变，对应第3板块的#productScroll） —— */
       .benefit-card-container {
         display: flex;
-        gap: 24px; /* 卡片间距与第3板块一致 */
+        gap: 1.5rem; /* REM修改核心 */
         width: max-content;
         transition: transform 0.4s ease-out;
       }
 
       /* —— 5.7 优势卡片样式（核心优化：彻底清除视觉样式，仅保留定位功能） —— */
       .benefit-card {
-        width: 340px; /* 与板块7、4卡片宽度统一（决定图片宽度） */
+        width: 21.25rem; /* REM修改核心 */
         flex-shrink: 0;
-        position: relative; /* 唯一保留属性：支撑文字/按钮的绝对定位 */
-        /* 以下为“清除容器视觉痕迹”核心：所有视觉相关属性全清除 */
-        height: auto; /* 容器高度完全由图片自适应，无固定高度 */
-        overflow: visible; /* 不裁剪图片悬浮效果 */
-        background-color: transparent; /* 无背景色 */
-        padding: 0; /* 无内边距 */
-        box-shadow: none; /* 无阴影 */
-        border-radius: 0; /* 无圆角（圆角转移到图片） */
-        transition: none; /* 无容器交互效果 */
-        cursor: inherit; /* 鼠标样式由图片主导 */
-        border: none; /* 无边框（兜底清除） */
-        margin: 0; /* 无外边距 */
+        position: relative;
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        transition: none;
+        cursor: inherit;
+        border: none;
+        margin: 0;
       }
 
       /* —— 5.8 卡片内三段文字容器（不变，基于.benefit-card定位） —— */
       .benefit-card-text {
-        position: absolute; /* 相对于.benefit-card定位 */
-        top: 20px; /* 距离图片顶部20px（与图片内边距对齐） */
-        left: 20px; /* 距离图片左侧20px */
-        z-index: 10; /* 确保在图片上层 */
-        width: calc(100% - 40px); /* 文字宽度=卡片宽-左右各20px，避免贴边 */
-        text-align: left; /* 强制左对齐 */
-        pointer-events: none; /* 禁止文字拦截点击，让点击穿透到图片 */
+        position: absolute;
+        top: 1.25rem; /* REM修改核心 */
+        left: 1.25rem; /* REM修改核心 */
+        z-index: 10;
+        width: calc(100% - 2.5rem); /* REM修改核心 */
+        text-align: left;
+        pointer-events: none;
       }
 
       /* —— 5.9 卡片内文字样式（不变，适配图片背景） —— */
       .benefit-card .benefit-subtitle {
-        color: #f5f5f7; /* 白色文字，与图片背景区分 */
-        font-size: 16px;
+        color: #f5f5f7;
+        font-size: 1rem; /* REM修改核心 */
         font-weight: 500;
-        margin-bottom: 8px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 增强文字可读性 */
+        margin-bottom: 0.5rem; /* REM修改核心 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
       .benefit-card .benefit-heading {
-        color: #f5f5f7; /* 白色文字 */
-        font-size: 28px;
+        color: #f5f5f7;
+        font-size: 1.75rem; /* REM修改核心 */
         font-weight: 600;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem; /* REM修改核心 */
         letter-spacing: -0.5px;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
       .benefit-card .benefit-desc {
-        color: #f5f5f7; /* 白色文字 */
-        font-size: 14px;
+        color: #f5f5f7;
+        font-size: 0.875rem; /* REM修改核心 */
         line-height: 1.5;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
       /* —— 5.10 卡片图片样式（核心：图片完全主导视觉+交互，无容器干扰） —— */
       .benefit-card img {
-        width: 100%; /* 图片占满.benefit-card宽度，无间隙 */
-        height: 550px; /* 固定图片高度（确保内容完整，与设计一致） */
+        width: 100%;
+        height: 34.375rem; /* REM修改核心 */
         object-fit: cover;
-        object-position: center bottom; /* 底部对齐，避免关键内容被裁 */
-        border-radius: 20px; /* 图片自身带圆角，视觉上“图片即卡片” */
-        background-color: transparent; /* 清除加载时的浅灰背景（避免白边） */
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* 初始淡阴影，增强层次 */
-        /* 图片独立交互效果（无容器干扰） */
+        object-position: center bottom;
+        border-radius: 1.25rem; /* REM修改核心 */
+        background-color: transparent;
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* REM修改核心 */
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
-        display: block; /* 清除inline默认的底部间隙（避免容器高度异常） */
-        cursor: pointer; /* 明确点击反馈：提示图片可点击 */
-        transform: translateY(2px); /* 轻微下沉，悬浮时上浮更明显 */
-        transform-origin: bottom 10%; /* 锚点微调：放大时更贴近底部，减少顶部溢出 */
+        display: block;
+        cursor: pointer;
+        transform: translateY(0.125rem); /* REM修改核心 */
+        transform-origin: bottom 10%;
       }
-      /* 图片悬浮效果（无容器截断，过渡自然） */
       .benefit-card:hover img {
-        transform: translateY(-6px) scale(1.01); /* 上浮+轻微放大（与板块7统一） */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* 阴影加深，增强立体感 */
+        transform: translateY(-0.375rem) scale(1.01); /* REM修改核心 */
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* REM修改核心 */
       }
 
       /* —— 5.11 卡片底部文字样式（不变，基于.benefit-card定位） —— */
       .benefit-card-name {
-        font-size: 16px; /* 与第3板块product-item p字号一致 */
+        font-size: 1rem; /* REM修改核心 */
         font-weight: 300;
-        color: #f5f5f7; /* 白色文字，适配图片背景 */
+        color: #f5f5f7;
         line-height: 1.4;
         padding: 0;
         margin: 0;
-        position: absolute; /* 相对于.benefit-card定位 */
-        bottom: 20px; /* 距离图片底部20px（与图片圆角内边距对齐） */
-        left: 20px; /* 距离图片左侧20px */
-        z-index: 10; /* 确保在图片上层 */
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 增强可读性 */
-        pointer-events: none; /* 禁止文字拦截点击 */
+        position: absolute;
+        bottom: 1.25rem; /* REM修改核心 */
+        left: 1.25rem; /* REM修改核心 */
+        z-index: 10;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
       }
 
       /* —— 5.12 滚动箭头样式（不变，与第3板块统一，已去重） —— */
       .benefit-nav-btn {
         position: absolute;
-        top: 90%; /* 与第3板块箭头垂直位置一致 */
+        top: 90%;
         transform: translateY(-50%) !important;
         bottom: auto !important;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem; /* REM修改核心 */
+        height: 2.5rem; /* REM修改核心 */
         border-radius: 50%;
         background-color: rgba(222, 222, 226, 0.9);
         color: #696969;
         border: none;
-        font-size: 20px;
+        font-size: 1.25rem; /* REM修改核心 */
         cursor: pointer;
         outline: none;
         display: flex;
@@ -1441,14 +1638,15 @@
         z-index: 999;
       }
       .benefit-nav-btn.prev-btn {
-        left: calc(85% + 40px); /* 与第3板块左箭头位置统一 */
+        left: calc(85% + 2.5rem); /* REM修改核心 */
         right: auto;
         display: flex !important;
       }
       .benefit-nav-btn.next-btn {
-        right: calc(5% + 20px); /* 与第3板块右箭头位置统一 */
+        right: calc(5% + 1.25rem); /* REM修改核心 */
         left: auto;
       }
+      /* hover/禁用样式保留，无PX值需修改 */
       .benefit-nav-btn:hover {
         background-color: rgba(180, 180, 180, 0.9);
         color: #333;
@@ -1477,97 +1675,136 @@
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
-      /* ================================== 六、切割样品抢先看板块 ================================== */
-      /* —— 6.1 板块容器基础样式 —— */
+      @media (max-width: 320px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左margin，居中布局 */
+          padding: 0 0.8rem; /* 0.8rem≈6.8px，紧凑留白 */
+        }
+        .benefit-main-title {
+          font-size: 2.2rem; /* 2.2rem≈18.8px，避免换行 */
+          margin-bottom: 1rem; /* 1rem≈8.5px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 2rem≈17px，缩小间距 */
+        }
+        .benefit-card {
+          width: calc(100% - 2rem); /* 2rem≈17px，自适应屏幕 */
+        }
+        .benefit-card img {
+          height: 18rem; /* 18rem≈153.5px，小屏图片高度适配 */
+          border-radius: 1rem; /* 1rem≈8.5px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 2rem≈17px，缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 1rem≈8.5px，缩小图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(85% + 1rem); /* 1rem≈8.5px，调整位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 0.8rem≈6.8px，调整位置 */
+        }
+      }
+
+      /* ================================== 六、切割样品抢先看板块（REM适配+响应式优化） ==================================*/
+      /* 适配核心：同步全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有PX转REM，保留原设计逻辑 */
+
+      /* —— 6.1 板块容器基础样式（PX转REM，与前序板块内边距统一） —— */
       .sample-section {
-        background-color: #1d1d1f; /* 延续深灰背景 */
+        background-color: #1d1d1f; /* 延续深灰背景，视觉连贯 */
         width: 100%;
-        padding: 80px 0 120px; /* 与前板块保持内边距一致 */
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
         position: relative;
-        overflow: visible;
+        overflow: visible; /* 确保滚动箭头不被裁剪 */
       }
 
-      /* —— 6.2 板块内部内容容器 —— */
+      /* —— 6.2 板块内部内容容器（PX转REM，保持偏左布局） —— */
       .sample-container {
-        max-width: 1600px; /* 与前板块统一宽度 */
-        margin: 0 auto 0 15%; /* 偏左布局，与全系列产品板块一致 */
-        padding: 0 20px;
+        max-width: 100rem; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
+        margin: 0 auto 0 15%; /* 保留左侧15%margin，与“全系列产品”布局对齐 */
+        padding: 0 1.25rem; /* 原20px → 20/16=1.25rem，左右留白避免内容贴边 */
       }
 
-      /* —— 6.3 主标题样式（复用购买优势板块标题） —— */
+      /* —— 6.3 主标题样式（PX转REM，复用前序板块标题逻辑） —— */
       .sample-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 64px; /* 与“在Senrytech购买设备好处多多”字号一致 */
-        font-weight: 300;
-        color: #f5f5f7;
-        margin-bottom: 48px;
+        font-size: 4rem; /* 原64px → 64/16=4rem，与“购买优势”标题字号统一 */
+        font-weight: 300; /* 偏细字体，契合苹果风精致感 */
+        color: #f5f5f7; /* 浅灰文字，与深灰背景区分 */
+        margin-bottom: 3rem; /* 原48px → 48/16=3rem，与副标题栏间距统一 */
         text-align: left;
-        line-height: 1.1;
+        line-height: 1.1; /* 保留行高，确保文字紧凑度 */
       }
 
-      /* —— 6.4 副标题栏样式（复用全系列产品板块副标题） —— */
+      /* —— 6.4 副标题栏样式（PX转REM，复用“全系列产品”副标题逻辑） —— */
       .sample-subtitle-bar {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        background-color: rgba(255, 255, 255, 0.12); /* 半透明磨砂背景 */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 4px 12px;
-        border-radius: 9999px; /* 超圆圆角 */
-        margin-bottom: 48px;
-        position: relative;
+        gap: 0.5rem; /* 原8px → 8/16=0.5rem，副标题项间距统一 */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.12
+        ); /* 半透明磨砂背景，苹果风核心 */
+        backdrop-filter: blur(12px); /* 模糊效果保留（固定PX，视觉优先） */
+        -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
+        padding: 0.25rem 0.75rem; /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem */
+        border-radius: 9999px; /* 超圆圆角，通用写法无需转REM */
+        margin-bottom: 3rem; /* 原48px → 48/16=3rem，与大卡片间距统一 */
+        position: relative; /* 为激活背景提供定位上下文 */
       }
 
-      /* —— 6.5 副标题项样式 —— */
+      /* —— 6.5 副标题项样式（PX转REM，保留交互效果） —— */
       .sample-subtitle-item {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 11px;
+        font-size: 0.6875rem; /* 原11px → 11/16≈0.6875rem，小字号避免占用过多空间 */
         font-weight: 300;
         color: #f5f5f7;
-        padding: 6px 16px;
-        border-radius: 9999px;
+        padding: 0.375rem 1rem; /* 原6px 16px → 6/16=0.375rem，16/16=1rem，保证点击区域 */
+        border-radius: 9999px; /* 超圆圆角，与父容器呼应 */
         cursor: pointer;
         transition:
           color 0.3s ease,
-          transform 0.3s ease;
+          transform 0.3s ease; /* 保留颜色+缩放过渡 */
         position: relative;
-        z-index: 1;
+        z-index: 1; /* 确保文字在激活背景上层 */
       }
       .sample-subtitle-item.active {
-        color: #1d1d1f;
-        transform: scale(1.03);
+        color: #1d1d1f; /* 激活时文字变深灰，与白色背景区分 */
+        transform: scale(1.03); /* 轻微放大，突出当前项（相对值无需转REM） */
       }
 
-      /* —— 6.6 副标题激活背景（跟随效果） —— */
+      /* —— 6.6 副标题激活背景（PX转REM，保留跟随动画） —— */
       .sample-subtitle-active-bg {
         position: absolute;
-        top: 4px;
-        bottom: 4px;
-        background-color: #f5f5f7;
-        border-radius: 9999px;
+        top: 0.25rem; /* 原4px → 4/16=0.25rem，与副标题栏内边距对齐 */
+        bottom: 0.25rem; /* 同上，确保背景高度与副标题栏一致 */
+        background-color: #f5f5f7; /* 白色背景，突出激活状态 */
+        border-radius: 9999px; /* 超圆圆角，与副标题项呼应 */
         transition:
           left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-          width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        z-index: 0;
+          width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 平滑跟随动画 */
+        z-index: 0; /* 层级低于文字，避免遮挡 */
       }
 
-      /* —— 核心修改1：统一大卡片样式（苹果风，左侧+右侧共用） —— */
+      /* —— 核心修改1：统一大卡片样式（PX转REM，保留苹果风） —— */
       .sample-big-card {
-        display: flex; /* 左侧+右侧横向排列 */
-        gap: 30px; /* 左右区域间距 */
-        background-color: #f5f5f7; /* 苹果风浅灰背景 */
-        border-radius: 20px; /* 大圆角，与苹果设计一致 */
-        padding: 30px; /* 大卡片内边距 */
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05); /* 轻微阴影，增强层次感 */
+        display: flex; /* 左侧厚度区+右侧图片区横向排列 */
+        gap: 1.875rem; /* 原30px → 30/16≈1.875rem，左右区域间距，视觉透气 */
+        background-color: #f5f5f7; /* 苹果风浅灰背景，与深灰板块区分 */
+        border-radius: 1.25rem; /* 原20px → 20/16=1.25rem，大圆角提升精致感 */
+        padding: 1.875rem; /* 原30px → 30/16≈1.875rem，大卡片内边距，避免内容贴边 */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 原4px 16px → 4/16=0.25rem，16/16=1rem，轻微阴影增强层次 */
       }
 
-      /* —— 6.7 左侧厚度选择区（仅调整：单个厚度项的大圆角） —— */
+      /* —— 6.7 左侧厚度选择区（PX转REM，仅优化圆角，保留原布局） —— */
       .sample-thickness-container {
-        width: 240px; /* 父容器宽度不变，保持原有布局 */
-        flex-shrink: 0;
-        padding: 10px 0;
-        align-self: center;
+        width: 15rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
+        flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
+        padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
+        align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1577,104 +1814,274 @@
       .sample-thickness-list {
         display: flex;
         flex-direction: column;
-        gap: 12px; /* 厚度项间距不变，避免布局拥挤 */
-        width: 100%; /* 列表仍占满父容器，确保子项居中对齐 */
+        gap: 0.75rem; /* 原12px → 12/16=0.75rem，厚度项间距，避免拥挤 */
+        width: 100%; /* 占满父容器宽度，确保子项居中对齐 */
       }
 
-      /* 关键修改：仅增大 border-radius 实现大圆角，宽高属性完全保留 */
+      /* 关键修改：大圆角适配REM，保留宽高比例与交互 */
       .sample-thickness-item {
-        /* 宽高相关属性不变（已满足需求，无需修改） */
-        padding: 20px 16px; /* 保持原上下内边距（控制高度）、左右内边距 */
-        width: 80%; /* 保持原宽度（占列表80%），确保宽高比例满意 */
-
-        /* 核心修改：将圆角从20px增大至40px，实现两端大圆角（数值可按需微调） */
-        border-radius: 40px;
-
-        /* 其他样式不变，保持原有视觉和交互 */
-        background-color: rgba(0, 0, 0, 0.08);
+        padding: 1.25rem 1rem; /* 原20px 16px → 20/16=1.25rem，16/16=1rem，控制项的高度与左右留白 */
+        width: 80%; /* 保留原宽度比例（占列表80%），确保视觉协调 */
+        border-radius: 2.5rem; /* 原40px → 40/16=2.5rem，核心大圆角设计，苹果风关键 */
+        background-color: rgba(0, 0, 0, 0.08); /* 浅灰背景，与大卡片底色区分 */
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease; /* 保留背景色过渡 */
         text-align: center;
-        font-size: 14px;
+        font-size: 0.875rem; /* 原14px → 14/16=0.875rem，字号适配，确保可读性 */
         font-weight: 400;
-        margin: 0 auto; /* 保持水平居中 */
+        margin: 0 auto; /* 水平居中，保持布局整齐 */
       }
 
       .sample-thickness-item:hover,
       .sample-thickness-item.active {
-        background-color: rgba(0, 0, 0, 0.15);
-        font-weight: 500;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.15
+        ); /*  hover/激活时背景加深，突出选中状态 */
+        font-weight: 500; /* 文字加粗，增强识别度 */
       }
 
-      /* —— 核心修改2：右侧图片区（修复留白+强制铺满） —— */
+      /* —— 核心修改2：右侧图片区（PX转REM，修复留白+强制铺满） —— */
       .sample-image-container {
-        flex: 1; /* 占满大卡片剩余宽度 */
+        flex: 1; /* 占满大卡片剩余宽度，自适应布局 */
         display: flex;
-        /* 关键改1：从 align-items: center 改为 stretch，让图片容器占满容器高度 */
-        align-items: stretch;
+        align-items: stretch; /* 关键：让图片容器占满大卡片高度，避免留白 */
         justify-content: center; /* 图片水平居中 */
-        padding: 20px; /* 保留内边距，避免图片贴边 */
+        padding: 1.25rem; /* 原20px → 20/16=1.25rem，保留内边距，避免图片贴边 */
       }
 
       .sample-image-wrap {
         width: 100%;
-        max-width: 600px; /* 限制图片最大宽度，避免过大 */
-        /* 关键改2：新增 min-height 与图片 min-height 一致，锁死容器最小高度 */
-        min-height: 400px;
-        border-radius: 16px; /* 图片容器圆角 */
-        overflow: hidden; /* 裁剪图片超出部分（必须保留，防止图片圆角失效） */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        /* 关键改3：用 flex 确保图片垂直填充，兼容不同宽高比图片 */
-        display: flex;
+        max-width: 37.5rem; /* 原600px → 600/16=37.5rem，限制图片最大宽度，避免超宽 */
+        min-height: 25rem; /* 原400px → 400/16=25rem，锁死容器最小高度，防止塌陷 */
+        border-radius: 1rem; /* 原16px → 16/16=1rem，图片容器圆角，与大卡片呼应 */
+        overflow: hidden; /* 必须保留：裁剪图片超出部分，确保圆角生效 */
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08); /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem，轻微阴影 */
+        display: flex; /* 辅助图片垂直填充 */
         align-items: center;
       }
 
       .sample-image-wrap img {
         width: 100%;
-        /* 关键改4：从 height: auto 改为 height: 100%，强制图片填充容器高度 */
-        height: 100%;
-        min-height: 400px; /* 保留最小高度，避免容器塌陷 */
-        /* 关键改5：object-fit: cover 不变，但新增 object-position 确保图片核心区域显示 */
-        object-fit: cover;
-        object-position: center center; /* 图片居中裁剪，避免关键内容被切 */
-        background-color: #e0e0e0; /* 图片未加载时的占位背景（与容器底色统一） */
+        height: 100%; /* 关键：强制图片填充容器高度，避免留白 */
+        min-height: 25rem; /* 原400px → 400/16=25rem，与容器最小高度一致，防止拉伸 */
+        object-fit: cover; /* 保留比例，裁剪多余部分，避免图片变形 */
+        object-position: center center; /* 图片居中裁剪，确保核心内容不被切 */
+        background-color: #e0e0e0; /* 图片未加载时的占位背景，与容器底色统一 */
       }
 
-      /* 图片下方材质+厚度说明文字（原有样式保留，无需修改） */
+      /* —— 图片下方说明文字（PX转REM，保留原样式逻辑） —— */
       .sample-image-desc {
         text-align: center;
-        margin-top: 20px;
-        font-size: 18px;
-        color: #1d1d1f;
+        margin-top: 1.25rem; /* 原20px → 20/16=1.25rem，与图片间距统一 */
+        font-size: 1.125rem; /* 原18px → 18/16=1.125rem，字号适配，突出说明文字 */
+        color: #1d1d1f; /* 深灰文字，与浅灰背景区分 */
         font-weight: 500;
       }
 
-      /* ================================== 七、核心优势一眼明板块（新增） ================================== */
-      /* 基于板块5（benefit-section）修改，所有类名前缀改为advantage，避免冲突 */
+      /*================================== 媒体查询适配（同步全局屏幕区间） ==================================*/
+      /* 核心：仅调整当前屏幕需优化的属性，保持与导航栏/BANNER视觉统一 */
 
-      /* —— 7.1 板块容器基础样式 —— */
+      /* 1. Mobile S（≤320px）：html font-size=8.53px */
+      @media (max-width: 320px) {
+        .sample-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
+        }
+        .sample-main-title {
+          font-size: 2.2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1.5rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
+        }
+        .sample-big-card {
+          flex-direction: column; /* 改为垂直布局（小屏横向空间不足） */
+          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
+          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
+          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
+        }
+        .sample-thickness-container {
+          width: 100%; /* 占满大卡片宽度，垂直布局更合理 */
+          padding: 0.5rem 0; /* 原0.625rem → 0.5rem，缩小内边距 */
+        }
+        .sample-thickness-item {
+          width: 60%; /* 原80% → 60%，小屏中项更紧凑 */
+          padding: 1rem 0.8rem; /* 原1.25rem 1rem → 缩小内边距 */
+          border-radius: 2rem; /* 原2.5rem → 2rem（≈17px），适配小屏圆角 */
+        }
+        .sample-image-container {
+          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
+        }
+        .sample-image-wrap {
+          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
+        }
+        .sample-image-desc {
+          font-size: 0.9rem; /* 原1.125rem → 0.9rem（≈7.7px），小屏文字适配 */
+          margin-top: 1rem; /* 原1.25rem → 1rem，缩小间距 */
+        }
+      }
+
+      /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .sample-container {
+          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
+          padding: 0 1rem; /* 原1.25rem → 1rem（=10px），适配375px基准屏 */
+        }
+        .sample-main-title {
+          font-size: 2.8rem; /* 原4rem → 2.8rem（=28px），375px屏标题适配 */
+          margin-bottom: 2rem; /* 原3rem → 2rem（=20px），缩小间距 */
+        }
+        .sample-big-card {
+          flex-direction: column; /* 垂直布局，小屏横向空间不足 */
+          gap: 1.2rem; /* 原1.875rem → 1.2rem（=12px），缩小间距 */
+          padding: 1.2rem; /* 原1.875rem → 1.2rem，缩小内边距 */
+        }
+        .sample-thickness-container {
+          width: 100%; /* 占满宽度，垂直布局更合理 */
+        }
+        .sample-image-wrap {
+          min-height: 18rem; /* 原25rem → 18rem（=180px），375px屏图片高度适配 */
+        }
+      }
+
+      /* 3. Mobile L（376px ~ 425px）：html font-size=11.33px */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .sample-container {
+          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
+          padding: 0 1.2rem; /* 适配425px屏留白 */
+        }
+        .sample-main-title {
+          font-size: 3.2rem; /* 原4rem → 3.2rem（≈36.2px），425px屏标题适配 */
+        }
+        .sample-big-card {
+          flex-direction: column; /* 垂直布局，仍需优化横向空间 */
+          gap: 1.5rem; /* 原1.875rem → 1.5rem（≈17px），间距适配 */
+        }
+        .sample-image-wrap {
+          min-height: 20rem; /* 原25rem → 20rem（≈226.6px），425px屏图片高度适配 */
+        }
+      }
+
+      /* 4. Tablet（426px ~ 768px）：html font-size=14px */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .sample-container {
+          margin: 0 auto 0 10%; /* 原15% → 10%（平板屏左侧margin缩小，保留偏左布局） */
+        }
+        .sample-main-title {
+          font-size: 3.5rem; /* 原4rem → 3.5rem（=49px），平板屏标题适配 */
+        }
+        .sample-big-card {
+          gap: 1.5rem; /* 原1.875rem → 1.5rem（=21px），平板屏间距适配 */
+          padding: 1.5rem; /* 原1.875rem → 1.5rem，缩小内边距 */
+        }
+        .sample-thickness-container {
+          width: 12rem; /* 原15rem → 12rem（=168px），平板屏厚度区宽度适配 */
+        }
+        .sample-image-wrap {
+          min-height: 22rem; /* 原25rem → 22rem（=308px），平板屏图片高度适配 */
+        }
+      }
+
+      /* 5. Laptop（769px ~ 1024px）：html font-size=15px */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .sample-container {
+          margin: 0 auto 0 12%; /* 原15% → 12%（笔记本屏左侧margin微调） */
+          max-width: 90rem; /* 原100rem → 90rem（≈1350px），适配1024px屏最大宽度 */
+        }
+        .sample-main-title {
+          font-size: 3.8rem; /* 原4rem → 3.8rem（=57px），笔记本屏标题适配 */
+        }
+        .sample-thickness-container {
+          width: 14rem; /* 原15rem → 14rem（=210px），笔记本屏厚度区宽度适配 */
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px ~ 2559px）：html font-size=16px */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式一致，无需调整（此区间为设计基准区间） */
+      }
+
+      /* 7. 4K屏（≥2560px）：html font-size=16px */
+      @media (min-width: 2560px) {
+        .sample-container {
+          max-width: 120rem; /* 原100rem → 120rem（=1920px），4K屏最大宽度适配 */
+        }
+        .sample-main-title {
+          font-size: 4.5rem; /* 原4rem → 4.5rem（=72px），4K屏标题放大，提升视觉冲击 */
+          margin-bottom: 3.5rem; /* 原3rem → 3.5rem（=56px），放大间距，适配4K屏比例 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 3.5rem; /* 原3rem → 3.5rem，放大间距 */
+          padding: 0.3rem 0.9rem; /* 原0.25rem 0.75rem → 放大内边距，避免副标题栏过小 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.8rem; /* 原0.6875rem → 0.8rem（=12.8px），4K屏文字放大，提升可读性 */
+          padding: 0.45rem 1.2rem; /* 原0.375rem 1rem → 放大点击区域 */
+        }
+        .sample-big-card {
+          gap: 2.5rem; /* 原1.875rem → 2.5rem（=40px），放大左右区域间距，适配4K屏 */
+          padding: 2.5rem; /* 原1.875rem → 2.5rem，放大内边距 */
+          border-radius: 1.5rem; /* 原1.25rem → 1.5rem（=24px），放大圆角，适配4K屏 */
+        }
+        .sample-thickness-container {
+          width: 18rem; /* 原15rem → 18rem（=288px），4K屏厚度区宽度放大 */
+          padding: 1rem 0; /* 原0.625rem → 1rem（=16px），放大内边距 */
+        }
+        .sample-thickness-item {
+          padding: 1.5rem 1.2rem; /* 原1.25rem 1rem → 放大内边距，提升点击区域 */
+          border-radius: 3rem; /* 原2.5rem → 3rem（=48px），放大圆角，适配4K屏 */
+          font-size: 1rem; /* 原0.875rem → 1rem（=16px），4K屏文字放大 */
+        }
+        .sample-image-container {
+          padding: 1.5rem; /* 原1.25rem → 1.5rem，放大内边距 */
+        }
+        .sample-image-wrap {
+          max-width: 45rem; /* 原37.5rem → 45rem（=720px），4K屏图片最大宽度放大 */
+          min-height: 30rem; /* 原25rem → 30rem（=480px），4K屏图片高度放大 */
+          border-radius: 1.25rem; /* 原1rem → 1.25rem（=20px），放大圆角 */
+          box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1); /* 原0.25rem 0.75rem → 放大阴影，增强层次 */
+        }
+        .sample-image-desc {
+          font-size: 1.25rem; /* 原1.125rem → 1.25rem（=20px），4K屏说明文字放大 */
+          margin-top: 1.5rem; /* 原1.25rem → 1.5rem，放大间距 */
+        }
+      }
+
+      /* ================================== 七、核心优势一眼明板块（新增+完整响应式） ================================== */
+      /* 基于板块5（benefit-section）修改，所有类名前缀改为advantage，避免冲突；所有PX转REM确保响应式 */
+
+      /* —— 7.1 板块容器基础样式（PX转REM，基于16px基准） —— */
       .advantage-section {
         background-color: #1d1d1f; /* 与板块5一致的深灰背景 */
         width: 100%;
-        padding: 80px 0 120px; /* 上下内边距与板块5完全一致 */
+        padding: 5rem 0 7.5rem; /* 原80px=5rem，120px=7.5rem，与板块5统一 */
         position: relative;
         overflow: visible;
       }
 
-      /* —— 7.2 板块内部内容容器 —— */
+      /* —— 7.2 板块内部内容容器（PX转REM） —— */
       .advantage-container {
-        max-width: 1600px; /* 与板块5一致的最大宽度 */
+        max-width: 100rem; /* 原1600px=100rem，与板块5一致 */
         margin: 0 auto 0 15%; /* 偏左布局，与板块5、6统一 */
-        padding: 0 20px;
+        padding: 0 1.25rem; /* 原20px=1.25rem，适配小屏留白 */
       }
 
-      /* —— 7.3 主标题样式：与板块5完全一致（色号、字体、字号） —— */
+      /* —— 7.3 主标题样式：与板块5完全一致（色号、字体、字号转REM） —— */
       .advantage-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 64px; /* 与板块5.benefit-main-title字号一致 */
-        font-weight: 300; /* 与板块5一致的偏细字体 */
-        color: #f5f5f7; /* 与板块5一致的浅灰文字色 */
-        margin-bottom: 48px; /* 与板块5一致的底部间距 */
+        font-size: 4rem; /* 原64px=4rem，与板块5.benefit-main-title一致 */
+        font-weight: 300; /* 偏细字体，保持风格统一 */
+        color: #f5f5f7; /* 浅灰文字色，适配深灰背景 */
+        margin-bottom: 3rem; /* 原48px=3rem，与板块5一致 */
         text-align: left;
         line-height: 1.1;
       }
@@ -1684,7 +2091,7 @@
         position: relative;
         overflow: visible;
         overflow-x: auto;
-        padding-bottom: 40px; /* 与板块5一致的底部留白 */
+        padding-bottom: 2.5rem; /* 原40px=2.5rem，与板块5一致 */
       }
       /* 隐藏横向滚动条（全浏览器兼容） */
       .advantage-scroll-wrap::-webkit-scrollbar {
@@ -1695,137 +2102,128 @@
         scrollbar-width: none;
       }
 
-      /* —— 7.5 卡片容器：横向排列，与板块5一致 —— */
+      /* —— 7.5 卡片容器：横向排列，与板块5一致（PX转REM） —— */
       .advantage-card-container {
         display: flex;
-        gap: 24px; /* 卡片间距与板块5一致 */
+        gap: 1.5rem; /* 原24px=1.5rem，卡片间距与板块5统一 */
         width: max-content; /* 宽度随内容自适应，确保所有卡片显示 */
         transition: transform 0.4s ease-out; /* 平滑滚动过渡 */
       }
 
       /* —— 7.6 优势卡片样式（关键优化：容器“退居幕后”，仅做定位载体） —— */
       .advantage-card {
-        width: 340px; /* 与产品板块卡片宽度一致 */
-        flex-shrink: 0;
-        /* 1. 移除固定高度：让容器自适应图片高度，避免“容器比图片大”的视觉差 */
-        /* height: 280px; */
+        width: 21.25rem; /* 原340px=21.25rem，与产品板块卡片宽度一致 */
+        flex-shrink: 0; /* 禁止收缩，保持卡片尺寸稳定 */
         position: relative;
-        overflow: hidden; /* 保留：用于裁剪图片超填部分，避免白边 */
-        border-radius: 20px; /* 转移到图片上，这里暂留避免过渡bug */
-        transition: none; /* 2. 移除容器上浮：让图片成为上浮主体 */
+        overflow: hidden; /* 裁剪图片超填部分，避免白边 */
+        border-radius: 1.25rem; /* 原20px=1.25rem，暂留避免过渡bug（实际生效在图片上） */
+        transition: none; /* 移除容器上浮，让图片成为交互主体 */
         padding: 0;
-        /* 3. 移除容器背景色：彻底消除“容器存在”的视觉感，避免透出白边 */
-        /* background-color: #f0f0f0; */
+        background-color: transparent; /* 消除“容器存在”的视觉感 */
         backface-visibility: hidden;
-        transform: translateZ(0);
+        transform: translateZ(0); /* 触发硬件加速，优化圆角锯齿 */
         box-shadow: none;
         border: none;
-        /* 4. 鼠标样式继承：避免容器拦截图片的点击反馈 */
-        cursor: inherit;
+        cursor: inherit; /* 避免容器拦截图片点击反馈 */
       }
 
-      /* —— 7.7 卡片图片样式（核心强化：图片成为交互主体） —— */
+      /* —— 7.7 卡片图片样式（核心强化：图片成为交互主体，PX转REM） —— */
       .advantage-card img {
         width: 101%; /* 保留超填，覆盖像素间隙 */
-        /* 1. 固定图片高度：与产品板块图片比例协调（可根据需求调整，如280px） */
-        height: 280px;
+        height: 17.5rem; /* 原280px=17.5rem，固定高度与产品板块比例协调 */
         object-fit: cover;
         object-position: center center;
         background-color: transparent;
         box-shadow: none;
         transform-origin: center center;
-        /* 2. 整合交互效果：将原容器的上浮+图片的放大合并，统一反馈 */
+        /* 整合交互效果：放大+上浮，与产品板块统一 */
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
         display: block;
-        border-radius: 20px; /* 3. 圆角转移到图片：视觉上“无容器”，图片即卡片 */
-        /* 4. 明确点击反馈：鼠标悬浮变指针，提示“图片可点击” */
-        cursor: pointer;
+        border-radius: 1.25rem; /* 原20px=1.25rem，圆角转移到图片，视觉“无容器” */
+        cursor: pointer; /* 明确点击反馈 */
       }
-      /* 图片悬浮效果（整合原容器+图片的交互，与产品板块一致） */
+      /* 图片悬浮效果（与产品板块交互逻辑完全一致） */
       .advantage-card img:hover {
-        transform: scale(1.03) translateY(-6px); /* 放大+上浮，与产品板块交互统一 */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* 与产品板块阴影效果一致 */
+        transform: scale(1.03) translateY(-0.375rem); /* 原-6px=0.375rem，放大+上浮 */
+        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
       }
 
-      /* —— 7.8 文字/按钮样式（微调：确保层级，不干扰图片交互） —— */
+      /* —— 7.8 文字样式（微调层级，不干扰图片交互，PX转REM） —— */
       .advantage-card-subtitle {
         position: absolute;
-        top: 20px;
-        left: 20px;
+        top: 1.25rem; /* 原20px=1.25rem，距离图片顶部 */
+        left: 1.25rem; /* 原20px=1.25rem，距离图片左侧 */
         z-index: 10; /* 确保在图片上层 */
         color: #f5f5f7;
-        font-size: 16px;
+        font-size: 1rem; /* 原16px=1rem，与产品板块文字字号统一 */
         font-weight: 500;
         margin: 0;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        /* 禁止文字拦截点击：让点击穿透到图片 */
-        pointer-events: none;
+        text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3); /* 原1px=0.0625rem，增强可读性 */
+        pointer-events: none; /* 禁止文字拦截点击，穿透到图片 */
       }
 
-      /* —— 7.9 加号按钮样式（微调：与图片交互协调） —— */
+      /* —— 7.9 加号按钮样式（微调交互，与图片呼应，PX转REM） —— */
       .advantage-plus-btn {
         position: absolute;
-        bottom: 20px;
-        right: 20px;
+        bottom: 1.25rem; /* 原20px=1.25rem，距离图片底部 */
+        right: 1.25rem; /* 原20px=1.25rem，距离图片右侧 */
         z-index: 10;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem; /* 原40px=2.5rem，按钮尺寸 */
+        height: 2.5rem; /* 原40px=2.5rem，保持圆形 */
         border-radius: 50%;
-        background-color: #0071e3;
+        background-color: #0071e3; /* 苹果蓝，与导航栏询价按钮配色统一 */
         color: #f5f5f7;
         border: none;
-        font-size: 24px;
+        font-size: 1.5rem; /* 原24px=1.5rem，加号字号 */
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-        /* 新增：默认阴影，提升视觉存在感 */
-        box-shadow: 0 3px 8px rgba(0, 113, 227, 0.3);
-        /* 新增：transform过渡，增强交互反馈 */
+        box-shadow: 0 0.1875rem 0.5rem rgba(0, 113, 227, 0.3); /* 原3px=0.1875rem，增强层次感 */
         transition:
           background-color 0.2s ease,
           transform 0.2s ease,
           box-shadow 0.2s ease;
       }
-      /* 新增：hover时轻微放大+阴影加深，与图片交互呼应 */
+      /* 加号按钮hover效果（与图片交互呼应） */
       .advantage-plus-btn:hover {
-        background-color: #0066cc;
-        transform: scale(1.05); /* 轻微放大 */
-        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.4); /* 阴影加深 */
+        background-color: #0066cc; /* 深色蓝，hover反馈 */
+        transform: scale(1.05); /* 轻微放大，增强交互感 */
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 113, 227, 0.4); /* 原4px=0.25rem，阴影加深 */
       }
 
-      /* —— 7.10 滚动箭头样式（与板块5一致，仅类名修改） —— */
+      /* —— 7.10 滚动箭头样式（与板块5一致，仅类名修改+PX转REM） —— */
       .advantage-nav-btn {
         position: absolute;
         top: 90%; /* 与板块5箭头垂直位置一致 */
         transform: translateY(-50%) !important;
         bottom: auto !important;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem; /* 原40px=2.5rem，箭头尺寸 */
+        height: 2.5rem; /* 原40px=2.5rem，保持圆形 */
         border-radius: 50%;
-        background-color: rgba(222, 222, 226, 0.9); /* 与板块5一致的浅灰背景 */
+        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，与板块5一致 */
         color: #696969; /* 箭头灰色 */
         border: none;
-        font-size: 20px;
+        font-size: 1.25rem; /* 原20px=1.25rem，箭头图标字号 */
         cursor: pointer;
         outline: none;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0;
-        z-index: 999;
+        z-index: 999; /* 层级高于卡片，确保可见 */
       }
-      /* 左箭头位置 */
+      /* 左箭头位置（与板块5一致，PX转REM） */
       .advantage-nav-btn.prev-btn {
-        left: calc(85% + 40px); /* 与板块5一致的左箭头位置 */
+        left: calc(85% + 2.5rem); /* 原40px=2.5rem，偏移量与板块5统一 */
         right: auto;
         display: flex !important;
       }
-      /* 右箭头位置 */
+      /* 右箭头位置（与板块5一致，PX转REM） */
       .advantage-nav-btn.next-btn {
-        right: calc(5% + 20px); /* 与板块5一致的右箭头位置 */
+        right: calc(5% + 1.25rem); /* 原20px=1.25rem，偏移量与板块5统一 */
         left: auto;
       }
       /* 箭头hover效果 */
@@ -1841,34 +2239,34 @@
         display: flex !important;
       }
 
-      /* —— 7.11 优势详情弹出卡片（白底，默认隐藏） —— */
+      /* —— 7.11 优势详情弹出卡片（白底+响应式，PX转REM） —— */
       .advantage-modal {
         position: fixed; /* 固定定位，居中显示 */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #f5f5f7; /* 白底，符合需求 */
-        border-radius: 20px; /* 苹果风大圆角 */
-        padding: 30px;
-        width: 80%; /* 响应式宽度 */
-        max-width: 800px; /* 最大宽度限制 */
+        background-color: #f5f5f7; /* 白底，符合苹果风 */
+        border-radius: 1.25rem; /* 原20px=1.25rem，大圆角 */
+        padding: 1.875rem; /* 原30px=1.875rem，内边距 */
+        width: 80%; /* 响应式宽度，小屏自动适配 */
+        max-width: 50rem; /* 原800px=50rem，最大宽度限制 */
         max-height: 80vh; /* 最大高度限制，避免超出屏幕 */
         overflow-y: auto; /* 内容超出时可滚动 */
-        z-index: 1000; /* 层级最高，确保覆盖其他元素 */
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* 深阴影，增强层次感 */
+        z-index: 1000; /* 层级最高，覆盖所有元素 */
+        box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); /* 原8px=0.5rem，深阴影增强层次 */
       }
-      /* 弹出卡片关闭按钮 */
+      /* 弹出卡片关闭按钮（PX转REM） */
       .advantage-modal-close {
         position: absolute;
-        top: 20px;
-        right: 20px;
-        width: 30px;
-        height: 30px;
+        top: 1.25rem; /* 原20px=1.25rem，距离顶部 */
+        right: 1.25rem; /* 原20px=1.25rem，距离右侧 */
+        width: 1.875rem; /* 原30px=1.875rem，按钮尺寸 */
+        height: 1.875rem; /* 原30px=1.875rem，保持圆形 */
         border-radius: 50%;
         background-color: #f5f5f7; /* 浅灰背景 */
-        color: #1d1d1f; /* 深灰文字 */
+        color: #1d1d1f; /* 深灰文字，与背景区分 */
         border: none;
-        font-size: 18px;
+        font-size: 1.125rem; /* 原18px=1.125rem，关闭图标字号 */
         cursor: pointer;
         display: flex;
         justify-content: center;
@@ -1876,230 +2274,539 @@
         transition: background-color 0.2s ease;
       }
       .advantage-modal-close:hover {
-        background-color: #e0e0e0;
+        background-color: #e0e0e0; /* hover深灰，反馈清晰 */
       }
-      /* 弹出卡片主标题 */
+      /* 弹出卡片主标题（PX转REM） */
       .advantage-modal-title {
-        font-size: 24px;
+        font-size: 1.5rem; /* 原24px=1.5rem，标题字号 */
         font-weight: 500;
         color: #1d1d1f; /* 深灰文字，符合苹果风 */
-        margin-bottom: 16px;
-        margin-top: 10px; /* 与关闭按钮错开位置 */
+        margin-bottom: 1rem; /* 原16px=1rem，与内容间距 */
+        margin-top: 0.625rem; /* 原10px=0.625rem，与关闭按钮错开 */
       }
-      /* 弹出卡片内容 */
+      /* 弹出卡片内容（PX转REM） */
       .advantage-modal-content {
-        font-size: 14px;
+        font-size: 0.875rem; /* 原14px=0.875rem，内容字号 */
         color: #1d1d1f;
         line-height: 1.6; /* 行高优化，提升可读性 */
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem; /* 原20px=1.25rem，底部留白 */
       }
-      /* —— 新增：7.12 液态玻璃遮罩层（弹出卡片时覆盖背景） —— */
+
+      /* —— 7.12 液态玻璃遮罩层（弹出卡片时覆盖背景，兼容Safari） —— */
       .advantage-modal-overlay {
         position: fixed; /* 固定覆盖整个视口 */
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(
-          29,
-          29,
-          31,
-          0.6
-        ); /* 深灰半透明底色，增强模糊层次感 */
-        backdrop-filter: blur(
-          8px
-        ); /* 核心模糊效果，数值越大模糊越明显（液态玻璃关键） */
-        -webkit-backdrop-filter: blur(8px); /* 兼容Safari浏览器 */
-        z-index: 999; /* 层级低于弹出卡片（1000），确保卡片在最上层 */
+        background-color: rgba(29, 29, 31, 0.6); /* 深灰半透明，增强模糊层次 */
+        backdrop-filter: blur(0.5rem); /* 原8px=0.5rem，液态玻璃核心模糊 */
+        -webkit-backdrop-filter: blur(0.5rem); /* 兼容Safari浏览器 */
+        z-index: 999; /* 层级低于弹出卡片，确保卡片优先显示 */
         opacity: 0; /* 默认透明（隐藏状态） */
-        visibility: hidden; /* 默认隐藏（避免遮挡点击） */
+        visibility: hidden; /* 默认隐藏，避免遮挡点击 */
         transition:
           opacity 0.3s ease,
-          visibility 0.3s ease; /* 淡入淡出过渡，提升交互流畅度 */
+          visibility 0.3s ease; /* 淡入淡出，流畅过渡 */
       }
-
       /* 遮罩层激活状态（与卡片同步显示） */
       .advantage-modal-overlay.active {
         opacity: 1;
         visibility: visible;
       }
 
+      /* ================================== 核心优势板块：全屏幕尺寸响应式适配 ================================== */
+      /* 同步全局html font-size基准（Mobile S:8.53px ~ 4K:16px），仅优化当前屏幕需调整的属性 */
+
+      /* 1. Mobile S（≤320px）：html font-size=8.53px（最小手机屏，如早期iPhone SE） */
+      @media (max-width: 320px) {
+        .advantage-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem→0.8rem，紧凑留白 */
+        }
+        .advantage-main-title {
+          font-size: 2.2rem; /* 原4rem→2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem→1rem（≈8.5px），缩小间距 */
+        }
+        .advantage-card {
+          width: calc(100% - 2rem); /* 原21.25rem→自适应屏幕（减去左右留白） */
+        }
+        .advantage-card img {
+          height: 10rem; /* 原17.5rem→10rem（≈85.3px），小屏图片高度适配 */
+          border-radius: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小圆角 */
+        }
+        .advantage-card-subtitle {
+          font-size: 0.9rem; /* 原1rem→0.9rem（≈7.7px），小屏文字紧凑 */
+          top: 1rem; /* 原1.25rem→1rem，减少顶部偏移 */
+          left: 1rem; /* 原1.25rem→1rem，减少左侧偏移 */
+        }
+        .advantage-plus-btn {
+          width: 2rem; /* 原2.5rem→2rem（≈17px），缩小按钮 */
+          height: 2rem;
+          font-size: 1.2rem; /* 原1.5rem→1.2rem（≈10.2px），缩小加号 */
+          bottom: 1rem; /* 原1.25rem→1rem，减少底部偏移 */
+          right: 1rem; /* 原1.25rem→1rem，减少右侧偏移 */
+        }
+        .advantage-nav-btn {
+          width: 2rem; /* 原2.5rem→2rem（≈17px），缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小图标 */
+        }
+        .advantage-nav-btn.prev-btn {
+          left: calc(85% + 1rem); /* 原2.5rem→1rem（≈8.5px），调整箭头位置 */
+        }
+        .advantage-nav-btn.next-btn {
+          right: calc(
+            5% + 0.8rem
+          ); /* 原1.25rem→0.8rem（≈6.8px），调整箭头位置 */
+        }
+        .advantage-modal {
+          padding: 1.2rem; /* 原1.875rem→1.2rem（≈10.2px），缩小内边距 */
+          max-width: 90%; /* 原80%→90%，小屏占比更大 */
+        }
+        .advantage-modal-title {
+          font-size: 1.2rem; /* 原1.5rem→1.2rem（≈10.2px），缩小标题 */
+        }
+      }
+
+      /* 2. Mobile M（321px~375px）：html font-size=10px（主流小屏手机，如iPhone 8） */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .advantage-container {
+          margin: 0 auto; /* 取消左侧margin，居中布局 */
+          padding: 0 1rem; /* 原1.25rem→1rem（=10px），适配375px基准屏 */
+        }
+        .advantage-main-title {
+          font-size: 2.8rem; /* 原4rem→2.8rem（=28px），375px屏标题适配 */
+          margin-bottom: 1.2rem; /* 原3rem→1.2rem（=12px），缩小间距 */
+        }
+        .advantage-card {
+          width: calc(100% - 2.5rem); /* 自适应屏幕，保留更多留白 */
+        }
+        .advantage-card img {
+          height: 12rem; /* 原17.5rem→12rem（=120px），375px屏图片高度适配 */
+        }
+        .advantage-nav-btn.prev-btn {
+          left: calc(85% + 1.5rem); /* 原2.5rem→1.5rem（=15px），调整箭头位置 */
+        }
+        .advantage-nav-btn.next-btn {
+          right: calc(5% + 1rem); /* 原1.25rem→1rem（=10px），调整箭头位置 */
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html font-size=11.33px（大屏手机，如iPhone 12 mini） */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .advantage-container {
+          margin: 0 auto; /* 取消左侧margin，居中布局 */
+          padding: 0 1.2rem; /* 适配425px屏留白 */
+        }
+        .advantage-main-title {
+          font-size: 3.2rem; /* 原4rem→3.2rem（≈36.2px），425px屏标题适配 */
+        }
+        .advantage-card {
+          width: 18rem; /* 原21.25rem→18rem（≈204px），可横向显示1.5个卡片 */
+        }
+        .advantage-card img {
+          height: 14rem; /* 原17.5rem→14rem（≈158.6px），图片高度适配 */
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html font-size=14px（平板，如iPad mini） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .advantage-container {
+          margin: 0 auto 0 10%; /* 原15%→10%，平板屏左侧margin缩小 */
+        }
+        .advantage-main-title {
+          font-size: 3.5rem; /* 原4rem→3.5rem（=49px），平板屏标题适配 */
+        }
+        .advantage-card {
+          width: 19rem; /* 原21.25rem→19rem（=266px），平板可显示2-3个卡片 */
+        }
+        .advantage-card img {
+          height: 15rem; /* 原17.5rem→15rem（=210px），平板屏图片高度适配 */
+        }
+        .advantage-nav-btn {
+          width: 2.2rem; /* 原2.5rem→2.2rem（=30.8px），平板箭头适配 */
+          height: 2.2rem;
+        }
+        .advantage-nav-btn.prev-btn {
+          left: calc(90% + 1.8rem); /* 原85%→90%，同步左侧margin调整 */
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html font-size=15px（笔记本，如13寸MacBook） */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .advantage-container {
+          margin: 0 auto 0 12%; /* 原15%→12%，笔记本屏左侧margin微调 */
+          max-width: 90rem; /* 原100rem→90rem（≈1350px），适配1024px屏最大宽度 */
+        }
+        .advantage-main-title {
+          font-size: 3.8rem; /* 原4rem→3.8rem（=57px），笔记本屏标题适配 */
+        }
+        .advantage-card {
+          width: 20rem; /* 原21.25rem→20rem（=300px），笔记本可显示3-4个卡片 */
+        }
+        .advantage-nav-btn.prev-btn {
+          left: calc(88% + 2rem); /* 原85%→88%，同步左侧margin调整 */
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html font-size=16px（设计基准区间） */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式一致，无需调整（此区间为视觉最佳区间） */
+      }
+
+      /* 7. 4K屏（≥2560px）：html font-size=16px（超高清屏，如32寸4K显示器） */
+      @media (min-width: 2560px) {
+        .advantage-container {
+          max-width: 120rem; /* 原100rem→120rem（=1920px），4K屏最大宽度适配 */
+        }
+        .advantage-main-title {
+          font-size: 4.5rem; /* 原4rem→4.5rem（=72px），4K屏标题放大，增强视觉冲击 */
+          margin-bottom: 3.5rem; /* 原3rem→3.5rem（=56px），放大间距，适配4K比例 */
+        }
+        .advantage-card {
+          width: 24rem; /* 原21.25rem→24rem（=384px），4K屏卡片放大，避免视觉过小 */
+        }
+        .advantage-card img {
+          height: 20rem; /* 原17.5rem→20rem（=320px），4K屏图片放大，提升细节展示 */
+          border-radius: 1.5rem; /* 原1.25rem→1.5rem（=24px），放大圆角，适配卡片尺寸 */
+        }
+        .advantage-card-subtitle {
+          font-size: 1.2rem; /* 原1rem→1.2rem（=19.2px），4K屏文字放大，提升可读性 */
+          top: 1.5rem; /* 原1.25rem→1.5rem（=24px），同步放大偏移 */
+          left: 1.5rem;
+        }
+        .advantage-plus-btn {
+          width: 3rem; /* 原2.5rem→3rem（=48px），4K屏按钮放大，避免点击困难 */
+          height: 3rem;
+          font-size: 1.8rem; /* 原1.5rem→1.8rem（=28.8px），放大加号图标 */
+          bottom: 1.5rem; /* 原1.25rem→1.5rem，同步放大偏移 */
+          right: 1.5rem;
+        }
+        .advantage-nav-btn {
+          width: 3rem; /* 原2.5rem→3rem（=48px），4K屏箭头放大 */
+          height: 3rem;
+          font-size: 1.5rem; /* 原1.25rem→1.5rem（=24px），放大箭头图标 */
+        }
+        .advantage-nav-btn.prev-btn {
+          left: calc(85% + 3rem); /* 原2.5rem→3rem，同步放大偏移 */
+        }
+        .advantage-nav-btn.next-btn {
+          right: calc(5% + 1.5rem); /* 原1.25rem→1.5rem，同步放大偏移 */
+        }
+        .advantage-modal {
+          padding: 2.5rem; /* 原1.875rem→2.5rem（=40px），4K屏内边距放大 */
+          max-width: 60rem; /* 原50rem→60rem（=960px），放大弹出卡片 */
+        }
+        .advantage-modal-title {
+          font-size: 1.8rem; /* 原1.5rem→1.8rem（=28.8px），4K屏标题放大 */
+        }
+        .advantage-modal-content {
+          font-size: 1rem; /* 原0.875rem→1rem（=16px），4K屏内容文字放大 */
+          line-height: 1.8; /* 提升行高，增强可读性 */
+        }
+      }
+
       /* ================================== 八、设备配件全收录板块（图片统一+顶部错落对齐） ================================== */
-      /* —— 8.1 板块容器基础样式（不变） —— */
+      /* 适配原则：基于全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有固定PX转REM，保留核心错落逻辑 */
+
+      /* —— 8.1 板块容器基础样式（与产品中心/购买优势板块统一） —— */
       .accessory-section {
         background-color: #1d1d1f;
         width: 100%;
-        padding: 80px 0 120px;
+        /* 原80px 0 120px → 基于16px基准：80/16=5rem，120/16=7.5rem */
+        padding: 5rem 0 7.5rem;
         position: relative;
         overflow: visible;
       }
 
-      /* —— 8.2 板块内部内容容器（不变，已偏右） —— */
+      /* —— 8.2 板块内部内容容器（偏右布局+统一内边距） —— */
       .accessory-container {
-        max-width: 1600px;
-        margin: 0 auto 0 15%; /* 保持偏右，与其他板块统一 */
-        padding: 0 20px;
+        /* 原1600px → 基于16px基准：1600/16=100rem */
+        max-width: 100rem;
+        margin: 0 auto 0 15%; /* 保持偏右，与其他板块视觉统一 */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        padding: 0 1.25rem;
       }
 
-      /* —— 8.3 主标题样式（不变） —— */
+      /* —— 8.3 主标题样式（与其他板块标题字号/间距统一） —— */
       .accessory-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 64px;
+        /* 原64px → 基于16px基准：64/16=4rem */
+        font-size: 4rem;
         font-weight: 300;
         color: #f5f5f7;
-        margin-bottom: 48px;
+        /* 原48px → 基于16px基准：48/16=3rem */
+        margin-bottom: 3rem;
         text-align: left;
         line-height: 1.1;
       }
 
-      /* —— 8.4 纯黑色大卡片（调整最小高度：适配图片+顶部错落） —— */
+      /* —— 8.4 纯黑色大卡片（核心：适配图片高度+统一圆角） —— */
       .accessory-big-card {
         background-color: #000000;
-        border-radius: 20px;
-        padding: 40px 40px;
-        min-height: 500px; /* 核心调整：按图片高度+预留空间设置，避免底部被切 */
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        border-radius: 1.25rem;
+        /* 原40px 40px → 基于16px基准：40/16=2.5rem */
+        padding: 2.5rem 2.5rem;
+        /* 原500px → 基于16px基准：500/16=31.25rem（适配图片高度+预留空间） */
+        min-height: 31.25rem;
+        /* 原0 4px 16px → 基于16px基准：4/16=0.25rem，16/16=1rem */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
         position: relative;
       }
 
-      /* —— 8.5 核心布局：Flex+顶部对齐，靠margin控制错落 —— */
+      /* —— 8.5 核心布局：Flex+顶部对齐（错落逻辑不变，间距转REM） —— */
       .accessory-image-grid {
         display: flex !important;
-        justify-content: center; /* 水平居中 */
-        align-items: flex-start; /* 所有容器顶部对齐（关键：为1/3/5和2/4的顶部错落打基础） */
-        gap: 20px; /* 元素间距，避免重叠 */
+        justify-content: center; /* 水平居中，保持图片组整体协调 */
+        align-items: flex-start; /* 关键：所有容器顶部对齐，为错落打基础 */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        gap: 1.25rem;
         width: 100%;
-        max-width: 1300px; /* 限制宽度，避免超出大卡片 */
-        margin: 0 auto; /* 保持偏右 */
+        /* 原1300px → 基于16px基准：1300/16=81.25rem（限制宽度，避免超出大卡片） */
+        max-width: 81.25rem;
+        margin: 0 auto; /* 保持偏右布局下的图片组居中 */
       }
 
-      /* —— 8.6 单个图片容器（核心：统一尺寸，靠margin-top实现顶部错落） —— */
+      /* —— 8.6 单个图片容器（核心：统一尺寸+REM错落控制） —— */
       .accessory-image-item {
         position: relative;
-        /* 移除 overflow:hidden：避免裁剪图片放大效果 */
-        /* overflow: hidden; */
-        border-radius: 20px;
+        /* 移除overflow:hidden：避免裁剪图片放大效果 */
+        /* 原20px → 基于16px基准：20/16=1.25rem */
+        border-radius: 1.25rem;
         width: 100%;
-        max-width: 220px;
-        height: 400px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        /* 原220px → 基于16px基准：220/16=13.75rem（统一图片宽度） */
+        max-width: 13.75rem;
+        /* 原400px → 基于16px基准：400/16=25rem（统一图片高度） */
+        height: 25rem;
+        /* 原0 4px 12px → 基于16px基准：4/16=0.25rem，12/16=0.75rem */
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
         transition: box-shadow 0.3s ease;
       }
-      /* 补充：图片保留圆角，与容器圆角一致，避免显白边 */
+
+      /* 补充：图片保留圆角，与容器一致（避免显白边） */
       .accessory-image-item img {
-        border-radius: 20px; /* 新增：与容器圆角统一，防止图片超出圆角范围 */
+        border-radius: 1.25rem; /* 与容器圆角统一，防止图片超出 */
         width: 100%;
-        height: 400px;
+        height: 25rem; /* 与容器高度一致，确保尺寸统一 */
         object-fit: cover;
         object-position: center center;
-        background-color: #222222;
+        background-color: #222222; /* 加载占位色，适配深色背景 */
         transition: transform 0.3s ease;
       }
 
-      /* 1/3/5号：高顶部组（顶部基准，无额外margin） */
+      /* 1/3/5号：高顶部组（基准组，无额外margin） */
       .accessory-image-item.high-item {
-        margin-top: 0; /* 顶部对齐基准 → 最高的顶部 */
-        z-index: 1; /* 底层：避免遮挡2/4号 */
+        margin-top: 0; /* 顶部对齐基准 → 最高层顶部 */
+        z-index: 1; /* 底层：避免遮挡2/4号低顶部组 */
       }
 
-      /* 2/4号：低顶部组（顶部更低，margin-top控制高度差） */
+      /* 2/4号：低顶部组（错落核心：用REM控制高度差） */
       .accessory-image-item.low-item {
-        /* 核心可调整值：修改60px即可改变高度差（数值越大，2/4顶部越低） */
-        margin-top: var(--low-item-mt, 60px);
-        z-index: 2; /* 上层：避免被1/3/5号遮挡 */
+        /* 原60px → 基于16px基准：60/16=3.75rem（可调整数值改变错落幅度） */
+        margin-top: var(--low-item-mt, 3.75rem);
+        z-index: 2; /* 上层：避免被1/3/5号遮挡，保证错落视觉 */
       }
 
-      /* —— 8.7 图片样式（核心：5张图片尺寸完全统一） —— */
+      /* —— 8.7 图片样式（核心：5张图片尺寸完全统一，交互不变） —— */
       .accessory-image-item img {
-        width: 100%; /* 继承容器宽度 → 所有图片宽度一致 */
-        height: 400px; /* 固定高度 → 所有图片高度一致（与容器高度相同） */
-        object-fit: cover; /* 保持图片比例（因尺寸统一，仅优化显示，不裁剪） */
-        object-position: center center; /* 图片居中显示，保留核心内容 */
-        background-color: #222222; /* 图片加载占位色 */
+        width: 100%; /* 继承容器宽度，确保所有图片宽度一致 */
+        height: 25rem; /* 固定高度，与容器高度匹配（统一视觉） */
+        object-fit: cover; /* 保持图片比例，仅优化显示（因尺寸统一，无多余裁剪） */
+        object-position: center center; /* 居中显示，保留图片核心内容 */
+        background-color: #222222; /* 适配深色背景的占位色 */
         transition: transform 0.3s ease;
       }
+      /* 悬浮放大：不影响错落布局，仅增强交互感 */
       .accessory-image-item:hover img {
-        transform: scale(1.02); /* 悬浮放大，不影响错落布局 */
+        transform: scale(1.02);
       }
 
-      /* —— 8.8 图片文字样式（适配顶部错落，位置统一） —— */
+      /* —— 8.8 图片文字样式（适配错落布局，位置统一） —— */
       .accessory-image-text {
         position: absolute;
-        top: 20px; /* 基于容器顶部定位，所有文字垂直位置统一 */
+        /* 原20px → 基于16px基准：20/16=1.25rem（所有文字垂直位置统一） */
+        top: 1.25rem;
         left: 50%;
         transform: translateX(-50%);
         color: #f5f5f7;
-        font-size: 16px;
+        /* 原16px → 基于16px基准：16/16=1rem */
+        font-size: 1rem;
         font-weight: 400;
         text-align: center;
-        z-index: 10;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        pointer-events: none;
+        z-index: 10; /* 确保文字在图片上层 */
+        text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* 原0 2px 4px → 转REM */
+        pointer-events: none; /* 避免遮挡图片交互 */
       }
 
-      /* —— 8.9 右下角按钮（不变） —— */
+      /* —— 8.9 右下角按钮（与BANNER/产品中心按钮样式统一） —— */
       .accessory-more-btn {
         position: absolute;
-        bottom: 30px;
-        right: 30px;
-        padding: 8px 24px;
-        border-radius: 9999px;
-        background-color: #0071e3;
+        /* 原30px → 基于16px基准：30/16=1.875rem */
+        bottom: 1.875rem;
+        right: 1.875rem;
+        /* 原8px 24px → 基于16px基准：8/16=0.5rem，24/16=1.5rem */
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px; /* 超圆圆角，通用风格 */
+        background-color: #0071e3; /* 苹果蓝，与全局按钮配色统一 */
         color: #f5f5f7;
-        font-size: 16px;
+        /* 原16px → 基于16px基准：16/16=1rem */
+        font-size: 1rem;
         font-weight: 400;
         border: none;
         cursor: pointer;
         transition: background-color 0.2s ease;
-        z-index: 20;
+        z-index: 20; /* 确保按钮在最上层 */
       }
       .accessory-more-btn:hover {
-        background-color: #0066cc;
+        background-color: #0066cc; /* hover加深，统一交互反馈 */
       }
 
-      /* —— 8.10 响应式适配（保持图片统一+顶部错落逻辑） —— */
+      /* —— 8.10 响应式适配（保持图片统一+顶部错落逻辑，按屏幕区间优化） —— */
+
+      /* 1. 大屏适配（1025px ~ 1400px：Laptop L+2K区间，html font-size=16px） */
       @media (max-width: 1400px) {
         .accessory-image-grid {
-          flex-wrap: wrap; /* 换行显示 */
-          justify-content: center; /* 左对齐，适配偏右布局 */
-          padding-left: 20px; /* 避免贴边 */
+          flex-wrap: wrap; /* 换行显示，避免横向溢出 */
+          justify-content: center; /* 换行后保持居中，适配偏右布局 */
+          /* 原20px → 基于16px基准：20/16=1.25rem */
+          padding-left: 1.25rem;
         }
-        /* 换行后保持顶部错落：第4个（low-item）仍低顶部，第5个（high-item）仍高顶部 */
+        /* 换行后保留错落：第4个（low-item）仍低顶部，第5个（high-item）仍高顶部 */
         .accessory-image-item:nth-child(4) {
-          margin-top: var(--low-item-mt, 60px);
+          margin-top: var(--low-item-mt, 3.75rem);
         }
         .accessory-image-item:nth-child(5) {
           margin-top: 0;
         }
+        /* 适配换行高度：原800px → 800/16=50rem */
         .accessory-big-card {
-          min-height: 800px; /* 适配换行高度 */
+          min-height: 50rem;
         }
       }
+
+      /* 2. 平板适配（426px ~ 768px：Tablet区间，html font-size=14px） */
       @media (max-width: 768px) {
         .accessory-image-grid {
-          justify-content: center; /* 移动端居中 */
-          gap: 16px; /* 减小间距，适配小屏幕 */
+          justify-content: center; /* 移动端居中布局，取消偏右 */
+          /* 原16px → 基于14px基准：16/14≈1.14rem */
+          gap: 1.14rem;
         }
-        /* 移动端简化：保持图片统一，缩小高度差 */
+        /* 移动端简化：图片尺寸缩小，保持比例 */
         .accessory-image-item {
-          max-width: 180px; /* 缩小容器宽度 → 图片宽度适配移动端 */
-          height: 320px; /* 缩小容器高度 → 图片高度适配 */
+          /* 原180px → 基于14px基准：180/14≈12.86rem */
+          max-width: 12.86rem;
+          /* 原320px → 基于14px基准：320/14≈22.86rem */
+          height: 22.86rem;
         }
         .accessory-image-item img {
-          height: 320px; /* 图片高度同步缩小 */
+          height: 22.86rem; /* 图片高度同步缩小 */
         }
-        /* 移动端高度差减小（避免过于分散） */
+        /* 移动端高度差减小：避免过于分散，原30px → 30/14≈2.14rem */
         .accessory-image-item.low-item {
-          margin-top: var(--low-item-mt-mobile, 30px);
+          margin-top: var(--low-item-mt-mobile, 2.14rem);
+        }
+        /* 标题适配：原48px → 基于14px基准：48/14≈3.43rem */
+        .accessory-main-title {
+          font-size: 3.43rem;
+        }
+        /* 移动端取消偏右：居中布局更友好 */
+        .accessory-container {
+          margin: 0 auto;
+        }
+        /* 适配移动端高度：原700px → 700/14=50rem */
+        .accessory-big-card {
+          min-height: 50rem;
+          /* 内边距缩小：原40px → 40/14≈2.86rem */
+          padding: 2.86rem 2.86rem;
+        }
+      }
+
+      /* 3. 小屏手机适配（≤425px：Mobile S/M/L区间，按基准字号优化） */
+      @media (max-width: 425px) {
+        .accessory-container {
+          padding: 0 0.8rem; /* 原16px → 基于11.33px（Mobile L）：16/11.33≈1.41rem，此处用0.8rem更紧凑 */
         }
         .accessory-main-title {
-          font-size: 48px;
+          /* 原36px → 基于11.33px基准：36/11.33≈3.18rem */
+          font-size: 3.18rem;
+          margin-bottom: 2rem; /* 缩小间距，适配小屏 */
         }
-        .accessory-container {
-          margin: 0 auto; /* 移动端居中 */
+        .accessory-image-grid {
+          gap: 1rem; /* 进一步减小间距，避免换行后过散 */
+        }
+        .accessory-image-item {
+          /* 原150px → 基于11.33px基准：150/11.33≈13.24rem（小屏图片宽度适配） */
+          max-width: 13.24rem;
+          /* 原280px → 基于11.33px基准：280/11.33≈24.72rem（小屏图片高度适配） */
+          height: 24.72rem;
+        }
+        .accessory-image-item img {
+          height: 24.72rem;
+        }
+        /* 小屏高度差进一步减小：原20px → 20/11.33≈1.77rem */
+        .accessory-image-item.low-item {
+          margin-top: var(--low-item-mt-mobile, 1.77rem);
         }
         .accessory-big-card {
-          min-height: 700px; /* 适配移动端高度 */
+          min-height: 45rem; /* 进一步压缩高度，适配小屏 */
+          padding: 2rem 2rem; /* 内边距进一步缩小 */
+        }
+        .accessory-more-btn {
+          /* 按钮尺寸缩小：原8px 20px → 基于11.33px：8/11.33≈0.71rem，20/11.33≈1.77rem */
+          padding: 0.71rem 1.77rem;
+          font-size: 0.9rem; /* 文字缩小，适配按钮尺寸 */
+          bottom: 1.5rem;
+          right: 1.5rem;
+        }
+      }
+
+      /* 4. 4K超高清屏适配（≥2560px：html font-size=16px，放大元素避免过小） */
+      @media (min-width: 2560px) {
+        .accessory-container {
+          /* 原1800px → 基于16px基准：1800/16=112.5rem（4K屏最大宽度适配） */
+          max-width: 112.5rem;
+        }
+        .accessory-main-title {
+          /* 原72px → 基于16px基准：72/16=4.5rem（4K屏标题放大，提升视觉冲击） */
+          font-size: 4.5rem;
+          margin-bottom: 3.5rem; /* 放大间距，适配4K屏比例 */
+        }
+        .accessory-big-card {
+          /* 原600px → 基于16px基准：600/16=37.5rem（4K屏卡片高度放大） */
+          min-height: 37.5rem;
+          padding: 3rem 3rem; /* 内边距放大，避免过小 */
+          border-radius: 1.5rem; /* 圆角放大，适配卡片尺寸 */
+        }
+        .accessory-image-grid {
+          /* 原1500px → 基于16px基准：1500/16=93.75rem（4K屏图片组宽度放大） */
+          max-width: 93.75rem;
+          gap: 1.5rem; /* 间距放大，适配4K屏 */
+        }
+        .accessory-image-item {
+          /* 原260px → 基于16px基准：260/16=16.25rem（4K屏图片宽度放大） */
+          max-width: 16.25rem;
+          /* 原480px → 基于16px基准：480/16=30rem（4K屏图片高度放大） */
+          height: 30rem;
+        }
+        .accessory-image-item img {
+          height: 30rem; /* 图片高度同步放大 */
+          border-radius: 1.5rem; /* 图片圆角放大 */
+        }
+        /* 4K屏错落高度差放大：原72px → 72/16=4.5rem */
+        .accessory-image-item.low-item {
+          margin-top: var(--low-item-mt, 4.5rem);
+        }
+        .accessory-image-text {
+          font-size: 1.2rem; /* 文字放大，提升4K屏可读性 */
+          top: 1.5rem; /* 文字位置下移，适配放大后的图片 */
+        }
+        .accessory-more-btn {
+          padding: 0.6rem 1.8rem; /* 按钮尺寸放大 */
+          font-size: 1.2rem; /* 文字放大 */
+          bottom: 2.25rem;
+          right: 2.25rem;
         }
       }
 

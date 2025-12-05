@@ -46,6 +46,56 @@
         width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
         overflow-y: auto; /* 关键：保留页面右侧滚动条（即使固定也显示滚动条占位） */
       }
+      /* ================================== 按你的屏幕尺寸设置rem基准 ================================== */
+      /* ================================== 修复后的rem基准设置 ================================== */
+      /* 1. Mobile S（≤320px）：按比例计算，删除多余min-font-size */
+      @media (max-width: 320px) {
+        html {
+          font-size: 8.53px; /* 320/375×10≈8.53，保持原比例 */
+        }
+      }
+
+      /* 2. Mobile M（321px ~ 375px）：核心基准，不变 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        html {
+          font-size: 10px;
+        }
+      }
+
+      /* 3. Mobile L（376px ~ 425px）：按比例计算，不变 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        html {
+          font-size: 11.33px; /* 425/375×10≈11.33 */
+        }
+      }
+
+      /* 4. Tablet（426px ~ 768px）：限制为14px，不变 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      /* 5. Laptop（769px ~ 1024px）：限制为15px，不变 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        html {
+          font-size: 15px;
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px ~ 2559px）：补全空白区间，统一设16px */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        html {
+          font-size: 16px; /* 覆盖1441px~2559px，与Laptop L逻辑统一 */
+        }
+      }
+
+      /* 7. 4K屏（≥2560px）：与上一区间衔接，保持16px */
+      @media (min-width: 2560px) {
+        html {
+          font-size: 16px;
+        }
+      }
 
       /* ================================== 二、导航栏模块 ================================== */
       /* 作用：顶部固定导航，含下拉菜单、分类切换功能 */
@@ -62,22 +112,22 @@
         display: flex;
         justify-content: center; /* 导航项水平居中 */
         align-items: center; /* 导航项垂直居中 */
-        gap: 38px; /* 导航项之间的间距 */
-        padding: 0 20px; /* 左右留白，避免内容贴屏幕边缘 */
+        gap: 3.8rem; /* 导航项之间的间距 */
+        padding: 0 2rem; /* 左右留白，避免内容贴屏幕边缘 */
         overflow-x: visible; /* 小屏幕时导航项不换行，支持横向滚动 */
       }
 
       /* —— 2.2 导航栏LOGO样式 ——*/
       .navbar .logo {
         font-weight: 500; /* 字体粗细：中等（原设计调整，避免过粗） */
-        font-size: 16px; /* LOGO字号，与导航项区分 */
+        font-size: 1rem; /* LOGO字号，与导航项区分 */
       }
 
       /* —— 2.3 导航栏链接样式 ——*/
       .navbar a {
         color: #f5f5f7; /* 链接默认白色 */
         text-decoration: none; /* 去掉链接下划线 */
-        font-size: 11px; /* 导航链接字号（统一小型化） */
+        font-size: 0.7rem; /* 导航链接字号（统一小型化） */
         font-weight: 300; /* 字体粗细：偏细，提升精致感 */
         transition: color 0.2s ease; /*  hover时颜色过渡 */
       }
@@ -87,9 +137,9 @@
 
       /* —— 2.4 导航栏按钮样式（语言切换/询价） ——*/
       .navbar .btn {
-        padding: 4px 12px; /* 按钮内边距：上下4px，左右12px */
+        padding: 0.4rem 1.2rem; /* 按钮内边距：上下4px，左右12px */
         border-radius: 9999px; /* 按钮圆角（轻微圆润） */
-        font-size: 11px; /* 按钮文字字号，与导航链接统一 */
+        font-size: 0.7rem; /* 按钮文字字号，与导航链接统一 */
         font-weight: 300; /* 字体粗细：偏细，避免突兀 */
         cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
         border: none; /* 清除默认边框 */
@@ -141,7 +191,7 @@
         box-sizing: border-box;
 
         /* 默认隐藏状态：高度0+透明+无内边距 */
-        max-height: 0; /* 高度压缩为0，完全隐藏 */
+        max-height: 0; /* 高度压缩为0，完全隐藏,不要改，不然鼠标往上走就弹出来下拉菜单*/
         opacity: 0; /* 透明度0，视觉隐藏 */
         padding: 0; /* 隐藏时取消内边距，避免空白 */
 

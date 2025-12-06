@@ -1622,295 +1622,395 @@
       }
 
       /* ================================== 五、购买优势板块（在Senrytech购买Machine好处多多） ================================== */
-      /* 作用：展示购买设备的核心优势，含文字介绍+横向滚动卡片，背景与第3板块统一 */
+      /* 作用：展示购买设备的核心优势，含文字介绍+横向滚动卡片，背景与产品板块统一（深灰#1d1d1f）
+   适配原则：基于全局html基准字号（Mobile S:12px ~ 4K:16px），所有尺寸用REM，确保多端视觉一致性 */
 
-      /* —— 5.1 板块容器基础样式（不变） —— */
+      /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        background-color: #1d1d1f;
-        width: 100%;
-        padding: 5rem 0 7.5rem; /* REM修改核心 */
-        position: relative;
-        overflow: visible;
+        background-color: #1d1d1f; /* 与导航栏/产品板块配色统一 */
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
+        position: relative; /* 作为滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
       }
 
-      /* —— 5.2 板块内部内容容器（不变） —— */
+      /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .benefit-container {
-        max-width: 100rem; /* REM修改核心 */
-        margin: 0 auto 0 15%;
-        padding: 0 1.25rem; /* REM修改核心 */
+        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
       }
 
-      /* —— 5.3 板块主题文字样式（不变） —— */
+      /* —— 5.3 板块主标题：强化视觉焦点 —— */
       .benefit-main-title {
-        font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 4rem; /* REM修改核心 */
-        font-weight: 300;
-        color: #f5f5f7;
-        margin-bottom: 3rem; /* REM修改核心 */
-        text-align: left;
-        line-height: 1.1;
+        font-family:
+          "Public Sans", "Noto Sans SC", sans-serif; /* 与全局字体统一 */
+        font-size: 4rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 300; /* 偏细字体，契合整体轻量化风格 */
+        color: #f5f5f7; /* 浅灰文字，与深灰背景形成对比 */
+        margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
+        line-height: 1.1; /* 紧凑行高，避免标题换行 */
       }
 
-      /* —— 5.4 优势介绍文本样式（不变，仅用于非卡片内的独立文本） —— */
+      /* —— 5.4 优势介绍文本（独立文本区，非卡片内） —— */
       .benefit-intro {
-        margin-bottom: 3.75rem; /* REM修改核心 */
+        margin-bottom: 3.75rem; /* 16px基准：60px，与卡片区间距 */
       }
+      /* 二级标题 */
       .benefit-subtitle {
-        font-size: 1rem; /* REM修改核心 */
-        color: #000000;
+        font-size: 1rem; /* 16px基准：16px */
+        color: #000000; /* 注意：此处为深色文字，需确保父容器背景为浅色（避免对比度问题） */
         font-weight: 500;
-        margin-bottom: 0.5rem; /* REM修改核心 */
+        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
         text-align: left;
       }
+      /* 一级标题 */
       .benefit-heading {
-        font-size: 1.75rem; /* REM修改核心 */
-        color: #000000;
+        font-size: 1.75rem; /* 16px基准：28px */
+        color: #000000; /* 同上，需匹配父容器背景 */
         font-weight: 600;
-        margin-bottom: 0.75rem; /* REM修改核心 */
+        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
         text-align: left;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.5px; /* 微调字距，提升精致感 */
       }
+      /* 描述文本 */
       .benefit-desc {
-        font-size: 0.875rem; /* REM修改核心 */
-        color: #000000;
-        line-height: 1.5;
-        max-width: 50rem; /* REM修改核心 */
+        font-size: 0.875rem; /* 16px基准：14px */
+        color: #000000; /* 同上，需匹配父容器背景 */
+        line-height: 1.5; /* 优化可读性 */
+        max-width: 50rem; /* 16px基准：800px，避免文本过宽 */
         text-align: left;
       }
 
-      /* —— 5.5 卡片滚动容器样式（不变） —— */
+      /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
       .benefit-scroll-wrap {
-        position: relative;
-        overflow: visible;
-        overflow-x: auto;
-        padding-bottom: 2.5rem; /* REM修改核心 */
+        position: relative; /* 作为卡片容器的定位父容器 */
+        overflow: visible; /* 允许箭头超出容器范围 */
+        overflow-x: auto; /* 仅横向滚动，纵向固定 */
+        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
+        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none; /* Firefox */
       }
-      /* 滚动条隐藏样式保留，无PX值需修改 */
       .benefit-scroll-wrap::-webkit-scrollbar {
-        display: none;
-      }
-      .benefit-scroll-wrap {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+        display: none; /* Chrome/Safari */
       }
 
-      /* —— 5.6 卡片容器样式（不变，对应第3板块的#productScroll） —— */
+      /* —— 5.6 卡片容器：横向排列卡片 —— */
       .benefit-card-container {
-        display: flex;
-        gap: 1.5rem; /* REM修改核心 */
-        width: max-content;
-        transition: transform 0.4s ease-out;
+        display: flex; /* 卡片横向排列 */
+        gap: 1.5rem; /* 16px基准：24px，卡片之间间距 */
+        width: max-content; /* 宽度随卡片数量自适应，确保所有卡片显示 */
+        transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
       }
 
-      /* —— 5.7 优势卡片样式（核心优化：彻底清除视觉样式，仅保留定位功能） —— */
+      /* —— 5.7 优势卡片：仅保留定位功能，视觉由图片主导 —— */
       .benefit-card {
-        width: 21.25rem; /* REM修改核心 */
-        flex-shrink: 0;
-        position: relative;
-        height: auto;
-        overflow: visible;
-        background-color: transparent;
-        padding: 0;
-        box-shadow: none;
-        border-radius: 0;
-        transition: none;
-        cursor: inherit;
-        border: none;
-        margin: 0;
+        width: 21.25rem; /* 16px基准：340px，固定宽度确保卡片一致性 */
+        flex-shrink: 0; /* 禁止收缩，避免卡片被挤压变形 */
+        position: relative; /* 作为卡片内文字/图片的定位上下文 */
+        height: auto; /* 高度由图片自动撑开 */
+        overflow: visible; /* 允许文字/阴影超出卡片范围 */
+        background-color: transparent; /* 透明背景，图片完全主导视觉 */
+        padding: 0; /* 清除内边距，避免干扰图片布局 */
+        box-shadow: none; /* 无阴影，阴影由图片单独控制 */
+        border-radius: 0; /* 无圆角，圆角由图片单独控制 */
+        transition: none; /* 无过渡，过渡效果由图片单独控制 */
+        cursor: inherit; /* 鼠标样式由子元素（图片）控制 */
+        border: none; /* 无边框 */
+        margin: 0; /* 清除margin */
       }
 
-      /* —— 5.8 卡片内三段文字容器（不变，基于.benefit-card定位） —— */
+      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
       .benefit-card-text {
         position: absolute;
-        top: 1.25rem; /* REM修改核心 */
-        left: 1.25rem; /* REM修改核心 */
-        z-index: 10;
-        width: calc(100% - 2.5rem); /* REM修改核心 */
+        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保文字可见 */
+        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
         text-align: left;
-        pointer-events: none;
+        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
       }
 
-      /* —— 5.9 卡片内文字样式（不变，适配图片背景） —— */
+      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+      /* 卡片内二级标题 */
       .benefit-card .benefit-subtitle {
-        color: #f5f5f7;
-        font-size: 1rem; /* REM修改核心 */
+        color: #f5f5f7; /* 浅灰文字，适配图片深色背景 */
+        font-size: 1rem; /* 16px基准：16px */
         font-weight: 500;
-        margin-bottom: 0.5rem; /* REM修改核心 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
       }
+      /* 卡片内一级标题 */
       .benefit-card .benefit-heading {
-        color: #f5f5f7;
-        font-size: 1.75rem; /* REM修改核心 */
+        color: #f5f5f7; /* 同上，适配图片背景 */
+        font-size: 1.75rem; /* 16px基准：28px */
         font-weight: 600;
-        margin-bottom: 0.75rem; /* REM修改核心 */
+        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
         letter-spacing: -0.5px;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
+      /* 卡片内描述文本 */
       .benefit-card .benefit-desc {
-        color: #f5f5f7;
-        font-size: 0.875rem; /* REM修改核心 */
+        color: #f5f5f7; /* 同上，适配图片背景 */
+        font-size: 0.875rem; /* 16px基准：14px */
         line-height: 1.5;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
-      /* —— 5.10 卡片图片样式（核心：图片完全主导视觉+交互，无容器干扰） —— */
+      /* —— 5.10 卡片图片：核心视觉元素，控制交互效果 —— */
       .benefit-card img {
-        width: 100%;
-        height: 34.375rem; /* REM修改核心 */
-        object-fit: cover;
-        object-position: center bottom;
-        border-radius: 1.25rem; /* REM修改核心 */
-        background-color: transparent;
-        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* REM修改核心 */
+        width: 100%; /* 图片占满卡片宽度 */
+        height: 34.375rem; /* 16px基准：550px，固定高度确保卡片对齐 */
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸） */
+        object-position: center bottom; /* 图片定位：居中靠下，优先显示底部内容 */
+        border-radius: 1.25rem; /* 16px基准：20px，与产品板块卡片圆角统一 */
+        background-color: transparent; /* 透明背景，避免加载时显白 */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 16px基准：0 4px 16px，轻微阴影增强立体感 */
         transition:
           transform 0.3s ease,
-          box-shadow 0.3s ease;
-        display: block;
-        cursor: pointer;
-        transform: translateY(0.125rem); /* REM修改核心 */
-        transform-origin: bottom 10%;
+          box-shadow 0.3s ease; /* 过渡效果：上浮+阴影加深 */
+        display: block; /* 清除图片默认空隙 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        transform: translateY(
+          0.125rem
+        ); /* 16px基准：2px，初始轻微下沉，增强hover对比 */
+        transform-origin: bottom 10%; /* 变换原点：底部偏左，优化动画质感 */
       }
+      /* 图片hover效果：轻微上浮+放大+阴影加深 */
       .benefit-card:hover img {
-        transform: translateY(-0.375rem) scale(1.01); /* REM修改核心 */
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* REM修改核心 */
+        transform: translateY(-0.375rem) scale(1.01); /* 16px基准：-6px上浮+1%放大 */
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 16px基准：0 8px 24px，阴影加深 */
       }
 
-      /* —— 5.11 卡片底部文字样式（不变，基于.benefit-card定位） —— */
+      /* —— 5.11 卡片底部文字：图片底部标注 —— */
       .benefit-card-name {
-        font-size: 1rem; /* REM修改核心 */
-        font-weight: 300;
-        color: #f5f5f7;
-        line-height: 1.4;
-        padding: 0;
-        margin: 0;
+        font-size: 1rem; /* 16px基准：16px，与产品板块卡片文字字号统一 */
+        font-weight: 300; /* 与产品板块统一，避免过粗显笨重 */
+        color: #f5f5f7; /* 浅灰文字，适配图片背景 */
+        line-height: 1.4; /* 优化可读性 */
+        padding: 0; /* 清除内边距 */
+        margin: 0; /* 清除margin */
         position: absolute;
-        bottom: 1.25rem; /* REM修改核心 */
-        left: 1.25rem; /* REM修改核心 */
-        z-index: 10;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        pointer-events: none;
+        bottom: 1.25rem; /* 16px基准：20px，距离图片底部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保可见 */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 文字阴影，提升可读性 */
+        pointer-events: none; /* 禁止拦截图片点击 */
       }
 
-      /* —— 5.12 滚动箭头样式（不变，与第3板块统一，已去重） —— */
+      /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
       .benefit-nav-btn {
-        position: absolute;
-        top: 90%;
-        transform: translateY(-50%) !important;
-        bottom: auto !important;
-        width: 2.5rem; /* REM修改核心 */
-        height: 2.5rem; /* REM修改核心 */
-        border-radius: 50%;
-        background-color: rgba(222, 222, 226, 0.9);
-        color: #696969;
-        border: none;
-        font-size: 1.25rem; /* REM修改核心 */
-        cursor: pointer;
-        outline: none;
+        position: absolute; /* 基于板块容器定位 */
+        top: 90%; /* 垂直居中于产品卡片区域 */
+        transform: translateY(
+          -50%
+        ) !important; /* 垂直居中校准（!important避免被覆盖） */
+        bottom: auto !important; /* 取消底部定位，避免冲突 */
+        width: 2.5rem; /* 16px基准：40px，圆形按钮直径 */
+        height: 2.5rem;
+        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
+        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，弱化但可见 */
+        color: #696969; /* 灰色箭头，与背景区分 */
+        border: none; /* 清除默认边框 */
+        font-size: 1.25rem; /* 16px基准：20px，箭头图标大小 */
+        cursor: pointer; /* 提示可点击 */
+        outline: none; /* 清除聚焦轮廓 */
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        z-index: 999;
+        justify-content: center; /* 箭头水平居中 */
+        align-items: center; /* 箭头垂直居中 */
+        padding: 0; /* 清除默认内边距 */
+        z-index: 999; /* 层级高于卡片，确保不被遮挡 */
       }
+      /* 左箭头位置 */
       .benefit-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem); /* REM修改核心 */
+        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
         right: auto;
-        display: flex !important;
+        display: flex !important; /* 强制显示，避免被隐藏 */
       }
+      /* 右箭头位置 */
       .benefit-nav-btn.next-btn {
-        right: calc(5% + 1.25rem); /* REM修改核心 */
+        right: calc(5% + 1.25rem); /* 基于屏幕右侧5%，向右偏移1.25rem */
         left: auto;
       }
-      /* hover/禁用样式保留，无PX值需修改 */
+      /* 箭头交互效果 */
       .benefit-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9);
-        color: #333;
+        background-color: rgba(180, 180, 180, 0.9); /* 背景加深 */
+        color: #333; /* 文字加深，增强反馈 */
       }
       .benefit-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9);
-        color: #aaa;
-        cursor: not-allowed;
-        display: flex !important;
+        background-color: rgba(240, 240, 240, 0.9); /* 更浅背景，视觉弱化 */
+        color: #aaa; /* 浅灰箭头 */
+        cursor: not-allowed; /* 提示不可点击 */
+        display: flex !important; /* 禁用时仍显示，避免布局跳动 */
       }
 
-      /* —— 5.15 卡片文字样式（修改：移入图片内+左对齐，与第3板块一致） —— */
-      .benefit-card-name {
-        font-size: 16px; /* 与第3板块product-item p字号一致 */
-        font-weight: 300; /* 与第3板块统一（原500改为300） */
-        color: #f5f5f7; /* 文字白色，与第3板块产品文字颜色一致（适配图片背景） */
-        line-height: 1.4;
-        padding: 0; /* 清除原内边距 */
-        margin: 0; /* 清除原margin */
-        /* 文字定位：图片底部左侧，与第3板块文字位置逻辑一致 */
-        position: absolute;
-        bottom: 20px; /* 距离图片底部20px */
-        left: 20px; /* 距离图片左侧20px（左对齐） */
-        z-index: 10; /* 确保文字在图片上层 */
-        /* 文字阴影：增强图片上可读性（第3板块无，按需添加） */
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      }
+      /* ================================== 购买优势板块 - 媒体查询适配 ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
 
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
       @media (max-width: 320px) {
         .benefit-container {
-          margin: 0 auto; /* 取消左margin，居中布局 */
-          padding: 0 0.8rem; /* 0.8rem≈6.8px，紧凑留白 */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          padding: 0 0.8rem; /* 12px基准：~9.6px，缩小留白 */
         }
         .benefit-main-title {
-          font-size: 2rem; /* 2.2rem≈18.8px，避免换行 */
-          margin-bottom: 1rem; /* 1rem≈8.5px，缩小间距 */
+          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
+          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 2rem≈17px，缩小间距 */
+          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: calc(30% - 2rem); /* 2rem≈17px，自适应屏幕 */
+          width: 13rem; /* 12px基准：156px，适配小屏宽度 */
         }
         .benefit-card img {
-          height: 20rem; /* 18rem≈153.5px，小屏图片高度适配 */
-          border-radius: 1rem; /* 1rem≈8.5px，缩小圆角 */
+          height: 20rem; /* 12px基准：240px，缩小图片高度 */
+          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
         }
         .benefit-nav-btn {
-          width: 2rem; /* 2rem≈17px，缩小箭头 */
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
           height: 2rem;
-          font-size: 1rem; /* 1rem≈8.5px，缩小图标 */
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 1rem≈8.5px，调整位置 */
+          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 0.8rem≈6.8px，调整位置 */
+          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
         }
       }
 
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .benefit-container {
-          margin: 0 auto; /* 取消左margin，居中布局 */
-          padding: 0 0.8rem; /* 0.8rem≈6.8px，紧凑留白 */
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
         }
         .benefit-main-title {
-          font-size: 2rem; /* 2.2rem≈18.8px，避免换行 */
-          margin-bottom: 1rem; /* 1rem≈8.5px，缩小间距 */
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 2rem≈17px，缩小间距 */
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: calc(30% - 2rem); /* 2rem≈17px，自适应屏幕 */
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
         }
         .benefit-card img {
-          height: 20rem; /* 18rem≈153.5px，小屏图片高度适配 */
-          border-radius: 1rem; /* 1rem≈8.5px，缩小圆角 */
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .benefit-nav-btn {
-          width: 2rem; /* 2rem≈17px，缩小箭头 */
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
           height: 2rem;
-          font-size: 1rem; /* 1rem≈8.5px，缩小图标 */
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 1rem≈8.5px，调整位置 */
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 0.8rem≈6.8px，调整位置 */
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .benefit-container {
+          margin: 0 auto; /* 居中布局，保留小屏友好性 */
+          padding: 0 1.2rem; /* 15px基准：18px，适配大屏手机留白 */
+        }
+        .benefit-main-title {
+          font-size: 3.2rem; /* 15px基准：48px，提升标题视觉权重 */
+        }
+        .benefit-card {
+          width: 18rem; /* 15px基准：270px，可横向显示1.5个卡片，提升利用率 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 15px基准：300px，适配卡片宽度 */
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .benefit-container {
+          margin: 0 auto 0 10%; /* 左侧margin从15%减至10%，适配平板宽度 */
+        }
+        .benefit-main-title {
+          font-size: 3.5rem; /* 16px基准：56px，适配平板视觉比例 */
+        }
+        .benefit-card {
+          width: 19rem; /* 16px基准：304px，可横向显示2-3个卡片 */
+        }
+        .benefit-card img {
+          height: 22rem; /* 16px基准：352px，适配卡片宽度 */
+        }
+        .benefit-nav-btn {
+          width: 2.2rem; /* 16px基准：35.2px，适配平板点击区域（手指更粗） */
+          height: 2.2rem;
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(90% + 1.8rem); /* 同步左侧margin调整，偏移量适配 */
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .benefit-container {
+          margin: 0 auto 0 12%; /* 左侧margin从15%减至12%，微调适配笔记本宽度 */
+          max-width: 90rem; /* 16px基准：1440px，避免超宽 */
+        }
+        .benefit-main-title {
+          font-size: 3.8rem; /* 16px基准：60.8px，适配笔记本视觉 */
+        }
+        .benefit-card {
+          width: 20rem; /* 16px基准：320px，可横向显示3-4个卡片 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(88% + 2rem); /* 同步左侧margin调整，偏移量适配 */
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+        .benefit-container {
+          max-width: 120rem; /* 16px基准：1920px，适配4K屏宽度 */
+        }
+        .benefit-main-title {
+          font-size: 4.5rem; /* 16px基准：72px，增强标题视觉冲击 */
+          margin-bottom: 2rem; /* 16px基准：32px，放大间距适配4K比例 */
+        }
+        .benefit-intro {
+          margin-bottom: 4rem; /* 16px基准：64px，放大与卡片区间距 */
+        }
+        .benefit-card {
+          width: 24rem; /* 16px基准：384px，放大卡片尺寸 */
+        }
+        .benefit-card img {
+          height: 28rem; /* 16px基准：448px，放大图片高度 */
+          border-radius: 1.5rem; /* 16px基准：24px，同步放大圆角 */
+        }
+        .benefit-card-name {
+          font-size: 1.2rem; /* 16px基准：19.2px，放大文字，提升可读性 */
+          bottom: 1.5rem; /* 16px基准：24px，同步调整位置 */
+          left: 1.5rem;
+        }
+        .benefit-nav-btn {
+          width: 3rem; /* 16px基准：48px，放大箭头尺寸 */
+          height: 3rem;
+          font-size: 1.5rem; /* 16px基准：24px，放大箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(85% + 3rem); /* 同步放大偏移量 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 1.5rem); /* 同步放大偏移量 */
         }
       }
 

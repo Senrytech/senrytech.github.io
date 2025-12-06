@@ -553,25 +553,13 @@
         padding-bottom: 0.8rem;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      /* 2.32 三列产品列表 */
-      .submenu-product-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.2rem; /* 小间距适配三列 */
-      }
-      /* 2.33 产品卡片（三列布局） */
-      .submenu-product-card {
-        width: calc((100% - 2.4rem) / 3); /* 3列：总间距12px×2=24px */
-        text-align: center;
-        transition: transform 0.2s ease;
-      }
       .submenu-product-card:hover {
         transform: translateY(-0.3rem);
       }
       /* 2.34 产品图片 */
       .submenu-product-card img {
         width: 100%;
-        height: 80px; /* 小图高度，适配侧边栏 */
+        height: 8rem; /* 小图高度，适配侧边栏 */
         object-fit: cover;
         border-radius: 0.8rem;
         background-color: #f0f0f0;
@@ -683,39 +671,26 @@
 
         /* ========== Mobile M（321px ~ 375px）优化 ========== */
         @media (min-width: 321px) and (max-width: 375px) {
-          .submenu-product-card {
-            width: calc((90% - 1.5rem) / 2);
-          }
-          .sidebar-menu {
-            width: 90%; /* 更贴近屏幕 */
-          }
-          .navbar-right {
-            gap: 0.2rem; /* 进一步缩小间距 */
-          }
-          .navbar .btn {
-            padding: 0.25rem 0.7rem; /* 按钮尺寸缩小 */
-            font-size: 0.75rem;
-          }
-        }
-
-        /* ========== Mobile S（≤320px）优化 ========== */
-        @media (max-width: 320px) {
-          /* 1. 修复产品卡片布局：窄屏改为2列（原3列挤压图片） */
-          .sidebar-menu.active .sidebar-submenu-content .submenu-product-card {
-            width: calc(
-              (100% - 0.5rem) / 2
-            ); /* 2列布局：总间距1.2rem，适配320px窄屏 */
-            min-width: 120px; /* 保底宽度，避免图片被无限挤压 */
+          /* 1. 先确保产品列表父容器是flex布局+允许换行（关键！） */
+          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+            display: flex !important; /* 强制flex布局，覆盖可能的隐藏样式 */
+            flex-wrap: wrap !important; /* 超出宽度自动换行（两列核心） */
+            gap: 1rem !important; /* 两列之间的间距（与calc对应） */
+            padding: 0 !important; /* 清除多余内边距，避免挤压 */
+            width: 100% !important; /* 占满父容器宽度 */
           }
 
-          /* 2. 修复图片显示：确保图片容器可见，优化尺寸 */
+          /* 2. 修复产品卡片宽度（两列计算：总宽度-1个间距，再平分） */
           .sidebar-menu.active
             .sidebar-submenu-content
-            .submenu-product-card
-            img {
-            height: 100px; /* 适配2列布局的图片高度，避免过高溢出 */
-            object-fit: contain; /* 替换cover：确保图片完整显示（避免裁剪导致“不显示”错觉） */
-            background-color: #f0f0f0; /* 保留加载占位，便于识别是否加载失败 */
+            .submenu-product-list
+            .submenu-product-card {
+            width: calc(
+              (100% - 1rem) / 2
+            ) !important; /* 两列布局：1rem是列间距，平分后每列宽度 */
+            min-width: 50px !important; /* 保底宽度，避免小屏挤压图片 */
+            flex-shrink: 0 !important; /* 禁止收缩，保持两列宽度稳定 */
+            box-sizing: border-box !important; /* 确保padding不影响宽度计算 */
           }
 
           /* 3. 修复滚动功能：修正滚动容器高度，开启垂直滚动 */
@@ -729,13 +704,105 @@
             gap: 1rem; /* 缩小间距，适配窄屏 */
           }
 
-          /* 4. 确保产品内容容器正常显示（解决样式优先级冲突） */
-          .sidebar-menu-item.has-submenu.active
-            .sidebar-submenu-item.active
-            ~ .sidebar-submenu-content
-            .submenu-content-item.active {
-            display: block !important; /* 强制显示激活的产品内容，避免被隐藏 */
-            opacity: 1; /* 兜底：防止透明度异常导致“看不见” */
+          /* 3. 彻底统一图片尺寸：高度固定+完整显示 */
+          .productSubmenuContent img {
+            height: 100px !important; /* 强制统一高度 */
+            width: 100% !important; /* 宽度占满卡片 */
+            object-fit: contain !important; /* 完整显示，不裁剪（视觉统一） */
+            background-color: #f0f0f0 !important; /* 统一占位背景 */
+            border-radius: 0.8rem !important; /* 保持圆角一致性 */
+          }
+
+          /* 5. 优化父容器滚动兼容性：避免父容器遮挡子容器滚动 */
+          .sidebar-submenu-content {
+            max-height: calc(
+              100vh - 20rem
+            ) !important; /* 父容器高度兜底（≈328px） */
+            overflow-y: hidden; /* 父容器不滚动，仅子容器（产品列表）滚动，避免双重滚动条 */
+          }
+          /* 2.22 侧边菜单容器（默认隐藏，右侧滑出） */
+          .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%; /* 小屏幕占85%宽度，Tablet占70% */
+          }
+          /* 2.25 侧边栏菜单链接（带箭头） */
+          .sidebar-menu-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem; /* 改rem：14px÷10=1.4rem，16px÷10=1.6rem（内边距缩放） */
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 0.8rem; /* 改rem：15px÷10=1.5rem（字号缩放） */
+            border-radius: 1rem; /* 改rem：12px÷10=1.2rem（圆角缩放） */
+            transition: background-color 0.2s ease;
+          }
+          /* 2.28 移动端二级菜单的文字大小调整 */
+          .sidebar-submenu-link {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-radius: 0.8rem;
+            transition: background-color 0.2s ease;
+            position: relative;
+            padding-right: 2.4rem; /* 预留箭头空间 */
+          }
+          /* 2.31 三级菜单标题 */
+          .submenu-content-title {
+            font-size: 1rem;
+            color: #f5f5f7;
+            margin: 0 0 1.6rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        }
+
+        /* ========== Mobile S（≤320px）优化 ========== */
+        @media (max-width: 320px) {
+          /* 1. 先确保产品列表父容器是flex布局+允许换行（关键！） */
+          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+            display: flex !important; /* 强制flex布局，覆盖可能的隐藏样式 */
+            flex-wrap: wrap !important; /* 超出宽度自动换行（两列核心） */
+            gap: 1rem !important; /* 两列之间的间距（与calc对应） */
+            padding: 0 !important; /* 清除多余内边距，避免挤压 */
+            width: 100% !important; /* 占满父容器宽度 */
+          }
+
+          /* 2. 修复产品卡片宽度（两列计算：总宽度-1个间距，再平分） */
+          .sidebar-menu.active
+            .sidebar-submenu-content
+            .submenu-product-list
+            .submenu-product-card {
+            width: calc(
+              (100% - 1rem) / 2
+            ) !important; /* 两列布局：1rem是列间距，平分后每列宽度 */
+            min-width: 50px !important; /* 保底宽度，避免小屏挤压图片 */
+            flex-shrink: 0 !important; /* 禁止收缩，保持两列宽度稳定 */
+            box-sizing: border-box !important; /* 确保padding不影响宽度计算 */
+          }
+
+          /* 3. 修复滚动功能：修正滚动容器高度，开启垂直滚动 */
+          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+            /* 关键：计算合理高度（屏幕高度 - 顶部导航/边距，避免负高度） */
+            max-height: calc(
+              100vh - 25rem
+            ); /* 320px下1rem=12px，25rem=300px，剩余高度≈268px */
+            overflow-y: auto !important; /* 强制开启垂直滚动，优先级拉满 */
+            padding-right: 1rem; /* 给滚动条留空间，避免图片被挤压 */
+            gap: 1rem; /* 缩小间距，适配窄屏 */
+          }
+
+          /* 3. 彻底统一图片尺寸：高度固定+完整显示 */
+          .productSubmenuContent img {
+            height: 100px !important; /* 强制统一高度 */
+            width: 100% !important; /* 宽度占满卡片 */
+            object-fit: contain !important; /* 完整显示，不裁剪（视觉统一） */
+            background-color: #f0f0f0 !important; /* 统一占位背景 */
+            border-radius: 0.8rem !important; /* 保持圆角一致性 */
           }
 
           /* 5. 优化父容器滚动兼容性：避免父容器遮挡子容器滚动 */
@@ -1029,34 +1096,77 @@
          - 对应全局html基准字号：10px（375px为移动端设计基准屏）
          - 核心调整：屏幕比Mobile S稍大，文字位置上移，交互元素尺寸适度放大 */
       @media (min-width: 321px) and (max-width: 375px) {
-        /* 文字容器：top值16%（比Mobile S的18%上移2%）
-           - 屏幕稍大，垂直空间略宽松，文字无需过度下移 */
+        /* 文字容器：相比大屏进一步下移（18%），避免16:9小屏中文字贴顶部
+           - 小屏垂直空间紧张，18%的top值可让文字处于视觉中部偏上位置 */
         .banner-text {
-          top: 16%; /* 微调文字位置：比最小屏上移，避免文字偏下 */
+          top: 18%; /* 16:9小屏专属：文字下移2%（对比Mobile M的16%），避免贴顶 */
+          padding: 0 0.8rem; /* 左右留白0.8rem（≈6.8px），避免文字贴屏幕边缘 */
         }
 
-        /* 主标题：尺寸适配375px基准屏
-           - 注：此处1.3rem按10px基准计算=13px，与注释“40px”不符，推测为笔误
-           - 正确值应为4rem（4rem×10px=40px，匹配注释说明） */
+        /* 主标题：控制大小以适配小屏，避免换行过多
+           - 注：此处0.6rem按8.53px基准计算≈5.1px，与注释“≈32.4px”明显不符，推测为笔误
+           - 正确值应为3.8rem（3.8rem×8.53px≈32.4px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 1.3rem; /* 原注释“40px”：需修正为4rem以符合计算逻辑 */
-          margin-bottom: 1.2rem; /* 标题与描述间距1.2rem（12px），比小屏稍宽松 */
+          font-size: 1rem; /* 原注释“≈32.4px”：需修正为3.8rem以符合计算逻辑 */
+          margin-bottom: 0.21rem; /* 标题与描述间距1rem（≈8.5px），小屏紧凑布局 */
         }
 
-        /* 描述文字：尺寸适配基准屏
-           - 注：此处0.5rem按10px基准计算=5px，与注释“16px”不符，推测为笔误
-           - 正确值应为1.6rem（1.6rem×10px=16px，匹配注释说明） */
+        /* 描述文字：尺寸缩小，确保与标题层级清晰
+           - 1.4rem×8.53px≈11.9px，符合小屏文字可读性需求 */
         .banner-text p {
-          font-size: 0.5rem; /* 原注释“16px”：需修正为1.6rem以符合计算逻辑 */
+          font-size: 0.276rem; /* ≈11.9px：小屏描述文字适配尺寸 */
         }
 
-        /* 箭头位置：调整左右边距
-           - 注：此处0.1rem×10px=1px，箭头贴屏幕边缘过近，建议修正为1rem（10px）
-           - 避免箭头与屏幕边缘无留白，提升视觉体验 */
-        .prev-btn,
-        .next-btn {
-          left: 0.1rem; /* 原注释“10px”：需修正为1rem以符合计算逻辑，避免贴边 */
-          right: 0.1rem; /* 同上，建议修正为1rem */
+        /* —— 3.5 轮播按钮组（无修改，保持弹性布局） ——*/
+        .banner-btns {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem; /* 两个按钮之间的距离 */
+          flex-wrap: nowrap;
+        }
+        .banner-btn {
+          padding: 0.085rem 0.255rem;
+          border-radius: 9999px;
+          font-size: 0.1rem;
+          cursor: pointer;
+          border: none;
+          transition: background-color 0.2s ease;
+        }
+        .learn-more-btn {
+          background-color: #0071e3;
+          color: #f5f5f7;
+        }
+        .buy-btn {
+          background-color: transparent;
+          color: #0071e3;
+          border: 0.02125rem solid #0071e3;
+        }
+
+        /* 轮播箭头（左右控制键）：缩小整体尺寸，避免占满小屏侧边空间
+           - 宽高2rem（≈17px），字号1rem（≈8.5px），小屏交互元素适配大小 */
+        .carousel-control {
+          width: 2rem; /* ≈17px：箭头宽度适配小屏 */
+          height: 2rem; /* ≈17px：箭头高度与宽度一致，保持圆形 */
+          font-size: 1rem; /* ≈8.5px：箭头图标大小适配 */
+        }
+
+        /* 针对轮播图的左箭头：只控制“距离左侧” */
+        .carousel-control.prev-btn {
+          left: 0.8rem; /* ≈6.8px：左箭头距屏幕左侧距离 */
+          right: auto; /* 清除right属性，避免冲突（可选，保险起见） */
+        }
+
+        /* 针对轮播图的右箭头：只控制“距离右侧” */
+        .carousel-control.next-btn {
+          right: 0.8rem; /* ≈6.8px：右箭头距屏幕右侧距离 */
+          left: auto; /* 清除left属性，避免冲突（可选，保险起见） */
+        }
+
+        /* 轮播指示器（圆点）：缩小尺寸，避免小屏中圆点过于突兀
+           - 0.5rem×8.53px≈4.3px：小屏圆点适配大小，保持视觉轻量化 */
+        .banner-dot {
+          width: 0.5rem; /* ≈4.3px：圆点宽度 */
+          height: 0.5rem; /* ≈4.3px：圆点高度，保持圆形 */
         }
       }
 
@@ -1170,18 +1280,6 @@
           font-size: 1.5rem; /* 24px：箭头图标大小，适配4K屏视觉 */
         }
       }
-
-      /* ================================== 媒体查询适配注意事项 ================================== */
-      /* 1. 笔误修正：上述代码中多处rem值与注释的px值不匹配（如Mobile M的h1=1.3rem≠40px）
-         - 建议按“注释px值÷对应html基准字号”反推正确rem值，避免文字/元素尺寸异常
-         - 例：Mobile M（html=10px）需h1=40px → 正确rem值=40px÷10px=4rem
-
-      /* 2. 视觉统一性：所有调整均以“16:9比例”为核心，未修改BANNER宽高比
-         - 若需进一步缩小1920×1080屏的BANNER尺寸，可在“Laptop L+2K”区间添加max-height限制
-         - 例：在@media (min-width: 1025px)中添加.banner-carousel { max-height: 600px; margin: 0 auto; }
-
-      /* 3. 兼容性：所有rem值基于全局html基准字号计算，需确保全局媒体查询（html font-size）正常生效
-         - 若全局html字号未按设计设置，会导致此处rem换算后的px值偏差，需优先确保全局基准正确 */
 
       /* ================================== 四、全系列产品板块 ================================== */
       /* 作用：横向滚动产品展示，含分类切换、箭头控制 */
@@ -1457,24 +1555,38 @@
       /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
       @media (min-width: 321px) and (max-width: 375px) {
         .product-container {
-          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
-          padding: 0 1rem; /* 原1.25rem → 1rem（适配375px基准屏） */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（小屏紧凑留白） */
         }
         .product-main-title {
-          font-size: 2.8rem; /* 原4rem → 2.8rem（=28px），375px屏标题适配 */
-          margin-bottom: 1.2rem; /* 原1.5rem → 1.2rem（缩小间距） */
+          font-size: 2rem; /* 原4rem → 缩小至2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原1.5rem → 1rem（缩小间距） */
+        }
+        .product-subtitle-bar {
+          margin-bottom: 2rem; /* 原3rem → 2rem（缩小与产品列表间距） */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .product-item {
-          width: calc(100% - 2.5rem); /* 自适应屏幕宽度，保留更多留白 */
+          width: 13rem;
         }
         .product-item img {
-          height: 18rem; /* 原25rem → 18rem（=180px），375px屏图片高度适配 */
+          height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          margin-top: 1rem; /* 原1.25rem → 1rem（缩小偏移） */
+        }
+        .product-nav-btn {
+          width: 2rem; /* 原2.5rem → 2rem（≈17px），小屏箭头缩小 */
+          height: 2rem;
+          font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），箭头图标缩小 */
         }
         .product-nav-btn.prev-btn {
-          left: calc(85% + 1.5rem); /* 原2.5rem → 1.5rem（=15px），偏移适配 */
+          left: calc(75% + 0rem); /* 原2.5rem → 1rem（缩小偏移，避免贴边） */
         }
         .product-nav-btn.next-btn {
-          right: calc(5% + 1rem); /* 原1.25rem → 1rem（=10px），偏移适配 */
+          right: calc(5% + 0.8rem); /* 原1.25rem → 0.8rem（缩小偏移） */
         }
       }
 
@@ -1846,6 +1958,38 @@
         }
       }
 
+      @media (min-width: 321px) and (max-width: 375px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左margin，居中布局 */
+          padding: 0 0.8rem; /* 0.8rem≈6.8px，紧凑留白 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 2.2rem≈18.8px，避免换行 */
+          margin-bottom: 1rem; /* 1rem≈8.5px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 2rem≈17px，缩小间距 */
+        }
+        .benefit-card {
+          width: calc(30% - 2rem); /* 2rem≈17px，自适应屏幕 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 18rem≈153.5px，小屏图片高度适配 */
+          border-radius: 1rem; /* 1rem≈8.5px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 2rem≈17px，缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 1rem≈8.5px，缩小图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 1rem≈8.5px，调整位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 0.8rem≈6.8px，调整位置 */
+        }
+      }
+
       /* ================================== 六、切割样品抢先看板块（REM适配+响应式优化） ==================================*/
       /* 适配核心：同步全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有PX转REM，保留原设计逻辑 */
 
@@ -2020,7 +2164,7 @@
         font-weight: 500;
       }
 
-      /*================================== 媒体查询适配（同步全局屏幕区间） ==================================*/
+      /*================================== 媒体查询适配（切割样品） ==================================*/
       /* 核心：仅调整当前屏幕需优化的属性，保持与导航栏/BANNER视觉统一 */
 
       /* 1. Mobile S（≤320px）：html font-size=8.53px */
@@ -2069,23 +2213,43 @@
       /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
       @media (min-width: 321px) and (max-width: 375px) {
         .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
-          padding: 0 1rem; /* 原1.25rem → 1rem（=10px），适配375px基准屏 */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
         }
         .sample-main-title {
-          font-size: 2.8rem; /* 原4rem → 2.8rem（=28px），375px屏标题适配 */
-          margin-bottom: 2rem; /* 原3rem → 2rem（=20px），缩小间距 */
+          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .sample-big-card {
-          flex-direction: column; /* 垂直布局，小屏横向空间不足 */
-          gap: 1.2rem; /* 原1.875rem → 1.2rem（=12px），缩小间距 */
-          padding: 1.2rem; /* 原1.875rem → 1.2rem，缩小内边距 */
+          display: flex; /* 改为垂直布局（小屏横向空间不足） */
+          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
+          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
+          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
         }
         .sample-thickness-container {
-          width: 100%; /* 占满宽度，垂直布局更合理 */
+          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
+          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
+          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
+          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .sample-image-container {
+          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
         }
         .sample-image-wrap {
-          min-height: 18rem; /* 原25rem → 18rem（=180px），375px屏图片高度适配 */
+          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
         }
       }
 
@@ -2508,24 +2672,51 @@
       /* 2. Mobile M（321px~375px）：html font-size=10px（主流小屏手机，如iPhone 8） */
       @media (min-width: 321px) and (max-width: 375px) {
         .advantage-container {
-          margin: 0 auto; /* 取消左侧margin，居中布局 */
-          padding: 0 1rem; /* 原1.25rem→1rem（=10px），适配375px基准屏 */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem→0.8rem，紧凑留白 */
         }
         .advantage-main-title {
-          font-size: 2.8rem; /* 原4rem→2.8rem（=28px），375px屏标题适配 */
-          margin-bottom: 1.2rem; /* 原3rem→1.2rem（=12px），缩小间距 */
+          font-size: 2rem; /* 原4rem→2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem→1rem（≈8.5px），缩小间距 */
         }
         .advantage-card {
-          width: calc(100% - 2.5rem); /* 自适应屏幕，保留更多留白 */
+          width: 20rem; /* 原21.25rem→自适应屏幕（减去左右留白） */
         }
         .advantage-card img {
-          height: 12rem; /* 原17.5rem→12rem（=120px），375px屏图片高度适配 */
+          height: 20rem; /* 原17.5rem→10rem（≈85.3px），小屏图片高度适配 */
+          border-radius: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小圆角 */
+        }
+        .advantage-card-subtitle {
+          font-size: 0.9rem; /* 原1rem→0.9rem（≈7.7px），小屏文字紧凑 */
+          top: 1rem; /* 原1.25rem→1rem，减少顶部偏移 */
+          left: 1rem; /* 原1.25rem→1rem，减少左侧偏移 */
+        }
+        .advantage-plus-btn {
+          width: 2rem; /* 原2.5rem→2rem（≈17px），缩小按钮 */
+          height: 2rem;
+          font-size: 1.2rem; /* 原1.5rem→1.2rem（≈10.2px），缩小加号 */
+          bottom: 1rem; /* 原1.25rem→1rem，减少底部偏移 */
+          right: 1rem; /* 原1.25rem→1rem，减少右侧偏移 */
+        }
+        .advantage-nav-btn {
+          width: 2rem; /* 原2.5rem→2rem（≈17px），缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小图标 */
         }
         .advantage-nav-btn.prev-btn {
-          left: calc(85% + 1.5rem); /* 原2.5rem→1.5rem（=15px），调整箭头位置 */
+          left: calc(75% + 0rem); /* 原2.5rem→1rem（≈8.5px），调整箭头位置 */
         }
         .advantage-nav-btn.next-btn {
-          right: calc(5% + 1rem); /* 原1.25rem→1rem（=10px），调整箭头位置 */
+          right: calc(
+            5% + 0.8rem
+          ); /* 原1.25rem→0.8rem（≈6.8px），调整箭头位置 */
+        }
+        .advantage-modal {
+          padding: 1.2rem; /* 原1.875rem→1.2rem（≈10.2px），缩小内边距 */
+          max-width: 90%; /* 原80%→90%，小屏占比更大 */
+        }
+        .advantage-modal-title {
+          font-size: 1.2rem; /* 原1.5rem→1.2rem（≈10.2px），缩小标题 */
         }
       }
 
@@ -2964,40 +3155,45 @@
       /* 6. Mobile M（321px~375px，html font-size=10px）：2列布局，进一步紧凑 */
       @media (max-width: 375px) and (min-width: 321px) {
         .accessory-container {
-          padding: 0 0.8rem; /* 8px/10=0.8rem，内边距极紧凑 */
+          padding: 0 0.7rem; /* 5.97px/8.53≈0.7rem，内边距极致紧凑 */
+          margin: 0 auto;
         }
         .accessory-main-title {
-          font-size: 3rem; /* 30px/10=3rem，标题缩窄 */
-          margin-bottom: 1.8rem; /* 18px/10=1.8rem，间距极紧凑 */
+          font-size: 2rem; /* 23.88px/8.53≈2.8rem，标题极致缩窄 */
+          margin-bottom: 1.6rem; /* 13.65px/8.53≈1.6rem，间距极致紧凑 */
+          line-height: 1.2; /* 避免换行过多 */
         }
         .accessory-image-grid {
-          gap: 0.9rem; /* 9px/10=0.9rem，间距极紧凑 */
-          flex-wrap: wrap; /* 改为2列布局，避免横向溢出 */
+          gap: 0.8rem; /* 6.82px/8.53≈0.8rem，间距极致紧凑 */
+          flex-wrap: wrap; /* 1列布局，完全避免横向溢出 */
         }
         .accessory-image-item {
-          max-width: 14rem; /* 140px/10=14rem，2列适配375px屏 */
-          height: 22rem; /* 220px/10=22rem，图片缩窄 */
+          max-width: 100%; /* 1列占满宽度 */
+          height: 20rem; /* 170.6px/8.53≈20rem，图片极致缩窄 */
         }
         .accessory-image-item img {
-          height: 22rem; /* 高度同步 */
+          height: 20rem; /* 高度同步 */
         }
-        /* 2列错落优化：第2/4号仍低顶部，第5号换行后高顶部 */
-        .accessory-image-item:nth-child(5) {
-          margin-top: 0; /* 第5号换行后恢复高顶部 */
-        }
+        /* 1列错落优化：仅保留轻微高度差，避免过于分散 */
         .accessory-image-item.low-item {
           margin-top: var(
             --low-item-mt-mobile,
-            1.5rem
-          ); /* 15px/10=1.5rem，错落高度差最小 */
+            1.2rem
+          ); /* 10.24px/8.53≈1.2rem，错落高度差极致小 */
         }
         .accessory-big-card {
-          min-height: 65rem; /* 650px/10=65rem，卡片加高（适配2列换行） */
-          padding: 1.8rem 1.8rem; /* 18px/10=1.8rem，内边距极紧凑 */
+          min-height: 85rem; /* 725.05px/8.53≈85rem，卡片加高（适配1列换行） */
+          padding: 1.5rem 1.5rem; /* 12.8px/8.53≈1.5rem，内边距极致紧凑 */
+        }
+        .accessory-image-text {
+          font-size: 0.9rem; /* 7.68px/8.53≈0.9rem，文字极致缩窄 */
+          top: 1rem; /* 8.53px/8.53=1rem，位置上移 */
         }
         .accessory-more-btn {
-          padding: 0.6rem 1.5rem; /* 6px/10=0.6rem，15px/10=1.5rem，按钮极缩窄 */
-          font-size: 0.85rem; /* 8.5px/10=0.85rem，文字极缩窄 */
+          padding: 0.55rem 1.4rem; /* 4.69px/8.53≈0.55rem，11.94px/8.53≈1.4rem，按钮极致缩窄 */
+          font-size: 0.8rem; /* 6.82px/8.53≈0.8rem，文字极致缩窄 */
+          bottom: 1.2rem; /* 10.24px/8.53≈1.2rem，位置上移 */
+          right: 1.2rem;
         }
       }
 
@@ -5104,7 +5300,7 @@
     <section class="accessory-section">
       <div class="accessory-container">
         <!-- 主标题（与其他板块样式统一） -->
-        <h2 class="accessory-main-title">Senrytech设备配件全收录</h2>
+        <h2 class="accessory-main-title">Senrytech设备配件<br />全收录</h2>
 
         <!-- 纯黑色大卡片（参考样品板块卡片结构，高度更宽） -->
         <div class="accessory-big-card">

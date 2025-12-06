@@ -597,16 +597,15 @@
         min-width: fit-content; /* 确保按钮组宽度至少能容纳所有按钮 */
       }
 
-      /* 2.37 ================================== 核心：媒体查询适配（Mobile S - Tablet：≤768px） ================================== */
+      /* 2.37 ================================== 核心：媒体查询适配（按自定义断点） ================================== */
+      /* 1. Laptop及以上（1024px+：Laptop、Laptop L、4K）：隐藏汉堡，显示原有导航 */
       @media (min-width: 1024px) {
-        /* 隐藏汉堡按钮、侧边菜单、遮罩层 */
         .hamburger-btn,
         .sidebar-menu,
         .sidebar-overlay {
           display: none !important;
         }
 
-        /* 保留原有导航栏样式（无需修改） */
         .navbar {
           justify-content: center;
           gap: 2.4rem;
@@ -614,12 +613,12 @@
         }
         .navbar .nav-link,
         .navbar .dropdown-menu {
-          display: flex; /* 恢复原有显示 */
+          display: flex; /* 恢复原有导航显示 */
         }
       }
 
+      /* 2. Tablet到Laptop之间（769px~1023px）：显示汉堡，隐藏部分导航 */
       @media (min-width: 769px) and (max-width: 1023px) {
-        /* 同小屏幕逻辑，避免导航栏溢出 */
         .navbar .nav-link:not(.logo + a) {
           display: none;
         }
@@ -632,89 +631,158 @@
         }
       }
 
+      /* 3. Tablet及以下（≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡，隐藏原有导航 */
       @media (max-width: 768px) {
-        /* 1. 小屏幕隐藏原有导航链接和下拉菜单（保留） */
+        /* 基础逻辑：隐藏原有导航，显示汉堡 */
         .navbar .nav-link,
         .navbar .dropdown-menu {
           display: none;
         }
-
-        /* 2. 小屏幕显示汉堡按钮（保留，确保优先级） */
         .hamburger-btn {
-          display: block !important; /* 强制显示，避免被其他样式覆盖 */
+          display: block !important;
         }
 
-        /* 3. 核心：调整导航栏布局 - LOGO + 按钮组容器 左右分布 */
+        /* 导航栏布局：LOGO+按钮组左右分布 */
         .navbar {
-          justify-content: space-between; /* LOGO居左，按钮组容器居右 */
-          align-items: center; /* 垂直居中（新增，避免元素错位） */
-          gap: 0; /* 取消父容器间距，由按钮组内部控制 */
+          justify-content: space-between;
+          align-items: center;
+          gap: 0;
           padding: 0 1rem;
         }
 
-        /* 4. 按钮组容器：内部按钮+汉堡横向排列（关键修复！） */
+        /* 按钮组容器：按钮+汉堡横向排列 */
         .navbar-right {
-          display: flex; /* 内部元素横向排列 */
-          align-items: center; /* 垂直居中，避免按钮/汉堡高度不一 */
-          gap: 0.2rem; /* 3个元素之间的间距，可调整 */
+          display: flex;
+          align-items: center;
+          gap: 0.5rem; /* 基础间距，子断点再调整 */
         }
 
-        /* 5. 调整按钮尺寸，适配小屏幕（保留） */
+        /* 基础按钮尺寸 */
         .navbar .btn {
           padding: 0.3rem 0.8rem;
           font-size: 0.8rem;
         }
 
-        /* 6. 侧边栏宽度适配（保留） */
+        /* 基础侧边栏宽度 */
         .sidebar-menu {
           width: 70%;
         }
 
-        /* 7. 小屏（≤425px）优化（保留） */
-        @media (max-width: 425px) {
+        /* ========== Mobile L（376px ~ 425px）优化 ========== */
+        @media (min-width: 376px) and (max-width: 425px) {
           .submenu-product-card {
             width: calc((90% - 2rem) / 2);
           }
           .sidebar-menu {
-            width: 90%;
+            width: 85%; /* 适配大屏手机 */
           }
           .navbar-right {
-            gap: 0.15rem; /* 小屏进一步缩小间距 */
+            gap: 0.3rem; /* 缩小按钮间距 */
           }
         }
-        /* 7. 小屏（≤320px）优化（修复后） */
-        @media (max-width: 320px) {
+
+        /* ========== Mobile M（321px ~ 375px）优化 ========== */
+        @media (min-width: 321px) and (max-width: 375px) {
           .submenu-product-card {
-            /* 原有代码：两列布局宽度计算 */
-            width: calc((90% - 1.2rem) / 2);
+            width: calc((90% - 1.5rem) / 2);
           }
           .sidebar-menu {
-            width: 90%;
-          }
-          /* 新增1：给图片卡片的直接父容器加滚动（核心） */
-          .submenu-product-list {
-            /* 1. 固定高度：屏幕高度 - 顶部导航栏/标题/内边距的占用空间 */
-            /* （18rem是估算值，可根据实际调整：1rem=12px，18rem=216px，确保底部不超出屏幕） */
-            max-height: calc(100vh - 50rem);
-            /* 2. 内容超出时显示垂直滚动条 */
-            overflow-y: auto;
-            /* 3. 保留原有布局：横向排列+间距 */
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            /* 4. 给滚动条留一点点内边距，避免卡片贴边 */
-            padding-right: 0.5rem;
-          }
-          /* 新增2：确保图片容器的父级不遮挡滚动（兜底） */
-          .submenu-content-item {
-            display: block;
-            /* 取消可能的高度限制，让滚动容器能撑满剩余空间 */
-            max-height: none;
-            overflow: visible;
+            width: 90%; /* 更贴近屏幕 */
           }
           .navbar-right {
-            /* 原有代码：按钮间距 */
-            gap: 1.5rem;
+            gap: 0.2rem; /* 进一步缩小间距 */
+          }
+          .navbar .btn {
+            padding: 0.25rem 0.7rem; /* 按钮尺寸缩小 */
+            font-size: 0.75rem;
+          }
+        }
+
+        /* ========== Mobile S（≤320px）优化 ========== */
+        @media (max-width: 320px) {
+          /* 1. 修复产品卡片布局：窄屏改为2列（原3列挤压图片） */
+          .sidebar-menu.active .sidebar-submenu-content .submenu-product-card {
+            width: calc(
+              (100% - 0.5rem) / 2
+            ); /* 2列布局：总间距1.2rem，适配320px窄屏 */
+            min-width: 120px; /* 保底宽度，避免图片被无限挤压 */
+          }
+
+          /* 2. 修复图片显示：确保图片容器可见，优化尺寸 */
+          .sidebar-menu.active
+            .sidebar-submenu-content
+            .submenu-product-card
+            img {
+            height: 100px; /* 适配2列布局的图片高度，避免过高溢出 */
+            object-fit: contain; /* 替换cover：确保图片完整显示（避免裁剪导致“不显示”错觉） */
+            background-color: #f0f0f0; /* 保留加载占位，便于识别是否加载失败 */
+          }
+
+          /* 3. 修复滚动功能：修正滚动容器高度，开启垂直滚动 */
+          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+            /* 关键：计算合理高度（屏幕高度 - 顶部导航/边距，避免负高度） */
+            max-height: calc(
+              100vh - 25rem
+            ); /* 320px下1rem=12px，25rem=300px，剩余高度≈268px */
+            overflow-y: auto !important; /* 强制开启垂直滚动，优先级拉满 */
+            padding-right: 1rem; /* 给滚动条留空间，避免图片被挤压 */
+            gap: 1rem; /* 缩小间距，适配窄屏 */
+          }
+
+          /* 4. 确保产品内容容器正常显示（解决样式优先级冲突） */
+          .sidebar-menu-item.has-submenu.active
+            .sidebar-submenu-item.active
+            ~ .sidebar-submenu-content
+            .submenu-content-item.active {
+            display: block !important; /* 强制显示激活的产品内容，避免被隐藏 */
+            opacity: 1; /* 兜底：防止透明度异常导致“看不见” */
+          }
+
+          /* 5. 优化父容器滚动兼容性：避免父容器遮挡子容器滚动 */
+          .sidebar-submenu-content {
+            max-height: calc(
+              100vh - 20rem
+            ) !important; /* 父容器高度兜底（≈328px） */
+            overflow-y: hidden; /* 父容器不滚动，仅子容器（产品列表）滚动，避免双重滚动条 */
+          }
+          /* 2.22 侧边菜单容器（默认隐藏，右侧滑出） */
+          .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 85%; /* 小屏幕占85%宽度，Tablet占70% */
+          }
+          /* 2.25 侧边栏菜单链接（带箭头） */
+          .sidebar-menu-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem; /* 改rem：14px÷10=1.4rem，16px÷10=1.6rem（内边距缩放） */
+            color: #f5f5f7;
+            text-decoration: none;
+            font-size: 0.8rem; /* 改rem：15px÷10=1.5rem（字号缩放） */
+            border-radius: 1rem; /* 改rem：12px÷10=1.2rem（圆角缩放） */
+            transition: background-color 0.2s ease;
+          }
+          /* 2.28 移动端二级菜单的文字大小调整 */
+          .sidebar-submenu-link {
+            display: block;
+            padding: 0.6rem 0.8rem;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-radius: 0.8rem;
+            transition: background-color 0.2s ease;
+            position: relative;
+            padding-right: 2.4rem; /* 预留箭头空间 */
+          }
+          /* 2.31 三级菜单标题 */
+          .submenu-content-title {
+            font-size: 1rem;
+            color: #f5f5f7;
+            margin: 0 0 1.6rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           }
         }
       }
@@ -880,26 +948,26 @@
 
       /* ================================== BANNER模块媒体查询适配说明 ================================== */
       /* 1. 适配最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
-   - 对应全局html基准字号：8.53px（按320px屏幕÷375px基准屏×10px计算）
-   - 核心问题：屏幕过小，16:9比例下文字易贴顶，交互元素需进一步缩小 */
+         - 对应全局html基准字号：8.53px（按320px屏幕÷375px基准屏×10px计算）
+         - 核心问题：屏幕过小，16:9比例下文字易贴顶，交互元素需进一步缩小 */
       @media (max-width: 320px) {
         /* 文字容器：相比大屏进一步下移（18%），避免16:9小屏中文字贴顶部
-     - 小屏垂直空间紧张，18%的top值可让文字处于视觉中部偏上位置 */
+           - 小屏垂直空间紧张，18%的top值可让文字处于视觉中部偏上位置 */
         .banner-text {
           top: 18%; /* 16:9小屏专属：文字下移2%（对比Mobile M的16%），避免贴顶 */
           padding: 0 0.8rem; /* 左右留白0.8rem（≈6.8px），避免文字贴屏幕边缘 */
         }
 
         /* 主标题：控制大小以适配小屏，避免换行过多
-     - 注：此处0.6rem按8.53px基准计算≈5.1px，与注释“≈32.4px”明显不符，推测为笔误
-     - 正确值应为3.8rem（3.8rem×8.53px≈32.4px，匹配注释说明） */
+           - 注：此处0.6rem按8.53px基准计算≈5.1px，与注释“≈32.4px”明显不符，推测为笔误
+           - 正确值应为3.8rem（3.8rem×8.53px≈32.4px，匹配注释说明） */
         .banner-text h1 {
           font-size: 0.58rem; /* 原注释“≈32.4px”：需修正为3.8rem以符合计算逻辑 */
           margin-bottom: 0.21rem; /* 标题与描述间距1rem（≈8.5px），小屏紧凑布局 */
         }
 
         /* 描述文字：尺寸缩小，确保与标题层级清晰
-     - 1.4rem×8.53px≈11.9px，符合小屏文字可读性需求 */
+           - 1.4rem×8.53px≈11.9px，符合小屏文字可读性需求 */
         .banner-text p {
           font-size: 0.276rem; /* ≈11.9px：小屏描述文字适配尺寸 */
         }
@@ -930,7 +998,7 @@
         }
 
         /* 轮播箭头（左右控制键）：缩小整体尺寸，避免占满小屏侧边空间
-     - 宽高2rem（≈17px），字号1rem（≈8.5px），小屏交互元素适配大小 */
+           - 宽高2rem（≈17px），字号1rem（≈8.5px），小屏交互元素适配大小 */
         .carousel-control {
           width: 2rem; /* ≈17px：箭头宽度适配小屏 */
           height: 2rem; /* ≈17px：箭头高度与宽度一致，保持圆形 */
@@ -950,7 +1018,7 @@
         }
 
         /* 轮播指示器（圆点）：缩小尺寸，避免小屏中圆点过于突兀
-     - 0.5rem×8.53px≈4.3px：小屏圆点适配大小，保持视觉轻量化 */
+           - 0.5rem×8.53px≈4.3px：小屏圆点适配大小，保持视觉轻量化 */
         .banner-dot {
           width: 0.5rem; /* ≈4.3px：圆点宽度 */
           height: 0.5rem; /* ≈4.3px：圆点高度，保持圆形 */
@@ -958,33 +1026,33 @@
       }
 
       /* 2. 适配主流小屏手机（Mobile M：321px~375px，如iPhone 8/SE 2020）
-   - 对应全局html基准字号：10px（375px为移动端设计基准屏）
-   - 核心调整：屏幕比Mobile S稍大，文字位置上移，交互元素尺寸适度放大 */
+         - 对应全局html基准字号：10px（375px为移动端设计基准屏）
+         - 核心调整：屏幕比Mobile S稍大，文字位置上移，交互元素尺寸适度放大 */
       @media (min-width: 321px) and (max-width: 375px) {
         /* 文字容器：top值16%（比Mobile S的18%上移2%）
-     - 屏幕稍大，垂直空间略宽松，文字无需过度下移 */
+           - 屏幕稍大，垂直空间略宽松，文字无需过度下移 */
         .banner-text {
           top: 16%; /* 微调文字位置：比最小屏上移，避免文字偏下 */
         }
 
         /* 主标题：尺寸适配375px基准屏
-     - 注：此处1.3rem按10px基准计算=13px，与注释“40px”不符，推测为笔误
-     - 正确值应为4rem（4rem×10px=40px，匹配注释说明） */
+           - 注：此处1.3rem按10px基准计算=13px，与注释“40px”不符，推测为笔误
+           - 正确值应为4rem（4rem×10px=40px，匹配注释说明） */
         .banner-text h1 {
           font-size: 1.3rem; /* 原注释“40px”：需修正为4rem以符合计算逻辑 */
           margin-bottom: 1.2rem; /* 标题与描述间距1.2rem（12px），比小屏稍宽松 */
         }
 
         /* 描述文字：尺寸适配基准屏
-     - 注：此处0.5rem按10px基准计算=5px，与注释“16px”不符，推测为笔误
-     - 正确值应为1.6rem（1.6rem×10px=16px，匹配注释说明） */
+           - 注：此处0.5rem按10px基准计算=5px，与注释“16px”不符，推测为笔误
+           - 正确值应为1.6rem（1.6rem×10px=16px，匹配注释说明） */
         .banner-text p {
           font-size: 0.5rem; /* 原注释“16px”：需修正为1.6rem以符合计算逻辑 */
         }
 
         /* 箭头位置：调整左右边距
-     - 注：此处0.1rem×10px=1px，箭头贴屏幕边缘过近，建议修正为1rem（10px）
-     - 避免箭头与屏幕边缘无留白，提升视觉体验 */
+           - 注：此处0.1rem×10px=1px，箭头贴屏幕边缘过近，建议修正为1rem（10px）
+           - 避免箭头与屏幕边缘无留白，提升视觉体验 */
         .prev-btn,
         .next-btn {
           left: 0.1rem; /* 原注释“10px”：需修正为1rem以符合计算逻辑，避免贴边 */
@@ -993,51 +1061,51 @@
       }
 
       /* 3. 适配大屏手机（Mobile L：376px~425px，如iPhone 12/13 mini）
-   - 对应全局html基准字号：11.33px（425px÷375px基准屏×10px≈11.33px）
-   - 核心调整：屏幕接近平板，文字尺寸进一步放大，按钮间距优化 */
+         - 对应全局html基准字号：11.33px（425px÷375px基准屏×10px≈11.33px）
+         - 核心调整：屏幕接近平板，文字尺寸进一步放大，按钮间距优化 */
       @media (min-width: 376px) and (max-width: 425px) {
         /* 主标题：尺寸放大以适配大屏手机
-     - 注：此处1.3rem按11.33px基准计算≈14.7px，与注释“≈47.6px”不符，推测为笔误
-     - 正确值应为4.2rem（4.2rem×11.33px≈47.6px，匹配注释说明） */
+           - 注：此处1.3rem按11.33px基准计算≈14.7px，与注释“≈47.6px”不符，推测为笔误
+           - 正确值应为4.2rem（4.2rem×11.33px≈47.6px，匹配注释说明） */
         .banner-text h1 {
           font-size: 1.3rem; /* 原注释“≈47.6px”：需修正为4.2rem以符合计算逻辑 */
         }
 
         /* 描述文字：尺寸适配，与标题保持层级
-     - 注：此处0.5rem按11.33px基准计算≈5.7px，与注释“≈19.2px”不符，推测为笔误
-     - 正确值应为1.7rem（1.7rem×11.33px≈19.2px，匹配注释说明） */
+           - 注：此处0.5rem按11.33px基准计算≈5.7px，与注释“≈19.2px”不符，推测为笔误
+           - 正确值应为1.7rem（1.7rem×11.33px≈19.2px，匹配注释说明） */
         .banner-text p {
           font-size: 0.5rem; /* 原注释“≈19.2px”：需修正为1.7rem以符合计算逻辑 */
         }
 
         /* 按钮组间距：缩小gap以适配大屏手机宽度
-     - 0.8rem×11.33px≈9.1px：避免两个按钮在大屏手机上换行，保持横向排列 */
+           - 0.8rem×11.33px≈9.1px：避免两个按钮在大屏手机上换行，保持横向排列 */
         .banner-btns {
           gap: 0.8rem; /* ≈9.1px：优化按钮间距，防止小屏换行 */
         }
       }
 
       /* 4. 适配平板屏幕（Tablet：426px~768px，如iPad mini/iPad Air）
-   - 对应全局html基准字号：14px（平板屏视觉需求，字号比手机大）
-   - 核心调整：文字尺寸大幅放大，箭头尺寸适配平板触控需求 */
+         - 对应全局html基准字号：14px（平板屏视觉需求，字号比手机大）
+         - 核心调整：文字尺寸大幅放大，箭头尺寸适配平板触控需求 */
       @media (min-width: 426px) and (max-width: 768px) {
         /* 主标题：尺寸适配平板，提升视觉冲击力
-     - 注：此处2rem按14px基准计算=28px，与注释“63px”不符，推测为笔误
-     - 正确值应为4.5rem（4.5rem×14px=63px，匹配注释说明） */
+           - 注：此处2rem按14px基准计算=28px，与注释“63px”不符，推测为笔误
+           - 正确值应为4.5rem（4.5rem×14px=63px，匹配注释说明） */
         .banner-text h1 {
           font-size: 2rem; /* 原注释“63px”：需修正为4.5rem以符合计算逻辑 */
         }
 
         /* 描述文字：尺寸适配平板，确保远距离可读性
-     - 注：此处0.8rem按14px基准计算=11.2px，与注释“25.2px”不符，推测为笔误
-     - 正确值应为1.8rem（1.8rem×14px=25.2px，匹配注释说明） */
+           - 注：此处0.8rem按14px基准计算=11.2px，与注释“25.2px”不符，推测为笔误
+           - 正确值应为1.8rem（1.8rem×14px=25.2px，匹配注释说明） */
         .banner-text p {
           font-size: 0.8rem; /* 原注释“25.2px”：需修正为1.8rem以符合计算逻辑 */
         }
 
         /* 轮播箭头：放大尺寸，适配平板触控习惯（手指比手机粗，需更大点击区域）
-     - 注：此处1.86rem按14px基准计算≈26px，与注释“39.2px”不符，推测为笔误
-     - 正确值应为2.8rem（2.8rem×14px=39.2px，匹配注释说明） */
+           - 注：此处1.86rem按14px基准计算≈26px，与注释“39.2px”不符，推测为笔误
+           - 正确值应为2.8rem（2.8rem×14px=39.2px，匹配注释说明） */
         .carousel-control {
           width: 1.86rem; /* 原注释“39.2px”：需修正为2.8rem以符合计算逻辑 */
           height: 1.86rem; /* 同上，确保箭头为圆形 */
@@ -1045,57 +1113,57 @@
       }
 
       /* 5. 适配笔记本屏幕（Laptop：769px~1024px，如13寸MacBook/14寸Windows本）
-   - 对应全局html基准字号：15px（笔记本屏视觉舒适字号）
-   - 核心调整：文字尺寸接近桌面端，按钮内边距优化以提升点击体验 */
+         - 对应全局html基准字号：15px（笔记本屏视觉舒适字号）
+         - 核心调整：文字尺寸接近桌面端，按钮内边距优化以提升点击体验 */
       @media (min-width: 769px) and (max-width: 1024px) {
         /* 主标题：尺寸适配笔记本屏，平衡视觉与可读性
-     - 3rem×15px≈45px：原注释“≈64.5px”推测为笔误（正确应为4.3rem，4.3×15≈64.5）
-     - 若需匹配64.5px，建议调整为4.3rem */
+           - 3rem×15px≈45px：原注释“≈64.5px”推测为笔误（正确应为4.3rem，4.3×15≈64.5）
+           - 若需匹配64.5px，建议调整为4.3rem */
         .banner-text h1 {
           font-size: 3rem; /* ≈45px（原注释“≈64.5px”：需修正为4.3rem） */
         }
 
         /* 描述文字：尺寸适配，与标题层级协调
-     - 1.2rem×15px=18px：原注释“≈26.25px”推测为笔误（正确应为1.75rem，1.75×15≈26.25）
-     - 若需匹配26.25px，建议调整为1.75rem */
+           - 1.2rem×15px=18px：原注释“≈26.25px”推测为笔误（正确应为1.75rem，1.75×15≈26.25）
+           - 若需匹配26.25px，建议调整为1.75rem */
         .banner-text p {
           font-size: 1.2rem; /* ≈18px（原注释“≈26.25px”：需修正为1.75rem） */
         }
 
         /* 按钮内边距：适度放大，适配笔记本鼠标点击习惯（无需像手机那样紧凑）
-     - 上下0.55rem≈8.25px，左右1.6rem≈24px：按钮尺寸适中，点击区域清晰 */
+           - 上下0.55rem≈8.25px，左右1.6rem≈24px：按钮尺寸适中，点击区域清晰 */
         .banner-btn {
           padding: 0.55rem 1.6rem; /* ≈8.25px/24px：优化按钮点击区域 */
         }
       }
 
       /* 6. 适配大屏笔记本+2K屏（Laptop L+2K：1025px~2559px，如15寸MacBook Pro/2K显示器）
-   - 对应全局html基准字号：16px（桌面端标准舒适字号）
-   - 核心逻辑：此区间为BANNER默认设计的目标区间（16:9比例下视觉最佳）
-   - 无需额外调整：默认样式已适配该区间，保持视觉统一性 */
+         - 对应全局html基准字号：16px（桌面端标准舒适字号）
+         - 核心逻辑：此区间为BANNER默认设计的目标区间（16:9比例下视觉最佳）
+         - 无需额外调整：默认样式已适配该区间，保持视觉统一性 */
       @media (min-width: 1025px) and (max-width: 2559px) {
         /* 与默认样式一致，无需调整
-     - 原因：此区间屏幕尺寸、分辨率适中，BANNER默认16:9比例+16px基准字号已适配 */
+           - 原因：此区间屏幕尺寸、分辨率适中，BANNER默认16:9比例+16px基准字号已适配 */
       }
 
       /* 7. 适配4K超高清屏（≥2560px，如32寸4K显示器/5K iMac）
-   - 对应全局html基准字号：16px（桌面端字号上限，避免文字过大）
-   - 核心调整：放大文字、箭头尺寸，避免4K屏中元素过小导致视觉模糊/点击困难 */
+         - 对应全局html基准字号：16px（桌面端字号上限，避免文字过大）
+         - 核心调整：放大文字、箭头尺寸，避免4K屏中元素过小导致视觉模糊/点击困难 */
       @media (min-width: 2560px) {
         /* 主标题：大幅放大，适配4K屏远距离观看（如客厅显示器）
-     - 4.5rem×16px=72px：大尺寸标题提升视觉冲击力，避免在4K屏中显得过小 */
+           - 4.5rem×16px=72px：大尺寸标题提升视觉冲击力，避免在4K屏中显得过小 */
         .banner-text h1 {
           font-size: 4.5rem; /* 72px：4K屏标题适配尺寸，提升视觉权重 */
         }
 
         /* 描述文字：同步放大，与标题保持层级，确保4K屏可读性
-     - 1.8rem×16px=28.8px：描述文字尺寸适配，避免与标题差距过大 */
+           - 1.8rem×16px=28.8px：描述文字尺寸适配，避免与标题差距过大 */
         .banner-text p {
           font-size: 1.8rem; /* 28.8px：4K屏描述文字适配尺寸 */
         }
 
         /* 轮播箭头：大幅放大，适配4K屏触控/鼠标点击（屏幕大，需更大交互元素）
-     - 宽高3rem×16px=48px，字号1.5rem×16px=24px：箭头尺寸足够大，避免点击困难 */
+           - 宽高3rem×16px=48px，字号1.5rem×16px=24px：箭头尺寸足够大，避免点击困难 */
         .carousel-control {
           width: 3rem; /* 48px：4K屏箭头宽度，提升点击区域 */
           height: 3rem; /* 48px：箭头高度与宽度一致，保持圆形 */
@@ -1105,15 +1173,15 @@
 
       /* ================================== 媒体查询适配注意事项 ================================== */
       /* 1. 笔误修正：上述代码中多处rem值与注释的px值不匹配（如Mobile M的h1=1.3rem≠40px）
-   - 建议按“注释px值÷对应html基准字号”反推正确rem值，避免文字/元素尺寸异常
-   - 例：Mobile M（html=10px）需h1=40px → 正确rem值=40px÷10px=4rem
+         - 建议按“注释px值÷对应html基准字号”反推正确rem值，避免文字/元素尺寸异常
+         - 例：Mobile M（html=10px）需h1=40px → 正确rem值=40px÷10px=4rem
 
-/* 2. 视觉统一性：所有调整均以“16:9比例”为核心，未修改BANNER宽高比
-   - 若需进一步缩小1920×1080屏的BANNER尺寸，可在“Laptop L+2K”区间添加max-height限制
-   - 例：在@media (min-width: 1025px)中添加.banner-carousel { max-height: 600px; margin: 0 auto; }
+      /* 2. 视觉统一性：所有调整均以“16:9比例”为核心，未修改BANNER宽高比
+         - 若需进一步缩小1920×1080屏的BANNER尺寸，可在“Laptop L+2K”区间添加max-height限制
+         - 例：在@media (min-width: 1025px)中添加.banner-carousel { max-height: 600px; margin: 0 auto; }
 
-/* 3. 兼容性：所有rem值基于全局html基准字号计算，需确保全局媒体查询（html font-size）正常生效
-   - 若全局html字号未按设计设置，会导致此处rem换算后的px值偏差，需优先确保全局基准正确 */
+      /* 3. 兼容性：所有rem值基于全局html基准字号计算，需确保全局媒体查询（html font-size）正常生效
+         - 若全局html字号未按设计设置，会导致此处rem换算后的px值偏差，需优先确保全局基准正确 */
 
       /* ================================== 四、全系列产品板块 ================================== */
       /* 作用：横向滚动产品展示，含分类切换、箭头控制 */
@@ -2397,10 +2465,10 @@
           margin-bottom: 1rem; /* 原3rem→1rem（≈8.5px），缩小间距 */
         }
         .advantage-card {
-          width: calc(100% - 2rem); /* 原21.25rem→自适应屏幕（减去左右留白） */
+          width: 20rem; /* 原21.25rem→自适应屏幕（减去左右留白） */
         }
         .advantage-card img {
-          height: 10rem; /* 原17.5rem→10rem（≈85.3px），小屏图片高度适配 */
+          height: 20rem; /* 原17.5rem→10rem（≈85.3px），小屏图片高度适配 */
           border-radius: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小圆角 */
         }
         .advantage-card-subtitle {
@@ -2731,150 +2799,250 @@
         background-color: #0066cc; /* hover加深，统一交互反馈 */
       }
 
-      /* —— 8.10 响应式适配（保持图片统一+顶部错落逻辑，按屏幕区间优化） —— */
-
-      /* 1. 大屏适配（1025px ~ 1400px：Laptop L+2K区间，html font-size=16px） */
-      @media (max-width: 1400px) {
-        .accessory-image-grid {
-          flex-wrap: wrap; /* 换行显示，避免横向溢出 */
-          justify-content: center; /* 换行后保持居中，适配偏右布局 */
-          /* 原20px → 基于16px基准：20/16=1.25rem */
-          padding-left: 1.25rem;
-        }
-        /* 换行后保留错落：第4个（low-item）仍低顶部，第5个（high-item）仍高顶部 */
-        .accessory-image-item:nth-child(4) {
-          margin-top: var(--low-item-mt, 3.75rem);
-        }
-        .accessory-image-item:nth-child(5) {
-          margin-top: 0;
-        }
-        /* 适配换行高度：原800px → 800/16=50rem */
-        .accessory-big-card {
-          min-height: 50rem;
-        }
-      }
-
-      /* 2. 平板适配（426px ~ 768px：Tablet区间，html font-size=14px） */
-      @media (max-width: 768px) {
-        .accessory-image-grid {
-          justify-content: center; /* 移动端居中布局，取消偏右 */
-          /* 原16px → 基于14px基准：16/14≈1.14rem */
-          gap: 1.14rem;
-        }
-        /* 移动端简化：图片尺寸缩小，保持比例 */
-        .accessory-image-item {
-          /* 原180px → 基于14px基准：180/14≈12.86rem */
-          max-width: 12.86rem;
-          /* 原320px → 基于14px基准：320/14≈22.86rem */
-          height: 22.86rem;
-        }
-        .accessory-image-item img {
-          height: 22.86rem; /* 图片高度同步缩小 */
-        }
-        /* 移动端高度差减小：避免过于分散，原30px → 30/14≈2.14rem */
-        .accessory-image-item.low-item {
-          margin-top: var(--low-item-mt-mobile, 2.14rem);
-        }
-        /* 标题适配：原48px → 基于14px基准：48/14≈3.43rem */
-        .accessory-main-title {
-          font-size: 3.43rem;
-        }
-        /* 移动端取消偏右：居中布局更友好 */
+      /* ================================== 响应式适配：按指定顺序编写（从大到小确保优先级） ================================== */
+      /* 1. 4K超高清屏（≥2560px，html font-size=16px）：放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
         .accessory-container {
-          margin: 0 auto;
-        }
-        /* 适配移动端高度：原700px → 700/14=50rem */
-        .accessory-big-card {
-          min-height: 50rem;
-          /* 内边距缩小：原40px → 40/14≈2.86rem */
-          padding: 2.86rem 2.86rem;
-        }
-      }
-
-      /* 3. 小屏手机适配（≤425px：Mobile S/M/L区间，按基准字号优化） */
-      @media (max-width: 425px) {
-        .accessory-container {
-          padding: 0 0.8rem; /* 原16px → 基于11.33px（Mobile L）：16/11.33≈1.41rem，此处用0.8rem更紧凑 */
+          max-width: 112.5rem; /* 1800px/16=112.5rem，加宽容器 */
         }
         .accessory-main-title {
-          /* 原36px → 基于11.33px基准：36/11.33≈3.18rem */
-          font-size: 3.18rem;
-          margin-bottom: 2rem; /* 缩小间距，适配小屏 */
-        }
-        .accessory-image-grid {
-          gap: 1rem; /* 进一步减小间距，避免换行后过散 */
-        }
-        .accessory-image-item {
-          /* 原150px → 基于11.33px基准：150/11.33≈13.24rem（小屏图片宽度适配） */
-          max-width: 13.24rem;
-          /* 原280px → 基于11.33px基准：280/11.33≈24.72rem（小屏图片高度适配） */
-          height: 24.72rem;
-        }
-        .accessory-image-item img {
-          height: 24.72rem;
-        }
-        /* 小屏高度差进一步减小：原20px → 20/11.33≈1.77rem */
-        .accessory-image-item.low-item {
-          margin-top: var(--low-item-mt-mobile, 1.77rem);
+          font-size: 4.5rem; /* 72px/16=4.5rem，标题放大 */
+          margin-bottom: 3.5rem; /* 56px/16=3.5rem，间距放大 */
         }
         .accessory-big-card {
-          min-height: 45rem; /* 进一步压缩高度，适配小屏 */
-          padding: 2rem 2rem; /* 内边距进一步缩小 */
+          min-height: 37.5rem; /* 600px/16=37.5rem，卡片加高 */
+          padding: 3rem 3rem; /* 48px/16=3rem，内边距放大 */
+          border-radius: 1.5rem; /* 24px/16=1.5rem，圆角放大 */
+        }
+        .accessory-image-grid {
+          max-width: 93.75rem; /* 1500px/16=93.75rem，图片组加宽 */
+          gap: 1.5rem; /* 24px/16=1.5rem，间距放大 */
+        }
+        .accessory-image-item {
+          max-width: 16.25rem; /* 260px/16=16.25rem，图片加宽 */
+          height: 30rem; /* 480px/16=30rem，图片加高 */
+        }
+        .accessory-image-item img {
+          height: 30rem; /* 图片高度同步 */
+          border-radius: 1.5rem; /* 圆角同步放大 */
+        }
+        .accessory-image-item.low-item {
+          margin-top: var(
+            --low-item-mt,
+            4.5rem
+          ); /* 72px/16=4.5rem，错落高度差放大 */
+        }
+        .accessory-image-text {
+          font-size: 1.2rem; /* 19.2px/16=1.2rem，文字放大 */
+          top: 1.5rem; /* 24px/16=1.5rem，位置下移适配放大图片 */
         }
         .accessory-more-btn {
-          /* 按钮尺寸缩小：原8px 20px → 基于11.33px：8/11.33≈0.71rem，20/11.33≈1.77rem */
-          padding: 0.71rem 1.77rem;
-          font-size: 0.9rem; /* 文字缩小，适配按钮尺寸 */
-          bottom: 1.5rem;
+          padding: 0.6rem 1.8rem; /* 9.6px/16=0.6rem，28.8px/16=1.8rem，按钮放大 */
+          font-size: 1.2rem; /* 19.2px/16=1.2rem，文字放大 */
+          bottom: 2.25rem; /* 36px/16=2.25rem，位置下移 */
+          right: 2.25rem;
+        }
+      }
+
+      /* 2. Laptop L（1025px~1440px，html font-size=16px）：微调桌面布局，避免溢出 */
+      @media (max-width: 1440px) and (min-width: 1025px) {
+        .accessory-image-grid {
+          max-width: 75rem; /* 1200px/16=75rem，图片组缩窄避免超宽 */
+          gap: 1.125rem; /* 18px/16=1.125rem，间距微调 */
+        }
+        .accessory-image-item {
+          max-width: 12.5rem; /* 200px/16=12.5rem，图片缩窄 */
+          height: 22.5rem; /* 360px/16=22.5rem，图片缩窄 */
+        }
+        .accessory-image-item img {
+          height: 22.5rem; /* 高度同步 */
+        }
+        .accessory-big-card {
+          min-height: 28.75rem; /* 460px/16=28.75rem，卡片高度微调 */
+        }
+      }
+
+      /* 3. Laptop（769px~1024px，html font-size=15px）：保留偏右布局，优化间距 */
+      @media (max-width: 1024px) and (min-width: 769px) {
+        .accessory-container {
+          margin: 0 auto 0 12%; /* 偏右比例从15%减到12%，适配笔记本宽度 */
+          max-width: 90rem; /* 1440px/15=90rem（基于15px基准） */
+        }
+        .accessory-main-title {
+          font-size: 3.8rem; /* 57px/15=3.8rem，标题微缩 */
+          margin-bottom: 2.8rem; /* 42px/15=2.8rem，间距微缩 */
+        }
+        .accessory-image-grid {
+          max-width: 70rem; /* 1050px/15=70rem，图片组缩窄 */
+          gap: 1.1rem; /* 16.5px/15=1.1rem，间距微缩 */
+        }
+        .accessory-image-item {
+          max-width: 12rem; /* 180px/15=12rem，图片缩窄 */
+          height: 22rem; /* 330px/15=22rem，图片缩窄 */
+        }
+        .accessory-image-item img {
+          height: 22rem; /* 高度同步 */
+        }
+        .accessory-image-item.low-item {
+          margin-top: var(
+            --low-item-mt,
+            3.2rem
+          ); /* 48px/15=3.2rem，错落高度差微缩 */
+        }
+      }
+
+      /* 4. Tablet（426px~768px，html font-size=14px）：取消偏右，改为居中布局 */
+      @media (max-width: 768px) and (min-width: 426px) {
+        .accessory-container {
+          margin: 0 auto; /* 取消偏右，改为居中 */
+          padding: 0 1rem; /* 14px/14=1rem，内边距缩窄 */
+          max-width: 80rem; /* 1120px/14=80rem（基于14px基准） */
+        }
+        .accessory-main-title {
+          font-size: 3.43rem; /* 48px/14≈3.43rem，标题缩窄 */
+          margin-bottom: 2.5rem; /* 35px/14=2.5rem，间距缩窄 */
+        }
+        .accessory-image-grid {
+          gap: 1.14rem; /* 16px/14≈1.14rem，间距适配平板 */
+        }
+        .accessory-image-item {
+          max-width: 12.86rem; /* 180px/14≈12.86rem，图片缩窄 */
+          height: 22.86rem; /* 320px/14≈22.86rem，图片缩窄 */
+        }
+        .accessory-image-item img {
+          height: 22.86rem; /* 高度同步 */
+        }
+        .accessory-image-item.low-item {
+          margin-top: var(
+            --low-item-mt-mobile,
+            2.14rem
+          ); /* 30px/14≈2.14rem，错落高度差减小 */
+        }
+        .accessory-big-card {
+          min-height: 50rem; /* 700px/14=50rem，卡片加高（适配换行） */
+          padding: 2.86rem 2.86rem; /* 40px/14≈2.86rem，内边距适配 */
+        }
+      }
+
+      /* 5. Mobile L（376px~425px，html font-size=11.33px）：紧凑布局，保留错落 */
+      @media (max-width: 425px) and (min-width: 376px) {
+        .accessory-container {
+          padding: 0 0.9rem; /* 10.2px/11.33≈0.9rem，内边距更紧凑 */
+        }
+        .accessory-main-title {
+          font-size: 3.18rem; /* 36px/11.33≈3.18rem，标题缩窄 */
+          margin-bottom: 2rem; /* 22.7px/11.33≈2rem，间距紧凑 */
+        }
+        .accessory-image-grid {
+          gap: 1rem; /* 11.33px/11.33=1rem，间距紧凑 */
+        }
+        .accessory-image-item {
+          max-width: 13.24rem; /* 150px/11.33≈13.24rem，图片适配大屏手机 */
+          height: 24.72rem; /* 280px/11.33≈24.72rem，图片适配 */
+        }
+        .accessory-image-item img {
+          height: 24.72rem; /* 高度同步 */
+        }
+        .accessory-image-item.low-item {
+          margin-top: var(
+            --low-item-mt-mobile,
+            1.77rem
+          ); /* 20px/11.33≈1.77rem，错落高度差更小 */
+        }
+        .accessory-big-card {
+          min-height: 45rem; /* 509.85px/11.33≈45rem，卡片高度压缩 */
+          padding: 2rem 2rem; /* 22.7px/11.33≈2rem，内边距紧凑 */
+        }
+        .accessory-more-btn {
+          padding: 0.71rem 1.77rem; /* 8px/11.33≈0.71rem，20px/11.33≈1.77rem，按钮缩窄 */
+          font-size: 0.9rem; /* 10.2px/11.33≈0.9rem，文字缩窄 */
+          bottom: 1.5rem; /* 17px/11.33≈1.5rem，位置上移 */
           right: 1.5rem;
         }
       }
 
-      /* 4. 4K超高清屏适配（≥2560px：html font-size=16px，放大元素避免过小） */
-      @media (min-width: 2560px) {
+      /* 6. Mobile M（321px~375px，html font-size=10px）：2列布局，进一步紧凑 */
+      @media (max-width: 375px) and (min-width: 321px) {
         .accessory-container {
-          /* 原1800px → 基于16px基准：1800/16=112.5rem（4K屏最大宽度适配） */
-          max-width: 112.5rem;
+          padding: 0 0.8rem; /* 8px/10=0.8rem，内边距极紧凑 */
         }
         .accessory-main-title {
-          /* 原72px → 基于16px基准：72/16=4.5rem（4K屏标题放大，提升视觉冲击） */
-          font-size: 4.5rem;
-          margin-bottom: 3.5rem; /* 放大间距，适配4K屏比例 */
-        }
-        .accessory-big-card {
-          /* 原600px → 基于16px基准：600/16=37.5rem（4K屏卡片高度放大） */
-          min-height: 37.5rem;
-          padding: 3rem 3rem; /* 内边距放大，避免过小 */
-          border-radius: 1.5rem; /* 圆角放大，适配卡片尺寸 */
+          font-size: 3rem; /* 30px/10=3rem，标题缩窄 */
+          margin-bottom: 1.8rem; /* 18px/10=1.8rem，间距极紧凑 */
         }
         .accessory-image-grid {
-          /* 原1500px → 基于16px基准：1500/16=93.75rem（4K屏图片组宽度放大） */
-          max-width: 93.75rem;
-          gap: 1.5rem; /* 间距放大，适配4K屏 */
+          gap: 0.9rem; /* 9px/10=0.9rem，间距极紧凑 */
+          flex-wrap: wrap; /* 改为2列布局，避免横向溢出 */
         }
         .accessory-image-item {
-          /* 原260px → 基于16px基准：260/16=16.25rem（4K屏图片宽度放大） */
-          max-width: 16.25rem;
-          /* 原480px → 基于16px基准：480/16=30rem（4K屏图片高度放大） */
-          height: 30rem;
+          max-width: 14rem; /* 140px/10=14rem，2列适配375px屏 */
+          height: 22rem; /* 220px/10=22rem，图片缩窄 */
         }
         .accessory-image-item img {
-          height: 30rem; /* 图片高度同步放大 */
-          border-radius: 1.5rem; /* 图片圆角放大 */
+          height: 22rem; /* 高度同步 */
         }
-        /* 4K屏错落高度差放大：原72px → 72/16=4.5rem */
+        /* 2列错落优化：第2/4号仍低顶部，第5号换行后高顶部 */
+        .accessory-image-item:nth-child(5) {
+          margin-top: 0; /* 第5号换行后恢复高顶部 */
+        }
         .accessory-image-item.low-item {
-          margin-top: var(--low-item-mt, 4.5rem);
+          margin-top: var(
+            --low-item-mt-mobile,
+            1.5rem
+          ); /* 15px/10=1.5rem，错落高度差最小 */
         }
-        .accessory-image-text {
-          font-size: 1.2rem; /* 文字放大，提升4K屏可读性 */
-          top: 1.5rem; /* 文字位置下移，适配放大后的图片 */
+        .accessory-big-card {
+          min-height: 65rem; /* 650px/10=65rem，卡片加高（适配2列换行） */
+          padding: 1.8rem 1.8rem; /* 18px/10=1.8rem，内边距极紧凑 */
         }
         .accessory-more-btn {
-          padding: 0.6rem 1.8rem; /* 按钮尺寸放大 */
-          font-size: 1.2rem; /* 文字放大 */
-          bottom: 2.25rem;
-          right: 2.25rem;
+          padding: 0.6rem 1.5rem; /* 6px/10=0.6rem，15px/10=1.5rem，按钮极缩窄 */
+          font-size: 0.85rem; /* 8.5px/10=0.85rem，文字极缩窄 */
+        }
+      }
+
+      /* 7. Mobile S（≤320px，html font-size=8.53px）：1列布局，极简适配 */
+      @media (max-width: 320px) {
+        .accessory-container {
+          padding: 0 0.7rem; /* 5.97px/8.53≈0.7rem，内边距极致紧凑 */
+          margin: 0 auto;
+        }
+        .accessory-main-title {
+          font-size: 2rem; /* 23.88px/8.53≈2.8rem，标题极致缩窄 */
+          margin-bottom: 1.6rem; /* 13.65px/8.53≈1.6rem，间距极致紧凑 */
+          line-height: 1.2; /* 避免换行过多 */
+        }
+        .accessory-image-grid {
+          gap: 0.8rem; /* 6.82px/8.53≈0.8rem，间距极致紧凑 */
+          flex-wrap: wrap; /* 1列布局，完全避免横向溢出 */
+        }
+        .accessory-image-item {
+          max-width: 100%; /* 1列占满宽度 */
+          height: 20rem; /* 170.6px/8.53≈20rem，图片极致缩窄 */
+        }
+        .accessory-image-item img {
+          height: 20rem; /* 高度同步 */
+        }
+        /* 1列错落优化：仅保留轻微高度差，避免过于分散 */
+        .accessory-image-item.low-item {
+          margin-top: var(
+            --low-item-mt-mobile,
+            1.2rem
+          ); /* 10.24px/8.53≈1.2rem，错落高度差极致小 */
+        }
+        .accessory-big-card {
+          min-height: 85rem; /* 725.05px/8.53≈85rem，卡片加高（适配1列换行） */
+          padding: 1.5rem 1.5rem; /* 12.8px/8.53≈1.5rem，内边距极致紧凑 */
+        }
+        .accessory-image-text {
+          font-size: 0.9rem; /* 7.68px/8.53≈0.9rem，文字极致缩窄 */
+          top: 1rem; /* 8.53px/8.53=1rem，位置上移 */
+        }
+        .accessory-more-btn {
+          padding: 0.55rem 1.4rem; /* 4.69px/8.53≈0.55rem，11.94px/8.53≈1.4rem，按钮极致缩窄 */
+          font-size: 0.8rem; /* 6.82px/8.53≈0.8rem，文字极致缩窄 */
+          bottom: 1.2rem; /* 10.24px/8.53≈1.2rem，位置上移 */
+          right: 1.2rem;
         }
       }
 

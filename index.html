@@ -1355,7 +1355,7 @@
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem（小屏紧凑留白） */
         }
         .product-main-title {
-          font-size: 2.2rem; /* 原4rem → 缩小至2.2rem（≈18.8px），避免小屏换行 */
+          font-size: 2rem; /* 原4rem → 缩小至2.2rem（≈18.8px），避免小屏换行 */
           margin-bottom: 1rem; /* 原1.5rem → 1rem（缩小间距） */
         }
         .product-subtitle-bar {
@@ -1367,9 +1367,7 @@
           padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .product-item {
-          width: calc(
-            100% - 2rem
-          ); /* 原21.25rem → 自适应屏幕宽度（减去左右留白） */
+          width: 13rem;
         }
         .product-item img {
           height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
@@ -1381,7 +1379,7 @@
           font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），箭头图标缩小 */
         }
         .product-nav-btn.prev-btn {
-          left: calc(85% + 1rem); /* 原2.5rem → 1rem（缩小偏移，避免贴边） */
+          left: calc(75% + 0rem); /* 原2.5rem → 1rem（缩小偏移，避免贴边） */
         }
         .product-nav-btn.next-btn {
           right: calc(5% + 0.8rem); /* 原1.25rem → 0.8rem（缩小偏移） */
@@ -1754,17 +1752,17 @@
           padding: 0 0.8rem; /* 0.8rem≈6.8px，紧凑留白 */
         }
         .benefit-main-title {
-          font-size: 2.2rem; /* 2.2rem≈18.8px，避免换行 */
+          font-size: 2rem; /* 2.2rem≈18.8px，避免换行 */
           margin-bottom: 1rem; /* 1rem≈8.5px，缩小间距 */
         }
         .benefit-intro {
           margin-bottom: 2rem; /* 2rem≈17px，缩小间距 */
         }
         .benefit-card {
-          width: calc(100% - 2rem); /* 2rem≈17px，自适应屏幕 */
+          width: calc(30% - 2rem); /* 2rem≈17px，自适应屏幕 */
         }
         .benefit-card img {
-          height: 18rem; /* 18rem≈153.5px，小屏图片高度适配 */
+          height: 20rem; /* 18rem≈153.5px，小屏图片高度适配 */
           border-radius: 1rem; /* 1rem≈8.5px，缩小圆角 */
         }
         .benefit-nav-btn {
@@ -1773,7 +1771,7 @@
           font-size: 1rem; /* 1rem≈8.5px，缩小图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(85% + 1rem); /* 1rem≈8.5px，调整位置 */
+          left: calc(75% + 0rem); /* 1rem≈8.5px，调整位置 */
         }
         .benefit-nav-btn.next-btn {
           right: calc(5% + 0.8rem); /* 0.8rem≈6.8px，调整位置 */
@@ -1964,8 +1962,8 @@
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
         }
         .sample-main-title {
-          font-size: 2.2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
-          margin-bottom: 1.5rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
         }
         .sample-subtitle-bar {
           margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
@@ -1976,19 +1974,20 @@
           padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .sample-big-card {
-          flex-direction: column; /* 改为垂直布局（小屏横向空间不足） */
+          display: flex; /* 改为垂直布局（小屏横向空间不足） */
           gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
           padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
           border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
         }
         .sample-thickness-container {
-          width: 100%; /* 占满大卡片宽度，垂直布局更合理 */
-          padding: 0.5rem 0; /* 原0.625rem → 0.5rem，缩小内边距 */
-        }
-        .sample-thickness-item {
-          width: 60%; /* 原80% → 60%，小屏中项更紧凑 */
-          padding: 1rem 0.8rem; /* 原1.25rem 1rem → 缩小内边距 */
-          border-radius: 2rem; /* 原2.5rem → 2rem（≈17px），适配小屏圆角 */
+          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
+          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
+          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
+          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
         }
         .sample-image-container {
           padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
@@ -1996,10 +1995,6 @@
         .sample-image-wrap {
           min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
           border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
-        }
-        .sample-image-desc {
-          font-size: 0.9rem; /* 原1.125rem → 0.9rem（≈7.7px），小屏文字适配 */
-          margin-top: 1rem; /* 原1.25rem → 1rem，缩小间距 */
         }
       }
 
@@ -2398,7 +2393,7 @@
           padding: 0 0.8rem; /* 原1.25rem→0.8rem，紧凑留白 */
         }
         .advantage-main-title {
-          font-size: 2.2rem; /* 原4rem→2.2rem（≈18.8px），避免小屏换行 */
+          font-size: 2rem; /* 原4rem→2.2rem（≈18.8px），避免小屏换行 */
           margin-bottom: 1rem; /* 原3rem→1rem（≈8.5px），缩小间距 */
         }
         .advantage-card {
@@ -2426,7 +2421,7 @@
           font-size: 1rem; /* 原1.25rem→1rem（≈8.5px），缩小图标 */
         }
         .advantage-nav-btn.prev-btn {
-          left: calc(85% + 1rem); /* 原2.5rem→1rem（≈8.5px），调整箭头位置 */
+          left: calc(75% + 0rem); /* 原2.5rem→1rem（≈8.5px），调整箭头位置 */
         }
         .advantage-nav-btn.next-btn {
           right: calc(

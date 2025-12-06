@@ -682,16 +682,39 @@
             gap: 0.15rem; /* 小屏进一步缩小间距 */
           }
         }
-        /* 7. 小屏（≤320px）优化（保留） */
+        /* 7. 小屏（≤320px）优化（修复后） */
         @media (max-width: 320px) {
           .submenu-product-card {
-            width: calc((90% - 2rem) / 2);
+            /* 原有代码：两列布局宽度计算 */
+            width: calc((90% - 1.2rem) / 2);
           }
           .sidebar-menu {
             width: 90%;
           }
+          /* 新增1：给图片卡片的直接父容器加滚动（核心） */
+          .submenu-product-list {
+            /* 1. 固定高度：屏幕高度 - 顶部导航栏/标题/内边距的占用空间 */
+            /* （18rem是估算值，可根据实际调整：1rem=12px，18rem=216px，确保底部不超出屏幕） */
+            max-height: calc(100vh - 50rem);
+            /* 2. 内容超出时显示垂直滚动条 */
+            overflow-y: auto;
+            /* 3. 保留原有布局：横向排列+间距 */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            /* 4. 给滚动条留一点点内边距，避免卡片贴边 */
+            padding-right: 0.5rem;
+          }
+          /* 新增2：确保图片容器的父级不遮挡滚动（兜底） */
+          .submenu-content-item {
+            display: block;
+            /* 取消可能的高度限制，让滚动容器能撑满剩余空间 */
+            max-height: none;
+            overflow: visible;
+          }
           .navbar-right {
-            gap: 1rem; /* 小屏进一步缩小间距 */
+            /* 原有代码：按钮间距 */
+            gap: 1.5rem;
           }
         }
       }
@@ -3675,7 +3698,7 @@
                       src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
-                    <p>Senrytech B Ultra</p>
+                    <p>Senrytech C</p>
                   </a>
                 </div>
                 <!-- 产品6：Senrytech B Ultra -->
@@ -3687,7 +3710,7 @@
                       src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
-                    <p>Senrytech B Ultra</p>
+                    <p>Senrytech C Pro</p>
                   </a>
                 </div>
                 <!-- 产品6：Senrytech B Ultra -->
@@ -3699,7 +3722,7 @@
                       src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
-                    <p>Senrytech B Ultra</p>
+                    <p>Senrytech G</p>
                   </a>
                 </div>
                 <!-- 产品6：Senrytech B Ultra -->
@@ -3711,7 +3734,7 @@
                       src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
-                    <p>Senrytech B Ultra</p>
+                    <p>Senrytech M</p>
                   </a>
                 </div>
                 <!-- 产品6：Senrytech B Ultra -->
@@ -3723,7 +3746,7 @@
                       src="../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
-                    <p>Senrytech B Ultra</p>
+                    <p>Senrytech S</p>
                   </a>
                 </div>
               </div>

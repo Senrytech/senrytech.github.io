@@ -782,9 +782,9 @@
       }
       /* 文字大小保持原rem逻辑（基于不同屏幕的html font-size） */
       .banner-text h1 {
-        font-size: 3.5rem;
-        margin-bottom: 1.25rem;
-        line-height: 1.2;
+        font-size: 3.5rem; /* 标题文字大小 */
+        margin-bottom: 1.25rem; /* 下一行留白高度 */
+        line-height: 1.2; /* 行高 */
       }
       .banner-text p {
         font-size: 1.625rem;
@@ -796,7 +796,7 @@
       .banner-btns {
         display: flex;
         justify-content: center;
-        gap: 1rem;
+        gap: 1rem; /* 两个按钮之间的距离 */
         flex-wrap: nowrap;
       }
       .banner-btn {
@@ -879,12 +879,6 @@
       }
 
       /* ================================== BANNER模块媒体查询适配说明 ================================== */
-      /* 核心逻辑：所有调整均基于「保留16:9固定比例」的前提，仅针对不同屏幕尺寸微调以下细节：
-   1. 文字容器位置（top值）：避免小屏文字贴顶/大屏文字偏下
-   2. 文字大小（h1/p）：随屏幕增大逐步放大，确保可读性
-   3. 交互元素尺寸（箭头/按钮/指示器）：适配屏幕大小，避免过大/过小或贴边
-   4. 间距（按钮gap/箭头边距）：紧凑小屏布局，宽松大屏布局 */
-
       /* 1. 适配最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
    - 对应全局html基准字号：8.53px（按320px屏幕÷375px基准屏×10px计算）
    - 核心问题：屏幕过小，16:9比例下文字易贴顶，交互元素需进一步缩小 */

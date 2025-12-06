@@ -894,14 +894,39 @@
      - 注：此处0.6rem按8.53px基准计算≈5.1px，与注释“≈32.4px”明显不符，推测为笔误
      - 正确值应为3.8rem（3.8rem×8.53px≈32.4px，匹配注释说明） */
         .banner-text h1 {
-          font-size: 0.6rem; /* 原注释“≈32.4px”：需修正为3.8rem以符合计算逻辑 */
-          margin-bottom: 1rem; /* 标题与描述间距1rem（≈8.5px），小屏紧凑布局 */
+          font-size: 0.58rem; /* 原注释“≈32.4px”：需修正为3.8rem以符合计算逻辑 */
+          margin-bottom: 0.21rem; /* 标题与描述间距1rem（≈8.5px），小屏紧凑布局 */
         }
 
         /* 描述文字：尺寸缩小，确保与标题层级清晰
      - 1.4rem×8.53px≈11.9px，符合小屏文字可读性需求 */
         .banner-text p {
-          font-size: 1.4rem; /* ≈11.9px：小屏描述文字适配尺寸 */
+          font-size: 0.276rem; /* ≈11.9px：小屏描述文字适配尺寸 */
+        }
+
+        /* —— 3.5 轮播按钮组（无修改，保持弹性布局） ——*/
+        .banner-btns {
+          display: flex;
+          justify-content: center;
+          gap: 0.5rem; /* 两个按钮之间的距离 */
+          flex-wrap: nowrap;
+        }
+        .banner-btn {
+          padding: 0.085rem 0.255rem;
+          border-radius: 9999px;
+          font-size: 0.1rem;
+          cursor: pointer;
+          border: none;
+          transition: background-color 0.2s ease;
+        }
+        .learn-more-btn {
+          background-color: #0071e3;
+          color: #f5f5f7;
+        }
+        .buy-btn {
+          background-color: transparent;
+          color: #0071e3;
+          border: 0.02125rem solid #0071e3;
         }
 
         /* 轮播箭头（左右控制键）：缩小整体尺寸，避免占满小屏侧边空间
@@ -912,12 +937,16 @@
           font-size: 1rem; /* ≈8.5px：箭头图标大小适配 */
         }
 
-        /* 箭头位置：缩小左右边距，避免箭头贴屏幕边缘过近
-     - 0.8rem×8.53px≈6.8px：小屏中适度留白，平衡视觉 */
-        .prev-btn,
-        .next-btn {
+        /* 针对轮播图的左箭头：只控制“距离左侧” */
+        .carousel-control.prev-btn {
           left: 0.8rem; /* ≈6.8px：左箭头距屏幕左侧距离 */
+          right: auto; /* 清除right属性，避免冲突（可选，保险起见） */
+        }
+
+        /* 针对轮播图的右箭头：只控制“距离右侧” */
+        .carousel-control.next-btn {
           right: 0.8rem; /* ≈6.8px：右箭头距屏幕右侧距离 */
+          left: auto; /* 清除left属性，避免冲突（可选，保险起见） */
         }
 
         /* 轮播指示器（圆点）：缩小尺寸，避免小屏中圆点过于突兀

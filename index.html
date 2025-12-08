@@ -637,7 +637,7 @@
         display: block;
       }
 
-      /* —— 2.37 核心：媒体查询适配（按屏幕尺寸切换导航样式：桌面→平板→移动端） —— */
+      /* —— 2.37 核心：导航栏 - 媒体查询适配（按屏幕尺寸切换导航样式：桌面→平板→移动端） —— */
       /* 1. Laptop及以上（1024px+：Laptop、Laptop L、4K）：隐藏汉堡/侧边栏，显示桌面端导航+下拉菜单 */
       @media (min-width: 1024px) {
         .hamburger-btn,
@@ -648,7 +648,7 @@
 
         .navbar {
           justify-content: center; /* 导航项水平居中 */
-          gap: 2.4rem; /* 恢复导航项间距 */
+          gap: 2rem; /* 恢复导航项间距 */
           padding: 0 2rem; /* 左右留白 */
         }
         .navbar .nav-link,
@@ -659,19 +659,88 @@
 
       /* 2. Tablet到Laptop之间（769px~1023px）：显示汉堡按钮，隐藏部分导航链接 */
       @media (min-width: 769px) and (max-width: 1023px) {
-        .navbar .nav-link:not(.logo + a) {
-          display: none; /* 仅保留LOGO和紧邻的第一个链接，隐藏其他导航项 */
+        /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none; /* 隐藏桌面端导航链接和下拉菜单 */
         }
         .hamburger-btn {
-          display: block; /* 显示汉堡按钮 */
+          display: block !important; /* 强制显示汉堡按钮 */
         }
+
+        /* 3.2 导航栏布局调整：LOGO居左，按钮组居右 */
         .navbar {
-          justify-content: space-between; /* LOGO居左，按钮组居右 */
-          gap: 0.5rem; /* 缩小间距，适配平板宽度 */
+          justify-content: space-between;
+          align-items: center;
+          gap: 0; /* 清除间距，避免挤压 */
+          padding: 0 1rem; /* 缩小左右留白，适配小屏幕 */
+        }
+
+        /* 3.3 按钮组布局：按钮+汉堡横向排列 */
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem; /* 按钮之间的基础间距，子断点再调整 */
+        }
+
+        /* 3.4 按钮尺寸适配：缩小内边距和字号，适配小屏幕 */
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 3.5 侧边栏宽度基础设置：Tablet占90% */
+        .sidebar-menu {
+          width: 100%;
+        }
+
+        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 4.0 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
         }
       }
 
-      /* 3. Tablet及以下（≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡/侧边栏，隐藏桌面端导航 */
+      /* 3. Tablet及以下（=426到≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡/侧边栏，隐藏桌面端导航 */
       @media (max-width: 768px) {
         /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
         .navbar .nav-link,
@@ -705,159 +774,260 @@
 
         /* 3.5 侧边栏宽度基础设置：Tablet占70% */
         .sidebar-menu {
-          width: 70%;
+          width: 80%;
         }
 
-        /* —— 子断点：Mobile L（376px ~ 425px）优化 —— */
-        @media (min-width: 376px) and (max-width: 425px) {
-          /* 产品卡片两列布局：适配大屏手机宽度 */
+        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
           .submenu-product-card {
-            width: calc((90% - 2rem) / 2);
-          }
-          .sidebar-menu {
-            width: 85%; /* 大屏手机侧边栏占85%，提升内容可视面积 */
-          }
-          .navbar-right {
-            gap: 0.3rem; /* 缩小按钮间距，避免换行 */
-          }
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
         }
 
-        /* —— 子断点：Mobile M（321px ~ 375px）优化 —— */
-        @media (min-width: 321px) and (max-width: 375px) {
-          /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
-          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 1rem !important; /* 两列间距，与宽度计算匹配 */
-            padding: 0 !important; /* 清除多余内边距 */
-            width: 100% !important; /* 占满父容器宽度 */
-          }
-
-          /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
-          .sidebar-menu.active
-            .sidebar-submenu-content
-            .submenu-product-list
-            .submenu-product-card {
-            width: calc((100% - 1rem) / 2) !important;
-            min-width: 50px !important; /* 保底宽度，避免挤压 */
-            flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
-            box-sizing: border-box !important; /* 确保padding不影响宽度 */
-          }
-
-          /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
-          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-            max-height: calc(
-              100vh - 25rem
-            ) !important; /* 屏幕高度-顶部留白，避免超出 */
-            overflow-y: auto !important; /* 强制开启滚动 */
-            padding-right: 1rem !important; /* 给滚动条留空间 */
-            gap: 1rem; /* 缩小间距，适配窄屏 */
-          }
-
-          /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
-          .productSubmenuContent img {
-            height: 100px !important;
-            width: 100% !important;
-            object-fit: contain !important; /* 完整显示图片，不裁剪 */
-            background-color: #f0f0f0 !important;
-            border-radius: 0.8rem !important;
-          }
-
-          /* 5. 父容器滚动优化：避免双重滚动条 */
-          .sidebar-submenu-content {
-            max-height: calc(100vh - 20rem) !important; /* 父容器高度兜底 */
-            overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
-          }
-
-          /* 6. 侧边栏宽度：占85%，提升可视面积 */
-          .sidebar-menu {
-            width: 85%;
-          }
-
-          /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
-          .sidebar-menu-link {
-            padding: 1rem 1rem;
-            font-size: 0.8rem;
-          }
-
-          /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
-          .sidebar-submenu-link {
-            padding: 0.6rem 0.8rem;
-            font-size: 0.8rem;
-          }
-
-          /* 9. 三级内容区标题：缩小字号，适配窄屏 */
-          .submenu-content-title {
-            font-size: 1rem;
-          }
+        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
         }
 
-        /* —— 子断点：Mobile S（≤320px）优化（最小手机屏，极致适配） —— */
-        @media (max-width: 320px) {
-          /* 1. 产品列表容器：同Mobile M，确保两列布局 */
-          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-            display: flex !important;
-            flex-wrap: wrap !important;
-            gap: 1rem !important;
-            padding: 0 !important;
-            width: 100% !important;
-          }
+        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
 
-          /* 2. 产品卡片宽度：同Mobile M，两列均匀分布 */
-          .sidebar-menu.active
-            .sidebar-submenu-content
-            .submenu-product-list
-            .submenu-product-card {
-            width: calc((100% - 1rem) / 2) !important;
-            min-width: 50px !important;
-            flex-shrink: 0 !important;
-            box-sizing: border-box !important;
-          }
+        /* 4.0 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+      }
 
-          /* 3. 产品列表滚动：同Mobile M，限制高度+开启滚动 */
-          .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-            max-height: calc(100vh - 25rem) !important;
-            overflow-y: auto !important;
-            padding-right: 1rem !important;
-            gap: 1rem;
-          }
+      /* —— 子断点：Mobile L（376px ~ 425px）优化 —— */
+      @media (min-width: 376px) and (max-width: 425px) {
+        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
 
-          /* 4. 产品图片统一：同Mobile M，完整显示 */
-          .productSubmenuContent img {
-            height: 100px !important;
-            width: 100% !important;
-            object-fit: contain !important;
-            background-color: #f0f0f0 !important;
-            border-radius: 0.8rem !important;
-          }
+        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
 
-          /* 5. 父容器滚动优化：同Mobile M，避免双重滚动 */
-          .sidebar-submenu-content {
-            max-height: calc(100vh - 20rem) !important;
-            overflow-y: hidden;
-          }
+        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
 
-          /* 6. 侧边栏宽度：占85%，最大化可视面积 */
-          .sidebar-menu {
-            width: 85%;
-          }
+        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
 
-          /* 7. 一级菜单链接：同Mobile M，缩小尺寸 */
-          .sidebar-menu-link {
-            padding: 1rem 1rem;
-            font-size: 0.8rem;
-          }
+        /* 5. 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
 
-          /* 8. 二级菜单链接：同Mobile M，缩小尺寸 */
-          .sidebar-submenu-link {
-            padding: 0.6rem 0.8rem;
-            font-size: 0.8rem;
-          }
+        /* 6. 侧边栏宽度：占85%，提升可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
 
-          /* 9. 三级内容区标题：同Mobile M，缩小字号 */
-          .submenu-content-title {
-            font-size: 1rem;
-          }
+        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      /* —— 子断点：Mobile M（321px ~ 375px）优化 —— */
+      @media (min-width: 321px) and (max-width: 375px) {
+        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            100vh - 25rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 5. 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+
+        /* 6. 侧边栏宽度：占85%，提升可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      /* —— 子断点：Mobile S（≤320px）优化（最小手机屏，极致适配） —— */
+      @media (max-width: 320px) {
+        /* 1. 产品列表容器：同Mobile M，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        /* 2. 产品卡片宽度：同Mobile M，两列均匀分布 */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* 3. 产品列表滚动：同Mobile M，限制高度+开启滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(100vh - 25rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        /* 4. 产品图片统一：同Mobile M，完整显示 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 5. 父容器滚动优化：同Mobile M，避免双重滚动 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important;
+          overflow-y: hidden;
+        }
+
+        /* 6. 侧边栏宽度：占85%，最大化可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        /* 7. 一级菜单链接：同Mobile M，缩小尺寸 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：同Mobile M，缩小尺寸 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：同Mobile M，缩小字号 */
+        .submenu-content-title {
+          font-size: 1rem;
         }
       }
 
@@ -1048,8 +1218,8 @@
       /* 适配逻辑：按「屏幕从小到大」排序，仅修改当前断点需调整的属性，复用基础样式 */
 
       /* 1. 最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
-   - 全局html基准字号：8.53px（计算逻辑：320px屏幕÷375px基准屏×10px）
-   - 核心问题：16:9比例下垂直空间紧张，需缩小元素、紧凑布局 */
+      - 全局html基准字号：8.53px（计算逻辑：320px屏幕÷375px基准屏×10px）
+      - 核心问题：16:9比例下垂直空间紧张，需缩小元素、紧凑布局 */
       @media (max-width: 320px) {
         /* 文字容器：下移避免贴顶 */
         .banner-text {
@@ -1100,8 +1270,8 @@
       }
 
       /* 2. 主流小屏手机（Mobile M：321px~375px，如iPhone 8/SE 2020）
-   - 全局html基准字号：10px（375px为移动端设计基准屏）
-   - 核心调整：比Mobile S稍大，适度放宽布局，提升可读性 */
+      - 全局html基准字号：10px（375px为移动端设计基准屏）
+      - 核心调整：比Mobile S稍大，适度放宽布局，提升可读性 */
       @media (min-width: 321px) and (max-width: 375px) {
         /* 文字容器：下移避免贴顶 */
         .banner-text {
@@ -1146,8 +1316,8 @@
       }
 
       /* 3. 大屏手机（Mobile L：376px~425px，如iPhone 12/13 mini）
-   - 全局html基准字号：11.33px（计算逻辑：425px÷375px基准屏×10px）
-   - 核心调整：接近平板尺寸，放大文字，优化按钮间距 */
+      - 全局html基准字号：11.33px（计算逻辑：425px÷375px基准屏×10px）
+      - 核心调整：接近平板尺寸，放大文字，优化按钮间距 */
       @media (min-width: 376px) and (max-width: 425px) {
         /* 标题： */
         .banner-text h1 {
@@ -1166,8 +1336,8 @@
       }
 
       /* 4. 平板屏幕（Tablet：426px~768px，如iPad mini/iPad Air）
-   - 全局html基准字号：14px（平板屏视觉舒适字号）
-   - 核心调整：放大文字和箭头，适配平板触控习惯（手指更粗） */
+      - 全局html基准字号：14px（平板屏视觉舒适字号）
+      - 核心调整：放大文字和箭头，适配平板触控习惯（手指更粗） */
       @media (min-width: 426px) and (max-width: 768px) {
         /* 标题：修正笔误（原2rem→4.5rem），匹配≈63px（4.5rem×14px） */
         .banner-text h1 {
@@ -1187,8 +1357,8 @@
       }
 
       /* 5. 笔记本屏幕（Laptop：769px~1024px，如13寸MacBook/14寸Windows本）
-   - 全局html基准字号：15px（笔记本屏视觉舒适字号）
-   - 核心调整：文字接近桌面端，优化按钮点击区域 */
+      - 全局html基准字号：15px（笔记本屏视觉舒适字号）
+      - 核心调整：文字接近桌面端，优化按钮点击区域 */
       @media (min-width: 769px) and (max-width: 1024px) {
         /* 标题：修正笔误（原3rem→4.3rem），匹配≈64.5px（4.3rem×15px） */
         .banner-text h1 {
@@ -1207,15 +1377,15 @@
       }
 
       /* 6. 大屏笔记本+2K屏（Laptop L+2K：1025px~2559px，如15寸MacBook Pro/2K显示器）
-   - 全局html基准字号：16px（桌面端标准舒适字号）
-   - 核心逻辑：此为默认设计目标区间，无需额外调整（基础样式已适配） */
+      - 全局html基准字号：16px（桌面端标准舒适字号）
+      - 核心逻辑：此为默认设计目标区间，无需额外调整（基础样式已适配） */
       @media (min-width: 1025px) and (max-width: 2559px) {
         /* 复用基础样式，保持视觉统一性 */
       }
 
       /* 7. 4K超高清屏（≥2560px，如32寸4K显示器/5K iMac）
-   - 全局html基准字号：16px（桌面端字号上限，避免文字过大）
-   - 核心调整：放大元素，避免4K屏中元素过小导致模糊/点击困难 */
+      - 全局html基准字号：16px（桌面端字号上限，避免文字过大）
+      - 核心调整：放大元素，避免4K屏中元素过小导致模糊/点击困难 */
       @media (min-width: 2560px) {
         /* 标题：放大至72px（4.5rem×16px），提升视觉冲击力 */
         .banner-text h1 {
@@ -1237,7 +1407,7 @@
 
       /* ================================== 四、全系列产品板块 ================================== */
       /* 作用：横向滚动展示产品，支持分类切换与箭头控制，视觉风格与导航/BANNER统一（深灰背景）
-   适配原则：基于全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有固定PX均转换为REM，确保响应式一致性 */
+      适配原则：基于全局html基准字号（Mobile S:8.53px ~ 4K:16px），所有固定PX均转换为REM，确保响应式一致性 */
 
       /* —— 4.1 板块外层容器：控制整体布局与定位上下文 —— */
       .product-center-section {
@@ -1623,7 +1793,7 @@
 
       /* ================================== 五、购买优势板块（在Senrytech购买Machine好处多多） ================================== */
       /* 作用：展示购买设备的核心优势，含文字介绍+横向滚动卡片，背景与产品板块统一（深灰#1d1d1f）
-   适配原则：基于全局html基准字号（Mobile S:12px ~ 4K:16px），所有尺寸用REM，确保多端视觉一致性 */
+      适配原则：基于全局html基准字号（Mobile S:12px ~ 4K:16px），所有尺寸用REM，确保多端视觉一致性 */
 
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {

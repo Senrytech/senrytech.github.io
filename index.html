@@ -1264,8 +1264,8 @@
 
         /* 圆点：保持尺寸，适配小屏视觉 */
         .banner-dot {
-          width: 0.5rem;
-          height: 0.5rem;
+          width: 0.4rem;
+          height: 0.4rem;
         }
       }
 
@@ -1313,25 +1313,61 @@
         .carousel-control.next-btn {
           right: 0.8rem;
         }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.4rem;
+          height: 0.4rem;
+        }
       }
 
       /* 3. 大屏手机（Mobile L：376px~425px，如iPhone 12/13 mini）
       - 全局html基准字号：11.33px（计算逻辑：425px÷375px基准屏×10px）
       - 核心调整：接近平板尺寸，放大文字，优化按钮间距 */
       @media (min-width: 376px) and (max-width: 425px) {
+        /* 文字容器：下移避免贴顶 */
+        .banner-text {
+          top: 18%;
+          padding: 0 0.8rem;
+        }
+
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
+          margin-bottom: 0.21rem;
         }
 
         /* 描述文字： */
         .banner-text p {
-          font-size: 0.5rem;
+          font-size: 0.29rem;
         }
 
-        /* 按钮组：优化间距，防止换行 */
+        /* 按钮组：缩小间距，避免换行 */
         .banner-btns {
-          gap: 0.8rem;
+          gap: 0.5rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
+        .banner-btn {
+          padding: 0.085rem 0.255rem;
+          font-size: 0.1rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.02125rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
         }
       }
 
@@ -1339,20 +1375,50 @@
       - 全局html基准字号：14px（平板屏视觉舒适字号）
       - 核心调整：放大文字和箭头，适配平板触控习惯（手指更粗） */
       @media (min-width: 426px) and (max-width: 768px) {
-        /* 标题：修正笔误（原2rem→4.5rem），匹配≈63px（4.5rem×14px） */
+        /* 文字容器：下移避免贴顶 */
+        .banner-text {
+          top: 18%;
+          padding: 0 0.8rem;
+        }
+
+        /* 标题： */
         .banner-text h1 {
           font-size: 2rem;
+          margin-bottom: 0.21rem;
         }
 
-        /* 描述文字：修正笔误（原0.8rem→1.8rem），匹配≈25.2px（1.8rem×14px） */
+        /* 描述文字： */
         .banner-text p {
-          font-size: 1.8rem;
+          font-size: 1rem;
         }
 
-        /* 箭头：修正笔误（原1.86rem→2.8rem），匹配≈39.2px（2.8rem×14px） */
-        .carousel-control {
-          width: 2.8rem;
-          height: 2.8rem;
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 0.5rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
+        .banner-btn {
+          padding: 0.1rem 0.3rem;
+          font-size: 0.1rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.03rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
         }
       }
 
@@ -1360,19 +1426,50 @@
       - 全局html基准字号：15px（笔记本屏视觉舒适字号）
       - 核心调整：文字接近桌面端，优化按钮点击区域 */
       @media (min-width: 769px) and (max-width: 1024px) {
-        /* 标题：修正笔误（原3rem→4.3rem），匹配≈64.5px（4.3rem×15px） */
+        /* 文字容器：下移避免贴顶 */
+        .banner-text {
+          top: 18%;
+          padding: 0 0.8rem;
+        }
+
+        /* 标题： */
         .banner-text h1 {
-          font-size: 4.3rem;
+          font-size: 2.5rem;
+          margin-bottom: 0.21rem;
         }
 
-        /* 描述文字：修正笔误（原1.2rem→1.75rem），匹配≈26.25px（1.75rem×15px） */
+        /* 描述文字： */
         .banner-text p {
-          font-size: 1.75rem;
+          font-size: 1rem;
         }
 
-        /* 按钮：放大内边距，适配鼠标点击 */
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 1rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.55rem 1.6rem;
+          padding: 0.2rem 0.4rem;
+          font-size: 0.1rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.1rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
         }
       }
 
@@ -1691,40 +1788,76 @@
       /* 3. Mobile L（376px~425px）：html基准字号11.33px | 核心优化：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
         .product-container {
-          margin: 0 auto; /* 居中布局 */
-          padding: 0 1.2rem; /* 适配大屏手机留白 */
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 紧凑留白 */
         }
         .product-main-title {
-          font-size: 3.2rem; /* 原4rem → 3.2rem，适配大屏手机视觉 */
+          font-size: 2rem; /* 避免换行 */
+          margin-bottom: 1rem; /* 缩小间距 */
+        }
+        .product-subtitle-bar {
+          margin-bottom: 2rem; /* 缩小与产品列表间距 */
+          padding: 0.2rem 0.5rem; /* 紧凑内边距 */
+        }
+        .subtitle-item {
+          font-size: 0.6rem; /* 紧凑文字 */
+          padding: 0.3rem 0.8rem; /* 缩小点击区域 */
         }
         .product-item {
-          width: 18rem; /* 原21.25rem → 18rem，可横向显示1.5个卡片 */
+          width: 13rem; /* 适配小屏宽度 */
         }
         .product-item img {
-          height: 20rem; /* 原25rem → 20rem，适配卡片宽度 */
+          height: 15rem; /* 缩小图片高度 */
+          margin-top: 1rem; /* 缩小偏移 */
+        }
+        .product-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
+        .product-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .product-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 调整右箭头位置 */
         }
       }
 
       /* 4. Tablet（426px~768px）：html基准字号14px | 核心优化：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
         .product-container {
-          margin: 0 auto 0 10%; /* 原15% → 10%，缩小左侧margin，保留偏左风格 */
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 紧凑留白 */
         }
         .product-main-title {
-          font-size: 3.5rem; /* 原4rem → 3.5rem（14px基准下=49px），适配平板视觉 */
+          font-size: 2rem; /* 避免换行 */
+          margin-bottom: 1rem; /* 缩小间距 */
+        }
+        .product-subtitle-bar {
+          margin-bottom: 2rem; /* 缩小与产品列表间距 */
+          padding: 0.2rem 0.5rem; /* 紧凑内边距 */
+        }
+        .subtitle-item {
+          font-size: 0.6rem; /* 紧凑文字 */
+          padding: 0.3rem 0.8rem; /* 缩小点击区域 */
         }
         .product-item {
-          width: 19rem; /* 原21.25rem → 19rem（14px基准下=266px），可横向显示2-3个卡片 */
+          width: 13rem; /* 适配小屏宽度 */
         }
         .product-item img {
-          height: 22rem; /* 原25rem → 22rem（14px基准下=308px），适配卡片宽度 */
+          height: 15rem; /* 缩小图片高度 */
+          margin-top: 1rem; /* 缩小偏移 */
         }
         .product-nav-btn {
-          width: 2.2rem; /* 原2.5rem → 2.2rem（14px基准下=30.8px），适配平板点击区域 */
-          height: 2.2rem;
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
         }
         .product-nav-btn.prev-btn {
-          left: calc(90% + 1.8rem); /* 原85% → 90%，同步缩小左侧margin偏移 */
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .product-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 调整右箭头位置 */
         }
       }
 
@@ -1735,13 +1868,28 @@
           max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
         }
         .product-main-title {
-          font-size: 3.8rem; /* 原4rem → 3.8rem（15px基准下=57px），适配笔记本视觉 */
+          font-size: 2.5rem; /* 原4rem → 3.8rem（15px基准下=57px），适配笔记本视觉 */
         }
         .product-item {
           width: 20rem; /* 原21.25rem → 20rem（15px基准下=300px），可横向显示3-4个卡片 */
         }
+        .product-item {
+          width: 13rem; /* 适配小屏宽度 */
+        }
+        .product-item img {
+          height: 15rem; /* 缩小图片高度 */
+          margin-top: 1rem; /* 缩小偏移 */
+        }
+        .product-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
         .product-nav-btn.prev-btn {
-          left: calc(88% + 2rem); /* 原85% → 88%，同步微调左侧margin偏移 */
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .product-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 调整右箭头位置 */
         }
       }
 
@@ -2088,57 +2236,99 @@
       /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
         .benefit-container {
-          margin: 0 auto; /* 居中布局，保留小屏友好性 */
-          padding: 0 1.2rem; /* 15px基准：18px，适配大屏手机留白 */
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
         }
         .benefit-main-title {
-          font-size: 3.2rem; /* 15px基准：48px，提升标题视觉权重 */
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: 18rem; /* 15px基准：270px，可横向显示1.5个卡片，提升利用率 */
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
         }
         .benefit-card img {
-          height: 20rem; /* 15px基准：300px，适配卡片宽度 */
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
         }
       }
 
       /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
         .benefit-container {
-          margin: 0 auto 0 10%; /* 左侧margin从15%减至10%，适配平板宽度 */
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
         }
         .benefit-main-title {
-          font-size: 3.5rem; /* 16px基准：56px，适配平板视觉比例 */
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: 19rem; /* 16px基准：304px，可横向显示2-3个卡片 */
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
         }
         .benefit-card img {
-          height: 22rem; /* 16px基准：352px，适配卡片宽度 */
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .benefit-nav-btn {
-          width: 2.2rem; /* 16px基准：35.2px，适配平板点击区域（手指更粗） */
-          height: 2.2rem;
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(90% + 1.8rem); /* 同步左侧margin调整，偏移量适配 */
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
         }
       }
 
       /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .benefit-container {
-          margin: 0 auto 0 12%; /* 左侧margin从15%减至12%，微调适配笔记本宽度 */
-          max-width: 90rem; /* 16px基准：1440px，避免超宽 */
+          margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
+          max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
         }
         .benefit-main-title {
-          font-size: 3.8rem; /* 16px基准：60.8px，适配笔记本视觉 */
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: 20rem; /* 16px基准：320px，可横向显示3-4个卡片 */
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(88% + 2rem); /* 同步左侧margin调整，偏移量适配 */
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
         }
       }
 
@@ -2415,7 +2605,7 @@
           margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
         }
         .sample-subtitle-bar {
-          margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
           padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
         }
         .sample-subtitle-item {
@@ -2450,38 +2640,86 @@
       /* 3. Mobile L（376px ~ 425px）：html font-size=11.33px */
       @media (min-width: 376px) and (max-width: 425px) {
         .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，居中布局 */
-          padding: 0 1.2rem; /* 适配425px屏留白 */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
         }
         .sample-main-title {
-          font-size: 3.2rem; /* 原4rem → 3.2rem（≈36.2px），425px屏标题适配 */
+          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .sample-big-card {
-          flex-direction: column; /* 垂直布局，仍需优化横向空间 */
-          gap: 1.5rem; /* 原1.875rem → 1.5rem（≈17px），间距适配 */
+          display: flex; /* 改为垂直布局（小屏横向空间不足） */
+          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
+          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
+          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
+        }
+        .sample-thickness-container {
+          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
+          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
+          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
+          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .sample-image-container {
+          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
         }
         .sample-image-wrap {
-          min-height: 20rem; /* 原25rem → 20rem（≈226.6px），425px屏图片高度适配 */
+          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
         }
       }
 
       /* 4. Tablet（426px ~ 768px）：html font-size=14px */
       @media (min-width: 426px) and (max-width: 768px) {
         .sample-container {
-          margin: 0 auto 0 10%; /* 原15% → 10%（平板屏左侧margin缩小，保留偏左布局） */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
         }
         .sample-main-title {
-          font-size: 3.5rem; /* 原4rem → 3.5rem（=49px），平板屏标题适配 */
+          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .sample-big-card {
-          gap: 1.5rem; /* 原1.875rem → 1.5rem（=21px），平板屏间距适配 */
-          padding: 1.5rem; /* 原1.875rem → 1.5rem，缩小内边距 */
+          display: flex; /* 改为垂直布局（小屏横向空间不足） */
+          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
+          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
+          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
         }
         .sample-thickness-container {
-          width: 12rem; /* 原15rem → 12rem（=168px），平板屏厚度区宽度适配 */
+          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
+          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
+          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
+          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .sample-image-container {
+          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
         }
         .sample-image-wrap {
-          min-height: 22rem; /* 原25rem → 22rem（=308px），平板屏图片高度适配 */
+          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
+          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
         }
       }
 
@@ -2492,7 +2730,7 @@
           max-width: 90rem; /* 原100rem → 90rem（≈1350px），适配1024px屏最大宽度 */
         }
         .sample-main-title {
-          font-size: 3.8rem; /* 原4rem → 3.8rem（=57px），笔记本屏标题适配 */
+          font-size: 2.5rem; /* 原4rem → 3.8rem（=57px），笔记本屏标题适配 */
         }
         .sample-thickness-container {
           width: 14rem; /* 原15rem → 14rem（=210px），笔记本屏厚度区宽度适配 */

@@ -2521,24 +2521,35 @@
 
       .sample-image-wrap {
         width: 100%;
-        max-width: 37.5rem; /* 原600px → 600/16=37.5rem，限制图片最大宽度，避免超宽 */
-        min-height: 25rem; /* 原400px → 400/16=25rem，锁死容器最小高度，防止塌陷 */
-        border-radius: 1rem; /* 原16px → 16/16=1rem，图片容器圆角，与大卡片呼应 */
-        overflow: hidden; /* 必须保留：裁剪图片超出部分，确保圆角生效 */
-        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08); /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem，轻微阴影 */
-        display: flex; /* 辅助图片垂直填充 */
+        max-width: 37.5rem; /* 保留最大宽度，避免大屏图片过宽 */
+        /* 1. 确保父容器高度随图片自适应，同时限制最大高度（与图片max-height呼应） */
+        height: fit-content; /* 高度=图片实际高度，不冗余 */
+
+        /* 2. 保留核心样式，新增overflow控制（防止极端情况溢出） */
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+        display: flex;
         align-items: center;
+        justify-content: center;
       }
 
       .sample-image-wrap img {
-        width: 100%;
-        height: 100%; /* 关键：强制图片填充容器高度，避免留白 */
-        min-height: 25rem; /* 原400px → 400/16=25rem，与容器最小高度一致，防止拉伸 */
-        object-fit: cover; /* 保留比例，裁剪多余部分，避免图片变形 */
-        object-position: center center; /* 图片居中裁剪，确保核心内容不被切 */
-        background-color: #e0e0e0; /* 图片未加载时的占位背景，与容器底色统一 */
-      }
+        /* 1. 移除固定min-height，改用max-height限制最大高度（关键优化） */
+        /* min-height: 25rem;  // 删掉这行，避免小屏强制高高度 */
+        max-height: 60vh; /* 限制图片最大高度=屏幕可视高度的60%，小屏不溢出，大屏不超界 */
+        height: auto; /* 高度自适应图片内容，配合max-height使用 */
 
+        /* 2. 保留宽度自适应+完整显示逻辑 */
+        width: 100%; /* 宽度占满父容器，适配不同屏幕 */
+        object-fit: contain; /* 完整显示图片，不变形 */
+        object-position: center center; /* 图片居中，核心内容不偏移 */
+
+        /* 3. 优化留白+加载占位 */
+        background-color: #e0e0e0;
+        /* 新增：限制图片最小宽度，避免过小（可选，根据需求调整） */
+        min-width: 15rem; /* 小屏图片最小宽度=240px，避免过于纤细 */
+      }
       /* —— 图片下方说明文字（PX转REM，保留原样式逻辑） —— */
       .sample-image-desc {
         text-align: center;
@@ -2585,12 +2596,12 @@
           justify-content: center;
           align-items: center;
         }
-        .sample-image-container {
-          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
-        }
+
         .sample-image-wrap {
-          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
-          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
+          max-width: 90%; /* 小屏幕下，容器最大宽度=屏幕宽度的90%（避免贴边） */
+        }
+        .sample-image-container {
+          padding: 0.8rem; /* 缩小内边距，充分利用小屏幕空间 */
         }
       }
 

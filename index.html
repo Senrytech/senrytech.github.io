@@ -1524,7 +1524,7 @@
       .product-center-section {
         background-color: #1d1d1f; /* 深灰背景，与导航栏配色统一 */
         width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 5rem 0 6rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
         position: relative; /* 作为产品滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
       }
@@ -1961,7 +1961,7 @@
       .benefit-section {
         background-color: #1d1d1f; /* 与导航栏/产品板块配色统一 */
         width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 4rem 0 6rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
+        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
       }
@@ -2105,7 +2105,7 @@
       /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
       .benefit-nav-btn {
         position: absolute; /* 基于板块容器定位 */
-        top: 100%; /* 垂直居中于产品卡片区域 */
+        top: 90%; /* 垂直居中于产品卡片区域 */
         transform: translateY(
           -50%
         ) !important; /* 垂直居中校准（!important避免被覆盖） */
@@ -2491,17 +2491,17 @@
       /* —— 6.1 板块容器基础样式（PX转REM，与前序板块内边距统一） —— */
       .sample-section {
         background-color: #1d1d1f; /* 延续深灰背景，视觉连贯 */
-        width: 100;
-        padding: 4rem 0 6rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
+        width: 100%;
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
         position: relative;
         overflow: visible; /* 确保滚动箭头不被裁剪 */
       }
 
       /* —— 6.2 板块内部内容容器（PX转REM，保持偏左布局） —— */
       .sample-container {
-        max-width: 70%; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
+        max-width: 100rem; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
         margin: 0 auto 0 15%; /* 保留左侧15%margin，与“全系列产品”布局对齐 */
-        padding: 0 1rem; /* 原20px → 20/16=1.25rem，左右留白避免内容贴边 */
+        padding: 0 1.25rem; /* 原20px → 20/16=1.25rem，左右留白避免内容贴边 */
       }
 
       /* —— 6.3 主标题样式（PX转REM，复用前序板块标题逻辑） —— */
@@ -2607,7 +2607,7 @@
         text-align: center;
         font-size: 0.875rem; /* 原14px → 14/16=0.875rem，字号适配，确保可读性 */
         font-weight: 400;
-        margin: auto 2rem; /* 水平居中，保持布局整齐 */
+        margin: 0 auto; /* 水平居中，保持布局整齐 */
       }
 
       .sample-thickness-item:hover,
@@ -2622,28 +2622,12 @@
       }
 
       /* —— 核心修改2：右侧图片区（PX转REM，修复留白+强制铺满） —— */
-      /* —— 重构：右侧图片区（宽高/位置全可控版） —— */
       .sample-image-container {
-        /* 1. 宽高：直接修改数值即可（支持固定值/百分比） */
-        width: 68rem; /* 可改：如固定宽度18rem、或50% */
-        height: 28rem; /* 可改：如固定高度22rem、或80% */
-
-        /* 2. 在父容器中的位置（需父容器是 flex 容器）
-     垂直方向：stretch（占满父高）/ center / flex-start（靠上）/ flex-end（靠下）
-     水平方向：center / flex-start（靠左）/ flex-end（靠右） */
-        align-self: center; /* 垂直占满父容器高度（可直接修改） */
-        justify-self: flex-end; /* 水平居中（可直接修改） */
-
-        /* 若父容器不是 flex：改用 margin 控制位置，比如：
-     margin: 1rem auto; （垂直间距1rem + 水平居中） */
-
-        /* 3. 容器内部图片的对齐方式（可修改） */
+        flex: 1; /* 占满大卡片剩余宽度，自适应布局 */
         display: flex;
-        align-items: center; /* 图片在容器内垂直居中（可改：flex-start/end） */
-        justify-content: center; /* 图片在容器内水平居中（可改：flex-start/end） */
-
-        padding: 1.25rem; /* 内边距可直接修改，避免图片贴边 */
-        box-sizing: border-box; /* 关键：确保 padding 不额外增加宽高（避免留白/溢出） */
+        align-items: stretch; /* 关键：让图片容器占满大卡片高度，避免留白 */
+        justify-content: center; /* 图片水平居中 */
+        padding: 1.25rem; /* 原20px → 20/16=1.25rem，保留内边距，避免图片贴边 */
       }
 
       .sample-image-wrap {
@@ -2710,7 +2694,8 @@
         .sample-image-wrap {
           aspect-ratio: 1/1 !important; /* 强制宽高比1:1，优先级最高 */
           width: 100% !important; /* 容器宽度铺满父级（.sample-image-container） */
-          margin: 0 !important; /* 清除可能的外边距 */
+          max-width: none !important; /* 取消最大宽度限制，适配320px小屏 */
+          height: auto !important; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
         }
 
         /* —— 核心修改：图片填充1:1容器，保持完整 —— */
@@ -2718,6 +2703,8 @@
           height: 100% !important; /* 图片高度铺满1:1容器 */
           width: 100% !important; /* 图片宽度铺满容器 */
           object-fit: contain !important; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
+          max-height: none !important; /* 取消原有max-height限制，确保1:1比例生效 */
+          min-width: none !important; /* 取消最小宽度限制，适配小屏 */
         }
       }
 
@@ -2922,7 +2909,7 @@
       .advantage-section {
         background-color: #1d1d1f; /* 与板块5一致的深灰背景 */
         width: 100%;
-        padding: 4rem 0 6rem; /* 原80px=5rem，120px=7.5rem，与板块5统一 */
+        padding: 5rem 0 7.5rem; /* 原80px=5rem，120px=7.5rem，与板块5统一 */
         position: relative;
         overflow: visible;
       }
@@ -3056,7 +3043,7 @@
       /* —— 7.10 滚动箭头样式（与板块5一致，仅类名修改+PX转REM） —— */
       .advantage-nav-btn {
         position: absolute;
-        top: 100%; /* 与板块5箭头垂直位置一致 */
+        top: 90%; /* 与板块5箭头垂直位置一致 */
         transform: translateY(-50%) !important;
         bottom: auto !important;
         width: 2.5rem; /* 原40px=2.5rem，箭头尺寸 */
@@ -3495,7 +3482,7 @@
       .accessory-section {
         background-color: #1d1d1f; /* 与导航栏/产品板块配色统一 */
         width: 100%;
-        padding: 3rem 0 8rem; /* 与其他板块一致：为箭头预留底部空间 */
+        padding: 5rem 0 7.5rem; /* 与其他板块一致：为箭头预留底部空间 */
         position: relative; /* 作为滚动箭头的定位父容器（关键：确保箭头基于板块定位） */
         overflow: visible;
       }
@@ -3662,7 +3649,7 @@
       /* 8. 滚动箭头：修复类名+统一定位逻辑（关键修改区） */
       .accessory-scroll-btn {
         position: absolute; /* 基于板块容器定位 */
-        top: 100%; /* 垂直居中于产品卡片区域 */
+        top: 90%; /* 垂直居中于产品卡片区域 */
         transform: translateY(
           -50%
         ) !important; /* 垂直居中校准（!important避免被覆盖） */

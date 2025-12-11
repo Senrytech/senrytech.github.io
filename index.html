@@ -1041,9 +1041,9 @@
         width: 100%; /* 占满父容器宽度，实现全屏效果 */
         overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
         /* 核心1：现代浏览器16:9比例（优先生效） */
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 16 / 7;
         /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 56.25%;
+        padding-top: 43.75%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
       }
 
@@ -1217,6 +1217,20 @@
       /* ================================== BANNER模块媒体查询适配 ================================== */
       /* 适配逻辑：按「屏幕从小到大」排序，仅修改当前断点需调整的属性，复用基础样式 */
 
+      /* —— 新增：≤1024px屏幕强制切换为9:16（覆盖基础样式） ——*/
+      @media (max-width: 1024px) {
+        .banner-carousel {
+          /* 9:16比例（竖版）：高度是宽度的177.78% */
+          aspect-ratio: 1 / 1;
+          padding-top: 100%; /* 9:16兼容写法：16÷9≈1.7778 → 177.78% */
+        }
+
+        /* （关键）竖版下图片仍需按容器比例裁剪，保留object-fit: cover */
+        .carousel-slide img {
+          object-fit: cover;
+        }
+      }
+
       /* 1. 最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
       - 全局html基准字号：8.53px（计算逻辑：320px屏幕÷375px基准屏×10px）
       - 核心问题：16:9比例下垂直空间紧张，需缩小元素、紧凑布局 */
@@ -1229,13 +1243,13 @@
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.2rem;
+          font-size: 0.988rem;
           margin-bottom: 0.21rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
         /* 描述文字：*/
         .banner-text p {
-          font-size: 0.8rem;
+          font-size: 0.593rem;
         }
 
         /* 按钮组间距 */
@@ -1245,8 +1259,8 @@
 
         /* 按钮：高*宽 */
         .banner-btn {
-          padding: 0.1rem 0.8rem;
-          font-size: 0.4rem;
+          padding: 0.114rem 0.47rem;
+          font-size: 0.356rem;
         }
 
         /* 「立即购买」按钮：缩小边框宽度 */
@@ -1281,13 +1295,13 @@
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.22rem;
+          font-size: 1.158rem;
           margin-bottom: 0.21rem;
         }
 
         /* 描述文字： */
         .banner-text p {
-          font-size: 0.82rem;
+          font-size: 0.695rem;
         }
 
         /* 按钮组：缩小间距，避免换行 */
@@ -1297,8 +1311,8 @@
 
         /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.12rem 0.82rem;
-          font-size: 0.42rem;
+          padding: 0.134rem 0.85rem;
+          font-size: 0.417rem;
         }
 
         /* 「立即购买」按钮：缩小边框宽度 */
@@ -1377,19 +1391,19 @@
       @media (min-width: 426px) and (max-width: 768px) {
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 18%;
+          top: 15%;
           padding: 0 0.8rem;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 2rem;
+          font-size: 2.3rem;
           margin-bottom: 0.21rem;
         }
 
         /* 描述文字： */
         .banner-text p {
-          font-size: 1rem;
+          font-size: 1.4rem;
         }
 
         /* 按钮组：缩小间距，避免换行 */
@@ -1399,8 +1413,8 @@
 
         /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.1rem 0.3rem;
-          font-size: 0.1rem;
+          padding: 0.27rem 1.55rem;
+          font-size: 0.854rem;
         }
 
         /* 「立即购买」按钮：缩小边框宽度 */
@@ -1428,19 +1442,19 @@
       @media (min-width: 769px) and (max-width: 1024px) {
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 18%;
+          top: 15%;
           padding: 0 0.8rem;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 2.5rem;
+          font-size: 3.16rem;
           margin-bottom: 0.21rem;
         }
 
         /* 描述文字： */
         .banner-text p {
-          font-size: 1rem;
+          font-size: 1.896rem;
         }
 
         /* 按钮组：缩小间距，避免换行 */
@@ -1450,8 +1464,8 @@
 
         /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.2rem 0.4rem;
-          font-size: 0.1rem;
+          padding: 0.3647rem 2.067rem;
+          font-size: 1.138rem;
         }
 
         /* 「立即购买」按钮：缩小边框宽度 */
@@ -4969,7 +4983,28 @@
         <!-- 第3张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
         <div class="carousel-slide">
           <img
-            src="../senrytech.github.io/img/index/banner/banner-3-2032-1143.webp"
+            src="../senrytech.github.io/img/index/banner/banner-3-2032-1143-2.webp"
+            alt="BANNER图3"
+          />
+          <div class="banner-text active">
+            <h1>Senrytech A</h1>
+            <p>手持激光焊接机</p>
+            <div class="banner-btns">
+              <!-- 跳转至页面内产品板块的锚点 -->
+              <a
+                href="https://www.senrytech.com/products/laser-welding/series-a"
+                class="banner-btn learn-more-btn"
+                >了解更多</a
+              >
+              <button class="banner-btn buy-btn">询价</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 第4张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
+        <div class="carousel-slide">
+          <img
+            src="../senrytech.github.io/img/index/banner/未标题-2.webp"
             alt="BANNER图3"
           />
           <div class="banner-text active">

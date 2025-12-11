@@ -2499,7 +2499,7 @@
 
       /* —— 6.2 板块内部内容容器（PX转REM，保持偏左布局） —— */
       .sample-container {
-        max-width: 80%; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
+        max-width: 70%; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
         margin: 0 auto 0 15%; /* 保留左侧15%margin，与“全系列产品”布局对齐 */
         padding: 0 1rem; /* 原20px → 20/16=1.25rem，左右留白避免内容贴边 */
       }
@@ -2607,7 +2607,7 @@
         text-align: center;
         font-size: 0.875rem; /* 原14px → 14/16=0.875rem，字号适配，确保可读性 */
         font-weight: 400;
-        margin: 0 auto; /* 水平居中，保持布局整齐 */
+        margin: auto 2rem; /* 水平居中，保持布局整齐 */
       }
 
       .sample-thickness-item:hover,
@@ -2625,8 +2625,8 @@
       /* —— 重构：右侧图片区（宽高/位置全可控版） —— */
       .sample-image-container {
         /* 1. 宽高：直接修改数值即可（支持固定值/百分比） */
-        width: 48rem; /* 可改：如固定宽度18rem、或50% */
-        height: 18rem; /* 可改：如固定高度22rem、或80% */
+        width: 68rem; /* 可改：如固定宽度18rem、或50% */
+        height: 28rem; /* 可改：如固定高度22rem、或80% */
 
         /* 2. 在父容器中的位置（需父容器是 flex 容器）
      垂直方向：stretch（占满父高）/ center / flex-start（靠上）/ flex-end（靠下）

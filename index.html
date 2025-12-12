@@ -2499,7 +2499,7 @@
 
       /* —— 6.2 板块内部内容容器（PX转REM，保持偏左布局） —— */
       .sample-container {
-        max-width: 100rem; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
+        max-width: 90rem; /* 原1600px → 1600/16=100rem，与前序板块统一最大宽度 */
         margin: 0 auto 0 15%; /* 保留左侧15%margin，与“全系列产品”布局对齐 */
         padding: 0 1.25rem; /* 原20px → 20/16=1.25rem，左右留白避免内容贴边 */
       }
@@ -2628,6 +2628,7 @@
         align-items: stretch; /* 关键：让图片容器占满大卡片高度，避免留白 */
         justify-content: center; /* 图片水平居中 */
         padding: 1.25rem; /* 原20px → 20/16=1.25rem，保留内边距，避免图片贴边 */
+        background-color: #f5f5f7;
       }
 
       .sample-image-wrap {
@@ -2646,9 +2647,8 @@
         max-height: 60vh; /* 基础样式不变，仅在320px媒体查询中覆盖 */
         height: auto;
         width: 100%;
-        object-fit: contain; /* 保持图片完整，后续320px中微调 */
+        object-fit: cover; /* 保持图片完整，后续320px中微调 */
         object-position: center center;
-        background-color: #e0e0e0;
         min-width: 15rem;
       }
 
@@ -2674,10 +2674,7 @@
           padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
         }
         .sample-big-card {
-          display: flex; /* 改为垂直布局（小屏横向空间不足） */
-          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
-          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
-          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
+          background-color: #f5f5f7;
         }
         .sample-thickness-container {
           width: 25%; /* ！关键修正：原有6rem过窄，改为100%适配小屏，保持格局统一 */
@@ -2687,218 +2684,26 @@
         }
 
         .sample-image-container {
-          padding: 0 !important; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
+          padding: 0; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
+          background-color: #0202f7;
         }
 
         /* —— 核心修改：图片容器强制1:1比例 —— */
         .sample-image-wrap {
-          aspect-ratio: 1/1 !important; /* 强制宽高比1:1，优先级最高 */
-          width: 100% !important; /* 容器宽度铺满父级（.sample-image-container） */
-          max-width: none !important; /* 取消最大宽度限制，适配320px小屏 */
-          height: auto !important; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
+          aspect-ratio: 1/1; /* 强制宽高比1:1，优先级最高 */
+          width: 100%; /* 容器宽度铺满父级（.sample-image-container） */
+          max-width: none; /* 取消最大宽度限制，适配320px小屏 */
+          height: auto; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
+          background-color: transparent;
         }
 
         /* —— 核心修改：图片填充1:1容器，保持完整 —— */
         .sample-image-wrap img {
-          height: 100% !important; /* 图片高度铺满1:1容器 */
-          width: 100% !important; /* 图片宽度铺满容器 */
+          height: 100%; /* 图片高度铺满1:1容器 */
+          width: 100%; /* 图片宽度铺满容器 */
           object-fit: contain !important; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
-          max-height: none !important; /* 取消原有max-height限制，确保1:1比例生效 */
-          min-width: none !important; /* 取消最小宽度限制，适配小屏 */
-        }
-      }
-
-      /* 2. Mobile M（321px ~ 375px）：html font-size=10px */
-      @media (min-width: 321px) and (max-width: 375px) {
-        .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
-          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
-        }
-        .sample-main-title {
-          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
-          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
-        }
-        .sample-subtitle-bar {
-          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
-          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
-        }
-        .sample-subtitle-item {
-          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
-          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
-        }
-        .sample-big-card {
-          display: flex; /* 改为垂直布局（小屏横向空间不足） */
-          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
-          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
-          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
-        }
-        .sample-thickness-container {
-          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
-          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
-          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
-          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .sample-image-container {
-          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
-        }
-        .sample-image-wrap {
-          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
-          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
-        }
-      }
-
-      /* 3. Mobile L（376px ~ 425px）：html font-size=11.33px */
-      @media (min-width: 376px) and (max-width: 425px) {
-        .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
-          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
-        }
-        .sample-main-title {
-          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
-          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
-        }
-        .sample-subtitle-bar {
-          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
-          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
-        }
-        .sample-subtitle-item {
-          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
-          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
-        }
-        .sample-big-card {
-          display: flex; /* 改为垂直布局（小屏横向空间不足） */
-          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
-          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
-          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
-        }
-        .sample-thickness-container {
-          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
-          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
-          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
-          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .sample-image-container {
-          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
-        }
-        .sample-image-wrap {
-          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
-          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
-        }
-      }
-
-      /* 4. Tablet（426px ~ 768px）：html font-size=14px */
-      @media (min-width: 426px) and (max-width: 768px) {
-        .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
-          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
-        }
-        .sample-main-title {
-          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
-          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
-        }
-        .sample-subtitle-bar {
-          margin-bottom: 2rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
-          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
-        }
-        .sample-subtitle-item {
-          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
-          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
-        }
-        .sample-big-card {
-          display: flex; /* 改为垂直布局（小屏横向空间不足） */
-          gap: 1rem; /* 原1.875rem → 1rem（≈8.5px），缩小上下区域间距 */
-          padding: 1rem; /* 原1.875rem → 1rem，缩小内边距 */
-          border-radius: 1rem; /* 原1.25rem → 1rem（≈8.5px），适配小屏圆角 */
-        }
-        .sample-thickness-container {
-          width: 6rem; /* 原240px → 240/16=15rem，固定宽度，避免被压缩 */
-          flex-shrink: 0; /* 禁止收缩，保持宽度稳定 */
-          padding: 0.625rem 0; /* 原10px → 10/16=0.625rem，上下内边距，避免内容贴边 */
-          align-self: center; /* 垂直居中，与右侧图片区视觉平衡 */
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        .sample-image-container {
-          padding: 0.8rem; /* 原1.25rem → 0.8rem，缩小内边距 */
-        }
-        .sample-image-wrap {
-          min-height: 15rem; /* 原25rem → 15rem（≈128px），小屏图片高度适配 */
-          border-radius: 0.8rem; /* 原1rem → 0.8rem，适配小屏圆角 */
-        }
-      }
-
-      /* 5. Laptop（769px ~ 1024px）：html font-size=15px */
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .sample-container {
-          margin: 0 auto 0 12%; /* 原15% → 12%（笔记本屏左侧margin微调） */
-          max-width: 90rem; /* 原100rem → 90rem（≈1350px），适配1024px屏最大宽度 */
-        }
-        .sample-main-title {
-          font-size: 2.5rem; /* 原4rem → 3.8rem（=57px），笔记本屏标题适配 */
-        }
-        .sample-thickness-container {
-          width: 14rem; /* 原15rem → 14rem（=210px），笔记本屏厚度区宽度适配 */
-        }
-      }
-
-      /* 6. Laptop L + 2K屏（1025px ~ 2559px）：html font-size=16px */
-      @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式一致，无需调整（此区间为设计基准区间） */
-      }
-
-      /* 7. 4K屏（≥2560px）：html font-size=16px */
-      @media (min-width: 2560px) {
-        .sample-container {
-          max-width: 120rem; /* 原100rem → 120rem（=1920px），4K屏最大宽度适配 */
-        }
-        .sample-main-title {
-          font-size: 4.5rem; /* 原4rem → 4.5rem（=72px），4K屏标题放大，提升视觉冲击 */
-          margin-bottom: 3.5rem; /* 原3rem → 3.5rem（=56px），放大间距，适配4K屏比例 */
-        }
-        .sample-subtitle-bar {
-          margin-bottom: 3.5rem; /* 原3rem → 3.5rem，放大间距 */
-          padding: 0.3rem 0.9rem; /* 原0.25rem 0.75rem → 放大内边距，避免副标题栏过小 */
-        }
-        .sample-subtitle-item {
-          font-size: 0.8rem; /* 原0.6875rem → 0.8rem（=12.8px），4K屏文字放大，提升可读性 */
-          padding: 0.45rem 1.2rem; /* 原0.375rem 1rem → 放大点击区域 */
-        }
-        .sample-big-card {
-          gap: 2.5rem; /* 原1.875rem → 2.5rem（=40px），放大左右区域间距，适配4K屏 */
-          padding: 2.5rem; /* 原1.875rem → 2.5rem，放大内边距 */
-          border-radius: 1.5rem; /* 原1.25rem → 1.5rem（=24px），放大圆角，适配4K屏 */
-        }
-        .sample-thickness-container {
-          width: 18rem; /* 原15rem → 18rem（=288px），4K屏厚度区宽度放大 */
-          padding: 1rem 0; /* 原0.625rem → 1rem（=16px），放大内边距 */
-        }
-        .sample-thickness-item {
-          padding: 1.5rem 1.2rem; /* 原1.25rem 1rem → 放大内边距，提升点击区域 */
-          border-radius: 3rem; /* 原2.5rem → 3rem（=48px），放大圆角，适配4K屏 */
-          font-size: 1rem; /* 原0.875rem → 1rem（=16px），4K屏文字放大 */
-        }
-        .sample-image-container {
-          padding: 1.5rem; /* 原1.25rem → 1.5rem，放大内边距 */
-        }
-        .sample-image-wrap {
-          max-width: 45rem; /* 原37.5rem → 45rem（=720px），4K屏图片最大宽度放大 */
-          min-height: 30rem; /* 原25rem → 30rem（=480px），4K屏图片高度放大 */
-          border-radius: 1.25rem; /* 原1rem → 1.25rem（=20px），放大圆角 */
-          box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1); /* 原0.25rem 0.75rem → 放大阴影，增强层次 */
-        }
-        .sample-image-desc {
-          font-size: 1.25rem; /* 原1.125rem → 1.25rem（=20px），4K屏说明文字放大 */
-          margin-top: 1.5rem; /* 原1.25rem → 1.5rem，放大间距 */
+          max-height: none; /* 取消原有max-height限制，确保1:1比例生效 */
+          min-width: none; /* 取消最小宽度限制，适配小屏 */
         }
       }
 

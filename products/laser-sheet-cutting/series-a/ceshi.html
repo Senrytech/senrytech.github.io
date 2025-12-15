@@ -1101,13 +1101,13 @@
         /* 关键：水平居中第二步 + 动画的垂直位移（合并写，避免冲突） */
         transform: translateX(-50%) translateY(20px); /* 同时处理水平居中+初始垂直下移 */
         -webkit-transform: translateX(-50%) translateY(20px); /* 兼容Safari */
-        color: #000000;
+        color: #f5f5f7;
         text-align: center; /* 文字内部（如换行内容）水平居中 */
         z-index: 10;
         opacity: 0;
         transition: opacity 0.5s ease;
         padding: 0 1rem;
-        width: 46%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
+        width: 45%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
         max-width: 1200px; /* 新增：限制最大宽度，避免宽屏文字过散 */
         margin: 0 auto; /* 配合max-width，确保容器本身水平居中 */
       }
@@ -1122,21 +1122,7 @@
         font-size: 3.8rem; /* 基础字号（基于全局html font-size） */
         margin-bottom: 1.25rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
-        /* 1. 核心：渐变背景（方向+颜色，适配品牌蓝色系） */
-        background-image: linear-gradient(
-          to right,
-          #ec4d4d,
-          #ffac40,
-          #eeff00
-        ); /* 从品牌蓝#0071e3到浅蓝#40a9ff的水平渐变 */
-        /* 2. 让背景仅覆盖文字区域（关键属性） */
-        background-clip: text;
-        -webkit-background-clip: text; /* 兼容Safari浏览器 */
-        /* 3. 文字本身设为透明，露出渐变背景（必须） */
-        -webkit-text-fill-color: transparent; /* 兼容Safari浏览器 */
-
-        /* 可选：防止文字抗锯齿导致渐变边缘模糊（优化细节） */
-        -webkit-font-smoothing: antialiased;
+        color: #f5f5f7;
       }
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
@@ -1389,65 +1375,38 @@
       @media (max-width: 320px) {
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          top: 4%; /* 比基础样式多下移3%，适配小屏垂直空间 */
           padding: 0 0.8rem; /* 缩小左右留白，充分利用宽度 */
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 0.988rem;
-          margin-bottom: 0.21rem; /* 缩小与描述文字间距，紧凑布局 */
+          font-size: 1.2rem;
+          margin-bottom: 0.25rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
         /* 描述文字：*/
         .banner-text p {
-          font-size: 0.593rem;
+          font-size: 0.5rem;
+          max-width: 100%;
         }
 
-        /* 按钮组间距 */
-        .banner-btns {
-          display: flex;
-          justify-content: center; /* 按钮组水平居中（核心属性） */
-          align-items: center; /* 按钮组垂直居中（可选，避免按钮高低不齐） */
-          gap: 1rem;
-          flex-wrap: nowrap;
-          margin-top: 1.5rem; /* 新增：与上方描述文字拉开间距，避免拥挤 */
-          width: 100%; /* 新增：让按钮组占满父容器宽度，确保justify-content生效 */
-        }
-
-        /* 按钮：高*宽 */
+        /* 基础按钮样式 */
         .banner-btn {
-          /* 初始状态（仅垂直位移，无水平干扰） */
-          opacity: 0;
-          transform: translateY(15px);
-          -webkit-transform: translateY(15px);
-          /* 清除可能的默认边距 */
-          margin: 0;
-          padding: 0.5rem 1.5rem;
-          border-radius: 9999px;
-          font-size: 1rem;
-          cursor: pointer;
-          border: none;
-          transition: background-color 0.2s ease;
+          padding: 0.2rem 0.8rem; /* 内边距：保证点击区域大小 */
+          border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+          font-size: 0.5rem; /* 基础字号，确保可读性 */
+          cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+          border: none; /* 清除默认边框 */
+          transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
-        /* 「立即购买」按钮：缩小边框宽度 */
+        /* 「立即购买」按钮（次按钮） */
         .buy-btn {
-          border: 0.02125rem solid #0071e3;
-        }
-
-        /* 箭头：保持尺寸，调整左右留白 */
-        .carousel-control.prev-btn {
-          left: 0.8rem;
-        }
-        .carousel-control.next-btn {
-          right: 0.8rem;
-        }
-
-        /* 圆点：保持尺寸，适配小屏视觉 */
-        .banner-dot {
-          width: 0.4rem;
-          height: 0.4rem;
+          background-color: #f5f5f7; /* 透明背景 */
+          color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+          border: 0.125rem solid #f5f5f7; /* 蓝色边框，明确按钮边界 */
+          font-weight: 100;
         }
       }
 

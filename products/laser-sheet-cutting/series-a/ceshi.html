@@ -1124,13 +1124,16 @@
         margin-bottom: 1.25rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
         /* 神通妙彩渐变：浅紫 → 浅绿 */
-        background-image: linear-gradient(to right, #ca7cff, #78ff6c);
+        background-image: linear-gradient(to right, #3d0563, #78ff6c);
         /* 文字渐变核心：将背景裁剪为文字形状（兼容浏览器前缀） */
         -webkit-background-clip: text;
+        -webkit-font-smoothing: antialiased; /* 文字抗锯齿（关键） */
+        -moz-osx-font-smoothing: grayscale;
         background-clip: text;
         /* 文字设为透明，显示背景渐变 */
         color: transparent;
         font-weight: 600;
+        background-clip: text;
       }
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
@@ -1648,6 +1651,671 @@
           width: 3rem;
           height: 3rem;
           font-size: 1.5rem; /* 图标放大至24px，确保清晰 */
+        }
+      }
+
+      /* ================================== 切割有道数据图表板块 - 基础样式（已对齐核心优势板块） ================================== */
+      /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
+      .section-chart {
+        padding: 5rem 0 7.5rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+        background-color: var(
+          --color-neutral
+        ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
+        width: 100%; /* 确保外层占满屏幕宽度，避免左右留白 */
+      }
+      .section-container {
+        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+        box-sizing: border-box;
+      }
+
+      /* 3. 板块标题区域（无需修改，基于内层容器对齐） */
+      .chart-title {
+        color: #000;
+        font-size: 3.5rem;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        /* 清除可能的额外缩进，确保标题靠左对齐容器 */
+        text-align: left;
+        padding: 0;
+        margin-left: 0;
+      }
+
+      /* 标题核心文字（“道”）- 继承标题样式，无需修改 */
+      .chart-title-core {
+        color: #000;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        text-shadow: inherit;
+        margin-bottom: inherit;
+        font-family: inherit;
+      }
+
+      /* 标题符号（┌┘）- 无需修改 */
+      .chart-title-symbol {
+        color: var(--color-secondary);
+      }
+
+      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
+      .chart-desc {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: left; /* 确保描述文字靠左对齐 */
+        margin-left: 0;
+      }
+
+      /* 描述文字分隔线（无需修改，基于内层容器对齐） */
+      .chart-desc-divider {
+        width: 4rem;
+        height: 0.125rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin-left: 0; /* 确保分隔线靠左对齐 */
+      }
+
+      /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
+      .chart-card {
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* 卡片hover效果（无需修改） */
+      .chart-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* 卡片标题区域（无需修改） */
+      .chart-card-header h3 {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: center;
+        font-weight: 500;
+      }
+
+      /* ================================== 响应式对齐：同步核心优势板块的小屏适配 ================================== */
+      /* 平板以下（<768px）：同步核心优势板块的左侧margin调整（若核心优势小屏改了margin，这里也要同步） */
+      @media (max-width: 767px) {
+        /* 内层容器小屏对齐：若核心优势.benefit-container小屏margin改了，这里同步（示例：小屏左侧margin改为5%） */
+        .chart-container {
+          margin: 0 auto 0 5%; /* 与核心优势.benefit-container的小屏margin一致 */
+          padding: 0 1rem; /* 小屏缩小左右padding，与核心优势同步 */
+        }
+
+        /* 其他样式保留原适配逻辑 */
+        .chart-title {
+          font-size: clamp(1.8rem, 6vw, 2.8rem);
+          margin-bottom: 0.8rem;
+        }
+
+        .chart-desc {
+          font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .chart-grid {
+          gap: 1.5rem;
+        }
+
+        .chart-card-canvas {
+          height: 14rem;
+        }
+      }
+
+      /* 手机小屏（<375px）：同步核心优势板块的小屏适配 */
+      @media (max-width: 374px) {
+        .chart-container {
+          margin: 0 auto 0 3%; /* 与核心优势.benefit-container的超小屏margin一致 */
+          padding: 0 0.8rem;
+        }
+
+        .chart-title {
+          font-size: clamp(1.5rem, 7vw, 2.2rem);
+        }
+
+        .chart-card-header {
+          padding: 1rem;
+        }
+      }
+
+      /* ================================== 五、核心优势（在Senrytech购买Machine好处多多） ================================== */
+      /* 作用：展示购买设备的核心优势，含文字介绍+横向滚动卡片，背景与产品板块统一（深灰#1d1d1f）
+      适配原则：基于全局html基准字号（Mobile S:12px ~ 4K:16px），所有尺寸用REM，确保多端视觉一致性 */
+
+      /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
+      .benefit-section {
+        background-color: #f5f5f7; /* 与导航栏/产品板块配色统一 */
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
+        position: relative; /* 作为滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
+      }
+
+      /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
+      .benefit-container {
+        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+        box-sizing: border-box;
+      }
+
+      /* —— 5.3 板块主标题：强化视觉焦点 —— */
+      .benefit-main-title {
+        font-family:
+          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
+        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 400; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
+        line-height: 1.1; /* 紧凑行高，避免标题换行 */
+      }
+
+      /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
+      .benefit-scroll-wrap {
+        position: relative; /* 作为卡片容器的定位父容器 */
+        overflow: visible; /* 允许箭头超出容器范围 */
+        overflow-x: auto; /* 仅横向滚动，纵向固定 */
+        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
+        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      .benefit-scroll-wrap::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+
+      /* —— 5.6 卡片容器：横向排列卡片 —— */
+      .benefit-card-container {
+        display: flex; /* 卡片横向排列 */
+        gap: 1.5rem; /* 16px基准：24px，卡片之间间距 */
+        width: max-content; /* 宽度随卡片数量自适应，确保所有卡片显示 */
+        transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
+      }
+
+      /* —— 5.7 优势卡片：仅保留定位功能，视觉由图片主导 —— */
+      .benefit-card {
+        width: 85rem; /* 16px基准：340px，固定宽度确保卡片一致性 */
+        flex-shrink: 0; /* 禁止收缩，避免卡片被挤压变形 */
+        position: relative; /* 作为卡片内文字/图片的定位上下文 */
+        height: auto; /* 高度由图片自动撑开 */
+        overflow: visible; /* 允许文字/阴影超出卡片范围 */
+        background-color: transparent; /* 透明背景，图片完全主导视觉 */
+        padding: 0; /* 清除内边距，避免干扰图片布局 */
+        box-shadow: none; /* 无阴影，阴影由图片单独控制 */
+        border-radius: 0; /* 无圆角，圆角由图片单独控制 */
+        transition: none; /* 无过渡，过渡效果由图片单独控制 */
+        cursor: inherit; /* 鼠标样式由子元素（图片）控制 */
+        border: none; /* 无边框 */
+        margin: 0; /* 清除margin */
+      }
+
+      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
+      .benefit-card-text {
+        position: absolute;
+        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保文字可见 */
+        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
+        text-align: left;
+        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
+      }
+
+      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+      /* 卡片内二级标题 */
+      .benefit-card .benefit-subtitle {
+        color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+        font-size: 1rem; /* 16px基准：16px */
+        font-weight: 500;
+        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+      }
+      /* 卡片内一级标题 */
+      .benefit-card .benefit-heading {
+        color: #1d1d1f; /* 同上，适配图片背景 */
+        font-size: 1.75rem; /* 16px基准：28px */
+        font-weight: 600;
+        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+        letter-spacing: -0.5px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      /* 卡片内描述文本 */
+      .benefit-card .benefit-desc {
+        color: #1d1d1f; /* 同上，适配图片背景 */
+        font-size: 0.875rem; /* 16px基准：14px */
+        line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      /* —— 5.10 卡片图片：核心视觉元素，控制交互效果 —— */
+      .benefit-card img {
+        width: 100%; /* 图片占满卡片宽度 */
+        height: 34.375rem; /* 16px基准：550px，固定高度确保卡片对齐 */
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸） */
+        object-position: center bottom; /* 图片定位：居中靠下，优先显示底部内容 */
+        border-radius: 1.25rem; /* 16px基准：20px，与产品板块卡片圆角统一 */
+        background-color: transparent; /* 透明背景，避免加载时显白 */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 16px基准：0 4px 16px，轻微阴影增强立体感 */
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease; /* 过渡效果：上浮+阴影加深 */
+        display: block; /* 清除图片默认空隙 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        transform: translateY(
+          0.125rem
+        ); /* 16px基准：2px，初始轻微下沉，增强hover对比 */
+        transform-origin: bottom 10%; /* 变换原点：底部偏左，优化动画质感 */
+      }
+      /* 图片hover效果：轻微上浮+放大+阴影加深 */
+      .benefit-card:hover img {
+        transform: translateY(-0.375rem) scale(1.01); /* 16px基准：-6px上浮+1%放大 */
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 16px基准：0 8px 24px，阴影加深 */
+      }
+
+      /* —— 5.11 卡片底部文字：图片底部标注 —— */
+      .benefit-card-name {
+        font-size: 1rem; /* 16px基准：16px，与产品板块卡片文字字号统一 */
+        font-weight: 300; /* 与产品板块统一，避免过粗显笨重 */
+        color: #f5f5f7; /* 浅灰文字，适配图片背景 */
+        line-height: 1.4; /* 优化可读性 */
+        padding: 0; /* 清除内边距 */
+        margin: 0; /* 清除margin */
+        position: absolute;
+        bottom: 1.25rem; /* 16px基准：20px，距离图片底部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保可见 */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 文字阴影，提升可读性 */
+        pointer-events: none; /* 禁止拦截图片点击 */
+      }
+
+      /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
+      .benefit-nav-btn {
+        position: absolute; /* 基于板块容器定位 */
+        top: 90%; /* 垂直居中于产品卡片区域 */
+        transform: translateY(
+          -50%
+        ) !important; /* 垂直居中校准（!important避免被覆盖） */
+        bottom: auto !important; /* 取消底部定位，避免冲突 */
+        width: 2.5rem; /* 16px基准：40px，圆形按钮直径 */
+        height: 2.5rem;
+        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
+        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，弱化但可见 */
+        color: #696969; /* 灰色箭头，与背景区分 */
+        border: none; /* 清除默认边框 */
+        font-size: 1.25rem; /* 16px基准：20px，箭头图标大小 */
+        cursor: pointer; /* 提示可点击 */
+        outline: none; /* 清除聚焦轮廓 */
+        display: flex;
+        justify-content: center; /* 箭头水平居中 */
+        align-items: center; /* 箭头垂直居中 */
+        padding: 0; /* 清除默认内边距 */
+        z-index: 999; /* 层级高于卡片，确保不被遮挡 */
+      }
+      /* 左箭头位置 */
+      .benefit-nav-btn.prev-btn {
+        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        right: auto;
+        display: flex !important; /* 强制显示，避免被隐藏 */
+      }
+      /* 右箭头位置 */
+      .benefit-nav-btn.next-btn {
+        right: calc(5% + 1.25rem); /* 基于屏幕右侧5%，向右偏移1.25rem */
+        left: auto;
+      }
+      /* 箭头交互效果 */
+      .benefit-nav-btn:hover {
+        background-color: rgba(180, 180, 180, 0.9); /* 背景加深 */
+        color: #333; /* 文字加深，增强反馈 */
+      }
+      .benefit-nav-btn:disabled {
+        background-color: rgba(240, 240, 240, 0.9); /* 更浅背景，视觉弱化 */
+        color: #aaa; /* 浅灰箭头 */
+        cursor: not-allowed; /* 提示不可点击 */
+        display: flex !important; /* 禁用时仍显示，避免布局跳动 */
+      }
+
+      /* ================================== 购买优势板块 - 媒体查询适配 ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
+
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
+      @media (max-width: 320px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          padding: 0 0.8rem; /* 12px基准：~9.6px，缩小留白 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
+          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+        }
+        .benefit-card {
+          width: 13rem; /* 12px基准：156px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 12px基准：240px，缩小图片高度 */
+          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .benefit-card .benefit-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .benefit-card .benefit-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .benefit-card .benefit-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .benefit-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .benefit-card .benefit-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .benefit-card .benefit-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .benefit-card .benefit-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .benefit-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .benefit-card .benefit-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .benefit-card .benefit-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .benefit-card .benefit-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .benefit-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .benefit-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .benefit-card .benefit-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .benefit-card .benefit-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .benefit-card .benefit-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .benefit-container {
+          margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
+          max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
+        }
+        .benefit-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .benefit-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .benefit-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .benefit-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .benefit-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .benefit-card .benefit-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .benefit-card .benefit-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .benefit-card .benefit-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+        .benefit-container {
+          max-width: 120rem; /* 16px基准：1920px，适配4K屏宽度 */
+        }
+        .benefit-main-title {
+          font-size: 4.5rem; /* 16px基准：72px，增强标题视觉冲击 */
+          margin-bottom: 2rem; /* 16px基准：32px，放大间距适配4K比例 */
+        }
+        .benefit-intro {
+          margin-bottom: 4rem; /* 16px基准：64px，放大与卡片区间距 */
+        }
+        .benefit-card {
+          width: 24rem; /* 16px基准：384px，放大卡片尺寸 */
+        }
+        .benefit-card img {
+          height: 28rem; /* 16px基准：448px，放大图片高度 */
+          border-radius: 1.5rem; /* 16px基准：24px，同步放大圆角 */
+        }
+        .benefit-card-name {
+          font-size: 1.2rem; /* 16px基准：19.2px，放大文字，提升可读性 */
+          bottom: 1.5rem; /* 16px基准：24px，同步调整位置 */
+          left: 1.5rem;
+        }
+        .benefit-nav-btn {
+          width: 3rem; /* 16px基准：48px，放大箭头尺寸 */
+          height: 3rem;
+          font-size: 1.5rem; /* 16px基准：24px，放大箭头图标 */
+        }
+        .benefit-nav-btn.prev-btn {
+          left: calc(85% + 3rem); /* 同步放大偏移量 */
+        }
+        .benefit-nav-btn.next-btn {
+          right: calc(5% + 1.5rem); /* 同步放大偏移量 */
         }
       }
 
@@ -2667,86 +3335,135 @@
       </div>
     </div>
 
-    <section class="py-16 bg-neutral">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2
-            class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
-          >
-            切割有 <span class="text-secondary mx-1">┌</span>
-            <span
-              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
-              >道</span
-            >
-            <span class="text-secondary mx-1">┘</span>
+    <!-- 切割数据图表板块 -->
+    <section class="section-chart">
+      <div class="section-container">
+        <!-- 板块标题区域 -->
+        <div class="chart-header text-center mb-12">
+          <h2 class="chart-title">
+            切割有 <span class="chart-title-symbol text-secondary mx-1">┌</span>
+            <span class="chart-title-core">道</span>
+            <span class="chart-title-symbol text-secondary mx-1">┘</span>
           </h2>
-          <p class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)]">
+          <p class="chart-desc">
             杜绝虚假宣传
             <span
-              class="inline-block w-16 h-0.5 bg-[#000000]/20 ml-3 vertical-align-middle"
+              class="chart-desc-divider inline-block ml-3 vertical-align-middle"
             ></span>
           </p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div
-            class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
-          >
-            <div class="h-64 p-4">
+
+        <!-- 图表卡片网格 -->
+        <div
+          class="chart-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- 碳钢图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
               <canvas id="carbonSteelChart"></canvas>
             </div>
-            <div class="p-5">
-              <h3
-                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
-              >
-                碳钢切割厚度
-              </h3>
+            <div class="chart-card-header p-5">
+              <h3>碳钢切割厚度</h3>
             </div>
           </div>
-          <div
-            class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
-          >
-            <div class="h-64 p-4">
+
+          <!-- 不锈钢图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
               <canvas id="stainlessSteelChart"></canvas>
             </div>
-            <div class="p-5">
-              <h3
-                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
-              >
-                不锈钢切割厚度
-              </h3>
+            <div class="chart-card-header p-5">
+              <h3>不锈钢切割厚度</h3>
             </div>
           </div>
-          <div
-            class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
-          >
-            <div class="h-64 p-4">
+
+          <!-- 铝合金图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
               <canvas id="aluminumChart"></canvas>
             </div>
-            <div class="p-5">
-              <h3
-                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
-              >
-                铝合金切割厚度
-              </h3>
+            <div class="chart-card-header p-5">
+              <h3>铝合金切割厚度</h3>
             </div>
           </div>
-          <div
-            class="bg-white/70 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-white/20"
-          >
-            <div class="h-64 p-4">
+
+          <!-- 铜图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
               <canvas id="copperChart"></canvas>
             </div>
-            <div class="p-5">
-              <h3
-                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
-              >
-                铜切割厚度
-              </h3>
+            <div class="chart-card-header p-5">
+              <h3>铜切割厚度</h3>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- 板块5. 购买优势板块（在Senrytech购买Machine好处多多） -->
+    <div class="benefit-section" style="position: relative">
+      <div class="benefit-container">
+        <!-- 板块主题文字（保留，仅删除原全局的benefit-intro） -->
+        <h2 class="benefit-main-title">核心亮点</h2>
+
+        <!-- 图片卡片容器 -->
+        <div class="benefit-scroll-wrap" style="position: relative">
+          <div class="benefit-card-container" id="benefitScroll">
+            <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
+            <div class="benefit-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/home-intallation.webp"
+                alt="专业安装服务"
+              />
+              <!-- 新增：卡片内三段文字容器（左上角定位） -->
+              <div class="benefit-card-text">
+                <p class="benefit-subtitle">灵活上门安装</p>
+                <h3 class="benefit-heading">想上门装设备？按需安排更省心</h3>
+                <p class="benefit-desc">
+                  提供专业安装人员，费用透明，按需定制安装流程，不用零散找技工。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片2：同结构复制 -->
+            <div class="benefit-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/on-site-repair.webp"
+                alt="透明费用"
+              />
+              <div class="benefit-card-text">
+                <p class="benefit-subtitle">按需上门维修</p>
+                <h3 class="benefit-heading">设备出问题？上门维修可按需约</h3>
+                <p class="benefit-desc">
+                  明码标价的上门维修，快速协调适配机型的技术人员，维修资源更匹配。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片3：同结构复制 -->
+            <div class="benefit-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/quality-guarantee.webp"
+                alt="定制流程"
+              />
+              <div class="benefit-card-text">
+                <p class="benefit-subtitle">明确期质保</p>
+                <h3 class="benefit-heading">购机享质保，非人为问题放心修</h3>
+                <p class="benefit-desc">
+                  1 年质保覆盖 “非人为、非不当使用” 故障，减少意外成本。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 滚动箭头（与第3板块一致） -->
+      <button class="benefit-nav-btn prev-btn" id="benefitPrevBtn" disabled>
+        &lt;
+      </button>
+      <button class="benefit-nav-btn next-btn" id="benefitNextBtn">&gt;</button>
+    </div>
 
     <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
@@ -3350,6 +4067,78 @@
             copperChart.update();
           }, 1500);
         }, 1000);
+      });
+    </script>
+
+    <script>
+      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
+      // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
+      document.addEventListener("DOMContentLoaded", () => {
+        // —— 5.1 初始化优势板块滚动所需变量 ——
+        const benefitScrollWrap = document.querySelector(
+          ".benefit-scroll-wrap"
+        ); // 滚动容器
+        const benefitCardContainer = document.getElementById("benefitScroll"); // 卡片容器（对应第3板块#productScroll）
+        const benefitItems = document.querySelectorAll(".benefit-card"); // 所有优势卡片
+        const prevBtn = document.getElementById("benefitPrevBtn"); // 左箭头
+        const nextBtn = document.getElementById("benefitNextBtn"); // 右箭头
+
+        // —— 5.2 初始化参数（与第3板块逻辑一致） ——
+        let itemWidth = benefitItems[0]
+          ? benefitItems[0].offsetWidth + 24
+          : 364; // 滚动步长=卡片宽+间距（24px）
+        const containerGap =
+          parseInt(getComputedStyle(benefitCardContainer).gap) || 24; // 卡片间距
+
+        // —— 5.3 计算卡片宽度（适配窗口缩放） ——
+        const initItemWidth = () => {
+          if (benefitItems[0]) {
+            itemWidth = benefitItems[0].offsetWidth + containerGap; // 重新计算滚动步长
+          }
+        };
+
+        // —— 5.4 箭头滚动控制（与第3板块一致） ——
+        // 右滚动：一次滚动一个步长
+        const scrollRight = () => {
+          benefitScrollWrap.scrollBy({
+            left: itemWidth,
+            behavior: "smooth", // 平滑滚动
+          });
+        };
+        // 左滚动：一次滚动一个步长
+        const scrollLeft = () => {
+          benefitScrollWrap.scrollBy({
+            left: -itemWidth,
+            behavior: "smooth",
+          });
+        };
+
+        // —— 5.5 箭头禁用状态控制（与第3板块一致） ——
+        const updateBtnState = () => {
+          if (!benefitScrollWrap) return;
+          // 左箭头：滚动到最左侧（误差≤10px）则禁用
+          prevBtn.disabled = benefitScrollWrap.scrollLeft <= 10;
+          // 右箭头：滚动到最右侧（误差≤10px）则禁用
+          nextBtn.disabled =
+            benefitScrollWrap.scrollLeft >=
+            benefitScrollWrap.scrollWidth - benefitScrollWrap.clientWidth - 10;
+        };
+
+        // —— 5.6 绑定箭头点击事件 ——
+        nextBtn.addEventListener("click", scrollRight);
+        prevBtn.addEventListener("click", scrollLeft);
+        // 滚动时实时更新箭头状态
+        benefitScrollWrap.addEventListener("scroll", updateBtnState);
+
+        // —— 5.7 窗口缩放适配（与第3板块一致） ——
+        window.addEventListener("resize", () => {
+          initItemWidth(); // 重新计算滚动步长
+          updateBtnState(); // 重新更新箭头状态
+        });
+
+        // —— 5.8 初始化（页面加载时执行） ——
+        initItemWidth();
+        updateBtnState();
       });
     </script>
   </body>

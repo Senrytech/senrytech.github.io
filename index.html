@@ -4,14 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>网站首页</title>
-    <!-- 引入类似SF Pro的免费商用字体Public Sans（无需下载，直接加载） -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
     <!-- 引入思源黑体字体文件 -->
     <link
-      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500&display=swap"
+      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <!-- 引入Font Awesome图标库（商务图标依赖） -->
@@ -131,7 +126,7 @@
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
       .navbar .logo {
-        font-weight: 400; /* 字体中等粗细，避免过粗显笨重 */
+        font-weight: 500; /* 字体中等粗细，避免过粗显笨重 */
         font-size: 1rem; /* LOGO字号略大，突出品牌标识 */
       }
 
@@ -140,7 +135,7 @@
         color: #f5f5f7; /* 链接默认浅白色 */
         text-decoration: none; /* 去掉默认下划线，提升精致感 */
         font-size: 0.75rem; /* 统一小型化字号，适配窄导航高度 */
-        font-weight: 200; /* 字体偏细，符合苹果风格轻量化设计 */
+        font-weight: 300; /* 字体偏细，符合苹果风格轻量化设计 */
         transition: color 0.2s ease; /* hover时颜色过渡，增强交互感 */
       }
       /* 链接hover状态：文字变浅灰，提示可交互 */
@@ -176,7 +171,7 @@
           29,
           29,
           31,
-          0.8
+          0.9
         ); /* 深灰半透明背景，弱化导航对内容的遮挡 */
         backdrop-filter: blur(20px); /* 背景模糊核心效果，增强玻璃拟态风格 */
         -webkit-backdrop-filter: blur(
@@ -205,7 +200,7 @@
           29,
           29,
           31,
-          0.8
+          0.9
         ); /* 深灰半透明背景，与滚动后导航风格统一 */
         backdrop-filter: blur(12px); /* 背景模糊，提升与下层内容的层次感 */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
@@ -258,7 +253,7 @@
 
       /* —— 2.11 分类项样式（左侧单个分类，可hover/激活） —— */
       .category-item {
-        padding: 1.2rem 1.6rem; /* 内边距：上下1.2rem、左右1.6rem，保证点击区域 */
+        padding: 1rem 2rem; /* 内边距：上下1.2rem、左右1.6rem，保证点击区域 */
         border-radius: 2rem; /* 椭圆背景，增强精致感 */
         margin-bottom: 1rem; /* 分类项之间的间距，避免拥挤 */
         cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
@@ -274,14 +269,15 @@
           255,
           0.08
         ); /* 浅白半透明背景，与深背景区分 */
-        font-weight: 500; /* 文字加粗，增强视觉识别度 */
+        font-weight: 100; /* 文字加粗，增强视觉识别度 */
       }
 
-      /* —— 2.12 分类项内部链接样式（解决导航栏全局a标签样式冲突） —— */
+      /* —— 2.12 分类项内部链接样式（左侧目录） —— */
       /* 核心：用更具体的选择器提升优先级，覆盖导航栏a标签的白色小字号样式 */
       .navbar .dropdown-category .category-item a {
         color: #f5f5f7; /* 链接基础色：浅白色，与分类栏背景区分 */
         font-size: 1rem; /* 链接字号放大，确保可读性 */
+        text-align: center; /* 文字水平居中 */
         text-decoration: none; /* 去掉下划线 */
         display: block; /* 链接占满分类项宽度，hover区域完整 */
         transition: none; /* 取消颜色过渡，避免hover时文字闪烁 */
@@ -1043,7 +1039,7 @@
         /* 核心1：现代浏览器16:9比例（优先生效） */
         aspect-ratio: 16 / 7;
         /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 43.75%;
+        padding-top: 37%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
       }
 
@@ -1082,7 +1078,7 @@
       /* —— 3.4 轮播文字内容（核心：垂直居中+适配16:9比例） ——*/
       .banner-text {
         position: absolute; /* 文字层悬浮于图片上方 */
-        top: 15%; /* 16:9比例下微调位置，避免文字贴顶（原10%优化） */
+        top: 11%; /* 16:9比例下微调位置，避免文字贴顶（原10%优化） */
         left: 50%;
         transform: translateX(-50%); /* 水平居中 */
         color: #f5f5f7; /* 浅白色文字，适配深色背景图 */
@@ -1100,9 +1096,10 @@
 
       /* 标题样式：突出视觉焦点 */
       .banner-text h1 {
-        font-size: 3.5rem; /* 基础字号（基于全局html font-size） */
+        font-size: 3.3rem; /* 基础字号（基于全局html font-size） */
         margin-bottom: 1.25rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
+        font-weight: 600;
       }
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
@@ -1110,6 +1107,7 @@
         font-size: 1.625rem; /* 小于标题字号，明确层级 */
         margin-bottom: 0.625rem; /* 与按钮组间距 */
         line-height: 1.4; /* 宽松行高，提升可读性 */
+        font-weight: 400;
       }
 
       /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
@@ -1134,17 +1132,20 @@
       .learn-more-btn {
         background-color: #0071e3; /* 品牌蓝色，突出核心转化 */
         color: #f5f5f7; /* 白色文字，高对比度 */
+        text-decoration: none; /* 关键：清除超链接默认下划线 */
+        font-weight: 300;
       }
 
       .learn-more-btn:hover {
         background-color: #0066cc; /* hover时加深蓝色，强化反馈 */
+        text-decoration: none; /* 可选：确保hover时也不会出现下划线 */
       }
 
       /* 「立即购买」按钮（次按钮） */
       .buy-btn {
         background-color: transparent; /* 透明背景 */
         color: #0071e3; /* 蓝色文字，与主按钮呼应 */
-        border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+        border: 0.1rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
       }
 
       .buy-btn:hover {
@@ -1647,7 +1648,7 @@
         border-radius: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，与导航卡片圆角风格统一 */
         box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 原0 4px 16px → 16px基准下：4/16=0.25rem，16/16=1rem，轻微阴影增强立体感 */
         transition: all 0.3s ease; /* 所有属性过渡（缩放+阴影） */
-        background-color: #f0f0f0; /* 图片加载失败时的占位背景 */
+        background-color: #f5f5f7; /* 图片加载失败时的占位背景 */
         margin-top: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，图片向下偏移避免贴边 */
       }
       /* 图片悬浮效果：放大+阴影加深 */
@@ -1698,6 +1699,8 @@
         ); /* 基于.product-container左侧15%margin，向右偏移2.5rem适配布局 */
         right: auto;
         display: flex !important; /* 强制显示，避免被隐藏 */
+        opacity: 1 !important; /* 重置透明度 */
+        filter: none !important; /* 重置滤镜 */
       }
 
       /* —— 4.14 右滚动箭头：控制产品列表向右滚动 —— */
@@ -3832,6 +3835,8 @@
         align-items: center; /* 箭头垂直居中 */
         padding: 0; /* 清除默认内边距 */
         z-index: 999; /* 层级高于卡片，确保不被遮挡 */
+        opacity: 1 !important; /* 重置透明度 */
+        filter: none !important; /* 重置滤镜 */
       }
 
       /* 左箭头：保持left值不变（已与其他板块一致），新增“禁止换行”确保位置稳定 */
@@ -5194,7 +5199,7 @@
         <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
         <div class="carousel-slide active">
           <img
-            src="../senrytech.github.io/img/index/banner/banner-1-2032-1143.webp"
+            src="../senrytech.github.io/img/index/banner/banner-1-2032-1143-3.webp"
             alt="BANNER图1"
           />
           <div class="banner-text active">

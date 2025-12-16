@@ -131,8 +131,8 @@
         position: sticky; /* 滚动时固定在顶部，不随页面滚动消失 */
         top: 0;
         height: 45px; /* 窄版导航固定高度，匹配设计风格 */
-        background-color: #1d1d1f; /* 初始深灰色背景，与品牌色调统一 */
-        color: #f5f5f7; /* 导航文字默认浅白色，提升对比度 */
+        background-color: #f5f5f7; /* 初始深灰色背景，与品牌色调统一 */
+        color: #000000; /* 导航文字默认浅白色，提升对比度 */
         z-index: 1000; /* 确保导航层级最高，不被其他元素遮挡 */
         transition: all 0.3s ease; /* 滚动时背景/模糊效果的平滑过渡 */
         display: flex;
@@ -151,15 +151,15 @@
 
       /* —— 2.3 导航栏普通链接样式（非LOGO/按钮的导航项） —— */
       .navbar a {
-        color: #f5f5f7; /* 链接默认浅白色 */
+        color: #000000; /* 链接默认浅白色 */
         text-decoration: none; /* 去掉默认下划线，提升精致感 */
         font-size: 0.75rem; /* 统一小型化字号，适配窄导航高度 */
-        font-weight: 200; /* 字体偏细，符合苹果风格轻量化设计 */
+        font-weight: 400; /* 字体偏细，符合苹果风格轻量化设计 */
         transition: color 0.2s ease; /* hover时颜色过渡，增强交互感 */
       }
       /* 链接hover状态：文字变浅灰，提示可交互 */
       .navbar a:hover {
-        color: #e0e0e0;
+        color: #000000;
       }
 
       /* —— 2.4 导航栏功能按钮样式（语言切换/询价按钮，统一基础样式） —— */
@@ -175,8 +175,8 @@
       /* 2.4.1 语言切换按钮（透明边框+浅白文字，适配深背景） */
       .language-btn {
         background-color: transparent; /* 透明背景，突出导航背景 */
-        color: #f5f5f7; /* 文字浅白色，与导航文字一致 */
-        border: 1px solid #f5f5f7; /* 浅白色边框，明确按钮边界 */
+        color: #000000; /* 文字浅白色，与导航文字一致 */
+        border: 1px solid #000000; /* 浅白色边框，明确按钮边界 */
       }
       /* 2.4.2 询价按钮（蓝色背景+浅白文字，突出核心转化功能） */
       .inquiry-btn {
@@ -187,9 +187,9 @@
       /* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
       .navbar.scrolled {
         background-color: rgba(
-          29,
-          29,
-          31,
+          245,
+          245,
+          247,
           0.8
         ); /* 深灰半透明背景，弱化导航对内容的遮挡 */
         backdrop-filter: blur(20px); /* 背景模糊核心效果，增强玻璃拟态风格 */
@@ -216,10 +216,10 @@
         width: 100%;
         max-width: 100vw; /* 限制最大宽度为屏幕宽度，避免超宽溢出 */
         background-color: rgba(
-          29,
-          29,
-          31,
-          0.8
+          245,
+          245,
+          247,
+          0.9
         ); /* 深灰半透明背景，与滚动后导航风格统一 */
         backdrop-filter: blur(12px); /* 背景模糊，提升与下层内容的层次感 */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
@@ -283,9 +283,9 @@
       .category-item:hover,
       .category-item.active {
         background-color: rgba(
-          255,
-          255,
-          255,
+          29,
+          29,
+          31,
           0.08
         ); /* 浅白半透明背景，与深背景区分 */
         font-weight: 500; /* 文字加粗，增强视觉识别度 */
@@ -294,8 +294,9 @@
       /* —— 2.12 分类项内部链接样式（解决导航栏全局a标签样式冲突） —— */
       /* 核心：用更具体的选择器提升优先级，覆盖导航栏a标签的白色小字号样式 */
       .navbar .dropdown-category .category-item a {
-        color: #f5f5f7; /* 链接基础色：浅白色，与分类栏背景区分 */
+        color: #000000; /* 链接基础色：浅白色，与分类栏背景区分 */
         font-size: 1rem; /* 链接字号放大，确保可读性 */
+        text-align: center; /* 文字水平居中 */
         text-decoration: none; /* 去掉下划线 */
         display: block; /* 链接占满分类项宽度，hover区域完整 */
         transition: none; /* 取消颜色过渡，避免hover时文字闪烁 */
@@ -305,7 +306,7 @@
       /* hover/激活时强制浅白色，用!important彻底锁死样式，避免冲突 */
       .navbar .dropdown-category .category-item:hover a,
       .navbar .dropdown-category .category-item.active a {
-        color: #f5f5f7 !important;
+        color: #000000 !important;
       }
 
       /* —— 2.13 下拉菜单右侧内容区（产品列表容器，随分类切换显示） —— */
@@ -321,10 +322,10 @@
       /* —— 2.14 内容区标题样式（如“激光板材切割机系列”，区分分类层级） —— */
       .content-item h3 {
         font-size: 1rem; /* 标题字号，与分类项链接区分 */
-        color: #f5f5f7; /* 标题颜色：浅白色，突出层级 */
+        color: #000000; /* 标题颜色：浅白色，突出层级 */
         margin-bottom: 24px; /* 与下方产品列表的间距，避免拥挤 */
         padding-bottom: 0.8rem; /* 下划线上方留白，增强视觉层次 */
-        border-bottom: 1px solid #eee; /* 浅灰色下划线，分隔标题与内容 */
+        border-bottom: 1px solid #000000; /* 浅灰色下划线，分隔标题与内容 */
       }
 
       /* —— 2.15 内容区产品列表容器（产品卡片横向排列，自动换行） —— */
@@ -358,7 +359,7 @@
         object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸变形） */
         margin-bottom: 0.8rem; /* 图片与文字的间距，视觉分隔 */
         border-radius: 1.5rem; /* 苹果风格大圆角，提升精致感 */
-        background: #f0f0f0; /* 图片加载失败时的占位背景色，避免空白 */
+        background: #f5f5f7; /* 图片加载失败时的占位背景色，避免空白 */
 
         /* 阴影效果：增强图片立体感 */
         box-shadow:
@@ -378,7 +379,7 @@
       /* —— 2.18 产品卡片文字样式（产品名称，简洁展示） —— */
       .product-card p {
         font-size: 0.9rem; /* 产品名称字号，确保简洁不换行 */
-        color: #f5f5f7; /* 文字颜色：浅白色，与背景区分 */
+        color: #000000; /* 文字颜色：浅白色，与背景区分 */
         line-height: 1.5; /* 行高，提升可读性 */
         padding: 0 0.5rem; /* 文字左右留白，避免超出卡片边界 */
       }
@@ -458,7 +459,7 @@
         width: 85%; /* 小屏幕占85%宽度，Tablet占70%，通过媒体查询调整 */
         max-width: 380px; /* 限制最大宽度，避免宽屏移动端菜单过宽 */
         height: 100vh; /* 占满屏幕高度 */
-        background-color: #1d1d1f; /* 深灰色背景，与导航风格统一 */
+        background-color: #000000; /* 深灰色背景，与导航风格统一 */
         backdrop-filter: blur(10px); /* 背景模糊，增强玻璃拟态 */
         -webkit-backdrop-filter: blur(10px); /* 兼容Safari */
         z-index: 1000; /* 层级高于遮罩层（999），确保菜单显示优先 */
@@ -1101,7 +1102,7 @@
         /* 关键：水平居中第二步 + 动画的垂直位移（合并写，避免冲突） */
         transform: translateX(-50%) translateY(20px); /* 同时处理水平居中+初始垂直下移 */
         -webkit-transform: translateX(-50%) translateY(20px); /* 兼容Safari */
-        color: #f5f5f7;
+        color: #000000;
         text-align: center; /* 文字内部（如换行内容）水平居中 */
         z-index: 10;
         opacity: 0;
@@ -1117,12 +1118,19 @@
         opacity: 1;
       }
 
-      /* 标题样式：突出视觉焦点 */
+      /* 标题样式：突出视觉焦点 + 神通妙彩渐变色 */
       .banner-text h1 {
         font-size: 3.8rem; /* 基础字号（基于全局html font-size） */
         margin-bottom: 1.25rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
-        color: #f5f5f7;
+        /* 神通妙彩渐变：浅紫 → 浅绿 */
+        background-image: linear-gradient(to right, #ca7cff, #78ff6c);
+        /* 文字渐变核心：将背景裁剪为文字形状（兼容浏览器前缀） */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* 文字设为透明，显示背景渐变 */
+        color: transparent;
+        font-weight: 600;
       }
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
@@ -1136,6 +1144,7 @@
         max-width: 59%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
         margin-left: auto; /* 配合max-width实现文字水平居中 */
         margin-right: auto;
+        font-weight: 300;
       }
 
       /* 基础按钮样式 */
@@ -1160,7 +1169,7 @@
       .learn-more-btn {
         background-color: #0071e3; /* 品牌蓝色，突出核心转化 */
         color: #f5f5f7; /* 白色文字，高对比度 */
-        font-weight: 100;
+        font-weight: 300;
       }
 
       .learn-more-btn:hover {
@@ -1171,8 +1180,7 @@
       .buy-btn {
         background-color: transparent; /* 透明背景 */
         color: #0071e3; /* 蓝色文字，与主按钮呼应 */
-        border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
-        font-weight: 100;
+        border: 0.1rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
       }
 
       .buy-btn:hover {
@@ -1646,7 +1654,7 @@
       /* ================================== 九、底部导航模块 ================================== */
       /* 底部导航整体样式（匹配参考图深灰背景） */
       .footer-new {
-        background-color: #1d1d1f; /* 参考图的深灰背景色 */
+        background-color: #000000; /* 参考图的深灰背景色 */
         color: #d1d1d6;
         padding: 40px 20px;
         font-size: 12px;
@@ -2640,7 +2648,7 @@
         <div class="banner-mask"></div>
         <!-- 原轮播图片（承载lightOn/lightSpread动画） -->
         <img
-          src="../../../img/products/laser-sheet-cutting/a/banner/senrytech-a-laser-sheet-cutting-1.webp"
+          src="../../../img/products/laser-sheet-cutting/a/banner/senrytech-a-laser-sheet-cutting-1-1.webp"
           alt="Senrytech A系列激光切割机"
         />
         <!-- 原文字内容（承载contentFade动画） -->
@@ -2672,10 +2680,10 @@
             >
             <span class="text-secondary mx-1">┘</span>
           </h2>
-          <p class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)]">
+          <p class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)]">
             杜绝虚假宣传
             <span
-              class="inline-block w-16 h-0.5 bg-[#1d1d1f]/20 ml-3 vertical-align-middle"
+              class="inline-block w-16 h-0.5 bg-[#000000]/20 ml-3 vertical-align-middle"
             ></span>
           </p>
         </div>
@@ -2687,7 +2695,9 @@
               <canvas id="carbonSteelChart"></canvas>
             </div>
             <div class="p-5">
-              <h3 class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)]">
+              <h3
+                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
+              >
                 碳钢切割厚度
               </h3>
             </div>
@@ -2699,7 +2709,9 @@
               <canvas id="stainlessSteelChart"></canvas>
             </div>
             <div class="p-5">
-              <h3 class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)]">
+              <h3
+                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
+              >
                 不锈钢切割厚度
               </h3>
             </div>
@@ -2711,7 +2723,9 @@
               <canvas id="aluminumChart"></canvas>
             </div>
             <div class="p-5">
-              <h3 class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)]">
+              <h3
+                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
+              >
                 铝合金切割厚度
               </h3>
             </div>
@@ -2723,7 +2737,9 @@
               <canvas id="copperChart"></canvas>
             </div>
             <div class="p-5">
-              <h3 class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)]">
+              <h3
+                class="text-[#000000]/80 text-[clamp(1rem,2vw,1.125rem)] text-center"
+              >
                 铜切割厚度
               </h3>
             </div>
@@ -3056,7 +3072,7 @@
                   },
                 },
                 backgroundColor: "rgba(255, 255, 255, 0.95)", // 苹果风格半透明白色 tooltip
-                titleColor: "#1d1d1f", // 深灰文字（替代原黑色，降低对比度）
+                titleColor: "#000000", // 深灰文字（替代原黑色，降低对比度）
                 bodyColor: "#6e6e73",
                 borderColor: "rgba(220, 220, 220, 0.5)", // 浅灰边框，弱化边界
                 borderWidth: 1,
@@ -3102,7 +3118,7 @@
                     family: "-apple-system, BlinkMacSystemFont",
                     weight: "500",
                   },
-                  color: "#1d1d1f",
+                  color: "#000000",
                   padding: 8, // 文字与轴间距优化
                 },
                 border: {

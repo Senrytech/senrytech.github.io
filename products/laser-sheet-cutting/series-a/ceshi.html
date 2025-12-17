@@ -1678,145 +1678,11 @@
       }
     </style>
 
-    <!--四，CSS 切割有道-->
-    <style>
-      /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
-      .section-chart {
-        padding: 5rem 0 7.5rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
-        background-color: var(
-          --color-neutral
-        ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
-        width: 100%; /* 确保外层占满屏幕宽度，避免左右留白 */
-      }
-      .section-container {
-        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
-        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
-        box-sizing: border-box;
-      }
-
-      /* 3. 板块标题区域（无需修改，基于内层容器对齐） */
-      .chart-title {
-        color: #000;
-        font-size: 3.5rem;
-        font-weight: 400;
-        letter-spacing: -0.02em;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1rem;
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        /* 清除可能的额外缩进，确保标题靠左对齐容器 */
-        text-align: left;
-        padding: 0;
-        margin-left: 0;
-      }
-
-      /* 标题核心文字（“道”）- 继承标题样式，无需修改 */
-      .chart-title-core {
-        color: #000;
-        font-size: inherit;
-        font-weight: inherit;
-        letter-spacing: inherit;
-        text-shadow: inherit;
-        margin-bottom: inherit;
-        font-family: inherit;
-      }
-
-      /* 标题符号（┌┘）- 无需修改 */
-      .chart-title-symbol {
-        color: #ff5100;
-      }
-
-      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
-      .chart-desc {
-        color: rgba(0, 0, 0, 0.8);
-        font-size: clamp(1rem, 2vw, 1.125rem);
-        text-align: left; /* 确保描述文字靠左对齐 */
-        margin-left: 0;
-      }
-
-      /* 描述文字分隔线（无需修改，基于内层容器对齐） */
-      .chart-desc-divider {
-        width: 4rem;
-        height: 0.125rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-left: 0; /* 确保分隔线靠左对齐 */
-      }
-
-      /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
-      .chart-card {
-        background-color: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      /* 卡片hover效果（无需修改） */
-      .chart-card:hover {
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        transform: translateY(-2px);
-      }
-
-      /* 卡片标题区域（无需修改） */
-      .chart-card-header h3 {
-        color: rgba(0, 0, 0, 0.8);
-        font-size: clamp(1rem, 2vw, 1.125rem);
-        text-align: center;
-        font-weight: 500;
-      }
-
-      /* ================================== 响应式对齐：同步核心优势板块的小屏适配 ================================== */
-      /* 平板以下（<768px）：同步核心优势板块的左侧margin调整（若核心优势小屏改了margin，这里也要同步） */
-      @media (max-width: 767px) {
-        /* 内层容器小屏对齐：若核心优势.benefit-container小屏margin改了，这里同步（示例：小屏左侧margin改为5%） */
-        .chart-container {
-          margin: 0 auto 0 5%; /* 与核心优势.benefit-container的小屏margin一致 */
-          padding: 0 1rem; /* 小屏缩小左右padding，与核心优势同步 */
-        }
-
-        /* 其他样式保留原适配逻辑 */
-        .chart-title {
-          font-size: clamp(1.8rem, 6vw, 2.8rem);
-          margin-bottom: 0.8rem;
-        }
-
-        .chart-desc {
-          font-size: clamp(0.9rem, 2.5vw, 1rem);
-        }
-
-        .chart-grid {
-          gap: 1.5rem;
-        }
-
-        .chart-card-canvas {
-          height: 14rem;
-        }
-      }
-
-      /* 手机小屏（<375px）：同步核心优势板块的小屏适配 */
-      @media (max-width: 374px) {
-        .chart-container {
-          margin: 0 auto 0 3%; /* 与核心优势.benefit-container的超小屏margin一致 */
-          padding: 0 0.8rem;
-        }
-
-        .chart-title {
-          font-size: clamp(1.5rem, 7vw, 2.2rem);
-        }
-
-        .chart-card-header {
-          padding: 1rem;
-        }
-      }
-    </style>
-
-    <!--五，核心亮点-->
+    <!--四，CSS 核心亮点-->
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        background-color: #f5f5f7; /* 与导航栏/产品板块配色统一 */
+        background-color: #ffffff; /* 与导航栏/产品板块配色统一 */
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
@@ -2376,6 +2242,140 @@
         }
         .benefit-nav-btn.next-btn {
           right: calc(5% + 1.5rem); /* 同步放大偏移量 */
+        }
+      }
+    </style>
+
+    <!--五，CSS 切割有道-->
+    <style>
+      /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
+      .section-chart {
+        padding: 5rem 0 7.5rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+        background-color: var(
+          --color-neutral
+        ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
+        width: 100%; /* 确保外层占满屏幕宽度，避免左右留白 */
+      }
+      .section-container {
+        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+        box-sizing: border-box;
+      }
+
+      /* 3. 板块标题区域（无需修改，基于内层容器对齐） */
+      .chart-title {
+        color: #000;
+        font-size: 3.5rem;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        /* 清除可能的额外缩进，确保标题靠左对齐容器 */
+        text-align: left;
+        padding: 0;
+        margin-left: 0;
+      }
+
+      /* 标题核心文字（“道”）- 继承标题样式，无需修改 */
+      .chart-title-core {
+        color: #000;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        text-shadow: inherit;
+        margin-bottom: inherit;
+        font-family: inherit;
+      }
+
+      /* 标题符号（┌┘）- 无需修改 */
+      .chart-title-symbol {
+        color: #ff5100;
+      }
+
+      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
+      .chart-desc {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: left; /* 确保描述文字靠左对齐 */
+        margin-left: 0;
+      }
+
+      /* 描述文字分隔线（无需修改，基于内层容器对齐） */
+      .chart-desc-divider {
+        width: 4rem;
+        height: 0.125rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        margin-left: 0; /* 确保分隔线靠左对齐 */
+      }
+
+      /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
+      .chart-card {
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* 卡片hover效果（无需修改） */
+      .chart-card:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* 卡片标题区域（无需修改） */
+      .chart-card-header h3 {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: center;
+        font-weight: 500;
+      }
+
+      /* ================================== 响应式对齐：同步核心优势板块的小屏适配 ================================== */
+      /* 平板以下（<768px）：同步核心优势板块的左侧margin调整（若核心优势小屏改了margin，这里也要同步） */
+      @media (max-width: 767px) {
+        /* 内层容器小屏对齐：若核心优势.benefit-container小屏margin改了，这里同步（示例：小屏左侧margin改为5%） */
+        .chart-container {
+          margin: 0 auto 0 5%; /* 与核心优势.benefit-container的小屏margin一致 */
+          padding: 0 1rem; /* 小屏缩小左右padding，与核心优势同步 */
+        }
+
+        /* 其他样式保留原适配逻辑 */
+        .chart-title {
+          font-size: clamp(1.8rem, 6vw, 2.8rem);
+          margin-bottom: 0.8rem;
+        }
+
+        .chart-desc {
+          font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .chart-grid {
+          gap: 1.5rem;
+        }
+
+        .chart-card-canvas {
+          height: 14rem;
+        }
+      }
+
+      /* 手机小屏（<375px）：同步核心优势板块的小屏适配 */
+      @media (max-width: 374px) {
+        .chart-container {
+          margin: 0 auto 0 3%; /* 与核心优势.benefit-container的超小屏margin一致 */
+          padding: 0 0.8rem;
+        }
+
+        .chart-title {
+          font-size: clamp(1.5rem, 7vw, 2.2rem);
+        }
+
+        .chart-card-header {
+          padding: 1rem;
         }
       }
     </style>
@@ -3397,72 +3397,7 @@
       </div>
     </div>
 
-    <!-- 四，代码 切割有道 -->
-    <section class="section-chart">
-      <div class="section-container">
-        <!-- 板块标题区域 -->
-        <div class="chart-header text-center mb-12">
-          <h2 class="chart-title">
-            切割有 <span class="chart-title-symbol text-secondary mx-1">┌</span>
-            <span class="chart-title-core">道</span>
-            <span class="chart-title-symbol text-secondary mx-1">┘</span>
-          </h2>
-          <p class="chart-desc">
-            杜绝虚假宣传
-            <span
-              class="chart-desc-divider inline-block ml-3 vertical-align-middle"
-            ></span>
-          </p>
-        </div>
-
-        <!-- 图表卡片网格 -->
-        <div
-          class="chart-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          <!-- 碳钢图表卡片 -->
-          <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
-              <canvas id="carbonSteelChart"></canvas>
-            </div>
-            <div class="chart-card-header p-5">
-              <h3>碳钢切割厚度</h3>
-            </div>
-          </div>
-
-          <!-- 不锈钢图表卡片 -->
-          <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
-              <canvas id="stainlessSteelChart"></canvas>
-            </div>
-            <div class="chart-card-header p-5">
-              <h3>不锈钢切割厚度</h3>
-            </div>
-          </div>
-
-          <!-- 铝合金图表卡片 -->
-          <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
-              <canvas id="aluminumChart"></canvas>
-            </div>
-            <div class="chart-card-header p-5">
-              <h3>铝合金切割厚度</h3>
-            </div>
-          </div>
-
-          <!-- 铜图表卡片 -->
-          <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
-              <canvas id="copperChart"></canvas>
-            </div>
-            <div class="chart-card-header p-5">
-              <h3>铜切割厚度</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 五， 核心亮点 -->
+    <!-- 四， 核心亮点 -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
         <!-- 板块主题文字（新增副标题容器） -->
@@ -3538,6 +3473,71 @@
       </button>
       <button class="benefit-nav-btn next-btn" id="benefitNextBtn">&gt;</button>
     </div>
+
+    <!-- 五，代码 切割有道 -->
+    <section class="section-chart">
+      <div class="section-container">
+        <!-- 板块标题区域 -->
+        <div class="chart-header text-center mb-12">
+          <h2 class="chart-title">
+            切割有 <span class="chart-title-symbol text-secondary mx-1">┌</span>
+            <span class="chart-title-core">道</span>
+            <span class="chart-title-symbol text-secondary mx-1">┘</span>
+          </h2>
+          <p class="chart-desc">
+            杜绝虚假宣传
+            <span
+              class="chart-desc-divider inline-block ml-3 vertical-align-middle"
+            ></span>
+          </p>
+        </div>
+
+        <!-- 图表卡片网格 -->
+        <div
+          class="chart-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          <!-- 碳钢图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
+              <canvas id="carbonSteelChart"></canvas>
+            </div>
+            <div class="chart-card-header p-5">
+              <h3>碳钢切割厚度</h3>
+            </div>
+          </div>
+
+          <!-- 不锈钢图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
+              <canvas id="stainlessSteelChart"></canvas>
+            </div>
+            <div class="chart-card-header p-5">
+              <h3>不锈钢切割厚度</h3>
+            </div>
+          </div>
+
+          <!-- 铝合金图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
+              <canvas id="aluminumChart"></canvas>
+            </div>
+            <div class="chart-card-header p-5">
+              <h3>铝合金切割厚度</h3>
+            </div>
+          </div>
+
+          <!-- 铜图表卡片 -->
+          <div class="chart-card">
+            <div class="chart-card-canvas h-64 p-4">
+              <canvas id="copperChart"></canvas>
+            </div>
+            <div class="chart-card-header p-5">
+              <h3>铜切割厚度</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 九， 底部导航栏 -->
     <footer class="footer-new">

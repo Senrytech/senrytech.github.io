@@ -1698,7 +1698,7 @@
 
       /* 标题符号（┌┘）- 无需修改 */
       .chart-title-symbol {
-        color: var(--color-secondary);
+        color: #ff5100;
       }
 
       /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
@@ -1786,7 +1786,7 @@
         }
       }
 
-      /* ================================== 五、核心优势（在Senrytech购买Machine好处多多） ================================== */
+      /* ================================== 五、核心优势（核心亮点） ================================== */
       /* 作用：展示购买设备的核心优势，含文字介绍+横向滚动卡片，背景与产品板块统一（深灰#1d1d1f）
       适配原则：基于全局html基准字号（Mobile S:12px ~ 4K:16px），所有尺寸用REM，确保多端视觉一致性 */
 
@@ -1981,6 +1981,41 @@
         cursor: not-allowed; /* 提示不可点击 */
         display: flex !important; /* 禁用时仍显示，避免布局跳动 */
       }
+      /* 副标题外层容器：控制与主标题、卡片的间距 */
+      .benefit-subtitle-wrap {
+        margin: 1rem 0 3rem; /* 上距主标题1rem、下距卡片3rem，与切割有道板块间距对齐 */
+      }
+
+      /* 副标题文字：与切割有道板块描述文字样式统一 */
+      .benefit-subtitle-text {
+        color: rgba(
+          0,
+          0,
+          0,
+          0.8
+        ); /* 文字颜色：深灰（与切割有道.chart-desc一致） */
+        font-size: clamp(
+          1rem,
+          2vw,
+          1.125rem
+        ); /* 响应式字号：最小1rem，最大1.125rem，随屏幕宽度自适应 */
+        text-align: left; /* 左对齐，与主标题保持一致 */
+        margin-bottom: 0.8rem; /* 与下方分隔线间距 */
+        line-height: 1.4; /* 行高优化可读性 */
+      }
+
+      /* 副标题分隔线：与切割有道板块分隔线样式统一 */
+      .benefit-subtitle-divider {
+        width: 4rem; /* 分隔线宽度（与切割有道.chart-desc-divider一致） */
+        height: 0.125rem; /* 分隔线高度 */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.2
+        ); /* 分隔线颜色：浅灰（与切割有道一致） */
+        margin-left: 0; /* 左对齐，不偏移 */
+      }
 
       /* ================================== 购买优势板块 - 媒体查询适配 ================================== */
       /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
@@ -1999,11 +2034,12 @@
           margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
         }
         .benefit-card {
-          width: 13rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 22rem; /* 12px基准：156px，适配小屏宽度 */
         }
         .benefit-card img {
-          height: 20rem; /* 12px基准：240px，缩小图片高度 */
+          height: 25rem;
           border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          object-fit: cover;
         }
         .benefit-nav-btn {
           width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
@@ -2545,7 +2581,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                         alt="Senrytech A"
                       />
                     </a>
@@ -2562,7 +2598,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                         alt="Senrytech B"
                       />
                     </a>
@@ -2578,7 +2614,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                         alt="Senrytech B Plus"
                       />
                     </a>
@@ -2594,7 +2630,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                         alt="Senrytech B Pro"
                       />
                     </a>
@@ -2610,7 +2646,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                         alt="Senrytech B ProMax"
                       />
                     </a>
@@ -2625,7 +2661,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                         alt="Senrytech B Ultra"
                       />
                     </a>
@@ -2640,7 +2676,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
                         alt="Senrytech C"
                       />
                     </a>
@@ -2655,7 +2691,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
                         alt="Senrytech C Pro"
                       />
                     </a>
@@ -2670,7 +2706,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
                         alt="Senrytech G"
                       />
                     </a>
@@ -2685,7 +2721,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
                         alt="Senrytech M"
                       />
                     </a>
@@ -2700,7 +2736,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                     >
                       <img
-                        src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
                         alt="Senrytech S"
                       />
                     </a>
@@ -3082,7 +3118,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                       alt="Senrytech A"
                     />
                     <p>Senrytech A</p>
@@ -3094,7 +3130,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                       alt="Senrytech B"
                     />
                     <p>Senrytech B</p>
@@ -3106,7 +3142,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                       alt="Senrytech B Plus"
                     />
                     <p>Senrytech B Plus</p>
@@ -3118,7 +3154,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                       alt="Senrytech B Pro"
                     />
                     <p>Senrytech B Pro</p>
@@ -3130,7 +3166,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                       alt="Senrytech B ProMax"
                     />
                     <p>Senrytech B ProMax</p>
@@ -3142,7 +3178,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech B Ultra</p>
@@ -3154,7 +3190,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C</p>
@@ -3166,7 +3202,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C Pro</p>
@@ -3178,7 +3214,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech G</p>
@@ -3190,7 +3226,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech M</p>
@@ -3202,7 +3238,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech S</p>
@@ -3400,11 +3436,16 @@
       </div>
     </section>
 
-    <!-- 板块5. 购买优势板块（在Senrytech购买Machine好处多多） -->
+    <!-- 板块5. 购买优势板块（核心亮点） -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
-        <!-- 板块主题文字（保留，仅删除原全局的benefit-intro） -->
+        <!-- 板块主题文字（新增副标题容器） -->
         <h2 class="benefit-main-title">核心亮点</h2>
+        <!-- 新增：副标题容器（与切割有道板块结构一致） -->
+        <div class="benefit-subtitle-wrap">
+          <p class="benefit-subtitle-text">性能与成本双向平衡</p>
+          <div class="benefit-subtitle-divider"></div>
+        </div>
 
         <!-- 图片卡片容器 -->
         <div class="benefit-scroll-wrap" style="position: relative">
@@ -3412,7 +3453,7 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-source.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-machine-body.webp"
                 alt="专业安装服务"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
@@ -3428,7 +3469,7 @@
             <!-- 优势卡片2：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../senrytech.github.io/img/index/after-sales/on-site-repair.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-cast-alu-crossbeam.webp"
                 alt="透明费用"
               />
               <div class="benefit-card-text">
@@ -3443,7 +3484,7 @@
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../senrytech.github.io/img/index/after-sales/quality-guarantee.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-head.webp"
                 alt="定制流程"
               />
               <div class="benefit-card-text">
@@ -3552,14 +3593,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="../../../../senrytech.github.io/img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../../../../../../../../../../../../../../../../../../../../../../../../../../../../senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="../../../../senrytech.github.io/img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>

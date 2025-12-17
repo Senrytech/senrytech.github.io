@@ -1678,11 +1678,15 @@
       }
     </style>
 
-    <!--四，CSS 核心亮点-->
+    <!--四，CSS 先刷重点-->
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        background-color: #ffffff; /* 与导航栏/产品板块配色统一 */
+        background-color: linear-gradient(
+          90deg,
+          #fafdff 0%,
+          #e3f0ff 100%
+        ); /* 与导航栏/产品板块配色统一 */
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
@@ -1702,11 +1706,31 @@
         font-family:
           "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 400; /* 偏细字体，契合整体轻量化风格 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
+        margin-bottom: 1rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
-        line-height: 1.1; /* 紧凑行高，避免标题换行 */
+      }
+
+      /* 副标题外层容器：控制与主标题、卡片的间距 */
+      .benefit-subtitle-wrap {
+        margin: 1rem 0 3rem; /* 上距主标题1rem、下距卡片3rem，与切割有道板块间距对齐 */
+      }
+
+      /* 副标题文字：与切割有道板块描述文字样式统一（三色渐变：绿→黄→红） */
+      .benefit-subtitle-text {
+        /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
+        background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
+        -webkit-background-clip: text; /* 兼容webkit内核（Safari/Chrome） */
+        background-clip: text; /* 标准语法：将背景裁剪为文字形状 */
+        color: transparent; /* 文字透明，让渐变背景透出 */
+        -webkit-text-fill-color: transparent; /* 兼容Safari，防止文字颜色覆盖 */
+
+        /* 保留原有基础样式，确保与其他板块风格统一 */
+        font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
+        text-align: left; /* 左对齐，契合板块布局 */
+        margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
+        line-height: 1.4; /* 优化文字可读性，避免拥挤 */
       }
 
       /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
@@ -1764,7 +1788,7 @@
       .benefit-card .benefit-subtitle {
         color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
         font-size: 1rem; /* 16px基准：16px */
-        font-weight: 500;
+        font-weight: 400;
         margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
       }
@@ -1772,7 +1796,7 @@
       .benefit-card .benefit-heading {
         color: #1d1d1f; /* 同上，适配图片背景 */
         font-size: 1.75rem; /* 16px基准：28px */
-        font-weight: 600;
+        font-weight: 500;
         margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
         letter-spacing: -0.5px;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
@@ -1870,41 +1894,6 @@
         color: #aaa; /* 浅灰箭头 */
         cursor: not-allowed; /* 提示不可点击 */
         display: flex !important; /* 禁用时仍显示，避免布局跳动 */
-      }
-      /* 副标题外层容器：控制与主标题、卡片的间距 */
-      .benefit-subtitle-wrap {
-        margin: 1rem 0 3rem; /* 上距主标题1rem、下距卡片3rem，与切割有道板块间距对齐 */
-      }
-
-      /* 副标题文字：与切割有道板块描述文字样式统一 */
-      .benefit-subtitle-text {
-        color: rgba(
-          0,
-          0,
-          0,
-          0.8
-        ); /* 文字颜色：深灰（与切割有道.chart-desc一致） */
-        font-size: clamp(
-          1rem,
-          2vw,
-          1.125rem
-        ); /* 响应式字号：最小1rem，最大1.125rem，随屏幕宽度自适应 */
-        text-align: left; /* 左对齐，与主标题保持一致 */
-        margin-bottom: 0.8rem; /* 与下方分隔线间距 */
-        line-height: 1.4; /* 行高优化可读性 */
-      }
-
-      /* 副标题分隔线：与切割有道板块分隔线样式统一 */
-      .benefit-subtitle-divider {
-        width: 4rem; /* 分隔线宽度（与切割有道.chart-desc-divider一致） */
-        height: 0.125rem; /* 分隔线高度 */
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.2
-        ); /* 分隔线颜色：浅灰（与切割有道一致） */
-        margin-left: 0; /* 左对齐，不偏移 */
       }
 
       /* ================================== 购买优势板块 - 媒体查询适配 ================================== */
@@ -3397,11 +3386,11 @@
       </div>
     </div>
 
-    <!-- 四， 核心亮点 -->
+    <!-- 四， 先刷重点 -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
         <!-- 板块主题文字（新增副标题容器） -->
-        <h2 class="benefit-main-title">核心亮点</h2>
+        <h2 class="benefit-main-title">先刷重点</h2>
         <!-- 新增：副标题容器（与切割有道板块结构一致） -->
         <div class="benefit-subtitle-wrap">
           <p class="benefit-subtitle-text">性能与成本双向平衡</p>
@@ -4145,7 +4134,7 @@
       });
     </script>
 
-    <!--五，JS 核心亮点-->
+    <!--五，JS 先刷重点-->
     <script>
       // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
       document.addEventListener("DOMContentLoaded", () => {

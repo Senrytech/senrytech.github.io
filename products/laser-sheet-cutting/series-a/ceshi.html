@@ -412,7 +412,7 @@
         display: block;
         width: 22px; /* 固定线条宽度，确保按钮识别度（不转REM，避免过小） */
         height: 2px; /* 固定线条高度，细线条更精致（不转REM） */
-        background-color: #f5f5f7; /* 线条浅白色，与导航文字一致 */
+        background-color: #1d1d1f; /* 线条浅白色，与导航文字一致 */
         margin: 0.4rem 0; /* 线条之间的间距 */
         transition: all 0.3s ease; /* 点击时线条旋转过渡，实现“汉堡→关闭”动画 */
       }
@@ -457,7 +457,7 @@
         width: 85%; /* 小屏幕占85%宽度，Tablet占70%，通过媒体查询调整 */
         max-width: 380px; /* 限制最大宽度，避免宽屏移动端菜单过宽 */
         height: 100vh; /* 占满屏幕高度 */
-        background-color: #000000; /* 深灰色背景，与导航风格统一 */
+        background-color: rgba(0, 0, 0, 0.8); /* 深灰色背景，与导航风格统一 */
         backdrop-filter: blur(10px); /* 背景模糊，增强玻璃拟态 */
         -webkit-backdrop-filter: blur(10px); /* 兼容Safari */
         z-index: 1000; /* 层级高于遮罩层（999），确保菜单显示优先 */
@@ -1381,31 +1381,44 @@
       - 全局html基准字号：8.53px（计算逻辑：320px屏幕÷375px基准屏×10px）
       - 核心问题：16:9比例下垂直空间紧张，需缩小元素、紧凑布局 */
       @media (max-width: 320px) {
+        .banner-carousel {
+          position: relative; /* 作为子元素绝对定位的参考容器 */
+          width: 100%; /* 占满父容器宽度，实现全屏效果 */
+          overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
+          /* 核心1：现代浏览器16:9比例（优先生效） */
+          aspect-ratio: 16 / 9;
+          /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
+          padding-top: 150%;
+          height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        }
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 4%; /* 比基础样式多下移3%，适配小屏垂直空间 */
-          padding: 0 0.8rem; /* 缩小左右留白，充分利用宽度 */
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0rem;
+          width: 50%;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.2rem;
-          margin-bottom: 0.25rem; /* 缩小与描述文字间距，紧凑布局 */
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
         /* 描述文字：*/
         .banner-text p {
-          font-size: 0.5rem;
+          font-size: 0.9rem;
           max-width: 100%;
+          font-weight: 400;
         }
 
         /* 基础按钮样式 */
         .banner-btn {
-          padding: 0.2rem 0.8rem; /* 内边距：保证点击区域大小 */
+          padding: 0.4rem 1rem; /* 内边距：保证点击区域大小 */
           border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
-          font-size: 0.5rem; /* 基础字号，确保可读性 */
+          font-size: 1rem; /* 基础字号，确保可读性 */
           cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
           border: none; /* 清除默认边框 */
+          font-weight: 400;
           transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
@@ -1413,8 +1426,8 @@
         .buy-btn {
           background-color: #f5f5f7; /* 透明背景 */
           color: #0071e3; /* 蓝色文字，与主按钮呼应 */
-          border: 0.125rem solid #f5f5f7; /* 蓝色边框，明确按钮边界 */
-          font-weight: 100;
+          border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+          font-weight: 400;
         }
       }
 
@@ -1422,50 +1435,53 @@
       - 全局html基准字号：10px（375px为移动端设计基准屏）
       - 核心调整：比Mobile S稍大，适度放宽布局，提升可读性 */
       @media (min-width: 321px) and (max-width: 375px) {
+        .banner-carousel {
+          position: relative; /* 作为子元素绝对定位的参考容器 */
+          width: 100%; /* 占满父容器宽度，实现全屏效果 */
+          overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
+          /* 核心1：现代浏览器16:9比例（优先生效） */
+          aspect-ratio: 16 / 9;
+          /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
+          padding-top: 150%;
+          height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        }
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 10.5%;
-          padding: 0 0.8rem;
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0rem;
+          width: 50%;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.158rem;
-          margin-bottom: 0.21rem;
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
-        /* 描述文字： */
+        /* 描述文字：*/
         .banner-text p {
-          font-size: 0.695rem;
+          font-size: 0.9rem;
+          max-width: 100%;
+          font-weight: 400;
         }
 
-        /* 按钮组：缩小间距，避免换行 */
-        .banner-btns {
-          gap: 0.52rem;
-        }
-
-        /* 按钮：缩小内边距和字号 */
+        /* 基础按钮样式 */
         .banner-btn {
-          padding: 0.134rem 0.85rem;
-          font-size: 0.417rem;
+          padding: 0.4rem 1rem; /* 内边距：保证点击区域大小 */
+          border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+          font-size: 1rem; /* 基础字号，确保可读性 */
+          cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+          border: none; /* 清除默认边框 */
+          font-weight: 400;
+          transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
-        /* 「立即购买」按钮：缩小边框宽度 */
+        /* 「立即购买」按钮（次按钮） */
         .buy-btn {
-          border: 0.02125rem solid #0071e3;
-        }
-
-        /* 箭头：调整左右留白 */
-        .carousel-control.prev-btn {
-          left: 0.8rem;
-        }
-        .carousel-control.next-btn {
-          right: 0.8rem;
-        }
-        /* 圆点：保持尺寸，适配小屏视觉 */
-        .banner-dot {
-          width: 0.4rem;
-          height: 0.4rem;
+          background-color: #f5f5f7; /* 透明背景 */
+          color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+          border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+          font-weight: 400;
         }
       }
 
@@ -1473,50 +1489,53 @@
       - 全局html基准字号：11.33px（计算逻辑：425px÷375px基准屏×10px）
       - 核心调整：接近平板尺寸，放大文字，优化按钮间距 */
       @media (min-width: 376px) and (max-width: 425px) {
+        .banner-carousel {
+          position: relative; /* 作为子元素绝对定位的参考容器 */
+          width: 100%; /* 占满父容器宽度，实现全屏效果 */
+          overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
+          /* 核心1：现代浏览器16:9比例（优先生效） */
+          aspect-ratio: 16 / 9;
+          /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
+          padding-top: 150%;
+          height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        }
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 12%;
-          padding: 0 0.8rem;
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0rem;
+          width: 50%;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 1.3rem;
-          margin-bottom: 0.21rem;
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
-        /* 描述文字： */
+        /* 描述文字：*/
         .banner-text p {
-          font-size: 0.78rem;
+          font-size: 0.9rem;
+          max-width: 100%;
+          font-weight: 400;
         }
 
-        /* 按钮组：缩小间距，避免换行 */
-        .banner-btns {
-          gap: 0.5rem;
-        }
-
-        /* 按钮：缩小内边距和字号 */
+        /* 基础按钮样式 */
         .banner-btn {
-          padding: 0.15rem 0.85rem;
-          font-size: 0.468rem;
+          padding: 0.4rem 1rem; /* 内边距：保证点击区域大小 */
+          border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+          font-size: 1rem; /* 基础字号，确保可读性 */
+          cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+          border: none; /* 清除默认边框 */
+          font-weight: 400;
+          transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
-        /* 「立即购买」按钮：缩小边框宽度 */
+        /* 「立即购买」按钮（次按钮） */
         .buy-btn {
-          border: 0.02125rem solid #0071e3;
-        }
-
-        /* 箭头：调整左右留白 */
-        .carousel-control.prev-btn {
-          left: 0.8rem;
-        }
-        .carousel-control.next-btn {
-          right: 0.8rem;
-        }
-        /* 圆点：保持尺寸，适配小屏视觉 */
-        .banner-dot {
-          width: 0.45rem;
-          height: 0.45rem;
+          background-color: #f5f5f7; /* 透明背景 */
+          color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+          border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+          font-weight: 400;
         }
       }
 
@@ -1524,50 +1543,54 @@
       - 全局html基准字号：14px（平板屏视觉舒适字号）
       - 核心调整：放大文字和箭头，适配平板触控习惯（手指更粗） */
       @media (min-width: 426px) and (max-width: 768px) {
+        .banner-carousel {
+          position: relative; /* 作为子元素绝对定位的参考容器 */
+          width: 100%; /* 占满父容器宽度，实现全屏效果 */
+          overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
+          /* 核心1：现代浏览器16:9比例（优先生效） */
+          aspect-ratio: 16 / 9;
+          /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
+          padding-top: 150%;
+          height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        }
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 15%;
-          padding: 0 0.8rem;
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0rem;
+          width: 50%;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 2.3rem;
-          margin-bottom: 0.21rem;
+          font-size: 3.5rem;
+          margin-bottom: 2.5rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
-        /* 描述文字： */
+        /* 描述文字：*/
         .banner-text p {
-          font-size: 1.4rem;
+          font-size: 1.5rem;
+          max-width: 100%;
+          font-weight: 400;
+          width: 115%;
         }
 
-        /* 按钮组：缩小间距，避免换行 */
-        .banner-btns {
-          gap: 0.5rem;
-        }
-
-        /* 按钮：缩小内边距和字号 */
+        /* 基础按钮样式 */
         .banner-btn {
-          padding: 0.27rem 1.55rem;
-          font-size: 0.854rem;
+          padding: 0.4rem 1rem; /* 内边距：保证点击区域大小 */
+          border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+          font-size: 1rem; /* 基础字号，确保可读性 */
+          cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+          border: none; /* 清除默认边框 */
+          font-weight: 400;
+          transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
-        /* 「立即购买」按钮：缩小边框宽度 */
+        /* 「立即购买」按钮（次按钮） */
         .buy-btn {
-          border: 0.03rem solid #0071e3;
-        }
-
-        /* 箭头：调整左右留白 */
-        .carousel-control.prev-btn {
-          left: 0.8rem;
-        }
-        .carousel-control.next-btn {
-          right: 0.8rem;
-        }
-        /* 圆点：保持尺寸，适配小屏视觉 */
-        .banner-dot {
-          width: 0.45rem;
-          height: 0.45rem;
+          background-color: #f5f5f7; /* 透明背景 */
+          color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+          border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+          font-weight: 400;
         }
       }
 
@@ -1575,50 +1598,53 @@
       - 全局html基准字号：15px（笔记本屏视觉舒适字号）
       - 核心调整：文字接近桌面端，优化按钮点击区域 */
       @media (min-width: 769px) and (max-width: 1024px) {
+        .banner-carousel {
+          position: relative; /* 作为子元素绝对定位的参考容器 */
+          width: 100%; /* 占满父容器宽度，实现全屏效果 */
+          overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
+          /* 核心1：现代浏览器16:9比例（优先生效） */
+          aspect-ratio: 16 / 9;
+          /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
+          padding-top: 150%;
+          height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        }
         /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 15%;
-          padding: 0 0.8rem;
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0rem;
+          width: 50%;
         }
 
         /* 标题： */
         .banner-text h1 {
-          font-size: 3.16rem;
-          margin-bottom: 0.21rem;
+          font-size: 2.2rem;
+          margin-bottom: 1.5rem; /* 缩小与描述文字间距，紧凑布局 */
         }
 
-        /* 描述文字： */
+        /* 描述文字：*/
         .banner-text p {
-          font-size: 1.896rem;
+          font-size: 0.9rem;
+          max-width: 100%;
+          font-weight: 400;
         }
 
-        /* 按钮组：缩小间距，避免换行 */
-        .banner-btns {
-          gap: 1rem;
-        }
-
-        /* 按钮：缩小内边距和字号 */
+        /* 基础按钮样式 */
         .banner-btn {
-          padding: 0.3647rem 2.067rem;
-          font-size: 1.138rem;
+          padding: 0.4rem 1rem; /* 内边距：保证点击区域大小 */
+          border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+          font-size: 1rem; /* 基础字号，确保可读性 */
+          cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+          border: none; /* 清除默认边框 */
+          font-weight: 400;
+          transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
         }
 
-        /* 「立即购买」按钮：缩小边框宽度 */
+        /* 「立即购买」按钮（次按钮） */
         .buy-btn {
-          border: 0.1rem solid #0071e3;
-        }
-
-        /* 箭头：调整左右留白 */
-        .carousel-control.prev-btn {
-          left: 0.8rem;
-        }
-        .carousel-control.next-btn {
-          right: 0.8rem;
-        }
-        /* 圆点：保持尺寸，适配小屏视觉 */
-        .banner-dot {
-          width: 0.45rem;
-          height: 0.45rem;
+          background-color: #f5f5f7; /* 透明背景 */
+          color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+          border: 0.125rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+          font-weight: 400;
         }
       }
 

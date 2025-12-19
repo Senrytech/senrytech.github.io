@@ -2869,7 +2869,7 @@
       }
     </style>
 
-    <!--五，CSS 切割有道-->
+    <!--七，CSS 切割有道-->
     <style>
       /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
       .section-chart {
@@ -3000,6 +3000,42 @@
         .chart-card-header {
           padding: 1rem;
         }
+      }
+    </style>
+
+    <!--八，CSS 视频展示-->
+    <style>
+      .section-8 {
+        /* 背景色：与其他板块统一的浅灰底色 */
+        background-color: #f5f5f7;
+        /* 内边距：上下4rem、左右2rem，匹配其他板块的间距规则 */
+        padding: 4rem 2rem;
+      }
+
+      /* 容器：与其他板块统一的最大宽度+居中对齐 */
+      .section-8 .container {
+        max-width: 1200px; /* 与其他板块容器最大宽度一致 */
+        margin: 0 auto; /* 水平居中，保持整体布局对齐 */
+      }
+
+      /* 板块标题：与其他板块统一的居中、颜色、间距 */
+      .section-8 .section-title {
+        text-align: center; /* 标题居中，与其他板块标题对齐模式一致 */
+        margin-bottom: 2rem; /* 标题与下方内容的间距，匹配其他板块 */
+        color: #000000; /* 标题颜色，与其他板块标题颜色统一 */
+        font-size: 1.8rem; /* 标题字号，保持板块间视觉一致性 */
+      }
+
+      /* 视频容器：限制视频最大宽度，避免超宽变形 */
+      .section-8 .video-container {
+        max-width: 900px; /* 视频区域最大宽度（原内联样式逻辑保留） */
+        margin: 0 auto; /* 视频容器水平居中，与标题对齐 */
+      }
+
+      /* 视频元素：保留原视觉效果（圆角、阴影） */
+      .section-8 .video-container video {
+        border-radius: 1rem; /* 圆角效果，与其他板块卡片/容器圆角风格一致 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 轻微阴影，增强层次感（匹配原样式） */
       }
     </style>
 
@@ -4263,39 +4299,21 @@
       </div>
     </section>
 
-    <!-- 板块8：视频展示区 -->
-    <section
-      class="section-8"
-      style="background-color: #f5f5f7; padding: 4rem 2rem"
-    >
-      <div class="container" style="max-width: 1200px; margin: 0 auto">
+    <!-- 八，代码 视频展示 -->
+    <section class="section-8">
+      <div class="container">
         <!-- 板块标题 -->
-        <h2
-          style="
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #000000;
-            font-size: 1.8rem;
-          "
-        >
-          产品演示视频
-        </h2>
+        <h2 class="section-title">产品演示视频</h2>
 
         <!-- 视频容器 -->
-        <div class="video-container" style="max-width: 900px; margin: 0 auto">
+        <div class="video-container">
           <!-- 视频元素 -->
-          <video
-            controls
-            width="100%"
-            height="auto"
-            poster="视频封面图.jpg"
-            style="
-              border-radius: 1rem;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            "
-          >
-            <source src="../../../img/video/senrytech-a.mp4" type="video/mp4" />
-            <!-- 视频文件路径 -->
+          <video controls width="100%" height="auto" poster="视频封面图.jpg">
+            <source
+              src="../../../img/video/senrytech-a-1.mp4"
+              type="video/mp4"
+            />
+            <!-- 视频文件路径（需根据实际项目目录调整） -->
             您的浏览器不支持HTML5视频播放
           </video>
         </div>

@@ -2799,7 +2799,6 @@
         padding: 3rem 0;
         background-color: #ffffff;
         height: 20rem;
-
         margin: 5% auto 0 15%;
         padding: 0 1.25rem;
       }
@@ -3006,36 +3005,76 @@
     <!--八，CSS 视频展示-->
     <style>
       .section-8 {
-        /* 背景色：与其他板块统一的浅灰底色 */
-        background-color: #f5f5f7;
-        /* 内边距：上下4rem、左右2rem，匹配其他板块的间距规则 */
-        padding: 4rem 2rem;
+        background-color: #ffffff; /* 与其他板块统一浅灰底色 */
+        padding: 5rem 0 7.5rem; /* 上下内边距保留，与其他板块一致 */
+        position: relative; /* 关键：给视频绝对定位提供参考，避免视频超出板块 */
       }
 
-      /* 容器：与其他板块统一的最大宽度+居中对齐 */
+      /* 1. 外层容器：仅保留标题位置（左偏15%），不影响视频 */
       .section-8 .container {
-        max-width: 1200px; /* 与其他板块容器最大宽度一致 */
-        margin: 0 auto; /* 水平居中，保持整体布局对齐 */
+        max-width: 1600px; /* 与其他板块容器宽度一致，确保标题视觉统一 */
+
+        margin: 0 0 0 15%; /* 标题位置不变（左偏15%），符合需求 */
+        padding: 0 1.25rem; /* 标题左右留白，避免贴边 */
+        box-sizing: border-box;
+        /* 限制容器高度，仅包裹标题，不影响视频定位 */
+        height: auto;
+        min-height: 80px; /* 适配标题高度，防止容器塌陷 */
       }
 
-      /* 板块标题：与其他板块统一的居中、颜色、间距 */
+      /* 2. 板块标题：位置完全保留，无需调整 */
       .section-8 .section-title {
-        text-align: center; /* 标题居中，与其他板块标题对齐模式一致 */
-        margin-bottom: 2rem; /* 标题与下方内容的间距，匹配其他板块 */
-        color: #000000; /* 标题颜色，与其他板块标题颜色统一 */
-        font-size: 1.8rem; /* 标题字号，保持板块间视觉一致性 */
+        color: #000;
+        font-size: 3.5rem;
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 5rem; /* 取消底部间距（后续用视频定位控制距离） */
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
       }
 
-      /* 视频容器：限制视频最大宽度，避免超宽变形 */
+      /* 3. 视频容器：核心修复——突破左偏容器，以页面为基准居中 */
       .section-8 .video-container {
-        max-width: 900px; /* 视频区域最大宽度（原内联样式逻辑保留） */
-        margin: 0 auto; /* 视频容器水平居中，与标题对齐 */
+        max-width: 1000px; /* 保留视频最大宽度，避免超宽变形 */
+        width: 100%; /* 小屏幕占满可用宽度 */
+        padding: 0 0rem; /* 视频左右留白，小屏幕不贴边 */
+        box-sizing: border-box;
+        z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
+        margin: 0 0 0 13%;
       }
 
-      /* 视频元素：保留原视觉效果（圆角、阴影） */
+      /* 4. 视频元素：保持尺寸稳定，避免拉伸 */
       .section-8 .video-container video {
-        border-radius: 1rem; /* 圆角效果，与其他板块卡片/容器圆角风格一致 */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 轻微阴影，增强层次感（匹配原样式） */
+        width: 100%; /* 视频占满容器宽度，适配不同屏幕 */
+        height: auto; /* 保持原宽高比，防止拉伸变形 */
+        border-radius: 1rem; /* 与其他板块圆角风格统一 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影强度匹配其他板块 */
+        display: block; /* 清除视频底部默认空隙，避免布局偏移 */
+      }
+
+      /* 5. 响应式适配：小屏幕下标题与视频同步居中，避免错位 */
+      @media (max-width: 768px) {
+        /* 小屏幕：外层容器居中，标题不再左偏 */
+        .section-8 .container {
+          margin: 0 auto; /* 容器居中，标题同步居中 */
+          max-width: 90%; /* 限制标题容器宽度，避免过宽 */
+        }
+
+        /* 小屏幕：视频改相对定位，跟随容器居中 */
+        .section-8 .video-container {
+          position: relative; /* 取消绝对定位，回归正常文档流 */
+          left: auto; /* 清除绝对定位的left值 */
+          top: auto; /* 清除绝对定位的top值 */
+          transform: none; /* 清除偏移 */
+          margin: 2rem auto 0; /* 视频与标题间距2rem，且在容器内居中 */
+          max-width: 100%; /* 视频占满容器，提升小屏幕利用率 */
+        }
+
+        /* 小屏幕：标题优化 */
+        .section-8 .section-title {
+          font-size: 2.5rem; /* 缩小字号，避免溢出 */
+          text-align: center; /* 标题居中，与视频视觉对齐 */
+        }
       }
     </style>
 
@@ -4308,7 +4347,12 @@
         <!-- 视频容器 -->
         <div class="video-container">
           <!-- 视频元素 -->
-          <video controls width="100%" height="auto" poster="视频封面图.jpg">
+          <video
+            controls
+            width="100%"
+            height="auto"
+            poster="../../../img/products/laser-sheet-cutting/a/banner/senrytech-a-laser-sheet-cutting-1.webp"
+          >
             <source
               src="../../../img/video/senrytech-a-1.mp4"
               type="video/mp4"

@@ -3004,76 +3004,929 @@
 
     <!--八，CSS 视频展示-->
     <style>
+      /* —— 8.1 板块外层容器：控制整体间距与背景，与其他板块视觉衔接 —— */
       .section-8 {
-        background-color: #ffffff; /* 与其他板块统一浅灰底色 */
-        padding: 5rem 0 7.5rem; /* 上下内边距保留，与其他板块一致 */
-        position: relative; /* 关键：给视频绝对定位提供参考，避免视频超出板块 */
+        /* 上下间距：与前后板块保持统一节奏（参考优势板块的padding，16px基准下为64px/96px） */
+        padding: 5rem 0 7.5rem;
+        /* 背景色：延续页面浅灰基调，避免与其他板块产生视觉割裂 */
+        background-color: #ffffff;
+        width: 100%;
+        box-sizing: border-box; /* 确保padding不影响整体宽度 */
       }
 
-      /* 1. 外层容器：仅保留标题位置（左偏15%），不影响视频 */
+      /* —— 8.2 内容容器：控制板块内部宽度，确保居中与适配 —— */
       .section-8 .container {
-        max-width: 1600px; /* 与其他板块容器宽度一致，确保标题视觉统一 */
-
-        margin: 0 0 0 15%; /* 标题位置不变（左偏15%），符合需求 */
-        padding: 0 1.25rem; /* 标题左右留白，避免贴边 */
+        /* 最大宽度：与优势板块（benefit-container）保持一致，避免宽屏内容过散 */
+        max-width: 100%;
+        margin: 0 auto; /* 水平居中 */
+        padding: 0 1.25rem; /* 小屏幕左右留白（16px基准下为20px），避免内容贴边 */
         box-sizing: border-box;
-        /* 限制容器高度，仅包裹标题，不影响视频定位 */
-        height: auto;
-        min-height: 80px; /* 适配标题高度，防止容器塌陷 */
       }
 
-      /* 2. 板块标题：位置完全保留，无需调整 */
+      /* —— 8.3 板块标题：与其他板块标题风格统一，突出视觉焦点 —— */
       .section-8 .section-title {
-        color: #000;
+        /* 字体：继承全局字体，确保跨平台显示一致 */
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        /* 字号：响应式适配（小屏1.8rem/28.8px，大屏2.5rem/40px），兼顾层级与可读性 */
         font-size: 3.5rem;
-        font-weight: 400;
+        font-weight: 400; /* 偏细字体，契合页面轻量化设计风格 */
+        color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
+        text-align: center;
         letter-spacing: -0.02em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 5rem; /* 取消底部间距（后续用视频定位控制距离） */
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        margin-bottom: 2.5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
       }
 
-      /* 3. 视频容器：核心修复——突破左偏容器，以页面为基准居中 */
+      /* —— 8.4 视频容器：优化视频显示区域，增强视觉层次 —— */
       .section-8 .video-container {
-        max-width: 1000px; /* 保留视频最大宽度，避免超宽变形 */
-        width: 100%; /* 小屏幕占满可用宽度 */
-        padding: 0 0rem; /* 视频左右留白，小屏幕不贴边 */
+        /* 最大宽度：限制视频在宽屏上的尺寸，避免过大导致加载缓慢或视觉失衡 */
+        max-width: 70rem;
+        margin: 0 auto; /* 视频水平居中 */
+        border-radius: 1.5rem; /* 大圆角设计，与产品卡片、Banner图片圆角风格统一 */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 轻微阴影，增强立体感（不突兀） */
+        overflow: hidden; /* 确保视频/海报图不超出圆角容器，避免视觉割裂 */
+        background-color: #fff; /* 视频加载前的占位背景，避免空白突兀 */
+      }
+
+      /* —— 8.5 视频元素：确保响应式与兼容性，优化播放体验 —— */
+      .section-8 video {
+        width: 100%; /* 视频宽度自适应容器，避免拉伸 */
+        height: auto; /* 高度自动，保持视频原有比例（防止变形） */
+        display: block; /* 清除视频默认inline带来的底部间隙 */
+        object-fit: cover; /* 确保视频/海报图填充容器（避免黑边，适配不同比例视频） */
+      }
+
+      /* —— 8.6 视频不支持提示文字：优化兼容性提示的视觉呈现 —— */
+      .section-8 video::-webkit-media-loading-logo,
+      .section-8 video + text {
+        color: #6e6e73; /* 浅灰文字，避免过于刺眼 */
+        font-size: 1rem; /* 字号适配，确保可读性 */
+        text-align: center; /* 提示文字居中 */
+        padding: 2rem; /* 上下留白，避免文字贴边 */
+        display: block; /* 块级显示，确保占据完整宽度 */
+      }
+
+      /* —— 8.7 响应式适配：针对不同屏幕优化显示效果 —— */
+      /* 平板屏（≤768px）：缩小间距与尺寸，适配中等屏幕 */
+      @media (max-width: 768px) {
+        .section-8 {
+          padding: 3rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
+        }
+        .section-8 .section-title {
+          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+        }
+        .section-8 .video-container {
+          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+        }
+      }
+
+      /* 移动端（≤425px）：极致适配小屏，优先保证视频可看性 */
+      @media (max-width: 425px) {
+        .section-8 {
+          padding: 2rem 0 3rem; /* 进一步减少间距，提升小屏利用率 */
+        }
+        .section-8 .container {
+          padding: 0 0.75rem; /* 缩小左右留白，最大化视频显示宽度 */
+        }
+        .section-8 .section-title {
+          font-size: 1.5rem; /* 缩小标题字号，避免遮挡视频 */
+          margin-bottom: 1.5rem;
+        }
+        .section-8 .video-container {
+          border-radius: 0.8rem; /* 继续减小圆角，贴合小屏精细感 */
+        }
+        /* 优化移动端视频控件：确保点击区域足够大（浏览器默认控件已适配，无需额外修改） */
+      }
+    </style>
+
+    <!--九，CSS 技术参数-->
+    <style>
+      /* —— 9.1 技术参数板块外层容器：控制背景、内边距与锚点定位 —— */
+      .tech-specs-section {
+        background-color: #ffffff; /* 统一浅灰背景，与整体风格匹配 */
+        padding: 4rem 0 6rem; /* 上下内边距（1rem=16px基准，6rem=96px），替代内联py-24 */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* —— 9.2 内容容器：控制宽度、居中与响应式内边距 —— */
+      .tech-specs-container {
+        max-width: 100%; /* 保留视频最大宽度，避免超宽变形 */
+        margin: 0 auto; /* 水平居中 */
         box-sizing: border-box;
         z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
-        margin: 0 0 0 13%;
+      }
+      /* 响应式内边距：适配中大屏 */
+      @media (min-width: 640px) {
+        /* sm breakpoint */
+        .tech-specs-container {
+          padding: 0 1.5rem; /* 替代内联sm:px-6 */
+        }
+      }
+      @media (min-width: 1024px) {
+        /* lg breakpoint */
+        .tech-specs-container {
+          padding: 0 2rem; /* 替代内联lg:px-8 */
+        }
       }
 
-      /* 4. 视频元素：保持尺寸稳定，避免拉伸 */
-      .section-8 .video-container video {
-        width: 100%; /* 视频占满容器宽度，适配不同屏幕 */
-        height: auto; /* 保持原宽高比，防止拉伸变形 */
-        border-radius: 1rem; /* 与其他板块圆角风格统一 */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 阴影强度匹配其他板块 */
-        display: block; /* 清除视频底部默认空隙，避免布局偏移 */
+      /* —— 9.3 板块标题：控制字体、大小、间距与视觉效果 —— */
+      .tech-specs-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        /* 字号：响应式适配（小屏1.8rem/28.8px，大屏2.5rem/40px），兼顾层级与可读性 */
+        font-size: 3.5rem;
+        font-weight: 400; /* 偏细字体，契合页面轻量化设计风格 */
+        color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
+        margin: 0 15%; /* 标题居中，强化板块主题 */
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin-bottom: 2.5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
       }
 
-      /* 5. 响应式适配：小屏幕下标题与视频同步居中，避免错位 */
-      @media (max-width: 768px) {
-        /* 小屏幕：外层容器居中，标题不再左偏 */
-        .section-8 .container {
-          margin: 0 auto; /* 容器居中，标题同步居中 */
-          max-width: 90%; /* 限制标题容器宽度，避免过宽 */
+      /* —— 9.4 表格包裹层：控制滚动、阴影与圆角 —— */
+      .tech-specs-table-wrap {
+        max-width: 70rem;
+        margin: 0 auto; /* 视频水平居中 */
+        border-radius: 1.5rem; /* 大圆角设计，与产品卡片、Banner图片圆角风格统一 */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 轻微阴影，增强立体感（不突兀） */
+        overflow: hidden; /* 确保视频/海报图不超出圆角容器，避免视觉割裂 */
+        background-color: #fff; /* 视频加载前的占位背景，避免空白突兀 */
+      }
+
+      /* —— 9.5 表格基础样式：控制边框、背景与溢出 —— */
+      .tech-specs-table {
+        width: 100%;
+        border-collapse: collapse; /* 替代内联border-collapse */
+        background-color: #f5f5f7; /* 替代内联bg-[#f5f5f7] */
+        border-radius: 1rem; /* 与包裹层圆角一致，避免漏角 */
+        overflow: hidden; /* 确保圆角生效，替代内联overflow-hidden */
+      }
+
+      /* —— 9.6 表格表头（thead）：控制背景、文字与单元格样式 —— */
+      .tech-specs-table thead {
+        background-color: #f5f5f7; /* 表头背景，替代内联bg-[#f5f5f7] */
+      }
+      .tech-specs-table thead tr th {
+        padding: 1.5rem; /* 替代内联py-6 px-6（1.5rem=24px） */
+        text-align: left; /* 基础左对齐 */
+        font-weight: 500; /* 替代内联font-medium */
+        font-size: 1rem; /* 替代内联text-[1rem] */
+        color: #1d1d1f; /* 替代内联text-[#1d1d1f] */
+        width: 30%; /* 第一列宽度，替代内联w-[30%] */
+      }
+      /* 表头非第一列：居中对齐+固定宽度 */
+      .tech-specs-table thead tr th:nth-child(2),
+      .tech-specs-table thead tr th:nth-child(3) {
+        width: 23%; /* 替代内联w-[23%] */
+        text-align: center; /* 替代内联text-center */
+      }
+      .tech-specs-table thead tr th:nth-child(4) {
+        width: 24%; /* 替代内联w-[24%] */
+        text-align: center; /* 替代内联text-center */
+      }
+      /* 表头响应式内边距：中大屏加宽 */
+      @media (min-width: 640px) {
+        /* sm breakpoint */
+        .tech-specs-table thead tr th {
+          padding: 1.5rem 2rem; /* 替代内联sm:px-8 */
+        }
+      }
+
+      /* —— 9.7 表格内容（tbody）：控制文字、行 hover 与单元格样式 —— */
+      .tech-specs-table tbody {
+        color: #424245; /* 替代内联text-[#424245] */
+        font-size: 0.9375rem; /* 替代内联text-[0.9375rem] */
+      }
+      /* 表格行：hover 效果 */
+      .tech-specs-table tbody tr {
+        transition: background-color 0.2s ease; /* 替代内联transition-colors duration-200 */
+      }
+      .tech-specs-table tbody tr:hover {
+        background-color: #fafafa; /* 替代内联hover:bg-[#fafafa] */
+      }
+      /* 表格单元格：基础样式 */
+      .tech-specs-table tbody tr td {
+        padding: 1.5rem; /* 替代内联py-6 px-6（1.5rem=24px） */
+        font-weight: 500; /* 替代内联font-medium（第一列） */
+      }
+      /* 内容单元格非第一列：居中对齐 */
+      .tech-specs-table tbody tr td:nth-child(2),
+      .tech-specs-table tbody tr td:nth-child(3),
+      .tech-specs-table tbody tr td:nth-child(4) {
+        text-align: center; /* 替代内联text-center */
+        font-weight: normal; /* 非第一列取消加粗 */
+      }
+      /* 内容单元格响应式内边距：中大屏加宽 */
+      @media (min-width: 640px) {
+        /* sm breakpoint */
+        .tech-specs-table tbody tr td {
+          padding: 1.5rem 2rem; /* 替代内联sm:px-8 */
+        }
+      }
+      /* 表格内小字体说明：统一样式（如“特殊情况”备注） */
+      .tech-specs-table tbody tr td .specs-note {
+        display: block; /* 独占一行，替代内联block */
+        font-size: 0.75rem; /* 替代内联text-xs */
+        color: #86868b; /* 替代内联text-[#86868b] */
+        margin-top: 0.25rem; /* 替代内联mt-1 */
+      }
+
+      /* —— 9.8 补充说明文字：控制间距、字体与对齐 —— */
+      .tech-specs-note {
+        margin-top: 2rem; /* 替代内联mt-8（2rem=32px） */
+        text-align: center; /* 替代内联text-center */
+        font-size: 0.875rem; /* 替代内联text-sm */
+        color: #86868b; /* 替代内联text-[#86868b] */
+        display: flex; /* 图标与文字横向对齐，替代内联flex */
+        align-items: center; /* 替代内联items-center */
+        justify-content: center; /* 替代内联justify-center */
+        gap: 0.5rem; /* 图标与文字间距，替代内联gap-2 */
+      }
+      /* 补充说明图标：保持默认样式 */
+      .tech-specs-note i {
+        font-size: 0.875rem; /* 与文字字号一致 */
+      }
+    </style>
+
+    <!--十，CSS 客户评价-->
+    <style>
+      /* —— 10.1 板块外层容器：控制背景与全局内边距 —— */
+      .evaluation-section {
+        background-color: #ffffff; /* 白色背景，与其他板块形成视觉区分 */
+        padding: 10rem 0; /* 上下内边距（基于1rem=16px基准，10rem=160px），确保板块上下留白充足 */
+        width: 100%; /* 占满屏幕宽度，避免左右留白 */
+        box-sizing: border-box; /* 统一盒模型，防止内边距影响宽度 */
+      }
+
+      /* —— 10.2 板块内层容器：限制内容宽度+左右响应式留白 —— */
+      .evaluation-container {
+        max-width: 120rem; /* 最大宽度（120rem=1920px），避免超宽屏幕内容过散 */
+        margin: 0 auto; /* 水平居中 */
+        padding: 0 1.25rem; /* 左右内边距（20px），适配小屏幕避免内容贴边 */
+      }
+
+      /* —— 10.3 板块标题：视觉焦点+响应式适配 —— */
+      .evaluation-title {
+        color: #000000; /* 黑色文字，突出标题权重 */
+        text-align: center; /* 水平居中，符合板块视觉重心 */
+        font-size: clamp(
+          2rem,
+          5vw,
+          3.5rem
+        ); /* 响应式字号：小屏2rem（32px）→大屏3.5rem（56px），避免跨度过大 */
+        font-weight: 400; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
+        font-family:
+          "SF Pro Display",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Public Sans",
+          "Noto Sans SC",
+          sans-serif; /* 优先苹果系统字体，兼容全局字体族 */
+        letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
+        margin-bottom: 4rem; /* 与下方卡片间距（64px），避免拥挤 */
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 淡阴影，提升标题层次感 */
+      }
+
+      /* —— 10.4 评价卡片网格：响应式布局（1列→2列→3列） —— */
+      .evaluation-grid {
+        display: grid; /* 网格布局 */
+        gap: 5rem; /* 卡片间距（80px），确保视觉呼吸感 */
+        /* 响应式列数：移动端1列→平板2列→桌面3列 */
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        /* 平板屏（≥768px） */
+        .evaluation-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        /* 桌面屏（≥1024px） */
+        .evaluation-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* —— 10.5 单个评价卡片：容器样式+装饰细节 —— */
+      .evaluation-card {
+        background-color: #f5f5f7; /* 浅灰背景（neutral色），与白色板块形成区分 */
+        padding: 3.75rem; /* 内边距（60px），确保卡片内容不拥挤 */
+        border-radius: 1rem; /* 大圆角（16px），符合现代设计风格 */
+        position: relative; /* 作为引号装饰的定位上下文 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03); /* 淡阴影，提升卡片立体感 */
+      }
+
+      /* —— 10.6 引号装饰：视觉点缀+定位控制 —— */
+      .evaluation-quote {
+        color: #0071e3; /* 品牌蓝色（primary色），呼应全局主色调 */
+        font-size: 5rem; /* 大字号（80px），作为装饰元素 */
+        position: absolute; /* 绝对定位，脱离文档流 */
+        top: -2rem; /* 向上偏移（32px），超出卡片顶部 */
+        left: 2.5rem; /* 向左偏移（40px），贴近卡片左侧 */
+        opacity: 0.2; /* 透明度20%，避免喧宾夺主 */
+        font-family: Georgia, serif; /* 衬线字体，增强引号装饰感 */
+      }
+
+      /* —— 10.7 评价文本：可读性优化+风格统一 —— */
+      .evaluation-content {
+        color: rgba(29, 29, 31, 0.8); /* #1d1d1f/80，与全局副标题透明度统一 */
+        font-size: clamp(
+          1rem,
+          2vw,
+          1.125rem
+        ); /* 响应式字号：1rem（16px）→1.125rem（18px） */
+        font-weight: 300; /* 轻字重，增强文本细腻感 */
+        line-height: 1.6; /* 行高1.6，适配长文本阅读 */
+        font-family:
+          "SF Pro Text",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Public Sans",
+          "Noto Sans SC",
+          sans-serif; /* 优先苹果文本字体，提升阅读体验 */
+        margin-bottom: 3rem; /* 与下方客户信息间距（48px） */
+        max-width: 2xl; /* 最大宽度，避免文本行过长影响阅读 */
+      }
+
+      /* —— 10.8 客户信息：头像+名称+职位横向布局 —— */
+      .evaluation-customer {
+        display: flex; /* 弹性布局，横向排列 */
+        align-items: center; /* 垂直居中 */
+        gap: 1.25rem; /* 头像与文字间距（20px） */
+      }
+
+      /* —— 10.9 客户头像：圆形裁剪+尺寸控制 —— */
+      .customer-avatar {
+        width: 7.5rem; /* 头像宽度（120px） */
+        height: 7.5rem; /* 头像高度（120px），确保正方形 */
+        border-radius: 50%; /* 圆形裁剪 */
+        object-fit: cover; /* 保持图片比例，避免拉伸 */
+        border: 2px solid #ffffff; /* 白色边框，与卡片背景形成对比 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 淡阴影，提升头像立体感 */
+      }
+
+      /* —— 10.10 客户名称：权重突出 —— */
+      .customer-name {
+        color: #1d1d1f; /* 深灰文字，突出名称 */
+        font-size: 1.125rem; /* 18px，比职位字号大，形成层级 */
+        font-weight: 500; /* 中粗字重，增强识别度 */
+        margin-bottom: 0.5rem; /* 与职位间距（8px） */
+      }
+
+      /* —— 10.11 客户职位：辅助信息+弱化处理 —— */
+      .customer-position {
+        color: #86868b; /* 浅灰文字，弱化职位权重 */
+        font-size: 0.875rem; /* 14px，比名称小一号 */
+        font-weight: 300; /* 轻字重，增强文本层级 */
+        line-height: 1.4; /* 行高适配短文本 */
+      }
+    </style>
+
+    <!--十一，CSS 探索同类产品-->
+    <style>
+      /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
+      .other-section {
+        background-color: #ffffff; /* 与导航栏/产品板块配色统一 */
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
+        position: relative; /* 作为滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
+      }
+
+      /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
+      .other-container {
+        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        margin: 0 0 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+      }
+
+      /* —— 5.3 板块主标题：强化视觉焦点 —— */
+      .other-main-title {
+        color: #000000; /* 黑色文字，突出标题权重 */
+        margin: 0 auto;
+        font-size: clamp(
+          2rem,
+          5vw,
+          3.5rem
+        ); /* 响应式字号：小屏2rem（32px）→大屏3.5rem（56px），避免跨度过大 */
+        font-weight: 400; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
+        font-family:
+          "SF Pro Display",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          "Public Sans",
+          "Noto Sans SC",
+          sans-serif; /* 优先苹果系统字体，兼容全局字体族 */
+        letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
+        margin-bottom: 4rem; /* 与下方卡片间距（64px），避免拥挤 */
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 淡阴影，提升标题层次感 */
+      }
+
+      /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
+      .other-scroll-wrap {
+        position: relative; /* 作为卡片容器的定位父容器 */
+        overflow: visible; /* 允许箭头超出容器范围 */
+        overflow-x: auto; /* 仅横向滚动，纵向固定 */
+        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
+        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      .other-scroll-wrap::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+
+      /* —— 5.6 卡片容器：横向排列卡片 —— */
+      .other-card-container {
+        display: flex; /* 卡片横向排列 */
+        gap: 1.5rem; /* 16px基准：24px，卡片之间间距 */
+        width: max-content; /* 宽度随卡片数量自适应，确保所有卡片显示 */
+        transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
+      }
+
+      /* —— 5.7 优势卡片：仅保留定位功能，视觉由图片主导 —— */
+      .other-card {
+        width: 21.25rem; /* 16px基准：340px，固定宽度确保卡片一致性 */
+        flex-shrink: 0; /* 禁止收缩，避免卡片被挤压变形 */
+        position: relative; /* 作为卡片内文字/图片的定位上下文 */
+        height: auto; /* 高度由图片自动撑开 */
+        overflow: visible; /* 允许文字/阴影超出卡片范围 */
+        background-color: transparent; /* 透明背景，图片完全主导视觉 */
+        padding: 0; /* 清除内边距，避免干扰图片布局 */
+        box-shadow: none; /* 无阴影，阴影由图片单独控制 */
+        border-radius: 0; /* 无圆角，圆角由图片单独控制 */
+        transition: none; /* 无过渡，过渡效果由图片单独控制 */
+        cursor: inherit; /* 鼠标样式由子元素（图片）控制 */
+        border: none; /* 无边框 */
+        margin: 0; /* 清除margin */
+      }
+
+      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
+      .other-card-text {
+        position: absolute;
+        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保文字可见 */
+        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
+        text-align: left;
+        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
+      }
+
+      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+      /* 卡片内二级标题 */
+      .other-card .other-subtitle {
+        color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+        font-size: 1rem; /* 16px基准：16px */
+        font-weight: 500;
+        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+      }
+      /* 卡片内一级标题 */
+      .other-card .other-heading {
+        color: #1d1d1f; /* 同上，适配图片背景 */
+        font-size: 1.75rem; /* 16px基准：28px */
+        font-weight: 600;
+        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+        letter-spacing: -0.5px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      /* 卡片内描述文本 */
+      .other-card .other-desc {
+        color: #1d1d1f; /* 同上，适配图片背景 */
+        font-size: 0.875rem; /* 16px基准：14px */
+        line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      /* —— 5.10 卡片图片：核心视觉元素，控制交互效果 —— */
+      .other-card img {
+        width: 100%; /* 图片占满卡片宽度 */
+        height: 34.375rem; /* 16px基准：550px，固定高度确保卡片对齐 */
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸） */
+        object-position: center bottom; /* 图片定位：居中靠下，优先显示底部内容 */
+        border-radius: 1.25rem; /* 16px基准：20px，与产品板块卡片圆角统一 */
+        background-color: transparent; /* 透明背景，避免加载时显白 */
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 16px基准：0 4px 16px，轻微阴影增强立体感 */
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease; /* 过渡效果：上浮+阴影加深 */
+        display: block; /* 清除图片默认空隙 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        transform: translateY(
+          0.125rem
+        ); /* 16px基准：2px，初始轻微下沉，增强hover对比 */
+        transform-origin: bottom 10%; /* 变换原点：底部偏左，优化动画质感 */
+      }
+      /* 图片hover效果：轻微上浮+放大+阴影加深 */
+      .other-card:hover img {
+        transform: translateY(-0.375rem) scale(1.01); /* 16px基准：-6px上浮+1%放大 */
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 16px基准：0 8px 24px，阴影加深 */
+      }
+
+      /* —— 5.11 卡片底部文字：图片底部标注 —— */
+      .other-card-name {
+        font-size: 1rem; /* 16px基准：16px，与产品板块卡片文字字号统一 */
+        font-weight: 300; /* 与产品板块统一，避免过粗显笨重 */
+        color: #f5f5f7; /* 浅灰文字，适配图片背景 */
+        line-height: 1.4; /* 优化可读性 */
+        padding: 0; /* 清除内边距 */
+        margin: 0; /* 清除margin */
+        position: absolute;
+        bottom: 1.25rem; /* 16px基准：20px，距离图片底部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保可见 */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 文字阴影，提升可读性 */
+        pointer-events: none; /* 禁止拦截图片点击 */
+      }
+
+      /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
+      .other-nav-btn {
+        position: absolute; /* 基于板块容器定位 */
+        top: 90%; /* 垂直居中于产品卡片区域 */
+        transform: translateY(
+          -50%
+        ) !important; /* 垂直居中校准（!important避免被覆盖） */
+        bottom: auto !important; /* 取消底部定位，避免冲突 */
+        width: 2.5rem; /* 16px基准：40px，圆形按钮直径 */
+        height: 2.5rem;
+        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
+        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，弱化但可见 */
+        color: #696969; /* 灰色箭头，与背景区分 */
+        border: none; /* 清除默认边框 */
+        font-size: 1.25rem; /* 16px基准：20px，箭头图标大小 */
+        cursor: pointer; /* 提示可点击 */
+        outline: none; /* 清除聚焦轮廓 */
+        display: flex;
+        justify-content: center; /* 箭头水平居中 */
+        align-items: center; /* 箭头垂直居中 */
+        padding: 0; /* 清除默认内边距 */
+        z-index: 999; /* 层级高于卡片，确保不被遮挡 */
+      }
+      /* 左箭头位置 */
+      .other-nav-btn.prev-btn {
+        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        right: auto;
+        display: flex !important; /* 强制显示，避免被隐藏 */
+      }
+      /* 右箭头位置 */
+      .other-nav-btn.next-btn {
+        right: calc(5% + 1.25rem); /* 基于屏幕右侧5%，向右偏移1.25rem */
+        left: auto;
+      }
+      /* 箭头交互效果 */
+      .other-nav-btn:hover {
+        background-color: rgba(180, 180, 180, 0.9); /* 背景加深 */
+        color: #333; /* 文字加深，增强反馈 */
+      }
+      .other-nav-btn:disabled {
+        background-color: rgba(240, 240, 240, 0.9); /* 更浅背景，视觉弱化 */
+        color: #aaa; /* 浅灰箭头 */
+        cursor: not-allowed; /* 提示不可点击 */
+        display: flex !important; /* 禁用时仍显示，避免布局跳动 */
+      }
+
+      /* ================================== 购买优势板块 - 媒体查询适配 ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
+
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
+      @media (max-width: 320px) {
+        .other-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          padding: 0 0.8rem; /* 12px基准：~9.6px，缩小留白 */
+        }
+        .other-main-title {
+          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
+          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+        }
+        .other-intro {
+          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+        }
+        .other-card {
+          width: 13rem; /* 12px基准：156px，适配小屏宽度 */
+        }
+        .other-card img {
+          height: 20rem; /* 12px基准：240px，缩小图片高度 */
+          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+        }
+        .other-nav-btn {
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .other-card .other-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .other-card .other-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .other-card .other-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .other-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .other-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .other-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .other-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .other-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .other-nav-btn {
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .other-card .other-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .other-card .other-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .other-card .other-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .other-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .other-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .other-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .other-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .other-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .other-nav-btn {
+          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
         }
 
-        /* 小屏幕：视频改相对定位，跟随容器居中 */
-        .section-8 .video-container {
-          position: relative; /* 取消绝对定位，回归正常文档流 */
-          left: auto; /* 清除绝对定位的left值 */
-          top: auto; /* 清除绝对定位的top值 */
-          transform: none; /* 清除偏移 */
-          margin: 2rem auto 0; /* 视频与标题间距2rem，且在容器内居中 */
-          max-width: 100%; /* 视频占满容器，提升小屏幕利用率 */
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .other-card .other-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .other-card .other-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .other-card .other-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .other-container {
+          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
+          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+        }
+        .other-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .other-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .other-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .other-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .other-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
         }
 
-        /* 小屏幕：标题优化 */
-        .section-8 .section-title {
-          font-size: 2.5rem; /* 缩小字号，避免溢出 */
-          text-align: center; /* 标题居中，与视频视觉对齐 */
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .other-card .other-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .other-card .other-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .other-card .other-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .other-container {
+          margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
+          max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
+        }
+        .other-main-title {
+          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
+          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
+        }
+        .other-intro {
+          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+        }
+        .other-card {
+          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+        }
+        .other-card img {
+          height: 20rem; /* 14px基准：280px，缩小图片高度 */
+          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+        }
+        .other-nav-btn {
+          width: 2rem; /* 缩小箭头 */
+          height: 2rem;
+          font-size: 1rem; /* 缩小图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(75% + 0rem); /* 调整左箭头位置 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+        }
+        /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+        /* 卡片内二级标题 */
+        .other-card .other-subtitle {
+          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
+          font-size: 1rem; /* 16px基准：16px */
+          font-weight: 300;
+          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        }
+        /* 卡片内一级标题 */
+        .other-card .other-heading {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 1.2rem; /* 16px基准：28px */
+          font-weight: 350;
+          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          letter-spacing: -0.5px;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        /* 卡片内描述文本 */
+        .other-card .other-desc {
+          color: #1d1d1f; /* 同上，适配图片背景 */
+          font-size: 0.7rem; /* 16px基准：14px */
+          line-height: 1.5;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+        .other-container {
+          max-width: 120rem; /* 16px基准：1920px，适配4K屏宽度 */
+        }
+        .other-main-title {
+          font-size: 4.5rem; /* 16px基准：72px，增强标题视觉冲击 */
+          margin-bottom: 2rem; /* 16px基准：32px，放大间距适配4K比例 */
+        }
+        .other-intro {
+          margin-bottom: 4rem; /* 16px基准：64px，放大与卡片区间距 */
+        }
+        .other-card {
+          width: 24rem; /* 16px基准：384px，放大卡片尺寸 */
+        }
+        .other-card img {
+          height: 28rem; /* 16px基准：448px，放大图片高度 */
+          border-radius: 1.5rem; /* 16px基准：24px，同步放大圆角 */
+        }
+        .other-card-name {
+          font-size: 1.2rem; /* 16px基准：19.2px，放大文字，提升可读性 */
+          bottom: 1.5rem; /* 16px基准：24px，同步调整位置 */
+          left: 1.5rem;
+        }
+        .other-nav-btn {
+          width: 3rem; /* 16px基准：48px，放大箭头尺寸 */
+          height: 3rem;
+          font-size: 1.5rem; /* 16px基准：24px，放大箭头图标 */
+        }
+        .other-nav-btn.prev-btn {
+          left: calc(85% + 3rem); /* 同步放大偏移量 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(5% + 1.5rem); /* 同步放大偏移量 */
         }
       }
     </style>
@@ -4364,7 +5217,838 @@
       </div>
     </section>
 
-    <!-- 九，底部导航栏 -->
+    <!-- 九，代码 技术参数 -->
+    <section class="tech-specs-section" id="specs">
+      <div class="tech-specs-container">
+        <h2 class="tech-specs-title">技术参数</h2>
+
+        <div class="tech-specs-table-wrap">
+          <table class="tech-specs-table">
+            <thead>
+              <tr>
+                <th>型号</th>
+                <th>A15</th>
+                <th>A20</th>
+                <th>A30</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>激光功率</td>
+                <td>1500W</td>
+                <td>2000W</td>
+                <td>3000W</td>
+              </tr>
+              <tr>
+                <td>工作台面尺寸</td>
+                <td>
+                  1350x1320mm <br />
+                  1310x2550mm <br />
+                  3050x1500mm
+                </td>
+                <td>
+                  1350x1320mm <br />
+                  1310x2550mm <br />
+                  3050x1500mm
+                </td>
+                <td>
+                  1350x1320mm <br />
+                  1310x2550mm <br />
+                  3050x1500mm
+                </td>
+              </tr>
+              <tr>
+                <td>最大切割速度</td>
+                <td>80m/min</td>
+                <td>80m/min</td>
+                <td>80m/min</td>
+              </tr>
+              <tr>
+                <td>定位精度</td>
+                <td>±0.05mm</td>
+                <td>±0.05mm</td>
+                <td>±0.05mm</td>
+              </tr>
+              <tr>
+                <td>重复定位精度</td>
+                <td>±0.03mm</td>
+                <td>±0.03mm</td>
+                <td>±0.03mm</td>
+              </tr>
+              <tr>
+                <td>批量加工最大切割厚度(碳钢)</td>
+                <td>
+                  12mm
+                  <span class="specs-note">(特殊情况16mm)</span>
+                </td>
+                <td>
+                  16mm
+                  <span class="specs-note">(特殊情况20mm)</span>
+                </td>
+                <td>
+                  18mm
+                  <span class="specs-note">(特殊情况25mm)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>批量加工最大切割厚度(不锈钢)</td>
+                <td>
+                  5mm
+                  <span class="specs-note">(特殊情况8mm)</span>
+                </td>
+                <td>
+                  6mm
+                  <span class="specs-note">(特殊情况10mm)</span>
+                </td>
+                <td>
+                  8mm
+                  <span class="specs-note">(特殊情况12mm)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>批量加工最大切割厚度(铝合金)</td>
+                <td>
+                  3mm
+                  <span class="specs-note">(特殊情况5mm)</span>
+                </td>
+                <td>
+                  4mm
+                  <span class="specs-note">(特殊情况6mm)</span>
+                </td>
+                <td>
+                  4mm
+                  <span class="specs-note">(特殊情况8mm)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>批量加工最大切割厚度(铜)</td>
+                <td>
+                  3mm
+                  <span class="specs-note">(特殊情况4mm)</span>
+                </td>
+                <td>
+                  4mm
+                  <span class="specs-note">(特殊情况6mm)</span>
+                </td>
+                <td>
+                  4mm
+                  <span class="specs-note">(特殊情况8mm)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>冷却方式</td>
+                <td>水冷</td>
+                <td>水冷</td>
+                <td>水冷</td>
+              </tr>
+              <tr>
+                <td>电力需求</td>
+                <td>380V/3PH 50/60HZ</td>
+                <td>380V/3PH 50/60HZ</td>
+                <td>380V/3PH 50/60HZ</td>
+              </tr>
+              <tr>
+                <td>加速度</td>
+                <td>1.0G</td>
+                <td>1.0G</td>
+                <td>1.0G</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 补充说明：苹果风格"轻量级注释" -->
+        <div class="tech-specs-note">
+          <i class="fa fa-info-circle"></i>
+          <span
+            >参数数据基于标准测试环境，实际使用可能因材料特性、操作条件略有差异</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- 十，客户评价 -->
+    <section class="evaluation-section">
+      <div class="evaluation-container">
+        <!-- 板块标题 -->
+        <h2 class="evaluation-title">客户评价</h2>
+
+        <!-- 评价卡片网格容器 -->
+        <div class="evaluation-grid">
+          <!-- 评价卡片 1 -->
+          <div class="evaluation-card">
+            <!-- 引号装饰（绝对定位） -->
+            <div class="evaluation-quote">"</div>
+            <!-- 评价文本 -->
+            <p class="evaluation-content">
+              作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。
+            </p>
+            <!-- 客户信息（头像+名称+职位） -->
+            <div class="evaluation-customer">
+              <img
+                alt="客户头像-张先生"
+                class="customer-avatar"
+                src="../../../img/products/laser-sheet-cutting/a/customer/mr-zhang.png"
+              />
+              <div class="customer-info">
+                <div class="customer-name">张先生</div>
+                <div class="customer-position">某金属制品有限公司 总经理</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 评价卡片 2 -->
+          <div class="evaluation-card">
+            <div class="evaluation-quote">"</div>
+            <p class="evaluation-content">
+              我们工厂从传统切割设备升级到Senrytech
+              A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。
+            </p>
+            <div class="evaluation-customer">
+              <img
+                alt="客户头像-李女士"
+                class="customer-avatar"
+                src="../../../img/products/laser-sheet-cutting/a/customer/ms-li.jpg"
+              />
+              <div class="customer-info">
+                <div class="customer-name">李女士</div>
+                <div class="customer-position">某五金加工厂 生产总监</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 评价卡片 3 -->
+          <div class="evaluation-card">
+            <div class="evaluation-quote">"</div>
+            <p class="evaluation-content">
+              对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。
+            </p>
+            <div class="evaluation-customer">
+              <img
+                alt="客户头像-王先生"
+                class="customer-avatar"
+                src="../../../img/products/laser-sheet-cutting/a/customer/mr-wang.jpg"
+              />
+              <div class="customer-info">
+                <div class="customer-name">王先生</div>
+                <div class="customer-position">某机械配件厂 老板</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 十一，代码 探索同类产品-->
+    <div class="other-section" style="position: relative">
+      <div class="other-container">
+        <!-- 板块主题文字（保留，仅删除原全局的other-intro） -->
+        <h2 class="other-main-title">探索同类产品</h2>
+
+        <!-- 图片卡片容器 -->
+        <div class="other-scroll-wrap" style="position: relative">
+          <div class="other-card-container" id="otherScroll">
+            <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
+            <div class="other-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/home-intallation.webp"
+                alt="专业安装服务"
+              />
+              <!-- 新增：卡片内三段文字容器（左上角定位） -->
+              <div class="other-card-text">
+                <p class="other-subtitle">灵活上门安装</p>
+                <h3 class="other-heading">想上门装设备？按需安排更省心</h3>
+                <p class="other-desc">
+                  提供专业安装人员，费用透明，按需定制安装流程，不用零散找技工。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片2：同结构复制 -->
+            <div class="other-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/on-site-repair.webp"
+                alt="透明费用"
+              />
+              <div class="other-card-text">
+                <p class="other-subtitle">按需上门维修</p>
+                <h3 class="other-heading">设备出问题？上门维修可按需约</h3>
+                <p class="other-desc">
+                  明码标价的上门维修，快速协调适配机型的技术人员，维修资源更匹配。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片3：同结构复制 -->
+            <div class="other-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/quality-guarantee.webp"
+                alt="定制流程"
+              />
+              <div class="other-card-text">
+                <p class="other-subtitle">明确期质保</p>
+                <h3 class="other-heading">购机享质保，非人为问题放心修</h3>
+                <p class="other-desc">
+                  1 年质保覆盖 “非人为、非不当使用” 故障，减少意外成本。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片4：同结构复制 -->
+            <div class="other-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/24-hours.webp"
+                alt="售后保障"
+              />
+              <div class="other-card-text">
+                <p class="other-subtitle">24 小时售后咨询</p>
+                <h3 class="other-heading">设备有疑问？全天都能找得到人</h3>
+                <p class="other-desc">
+                  24 小时在线响应操作、调试等疑问，不用等工作日解决。
+                </p>
+              </div>
+            </div>
+
+            <!-- 优势卡片5：同结构复制 -->
+            <div class="other-card">
+              <img
+                src="../senrytech.github.io/img/index/after-sales/fast-reply.webp"
+                alt="快速响应"
+              />
+              <div class="other-card-text">
+                <p class="other-subtitle">实时咨询响应</p>
+                <h3 class="other-heading">有任何需求？秒级响应不拖沓</h3>
+                <p class="other-desc">
+                  咨询实时回，暂无法解决也同步跟进节奏，不用长时间等回复。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 滚动箭头（与第3板块一致） -->
+      <button class="other-nav-btn prev-btn" id="otherPrevBtn" disabled>
+        &lt;
+      </button>
+      <button class="other-nav-btn next-btn" id="otherNextBtn">&gt;</button>
+    </div>
+
+    <!-- 十一，代码，探索同类产品 -->
+    <section class="py-16 md:py-24 bg-white w-full overflow-hidden">
+      <!-- 全屏容器：移除固定宽度限制，采用视宽100% + 左右内边距适配 -->
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 w-full max-w-none">
+        <!-- 板块标题 - 苹果风格极简排版（居中+适配全屏宽度） -->
+        <h2
+          class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-10 text-center font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+        >
+          探索同类产品
+        </h2>
+
+        <!-- 核心：全屏带箭头翻页容器（100%视宽，箭头贴边显示） -->
+        <div class="relative w-full" style="overflow: hidden">
+          <!-- 左箭头按钮（全屏优化：贴左+适配不同屏幕，hover放大增强交互） -->
+          <button
+            id="prevBtn"
+            class="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-white/90 backdrop-blur-md shadow-md hover:shadow-lg text-primary transition-all duration-300 z-30 flex items-center justify-center focus:outline-none opacity-100 hover:scale-110"
+            aria-label="上一页"
+          >
+            <i class="fa fa-chevron-left text-lg sm:text-xl"></i>
+          </button>
+
+          <!-- 右箭头按钮（同左箭头，贴右显示） -->
+          <button
+            id="nextBtn"
+            class="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-white/90 backdrop-blur-md shadow-md hover:shadow-lg text-primary transition-all duration-300 z-30 flex items-center justify-center focus:outline-none opacity-100 hover:scale-110"
+            aria-label="下一页"
+          >
+            <i class="fa fa-chevron-right text-lg sm:text-xl"></i>
+          </button>
+
+          <!-- 滚动内容容器（全屏优化：移除横向间距，卡片占满可用宽度） -->
+          <div
+            class="relative overflow-x-auto scrollbar-hide py-4 px-0 sm:px-2"
+          >
+            <div
+              id="productScroll"
+              class="flex gap-4 sm:gap-6 md:gap-8 transition-transform duration-400 ease-out"
+              style="width: max-content; padding: 0 2px"
+            >
+              <!-- B系列产品卡片（同A系列全屏适配规则） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/b/banner/senrytech-b-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机B系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    B系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    12000W 功率天花板！床身加固抗变形，电机减速机动力翻倍，1.5G
+                    加速度，把中厚板切割效率卷到新高度
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- B Plus系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/b-plus/banner/senrytech-b-plus-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机B Plus系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    B Plus系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    侧开包围省空间！上料台可手动拉出，适配小车间，保留 B 系列
+                    12000W 厚板实力，安全与空间利用率双优化，不搞花架子。
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- B Pro系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/b-pro/banner/senrytech-b-pro-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机B Pro系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    B Pro系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    10 秒极速交换上料，双台自动无缝衔接，2.0G
+                    高加速度实现设备‘不停机’生产，产能直接翻倍，精准解决工厂批量加工的待机痛点
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- B ProMax系列产品卡片（全屏适配：宽度随屏幕动态调整，保持16:9视觉比例） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <!-- 方形图片容器（aspect-square强制1:1，全屏下图片占比更大） -->
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/b-promax/banner/senrytech-b-promax-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机B ProMax系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- 卡片内容（全屏适配：内边距随卡片宽度同比放大） -->
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    B ProMax系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    全钣金包围 + 国际安全认证，专为出口企业定制！继承 B Pro 10
+                    秒上料 + 2.0G
+                    加速度核心优势，安全防护与生产效能双重达标，欧洲市场合规畅行，无额外溢价
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- B Ultra系列产品卡片（全屏适配：宽度随屏幕动态调整，保持16:9视觉比例） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <!-- 方形图片容器（aspect-square强制1:1，全屏下图片占比更大） -->
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/b-ultra/banner/senrytech-b-ultra-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机B Ultra系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <!-- 卡片内容（全屏适配：内边距随卡片宽度同比放大） -->
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    B Ultra系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    真全自动上下料闭环！上料、切割、下料全自主，叠加全包围 +
+                    高功率，把激光切割的智能天花板拉到新高度，黑灯工厂直接落地
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- C系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-1.webp"
+                    alt="激光板材切割机C系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    C系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    15 吨承载极限 + 自动传料系统，0.5-2mm 铝卷直接成板切割，1.0G
+                    加速度实现连续化生产，彻底告别人工上料繁琐，为铝制品企业提供高效闭环方案
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- G系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机G系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    G系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    12-14 米超长地轨，12000-60000W
+                    超高功率，专为大型构件、重型厚板切割设计，±0.05mm
+                    精度保障长件加工质量
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- M系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机M系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    M系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    ±8 微米精度！迷你机身不占地，最高 6kW
+                    功率，专为精密零件加工而生，小身材藏着真功夫，把精密切割做到极致
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- S系列产品卡片（同规则全屏适配） -->
+              <div
+                class="w-[280px] sm:w-[340px] md:w-[400px] lg:w-[480px] xl:w-[550px] product-card bg-neutral rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
+                style="flex-shrink: 0; height: auto"
+              >
+                <div class="aspect-square bg-gray-100 overflow-hidden">
+                  <img
+                    src="../../../img/products/laser-sheet-cutting/s/banner/senrytech-s-laser-sheet-cutting-1.webp"
+                    alt="激光板材切割机S系列"
+                    class="w-full h-full object-cover transition-transform duration-700 product-img hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="p-6 sm:p-7 md:p-8 lg:p-10">
+                  <h3
+                    class="text-xl sm:text-2xl md:text-3xl font-medium text-primary mb-3 sm:mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    S系列
+                  </h3>
+                  <p
+                    class="text-gray-600 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    专切 C/H 型钢、槽钢！14
+                    米超长行程，定制化切割路径，不折腾、不返工，为钢结构行业打造高效专项解决方案
+                  </p>
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    class="text-secondary text-base sm:text-lg font-medium inline-flex items-center hover:underline font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+                  >
+                    了解更多
+                    <i
+                      class="fa fa-chevron-right ml-2 text-sm transition-transform hover:translate-x-1"
+                    ></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 查看全部按钮（全屏适配：按钮尺寸随屏幕放大，hover效果增强） -->
+        <div class="mt-12 md:mt-16 text-center">
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/"
+            class="inline-block bg-primary hover:bg-primary/90 text-white px-7 sm:px-9 py-3 sm:py-4 rounded-full text-base sm:text-lg lg:text-xl font-medium transition-all duration-300 hover:shadow-lg hover:-translate-y-1 font-['SF_Pro_Text',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+          >
+            查看全部激光板材切割机
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!--  十二，代码，联系咨询-->
+    <section class="py-16 bg-primary/5" id="contact">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-black text-center text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+            >
+              联系专家
+            </h2>
+            <p
+              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
+            >
+              填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-md">
+            <!--原表单标签修改：添加id、onsubmit事件，移除action-->
+            <form
+              id="laserForm"
+              method="POST"
+              name="laser-consult"
+              onsubmit="sendEmail(event)"
+            >
+              <!--原有隐藏字段删除（Netlify的<inpu type="hidden" name="form-name" ...>）-->
+              <!--以下字段完全保留原样式，无需修改-->
+              <div class="mb-6">
+                <label class="block text-gray-700 mb-2" for="name">姓名</label>
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="name"
+                  name="name"
+                  placeholder="请输入您的姓名"
+                  required
+                  type="text"
+                />
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 mb-2" for="company"
+                  >公司名称</label
+                >
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="company"
+                  name="company"
+                  placeholder="请输入公司名称"
+                  required
+                  type="text"
+                />
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 mb-2" for="phone"
+                  >联系电话</label
+                >
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="phone"
+                  name="phone"
+                  placeholder="请输入联系电话"
+                  required
+                  type="tel"
+                />
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 mb-2" for="email"
+                  >电子邮箱</label
+                >
+                <input
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="email"
+                  name="email"
+                  placeholder="请输入电子邮箱"
+                  type="email"
+                />
+              </div>
+              <div class="mb-6 md:col-span-2">
+                <label class="block text-gray-700 mb-2" for="interest"
+                  >感兴趣的型号</label
+                >
+                <select
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="interest"
+                  name="interest"
+                >
+                  <option value>请选择型号</option>
+                  <option value="A15">A1500 (1500W)</option>
+                  <option value="A20">A2000 (2000W)</option>
+                  <option value="A30">A3000 (3000W)</option>
+                  <option value="other">其他需求</option>
+                </select>
+              </div>
+              <div class="mb-6 md:col-span-2">
+                <label class="block text-gray-700 mb-2" for="message"
+                  >留言</label
+                >
+                <textarea
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  id="message"
+                  name="message"
+                  placeholder="请输入您的需求或疑问"
+                  rows="4"
+                ></textarea>
+              </div>
+              <div class="md:col-span-2">
+                <!--可选：添加提交状态提示（默认隐藏）-->
+                <div class="hidden mb-4 text-center" id="submitTip"></div>
+                <button
+                  class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
+                  type="submit"
+                >
+                  提交咨询
+                </button>
+              </div>
+            </form>
+            <!--注意：移除原代码中多余的</script>标签（原Formspree残留，Netlify无需此标签）-->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 十三，底部导航栏 -->
     <footer class="footer-new">
       <div class="footer-container">
         <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
@@ -4757,7 +6441,7 @@
       });
     </script>
 
-    <!--，JS 切割有道-->
+    <!--七，JS 切割有道-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // 通用图表配置：苹果风格优化（平滑扁平化）
@@ -5107,6 +6791,74 @@
             copperChart.update();
           }, 1500);
         }, 1000);
+      });
+    </script>
+
+    <script>
+      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
+      // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
+      document.addEventListener("DOMContentLoaded", () => {
+        // —— 5.1 初始化优势板块滚动所需变量 ——
+        const otherScrollWrap = document.querySelector(".other-scroll-wrap"); // 滚动容器
+        const otherCardContainer = document.getElementById("otherScroll"); // 卡片容器（对应第3板块#productScroll）
+        const otherItems = document.querySelectorAll(".other-card"); // 所有优势卡片
+        const prevBtn = document.getElementById("otherPrevBtn"); // 左箭头
+        const nextBtn = document.getElementById("otherNextBtn"); // 右箭头
+
+        // —— 5.2 初始化参数（与第3板块逻辑一致） ——
+        let itemWidth = otherItems[0] ? otherItems[0].offsetWidth + 24 : 364; // 滚动步长=卡片宽+间距（24px）
+        const containerGap =
+          parseInt(getComputedStyle(otherCardContainer).gap) || 24; // 卡片间距
+
+        // —— 5.3 计算卡片宽度（适配窗口缩放） ——
+        const initItemWidth = () => {
+          if (otherItems[0]) {
+            itemWidth = otherItems[0].offsetWidth + containerGap; // 重新计算滚动步长
+          }
+        };
+
+        // —— 5.4 箭头滚动控制（与第3板块一致） ——
+        // 右滚动：一次滚动一个步长
+        const scrollRight = () => {
+          otherScrollWrap.scrollBy({
+            left: itemWidth,
+            behavior: "smooth", // 平滑滚动
+          });
+        };
+        // 左滚动：一次滚动一个步长
+        const scrollLeft = () => {
+          otherScrollWrap.scrollBy({
+            left: -itemWidth,
+            behavior: "smooth",
+          });
+        };
+
+        // —— 5.5 箭头禁用状态控制（与第3板块一致） ——
+        const updateBtnState = () => {
+          if (!otherScrollWrap) return;
+          // 左箭头：滚动到最左侧（误差≤10px）则禁用
+          prevBtn.disabled = otherScrollWrap.scrollLeft <= 10;
+          // 右箭头：滚动到最右侧（误差≤10px）则禁用
+          nextBtn.disabled =
+            otherScrollWrap.scrollLeft >=
+            otherScrollWrap.scrollWidth - otherScrollWrap.clientWidth - 10;
+        };
+
+        // —— 5.6 绑定箭头点击事件 ——
+        nextBtn.addEventListener("click", scrollRight);
+        prevBtn.addEventListener("click", scrollLeft);
+        // 滚动时实时更新箭头状态
+        otherScrollWrap.addEventListener("scroll", updateBtnState);
+
+        // —— 5.7 窗口缩放适配（与第3板块一致） ——
+        window.addEventListener("resize", () => {
+          initItemWidth(); // 重新计算滚动步长
+          updateBtnState(); // 重新更新箭头状态
+        });
+
+        // —— 5.8 初始化（页面加载时执行） ——
+        initItemWidth();
+        updateBtnState();
       });
     </script>
   </body>

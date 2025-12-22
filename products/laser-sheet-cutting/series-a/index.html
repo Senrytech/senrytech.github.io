@@ -33,7 +33,7 @@
       defer
     ></script>
 
-    <!--一，CSS 全局基础样式-->
+    <!-- 一、CSS 全局基础样式 -->
     <style>
       /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
@@ -62,10 +62,10 @@
         overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
       }
 
-      /* ================================== 一、全局基础样式-REM（1:16基准核心：1rem基准=16px） ================================== */
-      /* 子模块说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
+      /* ================================== 1.5 全局基础样式-REM配置（核心：1rem基准=16px，适配不同屏幕） ================================== */
+      /* 说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
 
-      /* 1.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
+      /* 1.5.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
       /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
       @media (max-width: 320px) {
         html {
@@ -73,7 +73,7 @@
         }
       }
 
-      /* 1.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
+      /* 1.5.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
       /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
       @media (min-width: 321px) and (max-width: 375px) {
         html {
@@ -81,7 +81,7 @@
         }
       }
 
-      /* 1.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
+      /* 1.5.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
       /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
       @media (min-width: 376px) and (max-width: 425px) {
         html {
@@ -89,7 +89,7 @@
         }
       }
 
-      /* 1.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
+      /* 1.5.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
       /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
       @media (min-width: 426px) and (max-width: 768px) {
         html {
@@ -97,7 +97,7 @@
         }
       }
 
-      /* 1.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
+      /* 1.5.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
       /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
       @media (min-width: 769px) and (max-width: 1024px) {
         html {
@@ -105,7 +105,7 @@
         }
       }
 
-      /* 1.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
+      /* 1.5.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
       /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
       @media (min-width: 1025px) and (max-width: 2559px) {
         html {
@@ -113,7 +113,7 @@
         }
       }
 
-      /* 1.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
+      /* 1.5.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
       /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
       @media (min-width: 2560px) {
         html {
@@ -143,7 +143,7 @@
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
       .navbar .logo {
-        font-weight: 400; /* 字体中等粗细，避免过粗显笨重 */
+        font-weight: 600; /* 字体中等粗细，避免过粗显笨重 */
         font-size: 1rem; /* LOGO字号略大，突出品牌标识 */
       }
 
@@ -158,6 +158,7 @@
       /* 链接hover状态：文字变浅灰，提示可交互 */
       .navbar a:hover {
         color: #000000;
+        font-weight: 700;
       }
 
       /* —— 2.4 导航栏功能按钮样式（语言切换/询价按钮，统一基础样式） —— */
@@ -165,7 +166,7 @@
         padding: 0.4rem 1.2rem; /* 按钮内边距：上下0.4rem、左右1.2rem，保证点击区域 */
         border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
         font-size: 0.7rem; /* 按钮文字字号与导航链接统一，视觉协调 */
-        font-weight: 300; /* 字体偏细，避免与导航风格冲突 */
+        font-weight: 400; /* 字体偏细，避免与导航风格冲突 */
         cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
         border: none; /* 清除默认边框，避免样式干扰 */
         transition: background-color 0.2s ease; /* 背景色过渡，增强交互细腻度 */
@@ -649,8 +650,7 @@
         display: block;
       }
 
-      /* —— 2.37 核心：导航栏 - 媒体查询适配（按屏幕尺寸切换导航样式：桌面→平板→移动端） —— */
-      /* 1. Laptop及以上（1024px+：Laptop、Laptop L、4K）：隐藏汉堡/侧边栏，显示桌面端导航+下拉菜单 */
+      /* 导航栏 - 媒体查询适配*/
       @media (min-width: 1024px) {
         .hamburger-btn,
         .sidebar-menu,
@@ -669,7 +669,6 @@
         }
       }
 
-      /* 2. Tablet到Laptop之间（769px~1023px）：显示汉堡按钮，隐藏部分导航链接 */
       @media (min-width: 769px) and (max-width: 1023px) {
         /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
         .navbar .nav-link,
@@ -752,7 +751,6 @@
         }
       }
 
-      /* 3. Tablet及以下（=426到≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡/侧边栏，隐藏桌面端导航 */
       @media (max-width: 768px) {
         /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
         .navbar .nav-link,
@@ -835,7 +833,6 @@
         }
       }
 
-      /* —— 子断点：Mobile L（376px ~ 425px）优化 —— */
       @media (min-width: 376px) and (max-width: 425px) {
         /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
         .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
@@ -905,7 +902,6 @@
         }
       }
 
-      /* —— 子断点：Mobile M（321px ~ 375px）优化 —— */
       @media (min-width: 321px) and (max-width: 375px) {
         /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
         .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
@@ -975,7 +971,6 @@
         }
       }
 
-      /* —— 子断点：Mobile S（≤320px）优化（最小手机屏，极致适配） —— */
       @media (max-width: 320px) {
         /* 1. 产品列表容器：同Mobile M，确保两列布局 */
         .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
@@ -1104,7 +1099,7 @@
         opacity: 0;
         transition: opacity 0.5s ease;
         padding: 0 1rem;
-        width: 45%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
+        width: 46%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
         max-width: 1200px; /* 新增：限制最大宽度，避免宽屏文字过散 */
         margin: 0 auto; /* 配合max-width，确保容器本身水平居中 */
       }
@@ -1128,7 +1123,7 @@
         background-clip: text;
         /* 文字设为透明，显示背景渐变 */
         color: transparent;
-        font-weight: 600;
+        font-weight: 700;
         background-clip: text;
       }
 
@@ -1143,7 +1138,7 @@
         max-width: 59%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
         margin-left: auto; /* 配合max-width实现文字水平居中 */
         margin-right: auto;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       /* 基础按钮样式 */
@@ -1168,7 +1163,7 @@
       .learn-more-btn {
         background-color: #0071e3; /* 品牌蓝色，突出核心转化 */
         color: #f5f5f7; /* 白色文字，高对比度 */
-        font-weight: 300;
+        font-weight: 200;
       }
 
       .learn-more-btn:hover {
@@ -1669,6 +1664,7 @@
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
         margin-bottom: 1rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
       /* 副标题外层容器：控制与主标题、卡片的间距 */
@@ -2191,6 +2187,7 @@
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
         margin-bottom: 1rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
       /* 副标题外层容器：控制与主标题、卡片的间距 */
@@ -2997,7 +2994,7 @@
       .chart-title {
         color: #000;
         font-size: 3.5rem;
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: -0.02em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         margin-bottom: 1rem;
@@ -3006,6 +3003,7 @@
         text-align: left;
         padding: 0;
         margin-left: 0;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
       /* 标题核心文字（“道”）- 继承标题样式，无需修改 */
@@ -3381,7 +3379,7 @@
         color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
         text-align: center;
         letter-spacing: -0.02em;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         margin-bottom: 2.5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
       }
 
@@ -3520,9 +3518,8 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         /* 字号：响应式适配（小屏1.8rem/28.8px，大屏2.5rem/40px），兼顾层级与可读性 */
         font-size: 3.5rem;
-        font-weight: 400; /* 偏细字体，契合页面轻量化设计风格 */
+        font-weight: 500; /* 偏细字体，契合页面轻量化设计风格 */
         color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
-        margin: 0 15%; /* 标题居中，强化板块主题 */
         letter-spacing: -0.02em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         text-align: center;
@@ -3920,7 +3917,7 @@
       /* —— 10.1 板块外层容器：控制背景与全局内边距 —— */
       .evaluation-section {
         background-color: #ffffff; /* 白色背景，与其他板块形成视觉区分 */
-        padding: 10rem 0; /* 上下内边距（基于1rem=16px基准，10rem=160px），确保板块上下留白充足 */
+        padding: 5rem 0; /* 上下内边距（基于1rem=16px基准，10rem=160px），确保板块上下留白充足 */
         width: 100%; /* 占满屏幕宽度，避免左右留白 */
         box-sizing: border-box; /* 统一盒模型，防止内边距影响宽度 */
       }
@@ -3941,19 +3938,13 @@
           5vw,
           3.5rem
         ); /* 响应式字号：小屏2rem（32px）→大屏3.5rem（56px），避免跨度过大 */
-        font-weight: 400; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
+        font-weight: 500; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
         font-family:
-          "SF Pro Display",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          "Public Sans",
-          "Noto Sans SC",
+          "SF Pro Display", "Segoe UI", "Public Sans", "Noto Sans SC",
           sans-serif; /* 优先苹果系统字体，兼容全局字体族 */
         letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
         margin-bottom: 4rem; /* 与下方卡片间距（64px），避免拥挤 */
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 淡阴影，提升标题层次感 */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       /* —— 10.4 评价卡片网格：响应式布局（1列→2列→3列） —— */
@@ -4375,19 +4366,13 @@
           5vw,
           3.5rem
         ); /* 响应式字号：小屏2rem（32px）→大屏3.5rem（56px），避免跨度过大 */
-        font-weight: 400; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
+        font-weight: 500; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
         font-family:
-          "SF Pro Display",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          "Public Sans",
-          "Noto Sans SC",
+          "SF Pro Display", "Segoe UI", "Public Sans", "Noto Sans SC",
           sans-serif; /* 优先苹果系统字体，兼容全局字体族 */
         letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
         margin-bottom: 4rem; /* 与下方卡片间距（64px），避免拥挤 */
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* 淡阴影，提升标题层次感 */
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */

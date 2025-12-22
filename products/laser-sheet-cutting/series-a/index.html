@@ -3514,19 +3514,6 @@
         box-sizing: border-box;
         z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
       }
-      /* 响应式内边距：适配中大屏 */
-      @media (min-width: 640px) {
-        /* sm breakpoint */
-        .tech-specs-container {
-          padding: 0 1.5rem; /* 替代内联sm:px-6 */
-        }
-      }
-      @media (min-width: 1024px) {
-        /* lg breakpoint */
-        .tech-specs-container {
-          padding: 0 2rem; /* 替代内联lg:px-8 */
-        }
-      }
 
       /* —— 9.3 板块标题：控制字体、大小、间距与视觉效果 —— */
       .tech-specs-title {
@@ -3583,13 +3570,6 @@
         width: 24%; /* 替代内联w-[24%] */
         text-align: center; /* 替代内联text-center */
       }
-      /* 表头响应式内边距：中大屏加宽 */
-      @media (min-width: 640px) {
-        /* sm breakpoint */
-        .tech-specs-table thead tr th {
-          padding: 1.5rem 2rem; /* 替代内联sm:px-8 */
-        }
-      }
 
       /* —— 9.7 表格内容（tbody）：控制文字、行 hover 与单元格样式 —— */
       .tech-specs-table tbody {
@@ -3615,13 +3595,6 @@
         text-align: center; /* 替代内联text-center */
         font-weight: normal; /* 非第一列取消加粗 */
       }
-      /* 内容单元格响应式内边距：中大屏加宽 */
-      @media (min-width: 640px) {
-        /* sm breakpoint */
-        .tech-specs-table tbody tr td {
-          padding: 1.5rem 2rem; /* 替代内联sm:px-8 */
-        }
-      }
       /* 表格内小字体说明：统一样式（如“特殊情况”备注） */
       .tech-specs-table tbody tr td .specs-note {
         display: block; /* 独占一行，替代内联block */
@@ -3644,6 +3617,301 @@
       /* 补充说明图标：保持默认样式 */
       .tech-specs-note i {
         font-size: 0.875rem; /* 与文字字号一致 */
+      }
+
+      /* ================================== 技术参数 - 媒体查询适配（补充完整） ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，小屏横向滚动+紧凑布局，大屏保持原样式 */
+
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑+横向滚动 */
+      @media (max-width: 320px) {
+        /* 外层容器：缩小上下内边距，适配小屏垂直空间 */
+        .tech-specs-section {
+          padding: 0rem 0 0rem; /* 原4rem/6rem → 30px/48px，减少冗余空间 */
+        }
+
+        /* 板块标题：缩小字号+调整左右边距，避免贴边 */
+        .tech-specs-title {
+          font-size: 1.8rem; /* 原3.5rem → 21.6px，适配小屏视觉层级 */
+          margin: 0 5%; /* 原15% → 5%，增加左右留白 */
+          margin-bottom: 1.5rem; /* 原2.5rem → 18px，缩小与表格间距 */
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); /* 弱化阴影，适配小屏精致感 */
+        }
+
+        /* 表格包裹层：添加横向滚动+缩小圆角/阴影，适配小屏 */
+        .tech-specs-table-wrap {
+          max-width: 90%; /* 原70rem → 90%屏幕宽，避免贴边 */
+          overflow-x: auto; /* 核心：开启横向滚动，解决表格溢出问题 */
+          border-radius: 1rem; /* 原1.5rem → 12px，缩小圆角更精致 */
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); /* 弱化阴影，减少厚重感 */
+          padding: 0 0.5rem; /* 左右留白，避免滚动条贴边 */
+        }
+
+        /* 表格：强制最小宽度（确保单元格不挤压）+ 缩小内边距 */
+        .tech-specs-table {
+          min-width: 500px; /* 强制表格最小宽度，确保内容完整显示（横向滚动触发） */
+          border-radius: 0.8rem; /* 原1rem → 9.6px，匹配包裹层圆角 */
+        }
+
+        /* 表头单元格：缩小内边距+字号，紧凑布局 */
+        .tech-specs-table thead tr th {
+          padding: 1rem; /* 原1.5rem → 12px，减少垂直占用 */
+          font-size: 0.85rem; /* 原1rem → 10.2px，适配小屏可读性 */
+          width: 28%; /* 微调列宽，优化小屏分布 */
+        }
+        .tech-specs-table thead tr th:nth-child(2),
+        .tech-specs-table thead tr th:nth-child(3) {
+          width: 24%;
+        }
+        .tech-specs-table thead tr th:nth-child(4) {
+          width: 24%;
+        }
+
+        /* 内容单元格：缩小内边距+字号，避免文字溢出 */
+        .tech-specs-table tbody {
+          font-size: 0.8rem; /* 原0.9375rem → 9.6px，紧凑显示 */
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1rem; /* 原1.5rem → 12px，减少垂直占用 */
+        }
+
+        /* 表格内小备注：进一步缩小字号，适配紧凑布局 */
+        .tech-specs-table tbody tr td .specs-note {
+          font-size: 0.7rem; /* 原0.75rem → 8.4px */
+          margin-top: 0.15rem; /* 原0.25rem → 1.8px，缩小间距 */
+        }
+
+        /* 补充说明文字：缩小字号+间距，适配小屏 */
+        .tech-specs-note {
+          margin-top: 1.2rem; /* 原2rem → 14.4px */
+          font-size: 0.8rem; /* 原0.875rem → 9.6px */
+          gap: 0.3rem; /* 原0.5rem → 3.6px，缩小图标与文字间距 */
+        }
+      }
+
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡+横向滚动 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        /* 外层容器：适度缩小内边距 */
+        .tech-specs-section {
+          padding: 3rem 0 4.5rem; /* 原4rem/6rem → 42px/63px */
+        }
+
+        /* 板块标题：调整字号与边距 */
+        .tech-specs-title {
+          font-size: 2rem; /* 原3.5rem → 28px */
+          margin: 0 8%; /* 原15% → 8%，平衡留白与内容宽度 */
+          margin-bottom: 1.8rem; /* 原2.5rem → 25.2px */
+        }
+
+        /* 表格包裹层：横向滚动+优化尺寸 */
+        .tech-specs-table-wrap {
+          max-width: 88%; /* 原70rem → 88%屏幕宽 */
+          overflow-x: auto; /* 核心：横向滚动 */
+          border-radius: 1.2rem; /* 原1.5rem → 16.8px */
+        }
+
+        /* 表格：强制最小宽度，确保内容完整 */
+        .tech-specs-table {
+          min-width: 550px; /* 比Mobile S稍宽，适配大屏手机 */
+        }
+
+        /* 表头/内容单元格：适度调整内边距与字号 */
+        .tech-specs-table thead tr th {
+          padding: 1.2rem; /* 原1.5rem → 16.8px */
+          font-size: 0.9rem; /* 原1rem → 12.6px */
+        }
+        .tech-specs-table tbody {
+          font-size: 0.85rem; /* 原0.9375rem → 11.9px */
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1.2rem; /* 原1.5rem → 16.8px */
+        }
+
+        /* 补充说明文字：微调尺寸 */
+        .tech-specs-note {
+          margin-top: 1.5rem; /* 原2rem → 21px */
+          font-size: 0.85rem; /* 原0.875rem → 11.9px */
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配+横向滚动 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        /* 外层容器：接近基础样式，略缩小内边距 */
+        .tech-specs-section {
+          padding: 3.5rem 0 5rem; /* 原4rem/6rem → 52.5px/75px */
+        }
+
+        /* 板块标题：优化层级 */
+        .tech-specs-title {
+          font-size: 2.2rem; /* 原3.5rem → 33px */
+          margin: 0 10%; /* 原15% → 10% */
+          margin-bottom: 2rem; /* 原2.5rem → 30px */
+        }
+
+        /* 表格包裹层：横向滚动+接近平板样式 */
+        .tech-specs-table-wrap {
+          max-width: 85%; /* 原70rem → 85%屏幕宽 */
+          overflow-x: auto; /* 核心：横向滚动 */
+          border-radius: 1.3rem; /* 原1.5rem → 19.5px */
+        }
+
+        /* 表格：强制最小宽度，适配大屏手机显示 */
+        .tech-specs-table {
+          min-width: 600px;
+        }
+
+        /* 表头/内容单元格：进一步放宽尺寸 */
+        .tech-specs-table thead tr th {
+          padding: 1.3rem; /* 原1.5rem → 19.5px */
+          font-size: 0.95rem; /* 原1rem → 14.25px */
+        }
+        .tech-specs-table tbody {
+          font-size: 0.9rem; /* 原0.9375rem → 13.5px */
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1.3rem; /* 原1.5rem → 19.5px */
+        }
+
+        /* 补充说明文字：接近基础样式 */
+        .tech-specs-note {
+          margin-top: 1.8rem; /* 原2rem → 27px */
+          font-size: 0.875rem; /* 与基础样式一致，13.125px */
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向滚动+适配触控 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        /* 外层容器：恢复基础内边距，适配平板垂直空间 */
+        .tech-specs-section {
+          padding: 4rem 0 5.5rem; /* 原6rem → 88px，略缩小底部间距 */
+        }
+
+        /* 板块标题：适配平板视觉层级 */
+        .tech-specs-title {
+          font-size: 2.8rem; /* 原3.5rem → 44.8px */
+          margin: 0 12%; /* 原15% → 12% */
+          margin-bottom: 2.2rem; /* 原2.5rem → 35.2px */
+        }
+
+        /* 表格包裹层：横向滚动（平板仍需滚动）+ 优化阴影 */
+        .tech-specs-table-wrap {
+          max-width: 82%; /* 原70rem → 82%屏幕宽，增加内容占比 */
+          overflow-x: auto; /* 核心：横向滚动（平板屏幕仍不足以容纳表格） */
+          box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06); /* 增强阴影，适配平板视觉 */
+        }
+
+        /* 表格：强制最小宽度，确保列宽合理 */
+        .tech-specs-table {
+          min-width: 700px; /* 适配平板横向滚动需求 */
+        }
+
+        /* 表头/内容单元格：恢复基础内边距，适配手指触控 */
+        .tech-specs-table thead tr th {
+          padding: 1.5rem; /* 与基础样式一致，24px */
+          font-size: 1rem; /* 与基础样式一致 */
+        }
+        .tech-specs-table tbody {
+          font-size: 0.9375rem; /* 与基础样式一致，15px */
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1.5rem; /* 与基础样式一致，24px，确保触控点击区域 */
+        }
+
+        /* 补充说明文字：恢复基础样式 */
+        .tech-specs-note {
+          margin-top: 2rem; /* 与基础样式一致，32px */
+          font-size: 0.875rem; /* 与基础样式一致，14px */
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：取消滚动，完整显示表格 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        /* 外层容器：恢复基础内边距 */
+        .tech-specs-section {
+          padding: 4rem 0 6rem; /* 与基础样式一致 */
+        }
+
+        /* 板块标题：适配笔记本屏幕层级 */
+        .tech-specs-title {
+          font-size: 3.2rem; /* 原3.5rem → 51.2px，略缩小避免过宽 */
+          margin: 0 15%; /* 与基础样式一致 */
+          margin-bottom: 2.5rem; /* 与基础样式一致 */
+        }
+
+        /* 表格包裹层：取消横向滚动（笔记本屏幕足够显示） */
+        .tech-specs-table-wrap {
+          max-width: 75%; /* 原70rem → 75%屏幕宽，适配笔记本宽度 */
+          overflow-x: visible; /* 取消滚动，完整显示表格 */
+        }
+
+        /* 表格：无需强制最小宽度，自适应笔记本屏幕 */
+        .tech-specs-table {
+          min-width: auto; /* 取消最小宽度限制 */
+        }
+
+        /* 表头/内容单元格：微调列宽，适配笔记本显示 */
+        .tech-specs-table thead tr th {
+          width: 29%; /* 微调列宽，避免文字溢出 */
+        }
+        .tech-specs-table thead tr th:nth-child(2),
+        .tech-specs-table thead tr th:nth-child(3) {
+          width: 23%;
+        }
+        .tech-specs-table thead tr th:nth-child(4) {
+          width: 25%;
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+        /* 外层容器：增加内边距，适配4K屏垂直空间 */
+        .tech-specs-section {
+          padding: 5rem 0 7rem; /* 原4rem/6rem → 80px/112px，增加冗余空间 */
+        }
+
+        /* 板块标题：放大字号，强化视觉焦点 */
+        .tech-specs-title {
+          font-size: 4rem; /* 原3.5rem → 64px，适配4K屏层级 */
+          margin: 0 20%; /* 原15% → 20%，增加左右留白，避免内容过宽 */
+          margin-bottom: 3rem; /* 原2.5rem → 48px，扩大与表格间距 */
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); /* 增强阴影，适配4K屏视觉 */
+        }
+
+        /* 表格包裹层：放大尺寸，适配4K屏 */
+        .tech-specs-table-wrap {
+          max-width: 65%; /* 原70rem → 65%屏幕宽，避免表格过宽 */
+          border-radius: 2rem; /* 原1.5rem → 32px，放大圆角更协调 */
+          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1); /* 增强阴影，提升立体感 */
+        }
+
+        /* 表格：放大圆角，匹配包裹层 */
+        .tech-specs-table {
+          border-radius: 1.5rem; /* 原1rem → 24px */
+        }
+
+        /* 表头单元格：放大字号与内边距，适配4K屏触控/阅读 */
+        .tech-specs-table thead tr th {
+          padding: 1.8rem; /* 原1.5rem → 28.8px */
+          font-size: 1.1rem; /* 原1rem → 17.6px */
+        }
+
+        /* 内容单元格：放大字号与内边距，提升可读性 */
+        .tech-specs-table tbody {
+          font-size: 1.05rem; /* 原0.9375rem → 16.8px */
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1.8rem; /* 原1.5rem → 28.8px */
+        }
+
+        /* 表格内小备注：放大字号，适配4K屏阅读 */
+        .tech-specs-table tbody tr td .specs-note {
+          font-size: 0.85rem; /* 原0.75rem → 13.6px */
+          margin-top: 0.3rem; /* 原0*/
+        }
       }
     </style>
 
@@ -3694,18 +3962,6 @@
         gap: 5rem; /* 卡片间距（80px），确保视觉呼吸感 */
         /* 响应式列数：移动端1列→平板2列→桌面3列 */
         grid-template-columns: 1fr;
-      }
-      @media (min-width: 768px) {
-        /* 平板屏（≥768px） */
-        .evaluation-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (min-width: 1024px) {
-        /* 桌面屏（≥1024px） */
-        .evaluation-grid {
-          grid-template-columns: repeat(3, 1fr);
-        }
       }
 
       /* —— 10.5 单个评价卡片：容器样式+装饰细节 —— */
@@ -3783,6 +4039,313 @@
         font-weight: 300; /* 轻字重，增强文本层级 */
         line-height: 1.4; /* 行高适配短文本 */
       }
+
+      /* ================================== 客户评价 - 媒体查询适配 ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
+
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局（单列） */
+      @media (max-width: 320px) {
+        /* 外层容器：减少上下内边距，避免小屏留白过多 */
+        .evaluation-section {
+          padding: 6rem 0; /* 原10rem→6rem（72px），适配小屏垂直空间 */
+        }
+
+        /* 标题：缩小字号与底部间距，避免遮挡内容 */
+        .evaluation-title {
+          font-size: clamp(1.5rem, 5vw, 2rem); /* 原2rem→1.5rem起步（18px） */
+          margin-bottom: 2.5rem; /* 原4rem→2.5rem（30px），紧凑布局 */
+        }
+
+        /* 卡片网格：强制单列，缩小间距（小屏无需多列） */
+        .evaluation-grid {
+          gap: 2.5rem; /* 原5rem→2.5rem（30px），避免卡片间距过大 */
+          grid-template-columns: 1fr; /* 固定单列 */
+        }
+
+        /* 单个卡片：减少内边距，适配小屏尺寸 */
+        .evaluation-card {
+          padding: 2rem; /* 原3.75rem→2rem（24px），避免内容拥挤 */
+        }
+
+        /* 引号装饰：缩小尺寸，避免遮挡内容 */
+        .evaluation-quote {
+          font-size: 3.5rem; /* 原5rem→3.5rem（42px） */
+          top: -1.2rem; /* 原-2rem→-1.2rem（-14.4px），减少上偏移 */
+          left: 1.5rem; /* 原2.5rem→1.5rem（18px），贴近左侧 */
+        }
+
+        /* 评价文本：缩小字号，优化行高 */
+        .evaluation-content {
+          font-size: clamp(
+            0.875rem,
+            2vw,
+            1rem
+          ); /* 原1rem→0.875rem起步（10.5px） */
+          margin-bottom: 2rem; /* 原3rem→2rem（24px），紧凑文本与客户信息间距 */
+        }
+
+        /* 客户头像：缩小尺寸，适配小屏卡片 */
+        .customer-avatar {
+          width: 5rem; /* 原7.5rem→5rem（60px） */
+          height: 5rem; /* 原7.5rem→5rem（60px） */
+        }
+
+        /* 客户信息：缩小字号，增强层级 */
+        .customer-name {
+          font-size: 1rem; /* 原1.125rem→1rem（12px） */
+          margin-bottom: 0.3rem; /* 原0.5rem→0.3rem（3.6px） */
+        }
+        .customer-position {
+          font-size: 0.75rem; /* 原0.875rem→0.75rem（9px） */
+        }
+      }
+
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局（单列） */
+      @media (min-width: 321px) and (max-width: 375px) {
+        /* 外层容器：适度减少上下内边距 */
+        .evaluation-section {
+          padding: 7rem 0; /* 原10rem→7rem（98px），平衡留白与内容 */
+        }
+
+        /* 标题：微调字号与间距 */
+        .evaluation-title {
+          font-size: clamp(1.6rem, 5vw, 2.2rem); /* 1.6rem起步（22.4px） */
+          margin-bottom: 3rem; /* 原4rem→3rem（42px） */
+        }
+
+        /* 卡片网格：保持单列，优化间距 */
+        .evaluation-grid {
+          gap: 3rem; /* 原5rem→3rem（42px） */
+          grid-template-columns: 1fr; /* 固定单列 */
+        }
+
+        /* 单个卡片：适度减少内边距 */
+        .evaluation-card {
+          padding: 2.5rem; /* 原3.75rem→2.5rem（35px） */
+        }
+
+        /* 引号装饰：适配过渡尺寸 */
+        .evaluation-quote {
+          font-size: 4rem; /* 原5rem→4rem（56px） */
+          top: -1.5rem; /* 原-2rem→-1.5rem（-21px） */
+          left: 1.8rem; /* 原2.5rem→1.8rem（25.2px） */
+        }
+
+        /* 评价文本：微调字号 */
+        .evaluation-content {
+          font-size: clamp(0.9rem, 2vw, 1.05rem); /* 0.9rem起步（12.6px） */
+          margin-bottom: 2.2rem; /* 原3rem→2.2rem（30.8px） */
+        }
+
+        /* 客户头像：适度缩小 */
+        .customer-avatar {
+          width: 5.5rem; /* 原7.5rem→5.5rem（77px） */
+          height: 5.5rem; /* 原7.5rem→5.5rem（77px） */
+        }
+
+        /* 客户信息：微调字号 */
+        .customer-name {
+          font-size: 1.05rem; /* 原1.125rem→1.05rem（14.7px） */
+        }
+        .customer-position {
+          font-size: 0.8rem; /* 原0.875rem→0.8rem（11.2px） */
+        }
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配（单列） */
+      @media (min-width: 376px) and (max-width: 425px) {
+        /* 外层容器：进一步放宽上下内边距 */
+        .evaluation-section {
+          padding: 8rem 0; /* 原10rem→8rem（120px） */
+        }
+
+        /* 标题：接近平板尺寸 */
+        .evaluation-title {
+          font-size: clamp(1.8rem, 5vw, 2.4rem); /* 1.8rem起步（27px） */
+          margin-bottom: 3.2rem; /* 原4rem→3.2rem（48px） */
+        }
+
+        /* 卡片网格：保持单列，优化间距 */
+        .evaluation-grid {
+          gap: 3.5rem; /* 原5rem→3.5rem（52.5px） */
+          grid-template-columns: 1fr; /* 固定单列 */
+        }
+
+        /* 单个卡片：内边距接近基础样式 */
+        .evaluation-card {
+          padding: 3rem; /* 原3.75rem→3rem（45px） */
+        }
+
+        /* 引号装饰：尺寸接近基础样式 */
+        .evaluation-quote {
+          font-size: 4.5rem; /* 原5rem→4.5rem（67.5px） */
+          top: -1.8rem; /* 原-2rem→-1.8rem（-27px） */
+          left: 2rem; /* 原2.5rem→2rem（30px） */
+        }
+
+        /* 评价文本：字号接近基础样式 */
+        .evaluation-content {
+          font-size: clamp(0.95rem, 2vw, 1.1rem); /* 0.95rem起步（14.25px） */
+          margin-bottom: 2.5rem; /* 原3rem→2.5rem（37.5px） */
+        }
+
+        /* 客户头像：尺寸接近基础样式 */
+        .customer-avatar {
+          width: 6rem; /* 原7.5rem→6rem（90px） */
+          height: 6rem; /* 原7.5rem→6rem（90px） */
+        }
+
+        /* 客户信息：复用基础字号，保持层级 */
+        .customer-name {
+          font-size: 1.1rem; /* 接近原1.125rem（16.5px） */
+        }
+        .customer-position {
+          font-size: 0.85rem; /* 接近原0.875rem（12.75px） */
+        }
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局（双列居中） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        /* 外层容器：复用基础内边距，平板空间充足 */
+        .evaluation-section {
+          padding: 9rem 0; /* 原10rem→9rem（144px），略减留白 */
+        }
+
+        /* 标题：微调底部间距 */
+        .evaluation-title {
+          margin-bottom: 3.5rem; /* 原4rem→3.5rem（56px） */
+        }
+
+        /* 卡片网格：切换双列布局，居中对齐 */
+        .evaluation-grid {
+          gap: 3rem; /* 原5rem→3rem（48px），双列间距适配平板 */
+          grid-template-columns: repeat(2, 1fr); /* 双列均分宽度 */
+          justify-items: center; /* 卡片水平居中，避免边缘贴边 */
+        }
+
+        /* 单个卡片：限制最大宽度，避免双列过宽 */
+        .evaluation-card {
+          padding: 3.2rem; /* 原3.75rem→3.2rem（51.2px） */
+          max-width: 28rem; /* 最大宽度448px，确保双列不拥挤 */
+          width: 100%; /* 占满网格列宽，适配不同平板尺寸 */
+        }
+
+        /* 引号装饰：复用基础样式，平板尺寸适配 */
+        .evaluation-quote {
+          font-size: 4.8rem; /* 接近原5rem（76.8px） */
+        }
+
+        /* 评价文本：复用基础字号，优化最大宽度 */
+        .evaluation-content {
+          max-width: 100%; /* 取消原2xl限制，适配卡片宽度 */
+          margin-bottom: 2.8rem; /* 原3rem→2.8rem（44.8px） */
+        }
+
+        /* 客户头像：复用基础尺寸，平板视觉适配 */
+        .customer-avatar {
+          width: 7rem; /* 接近原7.5rem（112px） */
+          height: 7rem; /* 接近原7.5rem（112px） */
+        }
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配（三列→双列兼容） */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        /* 卡片网格：根据屏幕宽度动态切换列数（优先三列，窄笔记本自动双列） */
+        .evaluation-grid {
+          gap: 3.5rem; /* 原5rem→3.5rem（56px），三列间距适配笔记本 */
+          grid-template-columns: repeat(
+            auto-fill,
+            minmax(22rem, 1fr)
+          ); /* 最小宽度352px，自动分栏 */
+          justify-items: center; /* 卡片居中，避免边缘拥挤 */
+        }
+
+        /* 单个卡片：限制最大宽度，确保三列均衡 */
+        .evaluation-card {
+          padding: 3.5rem; /* 接近原3.75rem（56px） */
+          max-width: 25rem; /* 最大宽度400px，三列布局更均衡 */
+          width: 100%;
+        }
+
+        /* 评价文本：优化最大宽度，适配卡片 */
+        .evaluation-content {
+          max-width: 100%; /* 取消原2xl限制，适配笔记本卡片宽度 */
+        }
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+        .evaluation-grid {
+          grid-template-columns: repeat(3, 1fr); /* 固定三列布局，均衡显示 */
+        }
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+        /* 外层容器：增加上下内边距，适配4K屏大空间 */
+        .evaluation-section {
+          padding: 12rem 0; /* 原10rem→12rem（192px），避免内容贴边 */
+        }
+
+        /* 标题：放大字号，提升视觉权重 */
+        .evaluation-title {
+          font-size: clamp(
+            2.5rem,
+            5vw,
+            4rem
+          ); /* 2.5rem起步（40px），最大4rem（64px） */
+          margin-bottom: 5rem; /* 原4rem→5rem（80px），与放大后的卡片匹配 */
+        }
+
+        /* 卡片网格：保持三列，放大间距 */
+        .evaluation-grid {
+          gap: 6rem; /* 原5rem→6rem（96px），4K屏需更大间距避免拥挤 */
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        /* 单个卡片：放大内边距与尺寸 */
+        .evaluation-card {
+          padding: 4.5rem; /* 原3.75rem→4.5rem（72px） */
+          max-width: 32rem; /* 最大宽度512px，适配4K屏 */
+          border-radius: 1.5rem; /* 原1rem→1.5rem（24px），放大圆角更协调 */
+        }
+
+        /* 引号装饰：放大尺寸，匹配卡片 */
+        .evaluation-quote {
+          font-size: 6rem; /* 原5rem→6rem（96px） */
+          top: -2.5rem; /* 原-2rem→-2.5rem（-40px），保持相对位置 */
+          left: 3rem; /* 原2.5rem→3rem（48px） */
+        }
+
+        /* 评价文本：放大字号，提升可读性 */
+        .evaluation-content {
+          font-size: clamp(
+            1.125rem,
+            2vw,
+            1.25rem
+          ); /* 1.125rem起步（18px），最大1.25rem（20px） */
+          line-height: 1.7; /* 增加行高，适配大字号阅读 */
+          margin-bottom: 3.5rem; /* 原3rem→3.5rem（56px） */
+          max-width: 100%;
+        }
+
+        /* 客户头像：放大尺寸，适配4K屏 */
+        .customer-avatar {
+          width: 9rem; /* 原7.5rem→9rem（144px） */
+          height: 9rem; /* 原7.5rem→9rem（144px） */
+          border-width: 3px; /* 原2px→3px，放大边框更协调 */
+        }
+
+        /* 客户信息：放大字号，提升层级 */
+        .customer-name {
+          font-size: 1.3rem; /* 原1.125rem→1.3rem（20.8px） */
+          margin-bottom: 0.6rem; /* 原0.5rem→0.6rem（9.6px） */
+        }
+        .customer-position {
+          font-size: 1rem; /* 原0.875rem→1rem（16px） */
+        }
+      }
     </style>
 
     <!--十一，CSS 探索同类产品-->
@@ -3791,7 +4354,7 @@
       .other-section {
         background-color: #ffffff; /* 与导航栏/产品板块配色统一 */
         width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
+        padding: 0rem 0 6rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
       }
@@ -4027,24 +4590,19 @@
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
         .other-card .other-subtitle {
-          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
           font-size: 1rem; /* 16px基准：16px */
           font-weight: 300;
           margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
         }
         /* 卡片内一级标题 */
         .other-card .other-heading {
-          color: #1d1d1f; /* 同上，适配图片背景 */
           font-size: 1.2rem; /* 16px基准：28px */
           font-weight: 350;
           margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
           letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
         /* 卡片内描述文本 */
         .other-card .other-desc {
-          color: #1d1d1f; /* 同上，适配图片背景 */
           font-size: 0.7rem; /* 16px基准：14px */
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);

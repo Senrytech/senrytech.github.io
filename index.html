@@ -1727,6 +1727,9 @@
 
       /* 1. Mobile S（≤320px）：html基准字号8.53px | 核心优化：极致紧凑布局 */
       @media (max-width: 320px) {
+        .product-center-section {
+          height: 38rem;
+        }
         .product-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem，缩小留白 */
@@ -1765,6 +1768,9 @@
 
       /* 2. Mobile M（321px~375px）：html基准字号10px | 核心优化：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
+        .product-center-section {
+          height: 38rem;
+        }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 紧凑留白 */
@@ -1803,6 +1809,9 @@
 
       /* 3. Mobile L（376px~425px）：html基准字号11.33px | 核心优化：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
+        .product-center-section {
+          height: 40rem;
+        }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 紧凑留白 */
@@ -1841,6 +1850,9 @@
 
       /* 4. Tablet（426px~768px）：html基准字号14px | 核心优化：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
+        .product-center-section {
+          height: 42rem;
+        }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 紧凑留白 */
@@ -1879,6 +1891,9 @@
 
       /* 5. Laptop（769px~1024px）：html基准字号15px | 核心优化：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
+        .product-center-section {
+          height: 42rem;
+        }
         .product-container {
           margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
           max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
@@ -2134,6 +2149,9 @@
 
       /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
       @media (max-width: 320px) {
+        .benefit-section {
+          height: 38rem;
+        }
         .benefit-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
           padding: 0 0.8rem; /* 12px基准：~9.6px，缩小留白 */
@@ -2192,6 +2210,9 @@
 
       /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
+        .benefit-section {
+          height: 38rem;
+        }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
@@ -2250,6 +2271,9 @@
 
       /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
+        .benefit-section {
+          height: 40rem;
+        }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
@@ -2309,6 +2333,9 @@
 
       /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
+        .benefit-section {
+          height: 42rem;
+        }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
           padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
@@ -2368,6 +2395,9 @@
 
       /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
+        .benefit-section {
+          height: 42rem;
+        }
         .benefit-container {
           margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
           max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
@@ -2476,6 +2506,7 @@
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
         position: relative;
         overflow: visible; /* 确保滚动箭头不被裁剪 */
+        height: 65rem;
       }
 
       /* —— 6.2 板块内部内容容器（PX转REM，保持偏左布局） —— */
@@ -2500,7 +2531,7 @@
       .sample-subtitle-bar {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem; /* 原8px → 8/16=0.5rem，副标题项间距统一 */
+        gap: 1.5rem; /* 原8px → 8/16=0.5rem，副标题项间距统一 */
         background-color: rgba(
           255,
           255,
@@ -2509,7 +2540,7 @@
         ); /* 半透明磨砂背景，苹果风核心 */
         backdrop-filter: blur(12px); /* 模糊效果保留（固定PX，视觉优先） */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
-        padding: 0.25rem 0.75rem; /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem */
+        padding: 0.25rem 1.5rem; /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem */
         border-radius: 9999px; /* 超圆圆角，通用写法无需转REM */
         margin-bottom: 3rem; /* 原48px → 48/16=3rem，与大卡片间距统一 */
         position: relative; /* 为激活背景提供定位上下文 */
@@ -2638,9 +2669,12 @@
 
       /* 1. Mobile S（≤320px）：html font-size=8.53px */
       @media (max-width: 320px) {
+        .sample-section {
+          height: 38rem;
+        }
         .sample-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
-          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
+          padding: 0 0.8rem;
         }
         .sample-main-title {
           font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
@@ -2720,6 +2754,9 @@
       }
 
       @media (min-width: 321px) and (max-width: 375px) {
+        .sample-section {
+          height: 38rem;
+        }
         .sample-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
@@ -2773,7 +2810,7 @@
         .sample-image-container {
           padding: 0; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
           background-color: #f5f5f7 !important;
-          width: 100%; /* 占满外层容器宽度 */
+          width: 80%; /* 占满外层容器宽度 */
           min-height: 200px; /* 给个最小高度，确保有显示空间（根据需求调整数值） */
           display: flex; /* 确保子容器能继承尺寸 */
           align-items: center;
@@ -2802,88 +2839,9 @@
       }
 
       @media (min-width: 376px) and (max-width: 425px) {
-        .sample-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
-          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
+        .sample-section {
+          height: 40rem;
         }
-        .sample-main-title {
-          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
-          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
-        }
-        .sample-subtitle-bar {
-          margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
-          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
-        }
-        .sample-subtitle-item {
-          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
-          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
-        }
-        .sample-big-card {
-          background-color: #f5f5f7;
-        }
-        .sample-thickness-container {
-          width: 25%; /* ！关键修正：原有6rem过窄，改为100%适配小屏，保持格局统一 */
-          flex-shrink: 0;
-          padding: 0.3rem 0;
-          align-self: center;
-        }
-        .sample-thickness-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem; /* 原12px → 12/16=0.75rem，厚度项间距，避免拥挤 */
-          width: 100%; /* 占满父容器宽度，确保子项居中对齐 */
-        }
-        /* 关键修改：大圆角适配REM，保留宽高比例与交互 */
-        .sample-thickness-item {
-          padding: 0.4rem 1rem; /* 原20px 16px → 20/16=1.25rem，16/16=1rem，控制项的高度与左右留白 */
-          width: 80%; /* 保留原宽度比例（占列表80%），确保视觉协调 */
-          border-radius: 2.5rem; /* 原40px → 40/16=2.5rem，核心大圆角设计，苹果风关键 */
-          background-color: rgba(
-            0,
-            0,
-            0,
-            0.08
-          ); /* 浅灰背景，与大卡片底色区分 */
-          cursor: pointer;
-          transition: background-color 0.3s ease; /* 保留背景色过渡 */
-          text-align: center;
-          font-size: 0.8rem; /* 原14px → 14/16=0.875rem，字号适配，确保可读性 */
-          font-weight: 300;
-          margin: 0 auto; /* 水平居中，保持布局整齐 */
-        }
-
-        .sample-image-container {
-          padding: 0; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
-          background-color: #f5f5f7 !important;
-          width: 100%; /* 占满外层容器宽度 */
-          min-height: 200px; /* 给个最小高度，确保有显示空间（根据需求调整数值） */
-          display: flex; /* 确保子容器能继承尺寸 */
-          align-items: center;
-          justify-content: flex-start;
-          overflow: visible;
-        }
-
-        /* —— 核心修改：图片容器强制1:1比例 —— */
-        .sample-image-wrap {
-          aspect-ratio: 1/1; /* 强制宽高比1:1，优先级最高 */
-          width: 100%; /* 容器宽度铺满父级（.sample-image-container） */
-          max-width: none; /* 取消最大宽度限制，适配320px小屏 */
-          height: 10rem; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
-          background-color: #f5f5f7 !important;
-        }
-
-        /* —— 核心修改：图片填充1:1容器，保持完整 —— */
-        .sample-image-wrap img {
-          height: 100%; /* 图片高度铺满1:1容器 */
-          width: 100%; /* 图片宽度铺满容器 */
-          object-fit: contain !important; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
-          max-height: none; /* 取消原有max-height限制，确保1:1比例生效 */
-          min-width: none; /* 取消最小宽度限制，适配小屏 */
-          opacity: 1;
-        }
-      }
-
-      @media (min-width: 321px) and (max-width: 375px) {
         .sample-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
@@ -2966,6 +2924,9 @@
       }
 
       @media (min-width: 426px) and (max-width: 768px) {
+        .sample-section {
+          height: 45rem;
+        }
         .sample-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
           padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
@@ -2984,6 +2945,7 @@
         }
         .sample-big-card {
           background-color: #f5f5f7;
+          width: 90%;
         }
         .sample-thickness-container {
           width: 25%; /* ！关键修正：原有6rem过窄，改为100%适配小屏，保持格局统一 */
@@ -2994,32 +2956,13 @@
         .sample-thickness-list {
           display: flex;
           flex-direction: column;
-          gap: 0.8rem; /* 原12px → 12/16=0.75rem，厚度项间距，避免拥挤 */
+          gap: 0.5rem; /* 原12px → 12/16=0.75rem，厚度项间距，避免拥挤 */
           width: 100%; /* 占满父容器宽度，确保子项居中对齐 */
-        }
-        /* 关键修改：大圆角适配REM，保留宽高比例与交互 */
-        .sample-thickness-item {
-          padding: 0.4rem 1rem; /* 原20px 16px → 20/16=1.25rem，16/16=1rem，控制项的高度与左右留白 */
-          width: 80%; /* 保留原宽度比例（占列表80%），确保视觉协调 */
-          border-radius: 2.5rem; /* 原40px → 40/16=2.5rem，核心大圆角设计，苹果风关键 */
-          background-color: rgba(
-            0,
-            0,
-            0,
-            0.08
-          ); /* 浅灰背景，与大卡片底色区分 */
-          cursor: pointer;
-          transition: background-color 0.3s ease; /* 保留背景色过渡 */
-          text-align: center;
-          font-size: 0.8rem; /* 原14px → 14/16=0.875rem，字号适配，确保可读性 */
-          font-weight: 300;
-          margin: 0 auto; /* 水平居中，保持布局整齐 */
         }
 
         .sample-image-container {
           padding: 0; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
           background-color: #f5f5f7 !important;
-          width: 100%; /* 占满外层容器宽度 */
           min-height: 200px; /* 给个最小高度，确保有显示空间（根据需求调整数值） */
           display: flex; /* 确保子容器能继承尺寸 */
           align-items: center;
@@ -3032,18 +2975,85 @@
           aspect-ratio: 1/1; /* 强制宽高比1:1，优先级最高 */
           width: 100%; /* 容器宽度铺满父级（.sample-image-container） */
           max-width: none; /* 取消最大宽度限制，适配320px小屏 */
-          height: 18rem; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
-          background-color: #f5f5f7 !important;
+          height: auto; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
         }
 
         /* —— 核心修改：图片填充1:1容器，保持完整 —— */
         .sample-image-wrap img {
           height: 100%; /* 图片高度铺满1:1容器 */
           width: 100%; /* 图片宽度铺满容器 */
-          object-fit: contain !important; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
+          object-fit: cover; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
           max-height: none; /* 取消原有max-height限制，确保1:1比例生效 */
           min-width: none; /* 取消最小宽度限制，适配小屏 */
           opacity: 1;
+          background-color: #f5f5f7;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .sample-section {
+          height: 56rem;
+        }
+        .sample-container {
+          margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
+          padding: 0 0.8rem; /* 原1.25rem → 0.8rem（≈6.8px），紧凑留白 */
+        }
+        .sample-main-title {
+          font-size: 2rem; /* 原4rem → 2.2rem（≈18.8px），避免小屏换行 */
+          margin-bottom: 1rem; /* 原3rem → 1.5rem（≈12.8px），缩小间距 */
+        }
+        .sample-subtitle-bar {
+          margin-bottom: 1.5rem; /* 原3rem → 1.5rem，缩小与大卡片间距 */
+          padding: 0.2rem 0.5rem; /* 原0.25rem 0.75rem → 更紧凑的内边距 */
+        }
+        .sample-subtitle-item {
+          font-size: 0.6rem; /* 原0.6875rem → 0.6rem（≈5.1px），小屏文字更紧凑 */
+          padding: 0.3rem 0.8rem; /* 原0.375rem 1rem → 缩小点击区域，避免换行 */
+        }
+        .sample-big-card {
+          background-color: #f5f5f7;
+          width: 90%;
+        }
+        .sample-thickness-container {
+          width: 25%; /* ！关键修正：原有6rem过窄，改为100%适配小屏，保持格局统一 */
+          flex-shrink: 0;
+          padding: 0.3rem 0;
+          align-self: center;
+        }
+        .sample-thickness-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem; /* 原12px → 12/16=0.75rem，厚度项间距，避免拥挤 */
+          width: 100%; /* 占满父容器宽度，确保子项居中对齐 */
+        }
+
+        .sample-image-container {
+          padding: 0; /* 去掉原有的0.8rem内边距，让图片容器直接贴边 */
+          background-color: #f5f5f7 !important;
+          min-height: 200px; /* 给个最小高度，确保有显示空间（根据需求调整数值） */
+          display: flex; /* 确保子容器能继承尺寸 */
+          align-items: center;
+          justify-content: flex-start;
+          overflow: visible;
+        }
+
+        /* —— 核心修改：图片容器强制1:1比例 —— */
+        .sample-image-wrap {
+          aspect-ratio: 1/1; /* 强制宽高比1:1，优先级最高 */
+          width: 100%; /* 容器宽度铺满父级（.sample-image-container） */
+          max-width: none; /* 取消最大宽度限制，适配320px小屏 */
+          height: auto; /* 由aspect-ratio自动计算高度，避免固定高度冲突 */
+        }
+
+        /* —— 核心修改：图片填充1:1容器，保持完整 —— */
+        .sample-image-wrap img {
+          height: 100%; /* 图片高度铺满1:1容器 */
+          width: 100%; /* 图片宽度铺满容器 */
+          object-fit: cover; /* 填充容器（若图片比例非1:1，会裁剪边缘，优先保证1:1比例）；若需完整显示，可改为object-fit: contain，但可能出现背景空白 */
+          max-height: none; /* 取消原有max-height限制，确保1:1比例生效 */
+          min-width: none; /* 取消最小宽度限制，适配小屏 */
+          opacity: 1;
+          background-color: #f5f5f7;
         }
       }
 
@@ -3069,10 +3079,10 @@
       /* —— 7.3 主标题样式：与板块5完全一致（色号、字体、字号转REM） —— */
       .advantage-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 4rem; /* 原64px=4rem，与板块5.benefit-main-title一致 */
-        font-weight: 300; /* 偏细字体，保持风格统一 */
+        font-size: 3.5rem; /* 原64px=4rem，与板块5.benefit-main-title一致 */
+        font-weight: 500; /* 偏细字体，保持风格统一 */
         color: #f5f5f7; /* 浅灰文字色，适配深灰背景 */
-        margin-bottom: 3rem; /* 原48px=3rem，与板块5一致 */
+        margin-bottom: 6rem; /* 原48px=3rem，与板块5一致 */
         text-align: left;
         line-height: 1.1;
       }
@@ -3113,7 +3123,7 @@
         background-color: transparent; /* 消除“容器存在”的视觉感 */
         backface-visibility: hidden;
         transform: translateZ(0); /* 触发硬件加速，优化圆角锯齿 */
-        box-shadow: none;
+        box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1);
         border: none;
         cursor: inherit; /* 避免容器拦截图片点击反馈 */
       }
@@ -3149,9 +3159,9 @@
         z-index: 10; /* 确保在图片上层 */
         color: #f5f5f7;
         font-size: 1rem; /* 原16px=1rem，与产品板块文字字号统一 */
-        font-weight: 500;
+        font-weight: 400;
         margin: 0;
-        text-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.3); /* 原1px=0.0625rem，增强可读性 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); /* 原1px=0.0625rem，增强可读性 */
         pointer-events: none; /* 禁止文字拦截点击，穿透到图片 */
       }
 
@@ -3630,6 +3640,7 @@
         padding: 5rem 0 7.5rem; /* 与其他板块一致：为箭头预留底部空间 */
         position: relative; /* 作为滚动箭头的定位父容器（关键：确保箭头基于板块定位） */
         overflow: visible;
+        height: 65rem;
       }
 
       .accessory-container {
@@ -3642,8 +3653,8 @@
       .accessory-main-title {
         font-family:
           "Public Sans", "Noto Sans SC", sans-serif; /* 与全局字体统一 */
-        font-size: 4rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 300; /* 偏细字体，契合整体轻量化风格 */
+        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #f5f5f7; /* 浅灰文字，与深灰背景形成对比 */
         margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
@@ -3655,10 +3666,10 @@
         position: relative; /* 作为卡片容器的定位父容器 */
         overflow: visible; /* 允许箭头超出容器范围 */
         overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding-bottom: 0.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
+        height: 40rem;
       }
       .accessory-big-card::-webkit-scrollbar {
         display: none; /* Chrome/Safari */
@@ -3669,17 +3680,14 @@
         display: flex; /* 卡片横向排列 */
         gap: 0.1rem; /* 16px基准：24px，卡片之间间距 */
         transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
-      }
-
-      /* 2. 滚动容器：控制滚动行为 */
-      .accessory-scroll-container {
         width: 100%; /* 占满大卡片宽度 */
         overflow-x: auto; /* 允许横向滚动 */
         overflow-y: hidden; /* 禁止纵向滚动，避免多余滚动条 */
-        padding-bottom: 1.5rem; /* 底部留白，避免滚动条遮挡卡片 */
         /* 隐藏滚动条（全浏览器兼容） */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
+        height: 40rem;
+        box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1);
       }
       /* Chrome/Safari 隐藏滚动条 */
       .accessory-scroll-container::-webkit-scrollbar {
@@ -3690,21 +3698,19 @@
         width: 21.25rem;
         flex-shrink: 0;
         position: relative;
-        height: auto;
         /* 1. 新增：裁剪超出容器的图片（核心约束） */
-        overflow: hidden;
-        /* 2. 新增：固定最小高度=图片高度，避免hover时容器被撑大 */
-        min-height: 30rem;
+        overflow: visible;
         /* 3. 新增：顶部留白1rem，抵消图片translateY(-1rem)的偏移，避免图片顶部溢出 */
-        padding-top: 1rem;
         background-color: transparent;
         padding: 1rem 0 0; /* 合并padding：仅顶部1rem，左右下0 */
         box-shadow: none;
         border-radius: 1.25rem; /* 可选：给容器加圆角，与图片圆角呼应，视觉更统一 */
-        transition: none;
-        cursor: inherit;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        cursor: pointer;
         border: none;
-        margin: 0;
+        margin: 4.375rem 2rem 0.5rem 0.5rem;
       }
 
       /* 低卡片：同理，底部留白抵消向下偏移 */
@@ -3712,20 +3718,19 @@
         width: 21.25rem;
         flex-shrink: 0;
         position: relative;
-        height: auto;
-        /* 1. 新增：裁剪溢出图片 */
-        overflow: hidden;
-        /* 2. 新增：固定最小高度=图片高度 */
-        min-height: 30rem;
-        /* 3. 新增：底部留白1rem，抵消图片translateY(1rem)的偏移，避免图片底部溢出 */
-        padding: 0 0 1rem; /* 仅底部1rem留白 */
+        /* 1. 新增：裁剪超出容器的图片（核心约束） */
+        overflow: visible;
+        /* 3. 新增：顶部留白1rem，抵消图片translateY(-1rem)的偏移，避免图片顶部溢出 */
         background-color: transparent;
+        padding: 3rem 0 0; /* 合并padding：仅顶部1rem，左右下0 */
         box-shadow: none;
-        border-radius: 1.25rem; /* 与图片圆角呼应 */
-        transition: none;
-        cursor: inherit;
+        border-radius: 1.25rem; /* 可选：给容器加圆角，与图片圆角呼应，视觉更统一 */
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+        cursor: pointer;
         border: none;
-        margin: 0;
+        margin: 4.375rem 2rem 0.5rem 0.5rem;
       }
 
       /* 高排卡片图片：仅新增 transform-origin 优化放大位置 */
@@ -3743,9 +3748,6 @@
           box-shadow 0.3s ease;
         display: block;
         cursor: pointer;
-        transform: translateY(-1rem);
-        /* 新增：放大原点为图片中心，确保hover时向四周均匀放大 */
-        transform-origin: center center;
       }
 
       /* 低排卡片图片：同理新增 transform-origin */
@@ -3762,39 +3764,33 @@
           box-shadow 0.3s ease;
         display: block;
         cursor: pointer;
-        transform: translateY(1rem);
-        /* 新增：居中放大原点 */
-        transform-origin: center center;
       }
 
       /* 高排卡片hover：无需修改，保持原效果即可 */
       .accessory-image-item.high-item:hover img {
-        transform: translateY(0rem) scale(1.01); /* 恢复偏移+放大 */
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+        transform: scale(1.03) translateY(-0.375rem); /* 原-6px=0.375rem，放大+上浮 */
+        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
       }
 
       /* 低排卡片hover：同理无需修改 */
       .accessory-image-item.low-item:hover img {
-        transform: translateY(0rem) scale(1.01);
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+        transform: scale(1.03) translateY(-0.375rem); /* 原-6px=0.375rem，放大+上浮 */
+        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
       }
 
       /* 6. 卡片文字：优化后——完全居中对齐图片 */
       .accessory-image-text {
         position: absolute;
-        color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
-        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
-        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        color: #f5f5f7; /* 浅灰文字，适配图片深色背景 */
         z-index: 10; /* 层级高于图片，确保文字可见 */
-        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
-        text-align: left;
+        text-align: center;
         pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
       }
 
       /* 8. 滚动箭头：修复类名+统一定位逻辑（关键修改区） */
       .accessory-scroll-btn {
         position: absolute; /* 基于板块容器定位 */
-        top: 90%; /* 垂直居中于产品卡片区域 */
+        top: 100%; /* 垂直居中于产品卡片区域 */
         transform: translateY(
           -50%
         ) !important; /* 垂直居中校准（!important避免被覆盖） */
@@ -3848,6 +3844,9 @@
 
       /* 1. Mobile S（≤320px）：html基准8.53px | 核心：极致紧凑布局，避免内容溢出 */
       @media (max-width: 320px) {
+        .accessory-section {
+          height: 40rem;
+        }
         /* 容器：取消左侧15%margin（小屏空间紧张），改为居中布局 */
         .accessory-container {
           margin: 0 auto;
@@ -3913,6 +3912,9 @@
 
       /* 2. Mobile M（321px~375px）：html基准10px | 核心：过渡布局，比S宽松 */
       @media (min-width: 321px) and (max-width: 375px) {
+        .accessory-section {
+          height: 45rem;
+        }
         /* 容器：保持居中，留白稍宽于S */
         .accessory-container {
           margin: 0 auto;
@@ -3976,6 +3978,9 @@
 
       /* 3. Mobile L（376px~425px）：html基准11.33px | 核心：接近平板，放宽布局 */
       @media (min-width: 376px) and (max-width: 425px) {
+        .accessory-section {
+          height: 45rem;
+        }
         /* 容器：恢复小比例左侧margin（5%），向产品板块偏左风格过渡 */
         .accessory-container {
           margin: 0 auto;
@@ -4039,6 +4044,9 @@
 
       /* 4. Tablet（426px~768px）：html基准14px | 核心：宽松布局，接近桌面端比例 */
       @media (min-width: 426px) and (max-width: 768px) {
+        .accessory-section {
+          height: 50rem;
+        }
         /* 容器：左侧margin降至10%，平衡偏左风格与平板宽度 */
         .accessory-container {
           margin: 0 auto;
@@ -4101,6 +4109,9 @@
 
       /* 5. Laptop（769px~1024px）：html基准15px | 核心：逐步过渡到基础样式 */
       @media (min-width: 769px) and (max-width: 1024px) {
+        .accessory-section {
+          height: 55rem;
+        }
         /* 容器：左侧margin12%，接近基础15% */
         .accessory-container {
           margin: 0 auto 0 12%;
@@ -4122,7 +4133,7 @@
         /* 图片：高度接近基础样式，保持错落 */
         .accessory-image-item.high-item img,
         .accessory-image-item.low-item img {
-          height: 28rem; /* 原30rem → 28rem，与卡片min-height一致 */
+          height: 2rem; /* 原30rem → 28rem，与卡片min-height一致 */
         }
 
         /* 箭头：位置接近基础样式，适配笔记本屏幕 */
@@ -4185,7 +4196,7 @@
       /* 底部导航整体样式（匹配参考图深灰背景） */
       .footer-new {
         background-color: #1d1d1f; /* 参考图的深灰背景色 */
-        color: #d1d1d6;
+        color: #f5f5f7;
         padding: 40px 20px;
         font-size: 12px;
       }

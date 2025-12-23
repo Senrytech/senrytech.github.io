@@ -2488,10 +2488,10 @@
       /* —— 6.3 主标题样式（PX转REM，复用前序板块标题逻辑） —— */
       .sample-main-title {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 4rem; /* 原64px → 64/16=4rem，与“购买优势”标题字号统一 */
-        font-weight: 300; /* 偏细字体，契合苹果风精致感 */
+        font-size: 3.5rem; /* 原64px → 64/16=4rem，与“购买优势”标题字号统一 */
+        font-weight: 500; /* 偏细字体，契合苹果风精致感 */
         color: #f5f5f7; /* 浅灰文字，与深灰背景区分 */
-        margin-bottom: 3rem; /* 原48px → 48/16=3rem，与副标题栏间距统一 */
+        margin-bottom: 1.5rem; /* 原48px → 48/16=3rem，与副标题栏间距统一 */
         text-align: left;
         line-height: 1.1; /* 保留行高，确保文字紧凑度 */
       }
@@ -2518,10 +2518,10 @@
       /* —— 6.5 副标题项样式（PX转REM，保留交互效果） —— */
       .sample-subtitle-item {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 0.6875rem; /* 原11px → 11/16≈0.6875rem，小字号避免占用过多空间 */
+        font-size: 0.8rem; /* 原11px → 11/16≈0.6875rem，小字号避免占用过多空间 */
         font-weight: 300;
         color: #f5f5f7;
-        padding: 0.375rem 1rem; /* 原6px 16px → 6/16=0.375rem，16/16=1rem，保证点击区域 */
+        padding: 0.5rem 1.5rem; /* 原6px 16px → 6/16=0.375rem，16/16=1rem，保证点击区域 */
         border-radius: 9999px; /* 超圆圆角，与父容器呼应 */
         cursor: pointer;
         transition:
@@ -2538,8 +2538,8 @@
       /* —— 6.6 副标题激活背景（PX转REM，保留跟随动画） —— */
       .sample-subtitle-active-bg {
         position: absolute;
-        top: 0.25rem; /* 原4px → 4/16=0.25rem，与副标题栏内边距对齐 */
-        bottom: 0.25rem; /* 同上，确保背景高度与副标题栏一致 */
+        top: 0rem; /* 原4px → 4/16=0.25rem，与副标题栏内边距对齐 */
+        bottom: 0rem; /* 同上，确保背景高度与副标题栏一致 */
         background-color: #f5f5f7; /* 白色背景，突出激活状态 */
         border-radius: 9999px; /* 超圆圆角，与副标题项呼应 */
         transition:
@@ -6882,15 +6882,15 @@
       });
 
       /* ================================== 六、切割样品模块（纯图片，无文字） ================================== */
-      // 1. 材质数据配置（carbon用在线图，其他用本地路径，无desc渲染）
+      // 1. 材质数据配置（保持原数据不变）
       const materialData = {
         carbon: {
           name: "碳钢",
           thicknesses: [
             {
               thickness: "6mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "碳钢板材 6mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp",
+              alt: "碳钢板材 6mm厚度 实物图",
             },
             {
               thickness: "14mm",
@@ -6929,8 +6929,8 @@
           thicknesses: [
             {
               thickness: "2mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "不锈钢板材 2mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp",
+              alt: "不锈钢板材 2mm厚度 实物图",
             },
             {
               thickness: "5mm",
@@ -6969,8 +6969,8 @@
           thicknesses: [
             {
               thickness: "3mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "铝合金板材 3mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp",
+              alt: "铝合金板材 3mm厚度 实物图",
             },
             {
               thickness: "6mm",
@@ -7009,29 +7009,29 @@
           thicknesses: [
             {
               thickness: "3mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "黄铜 3mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp",
+              alt: "黄铜 3mm厚度 实物图",
             },
             {
               thickness: "5mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "黄铜 5mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp",
+              alt: "黄铜 5mm厚度 实物图",
             },
             {
               thickness: "8mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "黄铜 8mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp",
+              alt: "黄铜 8mm厚度 实物图",
             },
             {
               thickness: "10mm",
-              src: "../senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp", // 相对路径：假设图片存放在上级目录的images文件夹中
-              alt: "黄铜 10mm厚度 实物图", // SEO优化：包含材质（碳钢）、规格（1mm）、内容（实物图）
+              src: "../senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp",
+              alt: "黄铜 10mm厚度 实物图",
             },
           ],
         },
       };
 
-      // 2. 初始化变量（仅保留核心DOM元素）
+      // 2. 初始化变量（增加容错判断，避免DOM不存在报错）
       const thicknessList = document.getElementById("thicknessList");
       const sampleImageWrap = document.getElementById("sampleImageWrap");
       const sampleSubtitleBar = document.querySelector(".sample-subtitle-bar");
@@ -7042,95 +7042,164 @@
         ".sample-subtitle-active-bg"
       );
       let currentMaterial = "carbon"; // 默认材质：碳钢
+      let resizeDebounceTimer; // 窗口缩放防抖定时器
 
-      // 3. 生成厚度选项（左侧列表：仅保留一套逻辑）
+      // 3. 生成厚度选项（新增HOVER激活+恢复默认第一个激活）
       function renderThicknesses(materialKey) {
+        // 容错：材质不存在或厚度列表DOM缺失，直接返回
+        if (!materialData[materialKey] || !thicknessList) return;
+
         thicknessList.innerHTML = ""; // 清空原有厚度项
         const thicknesses = materialData[materialKey].thicknesses;
 
         thicknesses.forEach((item, index) => {
           const thicknessItem = document.createElement("div");
-          // 初始化第一个厚度为“激活状态”
+          // 关键：默认给第一个厚度加active类（恢复初始激活状态）
           thicknessItem.className = `sample-thickness-item ${index === 0 ? "active" : ""}`;
           thicknessItem.textContent = item.thickness;
           thicknessItem.dataset.src = item.src;
 
-          // 厚度点击：切换图片+激活状态
+          // 【新增】厚度项HOVER激活：滑入时切换图片+激活状态
+          thicknessItem.addEventListener("mouseenter", () => {
+            document
+              .querySelectorAll(".sample-thickness-item")
+              .forEach((el) => el.classList.remove("active"));
+            thicknessItem.classList.add("active");
+            updateSampleImage(item.src); // 同步更新图片
+          });
+
+          // 保留：原厚度项点击激活（兼容原有操作习惯）
           thicknessItem.addEventListener("click", () => {
             document
               .querySelectorAll(".sample-thickness-item")
               .forEach((el) => el.classList.remove("active"));
             thicknessItem.classList.add("active");
-            updateSampleImage(item.src); // 调用唯一的图片渲染函数
+            updateSampleImage(item.src);
           });
 
           thicknessList.appendChild(thicknessItem);
         });
 
-        // 初始化显示第一个厚度的图片
-        updateSampleImage(thicknesses[0].src);
+        // 初始化显示第一个厚度的图片（容错：确保有厚度数据）
+        if (thicknesses.length > 0) {
+          updateSampleImage(thicknesses[0].src);
+        }
       }
 
-      // 4. 核心：更新样品图片（修复样式，确保无空白）
+      // 4. 核心：更新样品图片（保持原逻辑不变）
       function updateSampleImage(imgSrc) {
+        if (!sampleImageWrap) return; // 容错：图片容器缺失
+
         sampleImageWrap.innerHTML = ""; // 彻底清空容器（避免残留元素）
         const img = document.createElement("img");
 
-        // 图片样式：与CSS对齐，确保铺满容器
+        // 图片样式：确保铺满容器，无空白
         img.src = imgSrc;
         img.alt = "切割样品图";
         img.style.width = "100%";
-        img.style.height = "100%"; // 改为100%，强制铺满容器（替代auto）
-        img.style.minHeight = "400px"; // 保留最小高度，避免塌陷
-        img.style.objectFit = "cover"; // 裁剪多余部分，不拉伸
-        img.style.backgroundColor = "#e0e0e0"; // 与CSS占位色一致，避免白色空白
+        img.style.height = "100%";
+        img.style.minHeight = "400px";
+        img.style.objectFit = "cover";
+        img.style.backgroundColor = "#e0e0e0";
 
         sampleImageWrap.appendChild(img);
       }
 
-      // 5. 材质切换（副标题栏：修复激活背景位置计算）
-      sampleSubtitleItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          // 切换材质激活状态
-          sampleSubtitleItems.forEach((el) => el.classList.remove("active"));
-          item.classList.add("active");
-
-          // 更新材质+渲染厚度列表
-          currentMaterial = item.dataset.material;
-          renderThicknesses(currentMaterial);
-
-          // 修复：计算激活背景的位置和宽度
-          updateSubtitleActiveBg(item);
-        });
-      });
-
-      // 6. 修复：副标题激活背景位置（动态计算数值，避免空白）
+      // 5. 修复：副标题激活背景计算（补全left/width变量，解决背景不显示问题）
       function updateSubtitleActiveBg(activeItem) {
-        if (!sampleActiveBg || !activeItem) return;
+        // 容错：关键元素缺失，直接返回
+        if (!sampleActiveBg || !activeItem || !sampleSubtitleBar) return;
 
-        // 计算背景的left（激活项的左边距）和width（激活项的宽度）
+        // 计算相对位置（避免绝对定位受窗口滚动影响）
         const activeItemRect = activeItem.getBoundingClientRect();
         const barRect = sampleSubtitleBar.getBoundingClientRect();
-        const left = activeItemRect.left - barRect.left; // 相对父容器的左边距
-        const width = activeItemRect.width; // 激活项的实际宽度
+        const left = activeItemRect.left - barRect.left; // 背景相对副标题栏的左边距
+        const width = activeItemRect.width; // 背景宽度=当前激活项宽度
 
+        // 关键修复：补全变量，确保背景位置和宽度生效
         sampleActiveBg.style.left = `${left}px`;
         sampleActiveBg.style.width = `${width}px`;
       }
 
-      // 7. 页面加载初始化（仅执行一次核心逻辑）
-      function initSampleModule() {
-        // 初始化厚度列表+默认图片
-        renderThicknesses(currentMaterial);
-        // 初始化副标题激活背景
-        const defaultActiveItem = document.querySelector(
-          ".sample-subtitle-item.active"
-        );
-        updateSubtitleActiveBg(defaultActiveItem);
+      // 6. 统一处理副标题激活逻辑（hover+点击通用）
+      function handleSubtitleActivate(activeItem) {
+        if (!activeItem) return;
+
+        // 1. 切换副标题激活状态
+        sampleSubtitleItems.forEach((el) => el.classList.remove("active"));
+        activeItem.classList.add("active");
+
+        // 2. 更新材质并渲染对应厚度+图片
+        const targetMaterial = activeItem.dataset.material;
+        if (targetMaterial && materialData[targetMaterial]) {
+          currentMaterial = targetMaterial;
+          renderThicknesses(currentMaterial); // 渲染该材质的厚度列表
+        }
+
+        // 3. 移动激活背景到当前项
+        updateSubtitleActiveBg(activeItem);
       }
 
-      // 执行初始化
-      initSampleModule();
+      // 7. 副标题交互（hover+点击，保持原逻辑不变）
+      function initSubtitleInteraction() {
+        if (!sampleSubtitleItems.length) return; // 容错：无副标题项
+
+        sampleSubtitleItems.forEach((item) => {
+          // 鼠标滑入（hover）激活
+          item.addEventListener("mouseenter", () => {
+            handleSubtitleActivate(item);
+          });
+
+          // 原点击激活（兼容）
+          item.addEventListener("click", () => {
+            handleSubtitleActivate(item);
+          });
+        });
+      }
+
+      // 8. 窗口缩放防抖处理（保持原逻辑不变）
+      function initResizeHandler() {
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeDebounceTimer);
+          // 100ms防抖：避免缩放时频繁计算，提升性能
+          resizeDebounceTimer = setTimeout(() => {
+            // 找到当前激活的副标题项，重新计算背景位置
+            const currentActiveItem =
+              document.querySelector(".sample-subtitle-item.active") ||
+              sampleSubtitleItems[0];
+            if (currentActiveItem) {
+              updateSubtitleActiveBg(currentActiveItem);
+            }
+          }, 100);
+        });
+      }
+
+      // 9. 模块初始化（整合所有初始化逻辑）
+      function initSampleModule() {
+        // 容错：核心DOM缺失，不执行初始化
+        if (!thicknessList || !sampleImageWrap || !sampleSubtitleBar) return;
+
+        // 1. 初始化副标题交互（hover+点击）
+        initSubtitleInteraction();
+
+        // 2. 初始化窗口缩放处理
+        initResizeHandler();
+
+        // 3. 初始化厚度列表和默认图片
+        renderThicknesses(currentMaterial);
+
+        // 4. 初始化副标题激活背景（默认激活第一个项）
+        const defaultActiveItem =
+          document.querySelector(".sample-subtitle-item.active") ||
+          sampleSubtitleItems[0];
+        if (defaultActiveItem) {
+          defaultActiveItem.classList.add("active"); // 确保默认项有激活类
+          updateSubtitleActiveBg(defaultActiveItem);
+        }
+      }
+
+      // 执行模块初始化（页面加载完成后运行）
+      document.addEventListener("DOMContentLoaded", initSampleModule);
 
       // ================================== 七、核心优势一眼明板块JS（修复版） ==================================
       document.addEventListener("DOMContentLoaded", function () {

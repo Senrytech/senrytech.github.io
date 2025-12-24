@@ -2702,8 +2702,9 @@
       @media (max-width: 320px) {
         .specs-section {
           /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
-          padding: 0rem 0 6rem;
+          padding: 3rem 0 3rem;
           margin: 0 auto;
+          height: 35rem;
         }
         .specs-container {
           /* 核心：改为1列布局 */
@@ -2729,6 +2730,7 @@
         .specs-section {
           /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
           margin: 0 auto;
+          height: 35rem;
         }
         .specs-container {
           /* 核心：改为1列布局 */
@@ -2754,6 +2756,7 @@
         .specs-section {
           /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
           margin: 0 auto;
+          height: 35rem;
         }
         .specs-container {
           /* 核心：改为1列布局 */
@@ -3033,30 +3036,23 @@
       /* 1. Mobile S（≤320px）：极致紧凑，单列布局（适配最小手机屏） */
       @media (max-width: 320px) {
         .section-chart {
-          padding: 12rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
         }
         /* 外层容器：取消偏左布局，改为全屏居中 */
         .section-container {
-          margin: 0 auto 0 auto; /* 清除左侧15%margin，避免内容贴边 */
-          padding: 0 0.75rem; /* 缩小左右留白（12px），适配极小屏 */
+          margin: 0 auto; /* 清除左侧15%margin，避免内容贴边 */
         }
 
         /* 板块标题：缩小字号，减少底部间距 */
         .chart-title {
           font-size: 2rem; /* 基础字号从56px→32px，避免超出屏幕 */
-          margin-bottom: 0.75rem; /* 间距从16px→12px，紧凑布局 */
+          margin-bottom: 1rem; /* 间距从16px→12px，紧凑布局 */
         }
 
         /* 描述文字：缩小字号，优化可读性 */
         .chart-desc {
           font-size: clamp(0.8rem, 3vw, 0.9rem); /* 最小12.8px，最大14.4px */
           margin-bottom: 1rem; /* 减少与分隔线间距 */
-        }
-
-        /* 描述分隔线：缩短长度，适配小屏 */
-        .chart-desc-divider {
-          width: 2.5rem; /* 从64px→40px */
-          margin-bottom: 1.5rem; /* 减少与卡片间距 */
         }
 
         /* 图表卡片：全屏宽度，缩小内边距 */
@@ -3080,28 +3076,24 @@
 
       /* 2. Mobile M（321px~375px）：小屏过渡，单列布局（适配iPhone 8/SE等） */
       @media (min-width: 321px) and (max-width: 375px) {
+        .section-chart {
+          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+        }
         /* 外层容器：居中布局，适度留白 */
         .section-container {
           margin: 0 auto; /* 取消偏左，全屏居中 */
-          padding: 0 1rem; /* 左右留白16px，比Mobile S宽松 */
         }
 
         /* 板块标题：适度放大字号 */
         .chart-title {
           font-size: 2rem; /* 从32px→36px，提升视觉权重 */
-          margin-bottom: 0.875rem; /* 间距14px */
+          margin-bottom: 1rem; /* 间距14px */
         }
 
         /* 描述文字：恢复基础可读性 */
         .chart-desc {
           font-size: clamp(0.85rem, 2.5vw, 1rem); /* 最小13.6px，最大16px */
           margin-bottom: 1.25rem;
-        }
-
-        /* 分隔线：恢复部分长度 */
-        .chart-desc-divider {
-          width: 3rem; /* 从40px→48px */
-          margin-bottom: 1.75rem;
         }
 
         /* 图表卡片：优化宽度与间距 */
@@ -3123,10 +3115,12 @@
 
       /* 3. Mobile L（376px~425px）：大屏手机，单列布局（适配iPhone 12/13 mini等） */
       @media (min-width: 376px) and (max-width: 425px) {
+        .section-chart {
+          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+        }
         /* 外层容器：维持居中，留白适配大屏手机 */
         .section-container {
           margin: 0 auto;
-          padding: 0 1.25rem; /* 左右留白20px，匹配大屏手机视觉 */
         }
 
         /* 板块标题：接近平板尺寸 */
@@ -3138,12 +3132,6 @@
         /* 描述文字：恢复标准字号 */
         .chart-desc {
           font-size: clamp(0.9rem, 2.5vw, 1.05rem); /* 最小14.4px，最大16.8px */
-        }
-
-        /* 分隔线：恢复标准长度 */
-        .chart-desc-divider {
-          width: 3.5rem; /* 从48px→56px */
-          margin-bottom: 2rem; /* 间距32px，与卡片拉开距离 */
         }
 
         /* 图表卡片：优化阴影与间距 */
@@ -3162,16 +3150,18 @@
 
       /* 4. Tablet（426px~768px）：平板适配，单列布局（宽度不足3列，单列更美观） */
       @media (min-width: 426px) and (max-width: 768px) {
+        .section-chart {
+          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+        }
         /* 外层容器：取消偏左，平板全屏居中 */
         .section-container {
           margin: 0 auto;
-          max-width: 768px; /* 限制最大宽度，避免平板横屏时内容过散 */
         }
 
         /* 板块标题：适配平板视觉 */
         .chart-title {
           font-size: 2rem; /* 从40px→44px，提升标题权重 */
-          margin-bottom: 1.25rem; /* 间距20px */
+          margin-bottom: 1rem; /* 间距20px */
         }
 
         /* 描述文字：优化平板可读性 */
@@ -3179,12 +3169,6 @@
           font-size: clamp(1rem, 2vw, 1.1rem); /* 最小16px，最大17.6px */
           line-height: 1.5; /* 增加行高，提升长文本可读性 */
           margin-bottom: 1.5rem;
-        }
-
-        /* 分隔线：恢复基础长度 */
-        .chart-desc-divider {
-          width: 4rem; /* 恢复64px标准长度 */
-          margin-bottom: 2.5rem; /* 间距40px，与卡片拉开距离 */
         }
 
         /* 图表卡片：平板专属样式 */
@@ -3205,17 +3189,12 @@
           height: 320px; /* 比Mobile L增加60px，适配平板数据可视化需求 */
           padding: 1.25rem; /* 内边距20px */
         }
-
-        /* 板块外层：增加上下padding，适配平板纵向空间 */
-        .section-chart {
-          padding: 6rem 0 8rem; /* 上下padding从80px/120px→96px/128px */
-        }
       }
 
       /* 5. Laptop（769px~1024px）：笔记本屏，2列布局（介于单列与3列之间） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .section-chart {
-          padding: 0rem 0 5rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
           background-color: var(
             --color-neutral
           ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
@@ -3223,8 +3202,8 @@
         }
         /* 外层容器：调整偏左比例，适配笔记本屏 */
         .section-container {
-          margin: 0 auto 0 auto; /* 左侧margin从15%→10%，减少偏左程度 */
-          padding: 0 1.5rem;
+          margin: 0 auto; /* 左侧margin从15%→10%，减少偏左程度 */
+
           max-width: 1024px; /* 限制最大宽度，避免1024px屏内容过散 */
         }
 
@@ -3254,12 +3233,6 @@
 
         /* 响应式调整：笔记本小屏（769px~850px）优化间距 */
         @media (max-width: 850px) {
-          .chart-card-wrapper {
-            gap: 1.25rem; /* 间距从24px→20px，避免拥挤 */
-          }
-          .chart-container {
-            height: 250px; /* 进一步减少高度，适配窄屏 */
-          }
         }
       }
 
@@ -3820,9 +3793,20 @@
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      /* 6. Laptop L + 2K屏（1025px~1440px） */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .tech-specs-section {
+          width: 100%;
+          margin: 0 !important;
+        }
+
+        /* —— 9.2 内容容器：控制宽度、居中与响应式内边距 —— */
+        .tech-specs-container {
+          max-width: 100%; /* 保留视频最大宽度，避免超宽变形 */
+          margin: 0 auto; /* 水平居中 */
+          box-sizing: border-box;
+          z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
+        }
       }
 
       /* 7. 4K屏（≥2560px）：html基准16px | 核心：放大元素，避免视觉过小 */

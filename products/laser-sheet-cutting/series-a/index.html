@@ -2215,7 +2215,6 @@
         /* 保留原有基础样式，确保与其他板块风格统一 */
         font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
         text-align: left; /* 左对齐，契合板块布局 */
-        margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
         line-height: 1.4; /* 优化文字可读性，避免拥挤 */
       }
 
@@ -3043,7 +3042,7 @@
       }
 
       .chart-grid {
-        margin: 0 0 3rem 2rem;
+        margin: 5rem 0 0rem 2rem;
       }
 
       /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
@@ -3060,7 +3059,7 @@
         text-align: left; /* 左对齐，契合板块布局 */
         margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
         line-height: 1.4; /* 优化文字可读性，避免拥挤 */
-        margin: 0 0 3rem 2rem;
+        margin: 0 0 0rem 2rem;
       }
 
       /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
@@ -3387,7 +3386,7 @@
         text-align: center;
         letter-spacing: -0.02em;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-bottom: 2.5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
+        margin-bottom: 5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
       }
 
       /* —— 8.4 视频容器：优化视频显示区域，增强视觉层次 —— */
@@ -3544,13 +3543,13 @@
         letter-spacing: -0.02em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         text-align: center;
-        margin-bottom: 2.5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
+        margin-bottom: 5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
       }
 
       /* —— 9.4 表格包裹层：控制滚动、阴影与圆角 —— */
       .tech-specs-table-wrap {
         max-width: 70rem;
-        margin: 0 auto; /* 视频水平居中 */
+        margin: 0 auto;
         border-radius: 1.5rem; /* 大圆角设计，与产品卡片、Banner图片圆角风格统一 */
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 轻微阴影，增强立体感（不突兀） */
         overflow: hidden; /* 确保视频/海报图不超出圆角容器，避免视觉割裂 */
@@ -3572,8 +3571,8 @@
       }
       .tech-specs-table thead tr th {
         padding: 1.5rem; /* 替代内联py-6 px-6（1.5rem=24px） */
-        text-align: left; /* 基础左对齐 */
-        font-weight: 500; /* 替代内联font-medium */
+        text-align: center; /* 基础左对齐 */
+        font-weight: 600; /* 替代内联font-medium */
         font-size: 1rem; /* 替代内联text-[1rem] */
         color: #1d1d1f; /* 替代内联text-[#1d1d1f] */
         width: 30%; /* 第一列宽度，替代内联w-[30%] */
@@ -3593,6 +3592,7 @@
       .tech-specs-table tbody {
         color: #424245; /* 替代内联text-[#424245] */
         font-size: 0.9375rem; /* 替代内联text-[0.9375rem] */
+        text-align: center;
       }
       /* 表格行：hover 效果 */
       .tech-specs-table tbody tr {
@@ -3955,20 +3955,20 @@
       /* —— 10.2 板块内层容器：限制内容宽度+左右响应式留白 —— */
       .evaluation-container {
         max-width: 100rem; /* 最大宽度（120rem=1920px），避免超宽屏幕内容过散 */
-        height: 40rem;
+
         margin: 0 auto; /* 水平居中 */
         padding: 0 1.25rem; /* 左右内边距（20px），适配小屏幕避免内容贴边 */
       }
 
       /* —— 10.3 板块标题：视觉焦点+响应式适配 —— */
       .evaluation-title {
-        color: #000000; /* 黑色文字，突出标题权重 */
-        text-align: center; /* 水平居中，符合板块视觉重心 */
+        font-family:
+          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 500; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
-        margin-bottom: 1rem; /* 与下方卡片间距（64px），避免拥挤 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        margin: 0 0 5rem 0;
+        text-align: center; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
@@ -4392,21 +4392,21 @@
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .other-container {
         max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
-        margin: 0 0 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        box-sizing: border-box;
       }
 
       /* —— 5.3 板块主标题：强化视觉焦点 —— */
       .other-main-title {
-        color: #000000; /* 黑色文字，突出标题权重 */
-        margin: 0 auto;
-        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 500; /* 正常字重，替代过细的font-light，提升阅读清晰度 */
         font-family:
           "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
-        letter-spacing: -0.02em; /* 轻微缩紧字距，增强精致感 */
-        margin-bottom: 1rem; /* 与下方卡片间距（64px），避免拥挤 */
+        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
       }
 
       /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
@@ -4414,7 +4414,7 @@
         position: relative; /* 作为卡片容器的定位父容器 */
         overflow: visible; /* 允许箭头超出容器范围 */
         overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        padding: 5rem 2rem 2rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
@@ -4925,14 +4925,14 @@
             /* 容器边缘：最浅的白色（原起点色） */
         );
         width: 100%;
-        padding: 5rem 0 10rem;
+        padding: 5rem 0 8rem;
         position: relative;
         overflow: visible;
       }
 
       /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
       #contact .container {
-        max-width: 1440px; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
+        max-width: 100rem; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
         margin-left: auto;
         margin-right: auto;
         padding-left: 1.25rem; /* 16px基准：20px，移动端左右留白 */
@@ -4954,25 +4954,20 @@
 
       /* 主标题：优化响应式字号与视觉权重 */
       #contact h2 {
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        font-size: 3.5rem; /* 响应式区间：小屏28px→大屏40px，避免原区间跨度过大导致的适配问题 */
-        font-weight: 500; /* 正常字重，平衡“轻盈感”与“可读性” */
-        color: #1d1d1f; /* 全局统一文字主色，与导航栏、Banner文字对齐 */
-        letter-spacing: -0.02em; /* 轻微缩字距，提升精致感 */
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 淡阴影，增强文字层次感（不突兀） */
-        margin-bottom: 1rem; /* 与副标题间距，优化标题组紧凑度 */
-        line-height: 1.2; /* 紧凑行高，避免标题换行后过高 */
+        font-family:
+          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
+        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
       }
 
       /* 副标题：统一文本样式，与“杜绝虚假宣传”等副标题逻辑对齐 */
       #contact p {
-        font-family:
-          "SF Pro Text",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: "SF Pro Text" sans-serif;
         font-size: clamp(
           0.9375rem,
           2vw,
@@ -5010,13 +5005,7 @@
       /* 标签：明确文本层级，引导用户输入 */
       #contact label {
         display: block; /* 独占一行，避免与输入框挤在一起 */
-        font-family:
-          "SF Pro Text",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.875rem; /* 16px基准：14px，标签字号小于输入框文字，突出输入内容 */
         font-weight: 400;
         color: #424245; /* 中灰色，比主文本浅，避免喧宾夺主 */
@@ -5034,13 +5023,7 @@
         padding: 0.875rem 1rem; /* 16px基准：14px/16px，输入框内边距，保证点击区域与文字间距 */
         border: 1px solid #e0e0e0; /* 浅灰色边框，未聚焦时弱化视觉权重 */
         border-radius: 0.75rem; /* 中等圆角（16px基准：12px），比容器圆角小，增强层级 */
-        font-family:
-          "SF Pro Text",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.9375rem; /* 16px基准：15px，输入文字字号，确保可读性 */
         color: #1d1d1f;
         background-color: #ffffff;
@@ -5096,13 +5079,7 @@
           #0071e3
         ); /* 品牌主色，与导航栏询价按钮、Banner按钮一致 */
         color: #ffffff;
-        font-family:
-          "SF Pro Text",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.9375rem; /* 16px基准：15px，按钮文字字号，确保可读性 */
         font-weight: 500; /* 中等字重，突出按钮视觉权重 */
         border-radius: 0.75rem; /* 与输入框圆角一致，视觉统一 */
@@ -5140,13 +5117,7 @@
 
       /* —— 12.6 提交状态提示：优化反馈文案样式 —— */
       #contact #submitTip {
-        font-family:
-          "SF Pro Text",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          sans-serif;
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.875rem; /* 16px基准：14px，提示文字字号 */
         padding: 0.75rem 1rem; /* 内边距，避免文字贴边 */
         border-radius: 0.5rem; /* 小圆角，增强提示框质感 */
@@ -6291,7 +6262,7 @@
                 <p class="benefit-subtitle">智能激光切割头</p>
                 <h3 class="benefit-heading">模块化结构，维护轻松无压力</h3>
                 <p class="benefit-desc">
-                  铸铝结构应力分布更均匀，抗疲劳性强，跑再快都不‘飘’
+                  双水冷回路，自动对焦，镜片防护全新升级，IP65级防尘
                 </p>
               </div>
             </div>
@@ -6365,7 +6336,7 @@
                 <p class="design-subtitle">一体铸铝横梁</p>
                 <h3 class="design-heading">横梁 “硬” 实力，“纹丝不动”稳得住</h3>
                 <p class="design-desc">
-                  双水冷回路，自动对焦，镜片防护全新升级，IP65级防尘
+                  铸铝结构应力分布更均匀，抗疲劳性强，跑再快都不‘飘’
                 </p>
               </div>
             </div>

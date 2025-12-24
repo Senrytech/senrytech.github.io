@@ -128,7 +128,7 @@
       .navbar {
         position: sticky; /* 滚动时固定在顶部，不随页面滚动消失 */
         top: 0;
-        height: 45px; /* 窄版导航固定高度，匹配设计风格 */
+        height: 2.8rem; /* 窄版导航固定高度，匹配设计风格 */
         background-color: #f5f5f7; /* 初始深灰色背景，与品牌色调统一 */
         color: #000000; /* 导航文字默认浅白色，提升对比度 */
         z-index: 1000; /* 确保导航层级最高，不被其他元素遮挡 */
@@ -143,7 +143,7 @@
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
       .navbar .logo {
-        font-weight: 600; /* 字体中等粗细，避免过粗显笨重 */
+        font-weight: 500; /* 字体中等粗细，避免过粗显笨重 */
         font-size: 1rem; /* LOGO字号略大，突出品牌标识 */
       }
 
@@ -209,7 +209,7 @@
       /* —— 2.7 下拉菜单容器样式（桌面端，默认隐藏，hover展开） —— */
       .dropdown-menu {
         position: fixed; /* 固定定位：避免随导航滚动偏移，宽度占满屏幕 */
-        top: 45px; /* 紧贴导航栏底部（导航栏高度45px），无间隙 */
+        top: 2.8rem; /* 紧贴导航栏底部（导航栏高度45px），无间隙 */
         left: 0;
         right: 0;
         width: 100%;
@@ -1111,8 +1111,8 @@
 
       /* 标题样式：突出视觉焦点 + 神通妙彩渐变色 */
       .banner-text h1 {
-        font-size: 3.8rem; /* 基础字号（基于全局html font-size） */
-        margin-bottom: 1.25rem; /* 与描述文字间距，保持布局呼吸感 */
+        font-size: 3.5rem; /* 基础字号（基于全局html font-size） */
+        margin-bottom: 1.5rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
         /* 神通妙彩渐变：浅紫 → 浅绿 */
         background-image: linear-gradient(to right, #3d0563, #78ff6c);
@@ -1129,8 +1129,8 @@
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
       .banner-text p {
-        font-size: 1.1rem;
-        margin-bottom: 0.625rem;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
         line-height: 1.4;
         /* 新增：确保Banner文字换行 */
         white-space: normal;
@@ -1636,22 +1636,26 @@
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        background-color: linear-gradient(
-          90deg,
-          #fafdff 0%,
-          #e3f0ff 100%
-        ); /* 与导航栏/产品板块配色统一 */
-        width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
-        position: relative; /* 作为滚动箭头的定位父容器 */
-        overflow: visible; /* 确保箭头不被容器裁剪 */
+        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
 
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .benefit-container {
         max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
         margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
         box-sizing: border-box;
       }
 
@@ -1662,17 +1666,18 @@
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        margin-bottom: 1rem; /* 16px基准：48px，与下方内容间距 */
+        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
       }
 
       /* 副标题外层容器：控制与主标题、卡片的间距 */
       .benefit-subtitle-wrap {
-        margin: 1rem 0 3rem; /* 上距主标题1rem、下距卡片3rem，与切割有道板块间距对齐 */
+        margin: 0 0 3rem 2rem; /* 上 右 下 左， */
       }
 
-      /* 副标题文字：与切割有道板块描述文字样式统一（三色渐变：绿→黄→红） */
+      /* 副标题文字：（三色渐变：绿→黄→红） */
       .benefit-subtitle-text {
         /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
         background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
@@ -1693,7 +1698,7 @@
         position: relative; /* 作为卡片容器的定位父容器 */
         overflow: visible; /* 允许箭头超出容器范围 */
         overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        padding: 2rem 2rem 2rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
@@ -2159,25 +2164,27 @@
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .design-section {
-        background-color: linear-gradient(
-          90deg,
-          #fafdff 0%,
-          #e3f0ff 100%
-        ); /* 与导航栏/产品板块配色统一 */
-        width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
-        position: relative; /* 作为滚动箭头的定位父容器 */
-        overflow: visible; /* 确保箭头不被容器裁剪 */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
 
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .design-container {
         max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
         margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
         box-sizing: border-box;
       }
-
       /* —— 5.3 板块主标题：强化视觉焦点 —— */
       .design-main-title {
         font-family:
@@ -2185,14 +2192,15 @@
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        margin-bottom: 1rem; /* 16px基准：48px，与下方内容间距 */
+        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
       }
 
       /* 副标题外层容器：控制与主标题、卡片的间距 */
       .design-subtitle-wrap {
-        margin: 1rem 0 3rem; /* 上距主标题1rem、下距卡片3rem， */
+        margin: 0 0 3rem 2rem; /* 上 右 下 左， */
       }
 
       /* 副标题文字：（三色渐变：绿→黄→红） */
@@ -2216,7 +2224,7 @@
         position: relative; /* 作为卡片容器的定位父容器 */
         overflow: visible; /* 允许箭头超出容器范围 */
         overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding-bottom: 2.5rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
+        padding: 2rem 2rem 2rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
@@ -2681,7 +2689,14 @@
       /* 第六个板块样式（延续原设计风格） */
       .specs-section {
         padding: 3rem 0;
-        background-color: #ffffff;
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
         height: 20rem;
         margin: 5% auto 0 15%;
         padding: 0 1.25rem;
@@ -2977,17 +2992,25 @@
     <style>
       /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
       .section-chart {
-        padding: 10rem 0 7.5rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
-        background-color: var(
-          --color-neutral
-        ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
-        width: 100%; /* 确保外层占满屏幕宽度，避免左右留白 */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
       .section-container {
-        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
+        max-width: 100rem;
         margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-        padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
         box-sizing: border-box;
+        padding: 0;
       }
 
       /* 3. 板块标题区域（无需修改，基于内层容器对齐） */
@@ -2995,14 +3018,11 @@
         color: #000;
         font-size: 3.5rem;
         font-weight: 500;
-        letter-spacing: -0.02em;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1rem;
+        margin-bottom: 0rem;
         font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        /* 清除可能的额外缩进，确保标题靠左对齐容器 */
         text-align: left;
         padding: 0;
-        margin-left: 0;
+        margin-left: 2rem;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
@@ -3022,25 +3042,30 @@
         color: #ff5100;
       }
 
-      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
-      .chart-desc {
-        color: rgba(0, 0, 0, 0.8);
-        font-size: clamp(1rem, 2vw, 1.125rem);
-        text-align: left; /* 确保描述文字靠左对齐 */
-        margin-left: 0;
+      .chart-grid {
+        margin: 0 0 3rem 2rem;
       }
 
-      /* 描述文字分隔线（无需修改，基于内层容器对齐） */
-      .chart-desc-divider {
-        width: 4rem;
-        height: 0.125rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        margin-left: 0; /* 确保分隔线靠左对齐 */
+      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
+      .chart-desc {
+        /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
+        background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
+        -webkit-background-clip: text; /* 兼容webkit内核（Safari/Chrome） */
+        background-clip: text; /* 标准语法：将背景裁剪为文字形状 */
+        color: transparent; /* 文字透明，让渐变背景透出 */
+        -webkit-text-fill-color: transparent; /* 兼容Safari，防止文字颜色覆盖 */
+
+        /* 保留原有基础样式，确保与其他板块风格统一 */
+        font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
+        text-align: left; /* 左对齐，契合板块布局 */
+        margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
+        line-height: 1.4; /* 优化文字可读性，避免拥挤 */
+        margin: 0 0 3rem 2rem;
       }
 
       /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
       .chart-card {
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: #f5f5f7;
         backdrop-filter: blur(12px);
         border-radius: 1.5rem;
         overflow: hidden;
@@ -3299,41 +3324,15 @@
 
       /* 6. Laptop L + 2K屏（1025px~2559px）：设计基准区间，保留3列布局 */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 外层容器：恢复15%偏左布局，匹配设计基准 */
-        .section-container {
-          margin: 0 auto 0 15%;
-          padding: 0 1.25rem;
-          max-width: 100rem; /* 保持1600px最大宽度 */
-        }
+      }
 
-        /* 图表卡片：3列布局核心样式 */
+      /* 2K屏（1920px+）优化：增加卡片间距，避免内容过密 */
+      @media (min-width: 1920px) {
         .chart-card-wrapper {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr); /* 3列均分 */
-          gap: 1.75rem; /* 卡片间距28px，平衡美观与紧凑 */
-          margin-top: 2.5rem;
+          gap: 2rem; /* 间距从28px→32px */
         }
-
-        /* 图表卡片：3列适配 */
-        .chart-card {
-          margin: 0;
-          width: 100%;
-        }
-
-        /* 图表容器：3列布局的标准高度 */
         .chart-container {
-          height: 300px; /* 适配3列宽度，确保数据展示完整 */
-          padding: 1.5rem; /* 内边距24px，提升精致感 */
-        }
-
-        /* 2K屏（1920px+）优化：增加卡片间距，避免内容过密 */
-        @media (min-width: 1920px) {
-          .chart-card-wrapper {
-            gap: 2rem; /* 间距从28px→32px */
-          }
-          .chart-container {
-            height: 320px; /* 增加高度，适配2K屏视觉 */
-          }
+          height: 320px; /* 增加高度，适配2K屏视觉 */
         }
       }
 
@@ -3348,16 +3347,24 @@
       }
     </style>
 
-    <!--八，CSS 视频展示-->
+    <!--八，CSS 产品演示视频-->
     <style>
       /* —— 8.1 板块外层容器：控制整体间距与背景，与其他板块视觉衔接 —— */
       .section-8 {
-        /* 上下间距：与前后板块保持统一节奏（参考优势板块的padding，16px基准下为64px/96px） */
-        padding: 5rem 0 7.5rem;
-        /* 背景色：延续页面浅灰基调，避免与其他板块产生视觉割裂 */
-        background-color: #ffffff;
+        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
         width: 100%;
-        box-sizing: border-box; /* 确保padding不影响整体宽度 */
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
 
       /* —— 8.2 内容容器：控制板块内部宽度，确保居中与适配 —— */
@@ -3412,7 +3419,7 @@
         display: block; /* 块级显示，确保占据完整宽度 */
       }
 
-      /* —— 8.7 视频展示 —— */
+      /* —— 8.7 产品演示视频 —— */
 
       /* 1. Mobile S（≤320px）：极致紧凑，单列布局 */
       @media (max-width: 320px) {
@@ -3435,6 +3442,7 @@
           padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
         }
         .section-8 .section-title {
+          font-size: 2rem;
           margin-bottom: 2rem; /* 缩小标题与视频的间距 */
         }
         .section-8 .video-container {
@@ -3449,6 +3457,7 @@
           padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
         }
         .section-8 .section-title {
+          font-size: 2rem;
           margin-bottom: 2rem; /* 缩小标题与视频的间距 */
         }
         .section-8 .video-container {
@@ -3463,6 +3472,7 @@
           padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
         }
         .section-8 .section-title {
+          font-size: 2rem;
           margin-bottom: 2rem; /* 缩小标题与视频的间距 */
         }
         .section-8 .video-container {
@@ -3477,6 +3487,7 @@
           padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
         }
         .section-8 .section-title {
+          font-size: 2rem;
           margin-bottom: 2rem; /* 缩小标题与视频的间距 */
         }
         .section-8 .video-container {
@@ -3499,10 +3510,20 @@
     <style>
       /* —— 9.1 技术参数板块外层容器：控制背景、内边距与锚点定位 —— */
       .tech-specs-section {
-        background-color: #ffffff; /* 统一浅灰背景，与整体风格匹配 */
-        padding: 4rem 0 6rem; /* 上下内边距（1rem=16px基准，6rem=96px），替代内联py-24 */
+        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
         width: 100%;
-        box-sizing: border-box;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
 
       /* —— 9.2 内容容器：控制宽度、居中与响应式内边距 —— */
@@ -3628,10 +3649,9 @@
 
         /* 板块标题：缩小字号+调整左右边距，避免贴边 */
         .tech-specs-title {
-          font-size: 1.8rem; /* 原3.5rem → 21.6px，适配小屏视觉层级 */
+          font-size: 2rem; /* 原3.5rem → 21.6px，适配小屏视觉层级 */
           margin: 0 5%; /* 原15% → 5%，增加左右留白 */
           margin-bottom: 1.5rem; /* 原2.5rem → 18px，缩小与表格间距 */
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); /* 弱化阴影，适配小屏精致感 */
         }
 
         /* 表格包裹层：添加横向滚动+缩小圆角/阴影，适配小屏 */
@@ -3916,15 +3936,26 @@
     <style>
       /* —— 10.1 板块外层容器：控制背景与全局内边距 —— */
       .evaluation-section {
-        background-color: #ffffff; /* 白色背景，与其他板块形成视觉区分 */
-        padding: 5rem 0; /* 上下内边距（基于1rem=16px基准，10rem=160px），确保板块上下留白充足 */
-        width: 100%; /* 占满屏幕宽度，避免左右留白 */
-        box-sizing: border-box; /* 统一盒模型，防止内边距影响宽度 */
+        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+        height: auto;
       }
 
       /* —— 10.2 板块内层容器：限制内容宽度+左右响应式留白 —— */
       .evaluation-container {
-        max-width: 120rem; /* 最大宽度（120rem=1920px），避免超宽屏幕内容过散 */
+        max-width: 100rem; /* 最大宽度（120rem=1920px），避免超宽屏幕内容过散 */
+        height: 40rem;
         margin: 0 auto; /* 水平居中 */
         padding: 0 1.25rem; /* 左右内边距（20px），适配小屏幕避免内容贴边 */
       }
@@ -4034,6 +4065,9 @@
         .evaluation-section {
           padding: 6rem 0; /* 原10rem→6rem（72px），适配小屏垂直空间 */
         }
+        .evaluation-container {
+          height: 60rem;
+        }
 
         /* 标题：缩小字号与底部间距，避免遮挡内容 */
         .evaluation-title {
@@ -4092,9 +4126,13 @@
           padding: 7rem 0; /* 原10rem→7rem（98px），平衡留白与内容 */
         }
 
+        .evaluation-container {
+          height: 65rem;
+        }
+
         /* 标题：微调字号与间距 */
         .evaluation-title {
-          font-size: clamp(1.6rem, 5vw, 2.2rem); /* 1.6rem起步（22.4px） */
+          font-size: 2rem;
           margin-bottom: 3rem; /* 原4rem→3rem（42px） */
         }
 
@@ -4337,11 +4375,18 @@
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .other-section {
-        background-color: #ffffff; /* 与导航栏/产品板块配色统一 */
-        width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 0rem 0 6rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
-        position: relative; /* 作为滚动箭头的定位父容器 */
-        overflow: visible; /* 确保箭头不被容器裁剪 */
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 10rem;
+        position: relative;
+        overflow: visible;
       }
 
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
@@ -4871,15 +4916,18 @@
     <style>
       /* —— 十二， 联系专家 —— */
       #contact {
-        /* 复用全局背景逻辑，与其他板块视觉统一 */
-        background-color: var(
-          --primary-5,
-          #f5f5f7
-        ); /* 若定义了CSS变量，优先使用；无则替换为原bg-primary/5对应色值 */
-        padding-top: 4rem; /* 16px基准：64px，适配桌面端上下留白 */
-        padding-bottom: 4rem;
+        background: radial-gradient(
+          ellipse at center,
+          /* 渐变形状：椭圆，以容器中心为原点 */ #ffffff 100%,
+          /* 容器中心：最深的浅灰色（原终点色） */ #f8f8f8 30%,
+          /* 向四周扩散：中间过渡色1 */ #fafafa 70%,
+          /* 继续扩散：中间过渡色2 */ #ffffff 100%
+            /* 容器边缘：最浅的白色（原起点色） */
+        );
+        width: 100%;
+        padding: 5rem 0 10rem;
         position: relative;
-        overflow: hidden;
+        overflow: visible;
       }
 
       /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
@@ -6210,7 +6258,7 @@
       <div class="benefit-container">
         <!-- 板块主题文字（新增副标题容器） -->
         <h2 class="benefit-main-title">先刷重点</h2>
-        <!-- 新增：副标题容器（与切割有道板块结构一致） -->
+        <!-- 新增：副标题容器 -->
         <div class="benefit-subtitle-wrap">
           <p class="benefit-subtitle-text">性能与成本双向平衡</p>
           <div class="benefit-subtitle-divider"></div>
@@ -6279,7 +6327,7 @@
       <div class="design-container">
         <!-- 板块主题文字（新增副标题容器） -->
         <h2 class="design-main-title">设计工艺</h2>
-        <!-- 新增：副标题容器（与切割有道板块结构一致） -->
+        <!-- 新增：副标题容器 -->
         <div class="design-subtitle-wrap">
           <p class="design-subtitle-text">外在与内在长期靠谱</p>
           <div class="design-subtitle-divider"></div>
@@ -6384,20 +6432,18 @@
     </section>
 
     <!-- 七，代码 切割有道 -->
-    <section class="section-chart">
+    <section class="section-chart" style="position: relative">
       <div class="section-container">
         <!-- 板块标题区域 -->
-        <div class="chart-header text-center mb-12">
+        <div class="chart-header">
           <h2 class="chart-title">
-            切割有 <span class="chart-title-symbol text-secondary mx-1">┌</span>
+            切割有 <span class="chart-title-symbol">┌</span>
             <span class="chart-title-core">道</span>
-            <span class="chart-title-symbol text-secondary mx-1">┘</span>
+            <span class="chart-title-symbol">┘</span>
           </h2>
           <p class="chart-desc">
             杜绝虚假宣传
-            <span
-              class="chart-desc-divider inline-block ml-3 vertical-align-middle"
-            ></span>
+            <span class="chart-desc-divide"></span>
           </p>
         </div>
 
@@ -6448,7 +6494,7 @@
       </div>
     </section>
 
-    <!-- 八，代码 视频展示 -->
+    <!-- 八，代码 产品演示视频 -->
     <section class="section-8">
       <div class="container">
         <!-- 板块标题 -->

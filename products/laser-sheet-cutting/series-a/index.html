@@ -33,6 +33,17 @@
       defer
     ></script>
 
+    <!-- 引入 EmailJS 官方库（放在 HTML 的 <head> 标签内，其他 CSS/JS 引入之后） -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"
+    ></script>
+    <!-- 初始化 EmailJS（替换成你的 EmailJS 公钥） -->
+    <script type="text/javascript">
+      // 1. 初始化 EmailJS：替换成你在 EmailJS 后台获取的「公钥」（Account -> API Keys -> Public Key）
+      emailjs.init("w9wGWxQMCWP7H0YhL");
+    </script>
+
     <!-- 一、CSS 全局基础样式 -->
     <style>
       /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
@@ -4852,7 +4863,7 @@
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
         margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
-        text-align: left; /* 左对齐，符合阅读习惯 */
+        text-align: center; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
       }
@@ -6827,121 +6838,87 @@
       <button class="other-nav-btn next-btn" id="otherNextBtn">&gt;</button>
     </div>
 
-    <!--  十二，代码，联系咨询-->
+    <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-12">
             <h2
-              class="text-black text-center text-[clamp(2rem,5vw,3.5rem)] /* 调整响应式区间，小屏不拥挤、大屏不夸张（原3xl→6xl跨度过大） */ font-normal /* 从font-light改为font-normal，避免过细导致的阅读模糊，保留轻盈感 */ tracking-tight text-shadow-lg mb-4 /* 新增间距，避免与副标题过于紧凑 */ font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+              class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
               联系专家
             </h2>
             <p
-              class="text-[#1d1d1f]/80 /* 颜色透明度：替换原#86868b，与“杜绝虚假宣传”副标题#1d1d1f/80完全一致 */ text-[clamp(1rem,2vw,1.125rem)] /* 字号区间：与“杜绝虚假宣传”副标题（1rem-1.125rem）比例协调 */ max-w-2xl mx-auto /* 宽度限制：与“杜绝虚假宣传”副标题一致，优化阅读体验 */ font-light /* 字重：替换原normal，与“杜绝虚假宣传”副标题font-light统一，增强细腻感 */ leading-relaxed /* 行高：与“杜绝虚假宣传”副标题行高同步，适配长文本阅读 */ mt-2 /* 间距：与主标题紧凑度匹配“切割有道”标题组逻辑 */ /* 字体族：优先SF Pro Text，与“杜绝虚假宣传”副标题字体族完全对齐 */ font-apple"
+              class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2"
             >
-              填写下方表单，我们的专业顾问将在24小时内与您联系，为您提供详细资料和定制化解决方案
+              填写下方表单，我们的专业顾问将在24小时内与您联系
             </p>
           </div>
+
           <div class="bg-white p-8 rounded-xl shadow-md">
-            <!--原表单标签修改：添加id、onsubmit事件，移除action-->
+            <!-- 1. form标签必须有闭合 -->
             <form
               id="laserForm"
-              method="POST"
               name="laser-consult"
-              onsubmit="sendEmail(event)"
+              onsubmit="sendEmail(event); return false;"
             >
-              <!--原有隐藏字段删除（Netlify的<inpu type="hidden" name="form-name" ...>）-->
-              <!--以下字段完全保留原样式，无需修改-->
+              <!-- 姓名/公司输入框 -->
               <div class="mb-6">
-                <label class="block text-gray-700 mb-2" for="name">姓名</label>
+                <label for="name" class="block text-gray-700 mb-2"
+                  >姓名或者公司？</label
+                >
                 <input
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
+                  type="text"
                   id="name"
-                  name="name"
-                  placeholder="请输入您的姓名"
+                  name="sender_name"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  placeholder="请输入姓名或公司名称"
                   required
+                />
+              </div>
+
+              <!-- 联系电话/邮箱输入框 -->
+              <div class="mb-6">
+                <label for="contact" class="block text-gray-700 mb-2"
+                  >联系电话或者邮件？</label
+                >
+                <input
                   type="text"
-                />
-              </div>
-              <div class="mb-6">
-                <label class="block text-gray-700 mb-2" for="company"
-                  >公司名称</label
-                >
-                <input
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                  id="company"
-                  name="company"
-                  placeholder="请输入公司名称"
+                  id="contact"
+                  name="sender_contact"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md"
+                  placeholder="请输入电话或邮箱"
                   required
-                  type="text"
                 />
               </div>
+
+              <!-- 留言框 -->
               <div class="mb-6">
-                <label class="block text-gray-700 mb-2" for="phone"
-                  >联系电话</label
-                >
-                <input
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                  id="phone"
-                  name="phone"
-                  placeholder="请输入联系电话"
-                  required
-                  type="tel"
-                />
-              </div>
-              <div class="mb-6">
-                <label class="block text-gray-700 mb-2" for="email"
-                  >电子邮箱</label
-                >
-                <input
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                  id="email"
-                  name="email"
-                  placeholder="请输入电子邮箱"
-                  type="email"
-                />
-              </div>
-              <div class="mb-6 md:col-span-2">
-                <label class="block text-gray-700 mb-2" for="interest"
-                  >感兴趣的型号</label
-                >
-                <select
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
-                  id="interest"
-                  name="interest"
-                >
-                  <option value>请选择型号</option>
-                  <option value="A15">A1500 (1500W)</option>
-                  <option value="A20">A2000 (2000W)</option>
-                  <option value="A30">A3000 (3000W)</option>
-                  <option value="other">其他需求</option>
-                </select>
-              </div>
-              <div class="mb-6 md:col-span-2">
-                <label class="block text-gray-700 mb-2" for="message"
+                <label for="message" class="block text-gray-700 mb-2"
                   >留言</label
                 >
                 <textarea
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
                   id="message"
-                  name="message"
-                  placeholder="请输入您的需求或疑问"
+                  name="sender_message"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md"
                   rows="4"
+                  placeholder="请输入需求"
                 ></textarea>
               </div>
-              <div class="md:col-span-2">
-                <!--可选：添加提交状态提示（默认隐藏）-->
-                <div class="hidden mb-4 text-center" id="submitTip"></div>
+
+              <!-- 提交区域 -->
+              <div>
+                <div id="submitTip" class="mb-4 text-center"></div>
                 <button
-                  class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
                   type="submit"
+                  id="submitBtn"
+                  class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-md"
                 >
                   提交咨询
                 </button>
               </div>
             </form>
-            <!--注意：移除原代码中多余的</script>标签（原Formspree残留，Netlify无需此标签）-->
+            <!-- 关键：闭合form标签 -->
           </div>
         </div>
       </div>
@@ -7759,6 +7736,41 @@
         initItemWidth();
         updateBtnState();
       });
+    </script>
+
+    <script type="text/javascript">
+      /* ================================== JS 联系专家 ================================== */
+      function sendEmail(event) {
+        const submitBtn = document.getElementById("submitBtn");
+        const submitTip = document.getElementById("submitTip");
+        submitBtn.disabled = true;
+        submitBtn.innerText = "提交中...";
+        submitTip.innerHTML = "";
+
+        // 替换成你EmailJS后台的 服务ID、模板ID
+        emailjs
+          .send("service_waa3l9d", "template_zvfvl5p", {
+            sender_name: document.getElementById("name").value,
+            sender_contact: document.getElementById("contact").value,
+            sender_message: document.getElementById("message").value,
+          })
+          .then(
+            function () {
+              submitTip.innerHTML =
+                '<span style="color: green;">✅ 提交成功！</span>';
+              document.getElementById("laserForm").reset();
+              submitBtn.disabled = false;
+              submitBtn.innerText = "提交咨询";
+            },
+            function (error) {
+              submitTip.innerHTML =
+                '<span style="color: red;">❌ 提交失败，请重试</span>';
+              submitBtn.disabled = false;
+              submitBtn.innerText = "重新提交";
+              console.error("错误：", error);
+            }
+          );
+      }
     </script>
   </body>
 </html>

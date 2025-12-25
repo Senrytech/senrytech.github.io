@@ -2604,7 +2604,7 @@
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      /* 6. Laptop L + 2K屏：html基准16px | 核心：设计基准区间，无需调整 */
       @media (min-width: 1025px) and (max-width: 1440px) {
         .design-nav-btn.prev-btn {
           left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
@@ -2729,8 +2729,9 @@
       @media (min-width: 321px) and (max-width: 375px) {
         .specs-section {
           /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
-          margin: 0 auto;
-          height: 35rem;
+          margin: 0 1rem 0;
+          padding: 6rem 0 6rem;
+          height: auto;
         }
         .specs-container {
           /* 核心：改为1列布局 */
@@ -3338,7 +3339,7 @@
       /* 1. Mobile S（≤320px）：极致紧凑，单列布局 */
       @media (max-width: 320px) {
         .section-8 {
-          padding: 0rem 0 6rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 3rem 0 3rem; /* 减少上下间距，避免小屏内容过长 */
         }
         .section-8 .section-title {
           margin-bottom: 2rem; /* 缩小标题与视频的间距 */
@@ -3408,11 +3409,6 @@
           border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
           box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
         }
-      }
-
-      /* 6. Laptop L + 2K屏（1025px~2559px）：设计基准区间，保留3列布局 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用3列布局，保持大屏视觉统一 */
       }
 
       /* 7. 4K屏（≥2560px）：超高清屏，放大元素避免视觉过小 */
@@ -3559,7 +3555,7 @@
       @media (max-width: 320px) {
         /* 外层容器：缩小上下内边距，适配小屏垂直空间 */
         .tech-specs-section {
-          padding: 0rem 0 0rem; /* 原4rem/6rem → 30px/48px，减少冗余空间 */
+          padding: 3rem 0 6rem; /* 原4rem/6rem → 30px/48px，减少冗余空间 */
         }
 
         /* 板块标题：缩小字号+调整左右边距，避免贴边 */
@@ -3624,7 +3620,7 @@
       @media (min-width: 321px) and (max-width: 375px) {
         /* 外层容器：适度缩小内边距 */
         .tech-specs-section {
-          padding: 3rem 0 4.5rem; /* 原4rem/6rem → 42px/63px */
+          padding: 3rem 0 3rem; /* 原4rem/6rem → 42px/63px */
         }
 
         /* 板块标题：调整字号与边距 */
@@ -3719,7 +3715,7 @@
 
         /* 板块标题：适配平板视觉层级 */
         .tech-specs-title {
-          font-size: 2.8rem; /* 原3.5rem → 44.8px */
+          font-size: 2rem; /* 原3.5rem → 44.8px */
           margin: 0 12%; /* 原15% → 12% */
           margin-bottom: 2.2rem; /* 原2.5rem → 35.2px */
         }
@@ -3764,14 +3760,14 @@
 
         /* 板块标题：适配笔记本屏幕层级 */
         .tech-specs-title {
-          font-size: 3.2rem; /* 原3.5rem → 51.2px，略缩小避免过宽 */
+          font-size: 2rem; /* 原3.5rem → 51.2px，略缩小避免过宽 */
           margin: 0 15%; /* 与基础样式一致 */
           margin-bottom: 2.5rem; /* 与基础样式一致 */
         }
 
         /* 表格包裹层：取消横向滚动（笔记本屏幕足够显示） */
         .tech-specs-table-wrap {
-          max-width: 75%; /* 原70rem → 75%屏幕宽，适配笔记本宽度 */
+          max-width: 88%; /* 原70rem → 75%屏幕宽，适配笔记本宽度 */
           overflow-x: visible; /* 取消滚动，完整显示表格 */
         }
 
@@ -3814,14 +3810,6 @@
         /* 外层容器：增加内边距，适配4K屏垂直空间 */
         .tech-specs-section {
           padding: 5rem 0 7rem; /* 原4rem/6rem → 80px/112px，增加冗余空间 */
-        }
-
-        /* 板块标题：放大字号，强化视觉焦点 */
-        .tech-specs-title {
-          font-size: 4rem; /* 原3.5rem → 64px，适配4K屏层级 */
-          margin: 0 20%; /* 原15% → 20%，增加左右留白，避免内容过宽 */
-          margin-bottom: 3rem; /* 原2.5rem → 48px，扩大与表格间距 */
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12); /* 增强阴影，适配4K屏视觉 */
         }
 
         /* 表格包裹层：放大尺寸，适配4K屏 */
@@ -3989,7 +3977,7 @@
       @media (max-width: 320px) {
         /* 外层容器：减少上下内边距，避免小屏留白过多 */
         .evaluation-section {
-          padding: 6rem 0; /* 原10rem→6rem（72px），适配小屏垂直空间 */
+          padding: 3rem 0 6rem; /* 原10rem→6rem（72px），适配小屏垂直空间 */
         }
         .evaluation-container {
           height: 60rem;
@@ -4049,7 +4037,7 @@
       @media (min-width: 321px) and (max-width: 375px) {
         /* 外层容器：适度减少上下内边距 */
         .evaluation-section {
-          padding: 7rem 0; /* 原10rem→7rem（98px），平衡留白与内容 */
+          padding: 3rem 0; /* 原10rem→7rem（98px），平衡留白与内容 */
         }
 
         .evaluation-container {
@@ -4157,25 +4145,24 @@
       @media (min-width: 426px) and (max-width: 768px) {
         /* 外层容器：复用基础内边距，平板空间充足 */
         .evaluation-section {
-          padding: 9rem 0; /* 原10rem→9rem（144px），略减留白 */
+          padding: 3rem 0; /* 原10rem→9rem（144px），略减留白 */
         }
 
         /* 标题：微调底部间距 */
         .evaluation-title {
+          font-size: 2rem;
           margin-bottom: 3.5rem; /* 原4rem→3.5rem（56px） */
         }
 
         /* 卡片网格：切换双列布局，居中对齐 */
         .evaluation-grid {
           gap: 3rem; /* 原5rem→3rem（48px），双列间距适配平板 */
-          grid-template-columns: repeat(2, 1fr); /* 双列均分宽度 */
+          grid-template-columns: repeat(1, 1fr); /* 双列均分宽度 */
           justify-items: center; /* 卡片水平居中，避免边缘贴边 */
         }
 
         /* 单个卡片：限制最大宽度，避免双列过宽 */
         .evaluation-card {
-          padding: 3.2rem; /* 原3.75rem→3.2rem（51.2px） */
-          max-width: 28rem; /* 最大宽度448px，确保双列不拥挤 */
           width: 100%; /* 占满网格列宽，适配不同平板尺寸 */
         }
 
@@ -4202,11 +4189,14 @@
         /* 卡片网格：根据屏幕宽度动态切换列数（优先三列，窄笔记本自动双列） */
         .evaluation-grid {
           gap: 3.5rem; /* 原5rem→3.5rem（56px），三列间距适配笔记本 */
-          grid-template-columns: repeat(
-            auto-fill,
-            minmax(22rem, 1fr)
-          ); /* 最小宽度352px，自动分栏 */
+          grid-template-columns: repeat(3, 1fr);
           justify-items: center; /* 卡片居中，避免边缘拥挤 */
+        }
+
+        /* 标题：微调底部间距 */
+        .evaluation-title {
+          font-size: 2rem;
+          margin-bottom: 3.5rem; /* 原4rem→3.5rem（56px） */
         }
 
         /* 单个卡片：限制最大宽度，确保三列均衡 */
@@ -4235,16 +4225,6 @@
         /* 外层容器：增加上下内边距，适配4K屏大空间 */
         .evaluation-section {
           padding: 12rem 0; /* 原10rem→12rem（192px），避免内容贴边 */
-        }
-
-        /* 标题：放大字号，提升视觉权重 */
-        .evaluation-title {
-          font-size: clamp(
-            2.5rem,
-            5vw,
-            4rem
-          ); /* 2.5rem起步（40px），最大4rem（64px） */
-          margin-bottom: 5rem; /* 原4rem→5rem（80px），与放大后的卡片匹配 */
         }
 
         /* 卡片网格：保持三列，放大间距 */
@@ -4513,14 +4493,9 @@
       @media (max-width: 320px) {
         .other-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
-          padding: 0 0.8rem; /* 12px基准：~9.6px，缩小留白 */
         }
         .other-main-title {
           font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
-        }
-        .other-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
         }
         .other-card {
           width: 13rem; /* 12px基准：156px，适配小屏宽度 */
@@ -4565,55 +4540,45 @@
       /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .other-container {
-          margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
-          padding: 0 0.8rem; /* 14px基准：~11.2px，紧凑留白 */
+          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
         }
         .other-main-title {
-          font-size: 2rem; /* 14px基准：28px，避免标题换行 */
-          margin-bottom: 1rem; /* 14px基准：14px，缩小间距 */
-        }
-        .other-intro {
-          margin-bottom: 2rem; /* 14px基准：28px，缩小与卡片区间距 */
+          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
         }
         .other-card {
-          width: 13rem; /* 14px基准：182px，适配小屏宽度 */
+          width: 13rem; /* 12px基准：156px，适配小屏宽度 */
         }
         .other-card img {
-          height: 20rem; /* 14px基准：280px，缩小图片高度 */
-          border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
+          height: 20rem; /* 12px基准：240px，缩小图片高度 */
+          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
           height: 2rem;
-          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置 */
+          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
         }
         .other-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
         }
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
         .other-card .other-subtitle {
-          color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
           font-size: 1rem; /* 16px基准：16px */
           font-weight: 300;
           margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
         }
         /* 卡片内一级标题 */
         .other-card .other-heading {
-          color: #1d1d1f; /* 同上，适配图片背景 */
           font-size: 1.2rem; /* 16px基准：28px */
           font-weight: 350;
           margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
           letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
         /* 卡片内描述文本 */
         .other-card .other-desc {
-          color: #1d1d1f; /* 同上，适配图片背景 */
           font-size: 0.7rem; /* 16px基准：14px */
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -4700,12 +4665,12 @@
           border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 缩小箭头 */
-          height: 2rem;
+          width: 2.5rem; /* 缩小箭头 */
+          height: 2.5rem;
           font-size: 1rem; /* 缩小图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置 */
+          left: calc(80% + 0rem); /* 调整左箭头位置 */
         }
         .other-nav-btn.next-btn {
           right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
@@ -4741,7 +4706,7 @@
       /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .other-container {
-          margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
+          margin: 0 auto 0 0; /* 原15% → 12%，微调左侧margin */
           max-width: 90rem; /* 原100rem → 90rem（15px基准下=1350px），适配1024px屏宽度 */
         }
         .other-main-title {
@@ -4759,12 +4724,12 @@
           border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 缩小箭头 */
-          height: 2rem;
+          width: 2.5rem; /* 缩小箭头 */
+          height: 2.5rem;
           font-size: 1rem; /* 缩小图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置 */
+          left: calc(80% + 0rem); /* 调整左箭头位置 */
         }
         .other-nav-btn.next-btn {
           right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
@@ -4797,18 +4762,19 @@
       }
 
       /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .other-nav-btn.prev-btn {
+          left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+        }
+        .other-nav-btn.next-btn {
+          right: calc(10% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+        }
       }
 
       /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
         .other-container {
           max-width: 120rem; /* 16px基准：1920px，适配4K屏宽度 */
-        }
-        .other-main-title {
-          font-size: 4.5rem; /* 16px基准：72px，增强标题视觉冲击 */
-          margin-bottom: 2rem; /* 16px基准：32px，放大间距适配4K比例 */
         }
         .other-intro {
           margin-bottom: 4rem; /* 16px基准：64px，放大与卡片区间距 */
@@ -5063,7 +5029,7 @@
         border: 1px solid #ffcdd2;
       }
 
-      /* —— 12.7 媒体适配：按屏幕尺寸优化布局 —— */
+      /* —— 12.7 联系专家 - 媒体适配：按屏幕尺寸优化布局 —— */
       /* 1. 大屏桌面（≥1200px）：微调表单宽度，避免过宽 */
       @media (min-width: 1200px) {
         #contact .bg-white {
@@ -5074,8 +5040,7 @@
         }
       }
 
-      /* 2. 平板（768px~1199px）：优化表单内边距与标题字号 */
-      @media (min-width: 768px) and (max-width: 1199px) {
+      @media (min-width: 769px) and (max-width: 1024px) {
         #contact {
           padding-top: 3.5rem;
           padding-bottom: 3.5rem;
@@ -5084,12 +5049,11 @@
           padding: 2.25rem; /* 16px基准：36px，平板减少内边距，适配屏幕 */
         }
         #contact h2 {
-          font-size: clamp(1.5rem, 3vw, 2.25rem); /* 平板缩小标题响应式区间 */
+          font-size: 2rem;
         }
       }
 
-      /* 3. 小屏平板/大屏手机（425px~767px）：优化表单间距与按钮样式 */
-      @media (min-width: 425px) and (max-width: 767px) {
+      @media (min-width: 426px) and (max-width: 768px) {
         #contact {
           padding-top: 3rem;
           padding-bottom: 3rem;
@@ -5104,10 +5068,12 @@
         #contact button[type="submit"] {
           padding: 0.9375rem 1.25rem; /* 16px基准：15px/20px，缩小按钮内边距 */
         }
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+        }
       }
 
-      /* 4. 小屏手机（≤424px）：极致适配，节省垂直空间 */
-      @media (max-width: 424px) {
+      @media (min-width: 376px) and (max-width: 425px) {
         #contact {
           padding-top: 2.5rem;
           padding-bottom: 2.5rem;
@@ -5129,6 +5095,18 @@
         }
         #contact p {
           font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+      }
+
+      @media (min-width: 321px) and (max-width: 375px) {
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+        }
+      }
+
+      @media (max-width: 320px) {
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
         }
       }
     </style>

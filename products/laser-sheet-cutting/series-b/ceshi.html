@@ -15,7 +15,7 @@
       rel="canonical"
       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
     />
-    <title>激光板材切割机A系列 - Senrytech</title>
+    <title>激光板材切割机B系列 - Senrytech</title>
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500&display=swap"
@@ -76,59 +76,51 @@
       /* ================================== 1.5 全局基础样式-REM配置（核心：1rem基准=16px，适配不同屏幕） ================================== */
       /* 说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
 
-      /* 1.5.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
-      /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
       @media (max-width: 320px) {
         html {
-          font-size: 12px; /* 原8.53px→12px：优化小屏文字清晰度，例：24px=2rem */
+          font-size: 14px;
         }
       }
 
-      /* 1.5.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
-      /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
       @media (min-width: 321px) and (max-width: 375px) {
         html {
-          font-size: 14px; /* 原10px→14px：避免小屏元素过小，同时向16px基准过渡 */
+          font-size: 15px;
         }
       }
 
-      /* 1.5.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
-      /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
       @media (min-width: 376px) and (max-width: 425px) {
         html {
-          font-size: 15px; /* 原11.33px→15px：缩小与16px基准的差距，优化大屏手机布局 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
-      /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
       @media (min-width: 426px) and (max-width: 768px) {
         html {
-          font-size: 16px; /* 原14px→16px：平板屏空间足够，直接启用1:16核心基准 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
-      /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
       @media (min-width: 769px) and (max-width: 1024px) {
         html {
-          font-size: 16px; /* 原15px→16px：核心场景严格对齐1:16基准，确保设计还原度 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
-      /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
+      @media (min-width: 1025px) and (max-width: 1440px) {
         html {
-          font-size: 16px; /* 不变：2K屏无需放大基准，16px=1rem可避免布局松散 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
-      /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
-      @media (min-width: 2560px) {
+      @media (min-width: 1441px) and (max-width: 2560px) {
         html {
-          font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
+          font-size: 17px;
+        }
+      }
+
+      @media (min-width: 2561px) {
+        html {
+          font-size: 18px;
         }
       }
     </style>
@@ -1140,13 +1132,13 @@
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
       .banner-text p {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 1.5rem;
         line-height: 1.4;
         /* 新增：确保Banner文字换行 */
         white-space: normal;
         word-break: break-all; /* 解决“3000w--”这类组合的断行问题 */
-        max-width: 59%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
+        max-width: 65%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
         margin-left: auto; /* 配合max-width实现文字水平居中 */
         margin-right: auto;
         font-weight: 400;
@@ -1365,214 +1357,224 @@
         }
       }
 
-      /* ================================== BANNER 媒体适配（按指定8个断点） ================================== */
-      /* 核心适配逻辑：基于1920*1080（1025-1440px断点）为基础，小屏优化竖版比例+紧凑布局，大屏放大元素+优化间距 */
+      /* ================================== BANNER 媒体适配（基于指定基准字体） ================================== */
+      /* 核心逻辑：按各断点基准font-size（14px~18px）调整rem值，确保视觉大小统一且适配屏幕 */
 
-      /* 1. 超小屏手机（0-320px：如早期iPhone SE/极小屏安卓机） */
+      /* 1. 超小屏手机（0-320px：基准font-size=14px） */
       @media (max-width: 320px) {
         .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
           aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
           padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
+          height: 0;
+          width: 100%;
+          overflow: hidden;
         }
         .banner-text {
-          top: 8%; /* 上移避免贴顶 */
-          width: 90%; /* 文字容器占满屏幕，避免溢出 */
+          top: 8%;
+          width: 90%;
           padding: 0 0.8rem;
         }
+        /* 标题：1.5rem=14px×1.5=21px（小屏清晰不换行） */
         .banner-text h1 {
-          font-size: 1.8rem; /* 缩小标题，适配小屏 */
+          font-size: 1.5rem;
           margin-bottom: 0.8rem;
         }
+        /* 描述：0.875rem=14px×0.875=12.25px（适配小屏可读性） */
         .banner-text p {
-          font-size: 0.9rem; /* 缩小描述文字 */
-          max-width: 100%; /* 文字全屏宽度，允许换行 */
+          font-size: 0.875rem;
+          max-width: 100%;
           line-height: 1.3;
         }
+        /* 按钮：0.875rem=14px×0.875=12.25px（点击区域适配小屏） */
         .banner-btn {
-          padding: 0.4rem 0.9rem; /* 缩小按钮内边距 */
-          font-size: 0.85rem;
+          padding: 0.4rem 0.9rem;
+          font-size: 0.875rem;
         }
         .buy-btn {
-          border-width: 0.1rem; /* 减薄边框，适配小按钮 */
+          border-width: 0.1rem;
         }
       }
 
-      /* 2. 小屏手机（321-375px：如iPhone 8/SE 2020） */
+      /* 2. 小屏手机（321-375px：基准font-size=15px） */
       @media (min-width: 321px) and (max-width: 375px) {
         .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
           aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
           padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
+          height: 0;
+          width: 100%;
+          overflow: hidden;
         }
         .banner-text {
           top: 9%;
           width: 85%;
           padding: 0 0.8rem;
         }
+        /* 标题：1.75rem=15px×1.75=26.25px（比超小屏略大，适配375px宽度） */
         .banner-text h1 {
-          font-size: 2rem;
+          font-size: 1.75rem;
           margin-bottom: 0.9rem;
         }
+        /* 描述：0.875rem=15px×0.875=13.125px（保持与标题比例，提升可读性） */
         .banner-text p {
-          font-size: 0.95rem;
+          font-size: 0.875rem;
           max-width: 100%;
         }
+        /* 按钮：0.9rem=15px×0.9=13.5px（按钮文字与描述文字协调） */
         .banner-btn {
           padding: 0.45rem 1rem;
           font-size: 0.9rem;
         }
       }
 
-      /* 3. 大屏手机（376-425px：如iPhone 12/13 mini、安卓旗舰小屏） */
+      /* 3. 大屏手机（376-425px：基准font-size=16px） */
       @media (min-width: 376px) and (max-width: 425px) {
         .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
           aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
           padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
+          height: 0;
+          width: 100%;
+          overflow: hidden;
         }
         .banner-text {
           top: 10%;
           width: 80%;
         }
+        /* 标题：2.2rem=16px×2.2=35.2px（425px屏视觉突出，不换行） */
         .banner-text h1 {
           font-size: 2.2rem;
           margin-bottom: 1rem;
         }
+        /* 描述：1rem=16px×1=16px（主流手机阅读舒适尺寸） */
         .banner-text p {
           font-size: 1rem;
           max-width: 95%;
         }
+        /* 按钮：0.95rem=16px×0.95=15.2px（按钮文字略小于描述，层级清晰） */
         .banner-btn {
           padding: 0.5rem 1.1rem;
           font-size: 0.95rem;
         }
       }
 
-      /* 4. 平板/折叠屏（426-768px：如iPad mini、iPad Air、折叠屏展开） */
+      /* 4. 平板/折叠屏（426-768px：基准font-size=16px） */
       @media (min-width: 426px) and (max-width: 768px) {
         .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
           aspect-ratio: 3 / 4;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
           padding-top: 133.33%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
+          height: 0;
+          width: 100%;
+          overflow: hidden;
         }
         .banner-text {
           top: 12%;
           width: 70%;
         }
+        /* 标题：2.8rem=16px×2.8=44.8px（平板宽度充足，标题视觉占比合理） */
         .banner-text h1 {
           font-size: 2.8rem;
           margin-bottom: 1.2rem;
         }
+        /* 描述：1.1rem=16px×1.1=17.6px（平板阅读距离略远，文字适度放大） */
         .banner-text p {
           font-size: 1.1rem;
           max-width: 90%;
           line-height: 1.4;
         }
+        /* 按钮：1.05rem=16px×1.05=16.8px（按钮文字与描述文字比例协调，点击区域足够） */
         .banner-btn {
           padding: 0.6rem 1.3rem;
           font-size: 1.05rem;
         }
       }
 
-      /* 5. 笔记本小屏（769-1024px：如13寸MacBook、14寸Windows本） */
+      /* 5. 笔记本小屏（769-1024px：基准font-size=16px） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .banner-carousel {
-          /* 接近基础比例：16:9（略调整为16:8.5，适配笔记本屏高） */
           aspect-ratio: 4 / 3;
-          padding-top: 75%; /* 8.5/16×100% */
+          padding-top: 75%;
         }
         .banner-text {
           top: 11%;
           width: 65%;
         }
+        /* 标题：3.2rem=16px×3.2=51.2px（13寸笔记本屏，标题突出且不压占内容） */
         .banner-text h1 {
           font-size: 3.2rem;
           margin-bottom: 1.3rem;
         }
+        /* 描述：1.2rem=16px×1.2=19.2px（笔记本阅读舒适，与标题层级分明） */
         .banner-text p {
           font-size: 1.2rem;
           max-width: 85%;
         }
+        /* 按钮：1.1rem=16px×1.1=17.6px（按钮文字清晰，适配鼠标点击习惯） */
         .banner-btn {
           padding: 0.65rem 1.4rem;
           font-size: 1.1rem;
         }
       }
 
-      /* 6. 基础设计屏（1025-1440px：1920*1080、1440p屏，原设计基准） */
+      /* 6. 基础设计屏（1025-1440px：基准font-size=16px） */
       @media (min-width: 1025px) and (max-width: 1440px) {
         .banner-carousel {
-          /* 接近基础比例：16:9（略调整为16:8.5，适配笔记本屏高） */
           aspect-ratio: 16 / 9;
-          padding-top: 56.25%; /* 8.5/16×100% */
+          padding-top: 56.25%;
         }
         .banner-text {
-          top: 15%; /* 原设计位置，视觉居中偏上 */
+          top: 15%;
           width: 55%;
         }
+        /* 标题：3.8rem=16px×3.8=60.8px（1920×1080屏，标题视觉焦点明确） */
         .banner-text h1 {
-          font-size: 3.8rem; /* 原设计字号，突出标题 */
+          font-size: 3.8rem;
           margin-bottom: 1.5rem;
         }
+        /* 描述：1.3rem=16px×1.3=20.8px（桌面端阅读距离适中，文字大小舒适） */
         .banner-text p {
           font-size: 1.3rem;
           max-width: 80%;
           line-height: 1.5;
         }
+        /* 按钮：1.15rem=16px×1.15=18.4px（按钮文字与描述文字区分，点击区域合理） */
         .banner-btn {
           padding: 0.7rem 1.6rem;
           font-size: 1.15rem;
         }
       }
 
-      /* 7. 大屏/2K屏（1441-2560px：2K显示器、15.6寸游戏本、32寸2K屏） */
+      /* 7. 大屏/2K屏（1441-2560px：基准font-size=17px） */
       @media (min-width: 1441px) and (max-width: 2560px) {
       }
 
-      /* 8. 超高清屏（2561px及以上：4K显示器、5K iMac、超宽屏） */
+      /* 8. 超高清屏（2561px及以上：基准font-size=18px） */
       @media (min-width: 2561px) {
         .banner-carousel {
-          /* 16:9比例，超高清屏保持视觉一致性 */
           aspect-ratio: 21 / 9;
           padding-top: 42.85%;
         }
         .banner-text {
-          top: 17%;
-          width: 100%; /* 收窄文字容器，避免超宽屏文字过散 */
+          top: 13%;
+          width: 70%; /* 超宽屏扩大文字容器，避免内容分散 */
         }
+        /* 标题：4.8rem=18px×4.8=86.4px（4K/5K屏，标题大幅放大，确保视觉焦点） */
         .banner-text h1 {
-          font-size: 4.8rem; /* 大幅放大标题，适配超高清屏分辨率 */
+          font-size: 4.8rem;
           margin-bottom: 1.8rem;
-          letter-spacing: -0.5px; /* 优化大字号文字间距 */
+          letter-spacing: -0.5px;
         }
+        /* 描述：1.6rem=18px×1.6=28.8px（超高清屏阅读距离可能更远，文字放大提升体验） */
         .banner-text p {
           font-size: 1.6rem;
-          max-width: 100%;
+          max-width: 90%;
           line-height: 1.6;
         }
+        /* 按钮：1.35rem=18px×1.35=24.3px（按钮文字与描述文字比例协调，适配超高清屏点击） */
         .banner-btn {
           padding: 0.85rem 1.9rem;
-          font-size: 1.35rem; /* 放大按钮，确保超高清屏点击区域 */
-          border-radius: 9999px; /* 保持超圆圆角，避免显方 */
+          font-size: 1.35rem;
+          border-radius: 9999px;
         }
-        /* 优化超高清屏动画细节：延长动画时长，提升视觉细腻度 */
+        /* 优化超高清屏动画细节：延长时长，提升视觉细腻度 */
         .carousel-slide.active img {
           animation-duration: 1.5s;
         }
@@ -1774,7 +1776,7 @@
       }
       /* 左箭头位置 */
       .benefit-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        left: calc(85%); /* 基于容器左侧15%margin，向右偏移2.5rem */
         right: auto;
         display: flex !important; /* 强制显示，避免被隐藏 */
       }
@@ -1822,15 +1824,15 @@
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.5rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.5rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
           left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          right: calc(5%); /* 12px基准：~9.6px，调整右箭头位置 */
         }
         /* 卡片内二级标题 */
         .benefit-card .benefit-subtitle {
@@ -1880,15 +1882,18 @@
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.6rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.6rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(75% + 2.5rem);
+          transform: translate(-50%, -50%);
         }
         /* 卡片内二级标题 */
         .benefit-card .benefit-subtitle {
@@ -1938,15 +1943,18 @@
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.8rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.8rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(75% + 2.8rem);
+          transform: translate(-50%, -50%);
         }
         /* 卡片内二级标题 */
         .benefit-card .benefit-subtitle {
@@ -1996,15 +2004,18 @@
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2.5rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2.5rem;
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 2rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 78%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(78% + 3rem);
+          transform: translate(-50%, -50%);
         }
         /* 卡片内二级标题 */
         .benefit-card .benefit-subtitle {
@@ -2295,7 +2306,7 @@
       }
       /* 左箭头位置 */
       .design-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        left: calc(85%); /* 基于容器左侧15%margin，向右偏移2.5rem */
         right: auto;
         display: flex !important; /* 强制显示，避免被隐藏 */
       }
@@ -2343,8 +2354,8 @@
           object-fit: cover;
         }
         .design-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.5rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.5rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .design-nav-btn.prev-btn {
@@ -2403,15 +2414,18 @@
           object-fit: cover;
         }
         .design-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.6rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.6rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .design-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .design-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(75% + 2.5rem);
+          transform: translate(-50%, -50%);
         }
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
@@ -2462,15 +2476,18 @@
           object-fit: cover;
         }
         .design-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.8rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.8rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .design-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .design-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(75% + 2.8rem);
+          transform: translate(-50%, -50%);
         }
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
@@ -2521,15 +2538,18 @@
           object-fit: cover;
         }
         .design-nav-btn {
-          width: 2.5rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2.5rem;
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 2rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .design-nav-btn.prev-btn {
-          left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 78%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .design-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(78% + 3rem);
+          transform: translate(-50%, -50%);
         }
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
@@ -2794,14 +2814,14 @@
         .specs-section {
           padding: 3rem 0;
           background-color: #ffffff;
-          height: 20rem;
-          margin: 0 auto 0 auto;
+          height: 40rem;
+          margin: 0 auto;
           padding: 0 1.25rem;
         }
         .specs-container {
           max-width: 768px;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(1, 1fr);
           gap: 2rem;
           background-color: #f5f5f7;
           border-radius: 20px;
@@ -4476,7 +4496,7 @@
       }
       /* 左箭头位置 */
       .other-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        left: calc(85%); /* 基于容器左侧15%margin，向右偏移2.5rem */
         right: auto;
         display: flex !important; /* 强制显示，避免被隐藏 */
       }
@@ -4516,8 +4536,8 @@
           border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.5rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.5rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .other-nav-btn.prev-btn {
@@ -4564,15 +4584,18 @@
           border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
-          height: 2rem;
+          width: 1.6rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.6rem;
           font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .other-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          left: calc(75% + 2.5rem);
+          transform: translate(-50%, -50%);
         }
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
         /* 卡片内二级标题 */
@@ -4617,15 +4640,18 @@
           border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2rem; /* 14px基准：28px，缩小箭头尺寸 */
-          height: 2rem;
-          font-size: 1rem; /* 14px基准：14px，缩小箭头图标 */
+          width: 1.8rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 1.8rem;
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置 */
+          position: absolute;
+          left: 75%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .other-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+          left: calc(75% + 2.8rem);
+          transform: translate(-50%, -50%);
         }
 
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
@@ -4676,15 +4702,18 @@
           border-radius: 1rem; /* 14px基准：14px，缩小圆角 */
         }
         .other-nav-btn {
-          width: 2.5rem; /* 缩小箭头 */
-          height: 2.5rem;
-          font-size: 1rem; /* 缩小图标 */
+          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          height: 2rem;
+          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
         }
         .other-nav-btn.prev-btn {
-          left: calc(80% + 0rem); /* 调整左箭头位置 */
+          position: absolute;
+          left: 78%; /* 左箭头基准位置 */
+          transform: translate(-50%, -50%);
         }
         .other-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 14px基准：~11.2px，调整右箭头位置 */
+          left: calc(78% + 3rem);
+          transform: translate(-50%, -50%);
         }
 
         /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
@@ -4801,17 +4830,6 @@
           font-size: 1.2rem; /* 16px基准：19.2px，放大文字，提升可读性 */
           bottom: 1.5rem; /* 16px基准：24px，同步调整位置 */
           left: 1.5rem;
-        }
-        .other-nav-btn {
-          width: 3rem; /* 16px基准：48px，放大箭头尺寸 */
-          height: 3rem;
-          font-size: 1.5rem; /* 16px基准：24px，放大箭头图标 */
-        }
-        .other-nav-btn.prev-btn {
-          left: calc(85% + 3rem); /* 同步放大偏移量 */
-        }
-        .other-nav-btn.next-btn {
-          right: calc(5% + 1.5rem); /* 同步放大偏移量 */
         }
       }
     </style>

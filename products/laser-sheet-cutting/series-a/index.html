@@ -80,55 +80,49 @@
       /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
       @media (max-width: 320px) {
         html {
-          font-size: 12px; /* 原8.53px→12px：优化小屏文字清晰度，例：24px=2rem */
+          font-size: 14px;
         }
       }
 
-      /* 1.5.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
-      /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
       @media (min-width: 321px) and (max-width: 375px) {
         html {
-          font-size: 14px; /* 原10px→14px：避免小屏元素过小，同时向16px基准过渡 */
+          font-size: 15px;
         }
       }
 
-      /* 1.5.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
-      /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
       @media (min-width: 376px) and (max-width: 425px) {
         html {
-          font-size: 15px; /* 原11.33px→15px：缩小与16px基准的差距，优化大屏手机布局 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
-      /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
       @media (min-width: 426px) and (max-width: 768px) {
         html {
-          font-size: 16px; /* 原14px→16px：平板屏空间足够，直接启用1:16核心基准 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
-      /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
       @media (min-width: 769px) and (max-width: 1024px) {
         html {
-          font-size: 16px; /* 原15px→16px：核心场景严格对齐1:16基准，确保设计还原度 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
-      /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
+      @media (min-width: 1025px) and (max-width: 1440px) {
         html {
-          font-size: 16px; /* 不变：2K屏无需放大基准，16px=1rem可避免布局松散 */
+          font-size: 16px;
         }
       }
 
-      /* 1.5.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
-      /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
-      @media (min-width: 2560px) {
+      @media (min-width: 1441px) and (max-width: 2560px) {
         html {
-          font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
+          font-size: 17px;
+        }
+      }
+
+      @media (min-width: 2561px) {
+        html {
+          font-size: 18px;
         }
       }
     </style>

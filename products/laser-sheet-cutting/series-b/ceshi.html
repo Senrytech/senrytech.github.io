@@ -3460,12 +3460,10 @@
       }
       /* 表头非第一列：居中对齐+固定宽度 */
       .tech-specs-table thead tr th:nth-child(2),
-      .tech-specs-table thead tr th:nth-child(3) {
-        width: 23%; /* 替代内联w-[23%] */
-        text-align: center; /* 替代内联text-center */
-      }
-      .tech-specs-table thead tr th:nth-child(4) {
-        width: 24%; /* 替代内联w-[24%] */
+      .tech-specs-table thead tr th:nth-child(3),
+      .tech-specs-table thead tr th:nth-child(4),
+      .tech-specs-table thead tr th:nth-child(5) {
+        width: 17.5%; /* 替代内联w-[23%] */
         text-align: center; /* 替代内联text-center */
       }
 
@@ -3490,7 +3488,8 @@
       /* 内容单元格非第一列：居中对齐 */
       .tech-specs-table tbody tr td:nth-child(2),
       .tech-specs-table tbody tr td:nth-child(3),
-      .tech-specs-table tbody tr td:nth-child(4) {
+      .tech-specs-table tbody tr td:nth-child(4),
+      .tech-specs-table tbody tr td:nth-child(5) {
         text-align: center; /* 替代内联text-center */
         font-weight: normal; /* 非第一列取消加粗 */
       }
@@ -6366,41 +6365,58 @@
                 <th>B20</th>
                 <th>B30</th>
                 <th>B60</th>
+                <th>B120</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>激光功率</td>
-                <td>1500W</td>
                 <td>2000W</td>
                 <td>3000W</td>
+                <td>6000W</td>
+                <td>12000W</td>
               </tr>
               <tr>
                 <td>工作台面尺寸</td>
                 <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
+                  1540x3050mm <br />
+                  1540x6050mm <br />
+                  2040x4050mm <br />
+                  2040x6050mm <br />
+                  2510x6150mm
                 </td>
                 <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
+                  1540x3050mm <br />
+                  1540x6050mm <br />
+                  2040x4050mm <br />
+                  2040x6050mm <br />
+                  2510x6150mm
                 </td>
                 <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
+                  1540x3050mm <br />
+                  1540x6050mm <br />
+                  2040x4050mm <br />
+                  2040x6050mm <br />
+                  2510x6150mm
+                </td>
+                <td>
+                  1540x3050mm <br />
+                  1540x6050mm <br />
+                  2040x4050mm <br />
+                  2040x6050mm <br />
+                  2510x6150mm
                 </td>
               </tr>
               <tr>
                 <td>最大切割速度</td>
-                <td>80m/min</td>
-                <td>80m/min</td>
-                <td>80m/min</td>
+                <td>92m/min</td>
+                <td>92m/min</td>
+                <td>92m/min</td>
+                <td>92m/min</td>
               </tr>
               <tr>
                 <td>定位精度</td>
+                <td>±0.05mm</td>
                 <td>±0.05mm</td>
                 <td>±0.05mm</td>
                 <td>±0.05mm</td>
@@ -6410,13 +6426,10 @@
                 <td>±0.03mm</td>
                 <td>±0.03mm</td>
                 <td>±0.03mm</td>
+                <td>±0.03mm</td>
               </tr>
               <tr>
                 <td>批量加工最大切割厚度(碳钢)</td>
-                <td>
-                  12mm
-                  <span class="specs-note">(特殊情况16mm)</span>
-                </td>
                 <td>
                   16mm
                   <span class="specs-note">(特殊情况20mm)</span>
@@ -6425,13 +6438,17 @@
                   18mm
                   <span class="specs-note">(特殊情况25mm)</span>
                 </td>
+                <td>
+                  22mm
+                  <span class="specs-note">(特殊情况25mm)</span>
+                </td>
+                <td>
+                  35mm
+                  <span class="specs-note">(特殊情况45mm)</span>
+                </td>
               </tr>
               <tr>
                 <td>批量加工最大切割厚度(不锈钢)</td>
-                <td>
-                  5mm
-                  <span class="specs-note">(特殊情况8mm)</span>
-                </td>
                 <td>
                   6mm
                   <span class="specs-note">(特殊情况10mm)</span>
@@ -6440,13 +6457,17 @@
                   8mm
                   <span class="specs-note">(特殊情况12mm)</span>
                 </td>
+                <td>
+                  14mm
+                  <span class="specs-note">(特殊情况20mm)</span>
+                </td>
+                <td>
+                  25mm
+                  <span class="specs-note">(特殊情况40mm)</span>
+                </td>
               </tr>
               <tr>
                 <td>批量加工最大切割厚度(铝合金)</td>
-                <td>
-                  3mm
-                  <span class="specs-note">(特殊情况5mm)</span>
-                </td>
                 <td>
                   4mm
                   <span class="specs-note">(特殊情况6mm)</span>
@@ -6454,15 +6475,19 @@
                 <td>
                   4mm
                   <span class="specs-note">(特殊情况8mm)</span>
+                </td>
+                <td>
+                  10mm
+                  <span class="specs-note">(特殊情况16mm)</span>
+                </td>
+                <td>
+                  18mm
+                  <span class="specs-note">(特殊情况22mm)</span>
                 </td>
               </tr>
               <tr>
                 <td>批量加工最大切割厚度(铜)</td>
                 <td>
-                  3mm
-                  <span class="specs-note">(特殊情况4mm)</span>
-                </td>
-                <td>
                   4mm
                   <span class="specs-note">(特殊情况6mm)</span>
                 </td>
@@ -6470,9 +6495,18 @@
                   4mm
                   <span class="specs-note">(特殊情况8mm)</span>
                 </td>
+                <td>
+                  10mm
+                  <span class="specs-note">(特殊情况16mm)</span>
+                </td>
+                <td>
+                  18mm
+                  <span class="specs-note">(特殊情况22mm)</span>
+                </td>
               </tr>
               <tr>
                 <td>冷却方式</td>
+                <td>水冷</td>
                 <td>水冷</td>
                 <td>水冷</td>
                 <td>水冷</td>
@@ -6482,12 +6516,14 @@
                 <td>380V/3PH 50/60HZ</td>
                 <td>380V/3PH 50/60HZ</td>
                 <td>380V/3PH 50/60HZ</td>
+                <td>380V/3PH 50/60HZ</td>
               </tr>
               <tr>
                 <td>加速度</td>
-                <td>1.0G</td>
-                <td>1.0G</td>
-                <td>1.0G</td>
+                <td>1.5G</td>
+                <td>1.5G</td>
+                <td>1.5G</td>
+                <td>1.5G</td>
               </tr>
             </tbody>
           </table>
@@ -7397,7 +7433,7 @@
               y: {
                 stacked: true,
                 beginAtZero: true,
-                max: 25,
+                max: 45,
                 stepSize: 5,
                 grid: {
                   color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）

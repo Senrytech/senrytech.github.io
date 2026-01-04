@@ -1118,7 +1118,7 @@
         margin-bottom: 1.5rem; /* 与描述文字间距，保持布局呼吸感 */
         line-height: 1.2; /* 紧凑行高，减少标题换行 */
         /* 神通妙彩渐变：浅紫 → 浅绿 */
-        background-image: linear-gradient(to right, #ae2aa0, #c67a22);
+        background-image: linear-gradient(to right, #ae912a, #c622ab);
         /* 文字渐变核心：将背景裁剪为文字形状（兼容浏览器前缀） */
         -webkit-background-clip: text;
         -webkit-font-smoothing: antialiased; /* 文字抗锯齿（关键） */
@@ -1721,6 +1721,43 @@
       /* 卡片内描述文本 */
       .benefit-card .benefit-desc {
         color: #1d1d1f; /* 同上，适配图片背景 */
+        font-size: 0.875rem; /* 16px基准：14px */
+        line-height: 1.5;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
+      .benefit-card-text-3 {
+        position: absolute;
+        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
+        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
+        z-index: 10; /* 层级高于图片，确保文字可见 */
+        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
+        text-align: left;
+        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
+      }
+
+      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
+      /* 卡片内二级标题 */
+      .benefit-card .benefit-subtitle-3 {
+        color: #f5f5f7; /* 浅灰文字，适配图片深色背景 */
+        font-size: 1rem; /* 16px基准：16px */
+        font-weight: 400;
+        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+      }
+      /* 卡片内一级标题 */
+      .benefit-card .benefit-heading-3 {
+        color: #f5f5f7; /* 同上，适配图片背景 */
+        font-size: 1.75rem; /* 16px基准：28px */
+        font-weight: 500;
+        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+        letter-spacing: -0.5px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+      /* 卡片内描述文本 */
+      .benefit-card .benefit-desc-3 {
+        color: #f5f5f7; /* 同上，适配图片背景 */
         font-size: 0.875rem; /* 16px基准：14px */
         line-height: 1.5;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -6081,8 +6118,8 @@
         <div class="banner-mask"></div>
         <!-- 原轮播图片（承载lightOn/lightSpread动画） -->
         <img
-          src="../../../img/products/laser-sheet-cutting/b/banner/senrytech-b-laser-sheet-cutting-1-1.webp"
-          alt="Senrytech B系列激光切割机"
+          src="../../../img/products/laser-sheet-cutting/b-plus/banner/senrytech-b-plus-laser-sheet-cutting-1-1.webp"
+          alt="Senrytech B Plus系列激光切割机"
         />
         <!-- 原文字内容（承载contentFade动画） -->
         <div class="banner-text active">
@@ -6107,7 +6144,7 @@
         <h2 class="benefit-main-title">先刷重点</h2>
         <!-- 新增：副标题容器 -->
         <div class="benefit-subtitle-wrap">
-          <p class="benefit-subtitle-text">厚板切割实力派</p>
+          <p class="benefit-subtitle-text">紧凑车间安全派</p>
           <div class="benefit-subtitle-divider"></div>
         </div>
 
@@ -6117,15 +6154,15 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/b/core-advantage/senrytech-b-laser-head.webp"
+                src="../../../img/products/laser-sheet-cutting/b-plus/core-advantage/senrytech-b-plus-metal-wrap.webp"
                 alt="专业安装服务"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">智能激光切割头</p>
-                <h3 class="benefit-heading">双重光学保护更耐用</h3>
+                <p class="benefit-subtitle">钣金包围加持</p>
+                <h3 class="benefit-heading">省空间还顺手高效双buff</h3>
                 <p class="benefit-desc">
-                  多组保护镜片+背板防撞+新升级机械设计。
+                  侧方位上料+钣金防护：小车间也能放下的环保激光切割机。
                 </p>
               </div>
             </div>
@@ -6133,27 +6170,32 @@
             <!-- 优势卡片2：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/b/core-advantage/senrytech-b-cutting-accuracy.webp"
-                alt="透明费用"
+                src="../../../img/products/laser-sheet-cutting/b-plus/core-advantage/senrytech-b-plus-servo-motor.webp"
+                alt="伺服电机"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">精度亮点</p>
-                <h3 class="benefit-heading">±0.05mm 切割精度</h3>
-                <p class="benefit-desc">切割 “分毫不差” 的硬实力。</p>
+                <p class="benefit-subtitle">核心动力伺服电机</p>
+                <h3 class="benefit-heading">1800W超强可靠动力功率</h3>
+                <p class="benefit-desc">
+                  强劲动力 + 精密控制的工业驱动新标杆。
+                </p>
               </div>
             </div>
 
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/b/core-advantage/senrytech-b-empty-movement-obstacle-avoidance.webp"
+                src="../../../img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
                 alt="定制流程"
               />
-              <div class="benefit-card-text">
-                <p class="benefit-subtitle">空移避障</p>
-                <h3 class="benefit-heading">智能抬高，减少切割头无效损坏</h3>
-                <p class="benefit-desc">
-                  空移时根据零件切割状态，智能调整上抬高度，减少撞头风险。
+              <!-- 新增 card3-text-white 类，专门控制卡片3的文字颜色 -->
+              <div class="benefit-card-text-3">
+                <p class="benefit-subtitle-3">一笔飞切技术</p>
+                <h3 class="benefit-heading-3">
+                  精准控切，毫米级切割误差轻松把控
+                </h3>
+                <p class="benefit-desc-3">
+                  减少穿孔次数与空程时间，多孔件效率可提升 30%–50%。
                 </p>
               </div>
             </div>

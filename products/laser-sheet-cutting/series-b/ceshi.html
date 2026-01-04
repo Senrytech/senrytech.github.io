@@ -2987,6 +2987,12 @@
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         border: 1px solid rgba(255, 255, 255, 0.2);
+        height: 25rem;
+      }
+
+      .chart-card-canvas {
+        padding-top: 2rem;
+        height: 18rem;
       }
 
       /* 卡片hover效果（无需修改） */
@@ -3545,7 +3551,7 @@
 
         /* 表格：强制最小宽度（确保单元格不挤压）+ 缩小内边距 */
         .tech-specs-table {
-          min-width: 500px; /* 强制表格最小宽度，确保内容完整显示（横向滚动触发） */
+          min-width: 800px; /* 强制表格最小宽度，确保内容完整显示（横向滚动触发） */
           border-radius: 0.8rem; /* 原1rem → 9.6px，匹配包裹层圆角 */
         }
 
@@ -3553,14 +3559,13 @@
         .tech-specs-table thead tr th {
           padding: 1rem; /* 原1.5rem → 12px，减少垂直占用 */
           font-size: 0.85rem; /* 原1rem → 10.2px，适配小屏可读性 */
-          width: 28%; /* 微调列宽，优化小屏分布 */
+          width: 30%; /* 微调列宽，优化小屏分布 */
         }
         .tech-specs-table thead tr th:nth-child(2),
-        .tech-specs-table thead tr th:nth-child(3) {
-          width: 24%;
-        }
-        .tech-specs-table thead tr th:nth-child(4) {
-          width: 24%;
+        .tech-specs-table thead tr th:nth-child(3),
+        .tech-specs-table thead tr th:nth-child(4),
+        .tech-specs-table thead tr th:nth-child(5) {
+          width: 17.5%;
         }
 
         /* 内容单元格：缩小内边距+字号，避免文字溢出 */
@@ -3608,7 +3613,7 @@
 
         /* 表格：强制最小宽度，确保内容完整 */
         .tech-specs-table {
-          min-width: 550px; /* 比Mobile S稍宽，适配大屏手机 */
+          min-width: 800px; /* 比Mobile S稍宽，适配大屏手机 */
         }
 
         /* 表头/内容单元格：适度调整内边距与字号 */
@@ -3653,7 +3658,7 @@
 
         /* 表格：强制最小宽度，适配大屏手机显示 */
         .tech-specs-table {
-          min-width: 600px;
+          min-width: 800px;
         }
 
         /* 表头/内容单元格：进一步放宽尺寸 */
@@ -3698,7 +3703,7 @@
 
         /* 表格：强制最小宽度，确保列宽合理 */
         .tech-specs-table {
-          min-width: 700px; /* 适配平板横向滚动需求 */
+          min-width: 1000px; /* 适配平板横向滚动需求 */
         }
 
         /* 表头/内容单元格：恢复基础内边距，适配手指触控 */
@@ -6285,7 +6290,7 @@
         >
           <!-- 碳钢图表卡片 -->
           <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
+            <div class="chart-card-canvas">
               <canvas id="carbonSteelChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
@@ -6295,7 +6300,7 @@
 
           <!-- 不锈钢图表卡片 -->
           <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
+            <div class="chart-card-canvas">
               <canvas id="stainlessSteelChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
@@ -6305,7 +6310,7 @@
 
           <!-- 铝合金图表卡片 -->
           <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
+            <div class="chart-card-canvas">
               <canvas id="aluminumChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
@@ -6315,7 +6320,7 @@
 
           <!-- 铜图表卡片 -->
           <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
+            <div class="chart-card-canvas">
               <canvas id="copperChart"></canvas>
             </div>
             <div class="chart-card-header p-5">

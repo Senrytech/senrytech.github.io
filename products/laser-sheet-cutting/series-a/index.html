@@ -127,6 +127,49 @@
       }
     </style>
 
+    <style>
+      /* ================================== 标题滚动向上淡出动画 ================================== */
+      /* 1. 重定义“向上淡出”动画：结束时保留30%透明度+轻微向上位移（不消失） */
+      @keyframes titleFadeUp {
+        from {
+          opacity: 0; /* 初始：完全显示 */
+          transform: translateY(0); /* 初始：无位移 */
+        }
+        to {
+          opacity: 1; /* 关键：结束时保留30%透明度（不消失），可根据需求调整0.2~0.5 */
+          transform: translateY(
+            0
+          ); /* 关键：轻微向上位移（10px，原20px太夸张），更自然 */
+        }
+      }
+
+      /* 2. 动画激活类：保留原逻辑，确保动画执行后维持结束状态 */
+      .title-fade-active {
+        animation: titleFadeUp 1.5s ease forwards; /* forwards必须保留，维持结束状态 */
+        pointer-events: none; /* 避免透明后误触 */
+        transition: none !important; /* 禁用过渡，避免与动画冲突 */
+      }
+
+      /* 3. 标题初始状态：确保所有标题默认显示，且支持动画过渡 */
+      /* 目标标题范围：所有h1-h6 + 自定义标题类（如.product-main-title） */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .product-main-title,
+      .submenu-content-title,
+      .content-item h3 {
+        opacity: 1; /* 默认显示 */
+        transform: translateY(0); /* 默认无位移 */
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease; /* 初始状态过渡（可选，优化视觉） */
+        will-change: opacity, transform; /* 提前告知浏览器优化渲染 */
+      }
+    </style>
+
     <!--二，CSS 导航栏-->
     <style>
       /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
@@ -7774,6 +7817,57 @@
             }
           );
       }
+    </script>
+
+    <script>
+      // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 目标标题：保持与CSS一致（所有h1-h6 + 自定义标题类）
+        const titleElements = document.querySelectorAll(
+          "h1, h2, h3, h4, h5, h6, .product-main-title, .submenu-content-title, .content-item h3"
+        );
+
+        // 2. 核心滚动逻辑：优化触发时机 + 排除不可见元素 + 精准恢复
+        function handleTitleScroll() {
+          const viewportHeight = window.innerHeight; // 视口高度（屏幕可见区域）
+
+          titleElements.forEach((title) => {
+            // 关键：排除隐藏元素（如下拉菜单/侧边栏中的标题，避免无效计算）
+            if (!title.offsetParent) return; // offsetParent为null表示元素不可见，直接跳过
+
+            const titleRect = title.getBoundingClientRect(); // 标题相对于视口的位置
+            const titleHeight = titleRect.height; // 标题自身高度（用于精准判断滚出时机）
+
+            // ✅ 条件1：向下滚动时，标题“开始滚出视口底部”就触发动画（视觉上最自然）
+            // 逻辑：标题底部 < 视口高度 + 标题顶部 > 0 → 标题部分滚出底部（非完全隐藏）
+            // 补充：标题顶部 > 视口高度 → 标题完全滚出底部（避免漏触发）
+            if (
+              (titleRect.bottom < viewportHeight && titleRect.top > 0) ||
+              titleRect.top > viewportHeight
+            ) {
+              title.classList.add("title-fade-active");
+            }
+
+            // ✅ 条件2：向上滚动时，标题“开始进入视口”就恢复显示（避免延迟）
+            // 逻辑：标题顶部 < 视口高度 + 标题底部 > 0 → 标题部分/完全进入视口
+            else if (titleRect.top < viewportHeight && titleRect.bottom > 0) {
+              title.classList.remove("title-fade-active");
+            }
+          });
+        }
+
+        // 3. 初始化：页面加载时执行一次（处理初始就滚出视口的标题）
+        handleTitleScroll();
+
+        // 4. 滚动监听：保留性能优化，同时确保滚动时实时触发
+        window.addEventListener("scroll", function () {
+          // 使用requestAnimationFrame确保动画流畅（与屏幕刷新率同步）
+          window.requestAnimationFrame(handleTitleScroll);
+        });
+
+        // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
+        window.addEventListener("resize", handleTitleScroll);
+      });
     </script>
   </body>
 </html>

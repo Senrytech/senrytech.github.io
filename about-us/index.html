@@ -1146,6 +1146,417 @@
       }
     </style>
 
+    <style>
+      /* —— 关于我们：全局容器样式 —— */
+      .about-section {
+        width: 100%;
+        background-color: #f5f5f7;
+        padding: 6rem 0;
+        overflow: hidden;
+      }
+      .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      /* —— 1. 企业简介模块（文字渐入+背景渐变动画） —— */
+      .about-hero {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        margin-bottom: 8rem;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
+          transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+      }
+      .about-hero.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 左侧文字区 */
+      .about-hero-text {
+        flex: 1;
+      }
+      .about-hero-text h2 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+        position: relative;
+        display: inline-block;
+      }
+      /* 标题下划线动画 */
+      .about-hero-text h2::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #0071e3;
+        transition: width 0.6s ease;
+      }
+      .about-hero.active .about-hero-text h2::after {
+        width: 100%;
+      }
+      .about-hero-text p {
+        font-size: 1rem;
+        color: #424245;
+        line-height: 1.8;
+        margin-bottom: 1.2rem;
+        opacity: 0;
+        transform: translateY(15px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        transition-delay: calc(var(--index) * 0.2s);
+      }
+      .about-hero.active .about-hero-text p {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 右侧形象图（悬浮放大动画） */
+      .about-hero-img {
+        flex: 1;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease;
+      }
+      .about-hero-img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+      .about-hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* —— 2. 价值观模块（卡片悬浮+图标旋转动画） —— */
+      .about-advantages {
+        margin-bottom: 8rem;
+      }
+      .about-section-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .about-section-title.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 优势卡片容器 */
+      .advantages-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+      }
+      /* 优势卡片样式 */
+      .advantage-card {
+        background-color: #fff;
+        border-radius: 1.5rem;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease,
+          background-color 0.4s ease;
+        opacity: 0;
+        transform: translateY(30px);
+        transition-delay: calc(var(--card-index) * 0.2s);
+      }
+      .advantage-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 卡片悬浮效果 */
+      .advantage-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background-color: #fafafa;
+      }
+      /* 优势图标（旋转+颜色过渡） */
+      .advantage-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        background-color: rgba(0, 113, 227, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          transform 0.5s ease,
+          background-color 0.5s ease;
+      }
+      .advantage-card:hover .advantage-icon {
+        transform: rotate(15deg);
+        background-color: #0071e3;
+      }
+      .advantage-icon i {
+        font-size: 1.5rem;
+        color: #0071e3;
+        transition: color 0.5s ease;
+      }
+      .advantage-card:hover .advantage-icon i {
+        color: #fff;
+      }
+      /* 卡片文字 */
+      .advantage-card h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 1rem;
+      }
+      .advantage-card p {
+        font-size: 0.9rem;
+        color: #424245;
+        line-height: 1.6;
+      }
+
+      /* —— 3. 团队展示模块（滚动淡入+卡片缩放） —— */
+      .about-team {
+        margin-bottom: 8rem;
+      }
+      .team-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+      }
+      .team-card {
+        background-color: #fff;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.5s ease;
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+        transition-delay: calc(var(--team-index) * 0.2s);
+      }
+      .team-card.active {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      /* 团队成员头像（hover放大） */
+      .team-avatar {
+        width: 100%;
+        height: 280px;
+        overflow: hidden;
+      }
+      .team-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+      .team-card:hover .team-avatar img {
+        transform: scale(1.1);
+      }
+      /* 团队成员信息（hover上移） */
+      .team-info {
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.5s ease;
+      }
+      .team-card:hover .team-info {
+        transform: translateY(-5px);
+      }
+      .team-info h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 0.3rem;
+      }
+      .team-info p {
+        font-size: 0.85rem;
+        color: #0071e3;
+        margin-bottom: 1rem;
+      }
+      /* 社交图标（hover淡入） */
+      .team-social {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .team-card:hover .team-social {
+        opacity: 1;
+      }
+      .team-social a {
+        color: #424245;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+      .team-social a:hover {
+        color: #0071e3;
+      }
+
+      /* —— 4. 发展历程模块（时间轴滚动动画） —— */
+      .about-timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      /* 时间轴竖线 */
+      .about-timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #0071e3 0%,
+          rgba(0, 113, 227, 0.3) 100%
+        );
+      }
+      /* 时间轴节点 */
+      .timeline-item {
+        margin-bottom: 4rem;
+        position: relative;
+        opacity: 0;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      /* 左侧节点（左对齐） */
+      .timeline-item.left {
+        padding-right: 50%;
+        text-align: right;
+        transform: translateX(-30px);
+      }
+      /* 右侧节点（右对齐） */
+      .timeline-item.right {
+        padding-left: 50%;
+        text-align: left;
+        transform: translateX(30px);
+      }
+      .timeline-item.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      /* 节点圆点（hover放大） */
+      .timeline-dot {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #0071e3;
+        border: 4px solid #f5f5f7;
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
+        transition:
+          box-shadow 0.5s ease,
+          transform 0.5s ease;
+      }
+      .timeline-item:hover .timeline-dot {
+        transform: translateX(-50%) scale(1.2);
+        box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
+      }
+      /* 节点内容卡片 */
+      .timeline-content {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s ease;
+      }
+      .timeline-item:hover .timeline-content {
+        transform: translateY(-5px);
+      }
+      .timeline-content h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 0.5rem;
+      }
+      .timeline-content .timeline-year {
+        font-size: 0.85rem;
+        color: #0071e3;
+        margin-bottom: 0.8rem;
+        display: inline-block;
+      }
+      .timeline-content p {
+        font-size: 0.9rem;
+        color: #424245;
+        line-height: 1.6;
+      }
+
+      /* —— 响应式适配（延续现有页面断点） —— */
+      /* 平板（768px以下） */
+      @media (max-width: 768px) {
+        .about-hero {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        .about-hero-text h2 {
+          font-size: 2rem;
+        }
+        .about-section-title {
+          font-size: 1.8rem;
+        }
+        /* 时间轴：竖线居中→左移，节点统一左对齐 */
+        .about-timeline::before {
+          left: 20px;
+          transform: none;
+        }
+        .timeline-item.left,
+        .timeline-item.right {
+          padding-left: 60px;
+          padding-right: 0;
+          text-align: left;
+          transform: translateX(0) translateY(20px);
+        }
+        .timeline-dot {
+          left: 20px;
+          transform: none;
+        }
+        .timeline-item:hover .timeline-dot {
+          transform: scale(1.2);
+        }
+      }
+      /* 手机（425px以下） */
+      @media (max-width: 425px) {
+        .about-section {
+          padding: 4rem 0;
+        }
+        .about-hero-text h2 {
+          font-size: 1.8rem;
+        }
+        .about-hero-text p {
+          font-size: 0.95rem;
+        }
+        .advantages-list {
+          gap: 1.5rem;
+        }
+        .advantage-card {
+          padding: 2rem 1.5rem;
+        }
+        .timeline-content {
+          padding: 1.2rem;
+        }
+      }
+    </style>
+
     <!--十二，CSS 联系专家-->
     <style>
       /* —— 十二， 联系专家 —— */
@@ -2453,6 +2864,208 @@
       />
     </div>
 
+    <!-- 关于我们中间内容 -->
+    <section class="about-section" id="about">
+      <div class="about-container">
+        <!-- 1. 企业简介模块 -->
+        <div class="about-hero">
+          <div class="about-hero-text">
+            <h2>关于 Senrytech</h2>
+            <p>
+              Senrytech
+              成立于2015年，是一家专注于激光切割设备研发、生产与销售的高新技术企业，致力于为全球中小企业提供高性价比的金属加工解决方案。
+            </p>
+            <p>
+              我们以“技术驱动效率，创新赋能制造”为使命，累计服务超过5000家客户，产品覆盖碳钢、不锈钢、铝合金等多材质切割场景，远销全球30+国家和地区。
+            </p>
+            <p>
+              从核心光学组件到智能控制系统，Senrytech
+              坚持自主研发，拥有20+项专利技术，连续5年保持行业增长率领先，成为细分领域“经济款高精度激光设备”标杆品牌。
+            </p>
+          </div>
+          <div class="about-hero-img">
+            <img
+              src="https://picsum.photos/800/600?random=1"
+              alt="Senrytech 企业环境"
+            />
+          </div>
+        </div>
+
+        <!-- 2. 核价值观模块 -->
+        <div class="about-advantages">
+          <h3 class="about-section-title">我们的价值观</h3>
+          <div class="advantages-list">
+            <div class="advantage-card">
+              <div class="advantage-icon">
+                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+              </div>
+              <h3>企业使命</h3>
+              <p>
+                始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
+              </p>
+            </div>
+            <div class="advantage-card">
+              <div class="advantage-icon">
+                <i class="fa fa-industry" aria-hidden="true"></i>
+              </div>
+              <h3>企业愿景</h3>
+              <p>让每一位从业者都能成为产业创新的创造者。</p>
+            </div>
+            <div class="advantage-card">
+              <div class="advantage-icon">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+              </div>
+              <h3>企业价值观</h3>
+              <p>
+                客户为友，共生共赢<br />
+                信念为基，价值同行<br />
+                乐观向远，笃行成果<br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. 团队展示模块 -->
+        <div class="about-team">
+          <h3 class="about-section-title">核心团队</h3>
+          <div class="team-list">
+            <div class="team-card">
+              <div class="team-avatar">
+                <img src="../img/about-us/senrytech-R-D.png" alt="张工程师" />
+              </div>
+              <div class="team-info">
+                <h3>秦博睿</h3>
+                <p>研发项目总监</p>
+                <div class="team-social">
+                  <a href="#" aria-label="LinkedIn"
+                    ><i class="fa fa-linkedin" aria-hidden="true"></i
+                  ></a>
+                  <a href="#" aria-label="Email"
+                    ><i class="fa fa-envelope" aria-hidden="true"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">
+                <img
+                  src="../img/about-us/senrytech-operation.webp"
+                  alt="李经理"
+                />
+              </div>
+              <div class="team-info">
+                <h3>董振邦</h3>
+                <p>运营总监</p>
+                <div class="team-social">
+                  <a href="#" aria-label="LinkedIn"
+                    ><i class="fa fa-linkedin" aria-hidden="true"></i
+                  ></a>
+                  <a href="#" aria-label="Email"
+                    ><i class="fa fa-envelope" aria-hidden="true"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">
+                <img src="../img/about-us/senrytech-finance.png" alt="王总监" />
+              </div>
+              <div class="team-info">
+                <h3>林佩</h3>
+                <p>财务总监</p>
+                <div class="team-social">
+                  <a href="#" aria-label="LinkedIn"
+                    ><i class="fa fa-linkedin" aria-hidden="true"></i
+                  ></a>
+                  <a href="#" aria-label="Email"
+                    ><i class="fa fa-envelope" aria-hidden="true"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+            <div class="team-card">
+              <div class="team-avatar">
+                <img
+                  src="../img/about-us/senrytech-marketing.png"
+                  alt="陈经理"
+                />
+              </div>
+              <div class="team-info">
+                <h3>孙雅婷</h3>
+                <p>市场营销总监</p>
+                <div class="team-social">
+                  <a href="#" aria-label="LinkedIn"
+                    ><i class="fa fa-linkedin" aria-hidden="true"></i
+                  ></a>
+                  <a href="#" aria-label="Email"
+                    ><i class="fa fa-envelope" aria-hidden="true"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. 发展历程模块 -->
+        <div class="about-timeline">
+          <h3 class="about-section-title">发展历程</h3>
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>公司成立</h3>
+              <span class="timeline-year">2015</span>
+              <p>
+                Senrytech
+                在深圳成立，初期专注于激光切割设备核心部件研发，推出首款实验室级高精度切割头。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>首款整机上市</h3>
+              <span class="timeline-year">2017</span>
+              <p>
+                发布首款自主研发的激光板材切割机 A
+                系列，切入中小企业市场，当年实现销售额突破1000万元。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>生产基地投产</h3>
+              <span class="timeline-year">2019</span>
+              <p>
+                自建10000㎡生产基地投产，实现规模化生产，产品故障率降至0.5%以下，获得ISO9001质量体系认证。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>全球化布局</h3>
+              <span class="timeline-year">2021</span>
+              <p>
+                在德国、印度设立海外服务中心，产品远销全球20+国家，当年服务客户突破3000家。
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <h3>技术突破</h3>
+              <span class="timeline-year">2023</span>
+              <p>
+                推出搭载AI智能切割系统的 B ProMax
+                系列，切割效率提升30%，获得20+项国家专利，年增长率达50%。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2893,6 +3506,87 @@
             }
           );
       }
+    </script>
+
+    <script>
+      // 1. 页面加载完成后初始化动画
+      document.addEventListener("DOMContentLoaded", function () {
+        // 初始化滚动触发动画监听
+        initScrollAnimations();
+      });
+
+      // 2. 滚动触发动画核心函数（使用Intersection Observer，性能更优）
+      function initScrollAnimations() {
+        // 配置观察器：元素进入视口70%时触发
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1,
+        };
+
+        // 观察器回调：添加active类触发动画
+        const observerCallback = (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              // 只观察一次（动画触发后停止观察）
+              observer.unobserve(entry.target);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          observerCallback,
+          observerOptions
+        );
+
+        // —— 1. 观察企业简介模块
+        const aboutHero = document.querySelector(".about-hero");
+        if (aboutHero) observer.observe(aboutHero);
+
+        // —— 2. 观察模块标题（优势/团队/历程）
+        const sectionTitles = document.querySelectorAll(".about-section-title");
+        sectionTitles.forEach((title) => observer.observe(title));
+
+        // —— 3. 观察优势卡片（添加索引，控制动画延迟）
+        const advantageCards = document.querySelectorAll(".advantage-card");
+        advantageCards.forEach((card, index) => {
+          card.style.setProperty("--card-index", index);
+          observer.observe(card);
+        });
+
+        // —— 4. 观察团队卡片（添加索引，控制动画延迟）
+        const teamCards = document.querySelectorAll(".team-card");
+        teamCards.forEach((card, index) => {
+          card.style.setProperty("--team-index", index);
+          observer.observe(card);
+        });
+
+        // —— 5. 观察时间轴节点
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        timelineItems.forEach((item) => observer.observe(item));
+
+        // —— 6. 观察企业简介文字（添加索引，控制逐行渐入）
+        const heroTexts = document.querySelectorAll(".about-hero-text p");
+        heroTexts.forEach((text, index) => {
+          text.style.setProperty("--index", index);
+        });
+      }
+
+      // 3. 平滑滚动（可选：点击导航锚点时触发）
+      document.querySelectorAll('a[href^="#about"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80, // 偏移80px（避开导航栏）
+              behavior: "smooth",
+            });
+          }
+        });
+      });
     </script>
   </body>
 </html>

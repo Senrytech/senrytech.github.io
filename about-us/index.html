@@ -1148,13 +1148,13 @@
       .about-section {
         width: 100%;
         background-color: #f5f5f7;
-        padding: 6rem 0;
+        padding: 0;
         overflow: hidden;
       }
       .about-container {
         max-width: 1250px;
         margin: 0 auto;
-        padding: 0 1.5rem;
+        padding: 0;
       }
 
       /* —— 1. 企业简介模块（文字渐入+背景渐变动画） —— */
@@ -1575,6 +1575,296 @@
         }
         .timeline-content {
           padding: 1.2rem;
+        }
+      }
+      /* —— 5. 员工福利模块（延续价值观卡片风格，新增细节优化） —— */
+      .staff-container {
+        width: 100%;
+        background-color: #f5f5f7;
+        padding: 0;
+        overflow: hidden;
+      }
+      .staff-welfare {
+        max-width: 1250px;
+        margin: 0 auto;
+        padding: 6rem;
+      }
+
+      .staff-elfare-title {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .staff-elfare-title.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .welfare-list {
+        display: grid;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(300px, 1fr)
+        ); /* 自适应列数，最小宽度280px */
+        gap: 2.5rem; /* 卡片间距，与价值观板块一致 */
+        margin-top: 4rem; /* 与标题间距，保持页面呼吸感 */
+      }
+
+      /* 福利卡片基础样式（复用价值观卡片逻辑，微调细节） */
+      .welfare-card {
+        background-color: #fff;
+        border-radius: 1.5rem; /* 大圆角，苹果风核心特征 */
+        padding: 2.5rem 2rem;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 浅阴影，弱化边界感 */
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease,
+          background-color 0.4s ease; /* 多属性过渡，交互更细腻 */
+        opacity: 0; /* 初始隐藏，滚动后显示 */
+        transform: translateY(30px); /* 初始下移，滚动后复位 */
+        transition-delay: calc(
+          var(--card-index) * 0.2s
+        ); /* 按索引延迟动画，层次感更强 */
+      }
+
+      /* 滚动触发显示（与价值观卡片动画逻辑统一） */
+      .welfare-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 卡片悬浮效果（强化交互反馈） */
+      .welfare-card:hover {
+        transform: translateY(
+          -10px
+        ); /* 上浮10px，比价值观卡片稍明显，突出关怀感 */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 阴影加深，增强悬浮感 */
+        background-color: #fafafa; /* 背景微浅，避免纯白刺眼 */
+      }
+
+      /* 福利图标容器（复用优势图标样式，调整尺寸适配） */
+      .welfare-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1.5rem; /* 图标居中，与文字间距 */
+        border-radius: 50%; /* 圆形图标，统一视觉语言 */
+        background-color: rgba(
+          0,
+          113,
+          227,
+          0.1
+        ); /* 品牌蓝浅背景，低饱和度不抢镜 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          transform 0.5s ease,
+          background-color 0.5s ease; /* 旋转+背景色过渡 */
+      }
+
+      /* 图标悬浮效果（与优势图标交互一致，保持风格统一） */
+      .welfare-card:hover .welfare-icon {
+        transform: rotate(15deg); /* 轻微旋转，增加活泼感 */
+        background-color: #0071e3; /* 品牌蓝实色，强化hover反馈 */
+      }
+
+      /* 福利图标样式（统一颜色与尺寸） */
+      .welfare-icon i {
+        font-family: "FontAwesome" !important; /* 强制图标字体，避免冲突 */
+        font-size: 1.5rem;
+        color: #0071e3; /* 品牌蓝图标，未hover时与背景呼应 */
+        transition: color 0.5s ease;
+      }
+
+      .welfare-card:hover .welfare-icon i {
+        color: #fff; /* hover后图标变白，与背景对比 */
+      }
+
+      /* 福利卡片文字（延续现有文字层级） */
+      .welfare-card h3 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #1d1d1f; /* 深灰标题，清晰醒目 */
+        margin-bottom: 1rem;
+      }
+
+      .welfare-card p {
+        font-size: 0.9rem;
+        color: #424245; /* 中灰内容，弱化次要信息 */
+        line-height: 1.6; /* 行高优化，提升可读性 */
+      }
+
+      /* —— 员工福利模块 响应式适配（与页面其他板块断点统一） —— */
+      /* 平板（768px以下）：减少列数，调整间距 */
+      @media (max-width: 768px) {
+        .welfare-list {
+          grid-template-columns: repeat(
+            auto-fit,
+            minmax(240px, 1fr)
+          ); /* 最小宽度缩小，适配平板 */
+          gap: 1.8rem; /* 间距减小，避免垂直过长 */
+        }
+
+        .welfare-card {
+          padding: 2rem 1.5rem; /* 内边距缩小，适配小屏 */
+        }
+
+        .welfare-card h3 {
+          font-size: 1.1rem; /* 标题字号缩小，避免换行 */
+        }
+
+        .welfare-card p {
+          font-size: 0.85rem; /* 内容字号缩小，节省空间 */
+        }
+      }
+
+      /* 手机（425px以下）：单列布局，优化交互 */
+      @media (max-width: 425px) {
+        .welfare-list {
+          grid-template-columns: 1fr; /* 强制单列，避免拥挤 */
+          gap: 1.5rem;
+        }
+
+        .welfare-card {
+          padding: 1.8rem 1.2rem;
+        }
+
+        /* 图标缩小，适配手机视觉比例 */
+        .welfare-icon {
+          width: 50px;
+          height: 50px;
+        }
+
+        .welfare-icon i {
+          font-size: 1.3rem;
+        }
+      }
+
+      /* —— 5. 新世界模块（修正：并列选择器+全屏背景+动画基础） —— */
+      /* 1. 父容器：并列类选择器，移除overflow:hidden（避免裁剪背景） */
+      .about-section.new-world-section {
+        padding: 0 0 2rem 0;
+        background-color: #f5f5f7;
+        /* 移除overflow:hidden！否则会裁剪全屏背景的左右超出部分 */
+      }
+
+      /* 2. 背景图容器：100vw全屏+居中对齐，脱离about-container限制 */
+      .new-world-bg {
+        width: 100vw; /* 强制横向铺满视口（关键） */
+        min-height: 600px;
+        background-image: url("../img/about-us/senrytech-new-factory.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 0; /* 取消圆角，全屏无裁剪 */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        padding: 4rem 2rem;
+        position: relative;
+        overflow: hidden;
+        /* 抵消100vw导致的偏移，让背景居中（关键） */
+        margin-left: calc(-50vw + 50%);
+      }
+
+      /* 4. 数据卡片容器：居中显示，层级高于遮罩 */
+      .new-world-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        max-width: 1200px; /* 卡片区域限制宽度，避免过宽 */
+        margin: 0 auto; /* 卡片容器居中 */
+        position: relative;
+        z-index: 2; /* 卡片在遮罩之上，确保可见 */
+      }
+
+      /* 5. 数据卡片：滚动激活动画（不变） */
+      .new-world-stat-item {
+        background-color: rgba(245, 245, 247, 0.9);
+        border-radius: 1.5rem;
+        padding: 1rem 2rem;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease,
+          opacity 0.6s ease,
+          transform 0.6s ease; /* 注意：这里重复写了 transform，可简化为一次 */
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        transition-delay: calc(var(--card-index) * 0.2s);
+      }
+
+      .new-world-stat-item.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .new-world-stat-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 6. 数据数字：固定高度，避免动画变形（不变） */
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 500;
+        color: #0071e3;
+        margin-bottom: 0.8rem;
+        line-height: 1.2;
+        height: 4rem; /* 固定高度，防止数字增长时卡片变形 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* 隐藏数字增长时的溢出部分 */
+      }
+
+      /* 7. 数据描述：不变 */
+      .stat-desc {
+        font-size: 0.95rem;
+        color: #1d1d1f;
+        line-height: 1.6;
+      }
+
+      /* —— 响应式适配（同步修正） —— */
+      @media (max-width: 768px) {
+        .about-section.new-world-section {
+          padding: 6rem 0;
+        }
+        .new-world-bg {
+          min-height: 350px;
+          padding: 3rem 1.5rem;
+        }
+        .new-world-stats {
+          gap: 2rem;
+          max-width: 90%; /* 小屏缩小卡片容器宽度 */
+        }
+        .stat-number {
+          font-size: 2.5rem;
+          height: 3.5rem; /* 适配小屏字号 */
+        }
+      }
+
+      @media (max-width: 425px) {
+        .new-world-stats {
+          grid-template-columns: repeat(2, 1fr); /* 小屏两列布局 */
+          gap: 1.5rem;
+        }
+        .new-world-stat-item {
+          padding: 2rem 1.5rem;
+        }
+        .stat-number {
+          font-size: 2rem;
+          height: 3rem; /* 适配小屏字号 */
+        }
+        .stat-desc {
+          font-size: 0.9rem;
         }
       }
     </style>
@@ -3102,6 +3392,113 @@
       </div>
     </section>
 
+    <section>
+      <!-- 5. 新世界模块（大图背景+数据卡片） -->
+      <!-- 注意：new-world-bg 移出 about-container，避免宽度限制 -->
+      <div class="about-section new-world-section">
+        <!-- 背景图容器（全屏，带遮罩） -->
+        <div class="new-world-bg">
+          <!-- 数据卡片容器（三列布局，居中显示） -->
+          <div class="new-world-stats">
+            <!-- 给stat-number加data属性：目标值+单位，初始值0 -->
+            <div class="new-world-stat-item" style="--card-index: 0">
+              <div class="stat-number" data-target="6000+" data-unit="台">
+                0
+              </div>
+              <div class="stat-desc">年产量</div>
+            </div>
+            <div class="new-world-stat-item" style="--card-index: 1">
+              <div class="stat-number" data-target="20000+" data-unit="㎡">
+                0
+              </div>
+              <div class="stat-desc">新时代工厂</div>
+            </div>
+            <div class="new-world-stat-item" style="--card-index: 2">
+              <div class="stat-number" data-target="30+" data-unit="+">0</div>
+              <div class="stat-desc">国家和地区</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- —— 5. 员工福利模块（修复后） —— -->
+    <section class="staff-container">
+      <div class="staff-welfare">
+        <!-- 1. 板块标题：必须放在 .welfare-list 外面！ -->
+        <h2 class="staff-elfare-title">员工福利 · 用心关怀每一位伙伴</h2>
+
+        <!-- 2. 福利内容区：标题移出后，Grid布局才会正常生效 -->
+        <div class="welfare-list">
+          <!-- 1. 基础保障类 -->
+          <div class="welfare-card" style="--card-index: 0">
+            <div class="welfare-icon">
+              <i class="fa fa-shield" aria-hidden="true"></i>
+            </div>
+            <h3>基础保障</h3>
+            <p>
+              全额缴纳五险一金（养老/医疗/失业/工伤/生育+住房公积金），额外补充商业意外险，覆盖工作与生活双重保障。
+            </p>
+          </div>
+
+          <!-- 2. 健康关怀类 -->
+          <div class="welfare-card" style="--card-index: 1">
+            <div class="welfare-icon">
+              <i class="fa fa-heartbeat" aria-hidden="true"></i>
+            </div>
+            <h3>健康守护</h3>
+            <p>
+              年度免费体检（含肿瘤筛查、心脑血管检测等深度项目），家属可享员工专属折扣；每月组织健康讲座（颈椎护理、心理健康等）。
+            </p>
+          </div>
+
+          <!-- 3. 工作生活平衡类 -->
+          <div class="welfare-card" style="--card-index: 2">
+            <div class="welfare-icon">
+              <i class="fa fa-balance-scale" aria-hidden="true"></i>
+            </div>
+            <h3>平衡生活</h3>
+            <p>
+              严格执行双休制度，不强制加班；带薪年假（入职即享5天，每满1年增加1天，上限15天）；法定节假日提前1小时下班。
+            </p>
+          </div>
+
+          <!-- 4. 家庭关怀类 -->
+          <div class="welfare-card" style="--card-index: 3">
+            <div class="welfare-icon">
+              <i class="fa fa-baby" aria-hidden="true"></i>
+            </div>
+            <h3>家庭支持</h3>
+            <p>
+              女性员工产假延长至188天（超法定标准），男性员工陪产假15天；子女升学/就医可申请弹性工作；春节、中秋等节日发放家庭慰问礼。
+            </p>
+          </div>
+
+          <!-- 5. 成长发展类 -->
+          <div class="welfare-card" style="--card-index: 4">
+            <div class="welfare-icon">
+              <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            </div>
+            <h3>成长赋能</h3>
+            <p>
+              每年5000元/人的培训基金（可用于外部课程、行业会议）；师徒制带教（新人专属导师）；内部技术分享会（每月2场）。
+            </p>
+          </div>
+
+          <!-- 6. 日常关怀类 -->
+          <div class="welfare-card" style="--card-index: 5">
+            <div class="welfare-icon">
+              <i class="fa fa-coffee" aria-hidden="true"></i>
+            </div>
+            <h3>日常温暖</h3>
+            <p>
+              工作日免费下午茶（咖啡、奶茶+点心/水果）；员工生日专属蛋糕+购物卡；季度团队建设（户外拓展、轰趴、露营等）。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -3717,6 +4114,148 @@
         historySection.style.transition =
           "opacity 0.8s ease, transform 0.8s ease";
         observer.observe(historySection);
+      });
+    </script>
+    <script>
+      // 滚动触发动画：统一控制“价值观”“团队”“发展历程”“员工福利”板块
+      document.addEventListener("DOMContentLoaded", function () {
+        // 需要触发动画的元素：包含福利卡片、时间轴节点、优势卡片等
+        const animateElements = [
+          ...document.querySelectorAll(".welfare-card"),
+          ...document.querySelectorAll(".timeline-item"),
+          ...document.querySelectorAll(".advantage-card"),
+          ...document.querySelectorAll(".team-card"),
+          document.querySelector(".about-hero"),
+          document.querySelector(".about-section-title"),
+        ];
+
+        // 检测元素是否在可视区域内
+        function isInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          // 可视区域判定：元素顶部进入屏幕底部100px内，或元素底部进入屏幕顶部100px内
+          return rect.top <= window.innerHeight - 100 && rect.bottom >= 100;
+        }
+
+        // 为可视区域的元素添加active类
+        function activateVisibleElements() {
+          animateElements.forEach((el) => {
+            if (isInViewport(el) && !el.classList.contains("active")) {
+              el.classList.add("active");
+            }
+          });
+        }
+
+        // 初始加载时触发一次（显示当前在屏幕内的元素）
+        activateVisibleElements();
+
+        // 滚动时持续检测（显示滚动到屏幕内的元素）
+        window.addEventListener("scroll", activateVisibleElements);
+
+        // 窗口大小变化时重新检测（适配响应式布局）
+        window.addEventListener("resize", activateVisibleElements);
+      });
+    </script>
+
+    <script>
+      // 新世界模块 - 滚动触发动画（复用全局滚动检测逻辑）
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 获取所有数据卡片
+        const statItems = document.querySelectorAll(".new-world-stat-item");
+
+        // 2. 配置IntersectionObserver（检测元素是否进入视口）
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              // 当元素进入视口时，添加active类触发动画
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target); // 只触发一次动画
+              }
+            });
+          },
+          {
+            root: null, // 以视口为根元素
+            rootMargin: "0px 0px -100px 0px", // 视口底部向上100px触发（避免卡片完全进入才动）
+            threshold: 0.1, // 元素10%进入视口即触发
+          }
+        );
+
+        // 3. 观察每个数据卡片
+        statItems.forEach((item) => {
+          observer.observe(item);
+        });
+      });
+      // 新世界模块 - 数字增长动画（与滚动激活同步）
+      document.addEventListener("DOMContentLoaded", function () {
+        const statItems = document.querySelectorAll(".new-world-stat-item");
+        // 存储目标数字和单位（与HTML中的数据对应）
+        const statTargets = [
+          { value: 6000, unit: "+台" }, // 6000+台
+          { value: 20000, unit: "+㎡" }, // 20000+平方米
+          { value: 30, unit: "+" }, // 30+国家
+        ];
+
+        // 1. 数字增长核心函数
+        function animateCounter(element, target, unit, duration = 1500) {
+          let start = 0;
+          const increment = target / (duration / 16); // 按16ms一帧计算步长
+          const timer = setInterval(() => {
+            start += increment;
+            // 处理不同数字格式：整数+单位（避免小数）
+            if (target === 30) {
+              // 特殊处理30+：达到目标后添加“+”
+              element.textContent =
+                start >= target
+                  ? `${Math.floor(target)}${unit}`
+                  : `${Math.floor(start)}`;
+            } else {
+              element.textContent = `${Math.floor(start)}${unit}`;
+            }
+            // 达到目标后清除定时器
+            if (start >= target) {
+              clearInterval(timer);
+              element.textContent = `${target}${unit}`; // 确保最终显示准确值
+            }
+          }, 16);
+        }
+
+        // 2. 滚动检测：激活卡片时触发动画（复用原有Observer逻辑，新增动画触发）
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                // 找到当前卡片的数字元素，触发增长动画
+                const numberElement =
+                  entry.target.querySelector(".stat-number");
+                if (
+                  numberElement &&
+                  !numberElement.classList.contains("animated")
+                ) {
+                  // 标记为已动画，避免重复触发
+                  numberElement.classList.add("animated");
+                  // 调用增长函数（匹配对应目标数据）
+                  animateCounter(
+                    numberElement,
+                    statTargets[index].value,
+                    statTargets[index].unit
+                  );
+                }
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px 0px -100px 0px", // 保持原有触发位置
+            threshold: 0.1,
+          }
+        );
+
+        // 3. 观察所有数据卡片
+        statItems.forEach((item) => {
+          observer.observe(item);
+        });
       });
     </script>
   </body>

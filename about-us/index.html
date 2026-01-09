@@ -4,17 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      content="Senrytech A系列激光板材切割机，经济款高精度金属切割设备，适配碳钢/不锈钢/铝合金，助力小企业降本提效"
+      content="Senrytech 15年激光设备研发经验，从2008年成立到全球30+国家服务，专注高精度激光切割/焊接/打标设备，ISO9001认证企业"
       name="description"
     />
     <meta
-      content="激光板材切割机Senrytech A系列,经济款激光切割机,小型企业金属切割,高精度激光切割设备,碳钢激光切割"
+      content="Senrytech 公司介绍,激光设备制造商发展史,15年激光研发经验,ISO9001激光设备企业"
       name="keywords"
     />
-    <link
-      rel="canonical"
-      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
-    />
+    <link rel="canonical" href="https://www.senrytech.com/about-us/" />
     <title>Senrytech - 关于我们</title>
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -1155,7 +1152,7 @@
         overflow: hidden;
       }
       .about-container {
-        max-width: 1200px;
+        max-width: 1250px;
         margin: 0 auto;
         padding: 0 1.5rem;
       }
@@ -1178,7 +1175,10 @@
       }
       /* 左侧文字区 */
       .about-hero-text {
-        flex: 1;
+        /* 关键修改：flex: 0 0 固定宽度，取消拉伸；同时可保留max-width防止超宽 */
+        flex: 0 0 500px; /* 固定宽度为400px，可根据需求调整（如350px/500px） */
+        max-width: 100%; /* 可选：限制在父容器内，避免小屏溢出 */
+        /* 移除原有的 flex: 1，因为它会覆盖固定宽度 */
       }
       .about-hero-text h2 {
         font-size: 2.5rem;
@@ -1203,8 +1203,8 @@
         width: 100%;
       }
       .about-hero-text p {
-        font-size: 1rem;
-        color: #424245;
+        font-size: 0.9rem;
+        color: #1d1d1f;
         line-height: 1.8;
         margin-bottom: 1.2rem;
         opacity: 0;
@@ -1218,15 +1218,37 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* 右侧形象图（悬浮放大动画） */
+      /* —— 3. 中间吉祥物：固定宽度+透明背景，避免变形 —— */
+      .about-mascot-img {
+        /* 1. 固定宽度：根据设计需求调整，避免太宽挤压文字/图片 */
+        width: 180px; /* 示例宽度，可改为 100px/140px，建议不超过父容器的 20% */
+        height: auto; /* 高度自适应，保持图片比例 */
+        margin-right: -100px;
+
+        /* 2. 图片样式：确保背景透明+完整显示 */
+        display: flex;
+        justify-content: center; /* 图片在容器内居中 */
+        align-items: center;
+      }
+      .about-mascot-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* 核心：完整显示图片，不裁剪（适配透明背景图） */
+        background: transparent; /* 强制背景透明，即使图片有瑕疵也覆盖 */
+        /* 可选：添加轻微阴影，让吉祥物更突出 */
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+      }
+
+      /* —— 4. 右侧企业环境图：自适应宽度，保持原有交互 —— */
       .about-hero-img {
-        flex: 1;
+        flex: 1; /* 与文字区对称，自适应剩余宽度 */
         border-radius: 2rem;
         overflow: hidden;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
+        /* 移除原 position:relative（无需再作为吉祥物父容器） */
       }
       .about-hero-img:hover {
         transform: scale(1.03);
@@ -1235,7 +1257,7 @@
       .about-hero-img img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（企业图适合裁剪） */
       }
 
       /* —— 2. 价值观模块（卡片悬浮+图标旋转动画） —— */
@@ -2872,20 +2894,36 @@
           <div class="about-hero-text">
             <h2>关于 Senrytech</h2>
             <p>
-              Senrytech
-              成立于2015年，是一家专注于激光切割设备研发、生产与销售的高新技术企业，致力于为全球中小企业提供高性价比的金属加工解决方案。
+              2008 年的晨光里，Senrytech
+              与激光切割设备的故事，从“让金属与光的相遇更从容” 开始。
             </p>
             <p>
-              我们以“技术驱动效率，创新赋能制造”为使命，累计服务超过5000家客户，产品覆盖碳钢、不锈钢、铝合金等多材质切割场景，远销全球30+国家和地区。
+              我们始终相信，每一台设备都该是生产场景里的 “恰好选项”—
+              于是蹲在车间的光影里，摸透碳钢的肌理、不锈钢的锋芒、铝合金的轻韧，再把这些材质的脾性，织进设备与方案的适配逻辑里。
             </p>
             <p>
-              从核心光学组件到智能控制系统，Senrytech
-              坚持自主研发，拥有20+项专利技术，连续5年保持行业增长率领先，成为细分领域“经济款高精度激光设备”标杆品牌。
+              从本地厂房的机床旁，到全球 30 余国车间的风里，5000
+              多家企业的生产节奏里，都藏着我们 “让合适的设备遇见对的需求”
+              的温柔：是帮初创厂省掉试错成本的笃定，是让外贸单缩短交货周期的轻捷，是让金属在激光下舒展成想要形状的妥帖。
+            </p>
+            <p>
+              我们不做 “搬运”，只做 “联结”—
+              联结设备的精度与生产的温度，联结需求的细碎与方案的周全。这是我们从
+              2008 年写到今天的，关于 “光与金属，恰好相逢” 的故事。
             </p>
           </div>
+
+          <!-- 新增：吉祥物图片容器（样式与现有图片统一） -->
+          <div class="about-mascot-img">
+            <img
+              src="../img/index/about-us/senrytech-mascot.png"
+              alt="Senrytech 吉祥物"
+            />
+          </div>
+
           <div class="about-hero-img">
             <img
-              src="https://picsum.photos/800/600?random=1"
+              src="../img/index/about-us/senrytech-factory.png"
               alt="Senrytech 企业环境"
             />
           </div>
@@ -3013,10 +3051,10 @@
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <h3>公司成立</h3>
-              <span class="timeline-year">2015</span>
+              <span class="timeline-year">2008</span>
               <p>
                 Senrytech
-                在深圳成立，初期专注于激光切割设备核心部件研发，推出首款实验室级高精度切割头。
+                在济南成立，初期专注于激光机设备的生产与研发，推出首款Senrytech激光机。
               </p>
             </div>
           </div>
@@ -3027,7 +3065,7 @@
               <span class="timeline-year">2017</span>
               <p>
                 发布首款自主研发的激光板材切割机 A
-                系列，切入中小企业市场，当年实现销售额突破1000万元。
+                系列，切入中小企业市场，当年实现销售额突破8000万元。
               </p>
             </div>
           </div>
@@ -3037,28 +3075,26 @@
               <h3>生产基地投产</h3>
               <span class="timeline-year">2019</span>
               <p>
-                自建10000㎡生产基地投产，实现规模化生产，产品故障率降至0.5%以下，获得ISO9001质量体系认证。
+                自建2000㎡生产基地投产，实现规模化生产，产品故障率降至5%以下，获得ISO9001质量体系认证。
               </p>
             </div>
           </div>
           <div class="timeline-item right">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <h3>全球化布局</h3>
+              <h3>首款6万瓦整机上线</h3>
               <span class="timeline-year">2021</span>
-              <p>
-                在德国、印度设立海外服务中心，产品远销全球20+国家，当年服务客户突破3000家。
-              </p>
+              <p>发布首台自主研发的激光板材地轨切割机G，超大功率6万瓦。</p>
             </div>
           </div>
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <h3>技术突破</h3>
-              <span class="timeline-year">2023</span>
+              <span class="timeline-year">2030</span>
               <p>
-                推出搭载AI智能切割系统的 B ProMax
-                系列，切割效率提升30%，获得20+项国家专利，年增长率达50%。
+                全力研发即将推出搭载AI智能切割系统的 A
+                系列，预期切割效率提升30%。
               </p>
             </div>
           </div>
@@ -3586,6 +3622,101 @@
             });
           }
         });
+      });
+    </script>
+
+    <!-- 历史模块交互JS -->
+    <script>
+      // 等待DOM加载完成
+      document.addEventListener("DOMContentLoaded", function () {
+        const projectionNebulas =
+          document.querySelectorAll(".projection-nebula");
+
+        // 给每个投影星云绑定点击事件
+        projectionNebulas.forEach((nebula) => {
+          nebula.addEventListener("click", function () {
+            // 1. 切换当前星云的active状态（控制投影显示）
+            projectionNebulas.forEach((n) => n.classList.remove("active"));
+            this.classList.add("active");
+
+            // 2. 生成粒子消散效果（点击时从星云中心扩散）
+            createParticles(this);
+
+            // 3. 星云点击缩放动画（先缩小再恢复）
+            const nebulaInner = this.querySelector(".nebula-inner");
+            nebulaInner.style.transform = "scale(0.8)";
+            setTimeout(() => {
+              nebulaInner.style.transform = "scale(1.15)";
+            }, 200);
+          });
+
+          // 鼠标离开时，移除active（可选：保持投影则注释这行）
+          nebula.addEventListener("mouseleave", function () {
+            // 延迟移除，避免鼠标刚离开就消失
+            setTimeout(() => {
+              if (!this.matches(":hover")) {
+                this.classList.remove("active");
+              }
+            }, 300);
+          });
+        });
+
+        // 生成粒子消散效果的函数
+        function createParticles(nebula) {
+          const nebulaRect = nebula.getBoundingClientRect();
+          const centerX = nebulaRect.left + nebulaRect.width / 2;
+          const centerY = nebulaRect.top + nebulaRect.height / 2;
+          const particleCount = 15; // 粒子数量
+
+          // 创建多个粒子
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement("div");
+            particle.classList.add("nebula-particle");
+
+            // 随机粒子扩散方向（上下左右）
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 30 + Math.random() * 20; // 粒子扩散距离
+            const dx = Math.cos(angle) * distance;
+            const dy = Math.sin(angle) * distance;
+
+            // 给粒子设置随机方向变量（用于动画）
+            particle.style.setProperty("--dx", `${dx}px`);
+            particle.style.setProperty("--dy", `${dy}px`);
+
+            // 粒子定位到星云中心
+            particle.style.left = `${centerX}px`;
+            particle.style.top = `${centerY}px`;
+
+            // 添加到页面
+            document.body.appendChild(particle);
+
+            // 动画结束后移除粒子（避免DOM堆积）
+            setTimeout(() => {
+              document.body.removeChild(particle);
+            }, 1000);
+          }
+        }
+
+        // 页面滚动时，历史模块的入场动画（淡入+上浮）
+        const historySection = document.querySelector(".about-history");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                historySection.style.opacity = "1";
+                historySection.style.transform = "translateY(0)";
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        // 初始隐藏历史模块，滚动到可视区再显示
+        historySection.style.opacity = "0";
+        historySection.style.transform = "translateY(30px)";
+        historySection.style.transition =
+          "opacity 0.8s ease, transform 0.8s ease";
+        observer.observe(historySection);
       });
     </script>
   </body>

@@ -1143,16 +1143,23 @@
       }
     </style>
 
+    <!--四，CSS 关于senrytech-->
     <style>
-      /* —— 关于我们：全局容器样式 —— */
       .about-section {
         width: 100%;
-        background-color: #f5f5f7;
-        padding: 0;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        padding: 6rem 0 6rem 0;
         overflow: hidden;
       }
       .about-container {
-        max-width: 1250px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0;
       }
@@ -1162,7 +1169,7 @@
         display: flex;
         align-items: center;
         gap: 4rem;
-        margin-bottom: 8rem;
+        margin-bottom: 0;
         opacity: 0;
         transform: translateY(30px);
         transition:
@@ -1259,10 +1266,28 @@
         height: 100%;
         object-fit: cover; /* 保持图片比例，裁剪多余部分（企业图适合裁剪） */
       }
+    </style>
 
+    <!--五，CSS 价值观-->
+    <style>
       /* —— 2. 价值观模块（卡片悬浮+图标旋转动画） —— */
-      .about-advantages {
-        margin-bottom: 8rem;
+      .advantages-section {
+        width: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        padding: 6rem 0 6rem 0;
+        overflow: hidden;
+      }
+      .advantages-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0;
       }
       .about-section-title {
         text-align: center;
@@ -1288,7 +1313,7 @@
       }
       /* 优势卡片样式 */
       .advantage-card {
-        background-color: #fff;
+        background-color: #f5f5f7;
         border-radius: 1.5rem;
         padding: 2.5rem 2rem;
         text-align: center;
@@ -1349,10 +1374,27 @@
         color: #424245;
         line-height: 1.6;
       }
+    </style>
 
-      /* —— 3. 团队展示模块（滚动淡入+卡片缩放） —— */
+    <!--六，CSS 团队展示-->
+    <style>
+      .team-section {
+        width: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        padding: 6rem 0 6rem 0;
+        overflow: hidden;
+      }
       .about-team {
-        margin-bottom: 8rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0;
       }
       .team-list {
         display: grid;
@@ -1427,167 +1469,301 @@
       .team-social a:hover {
         color: #0071e3;
       }
+    </style>
 
-      /* —— 4. 发展历程模块（时间轴滚动动画） —— */
-      .about-timeline {
+    <!--七，CSS 发展历程-->
+    <style>
+  .timeline-section {
+  width: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    #f8f8f8 0%,
+    #fafafa 30%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
+  /* 1. 保留原有上下 padding，无需修改（确保 section 与其他模块间距统一） */
+  padding: 6rem 0 6rem 0;
+  overflow: hidden;
+}
+/* 修复1：给容器加relative，作为竖线/节点的定位基准 + 增加顶部内边距 */
+.timeline-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  /* 2. 核心修改：增大顶部内边距（从 2rem 改为 4rem~6rem，根据标题高度调整） */
+  padding: 6rem 0rem 0 0; /* 重点：第一个值（padding-top）控制竖线顶点下移距离 */
+  position: relative; 
+  height: 75rem; /* 若下移后内容超出，可适当增大（如 78rem），确保竖线覆盖所有节点 */
+}
+/* 时间轴竖线（无需修改，top:0 会跟随容器 padding-top 同步下移） */
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  /* 核心修改：把top从0改成固定值（比如80px，根据标题高度调整） */
+  top: 1px; /* 这个值是标题“发展历程”的高度 + 标题下方的间距，需实际调试 */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    #0071e3 0%,
+    rgba(0, 113, 227, 0.3) 100%
+  );
+  z-index: 1;
+}
+  /* 时间轴节点（保留原有样式，无问题） */
+  .timeline-item {
+    margin-bottom: 4rem;
+    position: relative; /* 让节点圆点基于自身定位 */
+    opacity: 0;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+    z-index: 2; /* 节点层级高于竖线，确保圆点显示在轴上 */
+  }
+  .timeline-item.left {
+    padding-right: 50%;
+    text-align: right;
+    transform: translateX(-30px);
+  }
+  .timeline-item.right {
+    padding-left: 50%;
+    text-align: left;
+    transform: translateX(30px);
+  }
+  .timeline-item.active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  /* 节点圆点（保留原有样式，无问题） */
+  .timeline-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #0071e3;
+    border: 4px solid #f5f5f7;
+    box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
+    transition:
+      box-shadow 0.5s ease,
+      transform 0.5s ease;
+  }
+  .timeline-item:hover .timeline-dot {
+    transform: translateX(-50%) scale(1.2);
+    box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
+  }
+  /* 节点内容卡片（保留原有样式，无问题） */
+  .timeline-content {
+    background-color: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease;
+    margin: 0 1rem; /* 加左右间距，避免卡片贴竖线 */
+  }
+  .timeline-item:hover .timeline-content {
+    transform: translateY(-5px);
+  }
+  .timeline-content h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1d1d1f;
+    margin-bottom: 0.5rem;
+  }
+  .timeline-content .timeline-year {
+    font-size: 0.85rem;
+    color: #0071e3;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+  }
+  .timeline-content p {
+    font-size: 0.9rem;
+    color: #424245;
+    line-height: 1.6;
+  }
+
+  /* —— 响应式适配（修复版：只保留时间线相关样式，修正选择器） —— */
+  /* 平板（768px以下） */
+  @media (max-width: 768px) {
+    /* 修复2：修正竖线选择器为.timeline-container::before */
+    .timeline-container::before {
+      left: 20px;
+      transform: none; /* 取消X轴偏移，竖线靠左 */
+    }
+    /* 节点统一左对齐，取消右侧留白 */
+    .timeline-item.left,
+    .timeline-item.right {
+      padding-left: 60px; /* 左侧留空间给竖线+圆点 */
+      padding-right: 0;
+      text-align: left;
+      transform: translateX(0) translateY(20px);
+    }
+    /* 圆点左移到竖线上 */
+    .timeline-dot {
+      left: 20px;
+      transform: none;
+    }
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.2);
+    }
+  }
+  /* 手机（425px以下） */
+  @media (max-width: 425px) {
+    /* 修复3：只保留时间线相关适配，删除无关的.about-hero样式 */
+    .timeline-content {
+      padding: 1.2rem; /* 缩小卡片内边距，适配小屏 */
+    }
+    .timeline-item {
+      margin-bottom: 3rem; /* 缩小节点间距，节省小屏空间 */
+    }
+  }
+    </style>
+
+    <!--八，CSS 新世界工厂-->
+      <style>
+      /* 1. 父容器：并列类选择器，移除overflow:hidden（避免裁剪背景） */
+      .about-section.new-world-section {
+        padding: 0 0 2rem 0;
+        background-color: #f5f5f7;
+        /* 移除overflow:hidden！否则会裁剪全屏背景的左右超出部分 */
+      }
+
+      /* 2. 背景图容器：100vw全屏+居中对齐，脱离about-container限制 */
+      .new-world-bg {
+        width: 100vw; /* 强制横向铺满视口（关键） */
+        min-height: 600px;
+        background-image: url("../img/about-us/senrytech-new-factory.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 0; /* 取消圆角，全屏无裁剪 */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        padding: 4rem 2rem;
         position: relative;
-        max-width: 800px;
-        margin: 0 auto;
+        overflow: hidden;
+        /* 抵消100vw导致的偏移，让背景居中（关键） */
+        margin-left: calc(-50vw + 50%);
       }
-      /* 时间轴竖线 */
-      .about-timeline::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        background: linear-gradient(
-          to bottom,
-          #0071e3 0%,
-          rgba(0, 113, 227, 0.3) 100%
-        );
-      }
-      /* 时间轴节点 */
-      .timeline-item {
-        margin-bottom: 4rem;
+
+      /* 4. 数据卡片容器：居中显示，层级高于遮罩 */
+      .new-world-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        max-width: 1200px; /* 卡片区域限制宽度，避免过宽 */
+        margin: 0 auto; /* 卡片容器居中 */
         position: relative;
-        opacity: 0;
-        transition:
-          opacity 0.6s ease,
-          transform 0.6s ease;
+        z-index: 2; /* 卡片在遮罩之上，确保可见 */
       }
-      /* 左侧节点（左对齐） */
-      .timeline-item.left {
-        padding-right: 50%;
-        text-align: right;
-        transform: translateX(-30px);
-      }
-      /* 右侧节点（右对齐） */
-      .timeline-item.right {
-        padding-left: 50%;
-        text-align: left;
-        transform: translateX(30px);
-      }
-      .timeline-item.active {
-        opacity: 1;
-        transform: translateX(0);
-      }
-      /* 节点圆点（hover放大） */
-      .timeline-dot {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: #0071e3;
-        border: 4px solid #f5f5f7;
-        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
-        transition:
-          box-shadow 0.5s ease,
-          transform 0.5s ease;
-      }
-      .timeline-item:hover .timeline-dot {
-        transform: translateX(-50%) scale(1.2);
-        box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
-      }
-      /* 节点内容卡片 */
-      .timeline-content {
-        background-color: #fff;
-        border-radius: 1rem;
-        padding: 1.5rem;
+
+      /* 5. 数据卡片：滚动激活动画（不变） */
+      .new-world-stat-item {
+        background-color: rgba(245, 245, 247, 0.9);
+        border-radius: 1.5rem;
+        padding: 1rem 2rem;
+        text-align: center;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition: transform 0.4s ease;
+        transition:
+          transform 0.5s ease,
+          box-shadow 0.5s ease,
+          opacity 0.6s ease,
+          transform 0.6s ease; /* 注意：这里重复写了 transform，可简化为一次 */
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+        transition-delay: calc(var(--card-index) * 0.2s);
       }
-      .timeline-item:hover .timeline-content {
-        transform: translateY(-5px);
+
+      .new-world-stat-item.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
-      .timeline-content h3 {
-        font-size: 1.1rem;
+
+      .new-world-stat-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 6. 数据数字：固定高度，避免动画变形（不变） */
+      .stat-number {
+        font-size: 3rem;
         font-weight: 500;
-        color: #1d1d1f;
-        margin-bottom: 0.5rem;
-      }
-      .timeline-content .timeline-year {
-        font-size: 0.85rem;
         color: #0071e3;
         margin-bottom: 0.8rem;
-        display: inline-block;
+        line-height: 1.2;
+        height: 4rem; /* 固定高度，防止数字增长时卡片变形 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* 隐藏数字增长时的溢出部分 */
       }
-      .timeline-content p {
-        font-size: 0.9rem;
-        color: #424245;
+
+      /* 7. 数据描述：不变 */
+      .stat-desc {
+        font-size: 0.95rem;
+        color: #1d1d1f;
         line-height: 1.6;
       }
 
-      /* —— 响应式适配（延续现有页面断点） —— */
-      /* 平板（768px以下） */
+      /* —— 响应式适配（同步修正） —— */
       @media (max-width: 768px) {
-        .about-hero {
-          flex-direction: column;
+        .about-section.new-world-section {
+          padding: 6rem 0;
+        }
+        .new-world-bg {
+          min-height: 350px;
+          padding: 3rem 1.5rem;
+        }
+        .new-world-stats {
           gap: 2rem;
+          max-width: 90%; /* 小屏缩小卡片容器宽度 */
         }
-        .about-hero-text h2 {
-          font-size: 2rem;
-        }
-        .about-section-title {
-          font-size: 1.8rem;
-        }
-        /* 时间轴：竖线居中→左移，节点统一左对齐 */
-        .about-timeline::before {
-          left: 20px;
-          transform: none;
-        }
-        .timeline-item.left,
-        .timeline-item.right {
-          padding-left: 60px;
-          padding-right: 0;
-          text-align: left;
-          transform: translateX(0) translateY(20px);
-        }
-        .timeline-dot {
-          left: 20px;
-          transform: none;
-        }
-        .timeline-item:hover .timeline-dot {
-          transform: scale(1.2);
+        .stat-number {
+          font-size: 2.5rem;
+          height: 3.5rem; /* 适配小屏字号 */
         }
       }
-      /* 手机（425px以下） */
+
       @media (max-width: 425px) {
-        .about-section {
-          padding: 4rem 0;
-        }
-        .about-hero-text h2 {
-          font-size: 1.8rem;
-        }
-        .about-hero-text p {
-          font-size: 0.95rem;
-        }
-        .advantages-list {
+        .new-world-stats {
+          grid-template-columns: repeat(2, 1fr); /* 小屏两列布局 */
           gap: 1.5rem;
         }
-        .advantage-card {
+        .new-world-stat-item {
           padding: 2rem 1.5rem;
         }
-        .timeline-content {
-          padding: 1.2rem;
+        .stat-number {
+          font-size: 2rem;
+          height: 3rem; /* 适配小屏字号 */
+        }
+        .stat-desc {
+          font-size: 0.9rem;
         }
       }
-      /* —— 5. 员工福利模块（延续价值观卡片风格，新增细节优化） —— */
+      </style>
+
+    <!--九，CSS 员工福利-->
+      <style>
       .staff-container {
         width: 100%;
-        background-color: #f5f5f7;
-        padding: 0;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        padding: 6rem 0 6rem 0;
         overflow: hidden;
       }
       .staff-welfare {
-        max-width: 1250px;
+        max-width: 1400px;
         margin: 0 auto;
-        padding: 6rem;
+        padding: 0;
       }
 
       .staff-elfare-title {
@@ -1609,10 +1785,7 @@
 
       .welfare-list {
         display: grid;
-        grid-template-columns: repeat(
-          auto-fit,
-          minmax(300px, 1fr)
-        ); /* 自适应列数，最小宽度280px */
+        grid-template-columns: repeat(3, minmax(300px, 1fr)); 
         gap: 2.5rem; /* 卡片间距，与价值观板块一致 */
         margin-top: 4rem; /* 与标题间距，保持页面呼吸感 */
       }
@@ -1747,127 +1920,7 @@
           font-size: 1.3rem;
         }
       }
-
-      /* —— 5. 新世界模块（修正：并列选择器+全屏背景+动画基础） —— */
-      /* 1. 父容器：并列类选择器，移除overflow:hidden（避免裁剪背景） */
-      .about-section.new-world-section {
-        padding: 0 0 2rem 0;
-        background-color: #f5f5f7;
-        /* 移除overflow:hidden！否则会裁剪全屏背景的左右超出部分 */
-      }
-
-      /* 2. 背景图容器：100vw全屏+居中对齐，脱离about-container限制 */
-      .new-world-bg {
-        width: 100vw; /* 强制横向铺满视口（关键） */
-        min-height: 600px;
-        background-image: url("../img/about-us/senrytech-new-factory.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        border-radius: 0; /* 取消圆角，全屏无裁剪 */
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        padding: 4rem 2rem;
-        position: relative;
-        overflow: hidden;
-        /* 抵消100vw导致的偏移，让背景居中（关键） */
-        margin-left: calc(-50vw + 50%);
-      }
-
-      /* 4. 数据卡片容器：居中显示，层级高于遮罩 */
-      .new-world-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 3rem;
-        max-width: 1200px; /* 卡片区域限制宽度，避免过宽 */
-        margin: 0 auto; /* 卡片容器居中 */
-        position: relative;
-        z-index: 2; /* 卡片在遮罩之上，确保可见 */
-      }
-
-      /* 5. 数据卡片：滚动激活动画（不变） */
-      .new-world-stat-item {
-        background-color: rgba(245, 245, 247, 0.9);
-        border-radius: 1.5rem;
-        padding: 1rem 2rem;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition:
-          transform 0.5s ease,
-          box-shadow 0.5s ease,
-          opacity 0.6s ease,
-          transform 0.6s ease; /* 注意：这里重复写了 transform，可简化为一次 */
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-        transition-delay: calc(var(--card-index) * 0.2s);
-      }
-
-      .new-world-stat-item.active {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-      .new-world-stat-item:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      /* 6. 数据数字：固定高度，避免动画变形（不变） */
-      .stat-number {
-        font-size: 3rem;
-        font-weight: 500;
-        color: #0071e3;
-        margin-bottom: 0.8rem;
-        line-height: 1.2;
-        height: 4rem; /* 固定高度，防止数字增长时卡片变形 */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden; /* 隐藏数字增长时的溢出部分 */
-      }
-
-      /* 7. 数据描述：不变 */
-      .stat-desc {
-        font-size: 0.95rem;
-        color: #1d1d1f;
-        line-height: 1.6;
-      }
-
-      /* —— 响应式适配（同步修正） —— */
-      @media (max-width: 768px) {
-        .about-section.new-world-section {
-          padding: 6rem 0;
-        }
-        .new-world-bg {
-          min-height: 350px;
-          padding: 3rem 1.5rem;
-        }
-        .new-world-stats {
-          gap: 2rem;
-          max-width: 90%; /* 小屏缩小卡片容器宽度 */
-        }
-        .stat-number {
-          font-size: 2.5rem;
-          height: 3.5rem; /* 适配小屏字号 */
-        }
-      }
-
-      @media (max-width: 425px) {
-        .new-world-stats {
-          grid-template-columns: repeat(2, 1fr); /* 小屏两列布局 */
-          gap: 1.5rem;
-        }
-        .new-world-stat-item {
-          padding: 2rem 1.5rem;
-        }
-        .stat-number {
-          font-size: 2rem;
-          height: 3rem; /* 适配小屏字号 */
-        }
-        .stat-desc {
-          font-size: 0.9rem;
-        }
-      }
-    </style>
+      </style>
 
     <!--十二，CSS 联系专家-->
     <style>
@@ -3176,8 +3229,8 @@
       />
     </div>
 
-    <!-- 关于我们中间内容 -->
-    <section class="about-section" id="about">
+    <!-- 四，关于我们中间内容 -->
+    <section class="about-section">
       <div class="about-container">
         <!-- 1. 企业简介模块 -->
         <div class="about-hero">
@@ -3218,125 +3271,131 @@
             />
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 2. 核价值观模块 -->
-        <div class="about-advantages">
-          <h3 class="about-section-title">我们的价值观</h3>
-          <div class="advantages-list">
-            <div class="advantage-card">
-              <div class="advantage-icon">
-                <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-              </div>
-              <h3>企业使命</h3>
-              <p>
-                始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
-              </p>
+    <!-- 五. 核价值观模块 -->
+    <section class="advantages-section">
+      <div class="advantages-container">
+        <h3 class="about-section-title">我们的价值观</h3>
+        <div class="advantages-list">
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
             </div>
-            <div class="advantage-card">
-              <div class="advantage-icon">
-                <i class="fa fa-industry" aria-hidden="true"></i>
-              </div>
-              <h3>企业愿景</h3>
-              <p>让每一位从业者都能成为产业创新的创造者。</p>
+            <h3>企业使命</h3>
+            <p>
+              始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
+            </p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-industry" aria-hidden="true"></i>
             </div>
-            <div class="advantage-card">
-              <div class="advantage-icon">
-                <i class="fa fa-globe" aria-hidden="true"></i>
-              </div>
-              <h3>企业价值观</h3>
-              <p>
-                客户为友，共生共赢<br />
-                信念为基，价值同行<br />
-                乐观向远，笃行成果<br />
-              </p>
+            <h3>企业愿景</h3>
+            <p>让每一位从业者都能成为产业创新的创造者。</p>
+          </div>
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-globe" aria-hidden="true"></i>
             </div>
+            <h3>企业价值观</h3>
+            <p>
+              客户为友，共生共赢<br />
+              信念为基，价值同行<br />
+              乐观向远，笃行成果<br />
+            </p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 3. 团队展示模块 -->
-        <div class="about-team">
-          <h3 class="about-section-title">核心团队</h3>
-          <div class="team-list">
-            <div class="team-card">
-              <div class="team-avatar">
-                <img src="../img/about-us/senrytech-R-D.png" alt="张工程师" />
-              </div>
-              <div class="team-info">
-                <h3>秦博睿</h3>
-                <p>研发项目总监</p>
-                <div class="team-social">
-                  <a href="#" aria-label="LinkedIn"
-                    ><i class="fa fa-linkedin" aria-hidden="true"></i
-                  ></a>
-                  <a href="#" aria-label="Email"
-                    ><i class="fa fa-envelope" aria-hidden="true"></i
-                  ></a>
-                </div>
-              </div>
+    <!-- 六. 团队展示模块 -->
+    <section class="team-section">
+      <div class="about-team">
+        <h3 class="about-section-title">核心团队</h3>
+        <div class="team-list">
+          <div class="team-card">
+            <div class="team-avatar">
+              <img src="../img/about-us/senrytech-R-D.png" alt="张工程师" />
             </div>
-            <div class="team-card">
-              <div class="team-avatar">
-                <img
-                  src="../img/about-us/senrytech-operation.webp"
-                  alt="李经理"
-                />
-              </div>
-              <div class="team-info">
-                <h3>董振邦</h3>
-                <p>运营总监</p>
-                <div class="team-social">
-                  <a href="#" aria-label="LinkedIn"
-                    ><i class="fa fa-linkedin" aria-hidden="true"></i
-                  ></a>
-                  <a href="#" aria-label="Email"
-                    ><i class="fa fa-envelope" aria-hidden="true"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar">
-                <img src="../img/about-us/senrytech-finance.png" alt="王总监" />
-              </div>
-              <div class="team-info">
-                <h3>林佩</h3>
-                <p>财务总监</p>
-                <div class="team-social">
-                  <a href="#" aria-label="LinkedIn"
-                    ><i class="fa fa-linkedin" aria-hidden="true"></i
-                  ></a>
-                  <a href="#" aria-label="Email"
-                    ><i class="fa fa-envelope" aria-hidden="true"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-            <div class="team-card">
-              <div class="team-avatar">
-                <img
-                  src="../img/about-us/senrytech-marketing.png"
-                  alt="陈经理"
-                />
-              </div>
-              <div class="team-info">
-                <h3>孙雅婷</h3>
-                <p>市场营销总监</p>
-                <div class="team-social">
-                  <a href="#" aria-label="LinkedIn"
-                    ><i class="fa fa-linkedin" aria-hidden="true"></i
-                  ></a>
-                  <a href="#" aria-label="Email"
-                    ><i class="fa fa-envelope" aria-hidden="true"></i
-                  ></a>
-                </div>
+            <div class="team-info">
+              <h3>秦博睿</h3>
+              <p>研发项目总监</p>
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fa fa-linkedin" aria-hidden="true"></i
+                ></a>
+                <a href="#" aria-label="Email"
+                  ><i class="fa fa-envelope" aria-hidden="true"></i
+                ></a>
               </div>
             </div>
           </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <img
+                src="../img/about-us/senrytech-operation.webp"
+                alt="李经理"
+              />
+            </div>
+            <div class="team-info">
+              <h3>董振邦</h3>
+              <p>运营总监</p>
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fa fa-linkedin" aria-hidden="true"></i
+                ></a>
+                <a href="#" aria-label="Email"
+                  ><i class="fa fa-envelope" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <img src="../img/about-us/senrytech-finance.png" alt="王总监" />
+            </div>
+            <div class="team-info">
+              <h3>林佩</h3>
+              <p>财务总监</p>
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fa fa-linkedin" aria-hidden="true"></i
+                ></a>
+                <a href="#" aria-label="Email"
+                  ><i class="fa fa-envelope" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">
+              <img src="../img/about-us/senrytech-marketing.png" alt="陈经理" />
+            </div>
+            <div class="team-info">
+              <h3>孙雅婷</h3>
+              <p>市场营销总监</p>
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fa fa-linkedin" aria-hidden="true"></i
+                ></a>
+                <a href="#" aria-label="Email"
+                  ><i class="fa fa-envelope" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- 4. 发展历程模块 -->
-        <div class="about-timeline">
+    <!-- 七. 发展历程 -->
+      <section class="timeline-section">
+        <div class="timeline-title-wrap">
           <h3 class="about-section-title">发展历程</h3>
+          </div>
+            <div class="timeline-container">
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
@@ -3389,12 +3448,10 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <!-- 5. 新世界模块（大图背景+数据卡片） -->
-      <!-- 注意：new-world-bg 移出 about-container，避免宽度限制 -->
+    <!-- 八. 新世界模块 -->
+      <section>
       <div class="about-section new-world-section">
         <!-- 背景图容器（全屏，带遮罩） -->
         <div class="new-world-bg">
@@ -3422,7 +3479,7 @@
       </div>
     </section>
 
-    <!-- —— 5. 员工福利模块（修复后） —— -->
+    <!-- 九. 员工福利 -->
     <section class="staff-container">
       <div class="staff-welfare">
         <!-- 1. 板块标题：必须放在 .welfare-list 外面！ -->
@@ -3839,107 +3896,50 @@
     </script>
 
     <script>
-      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
-      // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
-      document.addEventListener("DOMContentLoaded", () => {
-        // —— 5.1 初始化优势板块滚动所需变量 ——
-        const otherScrollWrap = document.querySelector(".other-scroll-wrap"); // 滚动容器
-        const otherCardContainer = document.getElementById("otherScroll"); // 卡片容器（对应第3板块#productScroll）
-        const otherItems = document.querySelectorAll(".other-card"); // 所有优势卡片
-        const prevBtn = document.getElementById("otherPrevBtn"); // 左箭头
-        const nextBtn = document.getElementById("otherNextBtn"); // 右箭头
+// 滚动触发动画：统一控制“价值观”“团队”“发展历程”“员工福利”板块
+document.addEventListener("DOMContentLoaded", function () {
+  // 需要触发动画的元素：只选“需要添加active类的元素”，避免冗余和重复
+  const animateElements = [
+    // 1. 所有板块标题（包含员工福利标题，用querySelectorAll全选）
+    ...document.querySelectorAll(".about-section-title, .staff-elfare-title"),
+    // 2. 企业简介文字区
+    ...document.querySelectorAll(".about-hero-text"),
+    // 3. 价值观卡片（全选）
+    ...document.querySelectorAll(".advantage-card"),
+    // 4. 团队卡片（全选）
+    ...document.querySelectorAll(".team-card"),
+    // 5. 发展历程节点（全选，原代码只选1个，此处修复）
+    ...document.querySelectorAll(".timeline-item"),
+    // 6. 员工福利卡片（全选，原代码只选1个，此处修复）
+    ...document.querySelectorAll(".welfare-card")
+  ];
 
-        // —— 5.2 初始化参数（与第3板块逻辑一致） ——
-        let itemWidth = otherItems[0] ? otherItems[0].offsetWidth + 24 : 364; // 滚动步长=卡片宽+间距（24px）
-        const containerGap =
-          parseInt(getComputedStyle(otherCardContainer).gap) || 24; // 卡片间距
+  // 检测元素是否在可视区域内（逻辑不变，保留原有判定）
+  function isInViewport(el) {
+    // 防御性判断：如果元素不存在（undefined），直接返回false，避免报错
+    if (!el) return false;
+    const rect = el.getBoundingClientRect();
+    // 可视区域判定：元素顶部进入屏幕底部100px内，或元素底部进入屏幕顶部100px内（体验更优）
+    return rect.top <= window.innerHeight - 100 && rect.bottom >= 100;
+  }
 
-        // —— 5.3 计算卡片宽度（适配窗口缩放） ——
-        const initItemWidth = () => {
-          if (otherItems[0]) {
-            itemWidth = otherItems[0].offsetWidth + containerGap; // 重新计算滚动步长
-          }
-        };
-
-        // —— 5.4 箭头滚动控制（与第3板块一致） ——
-        // 右滚动：一次滚动一个步长
-        const scrollRight = () => {
-          otherScrollWrap.scrollBy({
-            left: itemWidth,
-            behavior: "smooth", // 平滑滚动
-          });
-        };
-        // 左滚动：一次滚动一个步长
-        const scrollLeft = () => {
-          otherScrollWrap.scrollBy({
-            left: -itemWidth,
-            behavior: "smooth",
-          });
-        };
-
-        // —— 5.5 箭头禁用状态控制（与第3板块一致） ——
-        const updateBtnState = () => {
-          if (!otherScrollWrap) return;
-          // 左箭头：滚动到最左侧（误差≤10px）则禁用
-          prevBtn.disabled = otherScrollWrap.scrollLeft <= 10;
-          // 右箭头：滚动到最右侧（误差≤10px）则禁用
-          nextBtn.disabled =
-            otherScrollWrap.scrollLeft >=
-            otherScrollWrap.scrollWidth - otherScrollWrap.clientWidth - 10;
-        };
-
-        // —— 5.6 绑定箭头点击事件 ——
-        nextBtn.addEventListener("click", scrollRight);
-        prevBtn.addEventListener("click", scrollLeft);
-        // 滚动时实时更新箭头状态
-        otherScrollWrap.addEventListener("scroll", updateBtnState);
-
-        // —— 5.7 窗口缩放适配（与第3板块一致） ——
-        window.addEventListener("resize", () => {
-          initItemWidth(); // 重新计算滚动步长
-          updateBtnState(); // 重新更新箭头状态
-        });
-
-        // —— 5.8 初始化（页面加载时执行） ——
-        initItemWidth();
-        updateBtnState();
-      });
-    </script>
-
-    <script type="text/javascript">
-      /* ================================== JS 联系专家 ================================== */
-      function sendEmail(event) {
-        const submitBtn = document.getElementById("submitBtn");
-        const submitTip = document.getElementById("submitTip");
-        submitBtn.disabled = true;
-        submitBtn.innerText = "提交中...";
-        submitTip.innerHTML = "";
-
-        // 替换成你EmailJS后台的 服务ID、模板ID
-        emailjs
-          .send("service_waa3l9d", "template_zvfvl5p", {
-            sender_name: document.getElementById("name").value,
-            sender_contact: document.getElementById("contact").value,
-            sender_message: document.getElementById("message").value,
-          })
-          .then(
-            function () {
-              submitTip.innerHTML =
-                '<span style="color: green;">✅ 提交成功！</span>';
-              document.getElementById("laserForm").reset();
-              submitBtn.disabled = false;
-              submitBtn.innerText = "提交咨询";
-            },
-            function (error) {
-              submitTip.innerHTML =
-                '<span style="color: red;">❌ 提交失败，请重试</span>';
-              submitBtn.disabled = false;
-              submitBtn.innerText = "重新提交";
-              console.error("错误：", error);
-            }
-          );
+  // 为可视区域的元素添加active类（逻辑不变）
+  function activateVisibleElements() {
+    animateElements.forEach((el) => {
+      if (isInViewport(el) && !el.classList.contains("active")) {
+        el.classList.add("active");
       }
-    </script>
+    });
+  }
+
+  // 初始加载时触发一次
+  activateVisibleElements();
+  // 滚动时持续检测
+  window.addEventListener("scroll", activateVisibleElements);
+  // 窗口大小变化时重新检测
+  window.addEventListener("resize", activateVisibleElements);
+});
+</script>
 
     <script>
       // 1. 页面加载完成后初始化动画
@@ -4116,76 +4116,8 @@
         observer.observe(historySection);
       });
     </script>
-    <script>
-      // 滚动触发动画：统一控制“价值观”“团队”“发展历程”“员工福利”板块
-      document.addEventListener("DOMContentLoaded", function () {
-        // 需要触发动画的元素：包含福利卡片、时间轴节点、优势卡片等
-        const animateElements = [
-          ...document.querySelectorAll(".welfare-card"),
-          ...document.querySelectorAll(".timeline-item"),
-          ...document.querySelectorAll(".advantage-card"),
-          ...document.querySelectorAll(".team-card"),
-          document.querySelector(".about-hero"),
-          document.querySelector(".about-section-title"),
-        ];
 
-        // 检测元素是否在可视区域内
-        function isInViewport(el) {
-          const rect = el.getBoundingClientRect();
-          // 可视区域判定：元素顶部进入屏幕底部100px内，或元素底部进入屏幕顶部100px内
-          return rect.top <= window.innerHeight - 100 && rect.bottom >= 100;
-        }
-
-        // 为可视区域的元素添加active类
-        function activateVisibleElements() {
-          animateElements.forEach((el) => {
-            if (isInViewport(el) && !el.classList.contains("active")) {
-              el.classList.add("active");
-            }
-          });
-        }
-
-        // 初始加载时触发一次（显示当前在屏幕内的元素）
-        activateVisibleElements();
-
-        // 滚动时持续检测（显示滚动到屏幕内的元素）
-        window.addEventListener("scroll", activateVisibleElements);
-
-        // 窗口大小变化时重新检测（适配响应式布局）
-        window.addEventListener("resize", activateVisibleElements);
-      });
-    </script>
-
-    <script>
-      // 新世界模块 - 滚动触发动画（复用全局滚动检测逻辑）
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. 获取所有数据卡片
-        const statItems = document.querySelectorAll(".new-world-stat-item");
-
-        // 2. 配置IntersectionObserver（检测元素是否进入视口）
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              // 当元素进入视口时，添加active类触发动画
-              if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target); // 只触发一次动画
-              }
-            });
-          },
-          {
-            root: null, // 以视口为根元素
-            rootMargin: "0px 0px -100px 0px", // 视口底部向上100px触发（避免卡片完全进入才动）
-            threshold: 0.1, // 元素10%进入视口即触发
-          }
-        );
-
-        // 3. 观察每个数据卡片
-        statItems.forEach((item) => {
-          observer.observe(item);
-        });
-      });
-      // 新世界模块 - 数字增长动画（与滚动激活同步）
+    <script>// 新世界模块 - 数字增长动画（与滚动激活同步）
       document.addEventListener("DOMContentLoaded", function () {
         const statItems = document.querySelectorAll(".new-world-stat-item");
         // 存储目标数字和单位（与HTML中的数据对应）
@@ -4257,6 +4189,7 @@
           observer.observe(item);
         });
       });
-    </script>
+      </script>
+
   </body>
 </html>

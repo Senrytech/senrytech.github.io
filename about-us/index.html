@@ -1150,52 +1150,68 @@
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
-        padding: 6rem 0 6rem 0;
+        padding: 6rem 0; /* 简化上下内边距写法，保持与其他模块间距统一 */
         overflow: hidden;
       }
       .about-container {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 0;
+        padding: 0 2rem; /* 基础左右留白，避免内容贴边（小屏会微调） */
+        position: relative; /* 为背景容器提供定位上下文 */
       }
 
-      /* —— 1. 企业简介模块（文字渐入+背景渐变动画） —— */
+      .about-bg-round {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0; /* 确保背景在内容下层 */
+        width: 120%;
+        height: 110%;
+        border-radius: 2.5rem; /* 苹果风大圆角基础值 */
+        background: #f5f5f7;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s ease; /* 断点切换时背景过渡更流畅 */
+      }
+
+      /* —— 企业简介核心布局：默认横向排列（大屏） —— */
       .about-hero {
         display: flex;
         align-items: center;
-        gap: 4rem;
+        gap: 4rem; /* 元素间距基础值 */
         margin-bottom: 0;
         opacity: 0;
         transform: translateY(30px);
         transition:
           opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1),
           transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+        position: relative;
+        z-index: 1; /* 内容层级高于背景 */
       }
       .about-hero.active {
         opacity: 1;
         transform: translateY(0);
       }
-      /* 左侧文字区 */
+
+      /* 左侧文字区：大屏固定宽度，小屏自适应 */
       .about-hero-text {
-        /* 关键修改：flex: 0 0 固定宽度，取消拉伸；同时可保留max-width防止超宽 */
-        flex: 0 0 500px; /* 固定宽度为400px，可根据需求调整（如350px/500px） */
-        max-width: 100%; /* 可选：限制在父容器内，避免小屏溢出 */
-        /* 移除原有的 flex: 1，因为它会覆盖固定宽度 */
+        flex: 0 0 500px; /* 大屏固定宽度，确保文字区不被挤压 */
+        max-width: 100%; /* 小屏时不超出父容器 */
       }
       .about-hero-text h2 {
-        font-size: 2.5rem;
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        font-size: 2.5rem; /* 标题字号基础值 */
         font-weight: 500;
-        color: #1d1d1f;
+        color: #000000;
         margin-bottom: 1.5rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         position: relative;
         display: inline-block;
       }
-      /* 标题下划线动画 */
       .about-hero-text h2::after {
         content: "";
         position: absolute;
@@ -1210,11 +1226,13 @@
         width: 100%;
       }
       .about-hero-text p {
-        font-size: 0.9rem;
+        font-size: 0.875rem; /* 段落字号基础值 */
+        font-weight: 400;
         color: #1d1d1f;
-        line-height: 1.8;
+        line-height: 1.5;
         margin-bottom: 1.2rem;
         opacity: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         transform: translateY(15px);
         transition:
           opacity 0.6s ease,
@@ -1225,37 +1243,35 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* —— 3. 中间吉祥物：固定宽度+透明背景，避免变形 —— */
-      .about-mascot-img {
-        /* 1. 固定宽度：根据设计需求调整，避免太宽挤压文字/图片 */
-        width: 180px; /* 示例宽度，可改为 100px/140px，建议不超过父容器的 20% */
-        height: auto; /* 高度自适应，保持图片比例 */
-        margin-right: -100px;
 
-        /* 2. 图片样式：确保背景透明+完整显示 */
+      /* 中间吉祥物：固定宽度+透明背景，避免变形 */
+      .about-mascot-img {
+        width: 180px; /* 大屏宽度基础值 */
+        height: auto;
+        margin-right: -100px; /* 大屏时轻微左移，营造层叠感 */
         display: flex;
-        justify-content: center; /* 图片在容器内居中 */
+        justify-content: center;
         align-items: center;
+        flex-shrink: 0; /* 不被挤压变形 */
       }
       .about-mascot-img img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* 核心：完整显示图片，不裁剪（适配透明背景图） */
-        background: transparent; /* 强制背景透明，即使图片有瑕疵也覆盖 */
-        /* 可选：添加轻微阴影，让吉祥物更突出 */
+        object-fit: contain; /* 完整显示透明背景图 */
+        background: transparent;
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
       }
 
-      /* —— 4. 右侧企业环境图：自适应宽度，保持原有交互 —— */
+      /* 右侧企业环境图：自适应宽度，保持交互 */
       .about-hero-img {
-        flex: 1; /* 与文字区对称，自适应剩余宽度 */
-        border-radius: 2rem;
+        flex: 1; /* 自适应剩余宽度，与文字区平衡 */
+        border-radius: 1rem;
         overflow: hidden;
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease;
-        /* 移除原 position:relative（无需再作为吉祥物父容器） */
+        flex-shrink: 0; /* 避免小屏被过度压缩 */
       }
       .about-hero-img:hover {
         transform: scale(1.03);
@@ -1264,37 +1280,293 @@
       .about-hero-img img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* 保持图片比例，裁剪多余部分（企业图适合裁剪） */
+        object-fit: cover; /* 裁剪多余部分，保证图片比例 */
+      }
+
+      /* ================================== 8个断点适配（按屏幕尺寸从小到大） ================================== */
+
+      /* 1. 超小屏手机（0-320px）：极致紧凑，纵向布局 */
+      @media (max-width: 320px) {
+        .about-container {
+          padding: 0 1rem; /* 缩小左右留白，节省空间 */
+        }
+        .about-bg-round {
+          width: 98%; /* 背景贴合屏幕，避免溢出 */
+          height: 95%;
+          border-radius: 1.5rem; /* 缩小圆角，适配小屏视觉 */
+        }
+        .about-hero {
+          flex-direction: column; /* 纵向排列，避免横向挤压 */
+          gap: 1.5rem; /* 减小元素间距 */
+          padding: 1rem 0; /* 上下留白，避免内容贴背景 */
+        }
+        .about-hero-text {
+          flex: none; /* 取消固定宽度，自适应 */
+        }
+        .about-hero-text h2 {
+          font-size: 1.8rem; /* 缩小标题字号，避免换行 */
+          margin-bottom: 1rem;
+        }
+        .about-hero-text p {
+          font-size: 0.8rem; /* 缩小段落字号 */
+          margin-bottom: 1rem;
+        }
+        .about-mascot-img {
+          width: 100px; /* 缩小吉祥物，避免遮挡 */
+          margin-right: 0; /* 取消左移，居中显示 */
+        }
+        .about-hero-img {
+          width: 100%;
+          height: 180px; /* 固定高度，避免图片过高 */
+        }
+      }
+      /* 2. 小屏手机（321-375px）：微调紧凑度，纵向布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .about-container {
+          padding: 0 1.2rem;
+        }
+        .about-bg-round {
+          width: 98%;
+          height: 95%;
+          border-radius: 1.8rem;
+        }
+        .about-hero {
+          flex-direction: column;
+          gap: 1.8rem;
+        }
+        .about-hero-text {
+          flex: none;
+        }
+        .about-hero-text h2 {
+          font-size: 2rem;
+          margin-bottom: 1.2rem;
+        }
+        .about-hero-text p {
+          font-size: 0.825rem;
+          margin-bottom: 1.1rem;
+        }
+        .about-mascot-img {
+          width: 120px;
+          margin-right: 0;
+        }
+        .about-hero-img {
+          height: 200px; /* 略增高度，保证图片显示完整 */
+        }
+      }
+
+      /* 3. 大屏手机（376-425px）：平衡视觉与空间，纵向布局 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .about-container {
+          padding: 0 1.5rem;
+        }
+        .about-bg-round {
+          width: 97%;
+          height: 94%;
+          border-radius: 2rem;
+        }
+        .about-hero {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        .about-hero-text {
+          flex: none;
+        }
+        .about-hero-text h2 {
+          font-size: 2.2rem;
+        }
+        .about-hero-text p {
+          font-size: 0.85rem;
+          line-height: 1.6; /* 提升行高，增强可读性 */
+        }
+        .about-mascot-img {
+          width: 140px;
+          margin-right: 0;
+        }
+        .about-hero-img {
+          height: 220px;
+        }
+      }
+
+      /* 4. 平板/折叠屏（426-768px）：纵向为主，优化背景适配 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .about-container {
+          padding: 0 2rem;
+        }
+        .about-bg-round {
+          width: 95%;
+          height: 92%;
+          border-radius: 2.2rem;
+        }
+        .about-hero {
+          flex-direction: column; /* 纵向布局，避免平板横向挤压 */
+          gap: 2.5rem;
+        }
+        .about-hero-text {
+          flex: 0 0 350px; /* 固定文字区宽度，避免过宽 */
+          margin: 0 auto; /* 文字区居中，提升视觉平衡 */
+        }
+        .about-hero-text h2 {
+          font-size: 2.4rem;
+        }
+        .about-mascot-img {
+          width: 160px;
+          margin-right: 0;
+        }
+        .about-hero-img {
+          width: 90%; /* 图片略缩，与背景边界留空 */
+          margin: 0 auto;
+          height: 280px;
+        }
+      }
+
+      /* 5. 笔记本小屏（769-1024px）：横向布局，微调间距 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .about-container {
+          max-width: 900px; /* 限制容器宽度，避免内容过散 */
+        }
+        .about-bg-round {
+          width: 110%; /* 背景略宽，覆盖内容 */
+          height: 105%;
+        }
+        .about-hero {
+          gap: 2.5rem; /* 缩小间距，适配笔记本宽度 */
+        }
+        .about-hero-text {
+          flex: 0 0 400px; /* 缩小文字区固定宽度 */
+        }
+        .about-hero-text h2 {
+          font-size: 2.3rem;
+        }
+        .about-mascot-img {
+          width: 150px;
+          margin-right: -80px; /* 减小左移距离，避免遮挡文字 */
+        }
+        .about-hero-img {
+          height: 320px; /* 固定图片高度，避免拉伸 */
+        }
+      }
+
+      /* 6. 主流桌面屏（1025-1440px）：保持基础设计，优化细节 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .about-container {
+          max-width: 1200px;
+        }
+        .about-bg-round {
+          width: 115%;
+          height: 108%;
+        }
+        .about-hero {
+          gap: 3.5rem; /* 略减间距，适配桌面宽度 */
+        }
+        .about-hero-text {
+          flex: 0 0 480px; /* 接近基础值，微调适配 */
+        }
+        .about-mascot-img {
+          margin-right: -90px; /* 微调左移，保持层叠感 */
+        }
+        .about-hero-img {
+          height: 380px; /* 提升图片高度，增强视觉冲击 */
+        }
+      }
+
+      /* 7. 大屏/2K屏（1441-2560px）：放大尺寸，匹配大屏视觉 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .about-container {
+          max-width: 1600px; /* 增大容器宽度，避免内容拥挤 */
+          padding: 0 3rem;
+        }
+        .about-bg-round {
+          width: 120%;
+          height: 110%;
+          border-radius: 3rem; /* 放大圆角，适配大屏 */
+        }
+        .about-hero {
+          gap: 4.5rem; /* 增大间距，提升呼吸感 */
+        }
+        .about-hero-text {
+          flex: 0 0 550px; /* 放大文字区宽度 */
+        }
+        .about-hero-text h2 {
+          font-size: 2.8rem; /* 放大标题，匹配大屏视觉 */
+          margin-bottom: 1.8rem;
+        }
+        .about-hero-text p {
+          font-size: 0.95rem; /* 放大段落字号，提升可读性 */
+          line-height: 1.6;
+        }
+        .about-mascot-img {
+          width: 200px; /* 放大吉祥物，保持比例 */
+          margin-right: -110px;
+        }
+        .about-hero-img {
+          height: 450px; /* 放大图片高度，增强视觉 */
+        }
+      }
+
+      /* 8. 超高清屏（≥2561px）：极致适配，避免内容过散 */
+      @media (min-width: 2561px) {
+        .about-container {
+          max-width: 1800px; /* 最大容器宽度，限制内容范围 */
+          padding: 0 4rem;
+        }
+        .about-bg-round {
+          width: 110%; /* 减小背景宽度，避免超宽溢出 */
+          height: 108%;
+          border-radius: 3.5rem; /* 超大圆角，匹配超高清屏 */
+        }
+        .about-hero {
+          gap: 5rem; /* 最大间距，确保元素不拥挤 */
+        }
+        .about-hero-text {
+          flex: 0 0 600px; /* 最大文字区宽度 */
+        }
+        .about-hero-text h2 {
+          font-size: 3.2rem; /* 最大标题字号 */
+          margin-bottom: 2rem;
+        }
+        .about-hero-text p {
+          font-size: 1.05rem;
+          margin-bottom: 1.5rem;
+        }
+        .about-mascot-img {
+          width: 220px; /* 最大吉祥物尺寸 */
+          margin-right: -120px;
+        }
+        .about-hero-img {
+          height: 500px; /* 最大图片高度，保持视觉平衡 */
+        }
       }
     </style>
 
     <!--五，CSS 价值观-->
     <style>
-      /* —— 2. 价值观模块（卡片悬浮+图标旋转动画） —— */
+      /* —— 价值观模块基础样式（保留核心交互：卡片悬浮+图标旋转） —— */
       .advantages-section {
         width: 100%;
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
-        padding: 6rem 0 6rem 0;
+        padding: 6rem 0; /* 上下内边距统一，与其他模块间距对齐 */
         overflow: hidden;
       }
       .advantages-container {
-        max-width: 1400px;
+        max-width: 1400px; /* 大屏默认容器宽度，断点中动态调整 */
         margin: 0 auto;
-        padding: 0;
+        padding: 0 2rem; /* 基础左右留白，断点中微调 */
       }
+      /*  section标题：基础样式+滚动激活动画 */
       .about-section-title {
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
         text-align: center;
-        font-size: 2rem;
+        font-size: 2.5rem; /* 标题基础字号，断点中适配 */
         font-weight: 500;
-        color: #1d1d1f;
-        margin-bottom: 4rem;
+        color: #000000;
+        margin-bottom: 4rem; /* 标题与卡片间距，断点中微调 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         opacity: 0;
         transform: translateY(20px);
         transition:
@@ -1305,17 +1577,17 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* 优势卡片容器 */
+      /* 卡片容器：核心布局控制，断点中仅切换1列/3列 */
       .advantages-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2.5rem;
+        gap: 2.5rem; /* 卡片间距基础值，断点中适配 */
+        align-items: stretch; /* 确保同列卡片高度一致，避免布局错乱 */
       }
-      /* 优势卡片样式 */
+      /* 卡片基础样式：保留悬浮+阴影过渡 */
       .advantage-card {
         background-color: #f5f5f7;
-        border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
+        border-radius: 1.5rem; /* 苹果风圆角，断点中微调 */
+        padding: 2.5rem 2rem; /* 卡片内边距，小屏缩小 */
         text-align: center;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         transition:
@@ -1324,23 +1596,23 @@
           background-color 0.4s ease;
         opacity: 0;
         transform: translateY(30px);
-        transition-delay: calc(var(--card-index) * 0.2s);
+        transition-delay: calc(var(--card-index) * 0.2s); /* 卡片依次激活动画 */
       }
       .advantage-card.active {
         opacity: 1;
         transform: translateY(0);
       }
-      /* 卡片悬浮效果 */
+      /* 卡片悬浮效果：保持原有交互体验 */
       .advantage-card:hover {
         transform: translateY(-10px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         background-color: #fafafa;
       }
-      /* 优势图标（旋转+颜色过渡） */
+      /* 图标容器：保留旋转+背景色过渡 */
       .advantage-icon {
-        width: 60px;
+        width: 60px; /* 图标容器基础尺寸，小屏缩小 */
         height: 60px;
-        margin: 0 auto 1.5rem;
+        margin: 0 auto 1.5rem; /* 图标与标题间距，断点中微调 */
         border-radius: 50%;
         background-color: rgba(0, 113, 227, 0.1);
         display: flex;
@@ -1354,103 +1626,419 @@
         transform: rotate(15deg);
         background-color: #0071e3;
       }
+      /* 图标样式：颜色过渡保留 */
       .advantage-icon i {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* 图标字号，小屏缩小 */
         color: #0071e3;
         transition: color 0.5s ease;
       }
       .advantage-card:hover .advantage-icon i {
         color: #fff;
       }
-      /* 卡片文字 */
+      /* 卡片标题：基础样式 */
       .advantage-card h3 {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* 标题字号，小屏缩小 */
         font-weight: 500;
         color: #1d1d1f;
-        margin-bottom: 1rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1rem; /* 标题与正文间距 */
       }
+      /* 卡片正文：基础样式 */
       .advantage-card p {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* 正文字号，小屏缩小 */
         color: #424245;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         line-height: 1.6;
+      }
+      /* 五、CSS 价值观（新增部分） */
+.advantage-card p {
+  font-size: 0.9rem; 
+  color: #424245;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.6;
+  margin-bottom: 0.5rem; /* 原文字与行动描述的间距 */
+}
+
+/* 行动描述样式：差异化显示，突出案例 */
+.advantage-card .action-desc {
+  display: inline-block; /* 确保缩进和间距生效 */
+  font-size: 0.82rem; /* 比原文字小一号，避免喧宾夺主 */
+  color: #0071e3; /* 品牌蓝，呼应导航栏/按钮配色，增强识别度 */
+  margin: 0.3rem 0 0.5rem 1rem; /* 上下间距+左侧缩进，区分层级 */
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+      /* ================================== 8个断点适配（仅1列/3列切换） ================================== */
+      /* 1. 超小屏手机（0-320px）：1列布局 */
+      @media (max-width: 320px) {
+        .advantages-container {
+          padding: 0 1rem; /* 最小留白，节省空间 */
+        }
+        .about-section-title {
+          font-size: 1.8rem; /* 最小标题字号，避免换行 */
+          margin-bottom: 2.5rem; /* 缩小标题与卡片间距 */
+        }
+        .advantages-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.5rem; /* 最小卡片间距 */
+        }
+        .advantage-card {
+          padding: 2rem 1.5rem; /* 缩小卡片内边距 */
+          border-radius: 1.2rem; /* 缩小圆角，适配小屏 */
+        }
+        .advantage-icon {
+          width: 50px; /* 缩小图标容器 */
+          height: 50px;
+          margin-bottom: 1.2rem; /* 缩小图标与标题间距 */
+        }
+        .advantage-icon i {
+          font-size: 1.2rem; /* 缩小图标字号 */
+        }
+        .advantage-card h3 {
+          font-size: 1rem; /* 缩小卡片标题 */
+          margin-bottom: 0.8rem;
+        }
+        .advantage-card p {
+          font-size: 0.8rem; /* 缩小正文字号 */
+          line-height: 1.5;
+        }
+      }
+
+      /* 2. 小屏手机（321-375px）：1列布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .advantages-container {
+          padding: 0 1.2rem;
+        }
+        .about-section-title {
+          font-size: 2rem;
+          margin-bottom: 3rem;
+        }
+        .advantages-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.8rem;
+        }
+        .advantage-card {
+          padding: 2rem 1.5rem;
+          border-radius: 1.3rem;
+        }
+        .advantage-icon {
+          width: 52px;
+          height: 52px;
+          margin-bottom: 1.3rem;
+        }
+        .advantage-icon i {
+          font-size: 1.3rem;
+        }
+        .advantage-card h3 {
+          font-size: 1.05rem;
+          margin-bottom: 0.9rem;
+        }
+        .advantage-card p {
+          font-size: 0.825rem;
+        }
+        .advantage-card .action-desc {
+    font-size: 0.75rem;
+    margin: 0.2rem 0 0.4rem 0; /* 超小屏取消左侧缩进，避免换行混乱 */
+    width: 100%; /* 占满卡片宽度，确保文字完整显示 */
+  }
+      }
+
+      /* 3. 大屏手机（376-425px）：1列布局 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .advantages-container {
+          padding: 0 1.5rem;
+        }
+        .about-section-title {
+          font-size: 2.2rem;
+          margin-bottom: 3.2rem;
+        }
+        .advantages-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 2rem;
+        }
+        .advantage-card {
+          padding: 2.2rem 1.8rem;
+          border-radius: 1.4rem;
+        }
+        .advantage-icon {
+          width: 55px;
+          height: 55px;
+          margin-bottom: 1.4rem;
+        }
+        .advantage-icon i {
+          font-size: 1.4rem;
+        }
+        .advantage-card h3 {
+          font-size: 1.1rem;
+        }
+        .advantage-card p {
+          font-size: 0.85rem;
+          line-height: 1.6;
+        }
+      }
+
+      /* 4. 平板/折叠屏（426-768px）：1列布局（768px以下均为1列） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .advantages-container {
+          padding: 0 2rem;
+          max-width: 600px; /* 限制容器宽度，避免1列过宽 */
+        }
+        .about-section-title {
+          font-size: 2.4rem;
+          margin-bottom: 3.5rem;
+        }
+        .advantages-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 2.2rem;
+        }
+        .advantage-card {
+          padding: 2.2rem 2rem;
+          border-radius: 1.5rem;
+        }
+        .advantage-icon {
+          width: 58px;
+          height: 58px;
+          margin-bottom: 1.5rem;
+        }
+        .advantage-icon i {
+          font-size: 1.5rem;
+        }
+        .advantage-card h3 {
+          font-size: 1.15rem;
+        }
+        .advantage-card p {
+          font-size: 0.875rem;
+        }
+        .advantage-card .action-desc {
+    font-size: 0.78rem;
+    margin-left: 0.5rem; /* 小屏缩小缩进，节省空间 */
+  }
+      }
+
+      /* 5. 笔记本小屏（769-1024px）：3列布局（769px以上均为3列） */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .advantages-container {
+          padding: 0 2rem;
+          max-width: 900px; /* 适配笔记本宽度，3列不拥挤 */
+        }
+        .about-section-title {
+          font-size: 2.3rem;
+          margin-bottom: 3.8rem;
+        }
+        .advantages-list {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 2rem; /* 缩小间距，适配笔记本宽度 */
+        }
+        .advantage-card {
+          padding: 2.2rem 1.8rem; /* 缩小内边距，避免3列过宽 */
+        }
+        .advantage-icon {
+          width: 55px;
+          height: 55px;
+        }
+        .advantage-card h3 {
+          font-size: 1.1rem;
+        }
+        .advantage-card p {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* 6. 主流桌面屏（1025-1440px）：3列布局 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .advantages-container {
+          padding: 0 2rem;
+          max-width: 1200px; /* 适配桌面宽度，3列均匀分布 */
+        }
+        .about-section-title {
+          font-size: 2.5rem;
+          margin-bottom: 4rem;
+        }
+        .advantages-list {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 2.2rem;
+        }
+        /* 保持基础样式，无需额外缩小，3列布局协调 */
+      }
+
+      /* 7. 大屏/2K屏（1441-2560px）：3列布局 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .advantages-container {
+          padding: 0 3rem;
+          max-width: 1600px; /* 适配2K屏，3列更舒展 */
+        }
+        .about-section-title {
+          font-size: 2.8rem; /* 放大标题，匹配大屏视觉 */
+          margin-bottom: 4.5rem;
+        }
+        .advantages-list {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 2.5rem; /* 增大间距，提升呼吸感 */
+        }
+        .advantage-card {
+          padding: 2.8rem 2.2rem; /* 放大卡片内边距，匹配大屏 */
+          border-radius: 1.8rem; /* 放大圆角，适配大屏 */
+        }
+        .advantage-icon {
+          width: 65px; /* 放大图标容器 */
+          height: 65px;
+          margin-bottom: 1.8rem;
+        }
+        .advantage-icon i {
+          font-size: 1.6rem; /* 放大图标字号 */
+        }
+        .advantage-card h3 {
+          font-size: 1.3rem; /* 放大卡片标题 */
+          margin-bottom: 1.2rem;
+        }
+        .advantage-card p {
+          font-size: 0.95rem; /* 放大正文字号，提升可读性 */
+          line-height: 1.7;
+        }
+      }
+
+      /* 8. 超高清屏（≥2561px）：3列布局 */
+      @media (min-width: 2561px) {
+        .advantages-container {
+          padding: 0 4rem;
+          max-width: 1800px; /* 限制最大宽度，避免3列过散 */
+        }
+        .about-section-title {
+          font-size: 3rem; /* 最大标题字号 */
+          margin-bottom: 5rem;
+        }
+        .advantages-list {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 2.8rem; /* 最大卡片间距 */
+        }
+        .advantage-card {
+          padding: 3rem 2.5rem; /* 最大卡片内边距 */
+          border-radius: 2rem; /* 最大圆角 */
+        }
+        .advantage-icon {
+          width: 70px; /* 最大图标容器 */
+          height: 70px;
+          margin-bottom: 2rem;
+        }
+        .advantage-icon i {
+          font-size: 1.8rem; /* 最大图标字号 */
+        }
+        .advantage-card h3 {
+          font-size: 1.4rem; /* 最大卡片标题 */
+          margin-bottom: 1.3rem;
+        }
+        .advantage-card p {
+          font-size: 1.05rem; /* 最大正文字号 */
+        }
       }
     </style>
 
     <!--六，CSS 团队展示-->
     <style>
+      /* —— 团队模块基础样式（核心：保留交互+固定容器尺寸） —— */
       .team-section {
         width: 100%;
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
-        padding: 6rem 0 6rem 0;
+        padding: 6rem 0; /* 统一上下内边距，与其他模块间距对齐 */
         overflow: hidden;
       }
+      /* 容器：控制整体宽度，避免内容过散/过挤 */
       .about-team {
-        max-width: 1400px;
+        max-width: 1400px; /* 大屏默认最大宽度，断点中动态调整 */
         margin: 0 auto;
-        padding: 0;
+        padding: 0 2rem; /* 基础左右留白，断点中微调 */
       }
+      /* 团队列表：核心布局容器，仅1列/4列切换 */
       .team-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 2rem;
+        gap: 2rem; /* 卡片间距基础值，断点中适配 */
+        align-items: start; /* 确保卡片顶部对齐，避免高度不一致导致布局偏移 */
       }
+      /* 团队卡片：固定容器尺寸，保留交互效果 */
       .team-card {
         background-color: #fff;
-        border-radius: 1.5rem;
-        overflow: hidden;
+        border-radius: 1.5rem; /* 苹果风圆角，断点中微调 */
+        overflow: hidden; /* 确保图片/内容不超出卡片圆角 */
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        transition: all 0.5s ease;
+        transition: all 0.5s ease; /* 卡片激活/hover过渡统一 */
         opacity: 0;
         transform: scale(0.9) translateY(20px);
-        transition-delay: calc(var(--team-index) * 0.2s);
+        transition-delay: calc(var(--team-index) * 0.2s); /* 卡片依次激活动画 */
       }
       .team-card.active {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0); /* 激活时恢复正常状态 */
       }
-      /* 团队成员头像（hover放大） */
+
+      /* —— 核心优化：头像容器不变，图片缩小防裁剪 —— */
       .team-avatar {
         width: 100%;
-        height: 280px;
+        height: 280px; /* 固定容器高度，不随断点变化 */
         overflow: hidden;
+        background-color: #f5f5f7; /* 图片加载前占位色，避免空白 */
+        display: flex; /* 图片居中 */
+        align-items: center;
+        justify-content: center;
       }
       .team-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
+        /* 关键：图片缩小，不填满容器，避免裁剪 */
+        max-width: 80%; /* 图片宽度仅占容器80% */
+        max-height: 80%; /* 图片高度仅占容器80% */
+        object-fit: contain; /* 完整显示图片，不拉伸不裁剪 */
+        transition: transform 0.6s ease; /* 保留hover放大效果 */
       }
+      /* hover时图片放大（基于缩小后的尺寸，避免过度放大） */
       .team-card:hover .team-avatar img {
-        transform: scale(1.1);
+        transform: scale(1.15); /* 放大比例适配缩小后的图片，视觉更协调 */
       }
-      /* 团队成员信息（hover上移） */
+
+      /* 团队信息：适配不同屏幕的字号/内边距 */
       .team-info {
-        padding: 1.5rem;
+        padding: 1.8rem 1.5rem; /* 增加内边距容纳新内容 */
         text-align: center;
-        transition: transform 0.5s ease;
+        transition: transform 0.5s ease; /* 保留hover上移效果 */
       }
       .team-card:hover .team-info {
-        transform: translateY(-5px);
+        transform: translateY(-5px); /* 上移距离不变，保持交互感 */
       }
       .team-info h3 {
-        font-size: 1.1rem;
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        font-size: 1.1rem; /* 基础字号，断点中适配 */
         font-weight: 500;
         color: #1d1d1f;
-        margin-bottom: 0.3rem;
+        margin-bottom: 0.5rem;
       }
-      .team-info p {
-        font-size: 0.85rem;
+      .team-info p:first-of-type {
+        /* 职位样式 */
+        font-size: 0.95rem;
         color: #0071e3;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
       }
-      /* 社交图标（hover淡入） */
+      /* 核心资质样式 */
+      .team-qualification {
+        font-size: 0.85rem;
+        color: #424245;
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
+        text-align: left; /* 小屏保持左对齐更易读 */
+      }
+      /* 个人理念样式 */
+      .team-philosophy {
+        font-size: 0.8rem;
+        color: #6e6e73;
+        font-style: italic;
+        line-height: 1.4;
+        text-align: left;
+      }
+
+      /* 社交图标：保留hover淡入效果 */
       .team-social {
         display: flex;
         justify-content: center;
@@ -1463,215 +2051,450 @@
       }
       .team-social a {
         color: #424245;
-        font-size: 1rem;
+        font-size: 1rem; /* 图标尺寸，小屏微调 */
         transition: color 0.3s ease;
       }
       .team-social a:hover {
         color: #0071e3;
       }
+
+      /* ================================== 8个断点适配（仅1列/4列切换） ================================== */
+      /* 1. 超小屏手机（0-320px）：1列布局 */
+      @media (max-width: 320px) {
+        .about-team {
+          padding: 0 1rem; /* 最小留白，节省空间 */
+        }
+        .team-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.5rem; /* 最小卡片间距 */
+        }
+        .team-card {
+          border-radius: 1.2rem; /* 缩小圆角，适配小屏 */
+        }
+        .team-info {
+          padding: 1.2rem 1rem;
+        }
+        .team-info h3 {
+          font-size: 1rem; /* 缩小标题字号 */
+        }
+        .team-info p:first-of-type {
+          font-size: 0.85rem;
+        }
+        .team-qualification {
+          font-size: 0.75rem;
+        }
+        .team-philosophy {
+          font-size: 0.7rem;
+        }
+        .team-social a {
+          font-size: 0.9rem; /* 缩小图标尺寸 */
+        }
+      }
+
+      /* 2. 小屏手机（321-375px）：1列布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .about-team {
+          padding: 0 1.2rem;
+        }
+        .team-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.8rem;
+        }
+        .team-card {
+          border-radius: 1.3rem;
+        }
+        .team-info {
+          padding: 1.4rem 1.2rem;
+        }
+        .team-info h3 {
+          font-size: 1.05rem;
+        }
+        .team-info p {
+          font-size: 0.825rem;
+        }
+        .team-qualification {
+          font-size: 0.8rem;
+        }
+        .team-philosophy {
+          font-size: 0.75rem;
+        }
+      }
+
+      /* 3. 大屏手机（376-425px）：1列布局 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .about-team {
+          padding: 0 1.5rem;
+        }
+        .team-list {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 2rem;
+        }
+        .team-card {
+          border-radius: 1.4rem;
+        }
+        .team-info {
+          padding: 1.4rem;
+        }
+        .team-info h3 {
+          font-size: 1.1rem;
+        }
+        .team-info p {
+          font-size: 0.85rem;
+        }
+        .team-qualification {
+          font-size: 0.825rem;
+        }
+      }
+
+      /* 4. 平板/折叠屏（426-768px）：1列布局（768px以下均为1列） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .about-team {
+          padding: 0 2rem;
+          max-width: 600px; /* 限制容器宽度，避免1列过宽 */
+        }
+        .team-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+        .team-qualification {
+          font-size: 0.8rem;
+        }
+        .team-card {
+          border-radius: 1.5rem;
+        }
+        .team-info {
+          padding: 1.5rem;
+        }
+        /* 平板端字号保持基础值，提升可读性 */
+      }
+
+      /* 5. 笔记本小屏（769-1024px）：4列布局（769px以上均为4列） */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .about-team {
+          padding: 0 1.5rem;
+          max-width: 950px; /* 适配笔记本宽度，4列不拥挤 */
+        }
+        .team-list {
+          grid-template-columns: repeat(4, 1fr); /* 强制4列 */
+          gap: 1.5rem; /* 缩小间距，适配窄屏 */
+        }
+        .team-card {
+          border-radius: 1.2rem; /* 缩小圆角，适配小卡片 */
+        }
+        .team-avatar {
+          height: 220px; /* 适度缩小容器高度，适配4列小卡片 */
+        }
+        .team-avatar img {
+          max-width: 85%; /* 图片占比略增，避免小容器内图片过小 */
+          max-height: 85%;
+        }
+        .team-info {
+          padding: 1.2rem; /* 缩小内边距，适配小卡片 */
+        }
+        .team-info h3 {
+          font-size: 1rem; /* 缩小标题字号 */
+        }
+        .team-info p {
+          font-size: 0.8rem; /* 缩小职位字号 */
+        }
+        .team-social a {
+          font-size: 0.9rem; /* 缩小图标尺寸 */
+        }
+      }
+
+      /* 6. 主流桌面屏（1025-1440px）：4列布局 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .about-team {
+          padding: 0 2rem;
+          max-width: 1200px; /* 适配桌面宽度，4列均匀分布 */
+        }
+        .team-list {
+          grid-template-columns: repeat(4, 1fr); /* 强制4列 */
+          gap: 1.8rem;
+        }
+        /* 保持基础样式，4列布局协调（容器高度280px不变） */
+        .team-avatar img {
+          max-width: 80%;
+          max-height: 80%;
+        }
+      }
+
+      /* 7. 大屏/2K屏（1441-2560px）：4列布局 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .about-team {
+          padding: 0 3rem;
+          max-width: 1600px; /* 适配2K屏，4列更舒展 */
+        }
+        .team-list {
+          grid-template-columns: repeat(4, 1fr); /* 强制4列 */
+          gap: 2.2rem; /* 增大间距，提升呼吸感 */
+        }
+        .team-card {
+          border-radius: 1.8rem; /* 放大圆角，适配大屏 */
+        }
+        .team-avatar {
+          height: 300px; /* 适度放大容器高度，匹配大屏 */
+        }
+        .team-avatar img {
+          max-width: 75%; /* 图片占比略减，避免大屏内图片过大 */
+          max-height: 75%;
+        }
+        .team-info {
+          padding: 1.8rem; /* 放大内边距，适配大屏 */
+        }
+        .team-info h3 {
+          font-size: 1.2rem; /* 放大标题字号 */
+        }
+        .team-info p {
+          font-size: 0.9rem; /* 放大职位字号 */
+        }
+        .team-social a {
+          font-size: 1.1rem; /* 放大图标尺寸 */
+        }
+      }
+
+      /* 8. 超高清屏（≥2561px）：4列布局 */
+      @media (min-width: 2561px) {
+        .about-team {
+          padding: 0 4rem;
+          max-width: 1800px; /* 限制最大宽度，避免4列过散 */
+        }
+        .team-list {
+          grid-template-columns: repeat(4, 1fr); /* 强制4列 */
+          gap: 2.5rem; /* 最大卡片间距 */
+        }
+        .team-card {
+          border-radius: 2rem; /* 最大圆角，适配超高清屏 */
+        }
+        .team-avatar {
+          height: 320px; /* 最大容器高度，匹配超高清屏 */
+        }
+        .team-avatar img {
+          max-width: 70%; /* 最小占比，确保图片精致不拥挤 */
+          max-height: 70%;
+        }
+        .team-info {
+          padding: 2rem; /* 最大内边距 */
+        }
+        .team-info h3 {
+          font-size: 1.3rem; /* 最大标题字号 */
+        }
+        .team-info p {
+          font-size: 1rem; /* 最大职位字号 */
+        }
+        .team-social a {
+          font-size: 1.2rem; /* 最大图标尺寸 */
+        }
+      }
     </style>
 
     <!--七，CSS 发展历程-->
     <style>
-  .timeline-section {
-  width: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    #f8f8f8 0%,
-    #fafafa 30%,
-    #ffffff 70%,
-    #ffffff 100%
-  );
-  /* 1. 保留原有上下 padding，无需修改（确保 section 与其他模块间距统一） */
-  padding: 6rem 0 6rem 0;
-  overflow: hidden;
-}
-/* 修复1：给容器加relative，作为竖线/节点的定位基准 + 增加顶部内边距 */
-.timeline-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  /* 2. 核心修改：增大顶部内边距（从 2rem 改为 4rem~6rem，根据标题高度调整） */
-  padding: 6rem 0rem 0 0; /* 重点：第一个值（padding-top）控制竖线顶点下移距离 */
-  position: relative; 
-  height: 75rem; /* 若下移后内容超出，可适当增大（如 78rem），确保竖线覆盖所有节点 */
-}
-/* 时间轴竖线（无需修改，top:0 会跟随容器 padding-top 同步下移） */
-.timeline-container::before {
-  content: "";
-  position: absolute;
-  /* 核心修改：把top从0改成固定值（比如80px，根据标题高度调整） */
-  top: 1px; /* 这个值是标题“发展历程”的高度 + 标题下方的间距，需实际调试 */
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  background: linear-gradient(
-    to bottom,
-    #0071e3 0%,
-    rgba(0, 113, 227, 0.3) 100%
-  );
-  z-index: 1;
-}
-  /* 时间轴节点（保留原有样式，无问题） */
-  .timeline-item {
-    margin-bottom: 4rem;
-    position: relative; /* 让节点圆点基于自身定位 */
-    opacity: 0;
-    transition:
-      opacity 0.6s ease,
-      transform 0.6s ease;
-    z-index: 2; /* 节点层级高于竖线，确保圆点显示在轴上 */
-  }
-  .timeline-item.left {
-    padding-right: 50%;
-    text-align: right;
-    transform: translateX(-30px);
-  }
-  .timeline-item.right {
-    padding-left: 50%;
-    text-align: left;
-    transform: translateX(30px);
-  }
-  .timeline-item.active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  /* 节点圆点（保留原有样式，无问题） */
-  .timeline-dot {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #0071e3;
-    border: 4px solid #f5f5f7;
-    box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
-    transition:
-      box-shadow 0.5s ease,
-      transform 0.5s ease;
-  }
-  .timeline-item:hover .timeline-dot {
-    transform: translateX(-50%) scale(1.2);
-    box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
-  }
-  /* 节点内容卡片（保留原有样式，无问题） */
-  .timeline-content {
-    background-color: #fff;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s ease;
-    margin: 0 1rem; /* 加左右间距，避免卡片贴竖线 */
-  }
-  .timeline-item:hover .timeline-content {
-    transform: translateY(-5px);
-  }
-  .timeline-content h3 {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #1d1d1f;
-    margin-bottom: 0.5rem;
-  }
-  .timeline-content .timeline-year {
-    font-size: 0.85rem;
-    color: #0071e3;
-    margin-bottom: 0.8rem;
-    display: inline-block;
-  }
-  .timeline-content p {
-    font-size: 0.9rem;
-    color: #424245;
-    line-height: 1.6;
-  }
+      .timeline-section {
+        width: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
+        );
+        /* 1. 保留原有上下 padding，无需修改（确保 section 与其他模块间距统一） */
+        padding: 6rem 0 6rem 0;
+        overflow: hidden;
+      }
+      /* 修复1：给容器加relative，作为竖线/节点的定位基准 + 增加顶部内边距 */
+      .timeline-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        /* 2. 核心修改：增大顶部内边距（从 2rem 改为 4rem~6rem，根据标题高度调整） */
+        padding: 6rem 0rem 0 0; /* 重点：第一个值（padding-top）控制竖线顶点下移距离 */
+        position: relative;
+        height: 75rem; /* 若下移后内容超出，可适当增大（如 78rem），确保竖线覆盖所有节点 */
+      }
+      /* 时间轴竖线（无需修改，top:0 会跟随容器 padding-top 同步下移） */
+      .timeline-container::before {
+        content: "";
+        position: absolute;
+        /* 核心修改：把top从0改成固定值（比如80px，根据标题高度调整） */
+        top: 1px; /* 这个值是标题“发展历程”的高度 + 标题下方的间距，需实际调试 */
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        background: linear-gradient(
+          to bottom,
+          #0071e3 0%,
+          rgba(0, 113, 227, 0.3) 100%
+        );
+        z-index: 1;
+      }
+      /* 时间轴节点（保留原有样式，无问题） */
+      .timeline-item {
+        margin-bottom: 4rem;
+        position: relative; /* 让节点圆点基于自身定位 */
+        opacity: 0;
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+        z-index: 2; /* 节点层级高于竖线，确保圆点显示在轴上 */
+      }
+      .timeline-item.left {
+        padding-right: 50%;
+        text-align: right;
+        transform: translateX(-30px);
+      }
+      .timeline-item.right {
+        padding-left: 50%;
+        text-align: left;
+        transform: translateX(30px);
+      }
+      .timeline-item.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      /* 节点圆点（保留原有样式，无问题） */
+      .timeline-dot {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: #0071e3;
+        border: 4px solid #f5f5f7;
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.3);
+        transition:
+          box-shadow 0.5s ease,
+          transform 0.5s ease;
+      }
+      .timeline-item:hover .timeline-dot {
+        transform: translateX(-50%) scale(1.2);
+        box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
+      }
+      /* 节点内容卡片（保留原有样式，无问题） */
+      .timeline-content {
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.4s ease;
+        margin: 0 1rem; /* 加左右间距，避免卡片贴竖线 */
+      }
+      .timeline-item:hover .timeline-content {
+        transform: translateY(-5px);
+      }
+      .timeline-content h3 {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0.5rem;
+      }
+      .timeline-content .timeline-year {
+        font-size: 0.85rem;
+        color: #0071e3;
+        margin-bottom: 0.8rem;
+        display: inline-block;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+      .timeline-content p {
+        font-size: 0.9rem;
+        color: #1d1d1f;
+        line-height: 1.6;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
 
-  /* —— 响应式适配（修复版：只保留时间线相关样式，修正选择器） —— */
-  /* 平板（768px以下） */
-  @media (max-width: 768px) {
-    /* 修复2：修正竖线选择器为.timeline-container::before */
-    .timeline-container::before {
-      left: 20px;
-      transform: none; /* 取消X轴偏移，竖线靠左 */
-    }
-    /* 节点统一左对齐，取消右侧留白 */
-    .timeline-item.left,
-    .timeline-item.right {
-      padding-left: 60px; /* 左侧留空间给竖线+圆点 */
-      padding-right: 0;
-      text-align: left;
-      transform: translateX(0) translateY(20px);
-    }
-    /* 圆点左移到竖线上 */
-    .timeline-dot {
-      left: 20px;
-      transform: none;
-    }
-    .timeline-item:hover .timeline-dot {
-      transform: scale(1.2);
-    }
-  }
-  /* 手机（425px以下） */
-  @media (max-width: 425px) {
-    /* 修复3：只保留时间线相关适配，删除无关的.about-hero样式 */
-    .timeline-content {
-      padding: 1.2rem; /* 缩小卡片内边距，适配小屏 */
-    }
-    .timeline-item {
-      margin-bottom: 3rem; /* 缩小节点间距，节省小屏空间 */
-    }
-  }
+      /* —— 响应式适配（修复版：只保留时间线相关样式，修正选择器） —— */
+      /* 平板（768px以下） */
+      @media (max-width: 768px) {
+        /* 修复2：修正竖线选择器为.timeline-container::before */
+        .timeline-container::before {
+          left: 20px;
+          transform: none; /* 取消X轴偏移，竖线靠左 */
+        }
+        /* 节点统一左对齐，取消右侧留白 */
+        .timeline-item.left,
+        .timeline-item.right {
+          padding-left: 60px; /* 左侧留空间给竖线+圆点 */
+          padding-right: 0;
+          text-align: left;
+          transform: translateX(0) translateY(20px);
+        }
+        /* 圆点左移到竖线上 */
+        .timeline-dot {
+          left: 20px;
+          transform: none;
+        }
+        .timeline-item:hover .timeline-dot {
+          transform: scale(1.2);
+        }
+      }
+      /* 手机（425px以下） */
+      @media (max-width: 425px) {
+        /* 修复3：只保留时间线相关适配，删除无关的.about-hero样式 */
+        .timeline-content {
+          padding: 1.2rem; /* 缩小卡片内边距，适配小屏 */
+        }
+        .timeline-item {
+          margin-bottom: 3rem; /* 缩小节点间距，节省小屏空间 */
+        }
+      }
     </style>
 
     <!--八，CSS 新世界工厂-->
-      <style>
-      /* 1. 父容器：并列类选择器，移除overflow:hidden（避免裁剪背景） */
+    <style>
+      /* —— 1. 父容器基础样式：保留背景色，同步模块间距 —— */
       .about-section.new-world-section {
         padding: 0 0 2rem 0;
         background-color: #f5f5f7;
-        /* 移除overflow:hidden！否则会裁剪全屏背景的左右超出部分 */
+        /* 移除overflow:hidden，确保全屏背景不被裁剪 */
       }
 
-      /* 2. 背景图容器：100vw全屏+居中对齐，脱离about-container限制 */
+      /* —— 2. 背景图容器：核心优化「垂直居中父容器」+ 全屏适配 —— */
       .new-world-bg {
-        width: 100vw; /* 强制横向铺满视口（关键） */
-        min-height: 600px;
+        /* 关键：启用flex布局，实现卡片垂直+水平居中 */
+        display: flex;
+        flex-direction: column; /* 子元素垂直排列（仅卡片容器一个子元素，不影响布局） */
+        justify-content: center; /* 卡片水平居中（增强原有margin:auto效果） */
+        align-items: center; /* 卡片垂直居中（核心需求实现） */
+
+        width: 100vw; /* 强制横向铺满视口 */
+        min-height: 600px; /* 大屏基础高度，断点中动态调整 */
         background-image: url("../img/about-us/senrytech-new-factory.webp");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        border-radius: 0; /* 取消圆角，全屏无裁剪 */
+        border-radius: 0; /* 取消圆角，保持全屏无裁剪 */
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        padding: 4rem 2rem;
+        padding: 4rem 2rem; /* 上下内边距，避免卡片贴边 */
         position: relative;
         overflow: hidden;
-        /* 抵消100vw导致的偏移，让背景居中（关键） */
-        margin-left: calc(-50vw + 50%);
+        margin-left: calc(-50vw + 50%); /* 抵消100vw偏移，确保背景居中 */
       }
 
-      /* 4. 数据卡片容器：居中显示，层级高于遮罩 */
+      /* —— 3. 数据卡片容器：核心优化「仅1列/3列布局」+ 居中适配 —— */
       .new-world-stats {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 3rem;
-        max-width: 1200px; /* 卡片区域限制宽度，避免过宽 */
-        margin: 0 auto; /* 卡片容器居中 */
+        gap: 3rem; /* 卡片间距基础值，断点中适配 */
+        max-width: 1200px; /* 限制卡片区域宽度，避免过散 */
+        width: 100%; /* 占满父容器可用宽度，确保响应式 */
         position: relative;
-        z-index: 2; /* 卡片在遮罩之上，确保可见 */
+        z-index: 2; /* 卡片层级高于遮罩，确保可见 */
       }
 
-      /* 5. 数据卡片：滚动激活动画（不变） */
+      /* —— 4. 数据卡片：保留交互+激活动画，简化冗余属性 —— */
       .new-world-stat-item {
         background-color: rgba(245, 245, 247, 0.9);
-        border-radius: 1.5rem;
-        padding: 1rem 2rem;
+        border-radius: 1.5rem; /* 苹果风圆角，断点中微调 */
+        padding: 1rem 2rem; /* 基础内边距，断点中适配 */
         text-align: center;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        /* 简化冗余transition：合并重复的transform属性 */
         transition:
           transform 0.5s ease,
           box-shadow 0.5s ease,
-          opacity 0.6s ease,
-          transform 0.6s ease; /* 注意：这里重复写了 transform，可简化为一次 */
+          opacity 0.6s ease;
         opacity: 0;
         transform: translateY(30px) scale(0.95);
         transition-delay: calc(var(--card-index) * 0.2s);
@@ -1687,9 +2510,9 @@
         box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
       }
 
-      /* 6. 数据数字：固定高度，避免动画变形（不变） */
+      /* —— 5. 数据数字：固定高度防变形，断点中适配字号 —— */
       .stat-number {
-        font-size: 3rem;
+        font-size: 3rem; /* 基础字号，断点中适配 */
         font-weight: 500;
         color: #0071e3;
         margin-bottom: 0.8rem;
@@ -1701,52 +2524,197 @@
         overflow: hidden; /* 隐藏数字增长时的溢出部分 */
       }
 
-      /* 7. 数据描述：不变 */
+      /* —— 6. 数据描述：基础样式，断点中适配字号 —— */
       .stat-desc {
-        font-size: 0.95rem;
+        font-size: 0.95rem; /* 基础字号，断点中适配 */
         color: #1d1d1f;
         line-height: 1.6;
       }
 
-      /* —— 响应式适配（同步修正） —— */
-      @media (max-width: 768px) {
-        .about-section.new-world-section {
-          padding: 6rem 0;
-        }
+      /* ================================== 8个断点适配（仅1列/3列+垂直居中） ================================== */
+      /* 1. 超小屏手机（0-320px）：1列布局 + 紧凑适配 */
+      @media (max-width: 320px) {
         .new-world-bg {
-          min-height: 350px;
-          padding: 3rem 1.5rem;
+          min-height: 450px; /* 降低背景高度，适配小屏视野 */
+          padding: 2.5rem 1rem; /* 缩小内边距，节省空间 */
         }
         .new-world-stats {
-          gap: 2rem;
-          max-width: 90%; /* 小屏缩小卡片容器宽度 */
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.2rem; /* 最小卡片间距 */
+          max-width: 95%; /* 卡片容器贴近屏幕，避免过窄 */
+        }
+        .new-world-stat-item {
+          padding: 1.5rem 1rem; /* 缩小卡片内边距 */
+          border-radius: 1.2rem; /* 缩小圆角，适配小屏 */
         }
         .stat-number {
-          font-size: 2.5rem;
-          height: 3.5rem; /* 适配小屏字号 */
+          font-size: 1.8rem; /* 缩小数字字号 */
+          height: 3rem; /* 适配字号调整高度 */
+        }
+        .stat-desc {
+          font-size: 0.8rem; /* 缩小描述字号 */
         }
       }
 
-      @media (max-width: 425px) {
+      /* 2. 小屏手机（321-375px）：1列布局 + 微调适配 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .new-world-bg {
+          min-height: 480px;
+          padding: 3rem 1.2rem;
+        }
         .new-world-stats {
-          grid-template-columns: repeat(2, 1fr); /* 小屏两列布局 */
+          grid-template-columns: 1fr; /* 强制1列 */
           gap: 1.5rem;
+          max-width: 90%;
         }
         .new-world-stat-item {
-          padding: 2rem 1.5rem;
+          padding: 1.8rem 1.2rem;
+          border-radius: 1.3rem;
         }
         .stat-number {
           font-size: 2rem;
-          height: 3rem; /* 适配小屏字号 */
+          height: 3.2rem;
+        }
+        .stat-desc {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* 3. 大屏手机（376-425px）：1列布局 + 平衡适配 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .new-world-bg {
+          min-height: 520px;
+          padding: 3.5rem 1.5rem;
+        }
+        .new-world-stats {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 1.8rem;
+          max-width: 85%;
+        }
+        .new-world-stat-item {
+          padding: 2rem 1.5rem;
+          border-radius: 1.4rem;
+        }
+        .stat-number {
+          font-size: 2.2rem;
+          height: 3.4rem;
         }
         .stat-desc {
           font-size: 0.9rem;
         }
       }
-      </style>
+
+      /* 4. 平板/折叠屏（426-768px）：1列布局 + 宽屏适配 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .new-world-bg {
+          min-height: 580px;
+          padding: 4rem 2rem;
+        }
+        .new-world-stats {
+          grid-template-columns: 1fr; /* 强制1列 */
+          gap: 2rem;
+          max-width: 600px; /* 限制卡片容器宽度，避免1列过宽 */
+        }
+        .new-world-stat-item {
+          padding: 2.2rem 2rem;
+          border-radius: 1.5rem;
+        }
+        .stat-number {
+          font-size: 2.5rem;
+          height: 3.8rem;
+        }
+        /* 描述字号保持基础值，提升平板可读性 */
+      }
+
+      /* 5. 笔记本小屏（769-1024px）：3列布局 + 窄屏适配 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .new-world-bg {
+          min-height: 600px;
+          padding: 4rem 1.5rem;
+        }
+        .new-world-stats {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 1.8rem; /* 缩小间距，适配笔记本宽度 */
+          max-width: 950px; /* 限制宽度，避免3列过挤 */
+        }
+        .new-world-stat-item {
+          padding: 1.8rem 1.5rem; /* 缩小内边距，适配小卡片 */
+          border-radius: 1.3rem;
+        }
+        .stat-number {
+          font-size: 2.4rem; /* 缩小数字字号 */
+          height: 3.6rem;
+        }
+        .stat-desc {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* 6. 主流桌面屏（1025-1440px）：3列布局 + 基础适配 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .new-world-bg {
+          min-height: 620px;
+          padding: 4rem 2rem;
+        }
+        .new-world-stats {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 2.5rem; /* 适中间距，3列均匀分布 */
+          max-width: 1100px; /* 适配桌面宽度，避免过散 */
+        }
+        /* 保持基础样式，3列布局视觉协调 */
+      }
+
+      /* 7. 大屏/2K屏（1441-2560px）：3列布局 + 舒展适配 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .new-world-bg {
+          min-height: 680px; /* 提升背景高度，适配大屏视野 */
+          padding: 5rem 3rem;
+        }
+        .new-world-stats {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 3rem; /* 增大间距，提升呼吸感 */
+          max-width: 1300px; /* 适配2K屏，3列更舒展 */
+        }
+        .new-world-stat-item {
+          padding: 2.5rem 2.2rem; /* 放大卡片内边距 */
+          border-radius: 1.8rem; /* 放大圆角，适配大屏 */
+        }
+        .stat-number {
+          font-size: 3.2rem; /* 放大数字字号 */
+          height: 4.2rem;
+        }
+        .stat-desc {
+          font-size: 1.05rem; /* 放大描述字号 */
+        }
+      }
+
+      /* 8. 超高清屏（≥2561px）：3列布局 + 极致适配 */
+      @media (min-width: 2561px) {
+        .new-world-bg {
+          min-height: 720px;
+          padding: 5.5rem 4rem;
+        }
+        .new-world-stats {
+          grid-template-columns: repeat(3, 1fr); /* 强制3列 */
+          gap: 3.5rem; /* 最大卡片间距 */
+          max-width: 1500px; /* 限制最大宽度，避免3列过散 */
+        }
+        .new-world-stat-item {
+          padding: 2.8rem 2.5rem;
+          border-radius: 2rem; /* 最大圆角，适配超高清屏 */
+        }
+        .stat-number {
+          font-size: 3.5rem; /* 最大数字字号 */
+          height: 4.5rem;
+        }
+        .stat-desc {
+          font-size: 1.15rem; /* 最大描述字号 */
+        }
+      }
+    </style>
 
     <!--九，CSS 员工福利-->
-      <style>
+    <style>
       .staff-container {
         width: 100%;
         background: radial-gradient(
@@ -1767,13 +2735,15 @@
       }
 
       .staff-elfare-title {
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
         text-align: center;
-        font-size: 2rem;
+        font-size: 2.5rem;
         font-weight: 500;
-        color: #1d1d1f;
+        color: #000000;
         margin-bottom: 4rem;
         opacity: 0;
         transform: translateY(20px);
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         transition:
           opacity 0.6s ease,
           transform 0.6s ease;
@@ -1785,7 +2755,7 @@
 
       .welfare-list {
         display: grid;
-        grid-template-columns: repeat(3, minmax(300px, 1fr)); 
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
         gap: 2.5rem; /* 卡片间距，与价值观板块一致 */
         margin-top: 4rem; /* 与标题间距，保持页面呼吸感 */
       }
@@ -1920,7 +2890,475 @@
           font-size: 1.3rem;
         }
       }
-      </style>
+    </style>
+
+    <style>
+    /* 十、CSS 信任背书模块（Trust Endorsement）- 优化后：图片铺满激活态卡片+圆角 */
+/* 1. 模块基础样式（无修改） */
+.trust-section {
+  width: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    #f8f8f8 0%,
+    #fafafa 30%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
+  padding: 6rem 0;
+  overflow: hidden;
+}
+.trust-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem; /* 基础左右留白，与其他模块统一 */
+}
+
+/* 2. 模块标题样式（无修改） */
+.trust-section-title {
+  font-family: "Public Sans", "Segoe UI", sans-serif;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 4rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.trust-section-title.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Logo墙样式 - 核心优化区 */
+.trust-logo-wrapper {
+  margin-bottom: 6rem; /* 与案例区间距 */
+}
+.trust-logo-title {
+  font-size: 1.2rem;
+  color: #1d1d1f;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+/* Logo列表布局（无修改） */
+.trust-logo-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 大屏4列 */
+  gap: 2rem;
+  align-items: center;
+}
+/* Logo卡片样式 - 关键优化：移除内边距，保留圆角 */
+.trust-logo-card {
+  background-color: transparent;
+  border-radius: 1.2rem; /* 卡片圆角基础值，与图片容器统一 */
+  padding: 0; /* ❶ 移除卡片内边距，避免图片与卡片边缘有间隙 */
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition-delay: calc(var(--logo-index) * 0.2s); /* 依次激活 */
+  height: 100%; /* ❷ 确保卡片高度自适应，避免图片被压缩 */
+}
+.trust-logo-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Logo卡片hover效果（无修改） */
+.trust-logo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+/* Logo图片容器 - 关键优化：铺满卡片+统一圆角 */
+.trust-logo-img {
+  width: 100%; /* ❶ 横向铺满卡片 */
+  height: 100%; /* ❷ 纵向铺满卡片（取消原固定高度80px） */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0; /* ❸ 移除底部间距，避免图片与卡片底部有间隙 */
+  background-color: #fff;
+  border-radius: 1.2rem; /* ❹ 与卡片圆角一致，避免圆角断层 */
+}
+/* Logo图片 - 关键优化：强制填充容器，保留圆角 */
+.trust-logo-img img {
+  width: 100%; /* ❶ 横向铺满图片容器 */
+  height: 100%; /* ❷ 纵向铺满图片容器 */
+  object-fit: cover; /* ❸ 填充容器（裁剪多余部分，优先保留Logo核心），避免留白 */
+  border-radius: inherit; /* ❹ 继承图片容器圆角，确保整体圆角统一 */
+}
+/* Logo描述文字 - 可选：若不需要文字，设为隐藏（避免占用空间影响铺满） */
+.trust-logo-desc {
+  display: none; /* ❶ 隐藏文字，专注图片铺满效果；需保留则删除此句，调整位置 */
+  /* 保留文字时的样式参考（需调整位置避免遮挡图片）：
+  font-size: 0.85rem;
+  color: #424245;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  */
+}
+
+/* 4. 案例区样式（无修改） */
+.trust-case-wrapper {
+  margin-bottom: 2rem;
+}
+.trust-case-title {
+  font-size: 1.2rem;
+  color: #1d1d1f;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
+.trust-case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* 案例之间间距 */
+}
+.trust-case-card {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  background-color: #f5f5f7;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  transition-delay: calc(var(--case-index) * 0.3s); /* 依次激活 */
+}
+.trust-case-card.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.trust-case-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.trust-case-img {
+  flex: 0 0 45%; /* 大屏图片占45%宽度 */
+  height: 320px;
+  overflow: hidden;
+}
+.trust-case-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 裁剪多余部分，保留核心场景 */
+  transition: transform 0.5s ease;
+}
+.trust-case-card:hover .trust-case-img img {
+  transform: scale(1.03); /* 图片hover轻微放大 */
+}
+.trust-case-content {
+  flex: 1;
+  padding: 2.5rem;
+}
+.trust-case-name {
+  font-size: 1.1rem;
+  color: #0071e3; /* 品牌蓝突出案例名称 */
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.trust-case-problem,
+.trust-case-solution,
+.trust-case-result {
+  font-size: 0.9rem;
+  color: #424245;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.trust-case-result {
+  color: #1d1d1f; /* 成果文字加深，突出重点 */
+  font-weight: 450;
+}
+
+/* 5. 响应式适配 - 同步优化：确保所有断点图片铺满+圆角统一 */
+/* 超小屏手机（0-320px）：Logo 2列，案例纵向 */
+@media (max-width: 320px) {
+  .trust-container {
+    padding: 0 1rem;
+  }
+  .trust-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+  /* Logo墙优化 */
+  .trust-logo-list {
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 1.2rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* ❶ 保持无内边距 */
+    border-radius: 1rem; /* ❷ 同步缩小圆角，适配小屏 */
+  }
+  .trust-logo-img {
+    border-radius: 1rem; /* ❸ 与卡片圆角一致 */
+  }
+  .trust-logo-desc {
+    display: none; /* 保持隐藏 */
+  }
+  /* 案例区（无修改） */
+  .trust-case-card {
+    flex-direction: column;
+    gap: 0;
+  }
+  .trust-case-img {
+    flex: none;
+    width: 100%;
+    height: 180px;
+  }
+  .trust-case-content {
+    padding: 1.5rem;
+  }
+  .trust-case-name {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .trust-case-problem,
+  .trust-case-solution,
+  .trust-case-result {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
+/* 小屏手机（321-375px）：Logo 2列，案例纵向 */
+@media (min-width: 321px) and (max-width: 375px) {
+  .trust-container {
+    padding: 0 1.2rem;
+  }
+  .trust-section-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  .trust-logo-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1rem;
+  }
+  .trust-logo-img {
+    border-radius: 1rem;
+  }
+  .trust-case-card {
+    flex-direction: column;
+  }
+  .trust-case-img {
+    width: 100%;
+    height: 200px;
+  }
+  .trust-case-content {
+    padding: 1.8rem;
+  }
+}
+
+/* 大屏手机（376-425px）：Logo 2列，案例纵向 */
+@media (min-width: 376px) and (max-width: 425px) {
+  .trust-container {
+    padding: 0 1.5rem;
+  }
+  .trust-section-title {
+    font-size: 2.2rem;
+    margin-bottom: 3.2rem;
+  }
+  .trust-logo-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1.1rem;
+  }
+  .trust-logo-img {
+    border-radius: 1.1rem;
+  }
+  .trust-case-card {
+    flex-direction: column;
+  }
+  .trust-case-img {
+    width: 100%;
+    height: 220px;
+  }
+  .trust-case-content {
+    padding: 2rem;
+  }
+}
+
+/* 平板/折叠屏（426-768px）：Logo 2列，案例纵向 */
+@media (min-width: 426px) and (max-width: 768px) {
+  .trust-container {
+    padding: 0 2rem;
+    max-width: 600px;
+  }
+  .trust-section-title {
+    font-size: 2.4rem;
+    margin-bottom: 3.5rem;
+  }
+  .trust-logo-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1.2rem;
+  }
+  .trust-logo-img {
+    border-radius: 1.2rem;
+  }
+  .trust-case-card {
+    flex-direction: column;
+  }
+  .trust-case-img {
+    flex: none;
+    width: 100%;
+    height: 280px;
+  }
+  .trust-case-content {
+    padding: 2.2rem;
+  }
+}
+
+/* 笔记本小屏（769-1024px）：Logo 4列，案例横向 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .trust-container {
+    max-width: 900px;
+    padding: 0 2rem;
+  }
+  .trust-section-title {
+    font-size: 2.3rem;
+    margin-bottom: 3.8rem;
+  }
+  .trust-logo-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1.1rem;
+  }
+  .trust-logo-img {
+    border-radius: 1.1rem;
+  }
+  .trust-case-card {
+    gap: 1.8rem;
+  }
+  .trust-case-img {
+    flex: 0 0 40%;
+    height: 280px;
+  }
+  .trust-case-content {
+    padding: 2rem;
+  }
+}
+
+/* 主流桌面屏（1025-1440px）：Logo 4列，案例横向 */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .trust-container {
+    max-width: 1200px;
+  }
+  /* 保持基础优化：无内边距+圆角统一 */
+  .trust-logo-card {
+    padding: 0;
+  }
+  .trust-logo-img {
+    border-radius: 1.2rem;
+  }
+}
+
+/* 大屏/2K屏（1441-2560px）：Logo 4列，案例横向 */
+@media (min-width: 1441px) and (max-width: 2560px) {
+  .trust-container {
+    max-width: 1600px;
+    padding: 0 3rem;
+  }
+  .trust-section-title {
+    font-size: 2.8rem;
+    margin-bottom: 4.5rem;
+  }
+  .trust-logo-list {
+    gap: 2.5rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1.5rem;
+  }
+  .trust-logo-img {
+    border-radius: 1.5rem;
+  }
+  .trust-case-card {
+    gap: 3rem;
+    border-radius: 1.8rem;
+  }
+  .trust-case-img {
+    flex: 0 0 48%;
+    height: 360px;
+  }
+  .trust-case-content {
+    padding: 3rem;
+  }
+  .trust-case-name {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  .trust-case-problem,
+  .trust-case-solution,
+  .trust-case-result {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
+
+/* 超高清屏（≥2561px）：Logo 4列，案例横向 */
+@media (min-width: 2561px) {
+  .trust-container {
+    max-width: 1800px;
+    padding: 0 4rem;
+  }
+  .trust-section-title {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+  }
+  .trust-logo-list {
+    gap: 2.8rem;
+  }
+  .trust-logo-card {
+    padding: 0; /* 无内边距 */
+    border-radius: 1.8rem;
+  }
+  .trust-logo-img {
+    border-radius: 1.8rem;
+  }
+  .trust-case-card {
+    gap: 3.5rem;
+    border-radius: 2rem;
+  }
+  .trust-case-img {
+    flex: 0 0 50%;
+    height: 400px;
+  }
+  .trust-case-content {
+    padding: 3.5rem;
+  }
+  .trust-case-name {
+    font-size: 1.4rem;
+  }
+  .trust-case-problem,
+  .trust-case-solution,
+  .trust-case-result {
+    font-size: 1.05rem;
+  }
+}
+</style>
 
     <!--十二，CSS 联系专家-->
     <style>
@@ -3229,34 +4667,43 @@
       />
     </div>
 
-    <!-- 四，关于我们中间内容 -->
+    <!-- 四，关于我们中间内容（保留所有原有内容，新增底层圆角背景） -->
     <section class="about-section">
       <div class="about-container">
-        <!-- 1. 企业简介模块 -->
+        <!-- 新增：苹果风格底层圆角背景（置于最下层，不影响原有内容） -->
+        <div class="about-bg-round"></div>
+
+        <!-- 1. 企业简介模块（原有内容完全保留，仅新增层级控制） -->
         <div class="about-hero">
           <div class="about-hero-text">
             <h2>关于 Senrytech</h2>
             <p>
-              2008 年的晨光里，Senrytech
-              与激光切割设备的故事，从“让金属与光的相遇更从容” 开始。
+              2008 年的晨光里，Senrytech 与激光切割设备的故事，始于一个朴素初心
+              —<b>让金属与光的相遇更从容</b>。
             </p>
             <p>
-              我们始终相信，每一台设备都该是生产场景里的 “恰好选项”—
-              于是蹲在车间的光影里，摸透碳钢的肌理、不锈钢的锋芒、铝合金的轻韧，再把这些材质的脾性，织进设备与方案的适配逻辑里。
+              彼时，中小制造企业正被行业痛点困住：进口设备价高难攀，普通设备精度不足，适配性差的问题更让企业耗费大量试错成本。于是我们笃定：不做冰冷的设备搬运者，要做懂制造、懂需求的解决方案提供者。
             </p>
             <p>
-              从本地厂房的机床旁，到全球 30 余国车间的风里，5000
-              多家企业的生产节奏里，都藏着我们 “让合适的设备遇见对的需求”
-              的温柔：是帮初创厂省掉试错成本的笃定，是让外贸单缩短交货周期的轻捷，是让金属在激光下舒展成想要形状的妥帖。
+              我们蹲守车间，摸透碳钢、不锈钢、铝合金的材质脾性，将其织入设备与方案的适配逻辑，让每一台设备都成为生产场景的
+              “恰好选项”。
+            </p>
+            <p>
+              从本地厂房到全球 30 余国车间，5000
+              多家企业的生产节奏里，都藏着这份初心的温度：帮初创厂省掉试错成本，助外贸单缩短交货周期，让金属在激光下精准舒展成理想形状。
+            </p>
+            <p>
+              一路深耕，我们实现自主核心技术落地、完成设备智能化升级，搭建起全球化服务网络。
             </p>
             <p>
               我们不做 “搬运”，只做 “联结”—
-              联结设备的精度与生产的温度，联结需求的细碎与方案的周全。这是我们从
-              2008 年写到今天的，关于 “光与金属，恰好相逢” 的故事。
+              联结设备精度与生产温度，联结需求细碎与方案周全。未来，Senrytech
+              仍会带着这份初心，让全球每一家制造企业，都能轻松邂逅
+              “光与金属的恰好相逢”。
             </p>
           </div>
 
-          <!-- 新增：吉祥物图片容器（样式与现有图片统一） -->
+          <!-- 原有：吉祥物图片容器 -->
           <div class="about-mascot-img">
             <img
               src="../img/index/about-us/senrytech-mascot.png"
@@ -3264,6 +4711,7 @@
             />
           </div>
 
+          <!-- 原有：企业环境图片容器 -->
           <div class="about-hero-img">
             <img
               src="../img/index/about-us/senrytech-factory.png"
@@ -3275,115 +4723,137 @@
     </section>
 
     <!-- 五. 核价值观模块 -->
-    <section class="advantages-section">
-      <div class="advantages-container">
-        <h3 class="about-section-title">我们的价值观</h3>
-        <div class="advantages-list">
-          <div class="advantage-card">
-            <div class="advantage-icon">
-              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-            </div>
-            <h3>企业使命</h3>
-            <p>
-              始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
-            </p>
-          </div>
-          <div class="advantage-card">
-            <div class="advantage-icon">
-              <i class="fa fa-industry" aria-hidden="true"></i>
-            </div>
-            <h3>企业愿景</h3>
-            <p>让每一位从业者都能成为产业创新的创造者。</p>
-          </div>
-          <div class="advantage-card">
-            <div class="advantage-icon">
-              <i class="fa fa-globe" aria-hidden="true"></i>
-            </div>
-            <h3>企业价值观</h3>
-            <p>
-              客户为友，共生共赢<br />
-              信念为基，价值同行<br />
-              乐观向远，笃行成果<br />
-            </p>
-          </div>
+<section class="advantages-section">
+  <div class="advantages-container">
+    <h3 class="about-section-title">我们的价值观</h3>
+    <div class="advantages-list">
+      <!-- 1. 企业使命：新增“汽车零部件客户定制案例” -->
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
         </div>
+        <h3>企业使命</h3>
+        <p>
+          始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
+          <!-- 行动描述：具体客户+解决的问题+成果 -->
+          <span class="action-desc">▸ 案例：为德国某汽车零部件客户定制激光焊接设备，3周完成核心参数调试，将其零件焊接不良率从8%降至3%。</span>
+        </p>
       </div>
-    </section>
+
+      <!-- 2. 企业愿景：新增“东南亚客户培训案例” -->
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <i class="fa fa-industry" aria-hidden="true"></i>
+        </div>
+        <h3>企业愿景</h3>
+        <p>
+          让每一位从业者都能成为产业创新的创造者。
+          <!-- 行动描述：覆盖区域+具体行动+培训成果 -->
+          <span class="action-desc">▸ 落地：2023年为东南亚5+工厂操作员提供免费激光设备操作培训，输出20+持证专业操作员，助力当地工厂技术升级。</span>
+        </p>
+      </div>
+
+      <!-- 3. 企业价值观：为3条子口号分别匹配案例 -->
+      <div class="advantage-card">
+        <div class="advantage-icon">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+        </div>
+        <h3>企业价值观</h3>
+        <p>
+          客户为友，共生共赢<br />
+          <span class="action-desc">▸ 行动：2022年美国客户因订单紧急需提前交货，团队72小时连续调试设备，最终按时发货，避免其生产线停工损失。</span><br />
+          
+          信念为基，价值同行<br />
+          <span class="action-desc">▸ 行动：面对激光打标精度难题，研发团队连续15天优化算法，将设备精度从0.05mm提升至0.01mm，突破行业小尺寸打标瓶颈。</span><br />
+          
+          乐观向远，笃行成果<br />
+          <span class="action-desc">▸ 行动：与日本电子客户合作5年，每年根据其新品研发需求迭代设备功能，助力客户新品市场份额提升12%。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- 六. 团队展示模块 -->
     <section class="team-section">
       <div class="about-team">
         <h3 class="about-section-title">核心团队</h3>
         <div class="team-list">
+          <!-- 秦博睿 - 研发项目总监 -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="../img/about-us/senrytech-R-D.png" alt="张工程师" />
+              <img src="../img/about-us/senrytech-R-D.png" alt="秦博睿" />
             </div>
             <div class="team-info">
               <h3>秦博睿</h3>
               <p>研发项目总监</p>
-              <div class="team-social">
-                <a href="#" aria-label="LinkedIn"
-                  ><i class="fa fa-linkedin" aria-hidden="true"></i
-                ></a>
-                <a href="#" aria-label="Email"
-                  ><i class="fa fa-envelope" aria-hidden="true"></i
-                ></a>
-              </div>
+              <p class="team-qualification">
+                核心资质：10 年激光切割设备研发项目管理经验，主导 3
+                款高功率激光切割机产品迭代；牵头制定 2
+                项激光切割设备模块化设计企业标准。
+              </p>
+              <p class="team-philosophy">
+                个人理念：好设备是磨出来的，每一个研发细节都得抠到极致才算过关。
+              </p>
             </div>
           </div>
+
+          <!-- 董振邦 - 运营总监 -->
           <div class="team-card">
             <div class="team-avatar">
               <img
                 src="../img/about-us/senrytech-operation.webp"
-                alt="李经理"
+                alt="董振邦"
               />
             </div>
             <div class="team-info">
               <h3>董振邦</h3>
               <p>运营总监</p>
-              <div class="team-social">
-                <a href="#" aria-label="LinkedIn"
-                  ><i class="fa fa-linkedin" aria-hidden="true"></i
-                ></a>
-                <a href="#" aria-label="Email"
-                  ><i class="fa fa-envelope" aria-hidden="true"></i
-                ></a>
-              </div>
+              <p class="team-qualification">
+                核心资质：8
+                年工业设备行业运营管理经验，搭建激光切割机线上线下一体化分销体系；通过精益运营将设备交付周期缩短
+                20%。
+              </p>
+              <p class="team-philosophy">
+                个人理念：把复杂的运营流程做简单，客户和团队才能都省心。
+              </p>
             </div>
           </div>
+
+          <!-- 林佩 - 财务总监 -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="../img/about-us/senrytech-finance.png" alt="王总监" />
+              <img src="../img/about-us/senrytech-finance.png" alt="林佩" />
             </div>
             <div class="team-info">
               <h3>林佩</h3>
               <p>财务总监</p>
-              <div class="team-social">
-                <a href="#" aria-label="LinkedIn"
-                  ><i class="fa fa-linkedin" aria-hidden="true"></i
-                ></a>
-                <a href="#" aria-label="Email"
-                  ><i class="fa fa-envelope" aria-hidden="true"></i
-                ></a>
-              </div>
+              <p class="team-qualification">
+                核心资质：10
+                年工业贸易行业财务管理经验，擅长激光设备进出口成本核算与税务筹划；建立设备销售全流程财务风控体系。
+              </p>
+              <p class="team-philosophy">
+                个人理念：算好每一笔账，既要省钱，更要让公司的钱花在刀刃上。
+              </p>
             </div>
           </div>
+
+          <!-- 孙雅婷 - 市场营销总监 -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="../img/about-us/senrytech-marketing.png" alt="陈经理" />
+              <img src="../img/about-us/senrytech-marketing.png" alt="孙雅婷" />
             </div>
             <div class="team-info">
               <h3>孙雅婷</h3>
               <p>市场营销总监</p>
-              <div class="team-social">
-                <a href="#" aria-label="LinkedIn"
-                  ><i class="fa fa-linkedin" aria-hidden="true"></i
-                ></a>
-                <a href="#" aria-label="Email"
-                  ><i class="fa fa-envelope" aria-hidden="true"></i
-                ></a>
-              </div>
+              <p class="team-qualification">
+                核心资质：7 年工业激光设备品牌营销经验，主导 3
+                场行业大型展会策划并实现订单转化率提升 35%；打造
+                “精准切割方案服务商” 品牌定位。
+              </p>
+              <p class="team-philosophy">
+                个人理念：不只是卖设备，更要帮客户找到最适合的切割解决方案。
+              </p>
             </div>
           </div>
         </div>
@@ -3391,67 +4861,66 @@
     </section>
 
     <!-- 七. 发展历程 -->
-      <section class="timeline-section">
-        <div class="timeline-title-wrap">
-          <h3 class="about-section-title">发展历程</h3>
-          </div>
-            <div class="timeline-container">
-          <div class="timeline-item left">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>公司成立</h3>
-              <span class="timeline-year">2008</span>
-              <p>
-                Senrytech
-                在济南成立，初期专注于激光机设备的生产与研发，推出首款Senrytech激光机。
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item right">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>首款整机上市</h3>
-              <span class="timeline-year">2017</span>
-              <p>
-                发布首款自主研发的激光板材切割机 A
-                系列，切入中小企业市场，当年实现销售额突破8000万元。
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item left">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>生产基地投产</h3>
-              <span class="timeline-year">2019</span>
-              <p>
-                自建2000㎡生产基地投产，实现规模化生产，产品故障率降至5%以下，获得ISO9001质量体系认证。
-              </p>
-            </div>
-          </div>
-          <div class="timeline-item right">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>首款6万瓦整机上线</h3>
-              <span class="timeline-year">2021</span>
-              <p>发布首台自主研发的激光板材地轨切割机G，超大功率6万瓦。</p>
-            </div>
-          </div>
-          <div class="timeline-item left">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <h3>技术突破</h3>
-              <span class="timeline-year">2030</span>
-              <p>
-                全力研发即将推出搭载AI智能切割系统的 A
-                系列，预期切割效率提升30%。
-              </p>
-            </div>
+    <section class="timeline-section">
+      <div class="timeline-title-wrap">
+        <h3 class="about-section-title">发展历程</h3>
+      </div>
+      <div class="timeline-container">
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>公司成立</h3>
+            <span class="timeline-year">2008</span>
+            <p>
+              Senrytech
+              在济南成立，初期专注于激光机设备的生产与研发，推出首款Senrytech激光机。
+            </p>
           </div>
         </div>
-      </section>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>首款整机上市</h3>
+            <span class="timeline-year">2017</span>
+            <p>
+              发布首款自主研发的激光板材切割机 A
+              系列，切入中小企业市场，当年实现销售额突破8000万元。
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>生产基地投产</h3>
+            <span class="timeline-year">2019</span>
+            <p>
+              自建2000㎡生产基地投产，实现规模化生产，产品故障率降至5%以下，获得ISO9001质量体系认证。
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>首款6万瓦整机上线</h3>
+            <span class="timeline-year">2021</span>
+            <p>发布首台自主研发的激光板材地轨切割机G，超大功率6万瓦。</p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>技术突破</h3>
+            <span class="timeline-year">2030</span>
+            <p>
+              全力研发即将推出搭载AI智能切割系统的 A 系列，预期切割效率提升30%。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 八. 新世界模块 -->
-      <section>
+    <section>
       <div class="about-section new-world-section">
         <!-- 背景图容器（全屏，带遮罩） -->
         <div class="new-world-bg">
@@ -3462,17 +4931,17 @@
               <div class="stat-number" data-target="6000+" data-unit="台">
                 0
               </div>
-              <div class="stat-desc">年产量</div>
+              <div class="stat-desc">年产量:即便处于订单高峰期，也能确保你的采购需求按时排产、如期交付，彻底杜绝生产线因缺设备而停工的风险</div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 1">
               <div class="stat-number" data-target="20000+" data-unit="㎡">
                 0
               </div>
-              <div class="stat-desc">新时代工厂</div>
+              <div class="stat-desc">新时代工厂:可同时开启多条标准化生产线，实现精细化分工与全流程品控，为你提供品质稳定、性能一致的激光切割设备</div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 2">
               <div class="stat-number" data-target="30+" data-unit="+">0</div>
-              <div class="stat-desc">国家和地区</div>
+              <div class="stat-desc">国家和地区:产品通过多国市场准入认证，适配不同地区的工业用电标准与工艺需求，全球范围内都能为你提供及时的售后技术支持</div>
             </div>
           </div>
         </div>
@@ -3556,6 +5025,86 @@
       </div>
     </section>
 
+    <!-- 十. 信任背书模块（Trust Endorsement） -->
+<section class="trust-section">
+  <div class="trust-container">
+    <!-- 1. 模块标题 -->
+    <h3 class="trust-section-title">全球客户与合作案例</h3>
+    
+    <!-- 2. 合作伙伴Logo墙 -->
+    <div class="trust-logo-wrapper">
+      <h4 class="trust-logo-title">服务全球30+国家客户</h4>
+      <div class="trust-logo-list">
+        <!-- Logo 1：德国汽车零部件客户 -->
+        <div class="trust-logo-card" data-logo-index="0">
+          <div class="trust-logo-img">
+            <!-- 占位图：实际项目替换为客户Logo，建议用SVG确保清晰 -->
+            <img src="../img/about-us/senrytech-cases-1 (1).webp" alt="德国汽车零部件客户Logo">
+          </div>
+          <p class="trust-logo-desc">德国 · 汽车零部件行业</p>
+        </div>
+        
+        <!-- Logo 2：美国电子设备客户 -->
+        <div class="trust-logo-card" data-logo-index="1">
+          <div class="trust-logo-img">
+            <img src="../img/about-us/senrytech-cases-1 (2).webp" alt="美国电子设备客户Logo">
+          </div>
+          <p class="trust-logo-desc">美国 · 电子设备行业</p>
+        </div>
+        
+        <!-- Logo 3：日本精密仪器客户 -->
+        <div class="trust-logo-card" data-logo-index="2">
+          <div class="trust-logo-img">
+            <img src="../img/about-us/senrytech-cases-1 (3).webp" alt="日本精密仪器客户Logo">
+          </div>
+          <p class="trust-logo-desc">日本 · 精密仪器行业</p>
+        </div>
+        
+        <!-- Logo 4：东南亚家电客户 -->
+        <div class="trust-logo-card" data-logo-index="3">
+          <div class="trust-logo-img">
+            <img src="../img/about-us/senrytech-cases-1 (4).webp" alt="东南亚家电客户Logo">
+          </div>
+          <p class="trust-logo-desc">东南亚 · 家电制造行业</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 3. 短案例展示（1-2个核心案例） -->
+    <div class="trust-case-wrapper">
+      <h4 class="trust-case-title">合作案例精选</h4>
+      <div class="trust-case-list">
+        <!-- 案例1：德国汽车配件厂激光焊接设备 -->
+        <div class="trust-case-card" data-case-index="0">
+          <div class="trust-case-img">
+            <!-- 脱敏实景图：客户工厂设备使用场景 -->
+            <img src="../img/about-us/senrytech-machine-welding.webp" alt="德国客户工厂激光设备应用场景">
+          </div>
+          <div class="trust-case-content">
+            <h5 class="trust-case-name">德国某汽车配件厂 · 激光焊接设备定制</h5>
+            <p class="trust-case-problem"><strong>客户需求：</strong>解决汽车底盘部件焊接精度低、不良率高（原不良率18%）、生产效率不足的问题，需适配其现有生产线节拍。</p>
+            <p class="trust-case-solution"><strong>我们的方案：</strong>定制高功率激光焊接设备，优化焊接路径算法，添加实时质量检测模块，同步提供3天现场调试培训。</p>
+            <p class="trust-case-result"><strong>最终成果：</strong>生产效率提升25%，焊接不良率降至3%，设备稳定运行18个月零故障，后续追加2台设备订单。</p>
+          </div>
+        </div>
+        
+        <!-- 案例2：美国电子企业激光打标设备（可选，按需增减） -->
+        <div class="trust-case-card" data-case-index="1">
+          <div class="trust-case-img">
+            <img src="../img/about-us/senrytech-machine-marking.webp" alt="美国客户电子元件激光打标场景">
+          </div>
+          <div class="trust-case-content">
+            <h5 class="trust-case-name">美国某电子企业 · 微型元件激光打标设备</h5>
+            <p class="trust-case-problem"><strong>客户需求：</strong>为手机芯片封装件做超小尺寸（0.5mm×0.3mm）激光打标，要求打标精度≤0.01mm，且不损伤芯片表面。</p>
+            <p class="trust-case-solution"><strong>我们的方案：</strong>采用紫外激光光源，搭配高分辨率振镜系统，开发专属打标参数库，提供1对1技术支持。</p>
+            <p class="trust-case-result"><strong>最终成果：</strong>打标精度达0.008mm，良率100%，助力客户通过苹果供应链认证，年合作量超50台。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -3564,7 +5113,7 @@
             <h2
               class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
-              联系专家
+              准备好用高精度激光设备<br>升级你的生产制造了吗？</h2></br>
             </h2>
             <p
               class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2"
@@ -3896,50 +5445,52 @@
     </script>
 
     <script>
-// 滚动触发动画：统一控制“价值观”“团队”“发展历程”“员工福利”板块
-document.addEventListener("DOMContentLoaded", function () {
-  // 需要触发动画的元素：只选“需要添加active类的元素”，避免冗余和重复
-  const animateElements = [
-    // 1. 所有板块标题（包含员工福利标题，用querySelectorAll全选）
-    ...document.querySelectorAll(".about-section-title, .staff-elfare-title"),
-    // 2. 企业简介文字区
-    ...document.querySelectorAll(".about-hero-text"),
-    // 3. 价值观卡片（全选）
-    ...document.querySelectorAll(".advantage-card"),
-    // 4. 团队卡片（全选）
-    ...document.querySelectorAll(".team-card"),
-    // 5. 发展历程节点（全选，原代码只选1个，此处修复）
-    ...document.querySelectorAll(".timeline-item"),
-    // 6. 员工福利卡片（全选，原代码只选1个，此处修复）
-    ...document.querySelectorAll(".welfare-card")
-  ];
+      // 滚动触发动画：统一控制“价值观”“团队”“发展历程”“员工福利”板块
+      document.addEventListener("DOMContentLoaded", function () {
+        // 需要触发动画的元素：只选“需要添加active类的元素”，避免冗余和重复
+        const animateElements = [
+          // 1. 所有板块标题（包含员工福利标题，用querySelectorAll全选）
+          ...document.querySelectorAll(
+            ".about-section-title, .staff-elfare-title"
+          ),
+          // 2. 企业简介文字区
+          ...document.querySelectorAll(".about-hero-text"),
+          // 3. 价值观卡片（全选）
+          ...document.querySelectorAll(".advantage-card"),
+          // 4. 团队卡片（全选）
+          ...document.querySelectorAll(".team-card"),
+          // 5. 发展历程节点（全选，原代码只选1个，此处修复）
+          ...document.querySelectorAll(".timeline-item"),
+          // 6. 员工福利卡片（全选，原代码只选1个，此处修复）
+          ...document.querySelectorAll(".welfare-card"),
+        ];
 
-  // 检测元素是否在可视区域内（逻辑不变，保留原有判定）
-  function isInViewport(el) {
-    // 防御性判断：如果元素不存在（undefined），直接返回false，避免报错
-    if (!el) return false;
-    const rect = el.getBoundingClientRect();
-    // 可视区域判定：元素顶部进入屏幕底部100px内，或元素底部进入屏幕顶部100px内（体验更优）
-    return rect.top <= window.innerHeight - 100 && rect.bottom >= 100;
-  }
+        // 检测元素是否在可视区域内（逻辑不变，保留原有判定）
+        function isInViewport(el) {
+          // 防御性判断：如果元素不存在（undefined），直接返回false，避免报错
+          if (!el) return false;
+          const rect = el.getBoundingClientRect();
+          // 可视区域判定：元素顶部进入屏幕底部100px内，或元素底部进入屏幕顶部100px内（体验更优）
+          return rect.top <= window.innerHeight - 100 && rect.bottom >= 100;
+        }
 
-  // 为可视区域的元素添加active类（逻辑不变）
-  function activateVisibleElements() {
-    animateElements.forEach((el) => {
-      if (isInViewport(el) && !el.classList.contains("active")) {
-        el.classList.add("active");
-      }
-    });
-  }
+        // 为可视区域的元素添加active类（逻辑不变）
+        function activateVisibleElements() {
+          animateElements.forEach((el) => {
+            if (isInViewport(el) && !el.classList.contains("active")) {
+              el.classList.add("active");
+            }
+          });
+        }
 
-  // 初始加载时触发一次
-  activateVisibleElements();
-  // 滚动时持续检测
-  window.addEventListener("scroll", activateVisibleElements);
-  // 窗口大小变化时重新检测
-  window.addEventListener("resize", activateVisibleElements);
-});
-</script>
+        // 初始加载时触发一次
+        activateVisibleElements();
+        // 滚动时持续检测
+        window.addEventListener("scroll", activateVisibleElements);
+        // 窗口大小变化时重新检测
+        window.addEventListener("resize", activateVisibleElements);
+      });
+    </script>
 
     <script>
       // 1. 页面加载完成后初始化动画
@@ -4117,7 +5668,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     </script>
 
-    <script>// 新世界模块 - 数字增长动画（与滚动激活同步）
+    <script>
+      // 新世界模块 - 数字增长动画（与滚动激活同步）
       document.addEventListener("DOMContentLoaded", function () {
         const statItems = document.querySelectorAll(".new-world-stat-item");
         // 存储目标数字和单位（与HTML中的数据对应）
@@ -4189,7 +5741,74 @@ document.addEventListener("DOMContentLoaded", function () {
           observer.observe(item);
         });
       });
-      </script>
+    </script>
 
+    <script>// 十、信任背书模块JS：滚动渐入动画（与现有模块动画逻辑统一）
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. 获取模块元素
+  const trustSection = document.querySelector('.trust-section');
+  const trustTitle = document.querySelector('.trust-section-title');
+  const logoCards = document.querySelectorAll('.trust-logo-card');
+  const caseCards = document.querySelectorAll('.trust-case-card');
+
+  // 2. 创建IntersectionObserver实例（监听元素是否进入视图）
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 2.1 模块标题渐入
+        if (entry.target === trustTitle) {
+          trustTitle.classList.add('active');
+        }
+
+        // 2.2 Logo卡片依次渐入（设置--logo-index变量，控制延迟）
+        if (entry.target.classList.contains('trust-logo-card')) {
+          const logoIndex = entry.target.getAttribute('data-logo-index');
+          entry.target.style.setProperty('--logo-index', logoIndex);
+          entry.target.classList.add('active');
+        }
+
+        // 2.3 案例卡片依次渐入（设置--case-index变量，控制延迟）
+        if (entry.target.classList.contains('trust-case-card')) {
+          const caseIndex = entry.target.getAttribute('data-case-index');
+          entry.target.style.setProperty('--case-index', caseIndex);
+          entry.target.classList.add('active');
+        }
+
+        // 元素进入视图后，停止监听（避免重复触发）
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, // 元素10%进入视图即触发
+    rootMargin: '0px 0px -50px 0px' // 底部偏移，优化触发时机
+  });
+
+  // 3. 开始监听所有目标元素
+  observer.observe(trustTitle);
+  logoCards.forEach(card => observer.observe(card));
+  caseCards.forEach(card => observer.observe(card));
+
+  // 4. 可选：窗口 resize 时重新计算（避免响应式切换后布局错乱）
+  window.addEventListener('resize', function() {
+    // 重新触发动画（仅针对已激活的元素，避免重复）
+    if (trustTitle.classList.contains('active')) {
+      trustTitle.classList.remove('active');
+      setTimeout(() => trustTitle.classList.add('active'), 100);
+    }
+    logoCards.forEach(card => {
+      if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        setTimeout(() => card.classList.add('active'), 100);
+      }
+    });
+    caseCards.forEach(card => {
+      if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        setTimeout(() => card.classList.add('active'), 100);
+      }
+    });
+  });
+});
+</script>
   </body>
 </html>

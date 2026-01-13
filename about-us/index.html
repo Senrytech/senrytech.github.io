@@ -1651,23 +1651,23 @@
         line-height: 1.6;
       }
       /* 五、CSS 价值观（新增部分） */
-.advantage-card p {
-  font-size: 0.9rem; 
-  color: #424245;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  line-height: 1.6;
-  margin-bottom: 0.5rem; /* 原文字与行动描述的间距 */
-}
+      .advantage-card p {
+        font-size: 0.9rem;
+        color: #424245;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        line-height: 1.6;
+        margin-bottom: 0.5rem; /* 原文字与行动描述的间距 */
+      }
 
-/* 行动描述样式：差异化显示，突出案例 */
-.advantage-card .action-desc {
-  display: inline-block; /* 确保缩进和间距生效 */
-  font-size: 0.82rem; /* 比原文字小一号，避免喧宾夺主 */
-  color: #0071e3; /* 品牌蓝，呼应导航栏/按钮配色，增强识别度 */
-  margin: 0.3rem 0 0.5rem 1rem; /* 上下间距+左侧缩进，区分层级 */
-  line-height: 1.5;
-  font-weight: 400;
-}
+      /* 行动描述样式：差异化显示，突出案例 */
+      .advantage-card .action-desc {
+        display: inline-block; /* 确保缩进和间距生效 */
+        font-size: 0.82rem; /* 比原文字小一号，避免喧宾夺主 */
+        color: #0071e3; /* 品牌蓝，呼应导航栏/按钮配色，增强识别度 */
+        margin: 0.3rem 0 0.5rem 1rem; /* 上下间距+左侧缩进，区分层级 */
+        line-height: 1.5;
+        font-weight: 400;
+      }
 
       /* ================================== 8个断点适配（仅1列/3列切换） ================================== */
       /* 1. 超小屏手机（0-320px）：1列布局 */
@@ -1738,10 +1738,10 @@
           font-size: 0.825rem;
         }
         .advantage-card .action-desc {
-    font-size: 0.75rem;
-    margin: 0.2rem 0 0.4rem 0; /* 超小屏取消左侧缩进，避免换行混乱 */
-    width: 100%; /* 占满卡片宽度，确保文字完整显示 */
-  }
+          font-size: 0.75rem;
+          margin: 0.2rem 0 0.4rem 0; /* 超小屏取消左侧缩进，避免换行混乱 */
+          width: 100%; /* 占满卡片宽度，确保文字完整显示 */
+        }
       }
 
       /* 3. 大屏手机（376-425px）：1列布局 */
@@ -1811,9 +1811,9 @@
           font-size: 0.875rem;
         }
         .advantage-card .action-desc {
-    font-size: 0.78rem;
-    margin-left: 0.5rem; /* 小屏缩小缩进，节省空间 */
-  }
+          font-size: 0.78rem;
+          margin-left: 0.5rem; /* 小屏缩小缩进，节省空间 */
+        }
       }
 
       /* 5. 笔记本小屏（769-1024px）：3列布局（769px以上均为3列） */
@@ -2893,472 +2893,472 @@
     </style>
 
     <style>
-    /* 十、CSS 信任背书模块（Trust Endorsement）- 优化后：图片铺满激活态卡片+圆角 */
-/* 1. 模块基础样式（无修改） */
-.trust-section {
-  width: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    #f8f8f8 0%,
-    #fafafa 30%,
-    #ffffff 70%,
-    #ffffff 100%
-  );
-  padding: 6rem 0;
-  overflow: hidden;
-}
-.trust-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem; /* 基础左右留白，与其他模块统一 */
-}
+      /* 十、CSS 信任背书模块（Trust Endorsement）- 优化后：图片铺满激活态卡片+圆角 */
+      /* 1. 模块基础样式（无修改） */
+      .trust-section {
+        width: 100%;
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
+        );
+        padding: 6rem 0;
+        overflow: hidden;
+      }
+      .trust-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem; /* 基础左右留白，与其他模块统一 */
+      }
 
-/* 2. 模块标题样式（无修改） */
-.trust-section-title {
-  font-family: "Public Sans", "Segoe UI", sans-serif;
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 500;
-  color: #000000;
-  margin-bottom: 4rem;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-}
-.trust-section-title.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+      /* 2. 模块标题样式（无修改） */
+      .trust-section-title {
+        font-family: "Public Sans", "Segoe UI", sans-serif;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 4rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .trust-section-title.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-/* 3. Logo墙样式 - 核心优化区 */
-.trust-logo-wrapper {
-  margin-bottom: 6rem; /* 与案例区间距 */
-}
-.trust-logo-title {
-  font-size: 1.2rem;
-  color: #1d1d1f;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 500;
-}
-/* Logo列表布局（无修改） */
-.trust-logo-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 大屏4列 */
-  gap: 2rem;
-  align-items: center;
-}
-/* Logo卡片样式 - 关键优化：移除内边距，保留圆角 */
-.trust-logo-card {
-  background-color: transparent;
-  border-radius: 1.2rem; /* 卡片圆角基础值，与图片容器统一 */
-  padding: 0; /* ❶ 移除卡片内边距，避免图片与卡片边缘有间隙 */
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-  opacity: 0;
-  transform: translateY(20px);
-  transition-delay: calc(var(--logo-index) * 0.2s); /* 依次激活 */
-  height: 100%; /* ❷ 确保卡片高度自适应，避免图片被压缩 */
-}
-.trust-logo-card.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Logo卡片hover效果（无修改） */
-.trust-logo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-/* Logo图片容器 - 关键优化：铺满卡片+统一圆角 */
-.trust-logo-img {
-  width: 100%; /* ❶ 横向铺满卡片 */
-  height: 100%; /* ❷ 纵向铺满卡片（取消原固定高度80px） */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0; /* ❸ 移除底部间距，避免图片与卡片底部有间隙 */
-  background-color: #fff;
-  border-radius: 1.2rem; /* ❹ 与卡片圆角一致，避免圆角断层 */
-}
-/* Logo图片 - 关键优化：强制填充容器，保留圆角 */
-.trust-logo-img img {
-  width: 100%; /* ❶ 横向铺满图片容器 */
-  height: 100%; /* ❷ 纵向铺满图片容器 */
-  object-fit: cover; /* ❸ 填充容器（裁剪多余部分，优先保留Logo核心），避免留白 */
-  border-radius: inherit; /* ❹ 继承图片容器圆角，确保整体圆角统一 */
-}
-/* Logo描述文字 - 可选：若不需要文字，设为隐藏（避免占用空间影响铺满） */
-.trust-logo-desc {
-  display: none; /* ❶ 隐藏文字，专注图片铺满效果；需保留则删除此句，调整位置 */
-  /* 保留文字时的样式参考（需调整位置避免遮挡图片）：
+      /* 3. Logo墙样式 - 核心优化区 */
+      .trust-logo-wrapper {
+        margin-bottom: 6rem; /* 与案例区间距 */
+      }
+      .trust-logo-title {
+        font-size: 1.2rem;
+        color: #1d1d1f;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-weight: 500;
+      }
+      /* Logo列表布局（无修改） */
+      .trust-logo-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 大屏4列 */
+        gap: 2rem;
+        align-items: center;
+      }
+      /* Logo卡片样式 - 关键优化：移除内边距，保留圆角 */
+      .trust-logo-card {
+        background-color: transparent;
+        border-radius: 1.2rem; /* 卡片圆角基础值，与图片容器统一 */
+        padding: 0; /* ❶ 移除卡片内边距，避免图片与卡片边缘有间隙 */
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        transition-delay: calc(var(--logo-index) * 0.2s); /* 依次激活 */
+        height: 100%; /* ❷ 确保卡片高度自适应，避免图片被压缩 */
+      }
+      .trust-logo-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Logo卡片hover效果（无修改） */
+      .trust-logo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+      /* Logo图片容器 - 关键优化：铺满卡片+统一圆角 */
+      .trust-logo-img {
+        width: 100%; /* ❶ 横向铺满卡片 */
+        height: 100%; /* ❷ 纵向铺满卡片（取消原固定高度80px） */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0; /* ❸ 移除底部间距，避免图片与卡片底部有间隙 */
+        background-color: #fff;
+        border-radius: 1.2rem; /* ❹ 与卡片圆角一致，避免圆角断层 */
+      }
+      /* Logo图片 - 关键优化：强制填充容器，保留圆角 */
+      .trust-logo-img img {
+        width: 100%; /* ❶ 横向铺满图片容器 */
+        height: 100%; /* ❷ 纵向铺满图片容器 */
+        object-fit: cover; /* ❸ 填充容器（裁剪多余部分，优先保留Logo核心），避免留白 */
+        border-radius: inherit; /* ❹ 继承图片容器圆角，确保整体圆角统一 */
+      }
+      /* Logo描述文字 - 可选：若不需要文字，设为隐藏（避免占用空间影响铺满） */
+      .trust-logo-desc {
+        display: none; /* ❶ 隐藏文字，专注图片铺满效果；需保留则删除此句，调整位置 */
+        /* 保留文字时的样式参考（需调整位置避免遮挡图片）：
   font-size: 0.85rem;
   color: #424245;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   padding: 0.5rem;
   */
-}
+      }
 
-/* 4. 案例区样式（无修改） */
-.trust-case-wrapper {
-  margin-bottom: 2rem;
-}
-.trust-case-title {
-  font-size: 1.2rem;
-  color: #1d1d1f;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: 500;
-}
-.trust-case-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem; /* 案例之间间距 */
-}
-.trust-case-card {
-  display: flex;
-  gap: 2.5rem;
-  align-items: center;
-  background-color: #f5f5f7;
-  border-radius: 1.5rem;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition:
-    transform 0.4s ease,
-    box-shadow 0.4s ease;
-  opacity: 0;
-  transform: translateY(30px);
-  transition-delay: calc(var(--case-index) * 0.3s); /* 依次激活 */
-}
-.trust-case-card.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-.trust-case-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-.trust-case-img {
-  flex: 0 0 45%; /* 大屏图片占45%宽度 */
-  height: 320px;
-  overflow: hidden;
-}
-.trust-case-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 裁剪多余部分，保留核心场景 */
-  transition: transform 0.5s ease;
-}
-.trust-case-card:hover .trust-case-img img {
-  transform: scale(1.03); /* 图片hover轻微放大 */
-}
-.trust-case-content {
-  flex: 1;
-  padding: 2.5rem;
-}
-.trust-case-name {
-  font-size: 1.1rem;
-  color: #0071e3; /* 品牌蓝突出案例名称 */
-  margin-bottom: 1.2rem;
-  font-weight: 500;
-}
-.trust-case-problem,
-.trust-case-solution,
-.trust-case-result {
-  font-size: 0.9rem;
-  color: #424245;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-.trust-case-result {
-  color: #1d1d1f; /* 成果文字加深，突出重点 */
-  font-weight: 450;
-}
+      /* 4. 案例区样式（无修改） */
+      .trust-case-wrapper {
+        margin-bottom: 2rem;
+      }
+      .trust-case-title {
+        font-size: 1.2rem;
+        color: #1d1d1f;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-weight: 500;
+      }
+      .trust-case-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem; /* 案例之间间距 */
+      }
+      .trust-case-card {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+        background-color: #f5f5f7;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        opacity: 0;
+        transform: translateY(30px);
+        transition-delay: calc(var(--case-index) * 0.3s); /* 依次激活 */
+      }
+      .trust-case-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .trust-case-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      .trust-case-img {
+        flex: 0 0 45%; /* 大屏图片占45%宽度 */
+        height: 320px;
+        overflow: hidden;
+      }
+      .trust-case-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 裁剪多余部分，保留核心场景 */
+        transition: transform 0.5s ease;
+      }
+      .trust-case-card:hover .trust-case-img img {
+        transform: scale(1.03); /* 图片hover轻微放大 */
+      }
+      .trust-case-content {
+        flex: 1;
+        padding: 2.5rem;
+      }
+      .trust-case-name {
+        font-size: 1.1rem;
+        color: #0071e3; /* 品牌蓝突出案例名称 */
+        margin-bottom: 1.2rem;
+        font-weight: 500;
+      }
+      .trust-case-problem,
+      .trust-case-solution,
+      .trust-case-result {
+        font-size: 0.9rem;
+        color: #424245;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+      .trust-case-result {
+        color: #1d1d1f; /* 成果文字加深，突出重点 */
+        font-weight: 450;
+      }
 
-/* 5. 响应式适配 - 同步优化：确保所有断点图片铺满+圆角统一 */
-/* 超小屏手机（0-320px）：Logo 2列，案例纵向 */
-@media (max-width: 320px) {
-  .trust-container {
-    padding: 0 1rem;
-  }
-  .trust-section-title {
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
-  }
-  /* Logo墙优化 */
-  .trust-logo-list {
-    grid-template-columns: repeat(2, 1fr); /* 2列 */
-    gap: 1.2rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* ❶ 保持无内边距 */
-    border-radius: 1rem; /* ❷ 同步缩小圆角，适配小屏 */
-  }
-  .trust-logo-img {
-    border-radius: 1rem; /* ❸ 与卡片圆角一致 */
-  }
-  .trust-logo-desc {
-    display: none; /* 保持隐藏 */
-  }
-  /* 案例区（无修改） */
-  .trust-case-card {
-    flex-direction: column;
-    gap: 0;
-  }
-  .trust-case-img {
-    flex: none;
-    width: 100%;
-    height: 180px;
-  }
-  .trust-case-content {
-    padding: 1.5rem;
-  }
-  .trust-case-name {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-  .trust-case-problem,
-  .trust-case-solution,
-  .trust-case-result {
-    font-size: 0.8rem;
-    margin-bottom: 0.8rem;
-  }
-}
+      /* 5. 响应式适配 - 同步优化：确保所有断点图片铺满+圆角统一 */
+      /* 超小屏手机（0-320px）：Logo 2列，案例纵向 */
+      @media (max-width: 320px) {
+        .trust-container {
+          padding: 0 1rem;
+        }
+        .trust-section-title {
+          font-size: 1.8rem;
+          margin-bottom: 2.5rem;
+        }
+        /* Logo墙优化 */
+        .trust-logo-list {
+          grid-template-columns: repeat(2, 1fr); /* 2列 */
+          gap: 1.2rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* ❶ 保持无内边距 */
+          border-radius: 1rem; /* ❷ 同步缩小圆角，适配小屏 */
+        }
+        .trust-logo-img {
+          border-radius: 1rem; /* ❸ 与卡片圆角一致 */
+        }
+        .trust-logo-desc {
+          display: none; /* 保持隐藏 */
+        }
+        /* 案例区（无修改） */
+        .trust-case-card {
+          flex-direction: column;
+          gap: 0;
+        }
+        .trust-case-img {
+          flex: none;
+          width: 100%;
+          height: 180px;
+        }
+        .trust-case-content {
+          padding: 1.5rem;
+        }
+        .trust-case-name {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+        .trust-case-problem,
+        .trust-case-solution,
+        .trust-case-result {
+          font-size: 0.8rem;
+          margin-bottom: 0.8rem;
+        }
+      }
 
-/* 小屏手机（321-375px）：Logo 2列，案例纵向 */
-@media (min-width: 321px) and (max-width: 375px) {
-  .trust-container {
-    padding: 0 1.2rem;
-  }
-  .trust-section-title {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-  }
-  .trust-logo-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1rem;
-  }
-  .trust-logo-img {
-    border-radius: 1rem;
-  }
-  .trust-case-card {
-    flex-direction: column;
-  }
-  .trust-case-img {
-    width: 100%;
-    height: 200px;
-  }
-  .trust-case-content {
-    padding: 1.8rem;
-  }
-}
+      /* 小屏手机（321-375px）：Logo 2列，案例纵向 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .trust-container {
+          padding: 0 1.2rem;
+        }
+        .trust-section-title {
+          font-size: 2rem;
+          margin-bottom: 3rem;
+        }
+        .trust-logo-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1rem;
+        }
+        .trust-logo-img {
+          border-radius: 1rem;
+        }
+        .trust-case-card {
+          flex-direction: column;
+        }
+        .trust-case-img {
+          width: 100%;
+          height: 200px;
+        }
+        .trust-case-content {
+          padding: 1.8rem;
+        }
+      }
 
-/* 大屏手机（376-425px）：Logo 2列，案例纵向 */
-@media (min-width: 376px) and (max-width: 425px) {
-  .trust-container {
-    padding: 0 1.5rem;
-  }
-  .trust-section-title {
-    font-size: 2.2rem;
-    margin-bottom: 3.2rem;
-  }
-  .trust-logo-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.8rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1.1rem;
-  }
-  .trust-logo-img {
-    border-radius: 1.1rem;
-  }
-  .trust-case-card {
-    flex-direction: column;
-  }
-  .trust-case-img {
-    width: 100%;
-    height: 220px;
-  }
-  .trust-case-content {
-    padding: 2rem;
-  }
-}
+      /* 大屏手机（376-425px）：Logo 2列，案例纵向 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .trust-container {
+          padding: 0 1.5rem;
+        }
+        .trust-section-title {
+          font-size: 2.2rem;
+          margin-bottom: 3.2rem;
+        }
+        .trust-logo-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.8rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1.1rem;
+        }
+        .trust-logo-img {
+          border-radius: 1.1rem;
+        }
+        .trust-case-card {
+          flex-direction: column;
+        }
+        .trust-case-img {
+          width: 100%;
+          height: 220px;
+        }
+        .trust-case-content {
+          padding: 2rem;
+        }
+      }
 
-/* 平板/折叠屏（426-768px）：Logo 2列，案例纵向 */
-@media (min-width: 426px) and (max-width: 768px) {
-  .trust-container {
-    padding: 0 2rem;
-    max-width: 600px;
-  }
-  .trust-section-title {
-    font-size: 2.4rem;
-    margin-bottom: 3.5rem;
-  }
-  .trust-logo-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1.2rem;
-  }
-  .trust-logo-img {
-    border-radius: 1.2rem;
-  }
-  .trust-case-card {
-    flex-direction: column;
-  }
-  .trust-case-img {
-    flex: none;
-    width: 100%;
-    height: 280px;
-  }
-  .trust-case-content {
-    padding: 2.2rem;
-  }
-}
+      /* 平板/折叠屏（426-768px）：Logo 2列，案例纵向 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .trust-container {
+          padding: 0 2rem;
+          max-width: 600px;
+        }
+        .trust-section-title {
+          font-size: 2.4rem;
+          margin-bottom: 3.5rem;
+        }
+        .trust-logo-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1.2rem;
+        }
+        .trust-logo-img {
+          border-radius: 1.2rem;
+        }
+        .trust-case-card {
+          flex-direction: column;
+        }
+        .trust-case-img {
+          flex: none;
+          width: 100%;
+          height: 280px;
+        }
+        .trust-case-content {
+          padding: 2.2rem;
+        }
+      }
 
-/* 笔记本小屏（769-1024px）：Logo 4列，案例横向 */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .trust-container {
-    max-width: 900px;
-    padding: 0 2rem;
-  }
-  .trust-section-title {
-    font-size: 2.3rem;
-    margin-bottom: 3.8rem;
-  }
-  .trust-logo-list {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1.1rem;
-  }
-  .trust-logo-img {
-    border-radius: 1.1rem;
-  }
-  .trust-case-card {
-    gap: 1.8rem;
-  }
-  .trust-case-img {
-    flex: 0 0 40%;
-    height: 280px;
-  }
-  .trust-case-content {
-    padding: 2rem;
-  }
-}
+      /* 笔记本小屏（769-1024px）：Logo 4列，案例横向 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .trust-container {
+          max-width: 900px;
+          padding: 0 2rem;
+        }
+        .trust-section-title {
+          font-size: 2.3rem;
+          margin-bottom: 3.8rem;
+        }
+        .trust-logo-list {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1.1rem;
+        }
+        .trust-logo-img {
+          border-radius: 1.1rem;
+        }
+        .trust-case-card {
+          gap: 1.8rem;
+        }
+        .trust-case-img {
+          flex: 0 0 40%;
+          height: 280px;
+        }
+        .trust-case-content {
+          padding: 2rem;
+        }
+      }
 
-/* 主流桌面屏（1025-1440px）：Logo 4列，案例横向 */
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .trust-container {
-    max-width: 1200px;
-  }
-  /* 保持基础优化：无内边距+圆角统一 */
-  .trust-logo-card {
-    padding: 0;
-  }
-  .trust-logo-img {
-    border-radius: 1.2rem;
-  }
-}
+      /* 主流桌面屏（1025-1440px）：Logo 4列，案例横向 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .trust-container {
+          max-width: 1200px;
+        }
+        /* 保持基础优化：无内边距+圆角统一 */
+        .trust-logo-card {
+          padding: 0;
+        }
+        .trust-logo-img {
+          border-radius: 1.2rem;
+        }
+      }
 
-/* 大屏/2K屏（1441-2560px）：Logo 4列，案例横向 */
-@media (min-width: 1441px) and (max-width: 2560px) {
-  .trust-container {
-    max-width: 1600px;
-    padding: 0 3rem;
-  }
-  .trust-section-title {
-    font-size: 2.8rem;
-    margin-bottom: 4.5rem;
-  }
-  .trust-logo-list {
-    gap: 2.5rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1.5rem;
-  }
-  .trust-logo-img {
-    border-radius: 1.5rem;
-  }
-  .trust-case-card {
-    gap: 3rem;
-    border-radius: 1.8rem;
-  }
-  .trust-case-img {
-    flex: 0 0 48%;
-    height: 360px;
-  }
-  .trust-case-content {
-    padding: 3rem;
-  }
-  .trust-case-name {
-    font-size: 1.3rem;
-    margin-bottom: 1.5rem;
-  }
-  .trust-case-problem,
-  .trust-case-solution,
-  .trust-case-result {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-}
+      /* 大屏/2K屏（1441-2560px）：Logo 4列，案例横向 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .trust-container {
+          max-width: 1600px;
+          padding: 0 3rem;
+        }
+        .trust-section-title {
+          font-size: 2.8rem;
+          margin-bottom: 4.5rem;
+        }
+        .trust-logo-list {
+          gap: 2.5rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1.5rem;
+        }
+        .trust-logo-img {
+          border-radius: 1.5rem;
+        }
+        .trust-case-card {
+          gap: 3rem;
+          border-radius: 1.8rem;
+        }
+        .trust-case-img {
+          flex: 0 0 48%;
+          height: 360px;
+        }
+        .trust-case-content {
+          padding: 3rem;
+        }
+        .trust-case-name {
+          font-size: 1.3rem;
+          margin-bottom: 1.5rem;
+        }
+        .trust-case-problem,
+        .trust-case-solution,
+        .trust-case-result {
+          font-size: 1rem;
+          line-height: 1.7;
+        }
+      }
 
-/* 超高清屏（≥2561px）：Logo 4列，案例横向 */
-@media (min-width: 2561px) {
-  .trust-container {
-    max-width: 1800px;
-    padding: 0 4rem;
-  }
-  .trust-section-title {
-    font-size: 3rem;
-    margin-bottom: 5rem;
-  }
-  .trust-logo-list {
-    gap: 2.8rem;
-  }
-  .trust-logo-card {
-    padding: 0; /* 无内边距 */
-    border-radius: 1.8rem;
-  }
-  .trust-logo-img {
-    border-radius: 1.8rem;
-  }
-  .trust-case-card {
-    gap: 3.5rem;
-    border-radius: 2rem;
-  }
-  .trust-case-img {
-    flex: 0 0 50%;
-    height: 400px;
-  }
-  .trust-case-content {
-    padding: 3.5rem;
-  }
-  .trust-case-name {
-    font-size: 1.4rem;
-  }
-  .trust-case-problem,
-  .trust-case-solution,
-  .trust-case-result {
-    font-size: 1.05rem;
-  }
-}
-</style>
+      /* 超高清屏（≥2561px）：Logo 4列，案例横向 */
+      @media (min-width: 2561px) {
+        .trust-container {
+          max-width: 1800px;
+          padding: 0 4rem;
+        }
+        .trust-section-title {
+          font-size: 3rem;
+          margin-bottom: 5rem;
+        }
+        .trust-logo-list {
+          gap: 2.8rem;
+        }
+        .trust-logo-card {
+          padding: 0; /* 无内边距 */
+          border-radius: 1.8rem;
+        }
+        .trust-logo-img {
+          border-radius: 1.8rem;
+        }
+        .trust-case-card {
+          gap: 3.5rem;
+          border-radius: 2rem;
+        }
+        .trust-case-img {
+          flex: 0 0 50%;
+          height: 400px;
+        }
+        .trust-case-content {
+          padding: 3.5rem;
+        }
+        .trust-case-name {
+          font-size: 1.4rem;
+        }
+        .trust-case-problem,
+        .trust-case-solution,
+        .trust-case-result {
+          font-size: 1.05rem;
+        }
+      }
+    </style>
 
     <!--十二，CSS 联系专家-->
     <style>
@@ -3894,7 +3894,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                         alt="Senrytech A"
                       />
                     </a>
@@ -3911,7 +3911,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                         alt="Senrytech B"
                       />
                     </a>
@@ -3927,7 +3927,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                         alt="Senrytech B Plus"
                       />
                     </a>
@@ -3943,7 +3943,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                         alt="Senrytech B Pro"
                       />
                     </a>
@@ -3959,7 +3959,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                         alt="Senrytech B ProMax"
                       />
                     </a>
@@ -3974,7 +3974,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                         alt="Senrytech B Ultra"
                       />
                     </a>
@@ -3989,7 +3989,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
                         alt="Senrytech C"
                       />
                     </a>
@@ -4004,7 +4004,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
                         alt="Senrytech C Pro"
                       />
                     </a>
@@ -4019,7 +4019,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
                         alt="Senrytech G"
                       />
                     </a>
@@ -4034,7 +4034,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
                         alt="Senrytech M"
                       />
                     </a>
@@ -4049,7 +4049,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                        src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
                         alt="Senrytech S"
                       />
                     </a>
@@ -4431,7 +4431,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                       alt="Senrytech A"
                     />
                     <p>Senrytech A</p>
@@ -4443,7 +4443,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                       alt="Senrytech B"
                     />
                     <p>Senrytech B</p>
@@ -4455,7 +4455,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                       alt="Senrytech B Plus"
                     />
                     <p>Senrytech B Plus</p>
@@ -4467,7 +4467,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                       alt="Senrytech B Pro"
                     />
                     <p>Senrytech B Pro</p>
@@ -4479,7 +4479,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                       alt="Senrytech B ProMax"
                     />
                     <p>Senrytech B ProMax</p>
@@ -4491,7 +4491,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech B Ultra</p>
@@ -4503,7 +4503,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C</p>
@@ -4515,7 +4515,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C Pro</p>
@@ -4527,7 +4527,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech G</p>
@@ -4539,7 +4539,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech M</p>
@@ -4551,7 +4551,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech S</p>
@@ -4723,56 +4723,71 @@
     </section>
 
     <!-- 五. 核价值观模块 -->
-<section class="advantages-section">
-  <div class="advantages-container">
-    <h3 class="about-section-title">我们的价值观</h3>
-    <div class="advantages-list">
-      <!-- 1. 企业使命：新增“汽车零部件客户定制案例” -->
-      <div class="advantage-card">
-        <div class="advantage-icon">
-          <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-        </div>
-        <h3>企业使命</h3>
-        <p>
-          始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
-          <!-- 行动描述：具体客户+解决的问题+成果 -->
-          <span class="action-desc">▸ 案例：为德国某汽车零部件客户定制激光焊接设备，3周完成核心参数调试，将其零件焊接不良率从8%降至3%。</span>
-        </p>
-      </div>
+    <section class="advantages-section">
+      <div class="advantages-container">
+        <h3 class="about-section-title">我们的价值观</h3>
+        <div class="advantages-list">
+          <!-- 1. 企业使命：新增“汽车零部件客户定制案例” -->
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            </div>
+            <h3>企业使命</h3>
+            <p>
+              始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
+              <!-- 行动描述：具体客户+解决的问题+成果 -->
+              <span class="action-desc"
+                >▸
+                案例：为德国某汽车零部件客户定制激光焊接设备，3周完成核心参数调试，将其零件焊接不良率从8%降至3%。</span
+              >
+            </p>
+          </div>
 
-      <!-- 2. 企业愿景：新增“东南亚客户培训案例” -->
-      <div class="advantage-card">
-        <div class="advantage-icon">
-          <i class="fa fa-industry" aria-hidden="true"></i>
-        </div>
-        <h3>企业愿景</h3>
-        <p>
-          让每一位从业者都能成为产业创新的创造者。
-          <!-- 行动描述：覆盖区域+具体行动+培训成果 -->
-          <span class="action-desc">▸ 落地：2023年为东南亚5+工厂操作员提供免费激光设备操作培训，输出20+持证专业操作员，助力当地工厂技术升级。</span>
-        </p>
-      </div>
+          <!-- 2. 企业愿景：新增“东南亚客户培训案例” -->
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-industry" aria-hidden="true"></i>
+            </div>
+            <h3>企业愿景</h3>
+            <p>
+              让每一位从业者都能成为产业创新的创造者。
+              <!-- 行动描述：覆盖区域+具体行动+培训成果 -->
+              <span class="action-desc"
+                >▸
+                落地：2023年为东南亚5+工厂操作员提供免费激光设备操作培训，输出20+持证专业操作员，助力当地工厂技术升级。</span
+              >
+            </p>
+          </div>
 
-      <!-- 3. 企业价值观：为3条子口号分别匹配案例 -->
-      <div class="advantage-card">
-        <div class="advantage-icon">
-          <i class="fa fa-globe" aria-hidden="true"></i>
+          <!-- 3. 企业价值观：为3条子口号分别匹配案例 -->
+          <div class="advantage-card">
+            <div class="advantage-icon">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+            </div>
+            <h3>企业价值观</h3>
+            <p>
+              客户为友，共生共赢<br />
+              <span class="action-desc"
+                >▸
+                行动：2022年美国客户因订单紧急需提前交货，团队72小时连续调试设备，最终按时发货，避免其生产线停工损失。</span
+              ><br />
+
+              信念为基，价值同行<br />
+              <span class="action-desc"
+                >▸
+                行动：面对激光打标精度难题，研发团队连续15天优化算法，将设备精度从0.05mm提升至0.01mm，突破行业小尺寸打标瓶颈。</span
+              ><br />
+
+              乐观向远，笃行成果<br />
+              <span class="action-desc"
+                >▸
+                行动：与日本电子客户合作5年，每年根据其新品研发需求迭代设备功能，助力客户新品市场份额提升12%。</span
+              >
+            </p>
+          </div>
         </div>
-        <h3>企业价值观</h3>
-        <p>
-          客户为友，共生共赢<br />
-          <span class="action-desc">▸ 行动：2022年美国客户因订单紧急需提前交货，团队72小时连续调试设备，最终按时发货，避免其生产线停工损失。</span><br />
-          
-          信念为基，价值同行<br />
-          <span class="action-desc">▸ 行动：面对激光打标精度难题，研发团队连续15天优化算法，将设备精度从0.05mm提升至0.01mm，突破行业小尺寸打标瓶颈。</span><br />
-          
-          乐观向远，笃行成果<br />
-          <span class="action-desc">▸ 行动：与日本电子客户合作5年，每年根据其新品研发需求迭代设备功能，助力客户新品市场份额提升12%。</span>
-        </p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- 六. 团队展示模块 -->
     <section class="team-section">
@@ -4931,17 +4946,23 @@
               <div class="stat-number" data-target="6000+" data-unit="台">
                 0
               </div>
-              <div class="stat-desc">年产量:即便处于订单高峰期，也能确保你的采购需求按时排产、如期交付，彻底杜绝生产线因缺设备而停工的风险</div>
+              <div class="stat-desc">
+                年产量:即便处于订单高峰期，也能确保你的采购需求按时排产、如期交付，彻底杜绝生产线因缺设备而停工的风险
+              </div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 1">
               <div class="stat-number" data-target="20000+" data-unit="㎡">
                 0
               </div>
-              <div class="stat-desc">新时代工厂:可同时开启多条标准化生产线，实现精细化分工与全流程品控，为你提供品质稳定、性能一致的激光切割设备</div>
+              <div class="stat-desc">
+                新时代工厂:可同时开启多条标准化生产线，实现精细化分工与全流程品控，为你提供品质稳定、性能一致的激光切割设备
+              </div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 2">
               <div class="stat-number" data-target="30+" data-unit="+">0</div>
-              <div class="stat-desc">国家和地区:产品通过多国市场准入认证，适配不同地区的工业用电标准与工艺需求，全球范围内都能为你提供及时的售后技术支持</div>
+              <div class="stat-desc">
+                国家和地区:产品通过多国市场准入认证，适配不同地区的工业用电标准与工艺需求，全球范围内都能为你提供及时的售后技术支持
+              </div>
             </div>
           </div>
         </div>
@@ -5026,84 +5047,124 @@
     </section>
 
     <!-- 十. 信任背书模块（Trust Endorsement） -->
-<section class="trust-section">
-  <div class="trust-container">
-    <!-- 1. 模块标题 -->
-    <h3 class="trust-section-title">全球客户与合作案例</h3>
-    
-    <!-- 2. 合作伙伴Logo墙 -->
-    <div class="trust-logo-wrapper">
-      <h4 class="trust-logo-title">服务全球30+国家客户</h4>
-      <div class="trust-logo-list">
-        <!-- Logo 1：德国汽车零部件客户 -->
-        <div class="trust-logo-card" data-logo-index="0">
-          <div class="trust-logo-img">
-            <!-- 占位图：实际项目替换为客户Logo，建议用SVG确保清晰 -->
-            <img src="../img/about-us/senrytech-cases-1 (1).webp" alt="德国汽车零部件客户Logo">
+    <section class="trust-section">
+      <div class="trust-container">
+        <!-- 1. 模块标题 -->
+        <h3 class="trust-section-title">全球客户与合作案例</h3>
+
+        <!-- 2. 合作伙伴Logo墙 -->
+        <div class="trust-logo-wrapper">
+          <h4 class="trust-logo-title">服务全球30+国家客户</h4>
+          <div class="trust-logo-list">
+            <!-- Logo 1：德国汽车零部件客户 -->
+            <div class="trust-logo-card" data-logo-index="0">
+              <div class="trust-logo-img">
+                <!-- 占位图：实际项目替换为客户Logo，建议用SVG确保清晰 -->
+                <img
+                  src="../img/about-us/senrytech-cases-1 (1).webp"
+                  alt="德国汽车零部件客户Logo"
+                />
+              </div>
+              <p class="trust-logo-desc">德国 · 汽车零部件行业</p>
+            </div>
+
+            <!-- Logo 2：美国电子设备客户 -->
+            <div class="trust-logo-card" data-logo-index="1">
+              <div class="trust-logo-img">
+                <img
+                  src="../img/about-us/senrytech-cases-1 (2).webp"
+                  alt="美国电子设备客户Logo"
+                />
+              </div>
+              <p class="trust-logo-desc">美国 · 电子设备行业</p>
+            </div>
+
+            <!-- Logo 3：日本精密仪器客户 -->
+            <div class="trust-logo-card" data-logo-index="2">
+              <div class="trust-logo-img">
+                <img
+                  src="../img/about-us/senrytech-cases-1 (3).webp"
+                  alt="日本精密仪器客户Logo"
+                />
+              </div>
+              <p class="trust-logo-desc">日本 · 精密仪器行业</p>
+            </div>
+
+            <!-- Logo 4：东南亚家电客户 -->
+            <div class="trust-logo-card" data-logo-index="3">
+              <div class="trust-logo-img">
+                <img
+                  src="../img/about-us/senrytech-cases-1 (4).webp"
+                  alt="东南亚家电客户Logo"
+                />
+              </div>
+              <p class="trust-logo-desc">东南亚 · 家电制造行业</p>
+            </div>
           </div>
-          <p class="trust-logo-desc">德国 · 汽车零部件行业</p>
         </div>
-        
-        <!-- Logo 2：美国电子设备客户 -->
-        <div class="trust-logo-card" data-logo-index="1">
-          <div class="trust-logo-img">
-            <img src="../img/about-us/senrytech-cases-1 (2).webp" alt="美国电子设备客户Logo">
+
+        <!-- 3. 短案例展示（1-2个核心案例） -->
+        <div class="trust-case-wrapper">
+          <h4 class="trust-case-title">合作案例精选</h4>
+          <div class="trust-case-list">
+            <!-- 案例1：德国汽车配件厂激光焊接设备 -->
+            <div class="trust-case-card" data-case-index="0">
+              <div class="trust-case-img">
+                <!-- 脱敏实景图：客户工厂设备使用场景 -->
+                <img
+                  src="../img/about-us/senrytech-machine-welding.webp"
+                  alt="德国客户工厂激光设备应用场景"
+                />
+              </div>
+              <div class="trust-case-content">
+                <h5 class="trust-case-name">
+                  德国某汽车配件厂 · 激光焊接设备定制
+                </h5>
+                <p class="trust-case-problem">
+                  <strong>客户需求：</strong
+                  >解决汽车底盘部件焊接精度低、不良率高（原不良率18%）、生产效率不足的问题，需适配其现有生产线节拍。
+                </p>
+                <p class="trust-case-solution">
+                  <strong>我们的方案：</strong
+                  >定制高功率激光焊接设备，优化焊接路径算法，添加实时质量检测模块，同步提供3天现场调试培训。
+                </p>
+                <p class="trust-case-result">
+                  <strong>最终成果：</strong
+                  >生产效率提升25%，焊接不良率降至3%，设备稳定运行18个月零故障，后续追加2台设备订单。
+                </p>
+              </div>
+            </div>
+
+            <!-- 案例2：美国电子企业激光打标设备（可选，按需增减） -->
+            <div class="trust-case-card" data-case-index="1">
+              <div class="trust-case-img">
+                <img
+                  src="../img/about-us/senrytech-machine-marking.webp"
+                  alt="美国客户电子元件激光打标场景"
+                />
+              </div>
+              <div class="trust-case-content">
+                <h5 class="trust-case-name">
+                  美国某电子企业 · 微型元件激光打标设备
+                </h5>
+                <p class="trust-case-problem">
+                  <strong>客户需求：</strong
+                  >为手机芯片封装件做超小尺寸（0.5mm×0.3mm）激光打标，要求打标精度≤0.01mm，且不损伤芯片表面。
+                </p>
+                <p class="trust-case-solution">
+                  <strong>我们的方案：</strong
+                  >采用紫外激光光源，搭配高分辨率振镜系统，开发专属打标参数库，提供1对1技术支持。
+                </p>
+                <p class="trust-case-result">
+                  <strong>最终成果：</strong
+                  >打标精度达0.008mm，良率100%，助力客户通过苹果供应链认证，年合作量超50台。
+                </p>
+              </div>
+            </div>
           </div>
-          <p class="trust-logo-desc">美国 · 电子设备行业</p>
-        </div>
-        
-        <!-- Logo 3：日本精密仪器客户 -->
-        <div class="trust-logo-card" data-logo-index="2">
-          <div class="trust-logo-img">
-            <img src="../img/about-us/senrytech-cases-1 (3).webp" alt="日本精密仪器客户Logo">
-          </div>
-          <p class="trust-logo-desc">日本 · 精密仪器行业</p>
-        </div>
-        
-        <!-- Logo 4：东南亚家电客户 -->
-        <div class="trust-logo-card" data-logo-index="3">
-          <div class="trust-logo-img">
-            <img src="../img/about-us/senrytech-cases-1 (4).webp" alt="东南亚家电客户Logo">
-          </div>
-          <p class="trust-logo-desc">东南亚 · 家电制造行业</p>
         </div>
       </div>
-    </div>
-    
-    <!-- 3. 短案例展示（1-2个核心案例） -->
-    <div class="trust-case-wrapper">
-      <h4 class="trust-case-title">合作案例精选</h4>
-      <div class="trust-case-list">
-        <!-- 案例1：德国汽车配件厂激光焊接设备 -->
-        <div class="trust-case-card" data-case-index="0">
-          <div class="trust-case-img">
-            <!-- 脱敏实景图：客户工厂设备使用场景 -->
-            <img src="../img/about-us/senrytech-machine-welding.webp" alt="德国客户工厂激光设备应用场景">
-          </div>
-          <div class="trust-case-content">
-            <h5 class="trust-case-name">德国某汽车配件厂 · 激光焊接设备定制</h5>
-            <p class="trust-case-problem"><strong>客户需求：</strong>解决汽车底盘部件焊接精度低、不良率高（原不良率18%）、生产效率不足的问题，需适配其现有生产线节拍。</p>
-            <p class="trust-case-solution"><strong>我们的方案：</strong>定制高功率激光焊接设备，优化焊接路径算法，添加实时质量检测模块，同步提供3天现场调试培训。</p>
-            <p class="trust-case-result"><strong>最终成果：</strong>生产效率提升25%，焊接不良率降至3%，设备稳定运行18个月零故障，后续追加2台设备订单。</p>
-          </div>
-        </div>
-        
-        <!-- 案例2：美国电子企业激光打标设备（可选，按需增减） -->
-        <div class="trust-case-card" data-case-index="1">
-          <div class="trust-case-img">
-            <img src="../img/about-us/senrytech-machine-marking.webp" alt="美国客户电子元件激光打标场景">
-          </div>
-          <div class="trust-case-content">
-            <h5 class="trust-case-name">美国某电子企业 · 微型元件激光打标设备</h5>
-            <p class="trust-case-problem"><strong>客户需求：</strong>为手机芯片封装件做超小尺寸（0.5mm×0.3mm）激光打标，要求打标精度≤0.01mm，且不损伤芯片表面。</p>
-            <p class="trust-case-solution"><strong>我们的方案：</strong>采用紫外激光光源，搭配高分辨率振镜系统，开发专属打标参数库，提供1对1技术支持。</p>
-            <p class="trust-case-result"><strong>最终成果：</strong>打标精度达0.008mm，良率100%，助力客户通过苹果供应链认证，年合作量超50台。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
@@ -5113,7 +5174,7 @@
             <h2
               class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
-              准备好用高精度激光设备<br>升级你的生产制造了吗？</h2></br>
+              准备好用高精度激光设备<br />升级你的生产制造了吗？
             </h2>
             <p
               class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2"
@@ -5198,7 +5259,7 @@
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="../../../../senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="../img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
@@ -5238,12 +5299,12 @@
         <div class="footer-column">
           <h3>关于我们</h3>
           <ul>
-            <li><a href="#">公司简介</a></li>
-            <li><a href="#">研发实力</a></li>
-            <li><a href="#">生产基地</a></li>
-            <li><a href="#">荣誉资质</a></li>
-            <li><a href="#">新闻动态</a></li>
-            <li><a href="#">加入我们</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">企业责任</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">核心团队</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">发展历程</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">员工福利</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">合作案例</a></li>
           </ul>
         </div>
 
@@ -5278,14 +5339,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="../img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="../img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>
@@ -5743,72 +5804,78 @@
       });
     </script>
 
-    <script>// 十、信任背书模块JS：滚动渐入动画（与现有模块动画逻辑统一）
-document.addEventListener('DOMContentLoaded', function() {
-  // 1. 获取模块元素
-  const trustSection = document.querySelector('.trust-section');
-  const trustTitle = document.querySelector('.trust-section-title');
-  const logoCards = document.querySelectorAll('.trust-logo-card');
-  const caseCards = document.querySelectorAll('.trust-case-card');
+    <script>
+      // 十、信任背书模块JS：滚动渐入动画（与现有模块动画逻辑统一）
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 获取模块元素
+        const trustSection = document.querySelector(".trust-section");
+        const trustTitle = document.querySelector(".trust-section-title");
+        const logoCards = document.querySelectorAll(".trust-logo-card");
+        const caseCards = document.querySelectorAll(".trust-case-card");
 
-  // 2. 创建IntersectionObserver实例（监听元素是否进入视图）
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // 2.1 模块标题渐入
-        if (entry.target === trustTitle) {
-          trustTitle.classList.add('active');
-        }
+        // 2. 创建IntersectionObserver实例（监听元素是否进入视图）
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // 2.1 模块标题渐入
+                if (entry.target === trustTitle) {
+                  trustTitle.classList.add("active");
+                }
 
-        // 2.2 Logo卡片依次渐入（设置--logo-index变量，控制延迟）
-        if (entry.target.classList.contains('trust-logo-card')) {
-          const logoIndex = entry.target.getAttribute('data-logo-index');
-          entry.target.style.setProperty('--logo-index', logoIndex);
-          entry.target.classList.add('active');
-        }
+                // 2.2 Logo卡片依次渐入（设置--logo-index变量，控制延迟）
+                if (entry.target.classList.contains("trust-logo-card")) {
+                  const logoIndex =
+                    entry.target.getAttribute("data-logo-index");
+                  entry.target.style.setProperty("--logo-index", logoIndex);
+                  entry.target.classList.add("active");
+                }
 
-        // 2.3 案例卡片依次渐入（设置--case-index变量，控制延迟）
-        if (entry.target.classList.contains('trust-case-card')) {
-          const caseIndex = entry.target.getAttribute('data-case-index');
-          entry.target.style.setProperty('--case-index', caseIndex);
-          entry.target.classList.add('active');
-        }
+                // 2.3 案例卡片依次渐入（设置--case-index变量，控制延迟）
+                if (entry.target.classList.contains("trust-case-card")) {
+                  const caseIndex =
+                    entry.target.getAttribute("data-case-index");
+                  entry.target.style.setProperty("--case-index", caseIndex);
+                  entry.target.classList.add("active");
+                }
 
-        // 元素进入视图后，停止监听（避免重复触发）
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1, // 元素10%进入视图即触发
-    rootMargin: '0px 0px -50px 0px' // 底部偏移，优化触发时机
-  });
+                // 元素进入视图后，停止监听（避免重复触发）
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1, // 元素10%进入视图即触发
+            rootMargin: "0px 0px -50px 0px", // 底部偏移，优化触发时机
+          }
+        );
 
-  // 3. 开始监听所有目标元素
-  observer.observe(trustTitle);
-  logoCards.forEach(card => observer.observe(card));
-  caseCards.forEach(card => observer.observe(card));
+        // 3. 开始监听所有目标元素
+        observer.observe(trustTitle);
+        logoCards.forEach((card) => observer.observe(card));
+        caseCards.forEach((card) => observer.observe(card));
 
-  // 4. 可选：窗口 resize 时重新计算（避免响应式切换后布局错乱）
-  window.addEventListener('resize', function() {
-    // 重新触发动画（仅针对已激活的元素，避免重复）
-    if (trustTitle.classList.contains('active')) {
-      trustTitle.classList.remove('active');
-      setTimeout(() => trustTitle.classList.add('active'), 100);
-    }
-    logoCards.forEach(card => {
-      if (card.classList.contains('active')) {
-        card.classList.remove('active');
-        setTimeout(() => card.classList.add('active'), 100);
-      }
-    });
-    caseCards.forEach(card => {
-      if (card.classList.contains('active')) {
-        card.classList.remove('active');
-        setTimeout(() => card.classList.add('active'), 100);
-      }
-    });
-  });
-});
-</script>
+        // 4. 可选：窗口 resize 时重新计算（避免响应式切换后布局错乱）
+        window.addEventListener("resize", function () {
+          // 重新触发动画（仅针对已激活的元素，避免重复）
+          if (trustTitle.classList.contains("active")) {
+            trustTitle.classList.remove("active");
+            setTimeout(() => trustTitle.classList.add("active"), 100);
+          }
+          logoCards.forEach((card) => {
+            if (card.classList.contains("active")) {
+              card.classList.remove("active");
+              setTimeout(() => card.classList.add("active"), 100);
+            }
+          });
+          caseCards.forEach((card) => {
+            if (card.classList.contains("active")) {
+              card.classList.remove("active");
+              setTimeout(() => card.classList.add("active"), 100);
+            }
+          });
+        });
+      });
+    </script>
   </body>
 </html>

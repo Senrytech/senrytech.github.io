@@ -7631,8 +7631,8 @@
               y: {
                 stacked: true,
                 beginAtZero: true,
-                max: 25,
-                stepSize: 5,
+                max: 100,
+                stepSize: 10,
                 grid: {
                   color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）
                   borderDash: [], // 实线网格（避免虚线的复杂感）
@@ -7682,22 +7682,24 @@
         // 1. 碳钢切割厚度（保留原数据/颜色/动画，仅应用苹果风格配置）
         const carbonSteelData = {
           labels: [
-            "C15 Pro(1500W)",
-            "C20 Pro(2000W)",
-            "C30 Pro(3000W)",
-            "C60 Pro(6000W)",
+            "G120 (12000W)",
+            "G200 (20000W)",
+            "G300 (30000W)",
+            "G400 (40000W)",
+            "G500 (50000W)",
+            "G600 (60000W)",
           ],
           datasets: [
             {
               label: "batch",
-              data: [12, 16, 22, 18],
+              data: [35, 50, 50, 50, 70, 80],
               backgroundColor: "rgba(34, 197, 94, 0.85)", // 轻微降低不透明度，更柔和
               borderColor: "transparent", // 移除边框
               borderWidth: 0,
             },
             {
               label: "smallBatch",
-              data: [2, 2, 3, 2],
+              data: [5, 10, 10, 10, 10, 10],
               backgroundColor: "rgba(251, 146, 60, 0.85)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7705,7 +7707,7 @@
             },
             {
               label: "prototype",
-              data: [2, 2, 5, 5],
+              data: [5, 10, 10, 10, 10, 10],
               backgroundColor: "rgba(239, 68, 68, 0.85)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7732,22 +7734,24 @@
         // 2. 不锈钢切割厚度（同碳钢优化逻辑）
         const stainlessSteelData = {
           labels: [
-            "C15 Pro(1500W)",
-            "C20 Pro(2000W)",
-            "C30 Pro(3000W)",
-            "C60 Pro(6000W)",
+            "G120 (12000W)",
+            "G200 (20000W)",
+            "G300 (30000W)",
+            "G400 (40000W)",
+            "G500 (50000W)",
+            "G600 (60000W)",
           ],
           datasets: [
             {
               label: "batch",
-              data: [5, 6, 14, 8],
+              data: [25, 35, 40, 50, 50, 50],
               backgroundColor: "rgba(34, 197, 94, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
             },
             {
               label: "smallBatch",
-              data: [1, 2, 2, 2],
+              data: [5, 5, 5, 10, 10, 10],
               backgroundColor: "rgba(251, 146, 60, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7755,7 +7759,7 @@
             },
             {
               label: "prototype",
-              data: [2, 2, 4, 2],
+              data: [10, 10, 10, 10, 10, 10],
               backgroundColor: "rgba(239, 68, 68, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7781,22 +7785,24 @@
         // 3. 铝合金切割厚度（同优化逻辑）
         const aluminumData = {
           labels: [
-            "C15 Pro(1500W)",
-            "C20 Pro(2000W)",
-            "C30 Pro(3000W)",
-            "C60 Pro(6000W)",
+            "G120 (12000W)",
+            "G200 (20000W)",
+            "G300 (30000W)",
+            "G400 (40000W)",
+            "G500 (50000W)",
+            "G600 (60000W)",
           ],
           datasets: [
             {
               label: "batch",
-              data: [3, 4, 10, 4],
+              data: [18, 30, 30, 40, 40, 40],
               backgroundColor: "rgba(34, 197, 94, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
             },
             {
               label: "smallBatch",
-              data: [1, 1, 2, 2],
+              data: [2, 10, 10, 10, 10, 10],
               backgroundColor: "rgba(251, 146, 60, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7804,7 +7810,7 @@
             },
             {
               label: "prototype",
-              data: [1, 1, 4, 2],
+              data: [2, 10, 10, 10, 10, 10],
               backgroundColor: "rgba(239, 68, 68, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7830,22 +7836,24 @@
         // 4. 铜切割厚度（同优化逻辑）
         const copperData = {
           labels: [
-            "C15 Pro(1500W)",
-            "C20 Pro(2000W)",
-            "C30 Pro(3000W)",
-            "C60 Pro(6000W)",
+            "G120 (12000W)",
+            "G200 (20000W)",
+            "G300 (30000W)",
+            "G400 (40000W)",
+            "G500 (50000W)",
+            "G600 (60000W)",
           ],
           datasets: [
             {
               label: "batch",
-              data: [3, 4, 10, 4],
+              data: [18, 20, 20, 20, 20, 20],
               backgroundColor: "rgba(34, 197, 94, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
             },
             {
               label: "smallBatch",
-              data: [0.5, 1, 2, 2],
+              data: [2, 2, 2, 2, 2, 2],
               backgroundColor: "rgba(251, 146, 60, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7853,7 +7861,7 @@
             },
             {
               label: "prototype",
-              data: [0.5, 1, 4, 2],
+              data: [2, 2, 2, 2, 2, 2],
               backgroundColor: "rgba(239, 68, 68, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,

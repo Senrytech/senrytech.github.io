@@ -5169,6 +5169,73 @@
       }
     </style>
 
+    <style>
+      /* ================================== 询价弹窗样式（移动端优先） ================================== */
+      /* 1. 弹窗基础状态：默认隐藏 */
+      .inquiry-modal.hidden {
+        display: none;
+      }
+
+      /* 2. 弹窗内容容器：移动端滚动优化 */
+      .inquiry-modal .max-h-\[90vh\] {
+        /* 限制弹窗最大高度为屏幕的90%，避免超出可视区域 */
+        max-height: 90vh;
+        /* 移动端滚动平滑 */
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* 3. 表单输入框：移动端点击区域优化 */
+      .inquiry-modal input,
+      .inquiry-modal textarea {
+        /* 增大输入框高度，提升移动端点击体验 */
+        min-height: 48px;
+        font-size: 1rem;
+      }
+
+      /* 4. 关闭按钮：确保点击区域足够大 */
+      #modalCloseBtn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        transition: background-color 0.2s ease;
+      }
+      #modalCloseBtn:hover {
+        background-color: rgba(255, 255, 255, 1);
+      }
+
+      /* 5. 提交按钮：移动端视觉强化 */
+      #submitBtn {
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.8rem 0;
+      }
+
+      /* 6. 适配超小屏（≤320px） */
+      @media (max-width: 320px) {
+        .inquiry-modal .p-6 {
+          padding: 1.25rem;
+        }
+        .inquiry-modal h2 {
+          font-size: 1.8rem;
+        }
+        .inquiry-modal input,
+        .inquiry-modal textarea {
+          min-height: 44px;
+        }
+      }
+
+      /* 7. 适配平板（≥768px）：弹窗宽度调整 */
+      @media (min-width: 768px) {
+        .inquiry-modal .max-w-md {
+          max-width: 500px;
+        }
+      }
+    </style>
+
     <!--十三，底部导航栏-->
     <style>
       /* 底部导航整体样式（匹配参考图深灰背景） */
@@ -5832,7 +5899,9 @@
       <a href="#tips" class="nav-link">避坑指南</a>
       <a href="#news" class="nav-link">新闻动态</a>
       <a href="#downloads" class="nav-link">资料下载</a>
-      <a href="https://www.senrytech.com/about-us/" class="nav-link">关于我们</a>
+      <a href="https://www.senrytech.com/about-us/" class="nav-link"
+        >关于我们</a
+      >
       <a href="#join" class="nav-link">加入我们</a>
       <a href="#contact" class="nav-link">联系我们</a>
       <div class="navbar-right">
@@ -6141,7 +6210,10 @@
           </a>
         </li>
         <li class="sidebar-menu-item">
-          <a href="https://www.senrytech.com/about-us/" class="sidebar-menu-link">
+          <a
+            href="https://www.senrytech.com/about-us/"
+            class="sidebar-menu-link"
+          >
             关于我们
           </a>
         </li>
@@ -6965,6 +7037,123 @@
               </div>
             </form>
             <!-- 关键：闭合form标签 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <!-- 替换原有的 <section id="contact">，改为弹窗结构 -->
+      <div
+        class="inquiry-modal fixed inset-0 z-50 flex items-center justify-center hidden"
+        id="inquiryModal"
+      >
+        <!-- 1. 弹窗遮罩层：点击可关闭 -->
+        <div
+          class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          id="modalOverlay"
+        ></div>
+
+        <!-- 2. 弹窗内容容器：移动端适配 -->
+        <div
+          class="relative bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto p-6 sm:p-8"
+        >
+          <!-- 2.1 关闭按钮：右上角 -->
+          <button
+            class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+            id="modalCloseBtn"
+          >
+            <i class="fa fa-times text-xl"></i>
+          </button>
+
+          <!-- 2.2 原有表单内容（保留所有逻辑，仅调整外层容器） -->
+          <div class="text-center mb-8">
+            <h2
+              class="text-black text-[clamp(1.5rem,4vw,2.5rem)] font-normal tracking-tight text-shadow-lg mb-3 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
+            >
+              联系专家
+            </h2>
+            <p
+              class="text-[#1d1d1f]/80 text-[clamp(0.9rem,2vw,1rem)] max-w-lg mx-auto font-light leading-relaxed mt-1"
+            >
+              填写下方表单，我们的专业顾问将在24小时内与您联系
+            </p>
+          </div>
+
+          <div class="bg-white">
+            <form
+              id="laserForm"
+              name="laser-consult"
+              onsubmit="sendEmail(event); return false;"
+            >
+              <!-- 姓名/公司输入框 -->
+              <div class="mb-5">
+                <label
+                  for="name"
+                  class="block text-gray-700 mb-2 text-sm sm:text-base"
+                >
+                  姓名或者公司？
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="sender_name"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent"
+                  placeholder="请输入姓名或公司名称"
+                  required
+                />
+              </div>
+
+              <!-- 联系电话/邮箱输入框 -->
+              <div class="mb-5">
+                <label
+                  for="contact"
+                  class="block text-gray-700 mb-2 text-sm sm:text-base"
+                >
+                  联系电话或者邮件？
+                </label>
+                <input
+                  type="text"
+                  id="contact"
+                  name="sender_contact"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent"
+                  placeholder="请输入电话或邮箱"
+                  required
+                />
+              </div>
+
+              <!-- 留言框 -->
+              <div class="mb-6">
+                <label
+                  for="message"
+                  class="block text-gray-700 mb-2 text-sm sm:text-base"
+                >
+                  留言
+                </label>
+                <textarea
+                  id="message"
+                  name="sender_message"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent"
+                  rows="4"
+                  placeholder="请输入需求（如：咨询A系列激光切割机报价）"
+                ></textarea>
+              </div>
+
+              <!-- 提交区域 -->
+              <div>
+                <div
+                  id="submitTip"
+                  class="mb-4 text-center text-sm sm:text-base"
+                ></div>
+                <button
+                  type="submit"
+                  id="submitBtn"
+                  class="w-full bg-[#0071e3] hover:bg-[#0066cc] text-white py-3 px-4 rounded-md transition-colors duration-200"
+                >
+                  提交咨询
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -7817,6 +8006,95 @@
             }
           );
       }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 获取弹窗相关元素
+        const inquiryModal = document.getElementById("inquiryModal");
+        const modalCloseBtn = document.getElementById("modalCloseBtn");
+        const modalOverlay = document.getElementById("modalOverlay");
+        const inquiryBtns = document.querySelectorAll(
+          ".inquiry-btn, .banner-btns .buy-btn"
+        ); // 导航栏+BANNER询价按钮
+        const laserForm = document.getElementById("laserForm");
+        const submitTip = document.getElementById("submitTip");
+        const submitBtn = document.getElementById("submitBtn");
+
+        // 2. 显示弹窗：禁止背景滚动
+        function showModal() {
+          inquiryModal.classList.remove("hidden");
+          document.body.classList.add("body-fixed"); // 复用你已有的“禁止滚动”类
+        }
+
+        // 3. 隐藏弹窗：恢复背景滚动+重置表单
+        function hideModal() {
+          inquiryModal.classList.add("hidden");
+          document.body.classList.remove("body-fixed");
+          laserForm.reset(); // 重置表单内容
+          submitTip.textContent = ""; // 清空提交提示
+          submitBtn.disabled = false;
+          submitBtn.textContent = "提交咨询";
+        }
+
+        // 4. 绑定“显示弹窗”到所有询价按钮
+        inquiryBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            // 阻止a标签默认跳转（如果按钮是a标签）
+            if (e.target.tagName === "A") e.preventDefault();
+            showModal();
+          });
+        });
+
+        // 5. 绑定“隐藏弹窗”到关闭按钮、遮罩层
+        modalCloseBtn.addEventListener("click", hideModal);
+        modalOverlay.addEventListener("click", hideModal);
+
+        // 6. 按ESC键关闭弹窗（优化桌面端体验，移动端可选）
+        document.addEventListener("keydown", function (e) {
+          if (
+            e.key === "Escape" &&
+            !inquiryModal.classList.contains("hidden")
+          ) {
+            hideModal();
+          }
+        });
+
+        // 7. 完善EmailJS提交逻辑（确保提交后提示并可关闭弹窗）
+        window.sendEmail = function (event) {
+          event.preventDefault();
+          submitBtn.disabled = true;
+          submitBtn.textContent = "提交中...";
+
+          // 调用EmailJS发送表单（替换你的Service ID和Template ID）
+          emailjs
+            .sendForm(
+              "你的EmailJS_Service_ID", // 如：service_xxxxxx
+              "你的EmailJS_Template_ID", // 如：template_xxxxxx
+              laserForm
+            )
+            .then(
+              function (response) {
+                // 提交成功
+                submitTip.textContent = "提交成功！我们将在24小时内联系您～";
+                submitTip.style.color = "#0071e3";
+                submitBtn.textContent = "已提交";
+                // 3秒后自动关闭弹窗（可选，提升体验）
+                setTimeout(hideModal, 3000);
+              },
+              function (error) {
+                // 提交失败
+                submitTip.textContent =
+                  "提交失败，请重试或直接联系我们：contact@senrytech.com";
+                submitTip.style.color = "#ff3b30";
+                submitBtn.disabled = false;
+                submitBtn.textContent = "重新提交";
+              }
+            );
+        };
+
+        // （保留你原有的其他JS逻辑：导航栏滚动、轮播等）
+      });
     </script>
 
     <script>

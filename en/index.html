@@ -6,7 +6,7 @@
     <title>Senrytech激光 - 专业激光切割机厂家 | 全系列激光切割设备首页</title>
     <link
       rel="canonical"
-      href="https://www.senrytech.com/"
+      href="https://www.senrytech.com/en"
     />
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -203,50 +203,6 @@
       .language-btn {
         background-color: transparent; /* 透明背景，突出导航背景 */
         color: #f5f5f7; /* 文字浅白色，与导航文字一致 */
-      }
-      .lang-dropdown {
-        position: relative; /* 作为下拉菜单的定位容器 */
-        display: inline-block; /* 与询价按钮、汉堡按钮同排显示 */
-        z-index: 1001; /* 层级高于导航栏，避免被遮挡 */
-        margin-right: 0.5rem; /* 与询价按钮保持间距 */
-      }
-
-      /* 下拉菜单默认隐藏 */
-      .lang-dropdown-list {
-        position: absolute;
-        top: 100%; /* 紧贴语言按钮下方 */
-        right: 0; /* 与语言按钮右对齐 */
-        background-color: #1d1d1f; /* 与导航栏背景一致 */
-        border-radius: 8px; /* 匹配按钮圆角风格 */
-        padding: 8px 0;
-        margin: 0;
-        list-style: none;
-        display: none; /* 默认隐藏 */
-        min-width: 100px; /* 保证语言文字不换行 */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影区分层级 */
-      }
-
-      /* 语言链接样式 */
-      .lang-dropdown-list .lang-link {
-        display: block;
-        padding: 8px 16px;
-        color: #f5f5f7; /* 与导航文字颜色一致 */
-        text-decoration: none;
-        font-size: 0.75rem; /* 匹配导航文字字号 */
-        text-align: right; /* 与下拉菜单右对齐 */
-        transition: background-color 0.2s ease;
-      }
-
-      /* 语言链接hover效果 */
-      .lang-dropdown-list .lang-link:hover {
-        background-color: rgba(255, 255, 255, 0.1); /* 浅白背景加深 */
-        border-radius: 4px; /* 轻微圆角增强质感 */
-      }
-
-      /* 当前语言高亮（匹配当前页面） */
-      .lang-dropdown-list .lang-link.active {
-        color: #0071e3; /* 品牌蓝色突出当前语言 */
-        font-weight: 500;
       }
       /* 2.4.2 询价按钮（蓝色背景+浅白文字，突出核心转化功能） */
       .inquiry-btn {
@@ -5023,32 +4979,7 @@
         >联系我们</a
       >
       <div class="navbar-right">
-        <div class="lang-dropdown" id="langDropdown">
-          <!-- 语言触发按钮（保留原“中/EN”样式） -->
-          <button class="btn language-btn">中/EN</button>
-          <!-- 多语言首页链接列表 -->
-          <ul class="lang-dropdown-list">
-            <li><a href="/index.html" lang="zh" class="lang-link">中文</a></li>
-            <li>
-              <a href="https://www.senrytech.com/en" lang="en" class="lang-link">英语</a>
-            </li>
-            <li>
-              <a href="/de/index.html" lang="de" class="lang-link">德语</a>
-            </li>
-            <li>
-              <a href="/es/index.html" lang="es" class="lang-link">西班牙语</a>
-            </li>
-            <li>
-              <a href="/fr/index.html" lang="fr" class="lang-link">法语</a>
-            </li>
-            <li>
-              <a href="/ru/index.html" lang="ru" class="lang-link">俄语</a>
-            </li>
-            <li>
-              <a href="/ar/index.html" lang="ar" class="lang-link">阿拉伯语</a>
-            </li>
-          </ul>
-        </div>
+        <button class="btn language-btn">中/EN</button>
         <a href="https://www.senrytech.com/contact-us/" class="btn inquiry-btn"
           >询价</a
         >
@@ -7693,53 +7624,6 @@
 
         // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
         window.addEventListener("resize", handleTitleScroll);
-      });
-    </script>
-    <script>
-      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
-      const langDropdown = document.getElementById("langDropdown");
-      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
-      const langTrigger = langDropdown.querySelector(".language-btn");
-
-      // 点击语言按钮，切换下拉菜单显示状态
-      langTrigger.addEventListener("click", (e) => {
-        e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
-        langMenu.style.display =
-          langMenu.style.display === "block" ? "none" : "block";
-      });
-
-      // 点击页面其他区域，关闭下拉菜单
-      document.addEventListener("click", () => {
-        if (langMenu.style.display === "block") {
-          langMenu.style.display = "none";
-        }
-      });
-
-      // 2. 当前语言自动高亮（根据页面URL匹配）
-      const currentPath = window.location.pathname;
-      const langLinks = document.querySelectorAll(".lang-link");
-
-      // 语言与首页路径的映射（需与你的实际文件路径一致）
-      const langHomePathMap = {
-        zh: "/index.html", // 中文首页
-        en: "/en/index.html", // 英语首页
-        de: "/de/index.html", // 德语首页
-        es: "/es/index.html", // 西班牙语首页
-        fr: "/fr/index.html", // 法语首页
-        ru: "/ru/index.html", // 俄语首页
-        ar: "/ar/index.html", // 阿拉伯语首页
-      };
-
-      // 匹配当前路径，给对应语言链接添加高亮样式
-      langLinks.forEach((link) => {
-        const lang = link.getAttribute("lang");
-        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
-        if (
-          currentPath === langHomePathMap[lang] ||
-          (lang === "zh" && currentPath === "/")
-        ) {
-          link.classList.add("active");
-        }
       });
     </script>
   </body>

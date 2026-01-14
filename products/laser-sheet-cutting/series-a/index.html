@@ -7087,7 +7087,7 @@
               onsubmit="sendEmail(event); return false;"
             >
               <!-- 姓名/公司输入框 -->
-              <div class="mb-5">
+              <div class="mb-6">
                 <label
                   for="name"
                   class="block text-gray-700 mb-2 text-sm sm:text-base"
@@ -7105,7 +7105,7 @@
               </div>
 
               <!-- 联系电话/邮箱输入框 -->
-              <div class="mb-5">
+              <div class="mb-6">
                 <label
                   for="contact"
                   class="block text-gray-700 mb-2 text-sm sm:text-base"
@@ -7135,7 +7135,7 @@
                   name="sender_message"
                   class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0071e3] focus:border-transparent"
                   rows="4"
-                  placeholder="请输入需求（如：咨询A系列激光切割机报价）"
+                  placeholder="请输入需求"
                 ></textarea>
               </div>
 
@@ -8010,91 +8010,105 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // 1. 获取弹窗相关元素
-        const inquiryModal = document.getElementById("inquiryModal");
-        const modalCloseBtn = document.getElementById("modalCloseBtn");
-        const modalOverlay = document.getElementById("modalOverlay");
-        const inquiryBtns = document.querySelectorAll(
-          ".inquiry-btn, .banner-btns .buy-btn"
-        ); // 导航栏+BANNER询价按钮
-        const laserForm = document.getElementById("laserForm");
-        const submitTip = document.getElementById("submitTip");
-        const submitBtn = document.getElementById("submitBtn");
+  // 1. 获取弹窗相关元素：增加DOM存在性检查，避免报错
+  const inquiryModal = document.getElementById("inquiryModal");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const inquiryBtns = document.querySelectorAll(".inquiry-btn, .banner-btns .buy-btn");
+  const laserForm = document.getElementById("laserForm");
+  const submitTip = document.getElementById("submitTip"); // 提示元素
+  const submitBtn = document.getElementById("submitBtn"); // 提交按钮
 
-        // 2. 显示弹窗：禁止背景滚动
-        function showModal() {
-          inquiryModal.classList.remove("hidden");
-          document.body.classList.add("body-fixed"); // 复用你已有的“禁止滚动”类
-        }
+  // 容错：如果核心元素缺失，控制台提示，避免代码卡死
+  if (!inquiryModal || !laserForm || !submitTip || !submitBtn) {
+    console.error("询价弹窗核心DOM元素缺失，请检查HTML结构！");
+    return;
+  }
 
-        // 3. 隐藏弹窗：恢复背景滚动+重置表单
-        function hideModal() {
-          inquiryModal.classList.add("hidden");
-          document.body.classList.remove("body-fixed");
-          laserForm.reset(); // 重置表单内容
-          submitTip.textContent = ""; // 清空提交提示
+  // 2. 显示弹窗：禁止背景滚动
+  function showModal() {
+    if (inquiryModal.classList.contains("hidden")) {
+      inquiryModal.classList.remove("hidden");
+      document.body.classList.add("body-fixed");
+      submitTip.textContent = ""; // 打开弹窗时清空历史提示
+      submitBtn.textContent = "提交咨询"; // 重置按钮文本
+      submitBtn.disabled = false; // 启用按钮
+    }
+  }
+
+  // 3. 隐藏弹窗：恢复背景滚动+重置表单
+  function hideModal() {
+    inquiryModal.classList.add("hidden");
+    document.body.classList.remove("body-fixed");
+    laserForm.reset(); // 重置表单内容
+    submitTip.textContent = ""; // 清空提示
+  }
+
+  // 4. 绑定“显示弹窗”到所有询价按钮
+  inquiryBtns.forEach((btn) => {
+    btn.addEventListener("click", function (e) {
+      // 阻止a标签默认跳转（如果按钮是<a>标签）
+      if (this.tagName === "A") e.preventDefault();
+      showModal();
+    });
+  });
+
+  // 5. 绑定“隐藏弹窗”到关闭按钮、遮罩层
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", hideModal);
+  if (modalOverlay) modalOverlay.addEventListener("click", hideModal);
+
+  // 6. ESC键关闭弹窗
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !inquiryModal.classList.contains("hidden")) {
+      hideModal();
+    }
+  });
+
+  // 7. 核心：EmailJS提交逻辑（修复数据空白+强化状态提示）
+  window.sendEmail = function (event) {
+    event.preventDefault(); // 阻止表单默认提交
+
+    // 前置检查：确保表单所有必填字段已填写（避免空数据提交）
+    const requiredFields = laserForm.querySelectorAll("[required]");
+    const isAllFilled = Array.from(requiredFields).every(field => field.value.trim() !== "");
+    if (!isAllFilled) {
+      submitTip.textContent = "请填写所有必填项！";
+      submitTip.style.color = "#ff3b30"; // 红色提示
+      return;
+    }
+
+    // 提交中状态：禁用按钮+提示文本
+    submitBtn.disabled = true;
+    submitBtn.textContent = "提交中...";
+    submitTip.textContent = "正在发送咨询，请稍候...";
+    submitTip.style.color = "#666"; // 灰色提示
+
+    // 调用EmailJS发送表单（关键：确保Service ID和Template ID正确！）
+    emailjs
+      .sendForm(
+        "service_waa3l9d", // 你的EmailJS Service ID（必须与后台一致）
+        "template_zvfvl5p", // 你的EmailJS Template ID（必须与后台一致）
+        laserForm // 表单DOM（会自动收集所有带name的字段）
+      )
+      .then(
+        function (response) {
+          // 提交成功：绿色提示+3秒后关闭弹窗
+          submitTip.textContent = "提交成功！我们将在24小时内联系您～";
+          submitTip.style.color = "#0071e3"; // 品牌蓝提示
+          submitBtn.textContent = "已提交";
+          setTimeout(hideModal, 3000); // 3秒后自动关闭
+        },
+        function (error) {
+          // 提交失败：红色提示+启用按钮重新提交
+          console.error("EmailJS提交失败：", error); // 控制台打印错误，方便排查
+          submitTip.textContent = "提交失败，请重试或联系：jerry@senrytech.com";
+          submitTip.style.color = "#ff3b30"; // 红色提示
           submitBtn.disabled = false;
-          submitBtn.textContent = "提交咨询";
+          submitBtn.textContent = "重新提交";
         }
-
-        // 4. 绑定“显示弹窗”到所有询价按钮
-        inquiryBtns.forEach((btn) => {
-          btn.addEventListener("click", function (e) {
-            // 阻止a标签默认跳转（如果按钮是a标签）
-            if (e.target.tagName === "A") e.preventDefault();
-            showModal();
-          });
-        });
-
-        // 5. 绑定“隐藏弹窗”到关闭按钮、遮罩层
-        modalCloseBtn.addEventListener("click", hideModal);
-        modalOverlay.addEventListener("click", hideModal);
-
-        // 6. 按ESC键关闭弹窗（优化桌面端体验，移动端可选）
-        document.addEventListener("keydown", function (e) {
-          if (
-            e.key === "Escape" &&
-            !inquiryModal.classList.contains("hidden")
-          ) {
-            hideModal();
-          }
-        });
-
-        // 7. 完善EmailJS提交逻辑（确保提交后提示并可关闭弹窗）
-        window.sendEmail = function (event) {
-          event.preventDefault();
-          submitBtn.disabled = true;
-          submitBtn.textContent = "提交中...";
-
-          // 调用EmailJS发送表单（替换你的Service ID和Template ID）
-          emailjs
-            .sendForm(
-              "service_waa3l9d", // 如：service_xxxxxx
-              "template_zvfvl5p", // 如：template_xxxxxx
-              laserForm
-            )
-            .then(
-              function (response) {
-                // 提交成功
-                submitTip.textContent = "提交成功！我们将在24小时内联系您～";
-                submitTip.style.color = "#0071e3";
-                submitBtn.textContent = "已提交";
-                // 3秒后自动关闭弹窗（可选，提升体验）
-                setTimeout(hideModal, 3000);
-              },
-              function (error) {
-                // 提交失败
-                submitTip.textContent =
-                  "提交失败，请重试或直接联系我们：jerry@senrytech.com";
-                submitTip.style.color = "#ff3b30";
-                submitBtn.disabled = false;
-                submitBtn.textContent = "重新提交";
-              }
-            );
-        };
-
-        // （保留你原有的其他JS逻辑：导航栏滚动、轮播等）
-      });
+      );
+  };
+});
     </script>
 
     <script>

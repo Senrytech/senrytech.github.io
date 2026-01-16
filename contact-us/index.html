@@ -40,6 +40,18 @@
       // 1. 初始化 EmailJS：替换成你在 EmailJS 后台获取的「公钥」（Account -> API Keys -> Public Key）
       emailjs.init("w9wGWxQMCWP7H0YhL");
     </script>
+    <!-- 1. 先引入 Leaflet 库（OSM 常用的轻量级地图框架，免费开源） -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
 
     <!-- 一、CSS 全局基础样式 -->
     <style>
@@ -1043,164 +1055,446 @@
 
     <!-- 三，该板块专属 CSS 样式（需放入 head 中的 style 标签内，或单独引入） -->
     <style>
-  /* 1. 板块容器基础样式 */
-  .contact-cards-section {
-    background: radial-gradient(
+      /* 1. 板块容器基础样式 */
+      .contact-cards-section {
+        background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
-    margin: 0 auto;
-    max-width: 1600px; /* 限制最大宽度，避免大屏内容过散 */
-  }
+        margin: 0 auto;
+        max-width: 1600px; /* 限制最大宽度，避免大屏内容过散 */
+        text-align: center; /* 让标题默认居中 */
+      }
 
-  /* 2. 卡片容器布局（响应式核心） */
-  .contact-cards-container {
-    display: flex;
-    gap: 2rem; /* 卡片间距，大屏下充足呼吸感 */
-    flex-wrap: wrap; /* 小屏自动换行 */
-    justify-content: center; /* 整体居中 */
-  }
+      /* 新增：主要联系人标题样式 */
+      .contact-section-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        font-size: 3rem; /* 大屏标题字号，突出层级 */
+        font-weight: 400;
+        color: #1d1d1f; /* 与卡片标题颜色统一，保持品牌感 */
+        margin-bottom: 3rem; /* 与下方卡片间距，避免拥挤 */
+        opacity: 0; /* 初始透明，用于滚动动画 */
+        transform: translateY(20px); /* 初始下移，与卡片动画同步 */
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out; /* 动画过渡与卡片一致 */
+      }
 
-  /* 3. 卡片基础样式（苹果风格核心：玻璃拟态+大圆角+细腻阴影） */
-  .contact-card {
-    flex: 1;
-    min-width: 280px; /* 小屏最小宽度，避免挤压 */
-    max-width: calc(25% - 1.5rem); /* 大屏1行4列：总宽度25% - 间距补偿 */
-    opacity: 0; /* 初始透明，用于滚动动画 */
-    transform: translateY(20px); /* 初始下移，用于滚动动画 */
-    transition: 
-      opacity 0.6s ease-out, 
-      transform 0.6s ease-out,
-      box-shadow 0.3s ease; /* 动画过渡统一 */
-  }
+      /* 新增：标题激活状态（滚动触发） */
+      .contact-section-title.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-  /* 卡片激活状态（滚动触发） */
-  .contact-card.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+      /* 2. 卡片容器布局（响应式核心） */
+      .contact-cards-container {
+        display: flex;
+        gap: 2rem; /* 卡片间距，大屏下充足呼吸感 */
+        flex-wrap: wrap; /* 小屏自动换行 */
+        justify-content: center; /* 整体居中 */
+        padding: 0 1.5rem; /* 左右留白，避免小屏内容贴边 */
+      }
 
-  /* 卡片内层容器（玻璃拟态效果） */
-  .contact-card-inner {
-    background-color: rgba(255, 255, 255, 0.85); /* 半透明白底，玻璃感 */
-    backdrop-filter: blur(12px); /* 玻璃拟态核心：背景模糊 */
-    -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
-    border-radius: 1.5rem; /* 苹果风格大圆角，与产品卡片统一 */
-    padding: 2.2rem 1.8rem;
-    box-shadow: 
-      0 4px 12px rgba(0, 0, 0, 0.05), /* 主阴影：弱化边界 */
-      0 1px 3px rgba(0, 0, 0, 0.08); /* 次阴影：增强层次 */
-    height: 100%; /* 确保卡片高度一致 */
-    display: flex;
-    flex-direction: column;
-  }
+      /* 3. 卡片基础样式（苹果风格核心：玻璃拟态+大圆角+细腻阴影） */
+      .contact-card {
+        flex: 1;
+        min-width: 280px; /* 小屏最小宽度，避免挤压 */
+        max-width: calc(25% - 1.5rem); /* 大屏1行4列：总宽度25% - 间距补偿 */
+        opacity: 0; /* 初始透明，用于滚动动画 */
+        transform: translateY(20px); /* 初始下移，用于滚动动画 */
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out,
+          box-shadow 0.3s ease; /* 动画过渡统一 */
+      }
 
-  /* 4. 卡片 hover 交互（苹果风格：轻微上浮+阴影加深） */
-  .contact-card:hover .contact-card-inner {
-    transform: translateY(-5px); /* 轻微上浮，灵动不夸张 */
-    box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.08), 
-      0 2px 6px rgba(0, 0, 0, 0.1); /* 阴影加深，增强立体感 */
-    transition: 
-    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
+      /* 卡片激活状态（滚动触发） */
+      .contact-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
 
-  /* 5. 卡片内部文字样式（与现有页面字体/颜色统一） */
-  .contact-card-title {
-    font-family: "Public Sans", "Noto Sans SC", sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #1d1d1f; /* 深灰文字，与LOGO颜色统一 */
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 细边框分隔标题与内容 */
-  }
+      /* 卡片内层容器（玻璃拟态效果） */
+      .contact-card-inner {
+        background-color: rgba(255, 255, 255, 0.85); /* 半透明白底，玻璃感 */
+        backdrop-filter: blur(12px); /* 玻璃拟态核心：背景模糊 */
+        -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
+        border-radius: 1.5rem; /* 苹果风格大圆角，与产品卡片统一 */
+        padding: 2.2rem 1.8rem;
+        box-shadow:
+          0 4px 12px rgba(0, 0, 0, 0.05),
+          /* 主阴影：弱化边界 */ 0 1px 3px rgba(0, 0, 0, 0.08); /* 次阴影：增强层次 */
+        height: 100%; /* 确保卡片高度一致 */
+        display: flex;
+        flex-direction: column;
+      }
 
-  .contact-card-info {
-    margin-bottom: 1.2rem;
-    flex-shrink: 0; /* 防止信息区被压缩 */
-  }
+      /* 4. 卡片 hover 交互（苹果风格：轻微上浮+阴影加深） */
+      .contact-card:hover .contact-card-inner {
+        transform: translateY(-5px); /* 轻微上浮，灵动不夸张 */
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.08),
+          0 2px 6px rgba(0, 0, 0, 0.1); /* 阴影加深，增强立体感 */
+        transition:
+          transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
 
-  .contact-card-person {
-    font-size: 0.9rem;
-    color: #444444;
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-  }
+      /* 5. 卡片内部文字样式（与现有页面字体/颜色统一） */
+      .contact-card-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1d1d1f; /* 深灰文字，与LOGO颜色统一 */
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 细边框分隔标题与内容 */
+      }
 
-  .contact-card-email {
-    font-size: 0.9rem;
-    color: #0071e3; /* 苹果蓝，与询价按钮颜色统一，突出邮箱 */
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: color 0.2s ease;
-  }
+      .contact-card-info {
+        margin-bottom: 1.2rem;
+        flex-shrink: 0; /* 防止信息区被压缩 */
+        text-align: center;
+      }
 
-  .contact-card-email:hover {
-    color: #005fc8; /*  hover 时加深蓝色，增强交互反馈 */
-    text-decoration: underline;
-  }
+      .contact-card-person {
+        font-size: 0.9rem;
+        color: #444444;
+        margin-bottom: 0.6rem;
+        line-height: 1.5;
+      }
 
-  .scope-title {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #1d1d1f;
-    margin-bottom: 0.8rem;
-  }
+      .contact-card-email {
+        font-size: 0.9rem;
+        color: #0071e3; /* 苹果蓝，与询价按钮颜色统一，突出邮箱 */
+        text-decoration: none;
+        display: flex;
+        align-items: center; /* 保留：确保图标与文字垂直居中 */
+        justify-content: center; /* 新增：让 flex 子元素（图标+文字）水平居中，解决偏左 */
+        gap: 0.5rem; /* 保留：图标与文字的间距 */
+        transition: color 0.2s ease;
+      }
 
-  .scope-list {
-    list-style: disc;
-    padding-left: 1.2rem;
-    font-size: 0.85rem;
-    color: #666666;
-    line-height: 1.6;
-    flex-grow: 1; /* 让范围列表占满剩余空间，确保卡片高度一致 */
-  }
+      .contact-card-email:hover {
+        color: #005fc8; /*  hover 时加深蓝色，增强交互反馈 */
+        text-decoration: underline;
+      }
 
-  .scope-list li {
-    margin-bottom: 0.5rem;
-  }
+      .scope-title {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 0.8rem;
+      }
 
-  /* 6. 响应式适配（小屏2行2列，超小屏1行1列） */
-  /* 平板屏（768px ~ 1023px）：2行2列 */
-  @media (max-width: 1023px) {
-    .contact-card {
-      max-width: calc(50% - 1rem); /* 2列布局：总宽度50% - 间距补偿 */
-    }
+      .scope-list {
+        list-style: disc;
+        padding-left: 1.2rem;
+        font-size: 0.85rem;
+        color: #666666;
+        line-height: 1.6;
+        flex-grow: 1; /* 让范围列表占满剩余空间，确保卡片高度一致 */
+      }
 
-    .contact-cards-section {
-      padding: 4rem 1.5rem; /* 减少上下留白，适配小屏 */
-    }
-  }
+      .scope-list li {
+        margin-bottom: 0.5rem;
+      }
 
-  /* 手机屏（≤767px）：1行1列 */
-  @media (max-width: 767px) {
-    .contact-card {
-      max-width: 100%; /* 1列布局：占满宽度 */
-      min-width: 100%;
-    }
+      /* 6. 响应式适配（小屏2行2列，超小屏1行1列） */
+      /* 平板屏（768px ~ 1023px）：2行2列 */
+      @media (max-width: 1023px) {
+        .contact-card {
+          max-width: calc(50% - 1rem); /* 2列布局：总宽度50% - 间距补偿 */
+        }
 
-    .contact-cards-container {
-      gap: 1.5rem; /* 减小卡片间距，适配小屏 */
-    }
+        .contact-cards-section {
+          padding: 4rem 1.5rem; /* 减少上下留白，适配小屏 */
+        }
 
-    .contact-card-inner {
-      padding: 1.8rem 1.2rem; /* 减少内部 padding，避免内容拥挤 */
-    }
+        /* 标题响应式：缩小字号 */
+        .contact-section-title {
+          font-size: 1.5rem;
+          margin-bottom: 2.5rem;
+        }
+      }
 
-    .contact-card-title {
-      font-size: 1rem;
-    }
-  }
+      /* 手机屏（≤767px）：1行1列 */
+      @media (max-width: 767px) {
+        .contact-card {
+          max-width: 100%; /* 1列布局：占满宽度 */
+          min-width: 100%;
+        }
+
+        .contact-cards-container {
+          gap: 1.5rem; /* 减小卡片间距，适配小屏 */
+        }
+
+        .contact-card-inner {
+          padding: 1.8rem 1.2rem; /* 减少内部 padding，避免内容拥挤 */
+        }
+
+        .contact-card-title {
+          font-size: 1rem;
+        }
+
+        /* 标题响应式：进一步缩小字号+调整间距 */
+        .contact-section-title {
+          font-size: 1.3rem;
+          margin-bottom: 2rem;
+          padding: 0 1rem; /* 小屏左右留白，避免标题贴边 */
+        }
+      }
+    </style>
+
+    <!-- 四、找到我们板块 - 基础样式（与“主要联系人”板块风格统一） -->
+    <style>
+      .find-us-section-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        font-size: 3rem;
+        font-weight: 400;
+        color: #1d1d1f;
+        margin-bottom: 3rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+
+        /* 新增：Flex布局核心 - 文字居中，图片偏右 */
+        display: flex; /* 横向排列 */
+        align-items: center; /* 垂直居中（文字与图片对齐） */
+        justify-content: center; /* 标题整体水平居中 */
+        gap: 1.5rem; /* 文字与图片的间距（控制偏右幅度，可调整） */
+      }
+
+      /* 2. 吉祥物图片样式：控制尺寸、防变形、同步动画 */
+      .find-us-mascot {
+        /* 尺寸控制：根据需求调整，保持宽高比 */
+        width: 150px;
+        height: 150px;
+        object-fit: contain; /* 防止图片拉伸变形 */
+        border-radius: 8px; /* 可选：给图片加圆角，更精致 */
+
+        /* 同步标题滚动动画：初始透明+下移，激活后显示 */
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out,
+          width 0.3s ease; /* 响应式时尺寸过渡更流畅 */
+      }
+      /* 3. 标题激活时：图片同步显示（与标题动画同步） */
+      .find-us-section-title.active .find-us-mascot {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 板块标题样式 */
+      .find-us-section-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        font-size: 3rem;
+        font-weight: 400;
+        color: #1d1d1f;
+        margin-bottom: 3rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+
+      /* 标题滚动激活效果 */
+      .find-us-section-title.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 卡片容器布局（大屏3列，小屏自适应） */
+      .find-us-cards-container {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 1.5rem;
+        margin-bottom: 4rem; /* 卡片与地图间距 */
+      }
+
+      /* 单个卡片基础样式 */
+      .find-us-card {
+        flex: 1;
+        max-width: 450px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+
+      /* 卡片滚动激活效果 */
+      .find-us-card.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 卡片内层（玻璃拟态风格） */
+      .find-us-card-inner {
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
+        border-radius: 1.5rem; /* 苹果风格大圆角 */
+        padding: 2.2rem 1.8rem;
+        box-shadow:
+          0 4px 12px rgba(0, 0, 0, 0.05),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      /* 卡片hover交互效果 */
+      .find-us-card:hover .find-us-card-inner {
+        transform: translateY(-5px);
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.08),
+          0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 卡片标题样式 */
+      .find-us-card-title {
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1d1d1f;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: center; /* 新增：标题文字水平居中 */
+      }
+
+      /* 卡片内位置文本样式 */
+      .find-us-card-location {
+        font-size: 0.9rem;
+        color: #444444;
+        margin-bottom: 0.8rem;
+        line-height: 1.5;
+        text-align: center; /* 新增：位置文字水平居中 */
+      }
+
+      /* 卡片内链接样式（机场/火车站链接） */
+      .find-us-card-link {
+        font-size: 0.9rem;
+        color: #0071e3;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* 已存在：链接内容（图标+文字）水平居中 */
+        gap: 0.5rem;
+        transition: color 0.2s ease;
+      }
+
+      .find-us-card-link:hover {
+        color: #005fc8; /* hover加深蓝色 */
+        text-decoration: underline;
+      }
+
+      /* 景点列表样式 */
+      .find-us-scope-list {
+        list-style: disc;
+        padding-left: 1.2rem;
+        font-size: 0.85rem;
+        color: #666666;
+        line-height: 1.8;
+        flex-grow: 1;
+        margin: 0 auto; /* 新增：列表容器水平居中（避免列表整体左偏） */
+        max-width: 200px; /* 可选：限制列表最大宽度，避免宽屏下列表过散 */
+      }
+
+      .find-us-scope-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* 地图容器样式 */
+      .find-us-map-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      /* 地图容器大小（与原设计一致） */
+      #map {
+        height: 450px;
+        width: 100%;
+      }
+
+      /* 响应式适配 - 平板屏（768px ~ 1023px） */
+      @media (max-width: 1023px) {
+        .find-us-section {
+          padding: 4rem 0 7rem;
+        }
+
+        .find-us-section-title {
+          font-size: 2rem;
+          margin-bottom: 2.5rem;
+        }
+
+        .find-us-card {
+          max-width: calc(50% - 1rem); /* 平板2列布局 */
+        }
+
+        .find-us-map-container {
+          max-width: 90%;
+        }
+
+        #map {
+          height: 400px;
+        }
+      }
+
+      /* 响应式适配 - 手机屏（≤767px） */
+      @media (max-width: 767px) {
+        .find-us-section {
+          padding: 3rem 0 6rem;
+        }
+
+        .find-us-section-title {
+          font-size: 1.6rem;
+          margin-bottom: 2rem;
+          padding: 0 1rem; /* 避免标题贴边 */
+        }
+
+        .find-us-cards-container {
+          gap: 1.5rem;
+          margin-bottom: 3rem;
+        }
+
+        .find-us-card {
+          max-width: 100%; /* 手机1列布局 */
+        }
+
+        .find-us-card-inner {
+          padding: 1.8rem 1.2rem;
+        }
+
+        .find-us-map-container {
+          max-width: 95%;
+          border-radius: 1rem; /* 小屏缩小圆角 */
+        }
+
+        #map {
+          height: 350px;
+        }
+      }
     </style>
 
     <!--十三，底部导航栏-->
@@ -1430,7 +1724,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                         alt="Senrytech A"
                       />
                     </a>
@@ -1447,7 +1741,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                         alt="Senrytech B"
                       />
                     </a>
@@ -1463,7 +1757,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                         alt="Senrytech B Plus"
                       />
                     </a>
@@ -1479,7 +1773,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                         alt="Senrytech B Pro"
                       />
                     </a>
@@ -1495,7 +1789,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                         alt="Senrytech B ProMax"
                       />
                     </a>
@@ -1510,7 +1804,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                         alt="Senrytech B Ultra"
                       />
                     </a>
@@ -1525,7 +1819,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
                         alt="Senrytech C"
                       />
                     </a>
@@ -1540,7 +1834,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
                         alt="Senrytech C Pro"
                       />
                     </a>
@@ -1555,7 +1849,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
                         alt="Senrytech G"
                       />
                     </a>
@@ -1570,7 +1864,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
                         alt="Senrytech M"
                       />
                     </a>
@@ -1585,7 +1879,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                     >
                       <img
-                        src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                        src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
                         alt="Senrytech S"
                       />
                     </a>
@@ -1969,7 +2263,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
                       alt="Senrytech A"
                     />
                     <p>Senrytech A</p>
@@ -1981,7 +2275,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                       alt="Senrytech B"
                     />
                     <p>Senrytech B</p>
@@ -1993,7 +2287,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
                       alt="Senrytech B Plus"
                     />
                     <p>Senrytech B Plus</p>
@@ -2005,7 +2299,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
                       alt="Senrytech B Pro"
                     />
                     <p>Senrytech B Pro</p>
@@ -2017,7 +2311,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
                       alt="Senrytech B ProMax"
                     />
                     <p>Senrytech B ProMax</p>
@@ -2029,7 +2323,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech B Ultra</p>
@@ -2041,7 +2335,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C</p>
@@ -2053,7 +2347,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech C Pro</p>
@@ -2065,7 +2359,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech G</p>
@@ -2077,7 +2371,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech M</p>
@@ -2089,7 +2383,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
-                      src="../../../../senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      src="http://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
                       alt="Senrytech B Ultra"
                     />
                     <p>Senrytech S</p>
@@ -2200,6 +2494,9 @@
 
     <!-- 三 负责人对接卡片板块 HTML 结构 -->
     <section class="contact-cards-section" id="contactCards">
+      <!-- 新增：主要联系人标题 -->
+      <h2 class="contact-section-title" id="contactSectionTitle">主要联系人</h2>
+
       <div class="contact-cards-container">
         <!-- 卡片1：总经理客户反馈与问题督办中心 -->
         <div class="contact-card" data-card="1">
@@ -2303,6 +2600,79 @@
       </div>
     </section>
 
+    <!-- 四、找到我们板块 -->
+    <section class="find-us-section">
+      <!-- 板块标题（新增吉祥物图片，用Flex布局对齐） -->
+      <h2 class="find-us-section-title">
+        找到我们
+        <!-- 新增吉祥物图片：替换src为你的吉祥物图片地址，alt为图片描述 -->
+        <img
+          class="find-us-mascot"
+          src="../img/contact-us/senrytech-mascot.png"
+          alt="Senrytech吉祥物"
+        />
+      </h2>
+
+      <!-- 交通/景点卡片容器（统一find-us命名） -->
+      <div class="find-us-cards-container">
+        <!-- 卡片一：机场 -->
+        <div class="find-us-card">
+          <div class="find-us-card-inner">
+            <h3 class="find-us-card-title">到达机场</h3>
+            <div class="find-us-card-info">
+              <p class="find-us-card-location">济南遥墙国际机场</p>
+              <a
+                href="https://www.jnairport.com/"
+                target="_blank"
+                class="find-us-card-link"
+              >
+                <i class="fa fa-map-marker"></i>
+                Jinan Yaoqiang International Airport<br />
+                <span style="font-size: 0.8rem">IATA: TNA | ICAO: ZSJN</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片二：火车站 -->
+        <div class="find-us-card">
+          <div class="find-us-card-inner">
+            <h3 class="find-us-card-title">到达火车站</h3>
+            <div class="find-us-card-info">
+              <p class="find-us-card-location">济南东站</p>
+              <a
+                href="https://www.12306.cn/index/"
+                target="_blank"
+                class="find-us-card-link"
+              >
+                <i class="fa fa-train"></i>
+                Jinandong Railway Station
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片三：旅游景点 -->
+        <div class="find-us-card">
+          <div class="find-us-card-inner">
+            <h3 class="find-us-card-title">旅游景点</h3>
+            <div class="find-us-card-info">
+              <ul class="find-us-scope-list">
+                <li>趵突泉：Baotu Spring</li>
+                <li>大明湖：Daming Lake</li>
+                <li>千佛山：Qianfo Mountain</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 地图容器（保留原结构，确保与卡片风格统一） -->
+      <div class="find-us-map-container">
+        <div id="map"></div>
+      </div>
+    </section>
+
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2396,7 +2766,7 @@
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="../../../../senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
@@ -2476,14 +2846,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>
@@ -2644,57 +3014,104 @@
 
     <!-- 三，该板块专属 JS 动画（滚动淡入+初始化） -->
     <script>
-  // 1. 卡片滚动淡入动画（当卡片进入视口时激活）
-  function initContactCardAnimation() {
-    const contactCards = document.querySelectorAll('.contact-card');
-    
-    // 监听滚动事件
-    function checkCardInView() {
-      contactCards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        const cardBottom = card.getBoundingClientRect().bottom;
-        const windowHeight = window.innerHeight;
-        
-        // 当卡片顶部进入视口1/3，或底部进入视口时激活
-        if (cardTop < windowHeight * 0.8 && cardBottom > 0) {
-          card.classList.add('active');
-        }
-      });
-    }
+      // 1. 卡片滚动淡入动画（当卡片进入视口时激活）
+      function initContactCardAnimation() {
+        const contactCards = document.querySelectorAll(".contact-card");
 
-    // 初始化检查（页面加载时触发一次，避免顶部卡片未激活）
-    window.addEventListener('load', checkCardInView);
-    // 滚动时检查
-    window.addEventListener('scroll', checkCardInView);
-    // 窗口 resize 时重新检查（适配屏幕尺寸变化）
-    window.addEventListener('resize', checkCardInView);
+        // 监听滚动事件
+        function checkCardInView() {
+          contactCards.forEach((card) => {
+            const cardTop = card.getBoundingClientRect().top;
+            const cardBottom = card.getBoundingClientRect().bottom;
+            const windowHeight = window.innerHeight;
 
-    // 2. 邮箱链接防默认跳转优化（可选：增强用户体验）
-    const emailLinks = document.querySelectorAll('.contact-card-email');
-    emailLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        // 若用户未安装邮件客户端，提示复制邮箱
-        const isMailClientAvailable = navigator.userAgent.includes('Mail') || 
-                                      navigator.userAgent.includes('Outlook') ||
-                                      navigator.userAgent.includes('Thunderbird');
-        
-        if (!isMailClientAvailable) {
-          e.preventDefault();
-          const email = this.getAttribute('href').replace('mailto:', '');
-          // 复制邮箱到剪贴板
-          navigator.clipboard.writeText(email).then(() => {
-            alert(`邮箱已复制：${email}`);
-          }).catch(err => {
-            alert(`请手动复制邮箱：${email}`);
-            console.error('复制失败：', err);
+            // 当卡片顶部进入视口1/3，或底部进入视口时激活
+            if (cardTop < windowHeight * 0.8 && cardBottom > 0) {
+              card.classList.add("active");
+            }
           });
         }
-      });
-    });
-  }
 
-  // 页面加载完成后初始化动画
-  document.addEventListener('DOMContentLoaded', initContactCardAnimation);
+        // 初始化检查（页面加载时触发一次，避免顶部卡片未激活）
+        window.addEventListener("load", checkCardInView);
+        // 滚动时检查
+        window.addEventListener("scroll", checkCardInView);
+        // 窗口 resize 时重新检查（适配屏幕尺寸变化）
+        window.addEventListener("resize", checkCardInView);
+
+        // 2. 邮箱链接防默认跳转优化（可选：增强用户体验）
+        const emailLinks = document.querySelectorAll(".contact-card-email");
+        emailLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            // 若用户未安装邮件客户端，提示复制邮箱
+            const isMailClientAvailable =
+              navigator.userAgent.includes("Mail") ||
+              navigator.userAgent.includes("Outlook") ||
+              navigator.userAgent.includes("Thunderbird");
+
+            if (!isMailClientAvailable) {
+              e.preventDefault();
+              const email = this.getAttribute("href").replace("mailto:", "");
+              // 复制邮箱到剪贴板
+              navigator.clipboard
+                .writeText(email)
+                .then(() => {
+                  alert(`邮箱已复制：${email}`);
+                })
+                .catch((err) => {
+                  alert(`请手动复制邮箱：${email}`);
+                  console.error("复制失败：", err);
+                });
+            }
+          });
+        });
+      }
+      // 页面加载完成后初始化动画
+      document.addEventListener("DOMContentLoaded", initContactCardAnimation);
+    </script>
+
+    <script>
+      // 1. 获取元素：标题 + 所有卡片
+      const contactTitle = document.getElementById("contactSectionTitle");
+      const contactCards = document.querySelectorAll(".contact-card");
+      const contactSection = document.getElementById("contactCards");
+
+      // 2. 检测元素是否在视口内的工具函数
+      function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        // 视口检测范围：元素顶部进入视口底部100px内，或元素底部进入视口顶部
+        return rect.top <= window.innerHeight - 100 && rect.bottom >= 0;
+      }
+
+      // 3. 滚动触发动画的核心函数
+      function handleScrollAnimation() {
+        // 标题动画：进入视口添加 active 类
+        if (
+          isInViewport(contactTitle) &&
+          !contactTitle.classList.contains("active")
+        ) {
+          contactTitle.classList.add("active");
+        }
+
+        // 卡片动画：逐个进入视口添加 active 类（带延迟，增强层次感）
+        contactCards.forEach((card, index) => {
+          if (isInViewport(card) && !card.classList.contains("active")) {
+            // 延迟触发：每个卡片延迟 100ms * 索引，避免同时弹出
+            setTimeout(() => {
+              card.classList.add("active");
+            }, 100 * index);
+          }
+        });
+      }
+
+      // 4. 初始化：页面加载时先执行一次（若元素已在视口内，直接触发动画）
+      window.addEventListener("load", handleScrollAnimation);
+
+      // 5. 滚动时持续检测（元素进入视口触发动画）
+      window.addEventListener("scroll", handleScrollAnimation);
+
+      // 6. 窗口 resize 时重新检测（适配窗口大小变化）
+      window.addEventListener("resize", handleScrollAnimation);
     </script>
 
     <script type="text/javascript">
@@ -2730,6 +3147,68 @@
             }
           );
       }
+    </script>
+
+    <script>
+      // 等待页面DOM加载完成后初始化地图
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 初始化Leaflet地图（中心点设为济南：北纬36.67°，东经117.00°，缩放级别12）
+        const map = L.map("map").setView([36.742683, 117.2704052], 10);
+
+        // 2. 添加英文瓦片图层（OpenStreetMap + lang=en参数强制英文标签）
+        L.tileLayer(
+          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?lang=en",
+          {
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19, // 最大缩放级别
+            minZoom: 8, // 最小缩放级别
+            subdomains: ["a", "b", "c"], // OSM瓦片服务器子域名，确保加载稳定
+          }
+        ).addTo(map);
+
+        // 3. 可选：添加济南关键位置标记
+        const jinanMarker = L.marker([36.742683, 117.2704052]) // 济南市政府经纬度
+          .addTo(map)
+          .bindPopup(
+            "<b>Jinan Senrytech Machinery Co., Ltd</b><br>济南森睿机械有限公司"
+          ) // 弹窗内容（中英文）
+          .openPopup(); // 初始打开弹窗
+
+        // 4. 可选：添加机场标记（济南遥墙国际机场）
+        const airportMarker = L.marker([36.9024, 117.2289])
+          .addTo(map)
+          .bindPopup(
+            "<b>Jinan Yaoqiang International Airport</b><br>济南遥墙国际机场"
+          );
+
+        // 5. 可选：添加火车站标记（济南东站）
+        const railwayMarker = L.marker([36.7267, 117.1328])
+          .addTo(map)
+          .bindPopup("<b>Jinandong Railway Station</b><br>济南东站");
+      });
+
+      // 可选：添加滚动激活动画（卡片和标题随滚动渐显）
+      document.addEventListener("scroll", function () {
+        const findUsSection = document.querySelector(".find-us-section");
+        const sectionTop = findUsSection.offsetTop;
+        const sectionHeight = findUsSection.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+
+        // 当板块进入视口时，激活标题和卡片的显示动画
+        if (scrollY > sectionTop - windowHeight + sectionHeight / 3) {
+          document
+            .querySelector(".find-us-section-title")
+            .classList.add("active");
+          document.querySelectorAll(".find-us-card").forEach((card, index) => {
+            // 卡片依次激活，增加动画层次感
+            setTimeout(() => {
+              card.classList.add("active");
+            }, 100 * index);
+          });
+        }
+      });
     </script>
   </body>
 </html>

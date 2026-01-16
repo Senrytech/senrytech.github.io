@@ -11,10 +11,7 @@
       content="Senrytech 联系方式,激光设备咨询,激光解决方案报价,激光设备技术支持与售后服务"
       name="keywords"
     />
-    <link
-      rel="canonical"
-      href="https://www.senrytech.com/contact-us/"
-    />
+    <link rel="canonical" href="https://www.senrytech.com/contact-us/" />
     <title>Senrytech - 联系我们 | 激光设备咨询与支持</title>
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -1043,6 +1040,169 @@
         }
       }
     </style>
+
+    <!-- 三，该板块专属 CSS 样式（需放入 head 中的 style 标签内，或单独引入） -->
+    <style>
+  /* 1. 板块容器基础样式 */
+  .contact-cards-section {
+    background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+    margin: 0 auto;
+    max-width: 1600px; /* 限制最大宽度，避免大屏内容过散 */
+  }
+
+  /* 2. 卡片容器布局（响应式核心） */
+  .contact-cards-container {
+    display: flex;
+    gap: 2rem; /* 卡片间距，大屏下充足呼吸感 */
+    flex-wrap: wrap; /* 小屏自动换行 */
+    justify-content: center; /* 整体居中 */
+  }
+
+  /* 3. 卡片基础样式（苹果风格核心：玻璃拟态+大圆角+细腻阴影） */
+  .contact-card {
+    flex: 1;
+    min-width: 280px; /* 小屏最小宽度，避免挤压 */
+    max-width: calc(25% - 1.5rem); /* 大屏1行4列：总宽度25% - 间距补偿 */
+    opacity: 0; /* 初始透明，用于滚动动画 */
+    transform: translateY(20px); /* 初始下移，用于滚动动画 */
+    transition: 
+      opacity 0.6s ease-out, 
+      transform 0.6s ease-out,
+      box-shadow 0.3s ease; /* 动画过渡统一 */
+  }
+
+  /* 卡片激活状态（滚动触发） */
+  .contact-card.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 卡片内层容器（玻璃拟态效果） */
+  .contact-card-inner {
+    background-color: rgba(255, 255, 255, 0.85); /* 半透明白底，玻璃感 */
+    backdrop-filter: blur(12px); /* 玻璃拟态核心：背景模糊 */
+    -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
+    border-radius: 1.5rem; /* 苹果风格大圆角，与产品卡片统一 */
+    padding: 2.2rem 1.8rem;
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.05), /* 主阴影：弱化边界 */
+      0 1px 3px rgba(0, 0, 0, 0.08); /* 次阴影：增强层次 */
+    height: 100%; /* 确保卡片高度一致 */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 4. 卡片 hover 交互（苹果风格：轻微上浮+阴影加深） */
+  .contact-card:hover .contact-card-inner {
+    transform: translateY(-5px); /* 轻微上浮，灵动不夸张 */
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.08), 
+      0 2px 6px rgba(0, 0, 0, 0.1); /* 阴影加深，增强立体感 */
+    transition: 
+    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+  /* 5. 卡片内部文字样式（与现有页面字体/颜色统一） */
+  .contact-card-title {
+    font-family: "Public Sans", "Noto Sans SC", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #1d1d1f; /* 深灰文字，与LOGO颜色统一 */
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* 细边框分隔标题与内容 */
+  }
+
+  .contact-card-info {
+    margin-bottom: 1.2rem;
+    flex-shrink: 0; /* 防止信息区被压缩 */
+  }
+
+  .contact-card-person {
+    font-size: 0.9rem;
+    color: #444444;
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .contact-card-email {
+    font-size: 0.9rem;
+    color: #0071e3; /* 苹果蓝，与询价按钮颜色统一，突出邮箱 */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .contact-card-email:hover {
+    color: #005fc8; /*  hover 时加深蓝色，增强交互反馈 */
+    text-decoration: underline;
+  }
+
+  .scope-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1d1d1f;
+    margin-bottom: 0.8rem;
+  }
+
+  .scope-list {
+    list-style: disc;
+    padding-left: 1.2rem;
+    font-size: 0.85rem;
+    color: #666666;
+    line-height: 1.6;
+    flex-grow: 1; /* 让范围列表占满剩余空间，确保卡片高度一致 */
+  }
+
+  .scope-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* 6. 响应式适配（小屏2行2列，超小屏1行1列） */
+  /* 平板屏（768px ~ 1023px）：2行2列 */
+  @media (max-width: 1023px) {
+    .contact-card {
+      max-width: calc(50% - 1rem); /* 2列布局：总宽度50% - 间距补偿 */
+    }
+
+    .contact-cards-section {
+      padding: 4rem 1.5rem; /* 减少上下留白，适配小屏 */
+    }
+  }
+
+  /* 手机屏（≤767px）：1行1列 */
+  @media (max-width: 767px) {
+    .contact-card {
+      max-width: 100%; /* 1列布局：占满宽度 */
+      min-width: 100%;
+    }
+
+    .contact-cards-container {
+      gap: 1.5rem; /* 减小卡片间距，适配小屏 */
+    }
+
+    .contact-card-inner {
+      padding: 1.8rem 1.2rem; /* 减少内部 padding，避免内容拥挤 */
+    }
+
+    .contact-card-title {
+      font-size: 1rem;
+    }
+  }
+    </style>
+
     <!--十三，底部导航栏-->
     <style>
       /* 底部导航整体样式（匹配参考图深灰背景） */
@@ -2038,6 +2198,111 @@
     <!-- 二/二，代码 下拉菜单（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- 三 负责人对接卡片板块 HTML 结构 -->
+    <section class="contact-cards-section" id="contactCards">
+      <div class="contact-cards-container">
+        <!-- 卡片1：总经理客户反馈与问题督办中心 -->
+        <div class="contact-card" data-card="1">
+          <div class="contact-card-inner">
+            <h3 class="contact-card-title">总经理客户反馈与问题督办中心</h3>
+            <div class="contact-card-info">
+              <p class="contact-card-person">负责人：林明宇（Eric Lin）</p>
+              <a
+                href="mailto:Eric.Lin@senrytech.com"
+                class="contact-card-email"
+              >
+                <i class="fa fa-envelope-o"></i> Eric.Lin@senrytech.com
+              </a>
+            </div>
+            <div class="contact-card-scope">
+              <h4 class="scope-title">对接范围：</h4>
+              <ul class="scope-list">
+                <li>合作全流程反馈受理（投诉、建议、满意度评价、好评）</li>
+                <li>跨部门问题督办</li>
+                <li>反馈结果跟踪与回访</li>
+                <li>权益保障及品牌口碑协调</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片2：海外销售与合作洽谈 -->
+        <div class="contact-card" data-card="2">
+          <div class="contact-card-inner">
+            <h3 class="contact-card-title">海外销售与合作洽谈</h3>
+            <div class="contact-card-info">
+              <p class="contact-card-person">负责人：林洁蕊（Jerry Lin）</p>
+              <a href="mailto:Jerry@senrytech.com" class="contact-card-email">
+                <i class="fa fa-envelope-o"></i> Jerry@senrytech.com
+              </a>
+            </div>
+            <div class="contact-card-scope">
+              <h4 class="scope-title">对接范围：</h4>
+              <ul class="scope-list">
+                <li>全球销售战略对接</li>
+                <li>区域市场拓展</li>
+                <li>核心客户/代理商维护</li>
+                <li>大额订单洽谈、售前技术方案支持</li>
+                <li>市场与竞品咨询</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片3：售后服务与技术支持 -->
+        <div class="contact-card" data-card="3">
+          <div class="contact-card-inner">
+            <h3 class="contact-card-title">售后服务与技术支持</h3>
+            <div class="contact-card-info">
+              <p class="contact-card-person">负责人：秦峰（Sean Qin）</p>
+              <a
+                href="mailto:Sean.Qin@senrytech.com"
+                class="contact-card-email"
+              >
+                <i class="fa fa-envelope-o"></i> Sean.Qin@senrytech.com
+              </a>
+            </div>
+            <div class="contact-card-scope">
+              <h4 class="scope-title">对接范围：</h4>
+              <ul class="scope-list">
+                <li>设备安装调试、操作培训</li>
+                <li>故障维修（远程+现场）</li>
+                <li>24小时技术支持</li>
+                <li>海外备件调配</li>
+                <li>售后投诉处理与问题解决</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 卡片4：财务对账与款项事宜 -->
+        <div class="contact-card" data-card="4">
+          <div class="contact-card-inner">
+            <h3 class="contact-card-title">财务对账与款项事宜</h3>
+            <div class="contact-card-info">
+              <p class="contact-card-person">负责人：林佩（Nora Lin）</p>
+              <a
+                href="mailto:Nora.Lin@senrytech.com"
+                class="contact-card-email"
+              >
+                <i class="fa fa-envelope-o"></i> Nora.Lin@senrytech.com
+              </a>
+            </div>
+            <div class="contact-card-scope">
+              <h4 class="scope-title">对接范围：</h4>
+              <ul class="scope-list">
+                <li>订单成本核算、外汇结算</li>
+                <li>发票开具与对账</li>
+                <li>国际税务咨询</li>
+                <li>客户信用评估</li>
+                <li>应收账款与款项纠纷处理</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 十二，代码，联系咨询-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -2375,6 +2640,61 @@
           }
         });
       });
+    </script>
+
+    <!-- 三，该板块专属 JS 动画（滚动淡入+初始化） -->
+    <script>
+  // 1. 卡片滚动淡入动画（当卡片进入视口时激活）
+  function initContactCardAnimation() {
+    const contactCards = document.querySelectorAll('.contact-card');
+    
+    // 监听滚动事件
+    function checkCardInView() {
+      contactCards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        const cardBottom = card.getBoundingClientRect().bottom;
+        const windowHeight = window.innerHeight;
+        
+        // 当卡片顶部进入视口1/3，或底部进入视口时激活
+        if (cardTop < windowHeight * 0.8 && cardBottom > 0) {
+          card.classList.add('active');
+        }
+      });
+    }
+
+    // 初始化检查（页面加载时触发一次，避免顶部卡片未激活）
+    window.addEventListener('load', checkCardInView);
+    // 滚动时检查
+    window.addEventListener('scroll', checkCardInView);
+    // 窗口 resize 时重新检查（适配屏幕尺寸变化）
+    window.addEventListener('resize', checkCardInView);
+
+    // 2. 邮箱链接防默认跳转优化（可选：增强用户体验）
+    const emailLinks = document.querySelectorAll('.contact-card-email');
+    emailLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // 若用户未安装邮件客户端，提示复制邮箱
+        const isMailClientAvailable = navigator.userAgent.includes('Mail') || 
+                                      navigator.userAgent.includes('Outlook') ||
+                                      navigator.userAgent.includes('Thunderbird');
+        
+        if (!isMailClientAvailable) {
+          e.preventDefault();
+          const email = this.getAttribute('href').replace('mailto:', '');
+          // 复制邮箱到剪贴板
+          navigator.clipboard.writeText(email).then(() => {
+            alert(`邮箱已复制：${email}`);
+          }).catch(err => {
+            alert(`请手动复制邮箱：${email}`);
+            console.error('复制失败：', err);
+          });
+        }
+      });
+    });
+  }
+
+  // 页面加载完成后初始化动画
+  document.addEventListener('DOMContentLoaded', initContactCardAnimation);
     </script>
 
     <script type="text/javascript">

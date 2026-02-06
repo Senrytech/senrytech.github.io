@@ -6863,6 +6863,36 @@
         }
       });
 
+      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
+      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
+      // 触发时机：分类项的mouseenter事件
+
+      // —— 3.1 初始化分类切换所需变量 ——
+      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
+      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
+
+      // —— 3.2 绑定分类项hover事件 ——
+      categoryItems.forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          // 1. 重置所有分类项状态：移除激活类
+          categoryItems.forEach((catItem) =>
+            catItem.classList.remove("active")
+          );
+          // 2. 激活当前hover的分类项
+          this.classList.add("active");
+
+          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
+          const targetId = this.getAttribute("data-target");
+          // 4. 重置所有内容区状态：隐藏所有内容
+          contentItems.forEach((content) => content.classList.remove("active"));
+          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
+          const targetContent = document.getElementById(targetId);
+          if (targetContent) {
+            targetContent.classList.add("active");
+          }
+        });
+      });
+
       /* ================================== 三、BANNER轮播模块（含圆点指示器） ================================== */
       // 作用：实现BANNER图自动切换、手动控制（箭头）、圆点指示器联动
       // 核心逻辑：通过索引控制轮播图/文字/圆点的激活状态，支持循环切换
@@ -6944,36 +6974,6 @@
       // 鼠标离开轮播容器→恢复自动轮播
       carousel.addEventListener("mouseleave", () => {
         startAutoSlide(); // 重新启动定时器
-      });
-
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
-      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
-      // 触发时机：分类项的mouseenter事件
-
-      // —— 3.1 初始化分类切换所需变量 ——
-      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
-      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
-
-      // —— 3.2 绑定分类项hover事件 ——
-      categoryItems.forEach((item) => {
-        item.addEventListener("mouseenter", function () {
-          // 1. 重置所有分类项状态：移除激活类
-          categoryItems.forEach((catItem) =>
-            catItem.classList.remove("active")
-          );
-          // 2. 激活当前hover的分类项
-          this.classList.add("active");
-
-          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
-          const targetId = this.getAttribute("data-target");
-          // 4. 重置所有内容区状态：隐藏所有内容
-          contentItems.forEach((content) => content.classList.remove("active"));
-          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
-          const targetContent = document.getElementById(targetId);
-          if (targetContent) {
-            targetContent.classList.add("active");
-          }
-        });
       });
 
       /* ================================== 四、全系列产品板块交互（分类+滚动） ================================== */

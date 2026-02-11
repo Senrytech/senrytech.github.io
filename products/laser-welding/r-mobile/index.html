@@ -2173,40 +2173,62 @@
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .design-container {
         max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
-        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        margin: 0 auto;
         box-sizing: border-box;
       }
       /* —— 5.3 板块主标题：强化视觉焦点 —— */
       .design-main-title {
         font-family:
           "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
-        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        font-size: 1.8rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 700; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
         margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
-        text-align: left; /* 左对齐，符合阅读习惯 */
+        text-align: center; /* 左对齐，符合阅读习惯 */
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
+        padding-bottom: 2rem;
       }
 
       /* 副标题外层容器：控制与主标题、卡片的间距 */
       .design-subtitle-wrap {
-        margin: 0 0 3rem 2rem; /* 上 右 下 左， */
+        width: 100%; /* 占满父容器宽度 */
+        text-align: center; /* 文字居中，同时保留宽容器 */
+        color: transparent;
       }
 
       /* 副标题文字：（三色渐变：绿→黄→红） */
       .design-subtitle-text {
-        /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
-        background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
-        -webkit-background-clip: text; /* 兼容webkit内核（Safari/Chrome） */
-        background-clip: text; /* 标准语法：将背景裁剪为文字形状 */
-        color: transparent; /* 文字透明，让渐变背景透出 */
-        -webkit-text-fill-color: transparent; /* 兼容Safari，防止文字颜色覆盖 */
+        /* 正确语法：90deg（从左到右）+ 红→绿→蓝 */
+        background: linear-gradient(
+          90deg,
+          #ae2aa0 30%,
+          #7c92b3 50%,
+          #c67a22 100%
+        );
+        /* 文字裁剪必备 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* 强制透明，覆盖其他颜色 */
+        color: transparent;
+        -webkit-text-fill-color: transparent !important;
+        font-size: 4rem;
+        z-index: 1;
+        font-weight: 600;
+        padding-bottom: 2rem;
+      }
 
-        /* 保留原有基础样式，确保与其他板块风格统一 */
-        font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
-        text-align: left; /* 左对齐，契合板块布局 */
-        line-height: 1.4; /* 优化文字可读性，避免拥挤 */
+      .design-subtitle-supplement {
+        /* 正确语法：90deg（从左到右）+ 红→绿→蓝 */
+        background: #696969;
+        /* 文字裁剪必备 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* 强制透明，覆盖其他颜色 */
+        color: transparent !important;
+        -webkit-text-fill-color: transparent !important;
+        font-size: 1.3rem;
+        text-align: center;
+        z-index: 0;
       }
 
       /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
@@ -2214,7 +2236,6 @@
         position: relative; /* 作为卡片容器的定位父容器 */
         overflow: visible; /* 允许箭头超出容器范围 */
         overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding: 2rem 2rem 2rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
@@ -2225,10 +2246,12 @@
 
       /* —— 5.6 卡片容器：横向排列卡片 —— */
       .design-card-container {
-        display: flex; /* 卡片横向排列 */
-        gap: 1.5rem; /* 16px基准：24px，卡片之间间距 */
-        width: max-content; /* 宽度随卡片数量自适应，确保所有卡片显示 */
-        transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
+        display: flex; /* 启用 flex 布局 */
+        flex-direction: column; /* 排列方向：纵向（垂直一列） */
+        align-items: center; /* 子元素（卡片）水平居中 */
+        gap: 5rem; /* 卡片之间的垂直间距（替代原横向间距，可按需调整） */
+        width: 100%; /* 容器宽度占满父元素（垂直布局时无需 max-content） */
+        margin: 0 auto; /* 可选：容器水平居中，让垂直列在页面中间显示 */
       }
 
       /* —— 5.7 优势卡片：仅保留定位功能，视觉由图片主导 —— */
@@ -2239,7 +2262,7 @@
         height: auto; /* 高度由图片自动撑开 */
         overflow: visible; /* 允许文字/阴影超出卡片范围 */
         background-color: transparent; /* 透明背景，图片完全主导视觉 */
-        padding: 0; /* 清除内边距，避免干扰图片布局 */
+        padding: 5% 0 3% 0; /* 清除内边距，避免干扰图片布局 */
         box-shadow: none; /* 无阴影，阴影由图片单独控制 */
         border-radius: 0; /* 无圆角，圆角由图片单独控制 */
         transition: none; /* 无过渡，过渡效果由图片单独控制 */
@@ -2247,48 +2270,10 @@
         border: none; /* 无边框 */
         margin: 0; /* 清除margin */
       }
-
-      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
-      .design-card-text {
-        position: absolute;
-        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
-        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
-        z-index: 10; /* 层级高于图片，确保文字可见 */
-        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
-        text-align: left;
-        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
-      }
-
-      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
-      /* 卡片内二级标题 */
-      .design-card .design-subtitle {
-        color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
-        font-size: 1rem; /* 16px基准：16px */
-        font-weight: 400;
-        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
-      }
-      /* 卡片内一级标题 */
-      .design-card .design-heading {
-        color: #1d1d1f; /* 同上，适配图片背景 */
-        font-size: 1.75rem; /* 16px基准：28px */
-        font-weight: 500;
-        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
-        letter-spacing: -0.5px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      }
-      /* 卡片内描述文本 */
-      .design-card .design-desc {
-        color: #1d1d1f; /* 同上，适配图片背景 */
-        font-size: 0.875rem; /* 16px基准：14px */
-        line-height: 1.5;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-      }
-
       /* —— 5.10 卡片图片：核心视觉元素，控制交互效果 —— */
       .design-card img {
         width: 100%; /* 图片占满卡片宽度 */
-        height: 34.375rem; /* 16px基准：550px，固定高度确保卡片对齐 */
+        height: 50rem; /* 16px基准：550px，固定高度确保卡片对齐 */
         object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸） */
         object-position: center bottom; /* 图片定位：居中靠下，优先显示底部内容 */
         border-radius: 1.25rem; /* 16px基准：20px，与产品板块卡片圆角统一 */
@@ -2308,52 +2293,6 @@
       .design-card:hover img {
         transform: translateY(-0.375rem) scale(1.01); /* 16px基准：-6px上浮+1%放大 */
         box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 16px基准：0 8px 24px，阴影加深 */
-      }
-
-      /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
-      .design-nav-btn {
-        position: absolute; /* 基于板块容器定位 */
-        top: 90%; /* 垂直居中于产品卡片区域 */
-        transform: translateY(
-          -50%
-        ) !important; /* 垂直居中校准（!important避免被覆盖） */
-        bottom: auto !important; /* 取消底部定位，避免冲突 */
-        width: 2.5rem; /* 16px基准：40px，圆形按钮直径 */
-        height: 2.5rem;
-        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
-        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，弱化但可见 */
-        color: #696969; /* 灰色箭头，与背景区分 */
-        border: none; /* 清除默认边框 */
-        font-size: 1.25rem; /* 16px基准：20px，箭头图标大小 */
-        cursor: pointer; /* 提示可点击 */
-        outline: none; /* 清除聚焦轮廓 */
-        display: flex;
-        justify-content: center; /* 箭头水平居中 */
-        align-items: center; /* 箭头垂直居中 */
-        padding: 0; /* 清除默认内边距 */
-        z-index: 999; /* 层级高于卡片，确保不被遮挡 */
-      }
-      /* 左箭头位置 */
-      .design-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem); /* 基于容器左侧15%margin，向右偏移2.5rem */
-        right: auto;
-        display: flex !important; /* 强制显示，避免被隐藏 */
-      }
-      /* 右箭头位置 */
-      .design-nav-btn.next-btn {
-        right: calc(5% + 1.25rem); /* 基于屏幕右侧5%，向右偏移1.25rem */
-        left: auto;
-      }
-      /* 箭头交互效果 */
-      .design-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9); /* 背景加深 */
-        color: #333; /* 文字加深，增强反馈 */
-      }
-      .design-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9); /* 更浅背景，视觉弱化 */
-        color: #aaa; /* 浅灰箭头 */
-        cursor: not-allowed; /* 提示不可点击 */
-        display: flex !important; /* 禁用时仍显示，避免布局跳动 */
       }
 
       /* ================================== 设计工艺 - 媒体查询适配 ================================== */
@@ -6264,7 +6203,7 @@
         <h2 class="benefit-main-title">先刷重点</h2>
         <!-- 新增：副标题容器 -->
         <div class="benefit-subtitle-wrap">
-          <p class="benefit-subtitle-text">性能与成本双向平衡</p>
+          <p class="benefit-subtitle-text">全能与成本双向可控</p>
           <div class="benefit-subtitle-divider"></div>
         </div>
 
@@ -6274,28 +6213,31 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-cutting-accuracy.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-cutting-welding-cleaning (1).webp"
                 alt="专业安装服务"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">精度亮点</p>
-                <h3 class="benefit-heading">±0.05mm 精度刚刚好</h3>
-                <p class="benefit-desc">薄钢板切割，精度刚好不 “过剩”。</p>
+                <p class="benefit-subtitle">四效合一</p>
+                <h3 class="benefit-heading">一机多能，效率与价值双重跃升</h3>
+                <p class="benefit-desc">
+                  集切割、焊接、清洗、除锈于一体，简化操作流程，减少设备采购与维护成本，让生产更高效、更经济。
+                </p>
               </div>
             </div>
 
             <!-- 优势卡片2：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-module.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-laser-welding-wire (1).webp"
                 alt="透明费用"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">智能激光切割头</p>
-                <h3 class="benefit-heading">模块化结构，维护轻松无压力</h3>
+                <p class="benefit-subtitle">送丝流畅更省心</p>
+                <h3 class="benefit-heading">多径适配，送丝稳定无偏差</h3>
                 <p class="benefit-desc">
-                  双水冷回路，自动对焦，镜片防护全新升级，IP65级防尘
+                  适配 0.8 / 1.0 / 1.2 / 1.6 / 2.0mm
+                  全规格焊丝，精准送丝不打滑，保障焊接过程稳定可靠。
                 </p>
               </div>
             </div>
@@ -6303,15 +6245,14 @@
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-nest-app.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-welding-laser-source-1200w-1.webp"
                 alt="定制流程"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">精准算法，减少浪费切割</p>
-                <h3 class="benefit-heading">智能套料省料提升 15%+</h3>
+                <p class="benefit-subtitle">稳定光束输出</p>
+                <h3 class="benefit-heading">强劲可靠，持久运行更省心</h3>
                 <p class="benefit-desc">
-                  CAD 文件直接导入，5
-                  步完成排版，高速计算引擎，比手动排版效率提升 80%。
+                  功率稳定输出，工业级耐用设计，适配长时间连续加工，保障生产连续性与设备寿命。
                 </p>
               </div>
             </div>
@@ -6333,8 +6274,16 @@
         <h2 class="design-main-title">设计工艺</h2>
         <!-- 新增：副标题容器 -->
         <div class="design-subtitle-wrap">
-          <p class="design-subtitle-text">外在与内在长期靠谱</p>
-          <div class="design-subtitle-divider"></div>
+          <p class="design-subtitle-text">稳定出光<br />持久作业</p>
+          <p class="design-subtitle-supplement">
+            SUP23T 焊接枪头采用一体化精密光学设计，通过优化的光路结构实现激光能量的高效、稳定传输，<br />
+            确保焊接过程中光束聚焦精准、能量分布均匀，有效提升焊缝熔深与成型质量。枪头主体采用航空级铝合金材质，<br />
+            经精密 CNC 加工与表面硬化处理，兼具轻量化与高刚性，可承受长时间高负载作业。内置的智能温控系统与双回路水冷结构，<br />
+            能快速带走工作热量，避免光学元件因过热导致的性能衰减，保障设备在严苛工况下的持续稳定运行。<br />
+            枪头支持快速更换喷嘴与保护镜片，模块化设计大幅降低维护成本与停机时间；同时兼容多种功率等级的激光器，<br />
+            适配碳钢、不锈钢、铝合金等多种材料的焊接需求，
+          是工业级激光焊接应用的理想核心部件。
+          </p>
         </div>
 
         <!-- 图片卡片容器 -->
@@ -6343,62 +6292,48 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="design-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-machine-body.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-laser-welding-sup23t.webp"
                 alt="专业安装服务"
               />
-              <!-- 新增：卡片内三段文字容器（左上角定位） -->
-              <div class="design-card-text">
-                <p class="design-subtitle">轻量化管焊床身</p>
-                <h3 class="design-heading">
-                  薄钢板切割不“过剩”，成本性能刚好够
-                </h3>
-                <p class="design-desc">
-                  针对 12mm 以下薄钢板优化，切割精度
-                  ±0.03mm，避免重型床身的成本浪费。
-                </p>
-              </div>
+            </div>
+
+            <div class="design-subtitle-wrap">
+              <p class="design-subtitle-text">多元焊法<br />随心焊接</p>
+              <p class="design-subtitle-supplement">
+                该焊接系统支持叠焊、点焊、对接焊、塔接焊、拼接焊、T 型焊接等多种焊接形式，通过精准的光束控制与工艺参数优化，<br />
+                可实现对不同材料、不同结构件的高效焊接。无论是薄板叠焊的紧密熔合、T 型焊接的高强度连接，还是复杂结构件的拼接成型，<br />
+                均能保证焊缝成型美观、力学性能稳定。系统内置的工艺数据库与智能调节算法，可根据焊接形式与材料特性自动匹配最佳参数，<br />
+                大幅降低操作门槛，提升生产效率与工艺一致性，是满足多元化工业焊接需求的理想解决方案。
+              </p>
             </div>
 
             <!-- 优势卡片2：同结构复制 -->
             <div class="design-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-cast-alu-crossbeam.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-laser-welding-weld-type.webp"
                 alt="透明费用"
               />
-              <div class="design-card-text">
-                <p class="design-subtitle">一体铸铝横梁</p>
-                <h3 class="design-heading">横梁 “硬” 实力，“纹丝不动”稳得住</h3>
-                <p class="design-desc">
-                  铸铝结构应力分布更均匀，抗疲劳性强，跑再快都不‘飘’
-                </p>
-              </div>
+            </div>
+
+            <div class="design-subtitle-wrap">
+              <p class="design-subtitle-text">一器多嘴<br />高效作业（非全标配）</p>
+              <p class="design-subtitle-supplement">
+                该系列喷嘴专为四合一激光焊接机定制，采用高纯度紫铜材质精密加工而成，具备优异的导热性与耐高温性能，<br />
+                可适配切割、焊接、焊缝清洗、除锈等不同工艺需求。不同规格喷嘴通过优化的孔径与结构设计，<br />
+                精准匹配对应工艺的光束聚焦要求，确保能量传输高效、稳定，有效提升加工精度与成型质量。
+              </p>
             </div>
 
             <!-- 优势卡片3：同结构复制 -->
             <div class="design-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-head.webp"
+                src="../../../img/products/laser-welding/series-a/core-advantage/senrytech-a-laser-welding-nozzle.webp"
                 alt="定制流程"
               />
-              <div class="design-card-text">
-                <p class="design-subtitle">拒绝二手/翻新</p>
-                <h3 class="design-heading">
-                  全新大厂原装激光头，正品切割效果不“打折扣”
-                </h3>
-                <p class="design-desc">
-                  不用“自研代加工”的非标品，直接采购激光头大厂产品与机床“更原配”。
-                </p>
-              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- 滚动箭头（与第3板块一致） -->
-      <button class="design-nav-btn prev-btn" id="designPrevBtn" disabled>
-        &lt;
-      </button>
-      <button class="design-nav-btn next-btn" id="designNextBtn">&gt;</button>
     </div>
 
     <!-- 六，代码 展示参数 -->
@@ -6409,28 +6344,28 @@
           <div class="specs-icon placeholder"></div>
           <div class="specs-label">最高</div>
           <div class="specs-value">
-            <span class="text-gradient">移动速度 64m/min</span>
+            <span class="text-gradient">2.0mm</span>
             <!-- 改为渐变类 -->
           </div>
-          <div class="specs-desc">轴传动系统</div>
+          <div class="specs-desc">焊丝直径</div>
         </div>
         <div class="specs-item">
           <div class="specs-icon placeholder"></div>
           <div class="specs-label">最大</div>
           <div class="specs-value">
-            <span class="text-gradient">加工幅面 3000x1500mm</span>
+            <span class="text-gradient">8mm</span>
             <!-- 改为渐变类 -->
           </div>
-          <div class="specs-desc">切割工作台</div>
+          <div class="specs-desc">焊缝宽度</div>
         </div>
         <div class="specs-item">
           <div class="specs-icon placeholder"></div>
           <div class="specs-label">最大</div>
           <div class="specs-value">
-            <span class="text-gradient">工作台承重 500KG</span>
+            <span class="text-gradient">45kg</span>
             <!-- 改为渐变类 -->
           </div>
-          <div class="specs-desc">加工平台</div>
+          <div class="specs-desc">设备重量</div>
         </div>
       </div>
     </section>
@@ -6461,7 +6396,7 @@
               <canvas id="carbonSteelChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
-              <h3>碳钢切割厚度</h3>
+              <h3>碳钢焊接厚度</h3>
             </div>
           </div>
 
@@ -6471,7 +6406,7 @@
               <canvas id="stainlessSteelChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
-              <h3>不锈钢切割厚度</h3>
+              <h3>不锈钢焊接厚度</h3>
             </div>
           </div>
 
@@ -6481,17 +6416,7 @@
               <canvas id="aluminumChart"></canvas>
             </div>
             <div class="chart-card-header p-5">
-              <h3>铝合金切割厚度</h3>
-            </div>
-          </div>
-
-          <!-- 铜图表卡片 -->
-          <div class="chart-card">
-            <div class="chart-card-canvas h-64 p-4">
-              <canvas id="copperChart"></canvas>
-            </div>
-            <div class="chart-card-header p-5">
-              <h3>铜切割厚度</h3>
+              <h3>铝合金焊接厚度</h3>
             </div>
           </div>
         </div>
@@ -6534,131 +6459,63 @@
             <thead>
               <tr>
                 <th>型号</th>
-                <th>A15</th>
-                <th>A20</th>
-                <th>A30</th>
+                <th>A12</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>激光功率</td>
-                <td>1500W</td>
-                <td>2000W</td>
-                <td>3000W</td>
+                <td>激光最大功率</td>
+                <td>1200W</td>
               </tr>
               <tr>
-                <td>工作台面尺寸</td>
+                <td>功能</td>
                 <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
-                </td>
-                <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
-                </td>
-                <td>
-                  1350x1320mm <br />
-                  1310x2550mm <br />
-                  3050x1500mm
+                  切割 / 焊接 / 焊接除渣 / 除锈 <br />
                 </td>
               </tr>
               <tr>
-                <td>最大切割速度</td>
-                <td>80m/min</td>
-                <td>80m/min</td>
-                <td>80m/min</td>
+                <td>焊缝宽度</td>
+                <td>0-8mm</td>
               </tr>
               <tr>
-                <td>定位精度</td>
-                <td>±0.05mm</td>
-                <td>±0.05mm</td>
-                <td>±0.05mm</td>
-              </tr>
-              <tr>
-                <td>重复定位精度</td>
-                <td>±0.03mm</td>
-                <td>±0.03mm</td>
-                <td>±0.03mm</td>
-              </tr>
-              <tr>
-                <td>批量加工最大切割厚度(碳钢)</td>
-                <td>
-                  12mm
-                  <span class="specs-note">(特殊情况16mm)</span>
-                </td>
-                <td>
-                  16mm
-                  <span class="specs-note">(特殊情况20mm)</span>
-                </td>
-                <td>
-                  18mm
-                  <span class="specs-note">(特殊情况25mm)</span>
+                <td>送丝方式</td>
+                <td>单送丝</br>
+                    双送丝（选配）
                 </td>
               </tr>
               <tr>
-                <td>批量加工最大切割厚度(不锈钢)</td>
+                <td>焊丝直径</td>
+                <td>0.8 / 1.0 / 1.2 / 1.6 / 2.0mm</td>
+              </tr>
+              <tr>
+                <td>最大焊接厚度(碳钢)</td>
                 <td>
-                  5mm
-                  <span class="specs-note">(特殊情况8mm)</span>
-                </td>
-                <td>
-                  6mm
-                  <span class="specs-note">(特殊情况10mm)</span>
-                </td>
-                <td>
-                  8mm
-                  <span class="specs-note">(特殊情况12mm)</span>
+                  4mm
                 </td>
               </tr>
               <tr>
-                <td>批量加工最大切割厚度(铝合金)</td>
+                <td>最大焊接厚度(不锈钢)</td>
+                <td>
+                  4mm
+                </td>
+              </tr>
+              <tr>
+                <td>最大焊接厚度(铝)</td>
                 <td>
                   3mm
-                  <span class="specs-note">(特殊情况5mm)</span>
-                </td>
-                <td>
-                  4mm
-                  <span class="specs-note">(特殊情况6mm)</span>
-                </td>
-                <td>
-                  4mm
-                  <span class="specs-note">(特殊情况8mm)</span>
-                </td>
-              </tr>
-              <tr>
-                <td>批量加工最大切割厚度(铜)</td>
-                <td>
-                  3mm
-                  <span class="specs-note">(特殊情况4mm)</span>
-                </td>
-                <td>
-                  4mm
-                  <span class="specs-note">(特殊情况6mm)</span>
-                </td>
-                <td>
-                  4mm
-                  <span class="specs-note">(特殊情况8mm)</span>
                 </td>
               </tr>
               <tr>
                 <td>冷却方式</td>
-                <td>水冷</td>
-                <td>水冷</td>
-                <td>水冷</td>
+                <td>风冷</td>
               </tr>
               <tr>
                 <td>电力需求</td>
-                <td>380V/3PH 50/60HZ</td>
-                <td>380V/3PH 50/60HZ</td>
-                <td>380V/3PH 50/60HZ</td>
+                <td>220V/3PH 50/60HZ</td>
               </tr>
               <tr>
-                <td>加速度</td>
-                <td>0.8G</td>
-                <td>0.8G</td>
-                <td>0.8G</td>
+                <td>尺寸</td>
+                <td>600x400x600mm</td>
               </tr>
             </tbody>
           </table>
@@ -6688,7 +6545,7 @@
             <div class="evaluation-quote">"</div>
             <!-- 评价文本 -->
             <p class="evaluation-content">
-              作为一家初创的金属加工企业，A系列是我们的首选设备。它不仅价格合理，而且切割精度完全满足我们的需求，帮助我们顺利完成了多个订单，投资回报比超出预期。
+              我们是做小型五金加工的门店，入手 Senrytech A12 焊接机后，彻底告别了传统焊机。机身轻便不占地方，操作特别简单，新手也能快速上手，薄板焊接成型美观、无变形，一机还能兼顾焊接、清渣，性价比拉满，特别适合小微企业入门使用。
             </p>
             <!-- 客户信息（头像+名称+职位） -->
             <div class="evaluation-customer">
@@ -6698,8 +6555,8 @@
                 src="../../../img/products/laser-sheet-cutting/a/customer/mr-zhang.png"
               />
               <div class="customer-info">
-                <div class="customer-name">张先生</div>
-                <div class="customer-position">某金属制品有限公司 总经理</div>
+                <div class="customer-name">陈先生</div>
+                <div class="customer-position">五金加工门店 负责人</div>
               </div>
             </div>
           </div>
@@ -6708,8 +6565,7 @@
           <div class="evaluation-card">
             <div class="evaluation-quote">"</div>
             <p class="evaluation-content">
-              我们工厂从传统切割设备升级到Senrytech
-              A3000后，生产效率提升了40%，人工成本降低了25%。设备运行稳定，操作简单，员工很快就能上手，非常适合我们这样的中小型企业。
+              车间升级设备选了 Senrytech A12，稳定性超出预期。连续作业不发烫，焊接精度高，焊缝平整不用二次打磨，大大节省了工时。设备故障率低，售后团队响应也快，用着省心又放心，是中小型加工企业的实用之选。
             </p>
             <div class="evaluation-customer">
               <img
@@ -6718,8 +6574,8 @@
                 src="../../../img/products/laser-sheet-cutting/a/customer/ms-li.jpg"
               />
               <div class="customer-info">
-                <div class="customer-name">李女士</div>
-                <div class="customer-position">某五金加工厂 生产总监</div>
+                <div class="customer-name">刘女士</div>
+                <div class="customer-position">金属制品加工厂 技术主管</div>
               </div>
             </div>
           </div>
@@ -6728,7 +6584,7 @@
           <div class="evaluation-card">
             <div class="evaluation-quote">"</div>
             <p class="evaluation-content">
-              对比了多个品牌后选择了A系列，事实证明这是个明智的决定。设备性能稳定，切割质量好，售后服务响应迅速，最重要的是价格非常有竞争力，大大降低了我们的初期投入。
+              对比多款手持焊接设备后，最终选定 A12。它集成焊接、切割、清渣、除锈四大功能，一台顶好几台设备，大幅降低了设备采购成本。机身便携，移动作业很方便，不管是室内加工还是现场维修都能胜任，投资回本特别快。
             </p>
             <div class="evaluation-customer">
               <img
@@ -6737,8 +6593,8 @@
                 src="../../../img/products/laser-sheet-cutting/a/customer/mr-wang.jpg"
               />
               <div class="customer-info">
-                <div class="customer-name">王先生</div>
-                <div class="customer-position">某机械配件厂 老板</div>
+                <div class="customer-name">周先生</div>
+                <div class="customer-position">机械设备维修厂 老板</div>
               </div>
             </div>
           </div>
@@ -6757,20 +6613,19 @@
           <div class="other-card-container" id="otherScroll">
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+              href="https://www.senrytech.com/products/laser-welding/series-a/"
               class="card-link"
               ><div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/b/banner/senrytech-b-laser-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/series-a/banner/senrytech-a-laser-welding-banner-3.webp"
                   alt="光纤激光切割机B系列"
                 />
                 <!-- 新增：卡片内三段文字容器（左上角定位） -->
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B</p>
-                  <h3 class="other-heading">B系列</h3>
+                  <p class="other-subtitle">Series A</p>
+                  <h3 class="other-heading">A系列</h3>
                   <p class="other-desc">
-                    12000W 功率天花板！床身加固抗变形，电机减速机动力翻倍，1.5G
-                    加速度，把中厚板切割效率卷到新高度。
+                    小微企业入门首选，1200W 精准适配薄板焊接，集成式机箱轻便易携，焊接 / 切割 / 清渣 / 除锈四合一，轻松降低专业焊接门槛。
                     <br /><br />
                   </p>
                 </div></div
@@ -6778,19 +6633,19 @@
 
             <!-- 优势卡片2：同结构复制 -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+              href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/b-plus/banner/senrytech-b-plus-laser-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro-2.webp"
                   alt="B Plus系列"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B Plus</p>
-                  <h3 class="other-heading">B Plus系列</h3>
+                  <p class="other-subtitle">Series A Pro</p>
+                  <h3 class="other-heading">A Pro系列</h3>
                   <p class="other-desc">
-                    侧开包围省空间！上料台可手动拉出，适配小车间，安全与空间利用率双优化，不搞花架子。
+                    全能型焊接专家，1500-3000W 三档功率可调，分体式机箱散热优异，支持双丝送丝，最大 8mm 厚板焊接，覆盖多场景制造需求。
                     <br /><br />
                   </p>
                 </div>
@@ -6799,20 +6654,19 @@
 
             <!-- 优势卡片3：同结构复制 -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+              href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/b-pro/banner/senrytech-b-pro-laser-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra-2.webp"
                   alt="定制流程"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B Pro</p>
-                  <h3 class="other-heading">B Pro系列</h3>
+                  <p class="other-subtitle">Series A Ultra</p>
+                  <h3 class="other-heading">A Ultra系列</h3>
                   <p class="other-desc">
-                    10 秒极速交换上料，双台自动无缝衔接，2.0G
-                    高加速度实现设备‘不停机’生产，产能直接翻倍，精准解决工厂批量加工的待机痛点.
+                    突破厚板焊接极限，6000W 超高功率，四丝送丝大幅提效，最大 16mm 厚板焊接，适配重型制造与复杂工况。
                   </p>
                 </div>
               </div>
@@ -6820,21 +6674,19 @@
 
             <!-- 优势卡片4：同结构复制 -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+              href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/b-promax/banner/senrytech-b-promax-laser-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1-banner-2.webp"
                   alt="售后保障"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B ProMax</p>
-                  <h3 class="other-heading">B ProMax系列</h3>
+                  <p class="other-subtitle">Senrytech R 4in1</p>
+                  <h3 class="other-heading">R 4in1系列</h3>
                   <p class="other-desc">
-                    全钣金包围 + 国际安全认证，专为出口企业定制！继承 B Pro 10
-                    秒上料 + 2.0G
-                    加速度核心优势，安全防护与生产效能双重达标，欧洲市场合规畅行，无额外溢价。
+                    小微企业入门首选，1200W 精准适配薄板焊接，集成式机箱轻便易携，焊接 / 切割 / 清渣 / 除锈四合一，轻松降低专业焊接门槛。
                   </p>
                 </div>
               </div>
@@ -6842,107 +6694,42 @@
 
             <!-- 优势卡片5：同结构复制 -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+              href="https://www.senrytech.com/products/laser-welding/r-workstation/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/b-ultra/banner/senrytech-b-ultra-laser-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/r-workstation/senrytech-laser-welding-r-workstation-2.webp"
                   alt="快速响应"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B Ultra</p>
-                  <h3 class="other-heading">B Ultra系列</h3>
+                  <p class="other-subtitle">Senrytech R Workstation</p>
+                  <h3 class="other-heading">R Workstation系列</h3>
                   <p class="other-desc">
-                    真全自动上下料闭环！上料、切割、下料全自主，叠加全包围 +
-                    高功率，把激光切割的智能天花板拉到新高度，黑灯工厂直接落地。
+                    灵活部署随时随地，移动工作站 + 自动激光焊枪，1500-3000W 功率可调，快速适配不同工位，实现柔性化生产。
                   </p>
                 </div>
               </div>
             </a>
 
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+              href="https://www.senrytech.com/products/laser-welding/r-mobile/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="../../../img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-1.webp"
+                  src="../../../img/products/laser-welding/r-mobile/senrytech-laser-welding-r-mobile-banner-2.webp"
                   alt="快速响应"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech C</p>
-                  <h3 class="other-heading">C系列</h3>
+                  <p class="other-subtitle">Senrytech R Mobile</p>
+                  <h3 class="other-heading">R Mobile系列</h3>
                   <p class="other-desc">
-                    15 吨承载极限 + 自动传料系统，0.5-2mm 铝卷直接成板切割，0.8G
-                    加速度实现连续化生产，彻底告别人工上料繁琐，为铝制品企业提供高效闭环方案。
+                    批量生产稳定利器，自动激光焊枪 + 协作机器人，1500-3000W 功率可调，24 小时无人工干预，大幅提升生产效率与一致性。
                   </p>
                 </div>
               </div>
             </a>
-
-            <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
-              class="card-link"
-            >
-              <div class="other-card">
-                <img
-                  src="../../../img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-1.webp"
-                  alt="快速响应"
-                />
-                <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech G</p>
-                  <h3 class="other-heading">G系列</h3>
-                  <p class="other-desc">
-                    12-14 米超长地轨，12000-60000W
-                    超高功率，专为大型构件、重型厚板切割设计，±0.05mm
-                    精度保障长件加工质量。
-                    <br /><br />
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
-              class="card-link"
-            >
-              <div class="other-card">
-                <img
-                  src="../../../img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-1.webp"
-                  alt="快速响应"
-                />
-                <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech M</p>
-                  <h3 class="other-heading">M系列</h3>
-                  <p class="other-desc">
-                    ±8 微米精度！迷你机身不占地，最高 6kW
-                    功率，专为精密零件加工而生，小身材藏着真功夫，把精密切割做到极致。
-                    <br /><br />
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
-              class="card-link"
-            >
-              <div class="other-card">
-                <img
-                  src="../../../img/products/laser-sheet-cutting/s/banner/senrytech-s-laser-sheet-cutting-1.webp"
-                  alt="快速响应"
-                />
-                <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech S</p>
-                  <h3 class="other-heading">S系列</h3>
-                  <p class="other-desc">
-                    专切 C/H 型钢、槽钢！14
-                    米超长行程，定制化切割路径，不折腾、不返工，为钢结构行业打造高效专项解决方案。
-                    <br /><br />
-                  </p>
-                </div>
-              </div>
             </a>
           </div>
         </div>
@@ -7435,357 +7222,198 @@
     </script>
 
     <!--七，JS 切割有道-->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // 通用图表配置：苹果风格优化（平滑扁平化）
-        const commonConfig = {
-          type: "bar",
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            // 移除图表默认边框，减少视觉干扰
-            borderWidth: 0,
-            borderRadius: 8, // 整体圆角，苹果风格常用柔和圆角
-            plugins: {
-              legend: {
-                position: "bottom",
-                align: "center",
-                padding: {
-                  top: 10,
-                  bottom: 5,
-                }, // 精简内边距，避免冗余空间
-                labels: {
-                  font: {
-                    size: 11,
-                    family:
-                      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto',
-                  }, // 苹果默认字体栈
-                  padding: 8, // 进一步缩小内边距，更紧凑
-                  boxWidth: 10, // 颜色块改为圆润矩形（配合borderRadius）
-                  boxHeight: 10,
-                  borderRadius: 3, // 颜色块圆角，增强平滑感
-                  spacing: 20,
-                  color: "#6e6e73", // 苹果风格低对比度文字色（替代原#1f2937）
-                  // 图例文字简化，去掉冗余括号说明
-                  callback: function (context) {
-                    const labelMap = {
-                      batch: "批量加工",
-                      smallBatch: "小批量加工",
-                      prototype: "偶尔打样",
-                    };
-                    return (
-                      labelMap[context.dataset.label] || context.dataset.label
-                    );
-                  },
-                },
-              },
-              tooltip: {
-                callbacks: {
-                  label: function (context) {
-                    const datasetLabel = context.dataset.label;
-                    const value = context.raw;
-                    const labelMap = {
-                      batch: `批量加工：${value}mm（基础）`,
-                      smallBatch: `小批量加工：${value}mm（增量）`,
-                      prototype: `偶尔打样：${value}mm（增量）`,
-                    };
-                    // 计算总厚度
-                    const total =
-                      context.datasetIndex === 2
-                        ? context.chart.data.datasets[0].data[
-                            context.dataIndex
-                          ] +
-                          context.chart.data.datasets[1].data[
-                            context.dataIndex
-                          ] +
-                          value
-                        : "";
-                    return total
-                      ? `${labelMap[datasetLabel]} | 总厚度：${total}mm`
-                      : labelMap[datasetLabel];
-                  },
-                },
-                backgroundColor: "rgba(255, 255, 255, 0.95)", // 苹果风格半透明白色 tooltip
-                titleColor: "#000000", // 深灰文字（替代原黑色，降低对比度）
-                bodyColor: "#6e6e73",
-                borderColor: "rgba(220, 220, 220, 0.5)", // 浅灰边框，弱化边界
-                borderWidth: 1,
-                borderRadius: 12, // 圆润 tooltip，增强手感
-                titleFont: {
-                  size: 13,
-                  family: "-apple-system, BlinkMacSystemFont",
-                  weight: "500",
-                },
-                bodyFont: {
-                  size: 12,
-                  family: "-apple-system, BlinkMacSystemFont",
-                },
-                padding: 14, // 适中内边距，避免拥挤
-                displayColors: false, // 隐藏 tooltip 内颜色块，简化视觉
-                boxPadding: 4,
-                // 轻微阴影，增强层次感但不突兀
-                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
-              },
-              title: {
-                display: true,
-                text: "单位：mm", // 极致简化标题（去掉冗余“毫米”）
-                font: {
-                  size: 11,
-                  family: "-apple-system, BlinkMacSystemFont",
-                  weight: "400",
-                },
-                color: "#86868b", // 浅灰文字，降低视觉权重
-                padding: {
-                  bottom: 10,
-                },
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 通用图表配置：苹果风格优化（平滑扁平化）
+    const commonConfig = {
+      type: "bar",
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        // 移除图表默认边框，减少视觉干扰
+        borderWidth: 0,
+        borderRadius: 8, // 整体圆角，苹果风格常用柔和圆角
+        plugins: {
+          legend: {
+            display: false, // 隐藏图例，仅保留绿色数据无需图例
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `切割厚度：${context.raw}mm`;
               },
             },
-            scales: {
-              x: {
-                stacked: true,
-                grid: {
-                  display: false,
-                }, // 隐藏X轴网格线
-                ticks: {
-                  font: {
-                    size: 12,
-                    family: "-apple-system, BlinkMacSystemFont",
-                    weight: "500",
-                  },
-                  color: "#000000",
-                  padding: 8, // 文字与轴间距优化
-                },
-                border: {
-                  display: false,
-                }, // 隐藏X轴轴线
-              },
-              y: {
-                stacked: true,
-                beginAtZero: true,
-                max: 25,
-                stepSize: 5,
-                grid: {
-                  color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）
-                  borderDash: [], // 实线网格（避免虚线的复杂感）
-                  drawBorder: false, // 隐藏Y轴轴线
-                },
-                ticks: {
-                  font: {
-                    size: 11,
-                    family: "-apple-system, BlinkMacSystemFont",
-                  },
-                  color: "#86868b",
-                  padding: 8,
-                  // 简化刻度文字（去掉小数点后冗余0）
-                  callback: function (value) {
-                    return value === Math.floor(value)
-                      ? value
-                      : value.toFixed(1);
-                  },
-                },
-              },
+            backgroundColor: "rgba(255, 255, 255, 0.95)", // 苹果风格半透明白色 tooltip
+            titleColor: "#000000", // 深灰文字（替代原黑色，降低对比度）
+            bodyColor: "#6e6e73",
+            borderColor: "rgba(220, 220, 220, 0.5)", // 浅灰边框，弱化边界
+            borderWidth: 1,
+            borderRadius: 12, // 圆润 tooltip，增强手感
+            titleFont: {
+              size: 13,
+              family: "-apple-system, BlinkMacSystemFont",
+              weight: "500",
             },
-            animation: {
-              duration: 1200,
-              easing: "easeOutQuart",
-              // 动画初始透明度，增强平滑过渡感
-              onComplete: function () {
-                const chartInstance = this;
-                const ctx = chartInstance.ctx;
-                ctx.font = Chart.helpers.toFont(
-                  chartInstance.options.scales.y.ticks.font
-                );
-                ctx.textAlign = "right";
-                ctx.textBaseline = "middle";
-                ctx.fillStyle = chartInstance.options.scales.y.ticks.color;
-              },
+            bodyFont: {
+              size: 12,
+              family: "-apple-system, BlinkMacSystemFont",
             },
-            // 柱状图圆角（苹果风格关键：顶部圆角，底部平角）
-            elements: {
-              bar: {
-                borderRadius: 4,
-                borderSkipped: false, // 取消默认“跳过角落边框”，确保圆角完整
-                borderWidth: 0, // 彻底移除柱子边框，纯扁平化
+            padding: 14, // 适中内边距，避免拥挤
+            displayColors: false, // 隐藏 tooltip 内颜色块，简化视觉
+            boxPadding: 4,
+            // 轻微阴影，增强层次感但不突兀
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+          },
+          title: {
+            display: true,
+            text: "单位：mm", // 极致简化标题（去掉冗余“毫米”）
+            font: {
+              size: 11,
+              family: "-apple-system, BlinkMacSystemFont",
+              weight: "400",
+            },
+            color: "#86868b", // 浅灰文字，降低视觉权重
+            padding: {
+              bottom: 10,
+            },
+          },
+        },
+        scales: {
+          x: {
+            stacked: false, // 取消堆叠，仅显示单一系列
+            grid: {
+              display: false,
+            }, // 隐藏X轴网格线
+            ticks: {
+              font: {
+                size: 12,
+                family: "-apple-system, BlinkMacSystemFont",
+                weight: "500",
+              },
+              color: "#000000",
+              padding: 8, // 文字与轴间距优化
+            },
+            border: {
+              display: false,
+            }, // 隐藏X轴轴线
+          },
+          y: {
+            stacked: false, // 取消堆叠，仅显示单一系列
+            beginAtZero: true,
+            max: 5,
+            stepSize: 5,
+            grid: {
+              color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）
+              borderDash: [], // 实线网格（避免虚线的复杂感）
+              drawBorder: false, // 隐藏Y轴轴线
+            },
+            ticks: {
+              font: {
+                size: 11,
+                family: "-apple-system, BlinkMacSystemFont",
+              },
+              color: "#86868b",
+              padding: 8,
+              // 简化刻度文字（去掉小数点后冗余0）
+              callback: function (value) {
+                return value === Math.floor(value)
+                  ? value
+                  : value.toFixed(1);
               },
             },
           },
-        };
-        // 1. 碳钢切割厚度（保留原数据/颜色/动画，仅应用苹果风格配置）
-        const carbonSteelData = {
-          labels: ["A15 (1500W)", "A20 (2000W)", "A30 (3000W)"],
-          datasets: [
-            {
-              label: "batch",
-              data: [12, 16, 18],
-              backgroundColor: "rgba(34, 197, 94, 0.85)", // 轻微降低不透明度，更柔和
-              borderColor: "transparent", // 移除边框
-              borderWidth: 0,
-            },
-            {
-              label: "smallBatch",
-              data: [2, 2, 2],
-              backgroundColor: "rgba(251, 146, 60, 0.85)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-            {
-              label: "prototype",
-              data: [2, 2, 5],
-              backgroundColor: "rgba(239, 68, 68, 0.85)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-          ],
-        };
-        const carbonSteelChart = new Chart(
-          document.getElementById("carbonSteelChart"),
-          {
-            ...commonConfig,
-            data: carbonSteelData,
-          }
-        );
-        // 分阶段动画（逻辑完全不变，保留原交互节奏）
-        setTimeout(() => {
-          carbonSteelChart.data.datasets[1].hidden = false;
-          carbonSteelChart.update();
-          setTimeout(() => {
-            carbonSteelChart.data.datasets[2].hidden = false;
-            carbonSteelChart.update();
-          }, 1500);
-        }, 1000);
-        // 2. 不锈钢切割厚度（同碳钢优化逻辑）
-        const stainlessSteelData = {
-          labels: ["A15 (1500W)", "A20 (2000W)", "A30 (3000W)"],
-          datasets: [
-            {
-              label: "batch",
-              data: [5, 6, 8],
-              backgroundColor: "rgba(34, 197, 94, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-            },
-            {
-              label: "smallBatch",
-              data: [1, 2, 2],
-              backgroundColor: "rgba(251, 146, 60, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-            {
-              label: "prototype",
-              data: [2, 2, 2],
-              backgroundColor: "rgba(239, 68, 68, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-          ],
-        };
-        const stainlessSteelChart = new Chart(
-          document.getElementById("stainlessSteelChart"),
-          {
-            ...commonConfig,
-            data: stainlessSteelData,
-          }
-        );
-        setTimeout(() => {
-          stainlessSteelChart.data.datasets[1].hidden = false;
-          stainlessSteelChart.update();
-          setTimeout(() => {
-            stainlessSteelChart.data.datasets[2].hidden = false;
-            stainlessSteelChart.update();
-          }, 1500);
-        }, 1000);
-        // 3. 铝合金切割厚度（同优化逻辑）
-        const aluminumData = {
-          labels: ["A15 (1500W)", "A20 (2000W)", "A30 (3000W)"],
-          datasets: [
-            {
-              label: "batch",
-              data: [3, 4, 4],
-              backgroundColor: "rgba(34, 197, 94, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-            },
-            {
-              label: "smallBatch",
-              data: [1, 1, 2],
-              backgroundColor: "rgba(251, 146, 60, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-            {
-              label: "prototype",
-              data: [1, 1, 2],
-              backgroundColor: "rgba(239, 68, 68, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-          ],
-        };
-        const aluminumChart = new Chart(
-          document.getElementById("aluminumChart"),
-          {
-            ...commonConfig,
-            data: aluminumData,
-          }
-        );
-        setTimeout(() => {
-          aluminumChart.data.datasets[1].hidden = false;
-          aluminumChart.update();
-          setTimeout(() => {
-            aluminumChart.data.datasets[2].hidden = false;
-            aluminumChart.update();
-          }, 1500);
-        }, 1000);
-        // 4. 铜切割厚度（同优化逻辑）
-        const copperData = {
-          labels: ["A15 (1500W)", "A20 (2000W)", "A30 (3000W)"],
-          datasets: [
-            {
-              label: "batch",
-              data: [3, 4, 4],
-              backgroundColor: "rgba(34, 197, 94, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-            },
-            {
-              label: "smallBatch",
-              data: [0.5, 1, 2],
-              backgroundColor: "rgba(251, 146, 60, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-            {
-              label: "prototype",
-              data: [0.5, 1, 2],
-              backgroundColor: "rgba(239, 68, 68, 0.95)",
-              borderColor: "transparent",
-              borderWidth: 0,
-              hidden: true,
-            },
-          ],
-        };
-        const copperChart = new Chart(document.getElementById("copperChart"), {
-          ...commonConfig,
-          data: copperData,
-        });
-        setTimeout(() => {
-          copperChart.data.datasets[1].hidden = false;
-          copperChart.update();
-          setTimeout(() => {
-            copperChart.data.datasets[2].hidden = false;
-            copperChart.update();
-          }, 1500);
-        }, 1000);
-      });
-    </script>
+        },
+        animation: {
+          duration: 1200,
+          easing: "easeOutQuart",
+          // 动画初始透明度，增强平滑过渡感
+          onComplete: function () {
+            const chartInstance = this;
+            const ctx = chartInstance.ctx;
+            ctx.font = Chart.helpers.toFont(
+              chartInstance.options.scales.y.ticks.font
+            );
+            ctx.textAlign = "right";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = chartInstance.options.scales.y.ticks.color;
+          },
+        },
+        // 柱状图圆角（苹果风格关键：顶部圆角，底部平角）
+        elements: {
+          bar: {
+            borderRadius: 4,
+            borderSkipped: false, // 取消默认“跳过角落边框”，确保圆角完整
+            borderWidth: 0, // 彻底移除柱子边框，纯扁平化
+          },
+        },
+      },
+    };
+    // 1. 碳钢切割厚度（仅保留绿色批量加工数据）
+    const carbonSteelData = {
+      labels: ["A12 (1200W)", "null", "null"],
+      datasets: [
+        {
+          label: "batch",
+          data: [4, 0, 0],
+          backgroundColor: "rgba(34, 197, 94, 0.85)", // 轻微降低不透明度，更柔和
+          borderColor: "transparent", // 移除边框
+          borderWidth: 0,
+        },
+      ],
+    };
+    const carbonSteelChart = new Chart(
+      document.getElementById("carbonSteelChart"),
+      {
+        ...commonConfig,
+        data: carbonSteelData,
+      }
+    );
+    // 2. 不锈钢切割厚度（仅保留绿色批量加工数据）
+    const stainlessSteelData = {
+      labels: ["A12 (1200W)", "null", "null"],
+      datasets: [
+        {
+          label: "batch",
+          data: [4, 0, 0],
+          backgroundColor: "rgba(34, 197, 94, 0.95)",
+          borderColor: "transparent",
+          borderWidth: 0,
+        },
+      ],
+    };
+    const stainlessSteelChart = new Chart(
+      document.getElementById("stainlessSteelChart"),
+      {
+        ...commonConfig,
+        data: stainlessSteelData,
+      }
+    );
+    // 3. 铝合金切割厚度（仅保留绿色批量加工数据）
+    const aluminumData = {
+      labels: ["A12 (1200W)", "null", "null"],
+      datasets: [
+        {
+          label: "batch",
+          data: [3, 0, 0],
+          backgroundColor: "rgba(34, 197, 94, 0.95)",
+          borderColor: "transparent",
+          borderWidth: 0,
+        },
+      ],
+    };
+    const aluminumChart = new Chart(
+      document.getElementById("aluminumChart"),
+      {
+        ...commonConfig,
+        data: aluminumData,
+      }
+    );
+    const copperChart = new Chart(document.getElementById("copperChart"), {
+      ...commonConfig,
+      data: copperData,
+    });
+  });
+</script>
 
     <script>
       /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */

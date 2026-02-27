@@ -1146,8 +1146,8 @@
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
         background: linear-gradient(180deg, 
                 rgb(248, 248, 250) 0%, 
-                rgba(197, 195, 195, 0.95) 80%, 
-                rgba(248, 248, 250, 0.98) 100%);
+                rgba(197, 195, 195, 0.2) 80%, 
+                rgba(248, 248, 250, 0.8) 100%);
       }
 
       /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
@@ -1194,7 +1194,8 @@
         opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
         transition: opacity 0.5s ease;
         padding: 0 1rem; /* 左右留白，避免小屏文字贴边 */
-      }
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
 
       /* 激活状态：显示当前文字 */
       .banner-text.active {
@@ -5763,7 +5764,7 @@
         <!-- 第2张BANNER图：了解更多 → 指向「Senrytech B ProMax 详情页」（示例用外部页面URL） -->
         <div class="carousel-slide">
           <img
-            src="https://senrytech.github.io/img/index/banner/banner-2-2032-1143.webp"
+            src="https://senrytech.github.io/img/index/banner/banner-2-2032-1143-4.webp"
             alt="Senrytech B ProMax 全防护光纤激光切割机"
           />
           <div class="banner-text active">
@@ -5772,7 +5773,7 @@
             <div class="banner-btns">
               <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
               <a
-                href="https://senrytech.github.io/img/index/banner/banner-2-2032-1143-4.webp"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                 class="banner-btn learn-more-btn"
                 >了解更多</a
               >

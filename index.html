@@ -1617,7 +1617,10 @@
     <style>
       /* —— 4.1 板块外层容器：控制整体布局与定位上下文 —— */
       .product-center-section {
-        background-color: #1d1d1f; /* 深灰背景，与导航栏配色统一 */
+        background: linear-gradient(180deg, 
+                rgb(248, 248, 250) 0%, 
+                rgba(197, 195, 195, 0.2) 80%, 
+                rgba(248, 248, 250, 0.8) 100%);
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
         position: relative; /* 作为产品滚动箭头的定位父容器 */
@@ -1636,7 +1639,8 @@
       .product-main-title {
         font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #f5f5f7; /* 浅灰文字，与深灰背景形成对比 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
       }
@@ -1647,7 +1651,7 @@
         align-items: center; /* 分类项垂直居中 */
         gap: 0.5rem; /* 原8px → 16px基准下：8/16=0.5rem，分类项之间间距 */
         /* 苹果式半透明磨砂效果 */
-        background-color: rgba(255, 255, 255, 0.12);
+        background-color: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(12px); /* 固定12px模糊，视觉效果优先 */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari浏览器 */
         padding: 0.25rem 0.75rem; /* 原4px 12px → 16px基准下：4/16=0.25rem，12/16=0.75rem */
@@ -1659,8 +1663,9 @@
       /* —— 4.5 分类项：单个分类按钮（如“板材切割机”） —— */
       .subtitle-item {
         font-size: 0.8rem; /* 原11px → 16px基准下：11/16≈0.6875rem，小字号避免占用过多空间 */
-        font-weight: 300;
-        color: #f5f5f7; /* 浅灰文字，与分类栏背景区分 */
+        font-weight: 400;
+        color: #000000; /* 浅灰文字，与分类栏背景区分 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         padding: 0.5rem 1.5rem; /* 原6px 16px → 16px基准下：6/16=0.375rem，16/16=1rem，保证点击区域 */
         border-radius: 9999px; /* 与分类栏圆角呼应 */
         cursor: pointer; /* 提示可点击 */
@@ -1672,7 +1677,7 @@
       }
       /* 分类项激活状态：文字加深+轻微放大 */
       .subtitle-item.active {
-        color: #1d1d1f; /* 深灰文字，与白色激活背景对比 */
+        color: #ffffff; /* 深灰文字，与白色激活背景对比 */
         transform: scale(1.03); /* 轻微放大，突出当前选中项 */
       }
 
@@ -1681,7 +1686,7 @@
         position: absolute; /* 基于分类栏绝对定位 */
         top: 0rem; /* 原4px → 16px基准下：4/16=0.25rem，与分类栏上下内边距对齐 */
         bottom: 0rem;
-        background-color: #f5f5f7; /* 白色背景，突出激活状态 */
+        background-color: #0071e3; /* 白色背景，突出激活状态 */
         border-radius: 9999px; /* 与分类项圆角一致 */
         /* 平滑移动过渡：使用贝塞尔曲线优化动画节奏 */
         transition:
@@ -1699,6 +1704,7 @@
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
+        padding:2.5rem;
       }
       .product-scroll-wrap::-webkit-scrollbar {
         display: none; /* Chrome/Safari */
@@ -1727,6 +1733,9 @@
         align-items: center; /* 内容水平居中 */
         text-align: center; /* 文字居中 */
         transition: transform 0.3s ease; /* 悬浮上浮过渡 */
+        border-radius: 1.25rem;
+        background-color: #ffffff;
+
       }
       /* 卡片悬浮效果：轻微上浮，增强层次感 */
       .product-item:hover {
@@ -1746,17 +1755,12 @@
         background-color: #f5f5f7; /* 图片加载失败时的占位背景 */
         margin-top: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，图片向下偏移避免贴边 */
       }
-      /* 图片悬浮效果：放大+阴影加深 */
-      .product-item:hover img {
-        transform: scale(1); /* 轻微放大，增强交互反馈 */
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0); /* 原0 8px 24px → 16px基准下：8/16=0.5rem，24/16=1.5rem，阴影加深 */
-      }
 
       /* —— 4.11 产品卡片文字：产品名称展示 —— */
       .product-item p {
         font-size: 1rem; /* 原16px → 16px基准下：16/16=1rem，字号大于下拉菜单卡片，突出显示 */
         font-weight: 100;
-        color: #f5f5f7; /* 浅灰文字，与深灰背景区分 */
+        color: #000000; /* 浅灰文字，与深灰背景区分 */
         margin-top: 1rem; /* 原16px → 16px基准下：16/16=1rem，图片与文字间距 */
         line-height: 1.4; /* 行高优化可读性 */
         padding: 0 0.25rem; /* 原4px → 16px基准下：4/16=0.25rem，左右留白避免文字超出 */
@@ -4758,7 +4762,7 @@
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
                     >
                       <img
-                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400-2.webp"
                         alt="Senrytech A2 高性价比管材切割机"
                       />
                     </a>

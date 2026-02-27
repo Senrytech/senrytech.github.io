@@ -158,38 +158,43 @@
     <!--二、导航栏模块-->
     <style>
       /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
-      .navbar {
-  position: fixed; /* 滚动时固定在顶部，不随页面滚动消失 */
+.navbar {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 2.8rem; /* 窄版导航固定高度，匹配设计风格 */
-  /* 优化半透明背景：降低不透明度（0.3），让毛玻璃效果更明显 */
-  background-color: rgba(
-          245,
-          245,
-          247,
-          0.8
-        ); 
-  color: #000000; /* 导航栏LOGO颜色 */
-  z-index: 1000; /* 确保导航层级最高，不被其他元素遮挡 */
-  /* 保留过渡：新增 backdrop-filter 到过渡列表，确保滚动时平滑变化 */
-  transition: 
-    background-color 0.3s ease,
-    backdrop-filter 0.3s ease,
-    -webkit-backdrop-filter 0.3s ease; 
+  height: 2.8rem;
+  /* 调整为低饱和工业灰蓝基底，透明度降低更沉稳，适配BANNER常见的科技蓝/金属灰风格 */
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px) saturate(105%);
+  /* 边框调整为低饱和蓝灰色，弱化存在感但保留轮廓，更贴合激光设备的金属质感 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+  /* 文字色调整为温润的浅灰白，避免冷白刺眼，与工业风更搭 */
+  color: #000000;
+  z-index: 1000;
+  /* 过渡包含所有质感属性，保证滚动平滑 */
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
   display: flex;
-  justify-content: center; /* 桌面端导航项水平居中 */
-  align-items: center; /* 导航项垂直居中 */
-  gap: 2rem; /* 导航项之间的间距，保证布局呼吸感 */
-  padding: 0 2rem; /* 左右留白，避免内容贴屏幕边缘 */
-  overflow-x: visible; /* 小屏幕时导航项不换行，配合横向滚动 */
-  /* 毛玻璃核心属性：blur值越大，模糊效果越强（建议10-20px） */
-  backdrop-filter: blur(15px);
-  /* Safari 浏览器兼容 */
-  -webkit-backdrop-filter: blur(15px);
-  /* 可选：添加轻微阴影，增强毛玻璃层次感 */
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  /* 阴影优化：更浅的灰度+更低的不透明度，工业哑光质感更突出 */
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
+.navbar.scrolled {
+  /* 滚动后背景加深，采用偏深蓝的工业灰，增强层次感但不压抑 */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* 滚动后模糊度提升，饱和度微调增强质感 */
+  backdrop-filter: blur(15px) saturate(115%);
+  -webkit-backdrop-filter: blur(15px) saturate(115%);
+  /* 滚动后边框提亮，增强轮廓感 */
+  border-bottom: 1px solid rgba(180, 195, 210, 0.18);
+  /* 滚动后阴影加深，强化悬浮感 */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
@@ -277,20 +282,7 @@
         color: #f5f5f7; /* 文字浅白色，保证高对比度 */
       }
 
-      /* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
-      .navbar.scrolled {
-        background-color: rgba(
-          245,
-          245,
-          247,
-          0.8
-        ); /* 深灰半透明背景，弱化导航对内容的遮挡 */
-        backdrop-filter: blur(20px); /* 背景模糊核心效果，增强玻璃拟态风格 */
-        -webkit-backdrop-filter: blur(
-          20px
-        ); /* 兼容Safari浏览器，确保多端效果一致 */
-        box-shadow: none; /* 取消阴影，靠模糊效果体现层级，符合苹果简约风格 */
-      }
+      
 
       /* —— 2.6 下拉菜单父容器 —— */
       .nav-item {
@@ -1152,6 +1144,10 @@
         /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
         padding-top: 37%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        background: linear-gradient(180deg, 
+                rgb(248, 248, 250) 0%, 
+                rgba(197, 195, 195, 0.95) 80%, 
+                rgba(248, 248, 250, 0.98) 100%);
       }
 
       /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
@@ -1192,7 +1188,7 @@
         top: 11%; /* 16:9比例下微调位置，避免文字贴顶（原10%优化） */
         left: 50%;
         transform: translateX(-50%); /* 水平居中 */
-        color: #f5f5f7; /* 浅白色文字，适配深色背景图 */
+        color: #1d1d1f; /* 浅白色文字，适配深色背景图 */
         text-align: center;
         z-index: 10; /* 层级高于图片，确保文字可见 */
         opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
@@ -5776,7 +5772,7 @@
             <div class="banner-btns">
               <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                href="https://senrytech.github.io/img/index/banner/banner-2-2032-1143-4.webp"
                 class="banner-btn learn-more-btn"
                 >了解更多</a
               >
@@ -5792,7 +5788,7 @@
         <!-- 第3张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
         <div class="carousel-slide">
           <img
-            src="https://senrytech.github.io/img/index/banner/banner-3-2032-1143-2.webp"
+            src="https://senrytech.github.io/img/index/banner/banner-3-2032-1143-4.webp"
             alt="Senrytech A 手持入门级激光焊接机"
           />
           <div class="banner-text active">

@@ -2096,7 +2096,12 @@
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        background-color: #1d1d1f; /* 与导航栏/产品板块配色统一 */
+        background: linear-gradient(
+    135deg, /* 从左上到右下 */
+    #ffffff 0%, 
+    #f8f8fa 50%, 
+    #f5f5f7 100%
+  );
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
@@ -2117,7 +2122,8 @@
           "Public Sans", "Noto Sans SC", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #f5f5f7; /* 浅灰文字，与深灰背景形成对比 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 6rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         line-height: 1.1; /* 紧凑行高，避免标题换行 */
@@ -2146,6 +2152,7 @@
         /* 隐藏滚动条（兼容补充） */
         -ms-overflow-style: none;
         scrollbar-width: none;
+         padding: 0 2.5rem; /* 原4px → 16px基准下：4/16=0.25rem，左右留白避免文字超出 */
       }
       #benefitScroll::-webkit-scrollbar {
         display: none;
@@ -2209,13 +2216,18 @@
         border-radius: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，与导航卡片圆角风格统一 */
         box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1); /* 原0 4px 16px → 16px基准下：4/16=0.25rem，16/16=1rem，轻微阴影增强立体感 */
         transition: all 0.3s ease; /* 所有属性过渡（缩放+阴影） */
-        background-color: #f5f5f7; /* 图片加载失败时的占位背景 */
+        background: linear-gradient(
+    180deg, /* 从上到下 */
+    #FFFFFF 0%,
+    #EEEEF2 50%,
+    #E4E4EA 100%
+  );
         margin-top: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，图片向下偏移避免贴边 */
       }
       /* 图片hover效果：轻微上浮+放大+阴影加深 */
       .benefit-card:hover img {
         transform: scale(1); /* 轻微放大，增强交互反馈 */
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0); /* 原0 8px 24px → 16px基准下：8/16=0.5rem，24/16=1.5rem，阴影加深 */
+        box-shadow: 0 0.2rem 0.5rem rgb(167, 167, 167); /* 原0 8px 24px → 16px基准下：8/16=0.5rem，24/16=1.5rem，阴影加深 */
       }
 
       /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
@@ -2623,7 +2635,12 @@
     <style>
       /* —— 6.1 板块容器基础样式（PX转REM，与前序板块内边距统一） —— */
       .sample-section {
-        background-color: #1d1d1f; /* 延续深灰背景，视觉连贯 */
+        background: linear-gradient(
+    135deg, /* 从左上到右下 */
+    #ffffff 0%, 
+    #f8f8fa 50%, 
+    #f5f5f7 100%
+  );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
         position: relative;
@@ -2643,8 +2660,9 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 3.5rem; /* 原64px → 64/16=4rem，与“购买优势”标题字号统一 */
         font-weight: 500; /* 偏细字体，契合苹果风精致感 */
-        color: #f5f5f7; /* 浅灰文字，与深灰背景区分 */
+        color: #000000; /* 浅灰文字，与深灰背景区分 */
         margin-bottom: 1.5rem; /* 原48px → 48/16=3rem，与副标题栏间距统一 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         text-align: left;
         line-height: 1.1; /* 保留行高，确保文字紧凑度 */
       }
@@ -2654,12 +2672,7 @@
         display: inline-flex;
         align-items: center;
         gap: 1.5rem; /* 原8px → 8/16=0.5rem，副标题项间距统一 */
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.12
-        ); /* 半透明磨砂背景，苹果风核心 */
+        background-color: #EEEEF2;
         backdrop-filter: blur(12px); /* 模糊效果保留（固定PX，视觉优先） */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
         padding: 0.25rem 1.5rem; /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem */
@@ -2672,8 +2685,9 @@
       .sample-subtitle-item {
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 0.8rem; /* 原11px → 11/16≈0.6875rem，小字号避免占用过多空间 */
-        font-weight: 300;
-        color: #f5f5f7;
+        font-weight: 400;
+        color: #000000; /* 浅灰文字，与分类栏背景区分 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         padding: 0.5rem 1.5rem; /* 原6px 16px → 6/16=0.375rem，16/16=1rem，保证点击区域 */
         border-radius: 9999px; /* 超圆圆角，与父容器呼应 */
         cursor: pointer;
@@ -2684,7 +2698,7 @@
         z-index: 1; /* 确保文字在激活背景上层 */
       }
       .sample-subtitle-item.active {
-        color: #1d1d1f; /* 激活时文字变深灰，与白色背景区分 */
+        color: #ffffff; /* 激活时文字变深灰，与白色背景区分 */
         transform: scale(1.03); /* 轻微放大，突出当前项（相对值无需转REM） */
       }
 
@@ -2693,7 +2707,7 @@
         position: absolute;
         top: 0rem; /* 原4px → 4/16=0.25rem，与副标题栏内边距对齐 */
         bottom: 0rem; /* 同上，确保背景高度与副标题栏一致 */
-        background-color: #f5f5f7; /* 白色背景，突出激活状态 */
+        background-color: #0071e3; /* 白色背景，突出激活状态 */
         border-radius: 9999px; /* 超圆圆角，与副标题项呼应 */
         transition:
           left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
@@ -3184,7 +3198,12 @@
     <style>
       /* —— 7.1 板块容器基础样式（PX转REM，基于16px基准） —— */
       .advantage-section {
-        background-color: #1d1d1f; /* 与板块5一致的深灰背景 */
+        background: linear-gradient(
+    135deg, /* 从左上到右下 */
+    #ffffff 0%, 
+    #f8f8fa 50%, 
+    #f5f5f7 100%
+  );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 原80px=5rem，120px=7.5rem，与板块5统一 */
         position: relative;
@@ -3203,7 +3222,8 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
         font-size: 3.5rem; /* 原64px=4rem，与板块5.benefit-main-title一致 */
         font-weight: 500; /* 偏细字体，保持风格统一 */
-        color: #f5f5f7; /* 浅灰文字色，适配深灰背景 */
+        color: #000000; /* 浅灰文字色，适配深灰背景 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 6rem; /* 原48px=3rem，与板块5一致 */
         text-align: left;
         line-height: 1.1;
@@ -3757,7 +3777,12 @@
     <!--八、设备配件全收录板块-->
     <style>
       .accessory-section {
-        background-color: #1d1d1f; /* 与导航栏/产品板块配色统一 */
+        background: linear-gradient(
+    135deg, /* 从左上到右下 */
+    #ffffff 0%, 
+    #f8f8fa 50%, 
+    #f5f5f7 100%
+  );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 与其他板块一致：为箭头预留底部空间 */
         position: relative; /* 作为滚动箭头的定位父容器（关键：确保箭头基于板块定位） */
@@ -3777,7 +3802,8 @@
           "Public Sans", "Noto Sans SC", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #f5f5f7; /* 浅灰文字，与深灰背景形成对比 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         line-height: 1.1; /* 紧凑行高，避免标题换行 */
@@ -6336,7 +6362,7 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="http://senrytech.github.io/img/index/after-sales/home-intallation.webp"
+                src="./img/index/after-sales/home-intallation.webp"
                 alt="Senrytech专业安装服务"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
@@ -6352,7 +6378,7 @@
             <!-- 优势卡片2：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="http://senrytech.github.io/img/index/after-sales/on-site-repair.webp"
+                src="./img/index/after-sales/on-site-repair.webp"
                 alt="Senrytech上门维修费用透明"
               />
               <div class="benefit-card-text">
@@ -6367,7 +6393,7 @@
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="http://senrytech.github.io/img/index/after-sales/quality-guarantee.webp"
+                src="./img/index/after-sales/quality-guarantee.webp"
                 alt="Senrytech购机享受质保"
               />
               <div class="benefit-card-text">
@@ -6382,7 +6408,7 @@
             <!-- 优势卡片4：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="http://senrytech.github.io/img/index/after-sales/24-hours.webp"
+                src="./img/index/after-sales/24-hours.webp"
                 alt="Senrytech光纤激光切割机售后保障"
               />
               <div class="benefit-card-text">
@@ -6397,7 +6423,7 @@
             <!-- 优势卡片5：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="http://senrytech.github.io/img/index/after-sales/fast-reply.webp"
+                src="./img/index/after-sales/fast-reply.webp"
                 alt="Senrytech购买机器快速响应"
               />
               <div class="benefit-card-text">

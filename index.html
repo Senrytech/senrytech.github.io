@@ -1778,8 +1778,7 @@
       /* —— 4.11 产品卡片文字：产品名称展示 —— */
       .product-item p {
         font-size: 1rem; /* 原16px → 16px基准下：16/16=1rem，字号大于下拉菜单卡片，突出显示 */
-        font-weight: 100;
-        color: #000000; /* 浅灰文字，与深灰背景区分 */
+        font-weight: 500;
         margin-top: -2rem; /* 原16px → 16px基准下：16/16=1rem，图片与文字间距 */
         margin-bottom: 3rem;
         line-height: 1.4; /* 行高优化可读性 */
@@ -3835,6 +3834,7 @@
         scrollbar-width: none; /* Firefox */
         height: 40rem;
         box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1);
+        padding: 0 2.5rem;
       }
       /* Chrome/Safari 隐藏滚动条 */
       .accessory-scroll-container::-webkit-scrollbar {
@@ -3889,7 +3889,7 @@
         /* 注：图片自身的 overflow: hidden 无效（子元素无法裁剪自身），可删除 */
         border-radius: 1.25rem;
         background-color: transparent;
-        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0.25rem 1rem rgba(223, 9, 9, 0.05);
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
@@ -3916,13 +3916,13 @@
       /* 高排卡片hover：无需修改，保持原效果即可 */
       .accessory-image-item.high-item:hover img {
         transform: scale(1.03) translateY(-0.375rem); /* 原-6px=0.375rem，放大+上浮 */
-        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
       }
 
       /* 低排卡片hover：同理无需修改 */
       .accessory-image-item.low-item:hover img {
         transform: scale(1.03) translateY(-0.375rem); /* 原-6px=0.375rem，放大+上浮 */
-        box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
+        box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.15); /* 原0 24px=1.5rem，阴影加深 */
       }
 
       /* 6. 卡片文字：优化后——完全居中对齐图片 */
@@ -5890,7 +5890,7 @@
                   alt="3000W 以下光纤激光切割机"
                 />
               </a>
-              <p>Senrytech A</p>
+              <p>Senrytech A</br>・经济实惠・稳定可靠・新手首选</p>
               <div class="info-btn"></div>
             </div>
 
@@ -5905,7 +5905,7 @@
                   alt="12000W光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B</p>
+              <p>Senrytech B</br>・床身更重・可切厚板・性能更强</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5921,7 +5921,7 @@
                   alt="省空间光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Plus</p>
+              <p>Senrytech B Plus</br>・侧开包围・占地更小・使用方便</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5936,7 +5936,7 @@
                   alt="批量加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Pro</p>
+              <p>Senrytech B Pro</br>·上料超快·产量更高·省人工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5951,7 +5951,7 @@
                   alt="安全加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B ProMax</p>
+              <p>Senrytech B ProMax</br>・全包围罩・欧洲合规・安全防护</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5966,7 +5966,7 @@
                   alt="自动化工厂光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Ultra</p>
+              <p>Senrytech B Ultra</br>・全自动料・无人生产・顶配效率</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5981,7 +5981,7 @@
                   alt="铝板光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C</p>
+              <p>Senrytech C</br>・铝卷切割・连续送料・薄铝专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5996,7 +5996,7 @@
                   alt="防护型铝卷光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C Pro</p>
+              <p>Senrytech C Pro</br>・铝卷专用・全包围罩・安全整洁</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6011,7 +6011,7 @@
                   alt="长幅光纤激光切割机"
                 />
               </a>
-              <p>Senrytech G</p>
+              <p>Senrytech G</br>・超长地轨・超大功率・重型切割</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6026,7 +6026,7 @@
                   alt="高精度迷你激光切割机"
                 />
               </a>
-              <p>Senrytech M</p>
+              <p>Senrytech M</br>・迷你机身・超高精度・精密加工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6041,7 +6041,7 @@
                   alt="槽钢光纤激光切割机"
                 />
               </a>
-              <p>Senrytech S</p>
+              <p>Senrytech S</br>・专切型钢・长度够长・型材专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6058,7 +6058,7 @@
                   alt="小口径管材切割机"
                 />
               </a>
-              <p>Senrytech A2</p>
+              <p>Senrytech A2</br>・经济款・双卡盘・小口径专用</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6071,7 +6071,7 @@
                   alt="高功率电机管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Plus</p>
+              <p>Senrytech A2 Plus</br>・床身加固・高功率・中厚管高效</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6084,7 +6084,7 @@
                   alt="侧挂式管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Ultra</p>
+              <p>Senrytech A2 Ultra</br>・侧挂结构・双卡盘・特殊场景适配</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6097,7 +6097,7 @@
                   alt="三卡盘加持管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Plus</p>
+              <p>Senrytech B3 Plus</br>・三卡盘・正装升级・批量加工优选</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6110,7 +6110,7 @@
                   alt="创新结构管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Ultra</p>
+              <p>Senrytech B3 Ultra</br>・侧挂创新・三卡盘・高效兼特殊</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6123,7 +6123,7 @@
                   alt="高阶定制化管材切割机"
                 />
               </a>
-              <p>Senrytech C4 Ultra</p>
+              <p>Senrytech C4 Ultra</br>・四卡盘・高阶定制・大批次量产</p>
             </div>
 
             <!-- 3. 板管一体分类：4个卡片（默认隐藏） -->
@@ -6138,7 +6138,7 @@
                   alt="亲民价板管切割机"
                 />
               </a>
-              <p>Senrytech BT</p>
+              <p>Senrytech BT</br>・高性价比・板管兼顾・入门首选</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6151,7 +6151,7 @@
                   alt="高效生产板管一体机"
                 />
               </a>
-              <p>Senrytech BT Pro</p>
+              <p>Senrytech BT Pro</br>・交换平台・高效流转・减少停机</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6164,7 +6164,7 @@
                   alt="全钣金包围板管切割机"
                 />
               </a>
-              <p>Senrytech BT Promax</p>
+              <p>Senrytech BT Promax</br>・钣金包围・防尘降噪・安全防护</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6177,7 +6177,7 @@
                   alt="智能板管一体加工机"
                 />
               </a>
-              <p>Senrytech BT Ultra</p>
+              <p>Senrytech BT Ultra</br>・全自动上下料・24h 无人化・产能拉满</p>
             </div>
 
             <!-- 4. 焊接分类：3个卡片（默认隐藏） -->
@@ -6192,7 +6192,7 @@
                   alt="焊接切割清渣除锈一体机"
                 />
               </a>
-              <p>Senrytech A</p>
+              <p>Senrytech A</br>・入门首选・四合一・轻便易携</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6206,7 +6206,7 @@
                   alt="双丝送丝激光焊接机"
                 />
               </a>
-              <p>Senrytech A Pro</p>
+              <p>Senrytech A Pro</br>・三档功率・分体散热・8mm 厚板焊</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6220,7 +6220,7 @@
                   alt="大功率激光焊接机"
                 />
               </a>
-              <p>Senrytech A Ultra</p>
+              <p>Senrytech A Ultra</br>・6000W 超高功率・四丝送丝・16mm 厚板焊</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6234,7 +6234,7 @@
                   alt="SUP23T 专业枪头激光焊接机"
                 />
               </a>
-              <p>Senrytech R 4in1</p>
+              <p>Senrytech R 4in1</br>・入门首选・专业枪头・四合一</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6248,7 +6248,7 @@
                   alt="灵活部署激光焊接机"
                 />
               </a>
-              <p>Senrytech R workstation</p>
+              <p>Senrytech R workstation</br>・移动工作站・功率可调・柔性生产</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6262,7 +6262,7 @@
                   alt="1500-3000W 机器人焊接机"
                 />
               </a>
-              <p>Senrytech R mobile</p>
+              <p>Senrytech R mobile</br>・协作机器人・24h 无人・批量稳焊</p>
             </div>
 
             <!-- 5. 清洗分类：5个卡片（默认隐藏） -->
@@ -6277,7 +6277,7 @@
                   alt="小型除锈激光清洗机"
                 />
               </a>
-              <p>Senrytech Residential</p>
+              <p>Senrytech Residential</br>・背包式・家用・双电机遥控</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -6291,7 +6291,7 @@
                   alt="多功率商用清洗设备"
                 />
               </a>
-              <p>Senrytech Commercial</p>
+              <p>Senrytech Commercial</br>・拉杆箱式・商用便携・多功率</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -6305,7 +6305,7 @@
                   alt="工业级激光清洗设备"
                 />
               </a>
-              <p>Senrytech Industrial</p>
+              <p>Senrytech Industrial</br>・工业级・大功率・高效稳定</p>
             </div>
 
             <!-- 6. 打标分类：2个卡片（默认隐藏） -->
@@ -6320,7 +6320,7 @@
                   alt="便携台式打标设备"
                 />
               </a>
-              <p>Senrytech P</p>
+              <p>Senrytech P</br>・便携台式・高精准・多材质适配</p>
             </div>
             <div class="product-item hidden" data-tab="mark">
               <a
@@ -6333,7 +6333,7 @@
                   alt="高效稳定打标设备"
                 />
               </a>
-              <p>Senrytech D</p>
+              <p>Senrytech D</br>・台式设计・高精准・多材质适配</p>
             </div>
           </div>
         </div>
@@ -6992,36 +6992,36 @@
             <!-- 第1个：高容器 -->
             <div class="accessory-image-item high-item">
               <img src="https://picsum.photos/300/500?random=1" alt="配件1" />
-              <div class="accessory-image-text">配件名称1</div>
+              <div class="accessory-image-text"></div>
             </div>
             <!-- 第2个：低容器 -->
             <div class="accessory-image-item low-item">
               <img src="https://picsum.photos/300/400?random=2" alt="配件2" />
-              <div class="accessory-image-text">配件名称2</div>
+              <div class="accessory-image-text"></div>
             </div>
             <!-- 第3个：高容器（对称中心） -->
             <div class="accessory-image-item high-item">
               <img src="https://picsum.photos/300/500?random=3" alt="配件3" />
-              <div class="accessory-image-text">配件名称3</div>
+              <div class="accessory-image-text"></div>
             </div>
             <!-- 第4个：低容器 -->
             <div class="accessory-image-item low-item">
               <img src="https://picsum.photos/300/400?random=4" alt="配件4" />
-              <div class="accessory-image-text">配件名称4</div>
+              <div class="accessory-image-text"></div>
             </div>
             <!-- 第5个：高容器 -->
             <div class="accessory-image-item high-item">
               <img src="https://picsum.photos/300/500?random=5" alt="配件5" />
-              <div class="accessory-image-text">配件名称5</div>
+              <div class="accessory-image-text"></div>
             </div>
             <!-- 可扩展：新增更多卡片（滚动自动生效） -->
             <div class="accessory-image-item low-item">
               <img src="https://picsum.photos/300/400?random=6" alt="配件6" />
-              <div class="accessory-image-text">配件名称6</div>
+              <div class="accessory-image-text"></div>
             </div>
             <div class="accessory-image-item high-item">
               <img src="https://picsum.photos/300/500?random=7" alt="配件7" />
-              <div class="accessory-image-text">配件名称7</div>
+              <div class="accessory-image-text"></div>
             </div>
           </div>
         </div>

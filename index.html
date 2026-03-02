@@ -158,53 +158,55 @@
     <!--二、导航栏模块-->
     <style>
       /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2.8rem;
-  /* 调整为低饱和工业灰蓝基底，透明度降低更沉稳，适配BANNER常见的科技蓝/金属灰风格 */
-  background: linear-gradient(
-    135deg, /* 左上到右下 */
-    rgba(255, 255, 255, 0.8) 0%,  /* 白色 + 0.9透明度 */
-    rgba(248, 248, 250, 0.8) 50%, /* 浅灰1 + 0.9透明度 */
-    rgba(245, 245, 247, 0.8) 100% /* 浅灰2 + 0.9透明度 */
-  );
-  /* 边框调整为低饱和蓝灰色，弱化存在感但保留轮廓，更贴合激光设备的金属质感 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  /* 文字色调整为温润的浅灰白，避免冷白刺眼，与工业风更搭 */
-  color: #000000;
-  z-index: 1000;
-  /* 过渡包含所有质感属性，保证滚动平滑 */
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 0 2rem;
-  box-sizing: border-box;
-  /* 阴影优化：更浅的灰度+更低的不透明度，工业哑光质感更突出 */
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
-}
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
+        /* 调整为低饱和工业灰蓝基底，透明度降低更沉稳，适配BANNER常见的科技蓝/金属灰风格 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        /* 边框调整为低饱和蓝灰色，弱化存在感但保留轮廓，更贴合激光设备的金属质感 */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* 文字色调整为温润的浅灰白，避免冷白刺眼，与工业风更搭 */
+        color: #000000;
+        z-index: 1000;
+        /* 过渡包含所有质感属性，保证滚动平滑 */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        /* 阴影优化：更浅的灰度+更低的不透明度，工业哑光质感更突出 */
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+      }
 
-/* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
-.navbar.scrolled {
-  /* 滚动后背景加深，采用偏深蓝的工业灰，增强层次感但不压抑 */
-  background: linear-gradient(
-    135deg, /* 左上到右下 */
-    rgba(255, 255, 255, 0.8) 0%,  /* 白色 + 0.9透明度 */
-    rgba(248, 248, 250, 0.8) 50%, /* 浅灰1 + 0.9透明度 */
-    rgba(245, 245, 247, 0.8) 100% /* 浅灰2 + 0.9透明度 */
-  );
-  /* 滚动后模糊度提升，饱和度微调增强质感 */
-  backdrop-filter: blur(15px) saturate(115%);
-  -webkit-backdrop-filter: blur(15px) saturate(115%);
-  /* 滚动后边框提亮，增强轮廓感 */
-  border-bottom: 1px solid rgba(180, 195, 210, 0.18);
-  /* 滚动后阴影加深，强化悬浮感 */
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-}
+      /* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
+      .navbar.scrolled {
+        /* 滚动后背景加深，采用偏深蓝的工业灰，增强层次感但不压抑 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        /* 滚动后模糊度提升，饱和度微调增强质感 */
+        backdrop-filter: blur(15px) saturate(115%);
+        -webkit-backdrop-filter: blur(15px) saturate(115%);
+        /* 滚动后边框提亮，增强轮廓感 */
+        border-bottom: 1px solid rgba(180, 195, 210, 0.18);
+        /* 滚动后阴影加深，强化悬浮感 */
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      }
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
       .navbar .logo {
@@ -254,11 +256,12 @@
         top: 100%; /* 紧贴语言按钮下方 */
         right: 0; /* 与语言按钮右对齐 */
         background: linear-gradient(
-    135deg, /* 左上到右下 */
-    rgba(255, 255, 255, 0.9) 0%,  /* 白色 + 0.9透明度 */
-    rgba(248, 248, 250, 0.9) 50%, /* 浅灰1 + 0.9透明度 */
-    rgba(245, 245, 247, 0.9) 100% /* 浅灰2 + 0.9透明度 */
-  );
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.9) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.9) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.9) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
         border-radius: 8px; /* 匹配按钮圆角风格 */
         padding: 8px 0;
         margin: 0;
@@ -296,8 +299,6 @@
         color: #f5f5f7; /* 文字浅白色，保证高对比度 */
       }
 
-      
-
       /* —— 2.6 下拉菜单父容器 —— */
       .nav-item {
         position: relative; /* 作为下拉菜单的绝对定位上下文，确保菜单位置准确 */
@@ -315,11 +316,12 @@
         width: 100%;
         max-width: 100vw; /* 限制最大宽度为屏幕宽度，避免超宽溢出 */
         background: linear-gradient(
-    135deg, /* 左上到右下 */
-    rgba(255, 255, 255, 1) 0%,  /* 白色 + 0.9透明度 */
-    rgba(248, 248, 250, 1) 50%, /* 浅灰1 + 0.9透明度 */
-    rgba(245, 245, 247, 1) 100% /* 浅灰2 + 0.9透明度 */
-  );
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 1) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 1) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
         box-shadow: 0 1px 3px rgba(29, 29, 31, 0.5); /* 极淡阴影，避免厚重感 */
         z-index: 1001; /* 层级高于导航栏（1000），确保菜单显示在最上层 */
         border-radius: 0; /* 取消圆角，与屏幕边缘贴合，增强全屏感 */
@@ -379,7 +381,12 @@
       /* 分类项hover/激活状态：背景加深+文字加粗，突出当前项 */
       .category-item:hover,
       .category-item.active {
-        background-color: rgba(0, 0, 0, 0.08); /* 浅白半透明背景，与深背景区分 */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.08
+        ); /* 浅白半透明背景，与深背景区分 */
         font-weight: 500; /* 文字加粗，增强视觉识别度 */
       }
 
@@ -551,7 +558,12 @@
         width: 85%; /* 小屏幕占85%宽度，Tablet占70%，通过媒体查询调整 */
         max-width: 380px; /* 限制最大宽度，避免宽屏移动端菜单过宽 */
         height: 100vh; /* 占满屏幕高度 */
-        background-color: #1d1d1f; /* 深灰色背景，与导航风格统一 */
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         backdrop-filter: blur(10px); /* 背景模糊，增强玻璃拟态 */
         -webkit-backdrop-filter: blur(10px); /* 兼容Safari */
         z-index: 1000; /* 层级高于遮罩层（999），确保菜单显示优先 */
@@ -583,7 +595,7 @@
       .sidebar-logo {
         font-size: 1rem; /* 与导航栏LOGO字号一致 */
         font-weight: 500;
-        color: #f5f5f7;
+        color: #000000;
       }
       /* 侧边栏关闭按钮 */
       .sidebar-close-btn {
@@ -678,7 +690,7 @@
       .sidebar-submenu-link:hover,
       .sidebar-submenu-item.active .sidebar-submenu-link {
         background-color: rgba(255, 255, 255, 0.1);
-        color: #f5f5f7;
+        color: #000000;
       }
 
       /* —— 2.30 侧边栏三级内容区（产品列表，默认隐藏，激活分类时显示） —— */
@@ -731,7 +743,7 @@
       /* —— 2.35 三级内容区产品文字（产品名称，适配移动端） —— */
       .submenu-product-card p {
         font-size: 0.8rem; /* 字号缩小，适配小卡片 */
-        color: #f5f5f7; /* 文字浅白色 */
+        color: #000000; /* 文字浅白色 */
         margin: 0; /* 清除默认margin */
       }
 
@@ -1152,11 +1164,11 @@
         padding-top: 37%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
       }
 
       /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
@@ -1203,8 +1215,10 @@
         opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
         transition: opacity 0.5s ease;
         padding: 0 1rem; /* 左右留白，避免小屏文字贴边 */
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
+      }
 
       /* 激活状态：显示当前文字 */
       .banner-text.active {
@@ -1638,11 +1652,11 @@
       /* —— 4.1 板块外层容器：控制整体布局与定位上下文 —— */
       .product-center-section {
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
         position: relative; /* 作为产品滚动箭头的定位父容器 */
@@ -1662,7 +1676,9 @@
         font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
       }
@@ -1673,7 +1689,7 @@
         align-items: center; /* 分类项垂直居中 */
         gap: 0.5rem; /* 原8px → 16px基准下：8/16=0.5rem，分类项之间间距 */
         /* 苹果式半透明磨砂效果 */
-        background-color: #EEEEF2;
+        background-color: #eeeef2;
         backdrop-filter: blur(12px); /* 固定12px模糊，视觉效果优先 */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari浏览器 */
         padding: 0.25rem 0.75rem; /* 原4px 12px → 16px基准下：4/16=0.25rem，12/16=0.75rem */
@@ -1687,7 +1703,9 @@
         font-size: 0.8rem; /* 原11px → 16px基准下：11/16≈0.6875rem，小字号避免占用过多空间 */
         font-weight: 400;
         color: #000000; /* 浅灰文字，与分类栏背景区分 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         padding: 0.5rem 1.5rem; /* 原6px 16px → 16px基准下：6/16=0.375rem，16/16=1rem，保证点击区域 */
         border-radius: 9999px; /* 与分类栏圆角呼应 */
         cursor: pointer; /* 提示可点击 */
@@ -1726,7 +1744,7 @@
         /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
         -ms-overflow-style: none; /* IE/Edge */
         scrollbar-width: none; /* Firefox */
-        padding:2.5rem;
+        padding: 2.5rem;
       }
       .product-scroll-wrap::-webkit-scrollbar {
         display: none; /* Chrome/Safari */
@@ -1757,22 +1775,23 @@
         transition: transform 0.3s ease; /* 悬浮上浮过渡 */
         border-radius: 1.25rem;
         background: linear-gradient(
-    180deg, /* 从上到下 */
-    #FFFFFF 0%,
-    #EEEEF2 50%,
-    #E4E4EA 100%
-  );
-
+          180deg,
+          /* 从上到下 */ #ffffff 0%,
+          #eeeef2 50%,
+          #e4e4ea 100%
+        );
       }
       /* 卡片悬浮效果：轻微上浮，增强层次感 */
       .product-item:hover {
         transform: translateY(
           -0.375rem
         ); /* 原-6px → 16px基准下：6/16=0.375rem */
-        background: linear-gradient(180deg, 
-                rgba(0, 0, 0, 0.8) 8%, 
-                rgba(121, 121, 121, 0.5) 50%, 
-                rgba(204, 204, 204, 0.3) 100%);
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 8%,
+          rgba(121, 121, 121, 0.5) 50%,
+          rgba(204, 204, 204, 0.3) 100%
+        );
       }
 
       /* —— 4.11 产品卡片文字：产品名称展示 —— */
@@ -2096,11 +2115,11 @@
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         width: 100%; /* 占满屏幕宽度（无需转REM） */
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
@@ -2122,7 +2141,9 @@
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 6rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         line-height: 1.1; /* 紧凑行高，避免标题换行 */
@@ -2151,7 +2172,7 @@
         /* 隐藏滚动条（兼容补充） */
         -ms-overflow-style: none;
         scrollbar-width: none;
-         padding: 0 2.5rem; /* 原4px → 16px基准下：4/16=0.25rem，左右留白避免文字超出 */
+        padding: 0 2.5rem; /* 原4px → 16px基准下：4/16=0.25rem，左右留白避免文字超出 */
       }
       #benefitScroll::-webkit-scrollbar {
         display: none;
@@ -2216,11 +2237,11 @@
         box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1); /* 原0 4px 16px → 16px基准下：4/16=0.25rem，16/16=1rem，轻微阴影增强立体感 */
         transition: all 0.3s ease; /* 所有属性过渡（缩放+阴影） */
         background: linear-gradient(
-    180deg, /* 从上到下 */
-    #FFFFFF 0%,
-    #EEEEF2 50%,
-    #E4E4EA 100%
-  );
+          180deg,
+          /* 从上到下 */ #ffffff 0%,
+          #eeeef2 50%,
+          #e4e4ea 100%
+        );
         margin-top: 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，图片向下偏移避免贴边 */
       }
       /* 图片hover效果：轻微上浮+放大+阴影加深 */
@@ -2635,11 +2656,11 @@
       /* —— 6.1 板块容器基础样式（PX转REM，与前序板块内边距统一） —— */
       .sample-section {
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 80/16=5rem，120/16=7.5rem，匹配产品/优势板块 */
         position: relative;
@@ -2661,7 +2682,9 @@
         font-weight: 500; /* 偏细字体，契合苹果风精致感 */
         color: #000000; /* 浅灰文字，与深灰背景区分 */
         margin-bottom: 1.5rem; /* 原48px → 48/16=3rem，与副标题栏间距统一 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         text-align: left;
         line-height: 1.1; /* 保留行高，确保文字紧凑度 */
       }
@@ -2671,7 +2694,7 @@
         display: inline-flex;
         align-items: center;
         gap: 1.5rem; /* 原8px → 8/16=0.5rem，副标题项间距统一 */
-        background-color: #EEEEF2;
+        background-color: #eeeef2;
         backdrop-filter: blur(12px); /* 模糊效果保留（固定PX，视觉优先） */
         -webkit-backdrop-filter: blur(12px); /* 兼容Safari */
         padding: 0.25rem 1.5rem; /* 原4px 12px → 4/16=0.25rem，12/16=0.75rem */
@@ -2686,7 +2709,9 @@
         font-size: 0.8rem; /* 原11px → 11/16≈0.6875rem，小字号避免占用过多空间 */
         font-weight: 400;
         color: #000000; /* 浅灰文字，与分类栏背景区分 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         padding: 0.5rem 1.5rem; /* 原6px 16px → 6/16=0.375rem，16/16=1rem，保证点击区域 */
         border-radius: 9999px; /* 超圆圆角，与父容器呼应 */
         cursor: pointer;
@@ -3198,11 +3223,11 @@
       /* —— 7.1 板块容器基础样式（PX转REM，基于16px基准） —— */
       .advantage-section {
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 原80px=5rem，120px=7.5rem，与板块5统一 */
         position: relative;
@@ -3222,7 +3247,9 @@
         font-size: 3.5rem; /* 原64px=4rem，与板块5.benefit-main-title一致 */
         font-weight: 500; /* 偏细字体，保持风格统一 */
         color: #000000; /* 浅灰文字色，适配深灰背景 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 6rem; /* 原48px=3rem，与板块5一致 */
         text-align: left;
         line-height: 1.1;
@@ -3777,11 +3804,11 @@
     <style>
       .accessory-section {
         background: linear-gradient(
-    135deg, /* 从左上到右下 */
-    #ffffff 0%, 
-    #f8f8fa 50%, 
-    #f5f5f7 100%
-  );
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
         width: 100%;
         padding: 5rem 0 7.5rem; /* 与其他板块一致：为箭头预留底部空间 */
         position: relative; /* 作为滚动箭头的定位父容器（关键：确保箭头基于板块定位） */
@@ -3802,7 +3829,9 @@
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
         font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
         color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
         margin-bottom: 3rem; /* 16px基准：48px，与下方内容间距 */
         text-align: left; /* 左对齐，符合阅读习惯 */
         line-height: 1.1; /* 紧凑行高，避免标题换行 */
@@ -5231,7 +5260,7 @@
       </div>
     </nav>
 
-    <!-- 新增：侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
+    <!-- 新增：手机移动端的侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
     <div class="sidebar-menu" id="sidebarMenu">
       <!-- 侧边栏头部（LOGO+关闭按钮） -->
       <div class="sidebar-header">
@@ -5317,7 +5346,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting.webp"
+                      src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
                       alt="Senrytech A 经济款光纤激光切割机"
                     />
                     <p>Senrytech A</p>
@@ -5890,7 +5919,7 @@
                   alt="3000W 以下光纤激光切割机"
                 />
               </a>
-              <p>Senrytech A</br>・经济实惠・稳定可靠・新手首选</p>
+              <p>Senrytech A<br />·经济实惠·稳定可靠·新手首选</p>
               <div class="info-btn"></div>
             </div>
 
@@ -5905,7 +5934,7 @@
                   alt="12000W光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B</br>・床身更重・可切厚板・性能更强</p>
+              <p>Senrytech B<br />・床身更重・可切厚板・性能更强</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5921,7 +5950,7 @@
                   alt="省空间光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Plus</br>・侧开包围・占地更小・使用方便</p>
+              <p>Senrytech B Plus<br />・侧开包围・占地更小・使用方便</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5936,7 +5965,7 @@
                   alt="批量加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Pro</br>·上料超快·产量更高·省人工</p>
+              <p>Senrytech B Pro<br />·上料超快·产量更高·省人工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5951,7 +5980,7 @@
                   alt="安全加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B ProMax</br>・全包围罩・欧洲合规・安全防护</p>
+              <p>Senrytech B ProMax<br />・全包围罩・欧洲合规・安全防护</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5966,7 +5995,7 @@
                   alt="自动化工厂光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Ultra</br>・全自动料・无人生产・顶配效率</p>
+              <p>Senrytech B Ultra<br />・全自动料・无人生产・顶配效率</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5981,7 +6010,7 @@
                   alt="铝板光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C</br>・铝卷切割・连续送料・薄铝专用</p>
+              <p>Senrytech C<br />・铝卷切割・连续送料・薄铝专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -5996,7 +6025,7 @@
                   alt="防护型铝卷光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C Pro</br>・铝卷专用・全包围罩・安全整洁</p>
+              <p>Senrytech C Pro<br />・铝卷专用・全包围罩・安全整洁</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6011,7 +6040,7 @@
                   alt="长幅光纤激光切割机"
                 />
               </a>
-              <p>Senrytech G</br>・超长地轨・超大功率・重型切割</p>
+              <p>Senrytech G<br />・超长地轨・超大功率・重型切割</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6026,7 +6055,7 @@
                   alt="高精度迷你激光切割机"
                 />
               </a>
-              <p>Senrytech M</br>・迷你机身・超高精度・精密加工</p>
+              <p>Senrytech M<br />・迷你机身・超高精度・精密加工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6041,7 +6070,7 @@
                   alt="槽钢光纤激光切割机"
                 />
               </a>
-              <p>Senrytech S</br>・专切型钢・长度够长・型材专用</p>
+              <p>Senrytech S<br />・专切型钢・长度够长・型材专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -6058,7 +6087,7 @@
                   alt="小口径管材切割机"
                 />
               </a>
-              <p>Senrytech A2</br>・经济款・双卡盘・小口径专用</p>
+              <p>Senrytech A2<br />・经济款・双卡盘・小口径专用</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6071,7 +6100,7 @@
                   alt="高功率电机管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Plus</br>・床身加固・高功率・中厚管高效</p>
+              <p>Senrytech A2 Plus<br />・床身加固・高功率・中厚管高效</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6084,7 +6113,7 @@
                   alt="侧挂式管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Ultra</br>・侧挂结构・双卡盘・特殊场景适配</p>
+              <p>Senrytech A2 Ultra<br />・侧挂结构・双卡盘・特殊场景适配</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6097,7 +6126,7 @@
                   alt="三卡盘加持管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Plus</br>・三卡盘・正装升级・批量加工优选</p>
+              <p>Senrytech B3 Plus<br />・三卡盘・正装升级・批量加工优选</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6110,7 +6139,7 @@
                   alt="创新结构管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Ultra</br>・侧挂创新・三卡盘・高效兼特殊</p>
+              <p>Senrytech B3 Ultra<br />・侧挂创新・三卡盘・高效兼特殊</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -6123,7 +6152,7 @@
                   alt="高阶定制化管材切割机"
                 />
               </a>
-              <p>Senrytech C4 Ultra</br>・四卡盘・高阶定制・大批次量产</p>
+              <p>Senrytech C4 Ultra<br />・四卡盘・高阶定制・大批次量产</p>
             </div>
 
             <!-- 3. 板管一体分类：4个卡片（默认隐藏） -->
@@ -6138,7 +6167,7 @@
                   alt="亲民价板管切割机"
                 />
               </a>
-              <p>Senrytech BT</br>・高性价比・板管兼顾・入门首选</p>
+              <p>Senrytech BT<br />・高性价比・板管兼顾・入门首选</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6151,7 +6180,7 @@
                   alt="高效生产板管一体机"
                 />
               </a>
-              <p>Senrytech BT Pro</br>・交换平台・高效流转・减少停机</p>
+              <p>Senrytech BT Pro<br />・交换平台・高效流转・减少停机</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6164,7 +6193,7 @@
                   alt="全钣金包围板管切割机"
                 />
               </a>
-              <p>Senrytech BT Promax</br>・钣金包围・防尘降噪・安全防护</p>
+              <p>Senrytech BT Promax<br />・钣金包围・防尘降噪・安全防护</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -6177,7 +6206,9 @@
                   alt="智能板管一体加工机"
                 />
               </a>
-              <p>Senrytech BT Ultra</br>・全自动上下料・24h 无人化・产能拉满</p>
+              <p>
+                Senrytech BT Ultra<br />・全自动上下料・24h 无人化・产能拉满
+              </p>
             </div>
 
             <!-- 4. 焊接分类：3个卡片（默认隐藏） -->
@@ -6192,7 +6223,7 @@
                   alt="焊接切割清渣除锈一体机"
                 />
               </a>
-              <p>Senrytech A</br>・入门首选・四合一・轻便易携</p>
+              <p>Senrytech A<br />・入门首选・四合一・轻便易携</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6206,7 +6237,7 @@
                   alt="双丝送丝激光焊接机"
                 />
               </a>
-              <p>Senrytech A Pro</br>・三档功率・分体散热・8mm 厚板焊</p>
+              <p>Senrytech A Pro<br />・三档功率・分体散热・8mm 厚板焊</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6220,7 +6251,9 @@
                   alt="大功率激光焊接机"
                 />
               </a>
-              <p>Senrytech A Ultra</br>・6000W 超高功率・四丝送丝・16mm 厚板焊</p>
+              <p>
+                Senrytech A Ultra<br />・6000W 超高功率・四丝送丝・16mm 厚板焊
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6234,7 +6267,7 @@
                   alt="SUP23T 专业枪头激光焊接机"
                 />
               </a>
-              <p>Senrytech R 4in1</br>・入门首选・专业枪头・四合一</p>
+              <p>Senrytech R 4in1<br />・入门首选・专业枪头・四合一</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6248,7 +6281,9 @@
                   alt="灵活部署激光焊接机"
                 />
               </a>
-              <p>Senrytech R workstation</br>・移动工作站・功率可调・柔性生产</p>
+              <p>
+                Senrytech R workstation<br />・移动工作站・功率可调・柔性生产
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -6262,7 +6297,7 @@
                   alt="1500-3000W 机器人焊接机"
                 />
               </a>
-              <p>Senrytech R mobile</br>・协作机器人・24h 无人・批量稳焊</p>
+              <p>Senrytech R mobile<br />・协作机器人・24h 无人・批量稳焊</p>
             </div>
 
             <!-- 5. 清洗分类：5个卡片（默认隐藏） -->
@@ -6277,7 +6312,7 @@
                   alt="小型除锈激光清洗机"
                 />
               </a>
-              <p>Senrytech Residential</br>・背包式・家用・双电机遥控</p>
+              <p>Senrytech Residential<br />・背包式・家用・双电机遥控</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -6291,7 +6326,7 @@
                   alt="多功率商用清洗设备"
                 />
               </a>
-              <p>Senrytech Commercial</br>・拉杆箱式・商用便携・多功率</p>
+              <p>Senrytech Commercial<br />・拉杆箱式・商用便携・多功率</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -6305,7 +6340,7 @@
                   alt="工业级激光清洗设备"
                 />
               </a>
-              <p>Senrytech Industrial</br>・工业级・大功率・高效稳定</p>
+              <p>Senrytech Industrial<br />・工业级・大功率・高效稳定</p>
             </div>
 
             <!-- 6. 打标分类：2个卡片（默认隐藏） -->
@@ -6320,7 +6355,7 @@
                   alt="便携台式打标设备"
                 />
               </a>
-              <p>Senrytech P</br>・便携台式・高精准・多材质适配</p>
+              <p>Senrytech P<br />・便携台式・高精准・多材质适配</p>
             </div>
             <div class="product-item hidden" data-tab="mark">
               <a
@@ -6333,7 +6368,7 @@
                   alt="高效稳定打标设备"
                 />
               </a>
-              <p>Senrytech D</br>・台式设计・高精准・多材质适配</p>
+              <p>Senrytech D<br />・台式设计・高精准・多材质适配</p>
             </div>
           </div>
         </div>

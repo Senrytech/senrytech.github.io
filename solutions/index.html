@@ -1314,6 +1314,66 @@
   box-sizing: border-box; /* 继承全局盒模型规则，避免padding影响宽高 */
   margin: 0 auto; /* 可选：水平居中，适配产品卡片居中布局 */
 }
+/* 标题父容器：相对定位（作为吉祥物绝对定位的参考） */
+.title-box {
+  position: relative; /* 核心：让子元素绝对定位以它为基准 */
+  text-align: center; /* 标题居中（保持你原有页面布局） */
+  margin: 0 auto;
+  max-width: 1200px; /* 适配大屏，可根据页面调整 */
+}
+
+/* 原有标题样式：轻微调整行高/内边距，给图片留出空间 */
+.selector-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+  line-height: 1.4; /* 加大行高，避免图片遮挡文字 */
+  padding-right: 60px; /* 右侧留空，适配图片位置，可微调 */
+}
+
+/* 吉祥物图片：绝对定位实现“倚靠”效果 */
+.title-mascot {
+  position: absolute; /* 核心：脱离文档流，相对父容器定位 */
+  top: -100px; /* 向上偏移，靠在标题上方，可微调 */
+  right: 50%; /* 水平居中偏移，配合translateX右移 */
+  transform: translateX(450px); /* 精调水平位置，实现“倚靠”，可微调 */
+  width: 200px; /* 图片宽度，根据实际需求调整，建议小尺寸更精致 */
+  height: auto; /* 高度自适应，防止图片变形 */
+  z-index: 2; /* 层级高于标题，确保图片在最上层 */
+  transition: all 0.3s ease; /* 可选：hover轻微动效，更生动 */
+}
+
+/* 响应式适配：小屏缩小图片，调整位置，避免遮挡 */
+@media (max-width: 768px) {
+  .selector-title {
+    padding-right: 40px; /* 小屏减少右侧留空 */
+    font-size: 1.75rem;
+  }
+  .title-mascot {
+    width: 40px; /* 小屏缩小图片 */
+    transform: translateX(80px); /* 小屏微调水平位置 */
+  }
+  .title-box:hover .title-mascot {
+    transform: translateX(80px) rotate(5deg);
+  }
+}
+@media (max-width: 425px) {
+  .selector-title {
+    padding-right: 30px;
+    font-size: 1.5rem;
+  }
+  .title-mascot {
+    width: 30px;
+    transform: translateX(60px);
+  }
+  .title-box:hover .title-mascot {
+    transform: translateX(60px) rotate(5deg);
+  }
+}
 
 /* 箭头动画 */
 @keyframes arrowPulse {
@@ -2887,7 +2947,10 @@
 
     <!-- 板块3：激光切割机快速选型 -->
     <section class="selector-section">
+        <div class="title-box"> 
     <h2 class="selector-title">一图读懂Senrytech板材激光切割机</h2>
+    <img src="../img/contact-us/senrytech-mascot-2.png" alt="mascot" class="title-mascot"> <!-- 吉祥物图片 -->
+</div>
     
     <!-- 常规机型组 -->
     <div class="machine-group">

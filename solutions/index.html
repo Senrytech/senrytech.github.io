@@ -1151,131 +1151,338 @@
       }
     </style>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
+    <style>/* 板块3 核心样式 */
+.selector-section {
+  width: 100%;
+  padding: 4rem 2rem;
+  background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+}
 
-      body {
-        background: #f5f5f7;
-        padding: 60px 20px;
-      }
+/* 主标题样式 - 苹果风格轻量级标题 */
+.selector-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards;
+}
 
-      /* 标题 */
-      .section-title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 600;
-        color: #1d1d1f;
-        margin-bottom: 50px;
-      }
-      .section-sub {
-        text-align: center;
-        font-size: 18px;
-        color: #86868b;
-        margin-bottom: 70px;
-      }
+/* 机型组容器 */
+.machine-group {
+  margin-bottom: 4rem;
+}
 
-      /* 主升级线 */
-      .upgrade-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 24px;
-        margin-bottom: 80px;
-        flex-wrap: wrap;
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+/* 副标题样式 */
+.group-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid #0071e3; /* 苹果蓝强调色 */
+}
 
-      /* 机型卡片 */
-      .card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 30px 24px;
-        width: 220px;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-      }
-      .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      }
-      .card img {
-        width: 100%;
-        height: 130px;
-        object-fit: contain;
-        margin-bottom: 18px;
-      }
-      .card .name {
-        font-size: 20px;
-        font-weight: 600;
-        color: #1d1d1f;
-        margin-bottom: 6px;
-      }
-      .card .tag {
-        font-size: 13px;
-        color: #86868b;
-        margin-bottom: 12px;
-      }
-      .card .spec {
-        font-size: 12px;
-        color: #1d1d1f;
-        line-height: 1.4;
-        margin-bottom: 10px;
-      }
-      .card .plus {
-        font-size: 13px;
-        font-weight: 600;
-        color: #007aff;
-      }
+/* 机型列表容器 - 重构：统一网格布局基础，大屏多列，小屏单列 */
+.machine-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 从左开始排 */
+  flex-wrap: nowrap; /* 强制不换行，核心！ */
+  gap: 1rem; /* 统一间距 */
+  width: 100%;
+  padding-bottom: 1rem;
+  overflow-x: auto; /* 小屏时可以横向滚动 */
+  scrollbar-width: none;
+}
 
-      /* 箭头 */
-      .arrow {
-        font-size: 20px;
-        color: #007aff;
-        font-weight: bold;
-      }
+/* 机型卡片样式 - 苹果风格卡片 */
+.machine-card {
+  /* 原有样式 */
+  width: 100%;
+  max-width: 14rem;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  cursor: pointer;
+  background: linear-gradient(145deg, #f0f0f2, #e0e0e2); /* 模拟键帽的双色塑料感 */
+  border-radius: 1.25rem;
+  padding: 1.25rem 1rem;
+  /* 立体核心：多层阴影模拟厚度 */
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.05),  /* 最底层阴影 */
+    0 3px 6px rgba(0, 0, 0, 0.08),  /* 中层阴影 */
+    inset 0 2px 0 rgba(255, 255, 255, 0.6), /* 顶部高光，模拟倒角 */
+    inset 0 -2px 0 rgba(0, 0, 0, 0.1);  /* 底部暗线，模拟厚度 */
+  position: relative;
+  overflow: hidden;
+}
 
-      /* 专用机型区 */
-      .special-row {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .special-row .card {
-        width: 200px;
-        padding: 24px 16px;
-      }
-      .special-row .card img {
-        height: 110px;
-      }
+/* 模拟键盘键帽的“边缘反光” */
+.machine-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+  border-radius: 1.25rem 1.25rem 0 0;
+  pointer-events: none;
+}
 
-      /* 手机适配 */
-      @media (max-width: 768px) {
-        .upgrade-row {
-          flex-direction: column;
-        }
-        .arrow {
-          transform: rotate(90deg);
-          margin: 10px 0;
-        }
-        .card,
-        .special-row .card {
-          width: 100%;
-          max-width: 320px;
-        }
-      }
-    </style>
+.machine-card:hover {
+  transform: translateY(2px) scale(0.98); /* 向下压+轻微缩小，模拟键帽按下 */
+  box-shadow: 
+    0 1px 1px rgba(0, 0, 0, 0.1),  /* 阴影变浅，模拟下陷 */
+    inset 0 1px 2px rgba(0, 0, 0, 0.1); /* 内阴影加深，模拟按压 */
+}
+
+.machine-card:active {
+  transform: translateY(4px) scale(0.96); /* 点击时再压深一点 */
+  box-shadow: 
+    0 0 0 rgba(0, 0, 0, 0), 
+    inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* 机型图片容器 */
+.machine-img {
+  width: 100%;
+  height: 10rem;
+  border-radius: 0.75rem;
+  background: transparent;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.machine-img img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.machine-card:hover .machine-img img {
+  transform: scale(1.5);
+}
+
+/* 机型名称 */
+.machine-name {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #1d1d1f;
+  margin-bottom: 0.5rem;
+}
+
+/* 机型特点 - 渐变色文字 */
+.machine-feature {
+  font-size: 0.875rem;
+  background: linear-gradient(90deg, #01509e, #04be32); /* 苹果蓝+苹果绿渐变 */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.4;
+}
+
+/* 升级箭头样式 - 小屏显示，大屏隐藏 */
+.upgrade-arrow {
+  color: #0071e3;
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0.7;
+  animation: arrowPulse 2s infinite ease-in-out;
+  text-align: center; /* 箭头居中 */
+}
+/* —— 产品卡片链接样式（新增） —— */
+.machine-card-link {
+  text-decoration: none; /* 去掉下划线 */
+  color: inherit; /* 继承父级文字颜色 */
+  width: 15rem; /* 宽度：15rem（对应240px，适配现有REM基准） */
+  height: auto; /* 高度自适应（推荐，避免固定高度导致内容溢出）；如需固定高度可改为：height: 20rem; */
+  display: block; /* 转为块级元素，确保width/height生效 */
+  box-sizing: border-box; /* 继承全局盒模型规则，避免padding影响宽高 */
+  margin: 0 auto; /* 可选：水平居中，适配产品卡片居中布局 */
+}
+
+/* 箭头动画 */
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  50% { transform: translateX(5px); opacity: 1; }
+}
+
+/* 标题渐入动画 */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 卡片加载动画 */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 为每个卡片添加延迟动画 */
+.machine-card {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+.machine-card:nth-child(1) { animation-delay: 0.1s; }
+.machine-card:nth-child(2) { animation-delay: 0.2s; }
+.machine-card:nth-child(3) { animation-delay: 0.3s; }
+.machine-card:nth-child(4) { animation-delay: 0.4s; }
+.machine-card:nth-child(5) { animation-delay: 0.5s; }
+.machine-card:nth-child(6) { animation-delay: 0.6s; }
+.machine-card:nth-child(7) { animation-delay: 0.7s; }
+
+/* ========== 响应式适配 - 核心：缩小各尺寸下的gap，优化间距 ========== */
+/* 超小屏 (≤320px) - 1列布局 */
+@media (max-width: 320px) {
+  .selector-section {
+    padding: 2rem 1rem;
+  }
+  .selector-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .machine-card {
+    max-width: 10rem;
+    padding: 1rem 0.75rem;
+  }
+  .machine-img {
+    height: 7rem;
+  }
+  .group-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .upgrade-arrow {
+    font-size: 1.2rem;
+  }
+}
+
+/* 小屏手机 (321px ~ 375px) - 1列布局 */
+@media (min-width: 321px) and (max-width: 375px) {
+  .selector-section {
+    padding: 2.5rem 1.25rem;
+  }
+  .selector-title {
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .machine-card {
+    max-width: 11rem;
+    padding: 1rem 0.8rem;
+  }
+  .machine-img {
+    height: 8rem;
+  }
+  .group-subtitle {
+    font-size: 1.1rem;
+  }
+}
+
+/* 大屏手机 (376px ~ 425px) - 1列布局 */
+@media (min-width: 376px) and (max-width: 425px) {
+  .machine-card {
+    max-width: 12rem;
+  }
+  .machine-img {
+    height: 8.5rem;
+  }
+}
+
+/* 平板 (426px ~ 768px) - 2列布局（小屏多行多列） */
+@media (min-width: 426px) and (max-width: 768px) {
+  .selector-section {
+    padding: 3rem 2rem;
+  }
+  .machine-list {
+    grid-template-columns: repeat(2, 1fr); /* 2列 */
+    gap: 1.2rem; /* 核心：平板间距从2rem→1.2rem */
+  }
+  .machine-card {
+    max-width: 13rem;
+  }
+}
+
+/* 小屏电脑 (769px ~ 1023px) - 3列布局（多行多列） */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .machine-list {
+    grid-template-columns: repeat(3, 1fr); /* 3列 */
+    gap: 1.2rem; /* 核心：小屏电脑间距从2rem→1.2rem */
+  }
+  .machine-card {
+    max-width: 15rem;
+  }
+}
+
+/* 大屏桌面 (1024px ~ 1440px) - 5列布局（1行5列） */
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .selector-section {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+  .machine-list {
+    grid-template-columns: repeat(5, 1fr); /* 1行5列 */
+    gap: 1.2rem; /* 核心：大屏桌面间距从默认1rem微调为1.2rem（避免过挤） */
+  }
+  .machine-card {
+    max-width: 14rem;
+  }
+  .machine-img {
+    height: 10rem;
+  }
+  .selector-title {
+    font-size: 2.25rem;
+    margin-bottom: 4rem;
+  }
+}
+
+/* 超大屏 (≥1441px) - 6列布局（1行6列） */
+@media (min-width: 1441px) {
+  .selector-section {
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 5rem 4rem;
+  }
+  .machine-list {
+    grid-template-columns: repeat(6, 1fr); /* 1行6列 */
+    gap: 1.5rem; /* 核心：超大屏间距从2rem→1.5rem */
+  }
+  .machine-card {
+    max-width: 16rem;
+  }
+  .machine-img {
+    height: 11rem;
+  }
+  .selector-title {
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+  }
+}</style>
 
     <!--九、底部导航模块 -->
     <style>
@@ -1473,6 +1680,7 @@
       @media (min-width: 2560px) {
       }
     </style>
+    
   </head>
 
   <body>
@@ -2678,102 +2886,157 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- 板块3：激光切割机快速选型 -->
-    <section>
-      <h2 class="section-title">Laser Cutting Machine Series</h2>
-      <p class="section-sub">Complete Upgrade Path · From Entry to Flagship</p>
-
-      <!-- 主升级路线 -->
-      <div class="upgrade-row">
-        <div class="card">
-          <img
-            src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-            alt="A Series"
-          />
-          <div class="name">A Series</div>
-          <div class="tag">Economic · Entry</div>
-          <div class="spec">≤3000W<br />1.0G · ±0.05mm</div>
-          <div class="plus">Genuine Parts · Best Value</div>
+    <section class="selector-section">
+    <h2 class="selector-title">一图读懂Senrytech板材激光切割机</h2>
+    
+    <!-- 常规机型组 -->
+    <div class="machine-group">
+  <h3 class="group-subtitle">常规机型</h3>
+  <div class="machine-list regular-list">
+    <!-- 机型1 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/" class="machine-card-link"> <!-- 新增超链接标签 -->
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp" alt="Senrytech A 激光切割机">
         </div>
-
-        <div class="arrow">↗</div>
-
-        <div class="card">
-          <img src="b.jpg" alt="B Series" />
-          <div class="name">B Series</div>
-          <div class="tag">Standard · Stable</div>
-          <div class="spec">Up to 12000W<br />1.5G · ±0.05mm</div>
-          <div class="plus">Reinforced Bed</div>
-        </div>
-
-        <div class="arrow">↗</div>
-
-        <div class="card">
-          <img src="bpro.jpg" alt="B Pro" />
-          <div class="name">B Pro</div>
-          <div class="tag">High Efficiency</div>
-          <div class="spec">Up to 12000W<br />2.0G · ±0.05mm</div>
-          <div class="plus">10s Exchange Table</div>
-        </div>
-
-        <div class="arrow">↗</div>
-
-        <div class="card">
-          <img src="promax.jpg" alt="B ProMax" />
-          <div class="name">B ProMax</div>
-          <div class="tag">Full Protection</div>
-          <div class="spec">Same as B Pro</div>
-          <div class="plus">Full Cover · EU Safe</div>
-        </div>
-
-        <div class="arrow">↗</div>
-
-        <div class="card">
-          <img src="ultra.jpg" alt="B Ultra" />
-          <div class="name">B Ultra</div>
-          <div class="tag">Flagship · Full Auto</div>
-          <div class="spec">Same as ProMax</div>
-          <div class="plus">Auto Loading & Unloading</div>
-        </div>
+        <h4 class="machine-name">Senrytech A</h4>
+        <p class="machine-feature">薄板多到切不完，钱包还能笑开花 ✨</p>
       </div>
-
-      <!-- 专用机型 -->
-      <div class="special-row">
-        <div class="card">
-          <img src="bplus.jpg" alt="B Plus" />
-          <div class="name">B Plus</div>
-          <div class="tag">Space Saving</div>
-          <div class="plus">Side Open · Full Cover</div>
+    </a>
+    
+    <!-- 升级箭头 -->
+    <div class="upgrade-arrow">→</div>
+    
+    <!-- 机型2 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp" alt="Senrytech B 激光切割机">
         </div>
-
-        <div class="card">
-          <img src="m.jpg" alt="M Series" />
-          <div class="name">M Series</div>
-          <div class="tag">High Precision</div>
-          <div class="plus">±8μm · Mini Enclosure</div>
-        </div>
-
-        <div class="card">
-          <img src="g.jpg" alt="G Series" />
-          <div class="name">G Series</div>
-          <div class="tag">Long Size</div>
-          <div class="plus">12–14m · 12000W–60000W</div>
-        </div>
-
-        <div class="card">
-          <img src="s.jpg" alt="S Series" />
-          <div class="name">S Series</div>
-          <div class="tag">Steel Profile</div>
-          <div class="plus">H/C Beam · Channel</div>
-        </div>
-
-        <div class="card">
-          <img src="c.jpg" alt="C Series" />
-          <div class="name">C / C Pro</div>
-          <div class="tag">Aluminum Coil</div>
-          <div class="plus">0.5–2mm · 15T</div>
-        </div>
+        <h4 class="machine-name">Senrytech B</h4>
+        <p class="machine-feature">中厚板拿捏得死死的，耐用度直接拉满 💪</p>
       </div>
-    </section>
+    </a>
+    
+    <!-- 升级箭头 -->
+    <div class="upgrade-arrow">→</div>
+    
+    <!-- 机型3 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp" alt="Senrytech C 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech B Pro</h4>
+        <p class="machine-feature">半自动上料，打工人的摸鱼好帮手 🕒</p>
+      </div>
+    </a>
+    
+    <!-- 升级箭头 -->
+    <div class="upgrade-arrow">→</div>
+    
+    <!-- 机型4 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp" alt="Senrytech D 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech B ProMax</h4>
+        <p class="machine-feature">半自动上料 + 安全 buff，老板放心我开心 😎</p>
+      </div>
+    </a>
+    
+    <!-- 升级箭头 -->
+    <div class="upgrade-arrow">→</div>
+    
+    <!-- 机型5 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp" alt="Senrytech E 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech B Ultra</h4>
+        <p class="machine-feature">全自动上下料，彻底解放双手，我躺平它干活 🤖</p>
+      </div>
+    </a>
+  </div>
+</div>
+    
+    <!-- 特殊机型组 -->
+    <div class="machine-group">
+  <h3 class="group-subtitle">特殊机型</h3>
+  <div class="machine-list regular-list">
+    <!-- 机型1 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/" class="machine-card-link"> <!-- 新增超链接标签 -->
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp" alt="Senrytech A 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech B Plus</h4>
+        <p class="machine-feature">场地再小也不怕，我是空间管理大师 🧩</p>
+      </div>
+    </a>
+    
+    
+    <!-- 机型2 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp" alt="Senrytech B 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech C</h4>
+        <p class="machine-feature">铝卷分切小能手，精度高到没朋友 🎯</p>
+      </div>
+    </a>
+    
+    
+    <!-- 机型3 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp" alt="Senrytech C 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech C Pro</h4>
+        <p class="machine-feature">铝卷分切 + 安全防护，安全感直接拉满 🛡️</p>
+      </div>
+    </a>
+    
+    
+    <!-- 机型4 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp" alt="Senrytech D 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech G</h4>
+        <p class="machine-feature">超长工件？放马过来，我专治各种不服 🚀</p>
+      </div>
+    </a>
+    
+    
+    <!-- 机型5 -->
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp" alt="Senrytech E 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech M</h4>
+        <p class="machine-feature">精密零件加工，细活到让处女座都满意 🧐</p>
+      </div>
+    </a>
+
+    <a href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/" class="machine-card-link">
+      <div class="machine-card">
+        <div class="machine-img">
+          <img src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp" alt="Senrytech E 激光切割机">
+        </div>
+        <h4 class="machine-name">Senrytech S</h4>
+        <p class="machine-feature">型钢切割专属选手，专业的事交给专业的我 🎯</p>
+      </div>
+    </a>
+  </div>
+</div>
+  </section>
 
     <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">

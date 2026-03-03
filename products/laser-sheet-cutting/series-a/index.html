@@ -1264,24 +1264,20 @@
       /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
       .banner-btns {
         display: flex; /* 按钮横向排列 */
-    justify-content: center; /* 按钮组水平居中 */
-    gap: clamp(0.8rem, 2vw, 1.5rem); /* 响应式间距 */
-    flex-wrap: wrap; /* 🔥 修复3：允许小屏换行，避免按钮挤压 */
-    padding: 0 1rem;
-  }
+        justify-content: center; /* 按钮组水平居中 */
+        gap: 1.5rem; /* 按钮间距，避免拥挤 */
+        flex-wrap: nowrap; /* 强制不换行，保持横向布局 */
+      }
 
       /* 基础按钮样式 */
       .banner-btn {
-        padding: clamp(0.4rem, 1vw, 0.5rem) clamp(1rem, 2vw, 1.5rem); /* 响应式内边距 */
-    border-radius: 9999px; /* 超圆圆角 */
-    font-size: clamp(0.9rem, 1.5vw, 1rem); /* 响应式字号 */
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease; /* 优化：过渡所有属性（背景+颜色+边框） */
-    white-space: nowrap; /* 按钮文字不换行 */
-    min-height: 2.5rem; /* 兜底高度，保证点击区域 */
-    min-width: 8rem; /* 兜底宽度，避免按钮过窄 */
-  }
+        padding: 0.5rem 1.5rem; /* 内边距：保证点击区域大小 */
+        border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+        font-size: 1rem; /* 基础字号，确保可读性 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        border: none; /* 清除默认边框 */
+        transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
+      }
 
       /* 「了解更多」按钮（主按钮） */
       .learn-more-btn {
@@ -1292,25 +1288,22 @@
       }
 
       .learn-more-btn:hover {
-        background-color: #0066cc; /* hover加深 */
-    transform: translateY(-2px); /* 轻微上浮，提升交互感 */
-    box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3); /* 增加阴影，突出层级 */
-  }
+        background-color: #0066cc; /* hover时加深蓝色，强化反馈 */
+        text-decoration: none; /* 可选：确保hover时也不会出现下划线 */
+      }
 
       /* 「立即购买」按钮（次按钮） */
       .buy-btn {
-        background-color: transparent;
-    color: #0071e3;
-    border: 1px solid #0071e3; /* 🔥 修复4：用px替代rem，小屏边框不模糊 */
-  }
+        background-color: transparent; /* 透明背景 */
+        color: #0071e3; /* 蓝色文字，与主按钮呼应 */
+        border: 0.1rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+      }
 
       .buy-btn:hover {
-        background-color: #0066cc;
-    color: #f5f5f7;
-    border-color: #0066cc;
-    transform: translateY(-2px); /* 与主按钮交互统一 */
-    box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3);
-  }
+        background-color: #0066cc; /* hover时背景变蓝 */
+        color: #f5f5f7; /* 文字变白 */
+        border-color: #0066cc; /* 边框同步变色，保持样式统一 */
+      }
 
       /* ================================== BANNER模块媒体查询适配 ================================== */
       /* 适配逻辑：按「屏幕从小到大」排序，仅修改当前断点需调整的属性，复用基础样式 */
@@ -5454,7 +5447,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
-                        src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                        src="../../../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
                         alt="Senrytech A 经济款光纤激光切割机"
                       />
                     </a>
@@ -5471,7 +5464,7 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
-                        src="./img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        src="../../../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
                         alt="Senrytech B 中厚板光纤激光切割机"
                       />
                     </a>
@@ -7413,7 +7406,7 @@
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="../../../../senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="../../../img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
@@ -7493,14 +7486,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="../../../img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="../../../../senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="../../../img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>

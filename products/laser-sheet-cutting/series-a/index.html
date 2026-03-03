@@ -73,56 +73,62 @@
         overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
       }
 
-      /* ================================== 1.5 全局基础样式-REM配置（核心：1rem基准=16px，适配不同屏幕） ================================== */
-      /* 说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
+      /* ================================== 一、全局基础样式-REM（1:16基准核心：1rem基准=16px） ================================== */
+      /* 子模块说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
 
-      /* 1.5.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
+      /* 1.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
       /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
       @media (max-width: 320px) {
         html {
-          font-size: 14px;
+          font-size: 12px; /* 原8.53px→12px：优化小屏文字清晰度，例：24px=2rem */
         }
       }
 
+      /* 1.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
+      /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
       @media (min-width: 321px) and (max-width: 375px) {
         html {
-          font-size: 15px;
+          font-size: 14px; /* 原10px→14px：避免小屏元素过小，同时向16px基准过渡 */
         }
       }
 
+      /* 1.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
+      /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
       @media (min-width: 376px) and (max-width: 425px) {
         html {
-          font-size: 16px;
+          font-size: 15px; /* 原11.33px→15px：缩小与16px基准的差距，优化大屏手机布局 */
         }
       }
 
+      /* 1.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
+      /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
       @media (min-width: 426px) and (max-width: 768px) {
         html {
-          font-size: 16px;
+          font-size: 16px; /* 原14px→16px：平板屏空间足够，直接启用1:16核心基准 */
         }
       }
 
+      /* 1.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
+      /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
       @media (min-width: 769px) and (max-width: 1024px) {
         html {
-          font-size: 16px;
+          font-size: 16px; /* 原15px→16px：核心场景严格对齐1:16基准，确保设计还原度 */
         }
       }
 
-      @media (min-width: 1025px) and (max-width: 1440px) {
+      /* 1.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
+      /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
         html {
-          font-size: 16px;
+          font-size: 16px; /* 不变：2K屏无需放大基准，16px=1rem可避免布局松散 */
         }
       }
 
-      @media (min-width: 1441px) and (max-width: 2560px) {
+      /* 1.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
+      /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
+      @media (min-width: 2560px) {
         html {
-          font-size: 17px;
-        }
-      }
-
-      @media (min-width: 2561px) {
-        html {
-          font-size: 18px;
+          font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
         }
       }
     </style>
@@ -1249,28 +1255,33 @@
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
       .banner-text p {
-        font-size: 1.5rem; /* 小于标题字号，明确层级 */
+        font-size: 1rem; /* 小于标题字号，明确层级 */
         margin-bottom: 1.5rem; /* 与按钮组间距 */
+        letter-spacing: 0.05rem;
         font-weight: 400;
       }
 
       /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
       .banner-btns {
         display: flex; /* 按钮横向排列 */
-        justify-content: center; /* 按钮组水平居中 */
-        gap: 1.5rem; /* 按钮间距，避免拥挤 */
-        flex-wrap: nowrap; /* 强制不换行，保持横向布局 */
-      }
+    justify-content: center; /* 按钮组水平居中 */
+    gap: clamp(0.8rem, 2vw, 1.5rem); /* 响应式间距 */
+    flex-wrap: wrap; /* 🔥 修复3：允许小屏换行，避免按钮挤压 */
+    padding: 0 1rem;
+  }
 
       /* 基础按钮样式 */
       .banner-btn {
-        padding: 0.5rem 1.5rem; /* 内边距：保证点击区域大小 */
-        border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
-        font-size: 1rem; /* 基础字号，确保可读性 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
-        border: none; /* 清除默认边框 */
-        transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
-      }
+        padding: clamp(0.4rem, 1vw, 0.5rem) clamp(1rem, 2vw, 1.5rem); /* 响应式内边距 */
+    border-radius: 9999px; /* 超圆圆角 */
+    font-size: clamp(0.9rem, 1.5vw, 1rem); /* 响应式字号 */
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease; /* 优化：过渡所有属性（背景+颜色+边框） */
+    white-space: nowrap; /* 按钮文字不换行 */
+    min-height: 2.5rem; /* 兜底高度，保证点击区域 */
+    min-width: 8rem; /* 兜底宽度，避免按钮过窄 */
+  }
 
       /* 「了解更多」按钮（主按钮） */
       .learn-more-btn {
@@ -1281,83 +1292,25 @@
       }
 
       .learn-more-btn:hover {
-        background-color: #0066cc; /* hover时加深蓝色，强化反馈 */
-        text-decoration: none; /* 可选：确保hover时也不会出现下划线 */
-      }
+        background-color: #0066cc; /* hover加深 */
+    transform: translateY(-2px); /* 轻微上浮，提升交互感 */
+    box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3); /* 增加阴影，突出层级 */
+  }
 
       /* 「立即购买」按钮（次按钮） */
       .buy-btn {
-        background-color: transparent; /* 透明背景 */
-        color: #0071e3; /* 蓝色文字，与主按钮呼应 */
-        border: 0.1rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
-      }
+        background-color: transparent;
+    color: #0071e3;
+    border: 1px solid #0071e3; /* 🔥 修复4：用px替代rem，小屏边框不模糊 */
+  }
 
       .buy-btn:hover {
-        background-color: #0066cc; /* hover时背景变蓝 */
-        color: #f5f5f7; /* 文字变白 */
-        border-color: #0066cc; /* 边框同步变色，保持样式统一 */
-      }
-
-      /* —— 3.6 轮播手动控制按钮（核心：垂直居中+触控适配） ——*/
-      .carousel-control {
-        position: absolute; /* 悬浮于轮播图两侧 */
-        top: 50%;
-        transform: translateY(-50%); /* 精确垂直居中（抵消自身50%高度） */
-        width: 2.5rem; /* 宽高一致，确保圆形样式 */
-        height: 2.5rem;
-        background-color: rgba(153, 153, 154, 0.2); /* 半透明白色，弱化但可见 */
-        color: #f5f5f7; /* 白色图标，适配半透明背景 */
-        border: none; /* 清除默认边框 */
-        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
-        font-size: 1.5rem; /* 图标字号，确保清晰识别 */
-        cursor: pointer;
-        z-index: 10; /* 层级高于图片，低于圆点指示器 */
-        transition: background-color 0.2s ease; /* hover过渡效果 */
-        display: flex; /* 图标垂直水平居中 */
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* hover反馈：加深背景透明度 */
-      .carousel-control:hover {
-        background-color: rgba(0, 113, 227, 0.9);
-      }
-
-      /* 左箭头位置：左侧留白 */
-      .carousel-control.prev-btn {
-        left: 1.25rem;
-      }
-
-      /* 右箭头位置：右侧留白（与左箭头对称） */
-      .carousel-control.next-btn {
-        right: 1.25rem;
-      }
-
-      /* —— 3.7 轮播圆点指示器（核心：底部居中+当前页标记） ——*/
-      .dot-container {
-        position: absolute; /* 悬浮于轮播图底部 */
-        bottom: 1.25rem; /* 底部留白，避免贴边 */
-        left: 50%;
-        transform: translateX(-50%); /* 水平居中 */
-        display: flex; /* 圆点横向排列 */
-        gap: 0.5rem; /* 圆点间距，避免拥挤 */
-        z-index: 20; /* 层级最高，确保不被遮挡 */
-      }
-
-      /* 单个圆点样式 */
-      .banner-dot {
-        width: 0.625rem; /* 宽高一致，确保圆形 */
-        height: 0.625rem;
-        border-radius: 50%; /* 圆形外观 */
-        background-color: rgba(0, 0, 0, 0.2); /* 半透明白色，未激活状态 */
-        cursor: pointer; /* 提示可交互 */
-        transition: background-color 0.3s ease; /* 颜色过渡，提升反馈感 */
-      }
-
-      /* 当前页圆点：纯白高亮，明确标记 */
-      .banner-dot.active {
-        background-color: #000000;
-      }
+        background-color: #0066cc;
+    color: #f5f5f7;
+    border-color: #0066cc;
+    transform: translateY(-2px); /* 与主按钮交互统一 */
+    box-shadow: 0 4px 8px rgba(0, 113, 227, 0.3);
+  }
 
       /* ================================== BANNER模块媒体查询适配 ================================== */
       /* 适配逻辑：按「屏幕从小到大」排序，仅修改当前断点需调整的属性，复用基础样式 */
@@ -6657,7 +6610,7 @@
         <div class="banner-text active">
           <h1>Senrytech A</h1>
           <p>
-            3000W 以下首选，原厂核心件不缩水！为初创企业量身定制，0.8G 稳定加速
+            3000W 以下首选，原厂核心件不缩水！为初创企业量身定制，<br>0.8G 稳定加速
             ±0.05mm 精度，把专业切割门槛打下来。
           </p>
           <!-- 原按钮（承载btnUp动画） -->

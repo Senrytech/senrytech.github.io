@@ -1151,6 +1151,132 @@
       }
     </style>
 
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+
+      body {
+        background: #f5f5f7;
+        padding: 60px 20px;
+      }
+
+      /* 标题 */
+      .section-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 50px;
+      }
+      .section-sub {
+        text-align: center;
+        font-size: 18px;
+        color: #86868b;
+        margin-bottom: 70px;
+      }
+
+      /* 主升级线 */
+      .upgrade-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 80px;
+        flex-wrap: wrap;
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* 机型卡片 */
+      .card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 30px 24px;
+        width: 220px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      }
+      .card img {
+        width: 100%;
+        height: 130px;
+        object-fit: contain;
+        margin-bottom: 18px;
+      }
+      .card .name {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1d1d1f;
+        margin-bottom: 6px;
+      }
+      .card .tag {
+        font-size: 13px;
+        color: #86868b;
+        margin-bottom: 12px;
+      }
+      .card .spec {
+        font-size: 12px;
+        color: #1d1d1f;
+        line-height: 1.4;
+        margin-bottom: 10px;
+      }
+      .card .plus {
+        font-size: 13px;
+        font-weight: 600;
+        color: #007aff;
+      }
+
+      /* 箭头 */
+      .arrow {
+        font-size: 20px;
+        color: #007aff;
+        font-weight: bold;
+      }
+
+      /* 专用机型区 */
+      .special-row {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .special-row .card {
+        width: 200px;
+        padding: 24px 16px;
+      }
+      .special-row .card img {
+        height: 110px;
+      }
+
+      /* 手机适配 */
+      @media (max-width: 768px) {
+        .upgrade-row {
+          flex-direction: column;
+        }
+        .arrow {
+          transform: rotate(90deg);
+          margin: 10px 0;
+        }
+        .card,
+        .special-row .card {
+          width: 100%;
+          max-width: 320px;
+        }
+      }
+    </style>
+
     <!--九、底部导航模块 -->
     <style>
       /* 底部导航整体样式（匹配参考图深灰背景） */
@@ -2551,6 +2677,104 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- 板块3：激光切割机快速选型 -->
+    <section>
+      <h2 class="section-title">Laser Cutting Machine Series</h2>
+      <p class="section-sub">Complete Upgrade Path · From Entry to Flagship</p>
+
+      <!-- 主升级路线 -->
+      <div class="upgrade-row">
+        <div class="card">
+          <img
+            src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+            alt="A Series"
+          />
+          <div class="name">A Series</div>
+          <div class="tag">Economic · Entry</div>
+          <div class="spec">≤3000W<br />1.0G · ±0.05mm</div>
+          <div class="plus">Genuine Parts · Best Value</div>
+        </div>
+
+        <div class="arrow">↗</div>
+
+        <div class="card">
+          <img src="b.jpg" alt="B Series" />
+          <div class="name">B Series</div>
+          <div class="tag">Standard · Stable</div>
+          <div class="spec">Up to 12000W<br />1.5G · ±0.05mm</div>
+          <div class="plus">Reinforced Bed</div>
+        </div>
+
+        <div class="arrow">↗</div>
+
+        <div class="card">
+          <img src="bpro.jpg" alt="B Pro" />
+          <div class="name">B Pro</div>
+          <div class="tag">High Efficiency</div>
+          <div class="spec">Up to 12000W<br />2.0G · ±0.05mm</div>
+          <div class="plus">10s Exchange Table</div>
+        </div>
+
+        <div class="arrow">↗</div>
+
+        <div class="card">
+          <img src="promax.jpg" alt="B ProMax" />
+          <div class="name">B ProMax</div>
+          <div class="tag">Full Protection</div>
+          <div class="spec">Same as B Pro</div>
+          <div class="plus">Full Cover · EU Safe</div>
+        </div>
+
+        <div class="arrow">↗</div>
+
+        <div class="card">
+          <img src="ultra.jpg" alt="B Ultra" />
+          <div class="name">B Ultra</div>
+          <div class="tag">Flagship · Full Auto</div>
+          <div class="spec">Same as ProMax</div>
+          <div class="plus">Auto Loading & Unloading</div>
+        </div>
+      </div>
+
+      <!-- 专用机型 -->
+      <div class="special-row">
+        <div class="card">
+          <img src="bplus.jpg" alt="B Plus" />
+          <div class="name">B Plus</div>
+          <div class="tag">Space Saving</div>
+          <div class="plus">Side Open · Full Cover</div>
+        </div>
+
+        <div class="card">
+          <img src="m.jpg" alt="M Series" />
+          <div class="name">M Series</div>
+          <div class="tag">High Precision</div>
+          <div class="plus">±8μm · Mini Enclosure</div>
+        </div>
+
+        <div class="card">
+          <img src="g.jpg" alt="G Series" />
+          <div class="name">G Series</div>
+          <div class="tag">Long Size</div>
+          <div class="plus">12–14m · 12000W–60000W</div>
+        </div>
+
+        <div class="card">
+          <img src="s.jpg" alt="S Series" />
+          <div class="name">S Series</div>
+          <div class="tag">Steel Profile</div>
+          <div class="plus">H/C Beam · Channel</div>
+        </div>
+
+        <div class="card">
+          <img src="c.jpg" alt="C Series" />
+          <div class="name">C / C Pro</div>
+          <div class="tag">Aluminum Coil</div>
+          <div class="plus">0.5–2mm · 15T</div>
+        </div>
+      </div>
+    </section>
+
     <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
       <div class="footer-container">
@@ -3790,5 +4014,7 @@
         }
       });
     </script>
+
+    <script></script>
   </body>
 </html>

@@ -1176,8 +1176,14 @@
         /* 核心1：现代浏览器16:9比例（优先生效） */
         aspect-ratio: 16 / 7;
         /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 43.75%;
+        padding-top: 37%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
       }
 
       /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
@@ -1214,21 +1220,19 @@
 
       /* —— 3.4 轮播文字内容（核心：垂直居中+适配16:9比例） ——*/
       .banner-text {
-        position: absolute;
-        top: 10%;
-        left: 50%; /* 水平居中第一步：让元素左边缘对齐父容器50%处 */
-        /* 关键：水平居中第二步 + 动画的垂直位移（合并写，避免冲突） */
-        transform: translateX(-50%) translateY(20px); /* 同时处理水平居中+初始垂直下移 */
-        -webkit-transform: translateX(-50%) translateY(20px); /* 兼容Safari */
-        color: #000000;
-        text-align: center; /* 文字内部（如换行内容）水平居中 */
-        z-index: 10;
-        opacity: 0;
+        position: absolute; /* 文字层悬浮于图片上方 */
+        top: 11%; /* 16:9比例下微调位置，避免文字贴顶（原10%优化） */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        color: #1d1d1f; /* 浅白色文字，适配深色背景图 */
+        text-align: center;
+        z-index: 10; /* 层级高于图片，确保文字可见 */
+        opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
         transition: opacity 0.5s ease;
-        padding: 0 1rem;
-        width: 46%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
-        max-width: 1200px; /* 新增：限制最大宽度，避免宽屏文字过散 */
-        margin: 0 auto; /* 配合max-width，确保容器本身水平居中 */
+        padding: 0 1rem; /* 左右留白，避免小屏文字贴边 */
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
       }
 
       /* 激活状态：显示当前文字 */
@@ -1236,36 +1240,26 @@
         opacity: 1;
       }
 
-      /* 标题样式：突出视觉焦点 + 神通妙彩渐变色 */
+      /* 标题样式：突出视觉焦点 */
       .banner-text h1 {
         font-size: 3.5rem; /* 基础字号（基于全局html font-size） */
         margin-bottom: 1.5rem; /* 与描述文字间距，保持布局呼吸感 */
-        line-height: 1.2; /* 紧凑行高，减少标题换行 */
-        /* 神通妙彩渐变：浅紫 → 浅绿 */
-        background-image: linear-gradient(to right, #3d0563, #78ff6c);
-        /* 文字渐变核心：将背景裁剪为文字形状（兼容浏览器前缀） */
-        -webkit-background-clip: text;
-        -webkit-font-smoothing: antialiased; /* 文字抗锯齿（关键） */
-        -moz-osx-font-smoothing: grayscale;
-        background-clip: text;
-        /* 文字设为透明，显示背景渐变 */
-        color: transparent;
-        font-weight: 700;
-        background-clip: text;
+        font-weight: 600;
       }
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
       .banner-text p {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.4;
-        /* 新增：确保Banner文字换行 */
-        white-space: normal;
-        word-break: break-all; /* 解决“3000w--”这类组合的断行问题 */
-        max-width: 59%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
-        margin-left: auto; /* 配合max-width实现文字水平居中 */
-        margin-right: auto;
+        font-size: 1.5rem; /* 小于标题字号，明确层级 */
+        margin-bottom: 1.5rem; /* 与按钮组间距 */
         font-weight: 400;
+      }
+
+      /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
+      .banner-btns {
+        display: flex; /* 按钮横向排列 */
+        justify-content: center; /* 按钮组水平居中 */
+        gap: 1.5rem; /* 按钮间距，避免拥挤 */
+        flex-wrap: nowrap; /* 强制不换行，保持横向布局 */
       }
 
       /* 基础按钮样式 */
@@ -1278,23 +1272,17 @@
         transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
       }
 
-      /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
-      .banner-btns {
-        display: flex; /* 按钮横向排列 */
-        justify-content: center; /* 按钮组水平居中 */
-        gap: 1rem; /* 按钮间距，避免拥挤 */
-        flex-wrap: nowrap; /* 强制不换行，保持横向布局 */
-      }
-
       /* 「了解更多」按钮（主按钮） */
       .learn-more-btn {
         background-color: #0071e3; /* 品牌蓝色，突出核心转化 */
         color: #f5f5f7; /* 白色文字，高对比度 */
-        font-weight: 200;
+        text-decoration: none; /* 关键：清除超链接默认下划线 */
+        font-weight: 300;
       }
 
       .learn-more-btn:hover {
         background-color: #0066cc; /* hover时加深蓝色，强化反馈 */
+        text-decoration: none; /* 可选：确保hover时也不会出现下划线 */
       }
 
       /* 「立即购买」按钮（次按钮） */
@@ -1310,395 +1298,366 @@
         border-color: #0066cc; /* 边框同步变色，保持样式统一 */
       }
 
-      /* 接你原有的@keyframes代码后，新增以下内容 */
-      /* 1. 轮播图片：组合lightOn（亮度变化）和lightSpread（缩放淡入）动画 */
-      .carousel-slide.active img {
-        /* 现代浏览器：标准语法（必须先写，浏览器优先识别） */
-        animation:
-          lightOn 1.2s ease-out forwards,
-          /* 亮度动画 */ lightSpread 1s ease-out forwards; /* 缩放淡入动画 */
-        /* Safari/Chrome兼容：webkit前缀语法（后写，仅兼容老版本） */
-        -webkit-animation:
-          lightOn 1.2s ease-out forwards,
-          /* 同步绑定亮度动画 */ lightSpread 1s ease-out forwards; /* 同步绑定缩放动画 */
+      /* —— 3.6 轮播手动控制按钮（核心：垂直居中+触控适配） ——*/
+      .carousel-control {
+        position: absolute; /* 悬浮于轮播图两侧 */
+        top: 50%;
+        transform: translateY(-50%); /* 精确垂直居中（抵消自身50%高度） */
+        width: 2.5rem; /* 宽高一致，确保圆形样式 */
+        height: 2.5rem;
+        background-color: rgba(153, 153, 154, 0.2); /* 半透明白色，弱化但可见 */
+        color: #f5f5f7; /* 白色图标，适配半透明背景 */
+        border: none; /* 清除默认边框 */
+        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
+        font-size: 1.5rem; /* 图标字号，确保清晰识别 */
+        cursor: pointer;
+        z-index: 10; /* 层级高于图片，低于圆点指示器 */
+        transition: background-color 0.2s ease; /* hover过渡效果 */
+        display: flex; /* 图标垂直水平居中 */
+        align-items: center;
+        justify-content: center;
       }
 
-      /* 2. 遮罩层：maskFade（从深黑到半透明） */
-      .banner-mask {
-        position: absolute; /* 遮罩覆盖在图片上 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* 避免遮罩遮挡图片点击 */
-        /* 初始状态（与动画0%一致） */
-        background-color: rgba(0, 0, 0, 0.85);
-        /* 绑定动画 */
-        animation: maskFade 1.5s ease-out forwards;
-        -webkit-animation: maskFade 1.5s ease-out forwards;
+      /* hover反馈：加深背景透明度 */
+      .carousel-control:hover {
+        background-color: rgba(0, 113, 227, 0.9);
       }
 
-      /* 3. 文字内容：contentFade（从下往上淡入） */
-      .banner-text.active {
-        /* 标准语法 */
-        animation: contentFade 1.2s ease-out forwards;
-        animation-delay: 0.3s; /* 延迟0.3秒，等图片动画启动后再动 */
-        /* webkit兼容 */
-        -webkit-animation: contentFade 1.2s ease-out forwards;
-        -webkit-animation-delay: 0.3s;
+      /* 左箭头位置：左侧留白 */
+      .carousel-control.prev-btn {
+        left: 1.25rem;
       }
 
-      /* 4. 按钮：btnUp（从下往上淡入，最后出现） */
-      .banner-btn {
-        /* 初始状态（与动画0%一致，避免跳变） */
-        opacity: 0;
-        transform: translateY(15px);
-        -webkit-transform: translateY(15px);
-        /* 标准语法 */
-        animation: btnUp 1s ease-out forwards;
-        animation-delay: 0.8s; /* 延迟0.8秒，文字出现后再显示按钮 */
-        /* webkit兼容 */
-        -webkit-animation: btnUp 1s ease-out forwards;
-        -webkit-animation-delay: 0.8s;
+      /* 右箭头位置：右侧留白（与左箭头对称） */
+      .carousel-control.next-btn {
+        right: 1.25rem;
       }
 
-      /* ================================== 补全所有动画的关键帧（标准+webkit） ================================== */
-      /* 1. 遮罩淡入动画：maskFade（先标准，后webkit） */
-      @keyframes maskFade {
-        /* 标准关键帧：现代浏览器核心 */
-        0% {
-          background-color: rgba(0, 0, 0, 0.85);
-        }
-        100% {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
-      }
-      @-webkit-keyframes maskFade {
-        /* webkit前缀：兼容老版Safari */
-        0% {
-          background-color: rgba(0, 0, 0, 0.85);
-        }
-        100% {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
+      /* —— 3.7 轮播圆点指示器（核心：底部居中+当前页标记） ——*/
+      .dot-container {
+        position: absolute; /* 悬浮于轮播图底部 */
+        bottom: 1.25rem; /* 底部留白，避免贴边 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        display: flex; /* 圆点横向排列 */
+        gap: 0.5rem; /* 圆点间距，避免拥挤 */
+        z-index: 20; /* 层级最高，确保不被遮挡 */
       }
 
-      /* 2. 图片亮度动画：lightOn（原代码可能遗漏，补全完整定义） */
-      @keyframes lightOn {
-        /* 标准关键帧 */
-        0% {
-          filter: brightness(0.3); /* 初始亮度60%（偏暗） */
-        }
-        100% {
-          filter: brightness(1); /* 最终亮度100%（正常） */
-        }
+      /* 单个圆点样式 */
+      .banner-dot {
+        width: 0.625rem; /* 宽高一致，确保圆形 */
+        height: 0.625rem;
+        border-radius: 50%; /* 圆形外观 */
+        background-color: rgba(0, 0, 0, 0.2); /* 半透明白色，未激活状态 */
+        cursor: pointer; /* 提示可交互 */
+        transition: background-color 0.3s ease; /* 颜色过渡，提升反馈感 */
       }
-      @-webkit-keyframes lightOn {
-        /* webkit前缀（注意：webkit的filter需加前缀） */
-        0% {
-          -webkit-filter: brightness(0.6); /* webkit专属filter前缀 */
+
+      /* 当前页圆点：纯白高亮，明确标记 */
+      .banner-dot.active {
+        background-color: #000000;
+      }
+
+      /* ================================== BANNER模块媒体查询适配 ================================== */
+      /* 适配逻辑：按「屏幕从小到大」排序，仅修改当前断点需调整的属性，复用基础样式 */
+
+      /* —— 新增：≤1024px屏幕强制切换为9:16（覆盖基础样式） ——*/
+      @media (max-width: 1024px) {
+        .banner-carousel {
+          /* 9:16比例（竖版）：高度是宽度的177.78% */
+          aspect-ratio: 16 / 12;
+          padding-top: 75%; /* 9:16兼容写法：16÷9≈1.7778 → 177.78% */
         }
-        100% {
-          -webkit-filter: brightness(1);
+
+        /* （关键）竖版下图片仍需按容器比例裁剪，保留object-fit: cover */
+        .carousel-slide img {
+          object-fit: cover;
         }
       }
 
-      /* 3. 图片缩放淡入动画：lightSpread（补全标准+webkit） */
-      @keyframes lightSpread {
-        /* 标准关键帧 */
-        0% {
-          opacity: 0;
-          transform: scale(0.8); /* 初始透明+缩小80% */
-        }
-        0% {
-          opacity: 1.2;
-          transform: scale(1.2); /* 中间过度：略亮+放大120% */
-        }
-        0% {
-          opacity: 0.9;
-          transform: scale(1); /* 最终：轻微透明+原尺寸 */
-        }
-      }
-      @-webkit-keyframes lightSpread {
-        /* webkit前缀 */
-        0% {
-          opacity: 0;
-          -webkit-transform: scale(0.8); /* webkit的transform前缀 */
-        }
-        60% {
-          opacity: 1.2;
-          -webkit-transform: scale(1.2);
-        }
-        100% {
-          opacity: 0.9;
-          -webkit-transform: scale(1);
-        }
-      }
-
-      /* 4. 文字淡入动画：contentFade（补全，用于banner-text） */
-      @keyframes contentFade {
-        0% {
-          opacity: 0;
-          transform: translateX(-50%) translateY(20px); /* 只动垂直方向，水平居中靠基础样式 */
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(-50%) translateY(20px); /* 垂直归位，水平居中不变 */
-        }
-      }
-      @-webkit-keyframes contentFade {
-        0% {
-          opacity: 0;
-          -webkit-transform: translateX(-50%) translateY(20px); /* ✅ 补充 */
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateX(-50%) translateY(0); /* ✅ 补充 */
-        }
-      }
-
-      /* 5. 按钮淡入动画：btnUp（补全，用于banner-btn） */
-      @keyframes btnUp {
-        /* 标准关键帧 */
-        0% {
-          opacity: 0;
-          transform: translateY(15px); /* 初始透明+下移15px */
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0); /* 最终：不透明+归位 */
-        }
-      }
-      @-webkit-keyframes btnUp {
-        /* webkit前缀 */
-        0% {
-          opacity: 0;
-          -webkit-transform: translateY(15px);
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateY(0);
-        }
-      }
-
-      /* ================================== BANNER 媒体适配（按指定8个断点） ================================== */
-      /* 核心适配逻辑：基于1920*1080（1025-1440px断点）为基础，小屏优化竖版比例+紧凑布局，大屏放大元素+优化间距 */
-
-      /* 1. 超小屏手机（0-320px：如早期iPhone SE/极小屏安卓机） */
+      /* 1. 最小手机屏（Mobile S：≤320px，如早期iPhone SE/小屏安卓机）
+      - 全局html基准字号：8.53px（计算逻辑：320px屏幕÷375px基准屏×10px）
+      - 核心问题：16:9比例下垂直空间紧张，需缩小元素、紧凑布局 */
       @media (max-width: 320px) {
-        .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
-          aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
-          padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
-        }
+        /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 8%; /* 上移避免贴顶 */
-          width: 90%; /* 文字容器占满屏幕，避免溢出 */
-          padding: 0 0.8rem;
+          top: 10%; /* 比基础样式多下移3%，适配小屏垂直空间 */
+          padding: 0 0.8rem; /* 缩小左右留白，充分利用宽度 */
         }
+
+        /* 标题： */
         .banner-text h1 {
-          font-size: 1.8rem; /* 缩小标题，适配小屏 */
-          margin-bottom: 0.8rem;
+          font-size: 0.988rem;
+          margin-bottom: 0.21rem; /* 缩小与描述文字间距，紧凑布局 */
         }
+
+        /* 描述文字：*/
         .banner-text p {
-          font-size: 0.9rem; /* 缩小描述文字 */
-          max-width: 100%; /* 文字全屏宽度，允许换行 */
-          line-height: 1.3;
+          font-size: 0.593rem;
         }
+
+        /* 按钮组间距 */
+        .banner-btns {
+          gap: 0.5rem;
+        }
+
+        /* 按钮：高*宽 */
         .banner-btn {
-          padding: 0.4rem 0.9rem; /* 缩小按钮内边距 */
-          font-size: 0.85rem;
+          padding: 0.114rem 0.47rem;
+          font-size: 0.356rem;
         }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
         .buy-btn {
-          border-width: 0.1rem; /* 减薄边框，适配小按钮 */
+          border: 0.02125rem solid #0071e3;
+        }
+
+        /* 箭头：保持尺寸，调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.4rem;
+          height: 0.4rem;
         }
       }
 
-      /* 2. 小屏手机（321-375px：如iPhone 8/SE 2020） */
+      /* 2. 主流小屏手机（Mobile M：321px~375px，如iPhone 8/SE 2020）
+      - 全局html基准字号：10px（375px为移动端设计基准屏）
+      - 核心调整：比Mobile S稍大，适度放宽布局，提升可读性 */
       @media (min-width: 321px) and (max-width: 375px) {
-        .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
-          aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
-          padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
-        }
+        /* 文字容器：下移避免贴顶 */
         .banner-text {
-          top: 9%;
-          width: 85%;
+          top: 10.5%;
           padding: 0 0.8rem;
         }
+
+        /* 标题： */
         .banner-text h1 {
-          font-size: 2rem;
-          margin-bottom: 0.9rem;
+          font-size: 1.158rem;
+          margin-bottom: 0.21rem;
         }
+
+        /* 描述文字： */
         .banner-text p {
-          font-size: 0.95rem;
-          max-width: 100%;
+          font-size: 0.695rem;
         }
+
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 0.52rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.45rem 1rem;
-          font-size: 0.9rem;
+          padding: 0.134rem 0.85rem;
+          font-size: 0.417rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.02125rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.4rem;
+          height: 0.4rem;
         }
       }
 
-      /* 3. 大屏手机（376-425px：如iPhone 12/13 mini、安卓旗舰小屏） */
+      /* 3. 大屏手机（Mobile L：376px~425px，如iPhone 12/13 mini）
+      - 全局html基准字号：11.33px（计算逻辑：425px÷375px基准屏×10px）
+      - 核心调整：接近平板尺寸，放大文字，优化按钮间距 */
       @media (min-width: 376px) and (max-width: 425px) {
-        .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
-          aspect-ratio: 9 / 16;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
-          padding-top: 177.77%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
-        }
-        .banner-text {
-          top: 10%;
-          width: 80%;
-        }
-        .banner-text h1 {
-          font-size: 2.2rem;
-          margin-bottom: 1rem;
-        }
-        .banner-text p {
-          font-size: 1rem;
-          max-width: 95%;
-        }
-        .banner-btn {
-          padding: 0.5rem 1.1rem;
-          font-size: 0.95rem;
-        }
-      }
-
-      /* 4. 平板/折叠屏（426-768px：如iPad mini、iPad Air、折叠屏展开） */
-      @media (min-width: 426px) and (max-width: 768px) {
-        .banner-carousel {
-          /* 竖版比例：宽度:高度 = 2:3（与padding-top:150%完全匹配） */
-          aspect-ratio: 3 / 4;
-          /* 老浏览器兼容：padding-top = (高度/宽度)×100% = 3/2×100% = 150%（你的目标值） */
-          padding-top: 133.33%;
-          height: 0; /* 必须加！清空默认高度，让padding-top完全控制高度（老浏览器关键） */
-          width: 100%; /* 占满父容器宽度，确保响应式 */
-          overflow: hidden; /* 避免轮播内容溢出 */
-        }
+        /* 文字容器：下移避免贴顶 */
         .banner-text {
           top: 12%;
-          width: 70%;
+          padding: 0 0.8rem;
         }
-        .banner-text h1 {
-          font-size: 2.8rem;
-          margin-bottom: 1.2rem;
-        }
-        .banner-text p {
-          font-size: 1.1rem;
-          max-width: 90%;
-          line-height: 1.4;
-        }
-        .banner-btn {
-          padding: 0.6rem 1.3rem;
-          font-size: 1.05rem;
-        }
-      }
 
-      /* 5. 笔记本小屏（769-1024px：如13寸MacBook、14寸Windows本） */
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .banner-carousel {
-          /* 接近基础比例：16:9（略调整为16:8.5，适配笔记本屏高） */
-          aspect-ratio: 4 / 3;
-          padding-top: 75%; /* 8.5/16×100% */
-        }
-        .banner-text {
-          top: 11%;
-          width: 65%;
-        }
+        /* 标题： */
         .banner-text h1 {
-          font-size: 3.2rem;
-          margin-bottom: 1.3rem;
-        }
-        .banner-text p {
-          font-size: 1.2rem;
-          max-width: 85%;
-        }
-        .banner-btn {
-          padding: 0.65rem 1.4rem;
-          font-size: 1.1rem;
-        }
-      }
-
-      /* 6. 基础设计屏（1025-1440px：1920*1080、1440p屏，原设计基准） */
-      @media (min-width: 1025px) and (max-width: 1440px) {
-        .banner-carousel {
-          /* 接近基础比例：16:9（略调整为16:8.5，适配笔记本屏高） */
-          aspect-ratio: 16 / 9;
-          padding-top: 56.25%; /* 8.5/16×100% */
-        }
-        .banner-text {
-          top: 15%; /* 原设计位置，视觉居中偏上 */
-          width: 55%;
-        }
-        .banner-text h1 {
-          font-size: 3.8rem; /* 原设计字号，突出标题 */
-          margin-bottom: 1.5rem;
-        }
-        .banner-text p {
           font-size: 1.3rem;
-          max-width: 80%;
-          line-height: 1.5;
+          margin-bottom: 0.21rem;
         }
-        .banner-btn {
-          padding: 0.7rem 1.6rem;
-          font-size: 1.15rem;
-        }
-      }
 
-      /* 7. 大屏/2K屏（1441-2560px：2K显示器、15.6寸游戏本、32寸2K屏） */
-      @media (min-width: 1441px) and (max-width: 2560px) {
-      }
-
-      /* 8. 超高清屏（2561px及以上：4K显示器、5K iMac、超宽屏） */
-      @media (min-width: 2561px) {
-        .banner-carousel {
-          /* 16:9比例，超高清屏保持视觉一致性 */
-          aspect-ratio: 21 / 9;
-          padding-top: 42.85%;
-        }
-        .banner-text {
-          top: 17%;
-          width: 100%; /* 收窄文字容器，避免超宽屏文字过散 */
-        }
-        .banner-text h1 {
-          font-size: 4.8rem; /* 大幅放大标题，适配超高清屏分辨率 */
-          margin-bottom: 1.8rem;
-          letter-spacing: -0.5px; /* 优化大字号文字间距 */
-        }
+        /* 描述文字： */
         .banner-text p {
-          font-size: 1.6rem;
-          max-width: 100%;
-          line-height: 1.6;
+          font-size: 0.78rem;
         }
+
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 0.5rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          padding: 0.85rem 1.9rem;
-          font-size: 1.35rem; /* 放大按钮，确保超高清屏点击区域 */
-          border-radius: 9999px; /* 保持超圆圆角，避免显方 */
+          padding: 0.15rem 0.85rem;
+          font-size: 0.468rem;
         }
-        /* 优化超高清屏动画细节：延长动画时长，提升视觉细腻度 */
-        .carousel-slide.active img {
-          animation-duration: 1.5s;
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.02125rem solid #0071e3;
         }
-        .banner-text.active {
-          animation-duration: 1.4s;
-          animation-delay: 0.4s;
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
         }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
+        }
+      }
+
+      /* 4. 平板屏幕（Tablet：426px~768px，如iPad mini/iPad Air）
+      - 全局html基准字号：14px（平板屏视觉舒适字号）
+      - 核心调整：放大文字和箭头，适配平板触控习惯（手指更粗） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        /* 文字容器：下移避免贴顶 */
+        .banner-text {
+          top: 15%;
+          padding: 0 0.8rem;
+        }
+
+        /* 标题： */
+        .banner-text h1 {
+          font-size: 2.3rem;
+          margin-bottom: 0.21rem;
+        }
+
+        /* 描述文字： */
+        .banner-text p {
+          font-size: 1.4rem;
+        }
+
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 0.5rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
         .banner-btn {
-          animation-duration: 1.2s;
-          animation-delay: 0.9s;
+          padding: 0.27rem 1.55rem;
+          font-size: 0.854rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.03rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
+        }
+      }
+
+      /* 5. 笔记本屏幕（Laptop：769px~1024px，如13寸MacBook/14寸Windows本）
+      - 全局html基准字号：15px（笔记本屏视觉舒适字号）
+      - 核心调整：文字接近桌面端，优化按钮点击区域 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        /* 文字容器：下移避免贴顶 */
+        .banner-text {
+          top: 15%;
+          padding: 0 0.8rem;
+        }
+
+        /* 标题： */
+        .banner-text h1 {
+          font-size: 3.16rem;
+          margin-bottom: 0.21rem;
+        }
+
+        /* 描述文字： */
+        .banner-text p {
+          font-size: 1.896rem;
+        }
+
+        /* 按钮组：缩小间距，避免换行 */
+        .banner-btns {
+          gap: 1rem;
+        }
+
+        /* 按钮：缩小内边距和字号 */
+        .banner-btn {
+          padding: 0.3647rem 2.067rem;
+          font-size: 1.138rem;
+        }
+
+        /* 「立即购买」按钮：缩小边框宽度 */
+        .buy-btn {
+          border: 0.1rem solid #0071e3;
+        }
+
+        /* 箭头：调整左右留白 */
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+        /* 圆点：保持尺寸，适配小屏视觉 */
+        .banner-dot {
+          width: 0.45rem;
+          height: 0.45rem;
+        }
+      }
+
+      /* 6. 大屏笔记本+2K屏（Laptop L+2K：1025px~2559px，如15寸MacBook Pro/2K显示器）
+      - 全局html基准字号：16px（桌面端标准舒适字号）
+      - 核心逻辑：此为默认设计目标区间，无需额外调整（基础样式已适配） */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 复用基础样式，保持视觉统一性 */
+      }
+
+      /* 7. 4K超高清屏（≥2560px，如32寸4K显示器/5K iMac）
+      - 全局html基准字号：16px（桌面端字号上限，避免文字过大）
+      - 核心调整：放大元素，避免4K屏中元素过小导致模糊/点击困难 */
+      @media (min-width: 2560px) {
+        /* 标题：放大至72px（4.5rem×16px），提升视觉冲击力 */
+        .banner-text h1 {
+          font-size: 4.5rem;
+        }
+
+        /* 描述文字：放大至28.8px（1.8rem×16px），与标题保持层级 */
+        .banner-text p {
+          font-size: 1.8rem;
+        }
+
+        /* 箭头：放大至48px（3rem×16px），适配4K屏点击 */
+        .carousel-control {
+          width: 3rem;
+          height: 3rem;
+          font-size: 1.5rem; /* 图标放大至24px，确保清晰 */
         }
       }
     </style>

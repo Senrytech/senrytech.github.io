@@ -3,467 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LaserTech - Precision Laser Cutting Solutions</title>
-    <!-- 苹果风格无衬线字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Laser Machine Pitfall Guide | BODOR Style</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 全局重置 + 苹果风格基础 */
+        /* 全局重置+核心设计变量（BODOR×苹果风格） */
+        :root {
+            --bg-primary: #ffffff; /* 苹果白 */
+            --bg-secondary: #f5f5f7; /* 苹果浅灰 */
+            --text-primary: #1d1d1f; /* 邦德黑 */
+            --text-secondary: #86868b; /* 浅灰说明 */
+            --accent: #0071e3; /* 苹果蓝 */
+            --accent-bodor: #0a1a2f; /* 邦德黑曜石黑 */
+            --border: #e8e8ed; /* 轻量边框 */
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --radius: 12px; /* 苹果经典圆角 */
+            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 邦德平滑过渡 */
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-            letter-spacing: -0.02em; /* 苹果字体特有的字间距 */
-        }
-
-        :root {
-            /* 品牌色体系（你的#1B4C42为核心） */
-            --brand-primary: #1B4C42;    /* LOGO主色 */
-            --brand-light: #2D7366;      /* 浅绿（交互反馈） */
-            --brand-dark: #12332E;       /* 深绿（背景） */
-            --cta-red: #E63946;          /* 行动色（BODOR风格） */
-            --text-black: #1D1D1F;       /* 苹果风格主文字 */
-            --text-gray: #86868B;        /* 苹果风格次文字 */
-            --bg-white: #FFFFFF;         /* 纯白背景 */
-            --bg-light: #F5F7F7;         /* 浅灰背景（苹果风格） */
-            --bg-dark: #1A1A1A;          /* 深色背景（BODOR工业感） */
-            --border-gray: #E8E8ED;      /* 分割线颜色 */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         body {
-            background-color: var(--bg-white);
-            color: var(--text-black);
-            line-height: 1.47059; /* 苹果官方行高 */
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 60px 20px; /* 更大留白，符合BODOR风格 */
+            line-height: 1.6;
         }
 
-        /* 通用容器（苹果风格居中+留白） */
-        .container {
-            max-width: 1280px;
+        /* 板块容器：居中+最大宽度，避免大屏过宽 */
+        .pitfall-guide-container {
+            max-width: 1280px; /* BODOR官网标准宽度 */
             margin: 0 auto;
-            padding: 0 2.5rem;
+            position: relative;
         }
 
-        /* 导航栏（苹果极简 + BODOR功能） */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            background-color: var(--bg-white);
-            border-bottom: 1px solid var(--border-gray);
-            padding: 0.8rem 0;
+        /* 标题区域：BODOR大标题风格+苹果极简说明 */
+        .guide-header {
+            text-align: center;
+            margin-bottom: 60px; /* 更大留白，提升高级感 */
+            padding: 0 20px;
         }
 
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--brand-primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            color: var(--text-black);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--brand-primary);
-        }
-
-        .nav-cta {
-            background-color: var(--brand-primary);
-            color: white !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 24px; /* 苹果风格圆角 */
-            font-weight: 500;
-            transition: background-color 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            background-color: var(--brand-light);
-        }
-
-        /* 首屏Hero区（BODOR工业感 + 苹果极简排版） */
-        .hero {
-            padding: 6rem 0 8rem;
-            background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%);
-            color: white;
-            margin-bottom: 6rem;
-        }
-
-        .hero-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-
-        .hero-title {
-            font-size: 3.8rem;
+        .guide-title {
+            font-size: 42px; /* 邦德大标题风格 */
             font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.8rem;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em; /* 苹果官网标题字间距 */
+            color: var(--text-primary);
         }
 
-        .hero-desc {
-            font-size: 1.25rem;
-            font-weight: 300;
-            line-height: 1.5;
-            opacity: 0.95;
-            margin-bottom: 3rem;
-            max-width: 500px;
+        .guide-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
 
-        /* BODOR风格数据卡片 */
-        .stats {
+        /* 筛选栏：BODOR风格简洁筛选 */
+        .filter-bar {
             display: flex;
-            gap: 3rem;
-            margin-bottom: 3.5rem;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--cta-red); /* BODOR风格高亮 */
-            margin-bottom: 0.4rem;
-        }
-
-        .stat-text {
-            font-size: 0.95rem;
-            opacity: 0.85;
-        }
-
-        /* 苹果风格按钮组 */
-        .btn-group {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .btn-primary {
-            background-color: var(--cta-red);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 24px;
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--bg-secondary);
+            border-radius: 20px; /* 胶囊形按钮，BODOR特色 */
             border: none;
-            font-size: 1rem;
+            font-size: 14px;
             font-weight: 500;
+            color: var(--text-primary);
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: var(--transition);
         }
 
-        .btn-primary:hover {
-            background-color: #C5303D;
-        }
-
-        .btn-secondary {
-            background-color: transparent;
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-bodor);
             color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 24px;
-            border: 1px solid white;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .hero-image {
-            flex: 1;
-        }
-
-        .hero-image img {
-            width: 100%;
-            border-radius: 16px; /* 苹果风格大圆角 */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* 苹果风格阴影 */
-        }
-
-        /* 产品区（苹果极简卡片 + BODOR分类逻辑） */
-        .products {
-            padding: 0 0 8rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--text-black);
-        }
-
-        .product-grid {
+        /* 设备卡片网格：BODOR×苹果响应式布局 */
+        .machine-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 自适应宽度 */
+            gap: 30px; /* 更大间距，符合BODOR留白美学 */
         }
 
-        .product-card {
-            background-color: var(--bg-light);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* 设备卡片：BODOR工业设计精髓+苹果卡片风格 */
+        .machine-card {
+            background-color: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 40px 28px; /* 更大内边距，提升质感 */
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        /* BODOR特色：卡片hover轻微上浮+阴影加深+底部光效 */
+        .machine-card:hover {
+            transform: translateY(-8px); /* 比普通苹果风上浮更多，更有动感 */
+            box-shadow: var(--shadow-hover);
         }
 
-        .product-icon {
-            font-size: 3.5rem;
-            color: var(--brand-primary);
-            margin-bottom: 1.5rem;
+        .machine-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-bodor), var(--accent));
+            transform: scaleX(0);
+            transition: var(--transition);
         }
 
-        .product-name {
-            font-size: 1.15rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .machine-card:hover::after {
+            transform: scaleX(1);
         }
 
-        .product-desc {
-            font-size: 0.95rem;
-            color: var(--text-gray);
-            line-height: 1.5;
+        /* 卡片图标：BODOR黑弈风格+苹果线性图标 */
+        .card-icon {
+            font-size: 40px; /* 更大图标，突出工业感 */
+            color: var(--accent-bodor);
+            margin-bottom: 24px;
+            transition: var(--transition);
         }
 
-        /* BODOR风格悬浮询盘栏（优化版） */
-        .float-contact {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--bg-white);
-            border-radius: 16px;
-            padding: 1.2rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-            z-index: 998;
+        .machine-card:hover .card-icon {
+            color: var(--accent);
         }
 
-        .contact-item {
-            display: flex;
+        /* 卡片标题+描述：BODOR大标题+苹果简洁说明 */
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .card-pitfalls {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .card-pitfalls strong {
+            color: var(--accent-bodor);
+            font-weight: 600;
+        }
+
+        /* 卡片按钮：BODOR极简按钮+苹果交互反馈 */
+        .card-link {
+            display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            color: var(--text-black);
-            margin-bottom: 1.5rem;
-            cursor: pointer;
-            padding: 0.8rem;
-            border-radius: 12px;
-            transition: background-color 0.2s ease;
-        }
-
-        .contact-item:hover {
-            background-color: var(--bg-light);
-        }
-
-        .contact-icon {
-            font-size: 1.4rem;
-            color: var(--brand-primary);
-        }
-
-        .contact-text {
-            font-size: 0.95rem;
-            font-weight: 400;
-        }
-
-        .contact-cta {
-            background-color: var(--brand-primary);
-            color: white;
-            padding: 0.9rem;
-            border-radius: 12px;
-            text-align: center;
+            font-size: 15px;
             font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            margin-top: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        .contact-cta:hover {
-            background-color: var(--brand-light);
+        .card-link i {
+            margin-left: 8px;
+            font-size: 14px;
+            transition: var(--transition);
         }
 
-        /* 响应式适配（苹果风格移动端优化） */
-        @media (max-width: 992px) {
-            .hero-wrapper {
-                flex-direction: column;
-                text-align: center;
-                gap: 3rem;
-            }
+        .card-link:hover {
+            color: var(--accent-bodor);
+        }
 
-            .hero-title {
-                font-size: 2.8rem;
-            }
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
 
-            .stats {
-                justify-content: center;
-            }
-
-            .btn-group {
-                justify-content: center;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
+        /* 响应式适配：BODOR官网标准断点 */
+        @media (max-width: 1024px) {
+            .guide-title {
+                font-size: 36px;
             }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1.5rem;
+            .guide-title {
+                font-size: 30px;
             }
-
-            .nav-links {
-                display: none; /* 移动端隐藏导航，可加汉堡菜单 */
+            .machine-grid {
+                gap: 24px;
             }
-
-            .product-grid {
-                grid-template-columns: 1fr;
+            .machine-card {
+                padding: 32px 24px;
             }
+        }
 
-            .float-contact .contact-text {
-                display: none;
+        @media (max-width: 480px) {
+            body {
+                padding: 40px 16px;
             }
-
-            .float-contact {
-                right: 1rem;
-                padding: 1rem;
+            .guide-title {
+                font-size: 26px;
             }
-
-            .contact-item {
-                justify-content: center;
+            .machine-grid {
+                gap: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏（苹果极简风格） -->
-    <nav class="navbar">
-        <div class="container nav-wrapper">
-            <a href="#" class="logo">LaserTech</a>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Products</a>
-                <a href="#">Technologies</a>
-                <a href="#">Cases</a>
-                <a href="#">About</a>
-                <a href="#" class="nav-cta">Get a Quote</a>
+    <div class="pitfall-guide-container">
+        <!-- 标题区域 -->
+        <div class="guide-header">
+            <h1 class="guide-title">Laser Machine Pitfall Guide</h1>
+            <p class="guide-subtitle">Avoid industry traps with BODOR-style precision. Identify core pitfalls for sheet, pipe, welding, cleaning and marking machines.</p>
+        </div>
+
+        <!-- 筛选栏 -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All Machines</button>
+            <button class="filter-btn" data-filter="sheet">Sheet Cutting</button>
+            <button class="filter-btn" data-filter="pipe">Pipe Cutting</button>
+            <button class="filter-btn" data-filter="sheet-pipe">Sheet & Pipe</button>
+            <button class="filter-btn" data-filter="welding">Welding</button>
+            <button class="filter-btn" data-filter="cleaning">Cleaning</button>
+            <button class="filter-btn" data-filter="marking">Marking</button>
+        </div>
+
+        <!-- 设备卡片网格 -->
+        <div class="machine-grid">
+            <!-- 板材切割机 -->
+            <div class="machine-card" data-category="sheet">
+                <i class="fa-solid fa-square-cut card-icon"></i>
+                <h3 class="card-title">Sheet Laser Cutter</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Power falsification, bed deformation, fake guide rails, insufficient dust extraction</p>
+                <a href="#sheet-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 管材切割机 -->
+            <div class="machine-card" data-category="pipe">
+                <i class="fa-solid fa-cylinder card-icon"></i>
+                <h3 class="card-title">Pipe Laser Cutter</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake zero scrap, chuck cutback, stroke falsification, poor clamping stability</p>
+                <a href="#pipe-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 板管一体机 -->
+            <div class="machine-card" data-category="sheet-pipe">
+                <i class="fa-solid fa-cubes-stacked card-icon"></i>
+                <h3 class="card-title">Sheet & Pipe All-in-One</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake exchange platform, semi-enclosed as full-enclosed, weak pipe cutting capability</p>
+                <a href="#sheet-pipe-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 激光焊接机 -->
+            <div class="machine-card" data-category="welding">
+                <i class="fa-solid fa-welding-bridge card-icon"></i>
+                <h3 class="card-title">Laser Welding Machine</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Poor anti-reflection, power mismatch, fake 4-in-1 function, unstable beam quality</p>
+                <a href="#welding-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 激光清洗机 -->
+            <div class="machine-card" data-category="cleaning">
+                <i class="fa-solid fa-spray-can-sparkles card-icon"></i>
+                <h3 class="card-title">Laser Cleaning Machine</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Pulse power falsification, low cleaning efficiency, poor rust removal effect</p>
+                <a href="#cleaning-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 激光打标机 -->
+            <div class="machine-card" data-category="marking">
+                <i class="fa-solid fa-tags card-icon"></i>
+                <h3 class="card-title">Laser Marking Machine</h3>
+                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake MOPA, low marking precision, unstable light source, short service life</p>
+                <a href="#marking-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
-    </nav>
-
-    <!-- BODOR风格悬浮询盘栏（优化版） -->
-    <div class="float-contact">
-        <div class="contact-item">
-            <i class="fab fa-whatsapp contact-icon"></i>
-            <span class="contact-text">Chat Now</span>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <span class="contact-text">Email Us</span>
-        </div>
-        <div class="contact-item">
-            <i class="fab fa-weixin contact-icon"></i>
-            <span class="contact-text">WeChat</span>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-phone contact-icon"></i>
-            <span class="contact-text">Call Now</span>
-        </div>
-        <div class="contact-cta">Free Quote</div>
     </div>
 
-    <!-- 首屏Hero区（BODOR工业感 + 苹果排版） -->
-    <section class="hero">
-        <div class="container hero-wrapper">
-            <div class="hero-content">
-                <div class="hero-subtitle">ESTABLISHED 2010</div>
-                <h1 class="hero-title">Precision Laser Cutting<br>for Global Manufacturers</h1>
-                <p class="hero-desc">High-performance fiber laser cutters with German-engineered precision, CE & ISO certified, trusted by 15,000+ clients in 80+ countries.</p>
-                
-                <!-- BODOR风格数据卡片 -->
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">15,000+</div>
-                        <div class="stat-text">Machines Sold</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">80+</div>
-                        <div class="stat-text">Countries Served</div>
-                    </div>
-                </div>
+    <script>
+        // BODOR×苹果风格交互JS：筛选功能+平滑滚动+卡片点击
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const machineCards = document.querySelectorAll('.machine-card');
+            const cardLinks = document.querySelectorAll('.card-link');
 
-                <!-- 苹果风格按钮组 -->
-                <div class="btn-group">
-                    <button class="btn-primary">Talk to Expert</button>
-                    <button class="btn-secondary">Learn More</button>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://picsum.photos/600/400?laser+cutter+industrial" alt="High Precision Fiber Laser Cutting Machine">
-            </div>
-        </div>
-    </section>
+            // 1. 筛选功能：BODOR官网风格分类筛选
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 切换活跃状态
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // 筛选卡片
+                    machineCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
 
-    <!-- 产品区（苹果极简卡片 + BODOR分类） -->
-    <section class="products">
-        <div class="container">
-            <h2 class="section-title">Our Laser Cutting Solutions</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <i class="fas fa-cube product-icon"></i>
-                    <h3 class="product-name">Sheet Metal Cutter</h3>
-                    <p class="product-desc">High-speed cutting for carbon steel, stainless steel, aluminum and more with ±0.01mm precision.</p>
-                </div>
-                <div class="product-card">
-                    <i class="fas fa-cylinder product-icon"></i>
-                    <h3 class="product-name">Tube & Pipe Cutter</h3>
-                    <p class="product-desc">Seamless cutting for round, square and rectangular tubes with automatic feeding system.</p>
-                </div>
-                <div class="product-card">
-                    <i class="fas fa-layer-group product-icon"></i>
-                    <h3 class="product-name">Integrated Machine</h3>
-                    <p class="product-desc">All-in-one solution for both sheet metal and tube cutting, maximizing your production efficiency.</p>
-                </div>
-                <div class="product-card">
-                    <i class="fas fa-fire product-icon"></i>
-                    <h3 class="product-name">Welding Machine</h3>
-                    <p class="product-desc">Laser welding with high energy density, minimal heat affected zone and excellent weld quality.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            // 2. 卡片点击交互：BODOR风格提示+平滑滚动
+            machineCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.card-link')) {
+                        const category = this.getAttribute('data-category');
+                        const title = this.querySelector('.card-title').innerText;
+                        alert(`Selected: ${title}\nRedirecting to detailed pitfalls for ${category} machines...`);
+                        
+                        // 自动点击链接
+                        const link = this.querySelector('.card-link');
+                        if (link) link.click();
+                    }
+                });
+            });
+
+            // 3. 锚点平滑滚动：苹果官网级顺滑体验
+            cardLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100, // 预留导航栏高度
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

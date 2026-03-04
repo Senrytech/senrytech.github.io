@@ -1156,12 +1156,25 @@
       /* 胶囊导航整体容器：居中+间距 */
       .laser-capsule-nav {
         width: 100%;
-        padding: 2rem 0;
-        margin: 0 auto 2rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
         box-sizing: border-box;
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        position: sticky; /* 粘性定位：滚动到阈值时固定 */
+        top: 1rem; /* 吸附在顶部导航栏下方（顶部导航栏高度是2.8rem） */
+        z-index: 999; /* 确保在其他内容上方（低于顶部导航的1000，避免遮挡） */
       }
       .capsule-container {
         display: flex;
+        height: 5rem;
         align-items: center;
         gap: 12px;
         justify-content: center;
@@ -1182,28 +1195,27 @@
       .capsule-item {
         display: inline-block;
         padding: 8px 16px;
-        background: #f5f5f7; /* 苹果浅灰底色 */
+        background: linear-gradient(145deg, #f0f0f2, #e0e0e2);
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.05),
+          /* 最底层阴影 */ 0 3px 6px rgba(0, 0, 0, 0.08),
+          /* 中层阴影 */ 0 2px 0 rgba(255, 255, 255, 0.6),
+          /* 顶部高光，模拟倒角 */ 0 0px 0 rgba(0, 0, 0, 0.1); /* 底部暗线，模拟厚度 */
         color: #1d1d1f; /* 深灰文字 */
         text-decoration: none;
         border-radius: 9999px; /* 圆形胶囊 */
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 14px;
+        font-weight: 600;
         transition: all 0.3s ease; /* 动画过渡 */
         white-space: nowrap; /* 文字不换行 */
         border: 1px solid transparent;
       }
       /* hover 动画：苹果风格悬浮效果 */
       .capsule-item:hover {
-        background: #e8e8ed;
+        background: #0071e3;
+        color: #ffffff; /* 深灰文字 */
         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-      /* 激活/点击状态 */
-      .capsule-item.active,
-      .capsule-item:focus {
-        background: #0071e3; /* 苹果蓝主色 */
-        color: #ffffff;
-        outline: none;
       }
 
       /* 媒体适配：8个节点 0-320/321-375/376-425/426-768/769-1024/1025-1440/1441-2560/>2561 */
@@ -1294,8 +1306,8 @@
     <style>
       .selector-section {
         width: 100%;
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
         padding-left: 2rem;
         padding-right: 2rem;
         background: linear-gradient(
@@ -1313,7 +1325,7 @@
         font-weight: 600;
         color: #1d1d1f;
         text-align: center;
-        margin-top: 5rem;
+        margin-top: 2rem;
         opacity: 0;
         transform: translateY(20px);
         animation: fadeUp 0.8s ease forwards;
@@ -3178,9 +3190,9 @@
     </section>
 
     <!-- 板块4：激光切割机快速选型 -->
-    <section class="selector-section">
+    <section id="sheet-cut" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech板材激光切割机</h2>
+        <h2 class="selector-title">一图读懂Senrytech激光板材切割机</h2>
         <img
           src="../img/contact-us/senrytech-mascot-2.png"
           alt="mascot"
@@ -3411,9 +3423,9 @@
     </section>
 
     <!-- 板块5：激光管材切割机快速选型 -->
-    <section class="selector-section">
+    <section id="pipe-cut" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech管材激光切割机</h2>
+        <h2 class="selector-title">一图读懂Senrytech激光管材切割机</h2>
         <img
           src="../img/contact-us/senrytech-mascot-2.png"
           alt="mascot"
@@ -3643,7 +3655,939 @@
       </div>
     </section>
 
-    <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
+    <!-- 板块6：板管一体机快速选型 -->
+    <section id="sheet-pipe" class="selector-section">
+      <div class="title-box">
+        <h2 class="selector-title">一图读懂Senrytech板管一体机</h2>
+        <img
+          src="../img/contact-us/senrytech-mascot-2.png"
+          alt="mascot"
+          class="title-mascot"
+        />
+        <!-- 吉祥物图片 -->
+      </div>
+
+      <!-- 常规机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">常规机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech A</h4>
+              <p class="machine-feature">经济之选，正牌三大件，成本低</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">高评分</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B</h4>
+              <p class="machine-feature">中厚板利器，加固床身，耐用性拉满</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Pro</h4>
+              <p class="machine-feature">半自动双台上料，10 秒交换，效率翻倍</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B ProMax</h4>
+              <p class="machine-feature">全包围防护，安全合规，适配海外</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Ultra</h4>
+              <p class="machine-feature">全自动上下料，无人值守，性能天花板</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 特殊机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">特殊机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">紧凑款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Plus</h4>
+              <p class="machine-feature">侧开式包围，省空间，灵活上料</p>
+            </div>
+          </a>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">铝卷分切</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C</h4>
+              <p class="machine-feature">铝卷分切，0.5–2mm，高效分卷</p>
+            </div>
+          </a>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C Pro</h4>
+              <p class="machine-feature">铝卷分切 + 安全包围，防护升级</p>
+            </div>
+          </a>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">超长地轨</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech G</h4>
+              <p class="machine-feature">超长地轨，12–14 米，专治超长工件</p>
+            </div>
+          </a>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">精密款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech M</h4>
+              <p class="machine-feature">精密迷你款，±8μm 精度，专攻精密件</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">型钢专用款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech S</h4>
+              <p class="machine-feature">型钢专家，C/H/ 槽钢专用，专业切割</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 板块7：激光焊接机快速选型 -->
+    <section id="weld" class="selector-section">
+      <div class="title-box">
+        <h2 class="selector-title">一图读懂Senrytech激光焊接机</h2>
+        <img
+          src="../img/contact-us/senrytech-mascot-2.png"
+          alt="mascot"
+          class="title-mascot"
+        />
+        <!-- 吉祥物图片 -->
+      </div>
+
+      <!-- 常规机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">常规机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech A</h4>
+              <p class="machine-feature">经济之选，正牌三大件，成本低</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">高评分</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B</h4>
+              <p class="machine-feature">中厚板利器，加固床身，耐用性拉满</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Pro</h4>
+              <p class="machine-feature">半自动双台上料，10 秒交换，效率翻倍</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B ProMax</h4>
+              <p class="machine-feature">全包围防护，安全合规，适配海外</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Ultra</h4>
+              <p class="machine-feature">全自动上下料，无人值守，性能天花板</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 特殊机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">特殊机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">紧凑款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Plus</h4>
+              <p class="machine-feature">侧开式包围，省空间，灵活上料</p>
+            </div>
+          </a>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">铝卷分切</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C</h4>
+              <p class="machine-feature">铝卷分切，0.5–2mm，高效分卷</p>
+            </div>
+          </a>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C Pro</h4>
+              <p class="machine-feature">铝卷分切 + 安全包围，防护升级</p>
+            </div>
+          </a>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">超长地轨</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech G</h4>
+              <p class="machine-feature">超长地轨，12–14 米，专治超长工件</p>
+            </div>
+          </a>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">精密款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech M</h4>
+              <p class="machine-feature">精密迷你款，±8μm 精度，专攻精密件</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">型钢专用款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech S</h4>
+              <p class="machine-feature">型钢专家，C/H/ 槽钢专用，专业切割</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 板块8：激光清洗机快速选型 -->
+    <section id="clean" class="selector-section">
+      <div class="title-box">
+        <h2 class="selector-title">一图读懂Senrytech激光清洗机</h2>
+        <img
+          src="../img/contact-us/senrytech-mascot-2.png"
+          alt="mascot"
+          class="title-mascot"
+        />
+        <!-- 吉祥物图片 -->
+      </div>
+
+      <!-- 常规机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">常规机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech A</h4>
+              <p class="machine-feature">经济之选，正牌三大件，成本低</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">高评分</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B</h4>
+              <p class="machine-feature">中厚板利器，加固床身，耐用性拉满</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Pro</h4>
+              <p class="machine-feature">半自动双台上料，10 秒交换，效率翻倍</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B ProMax</h4>
+              <p class="machine-feature">全包围防护，安全合规，适配海外</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Ultra</h4>
+              <p class="machine-feature">全自动上下料，无人值守，性能天花板</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 特殊机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">特殊机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">紧凑款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Plus</h4>
+              <p class="machine-feature">侧开式包围，省空间，灵活上料</p>
+            </div>
+          </a>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">铝卷分切</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C</h4>
+              <p class="machine-feature">铝卷分切，0.5–2mm，高效分卷</p>
+            </div>
+          </a>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C Pro</h4>
+              <p class="machine-feature">铝卷分切 + 安全包围，防护升级</p>
+            </div>
+          </a>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">超长地轨</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech G</h4>
+              <p class="machine-feature">超长地轨，12–14 米，专治超长工件</p>
+            </div>
+          </a>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">精密款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech M</h4>
+              <p class="machine-feature">精密迷你款，±8μm 精度，专攻精密件</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">型钢专用款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech S</h4>
+              <p class="machine-feature">型钢专家，C/H/ 槽钢专用，专业切割</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 板块9：激光打标机快速选型 -->
+    <section id="mark" class="selector-section">
+      <div class="title-box">
+        <h2 class="selector-title">一图读懂Senrytech激光打标机</h2>
+        <img
+          src="../img/contact-us/senrytech-mascot-2.png"
+          alt="mascot"
+          class="title-mascot"
+        />
+        <!-- 吉祥物图片 -->
+      </div>
+
+      <!-- 常规机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">常规机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech A</h4>
+              <p class="machine-feature">经济之选，正牌三大件，成本低</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">高评分</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B</h4>
+              <p class="machine-feature">中厚板利器，加固床身，耐用性拉满</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Pro</h4>
+              <p class="machine-feature">半自动双台上料，10 秒交换，效率翻倍</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B ProMax</h4>
+              <p class="machine-feature">全包围防护，安全合规，适配海外</p>
+            </div>
+          </a>
+
+          <!-- 升级箭头 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Ultra</h4>
+              <p class="machine-feature">全自动上下料，无人值守，性能天花板</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 特殊机型组 -->
+      <div class="machine-group">
+        <h3 class="group-subtitle">特殊机型</h3>
+        <div class="machine-list regular-list">
+          <!-- 机型1 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+            class="machine-card-link"
+          >
+            <!-- 新增超链接标签 -->
+            <div class="machine-card">
+              <div class="machine-tag entry">紧凑款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                  alt="Senrytech A 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech B Plus</h4>
+              <p class="machine-feature">侧开式包围，省空间，灵活上料</p>
+            </div>
+          </a>
+
+          <!-- 机型2 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">铝卷分切</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="Senrytech B 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C</h4>
+              <p class="machine-feature">铝卷分切，0.5–2mm，高效分卷</p>
+            </div>
+          </a>
+
+          <!-- 机型3 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech C Pro</h4>
+              <p class="machine-feature">铝卷分切 + 安全包围，防护升级</p>
+            </div>
+          </a>
+
+          <!-- 机型4 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">超长地轨</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="Senrytech D 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech G</h4>
+              <p class="machine-feature">超长地轨，12–14 米，专治超长工件</p>
+            </div>
+          </a>
+
+          <!-- 机型5 -->
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">精密款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech M</h4>
+              <p class="machine-feature">精密迷你款，±8μm 精度，专攻精密件</p>
+            </div>
+          </a>
+
+          <a
+            href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+            class="machine-card-link"
+          >
+            <div class="machine-card">
+              <div class="machine-tag entry">型钢专用款</div>
+              <div class="machine-img">
+                <img
+                  src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="Senrytech E 激光切割机"
+                />
+              </div>
+              <h4 class="machine-name">Senrytech S</h4>
+              <p class="machine-feature">型钢专家，C/H/ 槽钢专用，专业切割</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 板块10. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
       <div class="footer-container">
         <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
@@ -4835,6 +5779,7 @@
         window.addEventListener("resize", handleTitleScroll);
       });
     </script>
+
     <script>
       // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
       const langDropdown = document.getElementById("langDropdown");
@@ -4883,6 +5828,100 @@
       });
     </script>
 
-    <script></script>
+    <!-- JavaScript：导航栏胶囊 -->
+    <script>
+      // 苹果风格胶囊导航：平滑滚动+激活态+滚动高亮
+      document.addEventListener("DOMContentLoaded", function () {
+        const capsuleItems = document.querySelectorAll(".capsule-item");
+        const anchorIds = capsuleItems.map((item) =>
+          item.getAttribute("href").slice(1)
+        );
+
+        // 1. 平滑滚动到锚点（兼容所有浏览器，避开顶部导航栏遮挡）
+        capsuleItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault(); // 阻止默认跳转
+            const targetId = this.getAttribute("href").slice(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+              // 平滑滚动：offsetTop - 80 避开顶部导航栏（根据你的导航高度调整）
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth", // 苹果风格平滑动画
+              });
+              // 点击后激活当前胶囊，取消其他
+              capsuleItems.forEach((btn) => btn.classList.remove("active"));
+              this.classList.add("active");
+            }
+          });
+        });
+
+        // 2. 滚动页面时，高亮当前可视区域的胶囊
+        window.addEventListener("scroll", function () {
+          const scrollTop = window.scrollY;
+          // 遍历所有锚点，判断是否在可视区域
+          anchorIds.forEach((id) => {
+            const section = document.getElementById(id);
+            if (!section) return;
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            // 当滚动位置在当前板块内，高亮对应胶囊
+            if (scrollTop >= sectionTop && scrollTop < sectionBottom) {
+              capsuleItems.forEach((btn) => {
+                btn.classList.remove("active");
+                if (btn.getAttribute("href") === `#${id}`) {
+                  btn.classList.add("active");
+                }
+              });
+            }
+          });
+        });
+
+        // 3. 初始状态：高亮第一个胶囊
+        if (capsuleItems.length > 0) {
+          capsuleItems[0].classList.add("active");
+        }
+      });
+    </script>
+
+    <!-- 脚本：胶囊点击平滑滚动 放在</body>前 -->
+    <script>
+      // 1. 平滑滚动
+      document.querySelectorAll(".capsule-item").forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70, // 避开固定导航
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // 2. 滚动时更新导航激活态
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll(".selector-section");
+        const navItems = document.querySelectorAll(".capsule-item");
+
+        let currentSection = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop - 80) {
+            currentSection = "#" + section.getAttribute("id");
+          }
+        });
+
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+          if (item.getAttribute("href") === currentSection) {
+            item.classList.add("active");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

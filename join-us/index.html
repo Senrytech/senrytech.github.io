@@ -1153,8 +1153,8 @@
 
     <!--三、新闻模块-->
     <style>
-      /* ================================== 加入我们板块样式 ================================== */
-.join-us-section {
+      /* ================================== 成为我们的代理 板块样式 ================================== */
+.agent-section {
   width: 100%;
   max-width: 1600px;
   margin: 4rem auto 8rem;
@@ -1164,12 +1164,11 @@
 }
 
 /* 标题区域 */
-.join-us-title-wrap {
+.agent-title-wrap {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
-
-.join-us-main-title {
+.agent-main-title {
   font-size: 2rem;
   color: #000;
   font-weight: 600;
@@ -1177,8 +1176,8 @@
   position: relative;
   display: inline-block;
 }
-
-.join-us-main-title::after {
+/* 标题下小横线，沿用同款主色 */
+.agent-main-title::after {
   content: "";
   position: absolute;
   bottom: -0.8rem;
@@ -1186,451 +1185,373 @@
   transform: translateX(-50%);
   width: 6rem;
   height: 2px;
-  background-color: #0071e3; /* 苹果蓝，匹配现有询价按钮 */
+  background-color: #0071e3;
 }
-
-.join-us-subtitle {
+.agent-subtitle {
   font-size: 1rem;
   color: #666;
   line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* 职位列表 */
-.job-list {
+/* 模块副标题通用样式（优势/条件/流程） */
+.module-subtitle {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid #0071e3;
+}
+
+/* 代理优势 - 折叠卡片 */
+.agent-advantage {
+  margin-bottom: 5rem;
+}
+.advantage-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
-
-.job-card {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 248, 250, 0.95) 100%
-  );
+.advantage-card {
+  background: #f9f9f9;
   border-radius: 1.2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   transition: box-shadow 0.3s ease;
 }
-
-.job-card:hover {
+.advantage-card:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
-
-/* 职位卡片头部（可点击展开） */
-.job-card-header {
+.advantage-header {
   padding: 1.5rem 2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   cursor: pointer;
-  border-bottom: 1px solid #f0f0f0;
 }
-
-.job-title {
+.advantage-icon {
   font-size: 1.2rem;
+  color: #0071e3;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(0, 113, 227, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.advantage-title {
+  font-size: 1.1rem;
   color: #000;
   font-weight: 500;
+  flex: 1;
 }
-
-.job-department {
-  font-size: 0.8rem;
-  color: #0071e3;
-  background-color: rgba(0, 113, 227, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  margin-right: 1rem;
-}
-
-.job-arrow {
+.advantage-arrow {
   font-size: 1rem;
   color: #666;
   transition: transform 0.3s ease;
 }
-
-/* 职位卡片内容（默认隐藏） */
-.job-card-body {
-  padding: 0;
+.advantage-body {
+  padding: 0 2rem 1.5rem;
   max-height: 0;
   overflow: hidden;
-  transition: 
-    max-height 0.5s ease,
-    padding 0.5s ease;
+  transition: max-height 0.3s ease, padding 0.3s ease;
 }
-
+.advantage-body p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+}
 /* 展开状态 */
-.job-card-body.active {
-  padding: 2rem;
-  max-height: 1000px;
+.advantage-card.active .advantage-body {
+  max-height: 200px;
+  padding: 0 2rem 1.5rem;
 }
-
-.job-card-header.active .job-arrow {
+.advantage-card.active .advantage-arrow {
   transform: rotate(180deg);
 }
 
-/* 职位基本信息 */
-.job-info {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #f0f0f0;
+/* 代理申请条件 */
+.agent-condition {
+  margin-bottom: 5rem;
+  background: #f9f9f9;
+  border-radius: 1.2rem;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
-
-.job-info-item {
-  font-size: 0.9rem;
-  color: #333;
+.condition-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+.condition-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.condition-icon {
+  font-size: 1rem;
+  color: #fff;
+  background: #0071e3;
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
 }
-
-.job-info-item label {
-  font-weight: 500;
+.condition-item p {
+  font-size: 0.95rem;
   color: #666;
-  margin-right: 0.5rem;
+  line-height: 1.8;
 }
 
-/* 职位描述 */
-.job-desc {
-  margin-bottom: 2rem;
+/* 代理合作流程 - 步骤式 */
+.agent-process {
+  margin-bottom: 5rem;
 }
-
-.job-desc h4 {
+.process-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 0;
+  position: relative;
+  padding: 2rem 0;
+}
+/* 流程中间连线 */
+.process-list::before {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: #e0e0e0;
+  z-index: 1;
+}
+.process-item {
+  width: 18%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.process-num {
+  width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
+  border-radius: 50%;
+  background: #f9f9f9;
+  color: #0071e3;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 auto 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+.process-item:hover .process-num {
+  background: #0071e3;
+  color: #fff;
+}
+.process-name {
   font-size: 1rem;
   color: #000;
   font-weight: 500;
-  margin: 1rem 0 0.8rem;
-}
-
-.job-desc ul {
-  list-style: disc;
-  padding-left: 1.5rem;
-  font-size: 0.9rem;
-  color: #666;
-  line-height: 1.8;
-}
-
-.job-desc ul li {
   margin-bottom: 0.5rem;
 }
-
-/* 应聘按钮 */
-.job-apply-btn {
-  display: inline-block;
-  padding: 0.8rem 2rem;
-  background-color: #0071e3;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 400;
-  transition: background-color 0.2s ease;
-}
-
-.job-apply-btn:hover {
-  background-color: #0077ed;
-}
-
-/* 应聘须知 */
-.join-us-notice {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 248, 250, 0.95) 100%
-  );
-  border-radius: 1.2rem;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  margin-bottom: 3rem;
-}
-
-.notice-title {
-  font-size: 1.4rem;
-  color: #000;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.notice-title::before {
-  content: "";
-  display: inline-block;
-  width: 0.4rem;
-  height: 1.4rem;
-  background-color: #0071e3;
-  margin-right: 0.8rem;
-  border-radius: 0.2rem;
-}
-
-.notice-list {
-  list-style: none;
-  padding: 0;
-}
-
-.notice-list li {
-  font-size: 0.95rem;
+.process-desc {
+  font-size: 0.85rem;
   color: #666;
-  line-height: 1.8;
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
-  position: relative;
+  line-height: 1.6;
+}
+/* 流程小连线（适配折叠） */
+.process-line {
+  width: 4%;
+  height: 2px;
+  background: #0071e3;
+  align-self: center;
+  display: none;
+}
+@media (max-width: 1024px) {
+  .process-list::before {
+    display: none;
+  }
+  .process-line {
+    display: block;
+  }
+  .process-item {
+    width: 16%;
+  }
+  .process-num {
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1rem;
+  }
 }
 
-.notice-list li::before {
-  content: "●";
-  position: absolute;
-  left: 0;
-  color: #0071e3;
-  font-size: 0.8rem;
-}
-
-/* 联系我们 */
-.join-us-contact {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(248, 248, 250, 0.95) 100%
-  );
-  border-radius: 1.2rem;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.contact-title {
-  font-size: 1.4rem;
-  color: #000;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.contact-title::before {
-  content: "";
-  display: inline-block;
-  width: 0.4rem;
-  height: 1.4rem;
-  background-color: #0071e3;
-  margin-right: 0.8rem;
-  border-radius: 0.2rem;
-}
-
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-}
-
-.contact-icon {
-  font-size: 1.2rem;
-  color: #0071e3;
-  margin-right: 1rem;
-  margin-top: 0.2rem;
-}
-
-.contact-content {
-  font-size: 0.95rem;
-  color: #666;
-}
-
-.contact-content label {
-  font-weight: 500;
-  color: #333;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.contact-content a {
-  color: #0071e3;
-  text-decoration: none;
-}
-
-.contact-content a:hover {
-  text-decoration: underline;
-}
-
-/* 应聘弹窗样式（可选） */
-.job-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.job-modal {
-  background: #fff;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 1.2rem;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-  padding: 1.5rem 2rem;
-  background-color: #f8f8fa;
+/* 代理咨询对接 - 玻璃态卡片 */
+.agent-contact {
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.05), rgba(0, 113, 227, 0.1));
+  border-radius: 1.5rem;
+  padding: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  gap: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
-
-.modal-title {
-  font-size: 1.2rem;
+.contact-left {
+  flex: 1;
+}
+.contact-title {
+  font-size: 1.6rem;
   color: #000;
-  font-weight: 500;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
-
-.modal-close-btn {
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: #666;
-  cursor: pointer;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
-}
-
-.modal-close-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.modal-body {
-  padding: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 0.6rem;
-  font-size: 0.9rem;
-  color: #333;
-  font-family: inherit;
-  transition: border-color 0.2s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #0071e3;
-}
-
-.form-submit-btn {
-  width: 100%;
-  padding: 1rem;
-  background-color: #0071e3;
-  color: #fff;
-  border: none;
-  border-radius: 0.6rem;
+.contact-desc {
   font-size: 1rem;
-  font-weight: 400;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  color: #666;
+  line-height: 1.6;
+  max-width: 400px;
+}
+.contact-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fff;
+  padding: 1.2rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.contact-icon {
+  font-size: 1.2rem;
+  color: #0071e3;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: rgba(0, 113, 227, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-text {
+  font-size: 1rem;
+  color: #333;
 }
 
-.form-submit-btn:hover {
-  background-color: #0077ed;
+/* ================================== 响应式适配（全尺寸覆盖，无断层） ================================== */
+@media (max-width: 1024px) {
+  .agent-section {
+    margin: 3rem auto 6rem;
+  }
+  .agent-title-wrap {
+    margin-bottom: 4rem;
+  }
+  .process-item {
+    width: 15%;
+  }
+  .agent-contact {
+    padding: 2.5rem;
+  }
 }
 
-/* 响应式适配 */
 @media (max-width: 768px) {
-  .join-us-section {
-    margin: 2rem auto 4rem;
+  .agent-section {
     padding: 0 1.5rem;
+    margin: 2rem auto 4rem;
   }
-
-  .join-us-title-wrap {
-    margin-bottom: 2.5rem;
-  }
-
-  .join-us-main-title {
+  .agent-main-title {
     font-size: 1.8rem;
   }
-
-  .job-list {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .job-card-header {
-    padding: 1.2rem 1.5rem;
-  }
-
-  .job-title {
-    font-size: 1.1rem;
-  }
-
-  .job-card-body.active {
-    padding: 1.5rem;
-  }
-
-  .join-us-notice,
-  .join-us-contact {
-    padding: 1.5rem;
-  }
-
-  .notice-title,
-  .contact-title {
+  .module-subtitle {
     font-size: 1.2rem;
+  }
+  .advantage-list {
+    grid-template-columns: 1fr;
+  }
+  .condition-list {
+    grid-template-columns: 1fr;
+  }
+  .agent-condition {
+    padding: 2rem 1.5rem;
+  }
+  /* 流程适配移动端：竖向排列 */
+  .process-list {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .process-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .process-num {
+    margin: 0;
+  }
+  .process-line {
+    width: 2px;
+    height: 2rem;
+    align-self: center;
+  }
+  /* 咨询对接适配移动端：竖向 */
+  .agent-contact {
+    flex-direction: column;
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .contact-left {
+    width: 100%;
+  }
+  .contact-desc {
+    max-width: 100%;
+  }
+  .contact-right {
+    width: 100%;
+  }
+  .contact-item {
+    justify-content: center;
   }
 }
 
 @media (max-width: 425px) {
-  .join-us-section {
+  .agent-section {
     padding: 0 1rem;
   }
-
-  .job-info {
-    flex-direction: column;
-    gap: 0.8rem;
+  .agent-main-title {
+    font-size: 1.6rem;
   }
-
-  .job-apply-btn {
-    width: 100%;
-    text-align: center;
+  .agent-subtitle {
+    font-size: 0.95rem;
   }
-
-  .contact-info {
-    grid-template-columns: 1fr;
+  .advantage-header {
+    padding: 1.2rem 1.5rem;
+  }
+  .advantage-body {
+    padding: 0 1.5rem 1.5rem;
+  }
+  .contact-item {
+    padding: 1rem 1.5rem;
+  }
+  .contact-text {
+    font-size: 0.95rem;
   }
 }
-    </style>
+</style>
 
     <!--十、底部导航模块 -->
     <style>
@@ -3033,189 +2954,142 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- 加入我们板块 -->
-<section class="join-us-section">
+<!-- 成为我们的代理 核心板块 -->
+<section class="agent-section">
   <!-- 标题区域 -->
-  <div class="join-us-title-wrap">
-    <h2 class="join-us-main-title">加入我们</h2>
-    <p class="join-us-subtitle">Senrytech激光期待与你并肩，推动激光切割技术创新</p>
+  <div class="agent-title-wrap">
+    <h2 class="agent-main-title">成为我们的代理</h2>
+    <p class="agent-subtitle">携手共赢，共创激光行业新未来，诚邀全国优质合作伙伴加盟</p>
   </div>
 
-  <!-- 职位列表区域 -->
-  <div class="job-list">
-    <!-- 职位卡片1：研发类 -->
-    <div class="job-card">
-      <div class="job-card-header" onclick="toggleJobDetail(this)">
-        <h3 class="job-title">激光设备研发工程师</h3>
-        <span class="job-department">研发部</span>
-        <i class="fa fa-chevron-down job-arrow"></i>
+  <!-- 核心代理优势（折叠卡片，点击展开/收起） -->
+  <div class="agent-advantage">
+    <h3 class="module-subtitle">核心代理优势</h3>
+    <div class="advantage-list">
+      <!-- 优势卡片1：品牌与产品 -->
+      <div class="advantage-card">
+        <div class="advantage-header" onclick="toggleAdvantage(this)">
+          <i class="fa fa-star advantage-icon"></i>
+          <h4 class="advantage-title">品牌赋能 + 硬核产品</h4>
+          <i class="fa fa-chevron-down advantage-arrow"></i>
+        </div>
+        <div class="advantage-body">
+          <p>依托品牌行业沉淀与口碑，提供全系列激光设备（切割/焊接/清洗等），产品具备高性价比、高稳定性，核心部件自主研发，差异化竞争优势明显，满足不同场景客户需求。</p>
+        </div>
       </div>
-      <div class="job-card-body">
-        <div class="job-info">
-          <div class="job-info-item">
-            <label>工作地点：</label>
-            <span>江苏·苏州</span>
-          </div>
-          <div class="job-info-item">
-            <label>薪资范围：</label>
-            <span>15K-25K/月</span>
-          </div>
-          <div class="job-info-item">
-            <label>学历要求：</label>
-            <span>本科及以上</span>
-          </div>
-          <div class="job-info-item">
-            <label>经验要求：</label>
-            <span>3年以上激光设备研发经验</span>
-          </div>
+      <!-- 优势卡片2：政策支持 -->
+      <div class="advantage-card">
+        <div class="advantage-header" onclick="toggleAdvantage(this)">
+          <i class="fa fa-gift advantage-icon"></i>
+          <h4 class="advantage-title">专属代理政策</h4>
+          <i class="fa fa-chevron-down advantage-arrow"></i>
         </div>
-        <div class="job-desc">
-          <h4>岗位职责：</h4>
-          <ul>
-            <li>负责激光切割机光路/结构/控制系统的研发与优化；</li>
-            <li>跟进行业前沿技术，完成新产品的设计、打样与测试；</li>
-            <li>配合生产部门解决设备量产过程中的技术问题；</li>
-            <li>与销售团队对接，了解客户需求并转化为产品功能迭代。</li>
-          </ul>
-          <h4>任职要求：</h4>
-          <ul>
-            <li>机械设计/光电工程/自动化等相关专业本科及以上学历；</li>
-            <li>熟悉激光切割原理，有3年以上激光设备研发经验优先；</li>
-            <li>精通SolidWorks/UG等设计软件，具备独立设计整机能力；</li>
-            <li>具备良好的团队协作能力，能承受一定的研发压力。</li>
-          </ul>
+        <div class="advantage-body">
+          <p>区域独家代理保护，避免内部竞争；阶梯式返点政策，销量越高收益越多；免费提供宣传物料、样品支持，降低前期开拓成本。</p>
         </div>
-        <a href="mailto:hr@senrytech.com?subject=应聘-激光设备研发工程师" class="job-apply-btn">立即应聘</a>
       </div>
-    </div>
-
-    <!-- 职位卡片2：销售类 -->
-    <div class="job-card">
-      <div class="job-card-header" onclick="toggleJobDetail(this)">
-        <h3 class="job-title">工业设备销售经理</h3>
-        <span class="job-department">销售部</span>
-        <i class="fa fa-chevron-down job-arrow"></i>
+      <!-- 优势卡片3：技术与售后 -->
+      <div class="advantage-card">
+        <div class="advantage-header" onclick="toggleAdvantage(this)">
+          <i class="fa fa-wrench advantage-icon"></i>
+          <h4 class="advantage-title">全流程技术售后支持</h4>
+          <i class="fa fa-chevron-down advantage-arrow"></i>
+        </div>
+        <div class="advantage-body">
+          <p>免费为代理团队提供产品培训、销售技巧培训；全国售后网点覆盖，7*24小时技术响应，协助代理解决客户设备安装、调试、维护问题。</p>
+        </div>
       </div>
-      <div class="job-card-body">
-        <div class="job-info">
-          <div class="job-info-item">
-            <label>工作地点：</label>
-            <span>全国（base苏州）</span>
-          </div>
-          <div class="job-info-item">
-            <label>薪资范围：</label>
-            <span>10K-30K/月（底薪+提成）</span>
-          </div>
-          <div class="job-info-item">
-            <label>学历要求：</label>
-            <span>大专及以上</span>
-          </div>
-          <div class="job-info-item">
-            <label>经验要求：</label>
-            <span>2年以上工业设备销售经验</span>
-          </div>
+      <!-- 优势卡片4：市场与运营 -->
+      <div class="advantage-card">
+        <div class="advantage-header" onclick="toggleAdvantage(this)">
+          <i class="fa fa-line-chart advantage-icon"></i>
+          <h4 class="advantage-title">市场运营帮扶</h4>
+          <i class="fa fa-chevron-down advantage-arrow"></i>
         </div>
-        <div class="job-desc">
-          <h4>岗位职责：</h4>
-          <ul>
-            <li>负责激光切割设备的市场拓展与客户开发；</li>
-            <li>对接钣金/建材/汽车配件等行业客户，完成销售指标；</li>
-            <li>维护客户关系，跟进售后反馈并协调解决；</li>
-            <li>收集市场竞品信息，协助团队优化销售策略。</li>
-          </ul>
-          <h4>任职要求：</h4>
-          <ul>
-            <li>有工业机械/激光设备销售经验优先；</li>
-            <li>具备较强的沟通谈判能力，能适应出差；</li>
-            <li>熟悉钣金加工/金属制造行业者优先；</li>
-            <li>有自主开发客户能力，目标感强。</li>
-          </ul>
+        <div class="advantage-body">
+          <p>总部提供精准市场调研、行业推广方案；协助代理举办线下产品品鉴会、行业交流会；共享线上获客资源，实现公域+私域流量联动。</p>
         </div>
-        <a href="mailto:hr@senrytech.com?subject=应聘-工业设备销售经理" class="job-apply-btn">立即应聘</a>
-      </div>
-    </div>
-
-    <!-- 职位卡片3：售后技术支持 -->
-    <div class="job-card">
-      <div class="job-card-header" onclick="toggleJobDetail(this)">
-        <h3 class="job-title">售后技术工程师</h3>
-        <span class="job-department">售后部</span>
-        <i class="fa fa-chevron-down job-arrow"></i>
-      </div>
-      <div class="job-card-body">
-        <div class="job-info">
-          <div class="job-info-item">
-            <label>工作地点：</label>
-            <span>全国（驻点/出差）</span>
-          </div>
-          <div class="job-info-item">
-            <label>薪资范围：</label>
-            <span>8K-18K/月</span>
-          </div>
-          <div class="job-info-item">
-            <label>学历要求：</label>
-            <span>大专及以上</span>
-          </div>
-          <div class="job-info-item">
-            <label>经验要求：</label>
-            <span>1年以上设备售后经验</span>
-          </div>
-        </div>
-        <div class="job-desc">
-          <h4>岗位职责：</h4>
-          <ul>
-            <li>负责激光切割设备的安装、调试与售后维护；</li>
-            <li>解答客户设备操作问题，提供技术培训；</li>
-            <li>收集设备故障信息，反馈给研发部门优化；</li>
-            <li>完成售后工单，提升客户满意度。</li>
-          </ul>
-          <h4>任职要求：</h4>
-          <ul>
-            <li>机电一体化/自动化等相关专业；</li>
-            <li>熟悉数控设备调试，有激光设备售后经验优先；</li>
-            <li>能适应全国出差，动手能力强；</li>
-            <li>具备良好的沟通能力，耐心细致。</li>
-          </ul>
-        </div>
-        <a href="mailto:hr@senrytech.com?subject=应聘-售后技术工程师" class="job-apply-btn">立即应聘</a>
       </div>
     </div>
   </div>
 
-  <!-- 应聘须知 -->
-  <div class="join-us-notice">
-    <h3 class="notice-title">应聘须知</h3>
-    <ul class="notice-list">
-      <li>1. 简历请发送至 <strong>hr@senrytech.com</strong>，邮件标题格式：「应聘-职位名称-姓名」；</li>
-      <li>2. 我们会在收到简历后3个工作日内筛选，合适者将电话通知面试；</li>
-      <li>3. 面试需携带学历/资质证书复印件，研发岗位可携带过往项目作品集；</li>
-      <li>4. 公司提供五险一金、年终奖、带薪年假、定期团建、技术培训等福利。</li>
-    </ul>
+  <!-- 代理申请条件（简洁列表） -->
+  <div class="agent-condition">
+    <h3 class="module-subtitle">代理申请条件</h3>
+    <div class="condition-list">
+      <div class="condition-item">
+        <i class="fa fa-check condition-icon"></i>
+        <p>具备独立法人资格，拥有合法的经营资质及固定的经营场所；</p>
+      </div>
+      <div class="condition-item">
+        <i class="fa fa-check condition-icon"></i>
+        <p>熟悉当地工业设备/激光行业市场，拥有一定的客户资源及销售团队；</p>
+      </div>
+      <div class="condition-item">
+        <i class="fa fa-check condition-icon"></i>
+        <p>认同品牌经营理念，愿意遵守总部的代理管理制度，携手长期发展；</p>
+      </div>
+      <div class="condition-item">
+        <i class="fa fa-check condition-icon"></i>
+        <p>具备一定的资金实力，可支撑市场开拓、库存备货等前期运营。</p>
+      </div>
+    </div>
   </div>
 
-  <!-- 联系我们 -->
-  <div class="join-us-contact">
-    <h3 class="contact-title">联系方式</h3>
-    <div class="contact-info">
-      <div class="contact-item">
-        <i class="fa fa-envelope contact-icon"></i>
-        <div class="contact-content">
-          <label>招聘邮箱：</label>
-          <a href="mailto:hr@senrytech.com">hr@senrytech.com</a>
-        </div>
+  <!-- 合作流程（步骤式，直观清晰） -->
+  <div class="agent-process">
+    <h3 class="module-subtitle">代理合作流程</h3>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">01</div>
+        <p class="process-name">代理申请</p>
+        <p class="process-desc">填写代理申请表，提交企业相关资质</p>
       </div>
+      <div class="process-line"></div>
+      <div class="process-item">
+        <div class="process-num">02</div>
+        <p class="process-name">资质审核</p>
+        <p class="process-desc">总部1-3个工作日完成资质审核与初步沟通</p>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-item">
+        <div class="process-num">03</div>
+        <p class="process-name">实地洽谈</p>
+        <p class="process-desc">受邀到访总部，深入洽谈合作细节与政策</p>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-item">
+        <div class="process-num">04</div>
+        <p class="process-name">签约合作</p>
+        <p class="process-desc">签订正式代理合作协议，确定合作区域与权益</p>
+      </div>
+      <div class="process-line"></div>
+      <div class="process-item">
+        <div class="process-num">05</div>
+        <p class="process-name">培训落地</p>
+        <p class="process-desc">完成团队培训、物料支持，正式开展市场运营</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 代理咨询对接（玻璃态卡片，突出联系方式） -->
+  <div class="agent-contact">
+    <div class="contact-left">
+      <h3 class="contact-title">立即咨询，开启合作</h3>
+      <p class="contact-desc">专属招商经理1对1对接，为你定制个性化合作方案</p>
+    </div>
+    <div class="contact-right">
       <div class="contact-item">
         <i class="fa fa-phone contact-icon"></i>
-        <div class="contact-content">
-          <label>联系电话：</label>
-          <span>0512-XXXX8888</span>
-        </div>
+        <span class="contact-text">招商热线：400-XXXX-XXXX</span>
       </div>
       <div class="contact-item">
-        <i class="fa fa-map-marker contact-icon"></i>
-        <div class="contact-content">
-          <label>公司地址：</label>
-          <span>江苏省苏州市工业园区XX路XX号Senrytech产业园</span>
-        </div>
+        <i class="fa fa-envelope contact-icon"></i>
+        <span class="contact-text">招商邮箱：agent@xxxlaser.com</span>
+      </div>
+      <div class="contact-item">
+        <i class="fa fa-weixin contact-icon"></i>
+        <span class="contact-text">微信咨询：XXXLaser-ZS</span>
       </div>
     </div>
   </div>
@@ -3651,69 +3525,27 @@
       });
     </script>
 
-    <script>// 职位卡片展开/收起
-function toggleJobDetail(header) {
-  const body = header.nextElementSibling;
-  const arrow = header.querySelector('.job-arrow');
+    <script>// 代理优势卡片 展开/收起（仅同时展开一个，提升体验）
+function toggleAdvantage(header) {
+  const card = header.parentElement;
+  const allCards = document.querySelectorAll('.advantage-card');
   
-  // 切换当前卡片状态
-  body.classList.toggle('active');
-  header.classList.toggle('active');
-  
-  // 关闭其他已展开的卡片
-  const allHeaders = document.querySelectorAll('.job-card-header');
-  allHeaders.forEach(h => {
-    if (h !== header && h.classList.contains('active')) {
-      h.classList.remove('active');
-      h.nextElementSibling.classList.remove('active');
+  // 关闭所有其他卡片
+  allCards.forEach(item => {
+    if (item !== card) {
+      item.classList.remove('active');
     }
   });
-}
+  // 切换当前卡片状态
+  card.classList.toggle('active');
 
-// 打开应聘弹窗（如需弹窗应聘可启用，需修改按钮点击事件）
-function openJobModal(jobTitle) {
-  const modal = document.getElementById('jobModal');
-  const modalTitle = document.getElementById('modalJobTitle');
-  
-  modalTitle.textContent = jobTitle;
-  modal.classList.remove('hidden');
-  document.body.classList.add('body-fixed'); // 复用全局body-fixed类，禁止背景滚动
-}
-
-// 关闭应聘弹窗
-function closeJobModal() {
-  const modal = document.getElementById('jobModal');
-  modal.classList.add('hidden');
-  document.body.classList.remove('body-fixed');
-}
-
-// 应聘表单提交（示例）
-document.getElementById('jobApplyForm')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  
-  // 模拟表单提交
-  const formData = new FormData(this);
-  console.log('应聘信息提交：', Object.fromEntries(formData));
-  
-  // 提交成功提示
-  alert('应聘信息提交成功！我们会尽快与您联系。');
-  closeJobModal();
-  this.reset();
-});
-
-// 点击弹窗遮罩层关闭弹窗
-document.getElementById('jobModal')?.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeJobModal();
-  }
-});
-
-// 页面加载时默认展开第一个职位
-window.addEventListener('DOMContentLoaded', function() {
-  const firstHeader = document.querySelector('.job-card-header');
-  if (firstHeader) {
-    toggleJobDetail(firstHeader);
-  }
-});</script>
+  // 页面加载时，默认展开第一个优势卡片
+  window.addEventListener('DOMContentLoaded', function() {
+    const firstAdvantage = document.querySelector('.advantage-header');
+    if (firstAdvantage) {
+      toggleAdvantage(firstAdvantage);
+    }
+  });
+}</script>
   </body>
 </html>

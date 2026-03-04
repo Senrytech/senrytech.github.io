@@ -1152,10 +1152,8 @@
     </style>
 
     <!--三、新闻模块-->
-    <!-- 新闻模块样式 -->
     <style>
-      /* ================================== 三、新闻模块 ================================== */
-      /* 模块容器：控制整体间距与居中 */
+      /* ================================== 新闻模块 - 优化版 ================================== */
       .news-section {
         width: 100%;
         max-width: 1600px;
@@ -1164,17 +1162,10 @@
         box-sizing: border-box;
       }
 
-      /* 标题容器：Flex布局，标题+副标题+更多按钮横向排列 */
       .news-title-wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         margin-bottom: 3rem;
-        flex-wrap: wrap;
-        gap: 1.5rem;
       }
 
-      /* 主标题样式 */
       .news-main-title {
         font-size: 2rem;
         font-weight: 600;
@@ -1183,72 +1174,105 @@
         line-height: 1.2;
       }
 
-      /* 副标题样式 */
-      .news-subtitle {
-        font-size: 1rem;
-        color: #666;
-        margin-left: 1rem;
-        font-weight: 400;
-      }
-
-      /* 更多按钮：玻璃拟态+圆角，适配整体风格 */
-      .news-more-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.6rem 1.4rem;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.8),
-          rgba(248, 248, 250, 0.8)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 9999px;
-        color: #000;
-        font-size: 0.875rem;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      }
-
-      .news-more-btn:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.9),
-          rgba(248, 248, 250, 0.9)
-        );
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
-      }
-
-      /* 新闻列表：桌面端3列布局，移动端轮播 */
-      .news-list {
-        display: flex;
+      /* 第一条：大图片+右侧文字（优化宽高比+行高） */
+      .news-featured {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-      }
-
-      /* 新闻卡片：基础样式，适配响应式 */
-      .news-card {
-        min-width: calc((100% - 4rem) / 3);
-        background: linear-gradient(135deg, #ffffff, #f8f8fa);
+        margin-bottom: 2rem;
+        background: #f9f9f9; /* 极浅灰背景，替代纯白 */
         border-radius: 1.5rem;
         overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04); /* 更轻的阴影 */
         transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
       }
 
-      .news-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      .news-featured:hover {
+        transform: translateY(-4px);
+        background: #fff; /* hover变纯白，增强层次 */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
       }
 
-      /* 新闻卡片图片容器 */
+      /* 优化大图片为16:9宽幅比例 */
+      .news-featured-img {
+        width: 100%;
+        height: 360px; /* 16:9比例：宽度自适应，高度固定360px */
+        overflow: hidden;
+      }
+
+      .news-featured-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-featured:hover .news-featured-img img {
+        transform: scale(1.03);
+      }
+
+      .news-featured-content {
+        padding: 2.5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .news-date {
+        font-size: 0.75rem;
+        color: #999;
+        display: inline-block;
+        margin-bottom: 0.8rem;
+      }
+
+      /* 优化标题行高+字号，增强呼吸感 */
+      .news-featured-title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #000;
+        line-height: 1.5; /* 增大行高，更易读 */
+        margin-bottom: 1rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      /* 优化简介行高+固定高度，无line-clamp报错 */
+      .news-featured-desc {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.7; /* 增大行高，呼吸感更强 */
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+        max-height: 5.1rem; /* 3行 × 1.7行高 = 5.1rem */
+      }
+
+      /* 下面两条：卡片布局（优化背景+字号） */
+      .news-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .news-card {
+        background: #f9f9f9; /* 极浅灰背景 */
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        position: relative;
+      }
+
+      .news-card:hover {
+        transform: translateY(-4px);
+        background: #fff; /* hover变纯白 */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
       .news-card-img {
         width: 100%;
-        height: 180px;
+        height: 200px;
         overflow: hidden;
       }
 
@@ -1260,161 +1284,213 @@
       }
 
       .news-card:hover .news-card-img img {
-        transform: scale(1.05);
+        transform: scale(1.03);
       }
 
-      /* 新闻卡片内容区 */
       .news-card-content {
         padding: 1.8rem;
       }
 
-      /* 新闻日期 */
-      .news-date {
-        font-size: 0.75rem;
-        color: #999;
-        display: inline-block;
-        margin-bottom: 0.8rem;
-      }
-
-      /* 新闻标题 - 简化版：仅溢出隐藏（无多行省略） */
+      /* 缩小卡片标题字号，避免抢重心 */
       .news-card-title {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: 500;
         color: #000;
-        line-height: 1.4;
+        line-height: 1.5;
         margin-bottom: 1rem;
-        /* 仅保留基础溢出隐藏，避免内容溢出 */
         overflow: hidden;
-        white-space: nowrap; /* 单行截断 */
-        text-overflow: ellipsis; /* 单行省略号 */
-        word-break: break-word;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
-      /* 新闻简介 - 简化版：仅溢出隐藏（无多行省略） */
+      /* 缩小卡片简介字号+优化行高 */
       .news-card-desc {
-        font-size: 0.875rem;
+        font-size: 0.825rem;
         color: #666;
-        line-height: 1.6;
+        line-height: 1.7;
         margin-bottom: 1.5rem;
-        /* 仅保留基础溢出隐藏，避免内容溢出 */
         overflow: hidden;
-        white-space: nowrap; /* 单行截断 */
-        text-overflow: ellipsis; /* 单行省略号 */
-        word-break: break-word;
+        max-height: 5.1rem; /* 3行 × 1.7行高 = 5.1rem */
       }
 
-      /* 新闻详情链接 */
-      .news-card-link {
-        font-size: 0.875rem;
-        color: #0071e3;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-        transition: color 0.2s ease;
-      }
-
-      .news-card-link:hover {
-        color: #005fc4;
-      }
-
-      /* 轮播指示器：移动端显示，桌面端隐藏 */
-      .news-carousel-indicators {
-        display: none;
-        justify-content: center;
-        gap: 0.8rem;
-        margin-top: 2rem;
-      }
-
-      .indicator {
-        width: 0.8rem;
-        height: 0.8rem;
+      /* 优化加号按钮：半透明背景+白色加号（苹果风） */
+      .news-expand-btn {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
         border-radius: 50%;
-        background-color: #e0e0e0;
+        background: rgba(0, 113, 227, 0.8); /* 半透明品牌蓝 */
+        color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
       }
 
-      .indicator.active {
-        background-color: #0071e3;
+      .news-expand-btn:hover {
+        background: #0071e3; /* hover变实色 */
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.4);
       }
 
-      /* ================================== 新闻模块响应式适配 ================================== */
-      /* 平板端（768px ~ 1024px）：2列布局 */
+      /* 弹窗层（优化毛玻璃+悬浮感） */
+      .news-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+
+      .news-modal-backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px); /* 更强的毛玻璃效果 */
+      }
+
+      .news-modal-content {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        max-height: 90vh;
+        background: #fff;
+        border-radius: 1.8rem; /* 更大的圆角，更苹果 */
+        overflow: hidden;
+        overflow-y: auto;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2); /* 更柔和的阴影 */
+        animation: modalFadeIn 0.3s ease;
+      }
+
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95); /* 更自然的缩放 */
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .news-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8); /* 半透明白色 */
+        color: #333;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        z-index: 10;
+      }
+
+      .news-modal-close:hover {
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .news-modal-body {
+        padding: 2.5rem;
+      }
+
+      .news-modal-body img {
+        width: 100%;
+        height: auto;
+        border-radius: 1rem; /* 更大的图片圆角 */
+        margin-bottom: 1.5rem;
+      }
+
+      .news-modal-body .news-date {
+        font-size: 0.875rem;
+        color: #999;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .news-modal-body h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #000;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+      }
+
+      .news-modal-body p {
+        font-size: 1rem;
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+
+      /* ================================== 响应式优化（移动端更精致） ================================== */
       @media (max-width: 1024px) {
+        .news-featured {
+          grid-template-columns: 1fr;
+        }
+        .news-featured-img {
+          height: 280px; /* 平板端适配图片高度 */
+        }
+        .news-featured-content {
+          padding: 2rem;
+        }
+        .news-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
         .news-section {
           padding: 0 2rem;
           margin: 4rem auto;
         }
-
-        .news-card {
-          min-width: calc((100% - 2rem) / 2);
-        }
-
-        .news-main-title {
-          font-size: 1.8rem;
-        }
-      }
-
-      /* 移动端（≤768px）：轮播布局，单列显示 */
-      @media (max-width: 768px) {
-        .news-title-wrap {
-          margin-bottom: 2rem;
-        }
-
         .news-main-title {
           font-size: 1.5rem;
         }
-
-        .news-subtitle {
-          display: none; /* 移动端隐藏副标题 */
+        .news-featured-title {
+          font-size: 1.3rem;
         }
-
-        .news-list {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          scroll-behavior: smooth;
-          -webkit-overflow-scrolling: touch;
-          gap: 1rem;
-          padding-bottom: 1rem;
+        .news-featured-desc {
+          font-size: 0.95rem;
         }
-
-        .news-list::-webkit-scrollbar {
-          display: none; /* 隐藏滚动条 */
+        .news-modal-body {
+          padding: 1.8rem; /* 移动端增大弹窗内边距 */
         }
-
-        .news-card {
-          min-width: calc(100% - 1rem);
-          scroll-snap-align: start;
-        }
-
-        .news-card-img {
-          height: 150px;
-        }
-
-        .news-carousel-indicators {
-          display: flex; /* 移动端显示指示器 */
+        /* 移动端优化加号按钮大小 */
+        .news-expand-btn {
+          width: 2.2rem;
+          height: 2.2rem;
         }
       }
 
-      /* 小屏手机（≤375px） */
       @media (max-width: 375px) {
-        .news-section {
-          padding: 0 1.5rem;
+        .news-featured-img {
+          height: 220px; /* 小屏手机适配图片高度 */
         }
-
+        .news-featured-content {
+          padding: 1.5rem;
+        }
         .news-card-content {
-          padding: 1.2rem;
-        }
-
-        .news-main-title {
-          font-size: 1.3rem;
-        }
-
-        .news-more-btn {
-          padding: 0.5rem 1rem;
-          font-size: 0.75rem;
+          padding: 1.5rem;
         }
       }
     </style>
@@ -2819,141 +2895,167 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 三、新闻模块 -->
     <section class="news-section">
-      <!-- 模块标题 -->
       <div class="news-title-wrap">
         <h2 class="news-main-title">最新动态</h2>
       </div>
 
-      <!-- 新闻列表容器 -->
+      <!-- 第一条：大图片+右侧文字 -->
+      <div class="news-featured">
+        <div class="news-featured-img">
+          <img
+            src="https://picsum.photos/1200/600?random=1"
+            alt="Senrytech激光切割机亮相国际工业展"
+          />
+        </div>
+        <div class="news-featured-content">
+          <span class="news-date">2024-05-18</span>
+          <h3 class="news-featured-title">
+            Senrytech激光切割机亮相国际工业展，高精度切割技术引关注
+          </h3>
+          <p class="news-featured-desc">
+            本次展会展出的新一代板材激光切割机，搭载自主研发的智能切割系统，切割精度提升15%，能耗降低20%，已获得多家头部制造企业的意向订单。
+          </p>
+          <button
+            class="news-expand-btn"
+            data-img="https://picsum.photos/1200/600?random=1"
+            data-title="Senrytech激光切割机亮相国际工业展，高精度切割技术引关注"
+            data-date="2024-05-18"
+            data-content="<p>本次展会展出的新一代板材激光切割机，搭载自主研发的智能切割系统，切割精度提升15%，能耗降低20%，已获得多家头部制造企业的意向订单。</p><p>该设备采用了全新的光路设计和伺服控制系统，在保证高精度的同时，大幅提升了切割速度，尤其适合不锈钢、铝合金等金属材料的加工。</p><p>该设备采用了全新的光路设计和伺服控制系统，在保证高精度的同时，大幅提升了切割速度，尤其适合不锈钢、铝合金等金属材料的加工。</p>
+            "
+          >
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 下面两条：保持卡片，右下角加号 -->
       <div class="news-list">
-        <!-- 新闻卡片1 -->
         <div class="news-card">
           <div class="news-card-img">
             <img
-              src="/images/news/news-1.jpg"
-              alt="Senrytech激光切割机亮相国际工业展"
+              src="https://picsum.photos/800/500?random=2"
+              alt="管材激光切割机新品发布"
             />
           </div>
           <div class="news-card-content">
-            <span class="news-date">2024-05-18</span>
-            <h3 class="news-card-title">
-              Senrytech激光切割机亮相国际工业展，高精度切割技术引关注
-            </h3>
-            <p class="news-card-desc">
-              本次展会展出的新一代板材激光切割机，搭载自主研发的智能切割系统，切割精度提升15%，能耗降低20%...
-            </p>
-            <a href="/news/detail/1.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- 新闻卡片2 -->
-        <div class="news-card">
-          <div class="news-card-img">
-            <img src="/images/news/news-2.jpg" alt="管材激光切割机新品发布" />
-          </div>
-          <div class="news-card-content">
             <span class="news-date">2024-04-25</span>
-            <h3 class="news-card-title">
+            <h4 class="news-card-title">
               Senrytech推出新一代管材激光切割机，适配多规格管材无缝切割
-            </h3>
+            </h4>
             <p class="news-card-desc">
-              新品针对管材切割痛点优化，支持Φ20-Φ219mm管径全覆盖，自动送料+智能校直，生产效率提升30%...
+              新品针对管材切割痛点优化，支持Φ20-Φ219mm管径全覆盖，自动送料+智能校直，生产效率提升30%。
             </p>
-            <a href="/news/detail/2.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- 新闻卡片3 -->
-        <div class="news-card">
-          <div class="news-card-img">
-            <img src="/images/news/news-3.jpg" alt="激光切割技术白皮书发布" />
-          </div>
-          <div class="news-card-content">
-            <span class="news-date">2024-03-12</span>
-            <h3 class="news-card-title">
-              《2024激光切割技术应用白皮书》发布，解读行业发展新趋势
-            </h3>
-            <p class="news-card-desc">
-              白皮书结合Senrytech
-              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向...
-            </p>
-            <a href="/news/detail/3.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
+            <button
+              class="news-expand-btn"
+              data-img="https://picsum.photos/800/500?random=2"
+              data-title="Senrytech推出新一代管材激光切割机，适配多规格管材无缝切割"
+              data-date="2024-04-25"
+              data-content="<p>新品针对管材切割痛点优化，支持Φ20-Φ219mm管径全覆盖，自动送料+智能校直，生产效率提升30%。</p><p>该设备采用了先进的激光头摆动技术，可实现管材的多角度切割，广泛应用于汽车、建筑、家具等行业。</p>"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
 
         <div class="news-card">
           <div class="news-card-img">
-            <img src="/images/news/news-3.jpg" alt="激光切割技术白皮书发布" />
+            <img
+              src="https://picsum.photos/800/500?random=3"
+              alt="激光切割技术白皮书发布"
+            />
           </div>
           <div class="news-card-content">
             <span class="news-date">2024-03-12</span>
-            <h3 class="news-card-title">
+            <h4 class="news-card-title">
               《2024激光切割技术应用白皮书》发布，解读行业发展新趋势
-            </h3>
+            </h4>
             <p class="news-card-desc">
               白皮书结合Senrytech
-              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向...
+              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。
             </p>
-            <a href="/news/detail/3.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
+            <button
+              class="news-expand-btn"
+              data-img="https://picsum.photos/800/500?random=3"
+              data-title="《2024激光切割技术应用白皮书》发布，解读行业发展新趋势"
+              data-date="2024-03-12"
+              data-content="<p>白皮书结合Senrytech 10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。</p><p>报告指出，随着智能制造的推进，激光切割技术正朝着高精度、高速度、智能化的方向发展，未来市场潜力巨大。</p>"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
 
         <div class="news-card">
           <div class="news-card-img">
-            <img src="/images/news/news-3.jpg" alt="激光切割技术白皮书发布" />
+            <img
+              src="https://picsum.photos/800/500?random=3"
+              alt="激光切割技术白皮书发布"
+            />
           </div>
           <div class="news-card-content">
             <span class="news-date">2024-03-12</span>
-            <h3 class="news-card-title">
+            <h4 class="news-card-title">
               《2024激光切割技术应用白皮书》发布，解读行业发展新趋势
-            </h3>
+            </h4>
             <p class="news-card-desc">
               白皮书结合Senrytech
-              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向...
+              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。
             </p>
-            <a href="/news/detail/3.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
+            <button
+              class="news-expand-btn"
+              data-img="https://picsum.photos/800/500?random=3"
+              data-title="《2024激光切割技术应用白皮书》发布，解读行业发展新趋势"
+              data-date="2024-03-12"
+              data-content="<p>白皮书结合Senrytech 10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。</p><p>报告指出，随着智能制造的推进，激光切割技术正朝着高精度、高速度、智能化的方向发展，未来市场潜力巨大。</p>"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
 
         <div class="news-card">
           <div class="news-card-img">
-            <img src="/images/news/news-3.jpg" alt="激光切割技术白皮书发布" />
+            <img
+              src="https://picsum.photos/800/500?random=3"
+              alt="激光切割技术白皮书发布"
+            />
           </div>
           <div class="news-card-content">
             <span class="news-date">2024-03-12</span>
-            <h3 class="news-card-title">
+            <h4 class="news-card-title">
               《2024激光切割技术应用白皮书》发布，解读行业发展新趋势
-            </h3>
+            </h4>
             <p class="news-card-desc">
               白皮书结合Senrytech
-              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向...
+              10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。
             </p>
-            <a href="/news/detail/3.html" class="news-card-link"
-              >阅读详情 <i class="fa fa-angle-right"></i
-            ></a>
+            <button
+              class="news-expand-btn"
+              data-img="https://picsum.photos/800/500?random=3"
+              data-title="《2024激光切割技术应用白皮书》发布，解读行业发展新趋势"
+              data-date="2024-03-12"
+              data-content="<p>白皮书结合Senrytech 10年行业经验，分析激光切割在钣金、建材、汽车等领域的应用升级方向。</p><p>报告指出，随着智能制造的推进，激光切割技术正朝着高精度、高速度、智能化的方向发展，未来市场潜力巨大。</p>"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
           </div>
         </div>
-      </div>
-
-      <!-- 移动端新闻轮播指示器（小屏显示） -->
-      <div class="news-carousel-indicators">
-        <span class="indicator active" data-index="0"></span>
-        <span class="indicator" data-index="1"></span>
-        <span class="indicator" data-index="2"></span>
       </div>
     </section>
+
+    <!-- 弹窗层：点击加号后弹出 -->
+    <div class="news-modal" id="newsModal">
+      <div class="news-modal-backdrop" id="modalBackdrop"></div>
+      <div class="news-modal-content">
+        <button class="news-modal-close" id="modalClose">
+          <i class="fa fa-times"></i>
+        </button>
+        <div class="news-modal-body" id="modalBody">
+          <!-- JS 动态填充内容 -->
+        </div>
+      </div>
+    </div>
 
     <!-- 板块10. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
@@ -3236,865 +3338,6 @@
           }
         });
       });
-
-      /* ================================== 三、BANNER轮播模块（含圆点指示器） ================================== */
-      // 作用：实现BANNER图自动切换、手动控制（箭头）、圆点指示器联动
-      // 核心逻辑：通过索引控制轮播图/文字/圆点的激活状态，支持循环切换
-
-      // —— 2.1 初始化轮播所需变量 ——
-      const slides = document.querySelectorAll(".carousel-slide"); // 所有轮播图容器
-      const bannerTexts = document.querySelectorAll(".banner-text"); // 所有轮播文字容器
-      const prevBtn = document.querySelector(".carousel-control.prev-btn"); // 轮播左按钮（指定类名避免与产品箭头冲突）
-      const nextBtn = document.querySelector(".carousel-control.next-btn"); // 轮播右按钮
-      const dotContainer = document.querySelector(".dot-container"); // 圆点指示器容器
-      let currentIndex = 0; // 当前轮播图索引（初始为第1张）
-      const slideCount = slides.length; // 轮播图总数（动态获取，支持灵活增减）
-      let autoSlideInterval; // 自动轮播定时器（后续用于暂停/恢复）
-
-      // —— 2.2 动态生成圆点指示器 ——
-      // 功能：根据轮播图数量生成对应圆点，默认激活第1个圆点，绑定点击切换事件
-      function createDots() {
-        // 循环生成圆点（数量=轮播图数量）
-        for (let i = 0; i < slideCount; i++) {
-          const dot = document.createElement("span"); // 创建圆点DOM元素
-          dot.className = "banner-dot"; // 添加圆点基础样式类
-          if (i === 0) dot.classList.add("active"); // 初始激活第1个圆点
-
-          // 圆点点击事件：切换到对应索引的轮播图
-          dot.addEventListener("click", () => {
-            showSlide(i); // 调用核心切换函数，传入目标索引
-          });
-
-          dotContainer.appendChild(dot); // 将圆点添加到容器中
-        }
-      }
-      createDots(); // 页面加载时执行，生成圆点
-      const dots = document.querySelectorAll(".banner-dot"); // 获取所有生成的圆点（用于后续状态更新）
-
-      // —— 2.3 核心：切换轮播图（含文字、圆点同步） ——
-      // 功能：根据传入索引，更新轮播图、文字、圆点的激活状态，支持循环切换
-      // 参数：index - 目标轮播图索引
-      function showSlide(index) {
-        // 1. 先移除所有元素的激活状态（重置）
-        slides.forEach((slide) => slide.classList.remove("active"));
-        bannerTexts.forEach((text) => text.classList.remove("active"));
-        dots.forEach((dot) => dot.classList.remove("active"));
-
-        // 2. 计算当前索引（处理循环逻辑：避免索引为负或超出总数）
-        currentIndex = (index + slideCount) % slideCount;
-
-        // 3. 激活当前索引对应的元素
-        slides[currentIndex].classList.add("active");
-        bannerTexts[currentIndex].classList.add("active");
-        dots[currentIndex].classList.add("active");
-      }
-
-      // —— 2.4 手动切换控制（上一张/下一张） ——
-      // 下一张：当前索引+1，调用切换函数
-      function nextSlide() {
-        showSlide(currentIndex + 1);
-      }
-      // 上一张：当前索引-1，调用切换函数
-      function prevSlide() {
-        showSlide(currentIndex - 1);
-      }
-
-      // —— 2.5 绑定手动控制事件（箭头按钮） ——
-      prevBtn.addEventListener("click", prevSlide); // 左按钮点击→上一张
-      nextBtn.addEventListener("click", nextSlide); // 右按钮点击→下一张
-
-      // —— 2.6 自动轮播控制 ——
-      // 功能：默认3秒切换一次，鼠标hover时暂停，离开时恢复
-      function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 3000); // 3秒执行一次下一张
-      }
-      startAutoSlide(); // 页面加载时启动自动轮播
-
-      // 鼠标hover轮播容器→暂停自动轮播
-      const carousel = document.querySelector(".banner-carousel");
-      carousel.addEventListener("mouseenter", () => {
-        clearInterval(autoSlideInterval); // 清除定时器
-      });
-      // 鼠标离开轮播容器→恢复自动轮播
-      carousel.addEventListener("mouseleave", () => {
-        startAutoSlide(); // 重新启动定时器
-      });
-
-      /* ================================== 四、全系列产品板块交互（分类+滚动） ================================== */
-      // 作用：实现产品分类切换（副标题背景跟随）、产品卡片横向滚动、箭头禁用状态控制
-      // 依赖：页面DOM加载完成后执行（避免DOM未渲染导致查询失败）
-      document.addEventListener("DOMContentLoaded", () => {
-        // —— 4.1 初始化产品板块所需变量 ——
-        const subtitleBar = document.querySelector(".product-subtitle-bar"); // 副标题容器
-        const subtitleItems = document.querySelectorAll(".subtitle-item"); // 所有分类副标题
-        const activeBg = document.querySelector(".subtitle-active-bg"); // 副标题激活背景（跟随用）
-        const productDisplay = document.getElementById("productScroll"); // 产品卡片容器
-        const scrollContainer = document.querySelector(".product-scroll-wrap"); // 产品滚动容器
-        const productItems = document.querySelectorAll(".product-item"); // 所有产品卡片
-        const prevBtn = document.getElementById("productPrevBtn"); // 产品左滚动箭头
-        const nextBtn = document.getElementById("productNextBtn"); // 产品右滚动箭头
-
-        // —— 4.2 初始化参数（含默认值，避免报错） ——
-        let currentTab = "board"; // 当前激活的分类（默认：板材切割机）
-        // 卡片宽度=单张卡片宽度+间距（默认364px，容错处理：若卡片不存在则用默认值）
-        let itemWidth = productItems[0]
-          ? productItems[0].offsetWidth + 24
-          : 364;
-        const itemCount = subtitleItems.length; // 分类数量（用于计算背景宽度）
-        let barTotalWidth = 0; // 副标题容器总宽度（动态计算）
-        let barPaddingX = 0; // 副标题容器左右内边距（动态计算）
-        let equalWidth = 0; // 单个分类项的宽度（用于背景跟随）
-
-        // —— 4.3 计算副标题激活背景宽度（补全缺失的宽度计算，修复背景不显示） ——
-        const calcEqualWidth = () => {
-          if (!subtitleBar || !activeBg) return; // 容错：容器/背景不存在则不执行
-          barTotalWidth = subtitleBar.getBoundingClientRect().width; // 获取容器实际宽度（电脑端适配不同屏幕）
-          // 获取容器左内边距（转为数字，默认0）
-          barPaddingX =
-            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0;
-          // 计算单个分类项宽度：（容器总宽-2倍内边距）/分类数量（电脑端均分更精准）
-          equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
-          activeBg.style.width = `${equalWidth}px`; // 【补全】填充宽度数值，背景终于显示
-          activeBg.style.transition =
-            "left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)"; // 电脑端加缓动，避免背景跳变
-        };
-
-        // —— 4.4 初始化副标题激活背景位置（补全缺失的偏移计算，修复背景不跟随） ——
-        const initActiveBg = () => {
-          calcEqualWidth(); // 先计算宽度
-          if (!activeBg || subtitleItems.length === 0) return; // 容错
-          // 找到默认激活的分类索引（若无则取0）
-          const activeIndex =
-            Array.from(subtitleItems).findIndex((item) =>
-              item.classList.contains("active")
-            ) || 0;
-          // 【补全】填充左偏移数值：内边距+索引×单个分类宽度（电脑端定位精准）
-          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
-          currentTab = subtitleItems[activeIndex].dataset.tab; // 更新当前分类
-          switchTab(currentTab); // 切换到默认分类的产品
-        };
-
-        // —— 4.5 计算产品卡片滚动步长（电脑端动态适配，避免单次滚动过量） ——
-        const initItemWidth = () => {
-          // 找到当前显示的卡片（非hidden类）
-          const visibleItem = document.querySelector(
-            ".product-item:not(.hidden)"
-          );
-          if (visibleItem && scrollContainer) {
-            // 获取卡片容器的间距（默认24px，电脑端间距可能更大，动态获取更精准）
-            const containerGap =
-              parseInt(getComputedStyle(productDisplay).gap) || 24;
-            itemWidth = visibleItem.offsetWidth + containerGap; // 基础步长=卡片宽+间距
-
-            // 【电脑端优化】步长不超过滚动容器可视宽度的70%（避免宽屏单次滚动“跳太多”）
-            const containerWidth = scrollContainer.clientWidth;
-            itemWidth = Math.min(itemWidth, containerWidth * 0.7);
-          }
-        };
-
-        // —— 4.6 产品分类切换逻辑（电脑端重置滚动加平滑，避免生硬跳回左侧） ——
-        const switchTab = (tabName) => {
-          currentTab = tabName; // 更新当前分类
-          // 循环所有卡片：匹配分类则显示，否则隐藏
-          productItems.forEach((item) => {
-            const itemTab = item.getAttribute("data-tab");
-            item.classList.toggle("hidden", itemTab !== tabName); // hidden类控制显示/隐藏
-          });
-
-          // 【电脑端优化】重置滚动加平滑动画（替代原生硬的scrollLeft=0）
-          if (scrollContainer) {
-            scrollContainer.scrollTo({
-              left: 0,
-              behavior: "smooth",
-              timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)", // 苹果风格缓动，电脑端更丝滑
-            });
-          }
-
-          updateBtnState(); // 更新箭头禁用状态
-          initItemWidth(); // 重新计算当前分类下的卡片宽度
-        };
-
-        // —— 4.7 副标题hover切换（含背景跟随，补全背景位置计算） ——
-        const hoverSubtitle = (item, index) => {
-          // 重置所有副标题状态：移除激活类
-          subtitleItems.forEach((i) => i.classList.remove("active"));
-          // 激活当前hover的副标题
-          item.classList.add("active");
-          // 【补全】移动激活背景到当前分类（电脑端hover反馈更流畅）
-          if (activeBg) {
-            activeBg.style.left = `${barPaddingX + index * equalWidth}px`;
-          }
-          // 切换到当前分类的产品
-          switchTab(item.dataset.tab);
-        };
-
-        // 为每个副标题添加hover事件（电脑端支持鼠标enter/leave，优化交互）
-        subtitleItems.forEach((item, index) => {
-          item.addEventListener("mouseenter", () => hoverSubtitle(item, index));
-          // 【电脑端优化】添加mouseleave时保持当前激活（避免hover离开后背景错位）
-          item.addEventListener("mouseleave", () => {
-            const activeItem = document.querySelector(".subtitle-item.active");
-            if (activeItem) {
-              const activeIdx = Array.from(subtitleItems).indexOf(activeItem);
-              if (activeBg)
-                activeBg.style.left = `${barPaddingX + activeIdx * equalWidth}px`;
-            }
-          });
-        });
-
-        // —— 4.8 产品卡片滚动控制（核心：电脑端优化滚动动画） ——
-        const updateBtnState = () => {
-          if (!scrollContainer || !prevBtn || !nextBtn) return; // 容错：容器不存在则不执行
-          // 左箭头：滚动到最左侧（≤10px误差）则禁用
-          prevBtn.disabled = scrollContainer.scrollLeft <= 10;
-          // 右箭头：滚动到最右侧（≤10px误差）则禁用
-          nextBtn.disabled =
-            scrollContainer.scrollLeft >=
-            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
-
-          // 【电脑端优化】禁用时加半透明+指针反馈（避免生硬的灰色禁用，更细腻）
-          prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
-          nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
-          prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
-          nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
-          // 箭头状态过渡（电脑端视觉反馈更流畅）
-          prevBtn.style.transition = "opacity 0.2s ease";
-          nextBtn.style.transition = "opacity 0.2s ease";
-        };
-
-        // 【核心修复】右箭头点击：电脑端加苹果风格缓动（解决滚动生硬）
-        nextBtn.addEventListener("click", () => {
-          if (!scrollContainer) return;
-          scrollContainer.scrollBy({
-            left: itemWidth,
-            behavior: "smooth",
-            // 苹果标志性缓动曲线：电脑端滚动“先柔后顺”，避免默认smooth的生硬感
-            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          });
-        });
-
-        // 【核心修复】左箭头点击：与右箭头保持动画一致性（电脑端交互统一）
-        prevBtn.addEventListener("click", () => {
-          if (!scrollContainer) return;
-          scrollContainer.scrollBy({
-            left: -itemWidth,
-            behavior: "smooth",
-            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          });
-        });
-
-        // 【电脑端优化】滚动时加防抖（避免高频触发导致的电脑端卡顿）
-        let scrollDebounce;
-        scrollContainer.addEventListener("scroll", () => {
-          clearTimeout(scrollDebounce);
-          scrollDebounce = setTimeout(updateBtnState, 30); // 30ms防抖，平衡流畅度与性能
-        });
-
-        // —— 4.9 页面初始化（执行顺序：先定位背景→计算宽度→更新箭头） ——
-        initActiveBg(); // 初始化副标题背景位置（补全后电脑端背景正常显示）
-        initItemWidth(); // 初始化卡片滚动步长（电脑端步长更精准）
-        updateBtnState(); // 初始化箭头禁用状态
-
-        // —— 4.10 窗口缩放适配（电脑端多屏幕适配，避免布局错乱） ——
-        let resizeDebounce;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeDebounce);
-          resizeDebounce = setTimeout(() => {
-            calcEqualWidth(); // 重新计算副标题背景宽度（电脑端窗口缩放后适配）
-            initActiveBg(); // 重新定位背景
-            initItemWidth(); // 重新计算卡片步长（电脑端窗口缩放后步长适配）
-            updateBtnState(); // 重新更新箭头状态
-          }, 100); // 100ms防抖，避免电脑端窗口缩放时频繁计算
-        });
-      });
-
-      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
-      // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
-      document.addEventListener("DOMContentLoaded", () => {
-        // —— 5.1 初始化优势板块滚动所需变量 ——
-        const benefitScrollWrap = document.querySelector(
-          ".benefit-scroll-wrap"
-        ); // 滚动容器
-        const benefitCardContainer = document.getElementById("benefitScroll"); // 卡片容器（对应第3板块#productScroll）
-        const benefitItems = document.querySelectorAll(".benefit-card"); // 所有优势卡片
-        const prevBtn = document.getElementById("benefitPrevBtn"); // 左箭头
-        const nextBtn = document.getElementById("benefitNextBtn"); // 右箭头
-
-        // —— 5.2 初始化参数（与第3板块逻辑一致） ——
-        let itemWidth = benefitItems[0]
-          ? benefitItems[0].offsetWidth + 24
-          : 364; // 滚动步长=卡片宽+间距（24px）
-        const containerGap =
-          parseInt(getComputedStyle(benefitCardContainer).gap) || 24; // 卡片间距
-
-        // —— 5.3 计算卡片宽度（适配窗口缩放） ——
-        const initItemWidth = () => {
-          if (benefitItems[0]) {
-            itemWidth = benefitItems[0].offsetWidth + containerGap; // 重新计算滚动步长
-          }
-        };
-
-        // —— 5.4 箭头滚动控制（与第3板块一致） ——
-        // 右滚动：一次滚动一个步长
-        const scrollRight = () => {
-          benefitScrollWrap.scrollBy({
-            left: itemWidth,
-            behavior: "smooth", // 平滑滚动
-          });
-        };
-        // 左滚动：一次滚动一个步长
-        const scrollLeft = () => {
-          benefitScrollWrap.scrollBy({
-            left: -itemWidth,
-            behavior: "smooth",
-          });
-        };
-
-        // —— 5.5 箭头禁用状态控制（与第3板块一致） ——
-        const updateBtnState = () => {
-          if (!benefitScrollWrap) return;
-          // 左箭头：滚动到最左侧（误差≤10px）则禁用
-          prevBtn.disabled = benefitScrollWrap.scrollLeft <= 10;
-          // 右箭头：滚动到最右侧（误差≤10px）则禁用
-          nextBtn.disabled =
-            benefitScrollWrap.scrollLeft >=
-            benefitScrollWrap.scrollWidth - benefitScrollWrap.clientWidth - 10;
-        };
-
-        // —— 5.6 绑定箭头点击事件 ——
-        nextBtn.addEventListener("click", scrollRight);
-        prevBtn.addEventListener("click", scrollLeft);
-        // 滚动时实时更新箭头状态
-        benefitScrollWrap.addEventListener("scroll", updateBtnState);
-
-        // —— 5.7 窗口缩放适配（与第3板块一致） ——
-        window.addEventListener("resize", () => {
-          initItemWidth(); // 重新计算滚动步长
-          updateBtnState(); // 重新更新箭头状态
-        });
-
-        // —— 5.8 初始化（页面加载时执行） ——
-        initItemWidth();
-        updateBtnState();
-      });
-
-      /* ================================== 六、切割样品模块（纯图片，无文字） ================================== */
-      // 1. 材质数据配置（保持原数据不变）
-      const materialData = {
-        carbon: {
-          name: "碳钢",
-          thicknesses: [
-            {
-              thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp",
-              alt: "碳钢板材 6mm厚度 实物图",
-            },
-            {
-              thickness: "14mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-14mm-final.webp",
-              alt: "碳钢板材 14mm厚度 高清图",
-            },
-            {
-              thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-20mm-final.webp",
-              alt: "碳钢板材 20mm厚度 细节图",
-            },
-            {
-              thickness: "40mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-40mm-final.webp",
-              alt: "碳钢板材 40mm厚度 产品图",
-            },
-            {
-              thickness: "50mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-50mm-final.webp",
-              alt: "碳钢板材 50mm厚度 实物展示图",
-            },
-            {
-              thickness: "70mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-70mm-final.webp",
-              alt: "碳钢板材 70mm厚度 高清细节图",
-            },
-            {
-              thickness: "100mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-100mm-final.webp",
-              alt: "碳钢板材 100mm厚度 产品实物图",
-            },
-          ],
-        },
-        stainless: {
-          name: "不锈钢",
-          thicknesses: [
-            {
-              thickness: "2mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp",
-              alt: "不锈钢板材 2mm厚度 实物图",
-            },
-            {
-              thickness: "5mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-5mm-final.webp",
-              alt: "不锈钢板材 5mm厚度 高清图",
-            },
-            {
-              thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-6mm-2-final.webp",
-              alt: "不锈钢板材 6mm厚度 细节图",
-            },
-            {
-              thickness: "8mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-8mm-final.webp",
-              alt: "不锈钢板材 8mm厚度 产品图",
-            },
-            {
-              thickness: "10mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-10mm-3-final.webp",
-              alt: "不锈钢板材 10mm厚度 实物展示图",
-            },
-            {
-              thickness: "12mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-12mm-final.webp",
-              alt: "不锈钢板材 12mm厚度 高清细节图",
-            },
-            {
-              thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-20mm.webp",
-              alt: "不锈钢板材 20mm厚度 产品实物图",
-            },
-          ],
-        },
-        aluminum: {
-          name: "铝合金",
-          thicknesses: [
-            {
-              thickness: "3mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp",
-              alt: "铝合金板材 3mm厚度 实物图",
-            },
-            {
-              thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-6mm-final.webp",
-              alt: "铝合金板材 6mm厚度 高清图",
-            },
-            {
-              thickness: "7mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-7mm-final.webp",
-              alt: "铝合金板材 7mm厚度 细节图",
-            },
-            {
-              thickness: "15mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-15mm-final.webp",
-              alt: "铝合金板材 15mm厚度 产品图",
-            },
-            {
-              thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-20mm-final.webp",
-              alt: "铝合金板材 20mm厚度 实物展示图",
-            },
-            {
-              thickness: "25mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-25mm-final.webp",
-              alt: "铝合金板材 25mm厚度 高清细节图",
-            },
-            {
-              thickness: "30mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-30mm-final.webp",
-              alt: "铝合金板材 30mm厚度 产品实物图",
-            },
-          ],
-        },
-        brass: {
-          name: "黄铜",
-          thicknesses: [
-            {
-              thickness: "3mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp",
-              alt: "黄铜 3mm厚度 实物图",
-            },
-            {
-              thickness: "5mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp",
-              alt: "黄铜 5mm厚度 实物图",
-            },
-            {
-              thickness: "8mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp",
-              alt: "黄铜 8mm厚度 实物图",
-            },
-            {
-              thickness: "10mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp",
-              alt: "黄铜 10mm厚度 实物图",
-            },
-          ],
-        },
-      };
-
-      // 2. 初始化变量（增加容错判断，避免DOM不存在报错）
-      const thicknessList = document.getElementById("thicknessList");
-      const sampleImageWrap = document.getElementById("sampleImageWrap");
-      const sampleSubtitleBar = document.querySelector(".sample-subtitle-bar");
-      const sampleSubtitleItems = document.querySelectorAll(
-        ".sample-subtitle-item"
-      );
-      const sampleActiveBg = document.querySelector(
-        ".sample-subtitle-active-bg"
-      );
-      let currentMaterial = "carbon"; // 默认材质：碳钢
-      let resizeDebounceTimer; // 窗口缩放防抖定时器
-
-      // 3. 生成厚度选项（新增HOVER激活+恢复默认第一个激活）
-      function renderThicknesses(materialKey) {
-        // 容错：材质不存在或厚度列表DOM缺失，直接返回
-        if (!materialData[materialKey] || !thicknessList) return;
-
-        thicknessList.innerHTML = ""; // 清空原有厚度项
-        const thicknesses = materialData[materialKey].thicknesses;
-
-        thicknesses.forEach((item, index) => {
-          const thicknessItem = document.createElement("div");
-          // 关键：默认给第一个厚度加active类（恢复初始激活状态）
-          thicknessItem.className = `sample-thickness-item ${index === 0 ? "active" : ""}`;
-          thicknessItem.textContent = item.thickness;
-          thicknessItem.dataset.src = item.src;
-
-          // 【新增】厚度项HOVER激活：滑入时切换图片+激活状态
-          thicknessItem.addEventListener("mouseenter", () => {
-            document
-              .querySelectorAll(".sample-thickness-item")
-              .forEach((el) => el.classList.remove("active"));
-            thicknessItem.classList.add("active");
-            updateSampleImage(item.src); // 同步更新图片
-          });
-
-          // 保留：原厚度项点击激活（兼容原有操作习惯）
-          thicknessItem.addEventListener("click", () => {
-            document
-              .querySelectorAll(".sample-thickness-item")
-              .forEach((el) => el.classList.remove("active"));
-            thicknessItem.classList.add("active");
-            updateSampleImage(item.src);
-          });
-
-          thicknessList.appendChild(thicknessItem);
-        });
-
-        // 初始化显示第一个厚度的图片（容错：确保有厚度数据）
-        if (thicknesses.length > 0) {
-          updateSampleImage(thicknesses[0].src);
-        }
-      }
-
-      // 4. 核心：更新样品图片（保持原逻辑不变）
-      function updateSampleImage(imgSrc) {
-        if (!sampleImageWrap) return; // 容错：图片容器缺失
-
-        sampleImageWrap.innerHTML = ""; // 彻底清空容器（避免残留元素）
-        const img = document.createElement("img");
-
-        // 图片样式：确保铺满容器，无空白
-        img.src = imgSrc;
-        img.alt = "切割样品图";
-        img.style.width = "100%";
-        img.style.height = "100%";
-        img.style.minHeight = "400px";
-        img.style.objectFit = "cover";
-        img.style.backgroundColor = "#e0e0e0";
-
-        sampleImageWrap.appendChild(img);
-      }
-
-      // 5. 修复：副标题激活背景计算（补全left/width变量，解决背景不显示问题）
-      function updateSubtitleActiveBg(activeItem) {
-        // 容错：关键元素缺失，直接返回
-        if (!sampleActiveBg || !activeItem || !sampleSubtitleBar) return;
-
-        // 计算相对位置（避免绝对定位受窗口滚动影响）
-        const activeItemRect = activeItem.getBoundingClientRect();
-        const barRect = sampleSubtitleBar.getBoundingClientRect();
-        const left = activeItemRect.left - barRect.left; // 背景相对副标题栏的左边距
-        const width = activeItemRect.width; // 背景宽度=当前激活项宽度
-
-        // 关键修复：补全变量，确保背景位置和宽度生效
-        sampleActiveBg.style.left = `${left}px`;
-        sampleActiveBg.style.width = `${width}px`;
-      }
-
-      // 6. 统一处理副标题激活逻辑（hover+点击通用）
-      function handleSubtitleActivate(activeItem) {
-        if (!activeItem) return;
-
-        // 1. 切换副标题激活状态
-        sampleSubtitleItems.forEach((el) => el.classList.remove("active"));
-        activeItem.classList.add("active");
-
-        // 2. 更新材质并渲染对应厚度+图片
-        const targetMaterial = activeItem.dataset.material;
-        if (targetMaterial && materialData[targetMaterial]) {
-          currentMaterial = targetMaterial;
-          renderThicknesses(currentMaterial); // 渲染该材质的厚度列表
-        }
-
-        // 3. 移动激活背景到当前项
-        updateSubtitleActiveBg(activeItem);
-      }
-
-      // 7. 副标题交互（hover+点击，保持原逻辑不变）
-      function initSubtitleInteraction() {
-        if (!sampleSubtitleItems.length) return; // 容错：无副标题项
-
-        sampleSubtitleItems.forEach((item) => {
-          // 鼠标滑入（hover）激活
-          item.addEventListener("mouseenter", () => {
-            handleSubtitleActivate(item);
-          });
-
-          // 原点击激活（兼容）
-          item.addEventListener("click", () => {
-            handleSubtitleActivate(item);
-          });
-        });
-      }
-
-      // 8. 窗口缩放防抖处理（保持原逻辑不变）
-      function initResizeHandler() {
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeDebounceTimer);
-          // 100ms防抖：避免缩放时频繁计算，提升性能
-          resizeDebounceTimer = setTimeout(() => {
-            // 找到当前激活的副标题项，重新计算背景位置
-            const currentActiveItem =
-              document.querySelector(".sample-subtitle-item.active") ||
-              sampleSubtitleItems[0];
-            if (currentActiveItem) {
-              updateSubtitleActiveBg(currentActiveItem);
-            }
-          }, 100);
-        });
-      }
-
-      // 9. 模块初始化（整合所有初始化逻辑）
-      function initSampleModule() {
-        // 容错：核心DOM缺失，不执行初始化
-        if (!thicknessList || !sampleImageWrap || !sampleSubtitleBar) return;
-
-        // 1. 初始化副标题交互（hover+点击）
-        initSubtitleInteraction();
-
-        // 2. 初始化窗口缩放处理
-        initResizeHandler();
-
-        // 3. 初始化厚度列表和默认图片
-        renderThicknesses(currentMaterial);
-
-        // 4. 初始化副标题激活背景（默认激活第一个项）
-        const defaultActiveItem =
-          document.querySelector(".sample-subtitle-item.active") ||
-          sampleSubtitleItems[0];
-        if (defaultActiveItem) {
-          defaultActiveItem.classList.add("active"); // 确保默认项有激活类
-          updateSubtitleActiveBg(defaultActiveItem);
-        }
-      }
-
-      // 执行模块初始化（页面加载完成后运行）
-      document.addEventListener("DOMContentLoaded", initSampleModule);
-
-      // ================================== 七、核心优势一眼明板块JS（修复版） ==================================
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. 先处理「卡片横向滚动」逻辑（保留原功能，无修改）
-        const advantageScroll = document.getElementById("advantageScroll");
-        const advantagePrevBtn = document.getElementById("advantagePrevBtn");
-        const advantageNextBtn = document.getElementById("advantageNextBtn");
-        const advantageCardWidth = 340 + 24; // 卡片宽340px + 间距24px（与CSS一致）
-
-        // 容错：元素未找到则不执行滚动逻辑
-        if (advantageScroll && advantagePrevBtn && advantageNextBtn) {
-          // 滚动函数
-          function scrollAdvantageCards(direction) {
-            const currentScroll = advantageScroll.scrollLeft;
-            const maxScroll =
-              advantageScroll.scrollWidth - advantageScroll.clientWidth;
-            let newScroll =
-              direction === "next"
-                ? Math.min(currentScroll + advantageCardWidth, maxScroll)
-                : Math.max(currentScroll - advantageCardWidth, 0);
-
-            advantageScroll.scrollTo({ left: newScroll, behavior: "smooth" });
-            // 延迟更新箭头状态（确保滚动完成后判断）
-            setTimeout(updateArrowStatus, 300);
-          }
-
-          // 箭头状态更新函数
-          function updateArrowStatus() {
-            const currentScroll = advantageScroll.scrollLeft;
-            const maxScroll =
-              advantageScroll.scrollWidth - advantageScroll.clientWidth;
-            advantagePrevBtn.disabled = currentScroll <= 10;
-            advantageNextBtn.disabled = currentScroll >= maxScroll - 10;
-          }
-
-          // 绑定箭头点击事件
-          advantageNextBtn.addEventListener("click", () =>
-            scrollAdvantageCards("next")
-          );
-          advantagePrevBtn.addEventListener("click", () =>
-            scrollAdvantageCards("prev")
-          );
-
-          // 初始检查箭头状态
-          setTimeout(() => {
-            updateArrowStatus();
-            const maxScroll =
-              advantageScroll.scrollWidth - advantageScroll.clientWidth;
-            console.log("板块7箭头状态初始化：");
-            console.log("可滚动总距离：", maxScroll + "px");
-            console.log("左箭头禁用：", advantagePrevBtn.disabled);
-            console.log("右箭头禁用：", advantageNextBtn.disabled);
-          }, 300);
-        } else {
-          console.error("板块7：未找到卡片容器或箭头元素，请检查ID是否匹配！");
-        }
-
-        // 2. 统一处理「弹出卡片」逻辑（删除重复代码，修复隐藏逻辑）
-        const plusBtns = document.querySelectorAll(".advantage-plus-btn");
-        const modal = document.querySelector(".advantage-modal");
-        const modalOverlay = document.querySelector(".advantage-modal-overlay");
-        const closeBtn = document.querySelector(".advantage-modal-close");
-        const body = document.body;
-        let scrollTop = 0; // 用于保存弹出前的页面滚动位置
-
-        // 容错：若弹出层元素未找到，不执行后续逻辑
-        if (!modal || !modalOverlay || !closeBtn) {
-          console.error(
-            "弹出层：未找到modal/modalOverlay/closeBtn，请检查类名！"
-          );
-          return;
-        }
-
-        // 2.1 打开弹出层（含动态填充内容）
-        function showModal(e) {
-          // 从点击的加号按钮，找到父级卡片（.advantage-card）
-          const currentCard = e.currentTarget.closest(".advantage-card");
-          if (!currentCard) return; // 若未找到卡片，不执行
-
-          // 从卡片的 data-* 属性读取内容（需确保HTML中卡片有这些属性）
-          const cardTitle = currentCard.dataset.modalTitle || "默认标题";
-          const cardContent =
-            currentCard.dataset.modalContent || "默认详情内容";
-
-          // 填充内容到弹出卡片
-          const modalTitle = modal.querySelector(".advantage-modal-title");
-          const modalContent = modal.querySelector(".advantage-modal-content");
-          if (modalTitle) modalTitle.textContent = cardTitle; // 标题不需要HTML，保留textContent
-          if (modalContent) modalContent.innerHTML = cardContent; // 内容用innerHTML解析HTML标签
-
-          // 显示弹出层+遮罩，固定页面滚动
-          scrollTop = window.scrollY; // 保存当前滚动位置
-          modal.classList.remove("hidden"); // 显示卡片
-          modalOverlay.classList.add("active"); // 显示遮罩
-          body.classList.add("body-fixed"); // 禁止页面滚动
-          body.style.top = `-${scrollTop}px`; // 固定页面位置，避免抖动（修复原代码少scrollTop的bug）
-        }
-
-        // 2.2 关闭弹出层（核心修复：同步隐藏卡片+遮罩）
-        function hideModal() {
-          modal.classList.add("hidden"); // 隐藏卡片（修复原代码加active的错误）
-          modalOverlay.classList.remove("active"); // 隐藏遮罩
-          body.classList.remove("body-fixed"); // 恢复页面滚动
-          body.style.top = ""; // 清除top定位
-          window.scrollTo(0, scrollTop); // 恢复到弹出前的滚动位置
-        }
-
-        // 2.3 绑定所有事件（去重：只绑定一次加号按钮事件）
-        plusBtns.forEach((btn) => {
-          btn.addEventListener("click", (e) => showModal(e)); // 传递点击事件，用于找到当前卡片
-        });
-
-        closeBtn.addEventListener("click", hideModal); // 关闭按钮
-        modalOverlay.addEventListener("click", hideModal); // 点击遮罩
-        modal.addEventListener("click", (e) => {
-          if (e.target === modal) hideModal(); // 点击卡片空白处（避免点击内容误关闭）
-        });
-
-        // 2.4 ESC键关闭（修复后：同步隐藏卡片+遮罩）
-        document.addEventListener("keydown", (e) => {
-          // 只有当卡片显示（无hidden）且遮罩显示（有active）时，ESC才生效
-          if (
-            (e.key === "Escape" || e.keyCode === 27) &&
-            !modal.classList.contains("hidden") &&
-            modalOverlay.classList.contains("active")
-          ) {
-            hideModal();
-          }
-        });
-      });
-
-      // ================================== 八、设备配件板块JS（新增） ==================================
-      document.addEventListener("DOMContentLoaded", function () {
-        const scrollContainer = document.querySelector(
-          ".accessory-scroll-container"
-        );
-        const cardList = document.querySelector(".accessory-card-list");
-        const prevBtn = document.getElementById("accessoryPrev");
-        const nextBtn = document.getElementById("accessoryNext");
-
-        // 单次滚动距离（单张卡片宽度 + 间距）
-        const cardWidth = 18 * 16 + 2 * 16; // 18rem(卡片宽) + 2rem(间距)，转换为px（html font-size=16px）
-
-        // 响应式调整滚动距离（小屏幕适配）
-        function getScrollStep() {
-          const screenWidth = window.innerWidth;
-          if (screenWidth <= 767) return 12 * 16 + 1.5 * 16; // Mobile：12rem + 1.5rem
-          if (screenWidth <= 1024) return 15 * 16 + 1.5 * 16; // Tablet：15rem + 1.5rem
-          return cardWidth; // 桌面端：18rem + 2rem
-        }
-
-        // 左滚动
-        prevBtn.addEventListener("click", () => {
-          scrollContainer.scrollBy({
-            left: -getScrollStep(),
-            behavior: "smooth", // 平滑滚动
-          });
-        });
-
-        // 右滚动
-        nextBtn.addEventListener("click", () => {
-          scrollContainer.scrollBy({
-            left: getScrollStep(),
-            behavior: "smooth",
-          });
-        });
-
-        // 滚动时更新箭头禁用状态（避免滚动到两端后箭头仍可点击）
-        function updateButtonStates() {
-          // 容器可滚动的总宽度 = 内容总宽度 - 容器可视宽度
-          const maxScrollLeft =
-            scrollContainer.scrollWidth - scrollContainer.clientWidth;
-
-          // 滚动到最左侧时禁用左箭头
-          prevBtn.disabled = scrollContainer.scrollLeft <= 0;
-          prevBtn.style.opacity = scrollContainer.scrollLeft <= 0 ? "0.5" : "1";
-          prevBtn.style.pointerEvents =
-            scrollContainer.scrollLeft <= 0 ? "none" : "auto";
-
-          // 滚动到最右侧时禁用右箭头
-          nextBtn.disabled = scrollContainer.scrollLeft >= maxScrollLeft - 10; // 预留10px误差
-          nextBtn.style.opacity =
-            scrollContainer.scrollLeft >= maxScrollLeft - 10 ? "0.5" : "1";
-          nextBtn.style.pointerEvents =
-            scrollContainer.scrollLeft >= maxScrollLeft - 10 ? "none" : "auto";
-        }
-
-        // 初始化状态
-        updateButtonStates();
-
-        // 滚动时更新状态
-        scrollContainer.addEventListener("scroll", updateButtonStates);
-
-        // 窗口大小改变时重新计算滚动参数
-        window.addEventListener("resize", () => {
-          updateButtonStates();
-        });
-      });
     </script>
 
     <script>
@@ -4286,6 +3529,58 @@
         if (newsTitle) {
           observer.observe(newsTitle);
         }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("newsModal");
+        const modalBody = document.getElementById("modalBody");
+        const modalClose = document.getElementById("modalClose");
+        const modalBackdrop = document.getElementById("modalBackdrop");
+        const expandBtns = document.querySelectorAll(".news-expand-btn");
+
+        // 打开弹窗
+        function openModal(data) {
+          modalBody.innerHTML = `
+      <img src="${data.img}" alt="${data.title}">
+      <span class="news-date">${data.date}</span>
+      <h3>${data.title}</h3>
+      <div>${data.content}</div>
+    `;
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        }
+
+        // 关闭弹窗
+        function closeModal() {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+
+        // 绑定所有加号按钮
+        expandBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const data = {
+              img: btn.dataset.img,
+              title: btn.dataset.title,
+              date: btn.dataset.date,
+              content: btn.dataset.content,
+            };
+            openModal(data);
+          });
+        });
+
+        // 关闭按钮
+        modalClose.addEventListener("click", closeModal);
+        // 点击遮罩关闭
+        modalBackdrop.addEventListener("click", closeModal);
+        // ESC 关闭
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && modal.style.display === "flex") {
+            closeModal();
+          }
+        });
       });
     </script>
   </body>

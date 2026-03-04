@@ -12,7 +12,10 @@
       name="keywords"
     />
     <title>Senrytech激光 - 专业激光切割机厂家 | 全系列激光切割设备首页</title>
-    <link rel="canonical" href="https://www.senrytech.com/pitfall-avoidance-guide/" />
+    <link
+      rel="canonical"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/"
+    />
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
@@ -1151,7 +1154,357 @@
       }
     </style>
 
+    <style>
+      /* ================================== 避坑指南-混合小卡片版 样式 ================================== */
+.avoid-pit-section {
+  width: 100%;
+  max-width: 1600px;
+  margin: 4rem auto 8rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  font-family: "Public Sans", "Noto Sans SC", sans-serif;
+}
 
+/* 标题区域 - 与原有风格统一 */
+.avoid-pit-title-wrap {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.avoid-pit-main-title {
+  font-size: 2rem;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+.avoid-pit-main-title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6rem;
+  height: 2px;
+  background-color: #0071e3;
+}
+.avoid-pit-subtitle {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* 坑点分类标题（采购/代理/售后） */
+.pit-type-wrap {
+  margin-bottom: 4rem;
+}
+.pit-type-title {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 3px solid #0071e3;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.pit-type-icon {
+  font-size: 1.2rem;
+  color: #0071e3;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(0, 113, 227, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 坑点小卡片网格容器 */
+.pit-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* 核心坑点小卡片样式（含图片/纯文字） */
+.pit-card {
+  background: #f9f9f9;
+  border-radius: 1.2rem;
+  padding: 1.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+/* 有图片的卡片特殊样式 */
+.pit-card.has-img {
+  padding-top: 14rem; /* 预留图片高度 */
+}
+/* 图片容器 */
+.pit-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12rem; /* 图片固定高度 */
+  border-bottom: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+.pit-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.pit-card:hover .pit-card-img img {
+  transform: scale(1.05); /* hover图片轻微缩放 */
+}
+
+.pit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+/* 坑点标签 */
+.pit-card-tag {
+  position: absolute;
+  top: 1.8rem;
+  right: 1.8rem;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #d93025;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  z-index: 1; /* 标签在图片上方 */
+}
+.pit-card-name {
+  font-size: 1.1rem;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-right: 3rem;
+}
+.pit-card-desc {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+}
+/* 避坑方案 */
+.pit-card-solution {
+  border-top: 1px solid #e8e8e8;
+  padding-top: 1.2rem;
+}
+.solution-label {
+  font-size: 0.95rem;
+  color: #008a69;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.pit-card-solution p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 右下角加号按钮 */
+.pit-expand-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #0071e3;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
+  z-index: 2;
+}
+.pit-expand-btn:hover {
+  background: #005fc4;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.4);
+}
+
+/* 避坑详情弹窗 */
+.pit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.pit-modal {
+  background: #fff;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.pit-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.pit-modal-close:hover {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.pit-modal-body {
+  padding: 3rem 2.5rem;
+}
+.pit-modal-title {
+  font-size: 1.6rem;
+  color: #000;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e8e8e8;
+}
+.pit-modal-content {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.8;
+}
+.pit-modal-content p {
+  margin-bottom: 1.5rem;
+}
+.pit-modal-content .desc-title,
+.pit-modal-content .solution-title {
+  font-weight: 600;
+  color: #0071e3;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* ================================== 全尺寸响应式适配 ================================== */
+@media (max-width: 1024px) {
+  .avoid-pit-section {
+    margin: 3rem auto 6rem;
+  }
+  .avoid-pit-title-wrap {
+    margin-bottom: 4rem;
+  }
+  .pit-card.has-img {
+    padding-top: 12rem;
+  }
+  .pit-card-img {
+    height: 10rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .avoid-pit-section {
+    padding: 0 1.5rem;
+    margin: 2rem auto 4rem;
+  }
+  .avoid-pit-main-title {
+    font-size: 1.8rem;
+  }
+  .pit-type-title {
+    font-size: 1.2rem;
+  }
+  .pit-card {
+    padding: 1.5rem;
+  }
+  .pit-card.has-img {
+    padding-top: 10rem;
+  }
+  .pit-card-img {
+    height: 8rem;
+  }
+  .pit-card-tag {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+  .pit-expand-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+  .pit-modal-body {
+    padding: 2.5rem 1.8rem;
+  }
+  .pit-modal-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .avoid-pit-section {
+    padding: 0 1rem;
+  }
+  .avoid-pit-main-title {
+    font-size: 1.6rem;
+  }
+  .avoid-pit-subtitle {
+    font-size: 0.95rem;
+  }
+  .pit-card-list {
+    grid-template-columns: 1fr;
+  }
+  .pit-card {
+    padding: 1.2rem;
+  }
+  .pit-card.has-img {
+    padding-top: 8rem;
+  }
+  .pit-card-img {
+    height: 6.5rem;
+  }
+  .pit-card-tag {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+  .pit-modal-body {
+    padding: 2rem 1.5rem;
+  }
+}
+    </style>
 
     <!--十、底部导航模块 -->
     <style>
@@ -2553,6 +2906,180 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- 避坑指南-混合小卡片版核心板块 -->
+<section class="avoid-pit-section">
+  <!-- 标题区域 -->
+  <div class="avoid-pit-title-wrap">
+    <h2 class="avoid-pit-main-title">激光行业避坑指南</h2>
+    <p class="avoid-pit-subtitle">深耕激光行业多年，拆解采购/合作/售后全流程高频坑点，为你避坑护航</p>
+  </div>
+
+  <!-- 第一类：设备采购避坑（混合卡片） -->
+  <div class="pit-type-wrap">
+    <h3 class="pit-type-title">
+      <i class="fa fa-shopping-cart pit-type-icon"></i>
+      设备采购避坑
+    </h3>
+    <div class="pit-card-list">
+      <!-- 图文卡片 -->
+      <div class="pit-card has-img" 
+           data-title="低价噱头，核心部件偷梁换柱"
+           data-desc="部分商家以远低于市场价的价格吸引采购，实则将原装进口激光器、伺服电机替换为杂牌仿品，这些仿品成本仅为原装的1/3-1/5，设备使用1-3个月即出现精度下降、故障频发，维修时还会被索要高额配件费。"
+           data-solution="1. 签订正式合同，明确标注所有核心部件（激光器、伺服电机、导轨等）的品牌、型号、产地，拒绝模糊表述；2. 要求商家提供核心部件的正品授权证明及溯源码，验收时现场扫码验证；3. 约定质保条款，若发现部件造假，要求无条件退货并赔偿损失。">
+        <div class="pit-card-img">
+          <img src="https://picsum.photos/600/300?random=1" alt="核心部件偷梁换柱" />
+        </div>
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">低价噱头，核心部件偷梁换柱</h4>
+        <p class="pit-card-desc">低价吸引采购，将原装激光器、伺服电机替换为杂牌仿品，设备短期即故障。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>合同标注核心部件品牌/型号/产地，索要正品授权，验收扫码验证。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <!-- 纯文字卡片 -->
+      <div class="pit-card"
+           data-title="夸大参数，实际性能缩水"
+           data-desc="商家宣传时夸大设备核心参数，比如宣称切割精度0.01mm、切割厚度50mm，实际交付后检测精度仅0.05mm，厚板切割时还会出现边缘毛刺、切割不穿透等问题。当客户提出质疑时，商家会以「操作不当、材料不符合要求」等理由推脱责任，拒绝退换货。"
+           data-solution="1. 实地验机：带自有加工材料样品到商家工厂现场测试，记录实际切割精度、速度、厚度等数据；2. 合同明确：将宣传的核心参数白纸黑字写进合同，约定参数不达标时可无条件退货退款，或要求商家赔偿差价；3. 保留证据：验机时全程录像，保存商家宣传页、聊天记录等，作为后续维权凭证。">
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">夸大参数，实际性能缩水</h4>
+        <p class="pit-card-desc">宣传高精度/大切割厚度，实际交付不达标，商家以操作/材料问题推脱。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>带样实地验机，核心参数写进合同，约定不达标无条件退货。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <!-- 图文卡片 -->
+      <div class="pit-card has-img"
+           data-title="质保范围模糊，后期乱收费"
+           data-desc="部分商家口头承诺「免费质保3年」，但未明确质保范围，实际仅质保主机外壳等非核心部件，激光器、导轨、伺服电机等易损件质保仅6个月。设备出现故障后，商家会以「易损件不在质保范围」为由，收取高额上门费（200-500元/次）和配件费（远超市场价格）。"
+           data-solution="1. 明确质保细节：合同内清晰标注质保范围（整机/核心部件/易损件）、各部分质保期限，拒绝「整机质保3年」等模糊表述；2. 约定维修费用：明确质保期内上门费、配件费是否包含在内，过保后维修费用的收费标准；3. 选择有售后网点的品牌，避免异地维修难、响应慢的问题。">
+        <div class="pit-card-img">
+          <img src="https://picsum.photos/600/300?random=3" alt="质保模糊" />
+        </div>
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">质保范围模糊，后期乱收费</h4>
+        <p class="pit-card-desc">口头承诺超长质保，实际仅保主机，易损件质保期极短，维修收高额费用。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>合同明确整机/核心件/易损件质保范围、期限，拒绝口头承诺。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <!-- 纯文字卡片 -->
+      <div class="pit-card"
+           data-title="无定制方案，强行推通用设备"
+           data-desc="很多商家为了清库存或获取更高利润，不根据客户的加工材料（不锈钢/铝合金/板材/管材）、产能需求推荐设备，强行推销通用机型。比如客户主要加工薄板材，却被推荐厚板切割机，导致设备采购成本增加30%以上，且加工效率低下；或客户需要高精度切割，却被推荐普通精度设备，无法满足生产需求。"
+           data-solution="1. 提前明确自身需求：梳理加工材料、厚度、精度要求、日产能等核心参数，形成书面需求清单；2. 要求商家出具定制化加工解决方案，包括设备型号、配置、加工工艺等，拒绝无方案推荐；3. 参考同行业客户案例，了解类似需求的客户使用的设备型号，避免被误导；4. 约定设备适配性：合同内注明设备需满足自身加工需求，若适配性不达标可要求更换或退货。">
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">无定制方案，强行推通用设备</h4>
+        <p class="pit-card-desc">不根据加工材料/产能需求推荐，推销高利润机型，设备适配性差、效率低。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>要求出具定制化方案，参考同行业案例，明确设备适配工艺。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第二类：代理合作避坑（混合卡片） -->
+  <div class="pit-type-wrap">
+    <h3 class="pit-type-title">
+      <i class="fa fa-handshake-o pit-type-icon"></i>
+      代理合作避坑
+    </h3>
+    <div class="pit-card-list">
+      <!-- 纯文字卡片 -->
+      <div class="pit-card"
+           data-title="无区域保护，恶意放货内卷"
+           data-desc="部分品牌方为了快速拓展市场，在签订代理协议后，私下在同一区域发展多个代理商，甚至自身通过电商平台直接低价销售，导致代理商之间恶性竞争，价格战频发，利润空间被严重压缩，部分代理商甚至出现亏损运营的情况。"
+           data-solution="1. 签订独家区域代理协议，明确代理区域的地理范围（如某省、某市），禁止品牌方在该区域发展其他代理商或直接销售；2. 约定违约条款：若品牌方恶意放货，需向代理商支付违约金（如年度代理费的30%-50%），并停止违规行为；3. 定期核查：通过电商平台、市场调研等方式核查品牌方是否存在违规销售行为，保留证据以便维权。">
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">无区域保护，恶意放货内卷</h4>
+        <p class="pit-card-desc">同一区域发展多个代理商，品牌方直接低价销售，代理商无利润空间。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>签订独家区域代理协议，明确保护范围，约定违约违约金。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <!-- 图文卡片 -->
+      <div class="pit-card has-img"
+           data-title="高加盟费/压货，后期无扶持"
+           data-desc="部分品牌方要求代理商缴纳高额加盟费（5-20万元），或强制压货数十万元的设备，承诺提供品牌宣传、技术培训、获客资源等扶持，但代理商缴纳费用后，品牌方并未兑现承诺，无专业培训团队、无宣传物料支持、无客户资源对接，代理商只能独自开拓市场，难度极大，很多代理商因资金压力和市场拓展困难而退出。"
+           data-solution="1. 选择零加盟费、低压货门槛的品牌，避免前期资金压力过大；2. 合同内明确总部的扶持内容：如技术培训次数、宣传物料种类及数量、获客资源对接方式等，约定扶持的时间节点和标准；3. 约定解除条款：若品牌方未按约定提供扶持，代理商有权解除协议并要求退还加盟费/押金。">
+        <div class="pit-card-img">
+          <img src="https://picsum.photos/600/300?random=6" alt="高加盟费" />
+        </div>
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">高加盟费/压货，后期无扶持</h4>
+        <p class="pit-card-desc">缴纳高额加盟费/强制压货，总部无培训/物料/获客支持，独自拓市难度大。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>选零加盟费品牌，合同明确扶持内容/时间，未兑现可解约退款。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第三类：售后维权避坑（混合卡片） -->
+  <div class="pit-type-wrap">
+    <h3 class="pit-type-title">
+      <i class="fa fa-shield pit-type-icon"></i>
+      售后维权避坑
+    </h3>
+    <div class="pit-card-list">
+      <!-- 图文卡片 -->
+      <div class="pit-card has-img"
+           data-title="设备故障，售后失联/响应慢"
+           data-desc="设备出现故障后，商家初期以「技术人员忙、配件缺货」为由拖延维修，后期甚至电话不接、微信不回，导致设备长期停工，给客户造成巨大经济损失。尤其是一些小作坊式商家，无固定售后团队，售后完全依赖外包，维修质量和响应速度无法保障。"
+           data-solution="1. 合同内明确售后响应时间：如7*24小时在线咨询，本地客户4小时内上门维修，异地客户24小时内到达现场；2. 约定误工赔偿：若商家未按时响应或维修，需按日支付误工赔偿金（如设备日产值的10%-20%）；3. 选择有实体工厂、售后网点覆盖广的品牌，避免选择无固定经营场所的小商家。">
+        <div class="pit-card-img">
+          <img src="https://picsum.photos/600/300?random=8" alt="售后失联" />
+        </div>
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">设备故障，售后失联/响应慢</h4>
+        <p class="pit-card-desc">设备故障后，商家以人员忙/配件缺拖延维修，甚至电话微信失联。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>合同明确售后响应时间，约定逾期维修的误工赔偿标准。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+      <!-- 纯文字卡片 -->
+      <div class="pit-card"
+           data-title="拒绝开发票，维权无凭证"
+           data-desc="部分商家为了避税，在交易完成后拒绝为采购/合作开具正规增值税发票，仅提供收据或白条。后期出现设备质量问题、合作纠纷时，客户因无有效发票作为交易凭证，维权难度极大，相关部门也难以立案处理，客户的合法权益无法得到保障。"
+           data-solution="1. 交易前明确要求商家开具正规增值税发票，将发票条款写入合同，约定发票开具时间（如收货后7个工作日内）；2. 拒绝接受收据、白条等非正规凭证，若商家拒开发票，可向税务部门投诉举报；3. 妥善保管合同、发票、验收单、沟通记录等所有交易凭证，便于后期维权。">
+        <div class="pit-card-tag">坑点</div>
+        <h4 class="pit-card-name">拒绝开发票，维权无凭证</h4>
+        <p class="pit-card-desc">商家为避税拒开正规发票，后期出现纠纷，无有效凭证维权难。</p>
+        <div class="pit-card-solution">
+          <span class="solution-label">避坑方案：</span>
+          <p>所有交易要求开正规发票，妥善保管合同/发票/验收单/沟通记录。</p>
+        </div>
+        <button class="pit-expand-btn" onclick="openPitModal(this)"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 避坑详情弹窗 -->
+<div class="pit-modal-overlay" id="pitModal">
+  <div class="pit-modal">
+    <button class="pit-modal-close" onclick="closePitModal()"><i class="fa fa-times"></i></button>
+    <div class="pit-modal-body">
+      <h3 class="pit-modal-title" id="modalTitle"></h3>
+      <div class="pit-modal-content" id="modalContent"></div>
+    </div>
+  </div>
+</div>
+
     <!-- 板块10. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">
       <div class="footer-container">
@@ -3794,5 +4321,62 @@
       });
     </script>
 
+    <script>
+      // 打开避坑详情弹窗
+function openPitModal(btn) {
+  const card = btn.parentElement;
+  const title = card.dataset.title;
+  const desc = card.dataset.desc;
+  const solution = card.dataset.solution;
+  const modal = document.getElementById('pitModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalContent = document.getElementById('modalContent');
+
+  // 渲染弹窗内容
+  modalTitle.textContent = title;
+  modalContent.innerHTML = `
+    <p><span class="desc-title">坑点详情：</span>${desc}</p>
+    <p><span class="solution-title">详细避坑方案：</span>${solution}</p>
+  `;
+
+  // 显示弹窗，禁止背景滚动
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+// 关闭避坑详情弹窗
+function closePitModal() {
+  const modal = document.getElementById('pitModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// 点击弹窗遮罩关闭
+document.getElementById('pitModal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closePitModal();
+  }
+});
+
+// 键盘ESC关闭弹窗
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closePitModal();
+  }
+});
+
+// 页面加载卡片渐入动效
+window.addEventListener('DOMContentLoaded', function() {
+  const pitCards = document.querySelectorAll('.pit-card');
+  pitCards.forEach((card, index) => {
+    card.style.opacity = 0;
+    card.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      card.style.transition = 'all 0.5s ease';
+      card.style.opacity = 1;
+      card.style.transform = 'translateY(0)';
+    }, 100 * index);
+  });
+});</script>
   </body>
 </html>

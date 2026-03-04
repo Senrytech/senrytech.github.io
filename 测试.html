@@ -1,360 +1,582 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laser Machine Pitfall Guide | BODOR Style</title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* 全局重置+核心设计变量（BODOR×苹果风格） */
-        :root {
-            --bg-primary: #ffffff; /* 苹果白 */
-            --bg-secondary: #f5f5f7; /* 苹果浅灰 */
-            --text-primary: #1d1d1f; /* 邦德黑 */
-            --text-secondary: #86868b; /* 浅灰说明 */
-            --accent: #0071e3; /* 苹果蓝 */
-            --accent-bodor: #0a1a2f; /* 邦德黑曜石黑 */
-            --border: #e8e8ed; /* 轻量边框 */
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
-            --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.08);
-            --radius: 12px; /* 苹果经典圆角 */
-            --transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 邦德平滑过渡 */
+    <title>科技新闻板块 - 超苹果风格</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 自定义Tailwind配置：全局变量、颜色、字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#121212',
+                        bg: '#F8F8F8',
+                        tech: '#00C2B8',    // 技术迭代
+                        expo: '#FF7D00',    // 展会活动
+                        cert: '#7B52FF',    // 认证合作
+                        case: '#008A69',    // 案例白皮书
+                        insight: '#4A6FA5', // 行业洞察
+                        blue: '#0A7CFF'
+                    },
+                    fontFamily: {
+                        sf: ['SF Pro Display', 'PingFang SC', '思源黑体', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 12px rgba(0,0,0,0.05)',
+                        'card-hover': '0 8px 20px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
         }
-
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* 玻璃态核心样式 */
+            .glass {
+                @apply bg-white/85 backdrop-blur-md border border-white/20 shadow-card;
+            }
+            .glass-mask {
+                @apply bg-black/10 backdrop-blur-sm;
+            }
+            /* 动态圆角：适配不同屏幕 */
+            .radius-sm {
+                @apply rounded-lg;
+            }
+            .radius-md {
+                @apply rounded-xl;
+            }
+            .radius-lg {
+                @apply rounded-2xl;
+            }
+            /* 卡片hover动效 */
+            .card-animate {
+                @apply transition-all duration-300 hover:-translate-y-1.5 hover:scale-102 hover:shadow-card-hover;
+            }
+            /* 展开窗动效 */
+            .modal-animate {
+                @apply transition-all duration-300 opacity-0 scale-95;
+            }
+            .modal-show {
+                @apply opacity-100 scale-100;
+            }
+            /* 文字超出省略 */
+            .text-ellipsis-1 {
+                @apply overflow-hidden text-ellipsis whitespace-nowrap;
+            }
+            .text-ellipsis-2 {
+                @apply overflow-hidden text-ellipsis -webkit-line-clamp-2 line-clamp-2 box-decoration-clone;
+            }
+            /* 自定义滚动条 */
+            .custom-scroll {
+                @apply scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400;
+            }
+        }
+        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
-
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 60px 20px; /* 更大留白，符合BODOR风格 */
-            line-height: 1.6;
+            background-color: var(--tw-color-bg);
+            font-family: 'SF Pro Display', 'PingFang SC', '思源黑体', sans-serif;
+            color: var(--tw-color-main);
+            overflow-x: hidden;
         }
-
-        /* 板块容器：居中+最大宽度，避免大屏过宽 */
-        .pitfall-guide-container {
-            max-width: 1280px; /* BODOR官网标准宽度 */
-            margin: 0 auto;
-            position: relative;
+        /* 解决iOS滚动回弹 */
+        html, body {
+            -webkit-overflow-scrolling: touch;
         }
-
-        /* 标题区域：BODOR大标题风格+苹果极简说明 */
-        .guide-header {
-            text-align: center;
-            margin-bottom: 60px; /* 更大留白，提升高级感 */
-            padding: 0 20px;
+        /* 分类导航滚动隐藏滚动条 */
+        .nav-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-
-        .guide-title {
-            font-size: 42px; /* 邦德大标题风格 */
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.02em; /* 苹果官网标题字间距 */
-            color: var(--text-primary);
-        }
-
-        .guide-subtitle {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* 筛选栏：BODOR风格简洁筛选 */
-        .filter-bar {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 8px 20px;
-            background-color: var(--bg-secondary);
-            border-radius: 20px; /* 胶囊形按钮，BODOR特色 */
-            border: none;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--accent-bodor);
-            color: white;
-        }
-
-        /* 设备卡片网格：BODOR×苹果响应式布局 */
-        .machine-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* 自适应宽度 */
-            gap: 30px; /* 更大间距，符合BODOR留白美学 */
-        }
-
-        /* 设备卡片：BODOR工业设计精髓+苹果卡片风格 */
-        .machine-card {
-            background-color: var(--bg-primary);
-            border-radius: var(--radius);
-            padding: 40px 28px; /* 更大内边距，提升质感 */
-            box-shadow: var(--shadow-light);
-            transition: var(--transition);
-            border: 1px solid var(--border);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* BODOR特色：卡片hover轻微上浮+阴影加深+底部光效 */
-        .machine-card:hover {
-            transform: translateY(-8px); /* 比普通苹果风上浮更多，更有动感 */
-            box-shadow: var(--shadow-hover);
-        }
-
-        .machine-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-bodor), var(--accent));
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .machine-card:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* 卡片图标：BODOR黑弈风格+苹果线性图标 */
-        .card-icon {
-            font-size: 40px; /* 更大图标，突出工业感 */
-            color: var(--accent-bodor);
-            margin-bottom: 24px;
-            transition: var(--transition);
-        }
-
-        .machine-card:hover .card-icon {
-            color: var(--accent);
-        }
-
-        /* 卡片标题+描述：BODOR大标题+苹果简洁说明 */
-        .card-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-        }
-
-        .card-pitfalls {
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            line-height: 1.7;
-        }
-
-        .card-pitfalls strong {
-            color: var(--accent-bodor);
-            font-weight: 600;
-        }
-
-        /* 卡片按钮：BODOR极简按钮+苹果交互反馈 */
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--accent);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .card-link i {
-            margin-left: 8px;
-            font-size: 14px;
-            transition: var(--transition);
-        }
-
-        .card-link:hover {
-            color: var(--accent-bodor);
-        }
-
-        .card-link:hover i {
-            transform: translateX(5px);
-        }
-
-        /* 响应式适配：BODOR官网标准断点 */
-        @media (max-width: 1024px) {
-            .guide-title {
-                font-size: 36px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .guide-title {
-                font-size: 30px;
-            }
-            .machine-grid {
-                gap: 24px;
-            }
-            .machine-card {
-                padding: 32px 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 40px 16px;
-            }
-            .guide-title {
-                font-size: 26px;
-            }
-            .machine-grid {
-                gap: 20px;
-            }
+        .nav-scroll::-webkit-scrollbar {
+            display: none;
         }
     </style>
 </head>
-<body>
-    <div class="pitfall-guide-container">
-        <!-- 标题区域 -->
-        <div class="guide-header">
-            <h1 class="guide-title">Laser Machine Pitfall Guide</h1>
-            <p class="guide-subtitle">Avoid industry traps with BODOR-style precision. Identify core pitfalls for sheet, pipe, welding, cleaning and marking machines.</p>
+<body class="font-sf min-h-screen">
+    <!-- 顶部导航栏：固定+玻璃态 -->
+    <header class="fixed top-0 left-0 right-0 z-50 py-3 px-4 md:px-6 lg:px-8 glass">
+        <div class="max-w-[2400px] mx-auto flex items-center justify-between">
+            <h1 class="text-lg md:text-xl lg:text-2xl font-bold text-main">TECH NEWS <span class="text-blue">CENTER</span></h1>
+            <!-- 大屏搜索+筛选：1025px以上显示 -->
+            <div class="hidden lg:flex items-center gap-3">
+                <div class="relative glass radius-md px-3 py-1.5 w-64">
+                    <i class="fa fa-search text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" placeholder="搜索新闻/分类/关键词" class="w-full pl-8 bg-transparent outline-none text-sm">
+                </div>
+                <select class="glass radius-md px-3 py-1.5 outline-none text-sm">
+                    <option>按时间排序</option>
+                    <option>按热度排序</option>
+                </select>
+            </div>
         </div>
+    </header>
 
-        <!-- 筛选栏 -->
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">All Machines</button>
-            <button class="filter-btn" data-filter="sheet">Sheet Cutting</button>
-            <button class="filter-btn" data-filter="pipe">Pipe Cutting</button>
-            <button class="filter-btn" data-filter="sheet-pipe">Sheet & Pipe</button>
-            <button class="filter-btn" data-filter="welding">Welding</button>
-            <button class="filter-btn" data-filter="cleaning">Cleaning</button>
-            <button class="filter-btn" data-filter="marking">Marking</button>
-        </div>
+    <!-- 核心内容区：避开顶部导航 -->
+    <main class="pt-16 pb-12 px-4 md:px-6 lg:px-8 max-w-[2400px] mx-auto">
+        <!-- 一、分类导航：8档适配+滚动+选中态 -->
+        <section class="mt-4 mb-8">
+            <div class="nav-scroll overflow-x-auto">
+                <div class="flex gap-2 md:gap-3 lg:gap-4 py-2 whitespace-nowrap">
+                    <button class="nav-item active tech flex items-center gap-1 px-4 py-2 radius-md text-sm md:text-base" data-type="tech">
+                        <i class="fa fa-microchip"></i> 技术迭代
+                    </button>
+                    <button class="nav-item expo flex items-center gap-1 px-4 py-2 radius-md text-sm md:text-base" data-type="expo">
+                        <i class="fa fa-globe"></i> 展会活动
+                    </button>
+                    <button class="nav-item cert flex items-center gap-1 px-4 py-2 radius-md text-sm md:text-base" data-type="cert">
+                        <i class="fa fa-certificate"></i> 认证合作
+                    </button>
+                    <button class="nav-item case flex items-center gap-1 px-4 py-2 radius-md text-sm md:text-base" data-type="case">
+                        <i class="fa fa-file-text-o"></i> 案例白皮书
+                    </button>
+                    <button class="nav-item insight flex items-center gap-1 px-4 py-2 radius-md text-sm md:text-base" data-type="insight">
+                        <i class="fa fa-line-chart"></i> 行业洞察
+                    </button>
+                </div>
+            </div>
+            <!-- 小屏更多分类：仅0-425px显示 -->
+            <div class="lg:hidden mt-2">
+                <button class="glass radius-md px-3 py-1.5 text-sm flex items-center gap-2 w-full justify-center">
+                    <i class="fa fa-bars"></i> 更多筛选
+                </button>
+            </div>
+        </section>
 
-        <!-- 设备卡片网格 -->
-        <div class="machine-grid">
-            <!-- 板材切割机 -->
-            <div class="machine-card" data-category="sheet">
-                <i class="fa-solid fa-square-cut card-icon"></i>
-                <h3 class="card-title">Sheet Laser Cutter</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Power falsification, bed deformation, fake guide rails, insufficient dust extraction</p>
-                <a href="#sheet-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- 二、焦点新闻推荐区：全宽+玻璃态蒙版 -->
+        <section class="mb-10 relative glass radius-lg overflow-hidden h-[200px] sm:h-[250px] md:h-[300px] lg:h-[350px] xl:h-[400px] card-animate">
+            <img src="https://picsum.photos/2560/1000?random=1" alt="焦点新闻" class="w-full h-full object-cover absolute top-0 left-0">
+            <div class="absolute inset-0 glass-mask"></div>
+            <div class="absolute inset-0 px-6 md:px-8 lg:px-10 flex flex-col justify-end pb-6 md:pb-8 lg:pb-10">
+                <span class="inline-block px-3 py-1 radius-sm text-xs md:text-sm text-white bg-tech/90 w-fit mb-3">技术迭代</span>
+                <h2 class="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-2 text-ellipsis-1">新一代工业激光技术迭代 核心参数提升50%</h2>
+                <p class="text-white/90 text-sm md:text-base max-w-2xl text-ellipsis-2 mb-3">本次技术迭代实现了激光发射效率、稳定性双提升，已完成多场景实测，将全面应用于工业生产环节，推动行业技术升级。</p>
+                <div class="flex items-center text-white/80 text-xs md:text-sm">
+                    <span><i class="fa fa-clock-o mr-1"></i> 2025-10-01</span>
+                    <span class="ml-4"><i class="fa fa-eye mr-1"></i> 2896</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 三、新闻模块：五大分类+卡片流+8档列数适配 -->
+        <section class="news-container">
+            <!-- 技术迭代类 -->
+            <div class="news-type tech mb-12" data-type="tech">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <i class="fa fa-microchip text-tech"></i> 技术迭代
+                    </h3>
+                    <button class="text-sm text-gray-500 hover:text-tech transition-colors">
+                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                <!-- 卡片布局：0-320/321-375/376-425→1列；426-768/769-1024→2列；1025-1440→3列；1441-2560→4列；>2561→5列 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6">
+                    <!-- 新闻卡片1 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate" 
+                         data-title="激光切割算法优化 加工精度提升至0.01mm"
+                         data-type="技术迭代"
+                         data-time="2025-09-28"
+                         data-img="https://picsum.photos/800/500?random=2"
+                         data-content="<p class='mb-4'>本次算法优化基于深度学习模型，针对工业激光切割的边缘毛刺、尺寸偏差问题进行专项升级，加工精度从原0.05mm提升至0.01mm，同时切割效率提升20%。</p><p class='mb-4'>优化后的算法已在汽车零部件、精密仪器加工等场景完成验证，适配多款主流激光切割设备，支持无缝升级。</p><p>技术团队表示，后续将持续迭代算法，结合视觉识别技术，实现切割过程的智能自适应调整。</p>">
+                        <img src="https://picsum.photos/800/500?random=2" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-tech/10 text-tech w-fit mb-2">技术迭代</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">激光切割算法优化 加工精度提升至0.01mm</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">基于深度学习模型的算法优化，解决切割边缘毛刺问题，加工精度大幅提升，适配多款主流设备。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-28</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1568</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片2 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="工业激光电源小型化 功耗降低30%体积缩小40%"
+                         data-type="技术迭代"
+                         data-time="2025-09-20"
+                         data-img="https://picsum.photos/800/500?random=3"
+                         data-content="<p class='mb-4'>新一代工业激光电源完成研发，通过电路拓扑结构重构和新材料应用，实现功耗降低30%、体积缩小40%，同时输出功率保持稳定。</p><p class='mb-4'>小型化后的电源可适配便携式激光设备，拓展了激光技术在户外施工、现场维修等场景的应用，目前已进入量产阶段。</p><p>该技术已申请3项国家发明专利，核心元器件实现自主可控，打破国外技术垄断。</p>">
+                        <img src="https://picsum.photos/800/500?random=3" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-tech/10 text-tech w-fit mb-2">技术迭代</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">工业激光电源小型化 功耗降低30%体积缩小40%</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">电路拓扑结构重构+新材料应用，电源小型化同时保证功率稳定，适配便携式激光设备，已进入量产。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-20</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1245</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片3 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="激光焊接技术突破 实现铝合金无气孔焊接"
+                         data-type="技术迭代"
+                         data-time="2025-09-15"
+                         data-img="https://picsum.photos/800/500?random=4"
+                         data-content="<p class='mb-4'>针对铝合金焊接易产生气孔、焊缝强度低的行业痛点，研发团队推出新一代激光焊接技术，通过调节激光脉冲频率和保护气体配比，实现铝合金无气孔焊接。</p><p class='mb-4'>该技术焊缝强度较传统工艺提升45%，焊接速度提升30%，已在航空航天、新能源汽车铝合金部件加工中得到应用。</p><p>后续将针对镁合金、钛合金等难焊材料进行技术拓展，打造全品类金属激光焊接解决方案。</p>">
+                        <img src="https://picsum.photos/800/500?random=4" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-tech/10 text-tech w-fit mb-2">技术迭代</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">激光焊接技术突破 实现铝合金无气孔焊接</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">调节激光脉冲频率+保护气体配比，解决铝合金焊接气孔问题，焊缝强度提升45%，适配航空航天、新能源汽车场景。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-15</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1892</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片4 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="激光3D打印层间结合技术升级 成品致密度达99.9%"
+                         data-type="技术迭代"
+                         data-time="2025-09-08"
+                         data-img="https://picsum.photos/800/500?random=5"
+                         data-content="<p class='mb-4'>新一代激光3D打印层间结合技术完成研发，通过优化激光扫描路径和加热工艺，使打印成品的层间结合力提升60%，致密度达到99.9%，接近锻件水平。</p><p class='mb-4'>该技术可应用于钛合金、高温合金等高端材料的3D打印，适用于航空发动机零部件、医疗植入体等高精度产品的制造。</p><p>目前已与多家航空航天企业达成合作，开展产品试制。</p>">
+                        <img src="https://picsum.photos/800/500?random=5" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-tech/10 text-tech w-fit mb-2">技术迭代</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">激光3D打印层间结合技术升级 成品致密度达99.9%</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">优化激光扫描路径+加热工艺，层间结合力提升60%，致密度接近锻件水平，适配高端材料3D打印。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-08</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1653</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片5 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="激光清洗技术智能化 实现污渍自动识别与适配清洗"
+                         data-type="技术迭代"
+                         data-time="2025-09-01"
+                         data-img="https://picsum.photos/800/500?random=6"
+                         data-content="<p class='mb-4'>激光清洗技术融入机器视觉和AI算法，实现对不同类型污渍（锈迹、油污、漆层等）的自动识别，并根据污渍特性自适应调整激光功率、扫描速度等参数。</p><p class='mb-4'>智能化改造后，激光清洗的效率提升50%，对基材的损伤率降低至0.1%以下，适用于工业设备维护、文物修复等场景。</p><p>该智能清洗系统已实现标准化生产，可根据客户需求定制化部署。</p>">
+                        <img src="https://picsum.photos/800/500?random=6" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-tech/10 text-tech w-fit mb-2">技术迭代</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">激光清洗技术智能化 实现污渍自动识别与适配清洗</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">融入机器视觉+AI算法，自动识别污渍类型，自适应调整清洗参数，效率提升50%，基材损伤率大幅降低。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-01</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1327</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 管材切割机 -->
-            <div class="machine-card" data-category="pipe">
-                <i class="fa-solid fa-cylinder card-icon"></i>
-                <h3 class="card-title">Pipe Laser Cutter</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake zero scrap, chuck cutback, stroke falsification, poor clamping stability</p>
-                <a href="#pipe-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            <!-- 展会行业活动类 -->
+            <div class="news-type expo mb-12" data-type="expo">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <i class="fa fa-globe text-expo"></i> 展会行业活动
+                    </h3>
+                    <button class="text-sm text-gray-500 hover:text-expo transition-colors">
+                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6">
+                    <!-- 新闻卡片1 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="2025中国国际工业激光展 多款新品全球首发"
+                         data-type="展会活动"
+                         data-time="2025-10-10"
+                         data-img="https://picsum.photos/800/500?random=7"
+                         data-content="<p class='mb-4'>2025中国国际工业激光展于10月10日在上海新国际博览中心开幕，展会为期3天，吸引了全球200余家激光行业企业参展，展出面积达5万平方米。</p><p class='mb-4'>本次展会中，多款高端激光设备完成全球首发，包括超高速激光切割机、智能激光焊接系统、便携式激光清洗设备等，集中展示了激光行业的最新技术成果。</p><p class='mb-4'>展会同期举办了工业激光技术发展高峰论坛，国内外行业专家、企业代表围绕激光技术的创新与应用展开深入交流。</p><p>据组委会统计，首日观展人数突破3万人次，现场签约金额超20亿元。</p>">
+                        <img src="https://picsum.photos/800/500?random=7" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-expo/10 text-expo w-fit mb-2">展会活动</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">2025中国国际工业激光展 多款新品全球首发</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">上海新国际博览中心开幕，200余家企业参展，多款高端激光设备全球首发，同期举办技术高峰论坛。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-10-10</span>
+                                <span><i class="fa fa-eye mr-1"></i> 2156</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片2 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="2025亚洲激光技术研讨会 共探行业发展新趋势"
+                         data-type="展会活动"
+                         data-time="2025-09-25"
+                         data-img="https://picsum.photos/800/500?random=8"
+                         data-content="<p class='mb-4'>2025亚洲激光技术研讨会于9月25日在深圳举办，本次研讨会以“创新驱动·智联未来”为主题，聚焦激光技术在工业制造、新能源、生物医药等领域的应用与发展。</p><p class='mb-4'>来自中国、日本、韩国、新加坡等10余个国家和地区的300余名行业专家、学者参会，围绕激光材料加工、激光精密制造、激光智能装备等议题进行专题报告和圆桌讨论。</p><p>研讨会期间，发布了《2025亚洲激光行业发展白皮书》，分析了亚洲激光行业的发展现状、市场规模和未来趋势。</p>">
+                        <img src="https://picsum.photos/800/500?random=8" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-expo/10 text-expo w-fit mb-2">展会活动</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">2025亚洲激光技术研讨会 共探行业发展新趋势</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">深圳举办，10余国专家参会，聚焦激光技术多领域应用，发布《2025亚洲激光行业发展白皮书》。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-25</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1872</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片3 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="公司受邀参加德国汉诺威工业展 展示自主研发激光设备"
+                         data-type="展会活动"
+                         data-time="2025-09-12"
+                         data-img="https://picsum.photos/800/500?random=9"
+                         data-content="<p class='mb-4'>公司受邀参加2025德国汉诺威工业展，作为中国激光行业代表企业，携多款自主研发的高端激光设备亮相，包括新一代激光切割机、激光焊接机器人等核心产品。</p><p class='mb-4'>展台上，公司技术团队为海外客户现场演示了设备的操作流程和核心优势，凭借高性价比、高稳定性的产品特点，吸引了众多欧洲、美洲、东南亚等地区客户的关注。</p><p class='mb-4'>本次参展成功与10余家海外企业达成合作意向，进一步拓展了公司的国际市场布局。</p><p>公司表示，将持续加大海外市场投入，推动中国激光技术走向世界。</p>">
+                        <img src="https://picsum.photos/800/500?random=9" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-expo/10 text-expo w-fit mb-2">展会活动</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">公司受邀参加德国汉诺威工业展 展示自主研发激光设备</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">中国激光行业代表企业，携多款自研高端设备亮相，现场演示吸引多国客户，达成10余家合作意向。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-12</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1954</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片4 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="2025激光行业供应链交流会 在苏州成功举办"
+                         data-type="展会活动"
+                         data-time="2025-09-05"
+                         data-img="https://picsum.photos/800/500?random=10"
+                         data-content="<p class='mb-4'>2025激光行业供应链交流会于9月5日在苏州举办，本次交流会聚焦激光行业供应链的稳定与升级，吸引了激光设备制造商、核心元器件供应商、原材料企业等150余家单位参会。</p><p class='mb-4'>会上，参会企业围绕供应链协同、技术创新、成本控制、质量提升等议题展开交流，多家企业现场达成供应链合作协议，推动激光行业供应链的本土化、标准化发展。</p><p>主办方表示，后续将持续举办此类交流会，搭建激光行业供应链交流平台，助力行业高质量发展。</p>">
+                        <img src="https://picsum.photos/800/500?random=10" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-expo/10 text-expo w-fit mb-2">展会活动</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">2025激光行业供应链交流会 在苏州成功举办</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">150余家供应链相关企业参会，聚焦供应链稳定与升级，多家企业现场达成合作协议，推动本土化发展。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-09-05</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1436</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 新闻卡片5 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate"
+                         data-title="公司举办2025激光技术客户交流会 共话合作共赢"
+                         data-type="展会活动"
+                         data-time="2025-08-30"
+                         data-img="https://picsum.photos/800/500?random=11"
+                         data-content="<p class='mb-4'>公司于8月30日举办2025激光技术客户交流会，邀请了全国各地区的200余家核心客户参会，共同探讨激光技术在各行业的应用案例和发展方向。</p><p class='mb-4'>会上，公司发布了最新的客户服务体系和技术支持政策，推出了针对老客户的设备升级、技术培训等专属福利，同时现场收集了客户对产品和服务的意见建议。</p><p class='mb-4'>本次交流会现场签约金额超5亿元，新增合作客户30余家，进一步巩固了公司在激光行业的客户基础。</p><p>公司客户服务部表示，将以此次交流会为契机，持续提升客户服务质量，打造全方位的客户服务体系。</p>">
+                        <img src="https://picsum.photos/800/500?random=11" alt="新闻图片" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <span class="inline-block px-2 py-0.5 radius-sm text-xs bg-expo/10 text-expo w-fit mb-2">展会活动</span>
+                            <h4 class="font-bold text-base md:text-lg mb-2 text-ellipsis-1">公司举办2025激光技术客户交流会 共话合作共赢</h4>
+                            <p class="text-gray-600 text-sm mb-3 text-ellipsis-2">200余家核心客户参会，发布最新客户服务体系，推出老客户专属福利，现场签约金额超5亿元。</p>
+                            <div class="text-gray-400 text-xs flex items-center justify-between">
+                                <span><i class="fa fa-clock-o mr-1"></i> 2025-08-30</span>
+                                <span><i class="fa fa-eye mr-1"></i> 1289</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- 板管一体机 -->
-            <div class="machine-card" data-category="sheet-pipe">
-                <i class="fa-solid fa-cubes-stacked card-icon"></i>
-                <h3 class="card-title">Sheet & Pipe All-in-One</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake exchange platform, semi-enclosed as full-enclosed, weak pipe cutting capability</p>
-                <a href="#sheet-pipe-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            <!-- 认证合作类/案例白皮书类/行业洞察类 代码结构一致，已预留拓展位置，可按上述格式复制拓展 -->
+            <div class="news-type cert mb-12" data-type="cert">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <i class="fa fa-certificate text-cert"></i> 认证合作
+                    </h3>
+                    <button class="text-sm text-gray-500 hover:text-cert transition-colors">
+                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6">
+                    <!-- 预留拓展卡片 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate flex items-center justify-center h-80">
+                        <p class="text-gray-400 flex flex-col items-center">
+                            <i class="fa fa-plus text-2xl mb-2"></i> 新增认证合作新闻
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- 激光焊接机 -->
-            <div class="machine-card" data-category="welding">
-                <i class="fa-solid fa-welding-bridge card-icon"></i>
-                <h3 class="card-title">Laser Welding Machine</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Poor anti-reflection, power mismatch, fake 4-in-1 function, unstable beam quality</p>
-                <a href="#welding-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="news-type case mb-12" data-type="case">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <i class="fa fa-file-text-o text-case"></i> 案例白皮书
+                    </h3>
+                    <button class="text-sm text-gray-500 hover:text-case transition-colors">
+                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6">
+                    <!-- 预留拓展卡片 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate flex items-center justify-center h-80">
+                        <p class="text-gray-400 flex flex-col items-center">
+                            <i class="fa fa-plus text-2xl mb-2"></i> 新增案例白皮书新闻
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            <!-- 激光清洗机 -->
-            <div class="machine-card" data-category="cleaning">
-                <i class="fa-solid fa-spray-can-sparkles card-icon"></i>
-                <h3 class="card-title">Laser Cleaning Machine</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Pulse power falsification, low cleaning efficiency, poor rust removal effect</p>
-                <a href="#cleaning-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="news-type insight mb-12" data-type="insight">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg md:text-xl lg:text-2xl font-bold flex items-center gap-2">
+                        <i class="fa fa-line-chart text-insight"></i> 行业洞察
+                    </h3>
+                    <button class="text-sm text-gray-500 hover:text-insight transition-colors">
+                        查看更多 <i class="fa fa-angle-right ml-1"></i>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-5 lg:gap-6">
+                    <!-- 预留拓展卡片 -->
+                    <div class="news-card glass radius-md overflow-hidden card-animate flex items-center justify-center h-80">
+                        <p class="text-gray-400 flex flex-col items-center">
+                            <i class="fa fa-plus text-2xl mb-2"></i> 新增行业洞察新闻
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
+    </main>
 
-            <!-- 激光打标机 -->
-            <div class="machine-card" data-category="marking">
-                <i class="fa-solid fa-tags card-icon"></i>
-                <h3 class="card-title">Laser Marking Machine</h3>
-                <p class="card-pitfalls"><strong>Core Pitfalls:</strong> Fake MOPA, low marking precision, unstable light source, short service life</p>
-                <a href="#marking-details" class="card-link">View Detailed Pitfalls <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
+    <!-- 新闻展开弹窗：本页面无跳转+玻璃态+8档适配 -->
+    <div class="news-modal fixed inset-0 z-50 flex items-center justify-center p-4 invisible" id="newsModal">
+        <!-- 遮罩层：点击关闭 -->
+        <div class="modal-mask absolute inset-0 bg-black/20 backdrop-blur-sm" id="modalMask"></div>
+        <!-- 内容层：玻璃态+自适应尺寸 -->
+        <div class="modal-content glass radius-lg relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto custom-scroll modal-animate p-0">
+            <!-- 关闭按钮 -->
+            <button class="modal-close absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-black/10 text-gray-700 hover:bg-black/20 transition-colors z-10" id="modalClose">
+                <i class="fa fa-times"></i>
+            </button>
+            <!-- 新闻内容渲染区：由JS动态填充 -->
+            <div class="modal-body" id="modalBody"></div>
         </div>
     </div>
 
+    <!-- JS核心逻辑：分类切换+本页面展开+响应式适配+动效 -->
     <script>
-        // BODOR×苹果风格交互JS：筛选功能+平滑滚动+卡片点击
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const machineCards = document.querySelectorAll('.machine-card');
-            const cardLinks = document.querySelectorAll('.card-link');
-
-            // 1. 筛选功能：BODOR官网风格分类筛选
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // 切换活跃状态
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    // 筛选卡片
-                    machineCards.forEach(card => {
-                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
+        // 1. 分类导航切换逻辑
+        const navItems = document.querySelectorAll('.nav-item');
+        const newsTypes = document.querySelectorAll('.news-type');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // 移除所有选中态
+                navItems.forEach(nav => nav.classList.remove('active', 'text-white'));
+                // 添加当前选中态
+                item.classList.add('active', 'text-white');
+                const type = item.dataset.type;
+                item.style.backgroundColor = `var(--tw-color-${type})`;
+                // 重置其他导航背景
+                navItems.forEach(nav => {
+                    if (nav.dataset.type !== type) nav.style.backgroundColor = 'transparent';
                 });
-            });
-
-            // 2. 卡片点击交互：BODOR风格提示+平滑滚动
-            machineCards.forEach(card => {
-                card.addEventListener('click', function(e) {
-                    if (!e.target.closest('.card-link')) {
-                        const category = this.getAttribute('data-category');
-                        const title = this.querySelector('.card-title').innerText;
-                        alert(`Selected: ${title}\nRedirecting to detailed pitfalls for ${category} machines...`);
-                        
-                        // 自动点击链接
-                        const link = this.querySelector('.card-link');
-                        if (link) link.click();
-                    }
-                });
-            });
-
-            // 3. 锚点平滑滚动：苹果官网级顺滑体验
-            cardLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100, // 预留导航栏高度
-                            behavior: 'smooth'
-                        });
-                    }
+                // 显示对应分类新闻
+                newsTypes.forEach(nt => {
+                    nt.style.display = nt.dataset.type === type ? 'block' : 'none';
                 });
             });
         });
+        // 初始化默认选中技术迭代
+        navItems[0].classList.add('active', 'text-white');
+        navItems[0].style.backgroundColor = 'var(--tw-color-tech)';
+        newsTypes.forEach(nt => {
+            nt.style.display = nt.dataset.type === 'tech' ? 'block' : 'none';
+        });
+
+        // 2. 新闻卡片点击展开：本页面无跳转
+        const newsCards = document.querySelectorAll('.news-card');
+        const newsModal = document.getElementById('newsModal');
+        const modalMask = document.getElementById('modalMask');
+        const modalClose = document.getElementById('modalClose');
+        const modalContent = document.querySelector('.modal-content');
+        const modalBody = document.getElementById('modalBody');
+
+        newsCards.forEach(card => {
+            // 过滤预留拓展卡片
+            if (card.querySelector('.fa-plus')) return;
+            card.addEventListener('click', () => {
+                // 获取卡片数据
+                const title = card.dataset.title;
+                const type = card.dataset.type;
+                const time = card.dataset.time;
+                const img = card.dataset.img;
+                const content = card.dataset.content;
+                // 匹配分类颜色
+                let typeColor = '';
+                switch (type) {
+                    case '技术迭代': typeColor = 'tech'; break;
+                    case '展会活动': typeColor = 'expo'; break;
+                    case '认证合作': typeColor = 'cert'; break;
+                    case '案例白皮书': typeColor = 'case'; break;
+                    case '行业洞察': typeColor = 'insight'; break;
+                    default: typeColor = 'blue';
+                }
+                // 动态渲染弹窗内容
+                modalBody.innerHTML = `
+                    <img src="${img}" alt="${title}" class="w-full h-60 sm:h-80 md:h-96 object-cover rounded-t-lg">
+                    <div class="p-6 md:p-8">
+                        <span class="inline-block px-3 py-1 radius-sm text-sm text-white bg-${typeColor}/90 w-fit mb-4">${type}</span>
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-4">${title}</h2>
+                        <div class="text-gray-400 text-sm mb-6 flex items-center">
+                            <span><i class="fa fa-clock-o mr-1"></i> ${time}</span>
+                        </div>
+                        <div class="text-gray-700 text-base md:text-lg leading-relaxed">
+                            ${content}
+                        </div>
+                        <!-- 相关新闻推荐：预留 -->
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <h4 class="font-bold mb-4">相关新闻推荐</h4>
+                            <div class="flex gap-4 overflow-x-auto py-2">
+                                <div class="glass radius-md w-48 p-3 flex flex-col items-center">
+                                    <i class="fa fa-newspaper-o text-2xl text-gray-400 mb-2"></i>
+                                    <p class="text-sm text-gray-500 text-center">相关新闻1</p>
+                                </div>
+                                <div class="glass radius-md w-48 p-3 flex flex-col items-center">
+                                    <i class="fa fa-newspaper-o text-2xl text-gray-400 mb-2"></i>
+                                    <p class="text-sm text-gray-500 text-center">相关新闻2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // 显示弹窗并触发动效
+                newsModal.classList.remove('invisible');
+                setTimeout(() => {
+                    modalContent.classList.add('modal-show');
+                }, 10);
+                // 禁止页面滚动
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 3. 关闭弹窗逻辑：点击关闭按钮/遮罩层
+        function closeModal() {
+            modalContent.classList.remove('modal-show');
+            setTimeout(() => {
+                newsModal.classList.add('invisible');
+                // 恢复页面滚动
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+        modalClose.addEventListener('click', closeModal);
+        modalMask.addEventListener('click', closeModal);
+        // 键盘ESC关闭
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !newsModal.classList.contains('invisible')) {
+                closeModal();
+            }
+        });
+
+        // 4. 响应式适配：动态调整图片分辨率（懒加载核心逻辑，可拓展）
+        window.addEventListener('resize', () => {
+            const screenWidth = window.innerWidth;
+            const imgs = document.querySelectorAll('img');
+            imgs.forEach(img => {
+                // 根据屏幕宽度设置图片加载优先级
+                if (screenWidth < 426) img.loading = 'lazy';
+                else img.loading = 'eager';
+            });
+        });
+        // 初始化执行一次
+        window.dispatchEvent(new Event('resize'));
     </script>
 </body>
 </html>

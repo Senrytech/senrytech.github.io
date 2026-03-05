@@ -209,79 +209,81 @@
       }
 
       /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
-.navbar .logo {
-  font-weight: 600; /* 保留原有字重 */
-  font-size: 1.1rem; /* 保留原有字号 */
-  /* 金属质感核心样式（适配白色背景+绿色系） */
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(120deg, 
-    #1B4C42 0%,    /* 核心深绿底（金属基底） */
-    #2A7D68 50%,   /* 亮绿（金属高光） */
-    #0F332C 55%,   /* 暗绿（金属暗部） */
-    #1B4C42 100%); /* 回归核心深绿底 */
-  background-size: 200% 100%; /* 渐变宽度加倍，用于hover动画 */
-  -webkit-background-clip: text; /* 背景裁剪到文字（webkit内核） */
-  background-clip: text;
-  color: transparent; /* 文字透明，显示渐变背景 */
-  text-shadow: 
-    0 1px 0 rgba(255,255,255,0.3),  /* 高光层（适配绿色金属高光） */
-    0 -1px 0 rgba(0,0,0,0.4),       /* 阴影层（加深绿色金属对比） */
-    0 2px 4px rgba(0,0,0,0.15);     /* 模糊阴影（增强绿色金属立体感） */
-  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 过渡动画 */
-  letter-spacing: 0.5px; /* 轻微字间距，增强金属硬朗感 */
-}
+      .navbar .logo {
+        font-weight: 600; /* 保留原有字重 */
+        font-size: 1.1rem; /* 保留原有字号 */
+        /* 金属质感核心样式（适配白色背景+绿色系） */
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(
+          120deg,
+          #1b4c42 0%,
+          /* 核心深绿底（金属基底） */ #2a7d68 50%,
+          /* 亮绿（金属高光） */ #0f332c 55%,
+          /* 暗绿（金属暗部） */ #1b4c42 100%
+        ); /* 回归核心深绿底 */
+        background-size: 200% 100%; /* 渐变宽度加倍，用于hover动画 */
+        -webkit-background-clip: text; /* 背景裁剪到文字（webkit内核） */
+        background-clip: text;
+        color: transparent; /* 文字透明，显示渐变背景 */
+        text-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.3),
+          /* 高光层（适配绿色金属高光） */ 0 -1px 0 rgba(0, 0, 0, 0.4),
+          /* 阴影层（加深绿色金属对比） */ 0 2px 4px rgba(0, 0, 0, 0.15); /* 模糊阴影（增强绿色金属立体感） */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 过渡动画 */
+        letter-spacing: 0.5px; /* 轻微字间距，增强金属硬朗感 */
+      }
 
-/* LOGO hover交互：绿色金属光泽流动+立体感强化（适配白背景） */
-.navbar .logo:hover {
-  background-position: 100% 0; /* 渐变背景位移，模拟绿色金属反光流动 */
-  text-shadow: 
-    0 1px 0 rgba(255,255,255,0.4),  /* 高光稍亮（适配绿色金属） */
-    0 -1px 0 rgba(0,0,0,0.5),       /* 阴影更深（增强绿色对比） */
-    0 3px 8px rgba(0,0,0,0.2),      /* 阴影范围扩大 */
-    0 0 10px rgba(42, 125, 104, 0.4);   /* 绿色金属反光光晕（适配深绿系） */
-  transform: translateY(-1px); /* 轻微上浮，增强交互反馈 */
-}
+      /* LOGO hover交互：绿色金属光泽流动+立体感强化（适配白背景） */
+      .navbar .logo:hover {
+        background-position: 100% 0; /* 渐变背景位移，模拟绿色金属反光流动 */
+        text-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.4),
+          /* 高光稍亮（适配绿色金属） */ 0 -1px 0 rgba(0, 0, 0, 0.5),
+          /* 阴影更深（增强绿色对比） */ 0 3px 8px rgba(0, 0, 0, 0.2),
+          /* 阴影范围扩大 */ 0 0 10px rgba(42, 125, 104, 0.4); /* 绿色金属反光光晕（适配深绿系） */
+        transform: translateY(-1px); /* 轻微上浮，增强交互反馈 */
+      }
 
-/* 金属拉丝纹理（适配深绿系） */
-.navbar .logo::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    90deg, 
-    rgba(255,255,255,0.05) 0px,
-    rgba(255,255,255,0.05) 1px,
-    transparent 1px,
-    transparent 3px
-  ); /* 弱化拉丝纹理，适配深绿金属 */
-  -webkit-background-clip: text;
-  background-clip: text;
-  pointer-events: none; /* 不影响文字点击 */
-}
+      /* 金属拉丝纹理（适配深绿系） */
+      .navbar .logo::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.05) 0px,
+          rgba(255, 255, 255, 0.05) 1px,
+          transparent 1px,
+          transparent 3px
+        ); /* 弱化拉丝纹理，适配深绿金属 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        pointer-events: none; /* 不影响文字点击 */
+      }
 
-/* 可选：添加金属拉丝纹理（如需更逼真的绿色金属质感） */
-.navbar .logo::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    90deg, 
-    rgba(255,255,255,0.1) 0px,
-    rgba(255,255,255,0.1) 1px,
-    transparent 1px,
-    transparent 3px
-  ); /* 模拟绿色金属拉丝纹理 */
-  -webkit-background-clip: text;
-  background-clip: text;
-  pointer-events: none; /* 不影响文字点击 */
-}
+      /* 可选：添加金属拉丝纹理（如需更逼真的绿色金属质感） */
+      .navbar .logo::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1) 0px,
+          rgba(255, 255, 255, 0.1) 1px,
+          transparent 1px,
+          transparent 3px
+        ); /* 模拟绿色金属拉丝纹理 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        pointer-events: none; /* 不影响文字点击 */
+      }
 
       /* —— 2.3 导航栏普通链接样式（非LOGO/按钮的导航项） —— */
       .navbar a {
@@ -5876,7 +5878,7 @@
         <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
         <div class="carousel-slide active">
           <img
-            src="https://senrytech.github.io/img/index/banner/banner-1-2032-1143-4.webp"
+            src="https://senrytech.github.io/img/index/banner/banner-1-2032-1143-5.webp"
             alt="Senrytech A 小型企业光纤激光切割机"
           />
           <div class="banner-text active">

@@ -1230,9 +1230,9 @@
         width: 100%; /* 占满父容器宽度，实现全屏效果 */
         overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
         /* 核心1：现代浏览器16:9比例（优先生效） */
-        aspect-ratio: 16 / 7;
+        aspect-ratio: 16 / 9;
         /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 37%;
+        padding-top: 45%;
         height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
         background: linear-gradient(
           135deg,
@@ -1280,15 +1280,15 @@
         top: 11%; /* 16:9比例下微调位置，避免文字贴顶（原10%优化） */
         left: 50%;
         transform: translateX(-50%); /* 水平居中 */
-        color: #1d1d1f; /* 浅白色文字，适配深色背景图 */
+        color: #f5f5f7; /* 浅白色文字，适配深色背景图 */
         text-align: center;
         z-index: 10; /* 层级高于图片，确保文字可见 */
         opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
         transition: opacity 0.5s ease;
         padding: 0 1rem; /* 左右留白，避免小屏文字贴边 */
         text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
+          0 1px 3px rgba(255, 255, 255, 0.3),
+          0 1px 2px rgba(255, 255, 255, 0.3);
       }
 
       /* 激活状态：显示当前文字 */
@@ -1297,6 +1297,13 @@
       }
 
       /* 标题样式：突出视觉焦点 */
+      .banner-text h2 {
+        font-size: 1rem; /* 基础字号（基于全局html font-size） */
+        margin-bottom: 1rem; /* 与描述文字间距，保持布局呼吸感 */
+        font-weight: 200;
+        line-height: 0.2;
+      }
+
       .banner-text h1 {
         font-size: 3.5rem; /* 基础字号（基于全局html font-size） */
         margin-bottom: 1.5rem; /* 与描述文字间距，保持布局呼吸感 */
@@ -1305,9 +1312,10 @@
 
       /* 描述文字样式：辅助说明，与标题形成层级 */
       .banner-text p {
-        font-size: 1.5rem; /* 小于标题字号，明确层级 */
+        font-size: 1.2rem; /* 小于标题字号，明确层级 */
         margin-bottom: 1.5rem; /* 与按钮组间距 */
         font-weight: 400;
+        line-height: 0.5;
       }
 
       /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
@@ -2176,6 +2184,155 @@
         }
         .product-nav-btn.next-btn {
           right: calc(5% + 1.5rem); /* 原1.25rem → 1.5rem，同步放大偏移 */
+        }
+      }
+    </style>
+
+    <style>
+      /* 全局通用样式重置（可根据项目已有样式调整） */
+      .industry-solution {
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
+        position: relative; /* 作为产品滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
+        height: 30rem;
+      }
+      /* —— 4.2 板块内层内容容器：限制宽度+控制左右布局 —— */
+      .container {
+        max-width: 100rem; /* 原1600px → 16px基准下：1600/16=100rem，避免超宽屏幕内容过散 */
+        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto居中适配 */
+        padding: 0 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，左右留白避免内容贴边 */
+      }
+      /* 模块标题 */
+      .section-title {
+        font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
+        margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
+      }
+      .section-title h2 {
+        font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
+        margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
+        text-align: left; /* 左对齐，符合阅读习惯 */
+      }
+      .section-title p {
+        font-size: 16px;
+        color: #000000;
+        line-height: 1.5;
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      /* 方案卡片列表 - 栅格布局 */
+      .solution-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      /* 方案卡片样式 */
+      .solution-card {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .solution-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      }
+      /* 卡片图片 */
+      .card-img {
+        height: 180px;
+        overflow: hidden;
+      }
+      /* 卡片内容 */
+      .card-content {
+        padding: 24px;
+      }
+      .card-content h3 {
+        font-size: 20px;
+        color: #000000;
+        margin-bottom: 12px;
+        font-weight: 600;
+        text-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
+      }
+      .card-content p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        height: 72px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+      }
+      /* 卡片按钮 */
+      .card-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #009688; /* 品牌主色，可自行修改 */
+        color: #fff !important;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease;
+      }
+      .card-btn:hover {
+        background-color: #00796b; /* 主色加深，hover效果 */
+      }
+
+      /* 媒体适配 - 平板（768px-1024px） */
+      @media (max-width: 1024px) {
+        .solution-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .section-title h2 {
+          font-size: 28px;
+        }
+        .industry-solution {
+          padding: 60px 0;
+        }
+      }
+
+      /* 媒体适配 - 手机（≤767px） */
+      @media (max-width: 767px) {
+        .solution-list {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .section-title h2 {
+          font-size: 24px;
+        }
+        .section-title {
+          margin-bottom: 40px;
+        }
+        .card-content {
+          padding: 20px;
+        }
+        .card-img {
+          height: 150px;
+        }
+        .industry-solution {
+          padding: 40px 0;
         }
       }
     </style>
@@ -5878,13 +6035,14 @@
         <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
         <div class="carousel-slide active">
           <img
-            src="../senrytech.github.io/img/index/banner/banner-1-2032-1143-5.webp"
+            src="./img/index/banner/banner-1-2032-1143-5.webp"
             alt="Senrytech A 小型企业光纤激光切割机"
           />
           <div class="banner-text active">
-            <h1>板材切割机3015</h1>
-            <p>精准切割・高效赋能</p>
-            <p>CE/ISO 9001认证 | 24小时技术支持</p>
+            <h1>板材激光切割机</h1>
+            <h2></h2>
+            <p>Senrytech A・精准切割・高效赋能</p>
+            <p>CE/ISO 9001认证 | 原厂核心配件 | 24小时技术支持</p>
             <div class="banner-btns">
               <!-- 关键修改：button → a，添加href，保留所有样式类 -->
               <a
@@ -5904,12 +6062,14 @@
         <!-- 第2张BANNER图：了解更多 → 指向「Senrytech B ProMax 详情页」（示例用外部页面URL） -->
         <div class="carousel-slide">
           <img
-            src="https://senrytech.github.io/img/index/banner/banner-2-2032-1143-4.webp"
+            src="./img/index/banner/banner-5-2032-1143.webp"
             alt="Senrytech B ProMax 全防护光纤激光切割机"
           />
           <div class="banner-text active">
-            <h1>Senrytech B ProMax</h1>
-            <p>板材切割机6025</p>
+            <h1>全自动上下料激光切割机</h1>
+            <h2></h2>
+            <p>Senrytech B Ultra・智能联动・从上下料到仓储</p>
+            <p>适配智能工厂 | 无缝拓展物流仓储系统 | 24 小时无人值守高效生产</p>
             <div class="banner-btns">
               <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
               <a
@@ -5929,12 +6089,14 @@
         <!-- 第3张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
         <div class="carousel-slide">
           <img
-            src="https://senrytech.github.io/img/index/banner/banner-3-2032-1143-4.webp"
+            src="./img/index/banner/banner-3-2032-1143.webp"
             alt="Senrytech A 手持入门级激光焊接机"
           />
           <div class="banner-text active">
-            <h1>Senrytech A</h1>
-            <p>手持激光焊接机</p>
+            <h1>激光焊接机</h1>
+            <h2></h2>
+            <p>Senrytech A・4in1・手持式</p>
+            <p>10 分钟上手 | 无需持证焊工 | 比传统焊接效率提升 3-5 倍</p>
             <div class="banner-btns">
               <!-- 跳转至页面内产品板块的锚点 -->
               <a
@@ -5963,7 +6125,7 @@
     <!-- 板块4. 全系列产品细细看（修改：给容器加 position: relative，用于箭头定位） -->
     <div class="product-center-section" style="position: relative">
       <div class="product-container">
-        <h2 class="product-main-title">全系列产品细细看</h2>
+        <h2 class="product-main-title">全系列产品</h2>
         <div class="product-subtitle-bar">
           <div class="subtitle-active-bg"></div>
           <div class="subtitle-item active" data-tab="board">板材切割机</div>
@@ -6457,11 +6619,59 @@
       </button>
     </div>
 
+    <!-- 行业解决方案模块 -->
+    <section class="industry-solution" id="solution">
+      <div class="container">
+        <div class="section-title">
+          <h2>行业解决方案</h2>
+          <p>定制化激光方案，适配多领域工业生产需求</p>
+        </div>
+        <div class="solution-list">
+          <!-- 行业1：金属板材加工 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>金属板材加工</h3>
+              <p>
+                针对碳钢、不锈钢、铝合金板材的拼焊、角焊，实现无变形、焊缝美观，适配钣金件批量生产
+              </p>
+            </div>
+          </div>
+          <!-- 行业2：工业机器生产 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>工业机器生产</h3>
+              <p>
+                适配机床、自动化设备机架/零部件焊接，高精度对接，满足工业设备高刚性、高稳定性要求
+              </p>
+            </div>
+          </div>
+          <!-- 行业3：发动机/变速器装配 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>发动机/变速器装配</h3>
+              <p>
+                自动化精密焊接，适配齿轮、壳体、法兰等核心部件，无耗材、高效率，满足汽车零部件量产标准
+              </p>
+            </div>
+          </div>
+          <!-- 行业4：新能源电池生产 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>新能源电池生产</h3>
+              <p>
+                软包/方形电池极耳、壳体焊接，低温焊接无热损伤，适配新能源电池产线全自动化需求
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 板块5. 购买优势板块（在Senrytech购买Machine好处多多） -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
         <!-- 板块主题文字（保留，仅删除原全局的benefit-intro） -->
-        <h2 class="benefit-main-title">在Senrytech购买设备<br />好处多多</h2>
+        <h2 class="benefit-main-title">售后服务</h2>
 
         <!-- 图片卡片容器 -->
         <div class="benefit-scroll-wrap" style="position: relative">
@@ -8377,6 +8587,37 @@
         ) {
           link.classList.add("active");
         }
+      });
+    </script>
+
+    <script>
+      // 行业解决方案卡片交互
+      document.addEventListener("DOMContentLoaded", function () {
+        // 所有方案按钮
+        const solutionBtns = document.querySelectorAll(".card-btn");
+        // 所有方案卡片
+        const solutionCards = document.querySelectorAll(".solution-card");
+
+        // 按钮点击事件
+        solutionBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            // 获取当前行业名称
+            const industryName =
+              this.closest(".solution-card").querySelector("h3").innerText;
+            // 实际项目可替换为window.location.href = "对应行业方案链接";
+            alert(`正在为您打开【${industryName}】专属解决方案！`);
+          });
+        });
+
+        // 卡片整卡点击事件（可选）
+        solutionCards.forEach((card) => {
+          card.addEventListener("click", function () {
+            const industryName = this.querySelector("h3").innerText;
+            // 实际项目可替换为window.location.href = "对应行业方案链接";
+            alert(`正在为您打开【${industryName}】专属解决方案！`);
+          });
+        });
       });
     </script>
   </body>

@@ -155,7 +155,7 @@
       }
     </style>
 
-    <!--二、导航栏模块-->
+    <!--二、CSS 导航栏-->
     <style>
       /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
       .navbar {
@@ -215,7 +215,7 @@
         /* 金属质感核心样式（适配白色背景+绿色系） */
         position: relative;
         display: inline-block;
-        background-color: #000000;/* 回归核心深绿底 */
+        background-color: #000000; /* 回归核心深绿底 */
         background-size: 200% 100%; /* 渐变宽度加倍，用于hover动画 */
         -webkit-background-clip: text; /* 背景裁剪到文字（webkit内核） */
         background-clip: text;
@@ -1212,7 +1212,7 @@
       }
     </style>
 
-    <!--三、BANNER轮播模块-->
+    <!--三、CSS BANNER-->
     <style>
       /* —— 3.1 轮播容器基础样式（核心：16:9固定比例实现） ——*/
       .banner-carousel {
@@ -1710,7 +1710,7 @@
       }
     </style>
 
-    <!--四、全系列产品板块-->
+    <!--四、CSS 行业解决方案-->
     <style>
       /* —— 4.1 板块外层容器：控制整体布局与定位上下文 —— */
       .product-center-section {
@@ -2172,6 +2172,7 @@
       }
     </style>
 
+    <!--五、CSS 全系列产品-->
     <style>
       /* 全局通用样式重置（可根据项目已有样式调整） */
       .industry-solution {
@@ -2185,49 +2186,62 @@
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
         position: relative; /* 作为产品滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
-        height: 30rem;
+        height: 45rem;
       }
+
       /* —— 4.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .container {
-        max-width: 100rem; /* 原1600px → 16px基准下：1600/16=100rem，避免超宽屏幕内容过散 */
-        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto居中适配 */
-        padding: 0 1.25rem; /* 原20px → 16px基准下：20/16=1.25rem，左右留白避免内容贴边 */
+        max-width: 100rem;
+        /* 修复2：左侧15% margin改为自适应，避免内容左偏被遮挡 */
+        margin: 0 auto;
+        padding: 2rem 1.25rem;
+        box-sizing: border-box; /* 新增：统一盒模型 */
       }
+
       /* 模块标题 */
       .section-title {
-        font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
-        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        /* 修复3：字号改用clamp适配，避免超大字号挤压空间 */
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 500;
+        color: #000000;
         text-shadow:
           0 1px 3px rgba(0, 0, 0, 0.12),
           0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
-        text-align: left; /* 左对齐，符合阅读习惯 */
+        margin-bottom: 1.5rem;
+        text-align: left;
       }
       .section-title h2 {
-        font-size: 3.5rem; /* 原64px → 16px基准下：64/16=4rem，大字号强化视觉焦点 */
-        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        /* 修复3同步：字号适配 */
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 500;
+        color: #000000;
         text-shadow:
           0 1px 3px rgba(0, 0, 0, 0.12),
           0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 1.5rem; /* 原24px → 16px基准下：24/16=1.5rem，与副标题栏间距 */
-        text-align: left; /* 左对齐，符合阅读习惯 */
+        margin-bottom: 1.5rem;
+        text-align: left;
       }
       .section-title p {
-        font-size: 16px;
+        font-size: 1rem; /* 修复：改用rem单位，适配全局字体基准 */
         color: #000000;
         line-height: 1.5;
         text-shadow:
           0 1px 3px rgba(0, 0, 0, 0.12),
           0 1px 2px rgba(0, 0, 0, 0.24);
       }
+
       /* 方案卡片列表 - 栅格布局 */
       .solution-list {
+        margin-top: 5rem;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        /* 修复4：gap改用rem单位，适配不同屏幕 */
+        gap: 1.5rem;
+        /* 新增：确保列表撑开父容器，不被截断 */
+        width: 100%;
+        box-sizing: border-box;
       }
+
       /* 方案卡片样式 */
       .solution-card {
         background-color: #fff;
@@ -2236,64 +2250,84 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
         cursor: pointer;
+        /* 新增：卡片最小高度，避免内容挤压 */
+        min-height: 100%;
+        display: flex;
+        flex-direction: column; /* 新增：卡片内内容垂直排布，避免按钮被挤 */
       }
+
       .solution-card:hover {
         transform: translateY(-8px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
       }
+
       /* 卡片图片 */
       .card-img {
         height: 180px;
         overflow: hidden;
+        /* 新增：图片自适应，避免拉伸 */
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
+
       /* 卡片内容 */
       .card-content {
-        padding: 24px;
+        padding: 1.5rem; /* 修复：改用rem单位 */
+        flex: 1; /* 新增：撑满卡片剩余空间，按钮固定在底部 */
+        display: flex;
+        flex-direction: column;
       }
+
       .card-content h3 {
-        font-size: 20px;
+        font-size: 1.25rem; /* 修复：改用rem单位 */
         color: #000000;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem; /* 修复：改用rem单位 */
         font-weight: 600;
         text-shadow:
           0 1px 3px rgba(0, 0, 0, 0.12),
           0 1px 2px rgba(0, 0, 0, 0.24);
       }
+
       .card-content p {
-        font-size: 14px;
+        font-size: 0.875rem; /* 修复：改用rem单位 */
         color: #666;
         line-height: 1.6;
-        margin-bottom: 20px;
-        height: 72px;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
+        margin-bottom: 1.25rem;
       }
+
       /* 卡片按钮 */
       .card-btn {
         display: inline-block;
-        padding: 8px 16px;
-        background-color: #009688; /* 品牌主色，可自行修改 */
+        padding: 0.5rem 1rem; /* 修复：改用rem单位 */
+        background-color: #009688;
         color: #fff !important;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 0.875rem; /* 修复：改用rem单位 */
         transition: background-color 0.3s ease;
+        /* 新增：按钮固定在卡片底部 */
+        margin-top: auto;
+        align-self: flex-start; /* 新增：按钮左对齐 */
+        text-decoration: none; /* 新增：去掉链接下划线 */
       }
+
       .card-btn:hover {
-        background-color: #00796b; /* 主色加深，hover效果 */
+        background-color: #00796b;
       }
 
       /* 媒体适配 - 平板（768px-1024px） */
       @media (max-width: 1024px) {
         .solution-list {
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
+          gap: 1.25rem; /* 修复：改用rem单位 */
         }
         .section-title h2 {
-          font-size: 28px;
+          font-size: 1.75rem; /* 修复：改用rem单位 */
         }
         .industry-solution {
-          padding: 60px 0;
+          padding: 3.75rem 0; /* 修复：改用rem单位 */
         }
       }
 
@@ -2301,27 +2335,286 @@
       @media (max-width: 767px) {
         .solution-list {
           grid-template-columns: 1fr;
-          gap: 16px;
+          gap: 1rem; /* 修复：改用rem单位 */
         }
         .section-title h2 {
-          font-size: 24px;
+          font-size: 1.5rem; /* 修复：改用rem单位 */
         }
         .section-title {
-          margin-bottom: 40px;
+          margin-bottom: 2.5rem; /* 修复：改用rem单位 */
         }
         .card-content {
-          padding: 20px;
+          padding: 1.25rem; /* 修复：改用rem单位 */
         }
         .card-img {
           height: 150px;
         }
         .industry-solution {
-          padding: 40px 0;
+          padding: 2.5rem 0; /* 修复：改用rem单位 */
         }
       }
     </style>
 
-    <!--五、售后服务（在Senrytech购买Machine好处多多-->
+    <!--六、CSS 购买激光设备避坑指南-->
+    <style>
+      /* 全局通用样式（若项目已有可忽略，仅保留差异化样式） */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: #0071e3; /* 苹果经典蓝，品牌色可替换 */
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .container {
+        width: 92%;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      /* 苹果风格标题统一样式 */
+      .section-title.apple-style {
+        text-align: center;
+        margin-bottom: 64px;
+        padding-top: 80px;
+      }
+      .section-title.apple-style h2 {
+        font-size: 36px;
+        color: #1d1d1f; /* 苹果深灰文字 */
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+      }
+      .section-title.apple-style p {
+        font-size: 18px;
+        color: #86868b; /* 苹果浅灰辅助文字 */
+        line-height: 1.5;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* ---------------------- 避坑指南板块样式 ---------------------- */
+      .avoid-pitfalls {
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
+        position: relative; /* 作为产品滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
+        height: 60rem;
+      }
+      .pitfalls-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+      }
+      .pitfalls-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        background: #fff;
+        padding: 32px;
+        border-radius: 12px;
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.05),
+          0 10px 20px rgba(0, 0, 0, 0.02); /* 苹果极简阴影 */
+        transition: all 0.3s ease-in-out;
+      }
+      .pitfalls-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* 柔和hover阴影 */
+        transform: translateY(-2px);
+      }
+      .pitfalls-card .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: #0071e3;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .pitfalls-card .card-content h3 {
+        font-size: 20px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      .pitfalls-card .card-content p {
+        font-size: 16px;
+        color: #86868b;
+        line-height: 1.6;
+      }
+
+      /* 苹果风格查看更多按钮 */
+      .pitfalls-more-btn {
+        text-align: center;
+      }
+
+      /* ---------------------- 海外案例板块样式 ---------------------- */
+      .overseas-cases {
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
+        width: 100%; /* 占满屏幕宽度（无需转REM） */
+        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
+        position: relative; /* 作为产品滚动箭头的定位父容器 */
+        overflow: visible; /* 确保箭头不被容器裁剪 */
+        height: 55rem;
+      }
+      .cases-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+      }
+      .cases-card {
+        background: #fbfbfb;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.05),
+          0 10px 20px rgba(0, 0, 0, 0.02);
+        transition: all 0.3s ease-in-out;
+      }
+      .cases-card:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+      }
+      .cases-card .card-img {
+        height: 200px;
+      }
+      .cases-card .card-content {
+        padding: 28px;
+      }
+      .cases-card .case-tag {
+        font-size: 14px;
+        color: #0071e3;
+        font-weight: 500;
+        margin-bottom: 12px;
+        display: inline-block;
+      }
+      .cases-card .card-content h3 {
+        font-size: 18px;
+        color: #1d1d1f;
+        font-weight: 600;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+      .cases-card .card-content p {
+        font-size: 15px;
+        color: #86868b;
+        line-height: 1.6;
+      }
+      /* 苹果风格查看更多按钮 */
+      .case-more-btn {
+        text-align: center;
+      }
+      .apple-btn {
+        display: inline-block;
+        padding: 12px 32px;
+        background-color: #0071e3;
+        color: #fff !important;
+        border-radius: 9999px; /* 苹果圆角按钮 */
+        font-size: 16px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .apple-btn:hover {
+        background-color: #0077ed; /* 按钮hover浅变 */
+        box-shadow: 0 2px 10px rgba(0, 113, 227, 0.3);
+      }
+
+      /* ---------------------- 媒体适配（苹果风格自适应） ---------------------- */
+      /* 平板端（768px - 1024px） */
+      @media (max-width: 1024px) {
+        .section-title.apple-style h2 {
+          font-size: 32px;
+        }
+        .section-title.apple-style p {
+          font-size: 16px;
+        }
+        .pitfalls-list {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .cases-list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px;
+        }
+        .pitfalls-card {
+          padding: 28px;
+        }
+        .cases-card .card-img {
+          height: 180px;
+        }
+      }
+      /* 手机端（≤767px） */
+      @media (max-width: 767px) {
+        .section-title.apple-style {
+          margin-bottom: 40px;
+          padding-top: 60px;
+        }
+        .section-title.apple-style h2 {
+          font-size: 28px;
+        }
+        .avoid-pitfalls {
+          padding-bottom: 60px;
+        }
+        .overseas-cases {
+          padding-bottom: 80px;
+        }
+        .pitfalls-card {
+          padding: 24px;
+          gap: 16px;
+        }
+        .pitfalls-card .card-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+        }
+        .cases-list {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          margin-bottom: 40px;
+        }
+        .cases-card .card-img {
+          height: 160px;
+        }
+        .cases-card .card-content {
+          padding: 24px;
+        }
+        .apple-btn {
+          padding: 10px 28px;
+          font-size: 15px;
+        }
+      }
+    </style>
+
+    <!--七、CSS 售后服务（在Senrytech购买Machine好处多多-->
     <style>
       /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
@@ -2862,233 +3155,7 @@
       }
     </style>
 
-    <style>
-      /* 全局通用样式（若项目已有可忽略，仅保留差异化样式） */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-a {
-  text-decoration: none;
-  color: #0071e3; /* 苹果经典蓝，品牌色可替换 */
-}
-img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-.container {
-  width: 92%;
-  max-width: 1280px;
-  margin: 0 auto;
-}
-/* 苹果风格标题统一样式 */
-.section-title.apple-style {
-  text-align: center;
-  margin-bottom: 64px;
-  padding-top: 80px;
-}
-.section-title.apple-style h2 {
-  font-size: 36px;
-  color: #1d1d1f; /* 苹果深灰文字 */
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.section-title.apple-style p {
-  font-size: 18px;
-  color: #86868b; /* 苹果浅灰辅助文字 */
-  line-height: 1.5;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* ---------------------- 避坑指南板块样式 ---------------------- */
-.avoid-pitfalls {
-  background-color: #fbfbfb; /* 苹果浅灰底色，接近纯白 */
-  padding-bottom: 80px;
-}
-.pitfalls-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-}
-.pitfalls-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  background: #fff;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.02); /* 苹果极简阴影 */
-  transition: all 0.3s ease-in-out;
-}
-.pitfalls-card:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* 柔和hover阴影 */
-  transform: translateY(-2px);
-}
-.pitfalls-card .card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: #0071e3;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.pitfalls-card .card-content h3 {
-  font-size: 20px;
-  color: #1d1d1f;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-.pitfalls-card .card-content p {
-  font-size: 16px;
-  color: #86868b;
-  line-height: 1.6;
-}
-
-/* ---------------------- 海外案例板块样式 ---------------------- */
-.overseas-cases {
-  background-color: #fff;
-  padding-bottom: 100px;
-}
-.cases-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: 48px;
-}
-.cases-card {
-  background: #fbfbfb;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s ease-in-out;
-}
-.cases-card:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-.cases-card .card-img {
-  height: 200px;
-}
-.cases-card .card-content {
-  padding: 28px;
-}
-.cases-card .case-tag {
-  font-size: 14px;
-  color: #0071e3;
-  font-weight: 500;
-  margin-bottom: 12px;
-  display: inline-block;
-}
-.cases-card .card-content h3 {
-  font-size: 18px;
-  color: #1d1d1f;
-  font-weight: 600;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-.cases-card .card-content p {
-  font-size: 15px;
-  color: #86868b;
-  line-height: 1.6;
-}
-/* 苹果风格查看更多按钮 */
-.case-more-btn {
-  text-align: center;
-}
-.apple-btn {
-  display: inline-block;
-  padding: 12px 32px;
-  background-color: #0071e3;
-  color: #fff !important;
-  border-radius: 9999px; /* 苹果圆角按钮 */
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-.apple-btn:hover {
-  background-color: #0077ed; /* 按钮hover浅变 */
-  box-shadow: 0 2px 10px rgba(0, 113, 227, 0.3);
-}
-
-/* ---------------------- 媒体适配（苹果风格自适应） ---------------------- */
-/* 平板端（768px - 1024px） */
-@media (max-width: 1024px) {
-  .section-title.apple-style h2 {
-    font-size: 32px;
-  }
-  .section-title.apple-style p {
-    font-size: 16px;
-  }
-  .pitfalls-list {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .cases-list {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .pitfalls-card {
-    padding: 28px;
-  }
-  .cases-card .card-img {
-    height: 180px;
-  }
-}
-/* 手机端（≤767px） */
-@media (max-width: 767px) {
-  .section-title.apple-style {
-    margin-bottom: 40px;
-    padding-top: 60px;
-  }
-  .section-title.apple-style h2 {
-    font-size: 28px;
-  }
-  .avoid-pitfalls {
-    padding-bottom: 60px;
-  }
-  .overseas-cases {
-    padding-bottom: 80px;
-  }
-  .pitfalls-card {
-    padding: 24px;
-    gap: 16px;
-  }
-  .pitfalls-card .card-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-  }
-  .cases-list {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-  .cases-card .card-img {
-    height: 160px;
-  }
-  .cases-card .card-content {
-    padding: 24px;
-  }
-  .apple-btn {
-    padding: 10px 28px;
-    font-size: 15px;
-  }
-}
-    </style>
-
-    <!--六、切割样品抢先看板块（REM适配+响应式优化）-->
+    <!--八、CSS 切割样品抢先看-->
     <style>
       /* —— 6.1 板块容器基础样式（PX转REM，与前序板块内边距统一） —— */
       .sample-section {
@@ -3655,7 +3722,7 @@ img {
       }
     </style>
 
-    <!--七、核心优势一眼明板块（新增+完整响应式）-->
+    <!--九、CSS 核心优势一眼明-->
     <style>
       /* —— 7.1 板块容器基础样式（PX转REM，基于16px基准） —— */
       .advantage-section {
@@ -4237,7 +4304,7 @@ img {
       }
     </style>
 
-    <!--八、设备配件全收录板块-->
+    <!--十、CSS 设备配件-->
     <style>
       .accessory-section {
         background: linear-gradient(
@@ -4256,7 +4323,7 @@ img {
       .accessory-container {
         max-width: 100rem; /* 与其他板块一致 */
         /* 关键修改：添加左侧15%margin，保持偏左布局，与产品板块对齐 */
-        margin: 0 auto 0 12%;
+        margin: 0 auto 0 15%;
         padding: 0 1.25rem; /* 保持不变 */
       }
 
@@ -4837,7 +4904,7 @@ img {
       }
     </style>
 
-    <!--九、底部导航模块 -->
+    <!--十一、CSS 底部导航栏 -->
     <style>
       /* 底部导航整体样式（匹配参考图深灰背景） */
       .footer-new {
@@ -5036,7 +5103,7 @@ img {
   </head>
 
   <body>
-    <!-- 板块2. 导航栏 -->
+    <!-- 二，代码 导航栏 -->
     <nav class="navbar">
       <div class="logo">Senrytech</div>
       <a href="https://www.senrytech.com/" class="nav-link">首页</a>
@@ -6237,16 +6304,15 @@ img {
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 板块3. BANNER轮播（修改后） -->
+    <!-- 三，代码 BANNER -->
     <div class="banner-carousel" id="home">
       <!-- 轮播图片 -->
       <div class="carousel-slides">
-
         <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
         <div class="carousel-slide active">
           <img
             src="./img/index/banner/banner-6-2032-1143.webp"
-            alt="Senrytech A 小型企业光纤激光切割机"
+            alt="Senrytech光纤激光机"
           />
           <div class="banner-text active">
             <h1>Senrytech · 专业激光设备提供商</h1>
@@ -6359,7 +6425,58 @@ img {
       <div class="dot-container"></div>
     </div>
 
-    <!-- 板块4. 全系列产品细细看（修改：给容器加 position: relative，用于箭头定位） -->
+     <!-- 四，行业解决方案 -->
+    <section class="industry-solution" id="solution">
+      <div class="container">
+        <div class="section-title">
+          <h2>行业解决方案</h2>
+          <p>定制化激光方案，适配多领域工业生产需求</p>
+        </div>
+        <div class="solution-list">
+          <!-- 行业1：金属板材加工 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>金属板材加工</h3>
+              <p>
+                针对碳钢、不锈钢、铝合金等板材的切割、拼焊与成型需求，Senrytech
+                提供从设备选型、工艺调试到产线规划的全流程服务。我们的激光设备可实现无变形、高精度加工，焊缝美观、切割无毛刺，大幅提升产品质量与生产效率，助力钣金企业实现批量生产与柔性制造。
+              </p>
+            </div>
+          </div>
+          <!-- 行业2：工业机器生产 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>工业机器生产</h3>
+              <p>
+                适配机床、自动化设备机架及核心零部件的精密焊接与切割需求。Senrytech
+                的激光设备凭借高稳定性与高精度，可满足工业设备对结构强度、加工精度的严苛要求，帮助企业提升产品可靠性，降低返工率。
+              </p>
+            </div>
+          </div>
+          <!-- 行业3：发动机/变速器装配 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>发动机/变速器装配</h3>
+              <p>
+                为汽车发动机、变速器等核心部件提供自动化精密焊接方案。我们的设备可实现齿轮、壳体、法兰等关键部位的无耗材、高效率焊接，满足汽车零部件量产标准，确保良品率与生产稳定性。
+              </p>
+            </div>
+          </div>
+          <!-- 行业4：新能源电池生产 -->
+          <div class="solution-card">
+            <div class="card-content">
+              <h3>新能源电池生产</h3>
+              <p>
+                专注于软包 / 方形电池极耳、壳体及模组的低温焊接工艺。Senrytech
+                的激光设备可实现无热损伤、高精度焊接，完美适配新能源电池产线全自动化需求，助力企业提升产能与产品安全性。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五，代码，全系列产品-->
     <div class="product-center-section" style="position: relative">
       <div class="product-container">
         <h2 class="product-main-title">全系列产品</h2>
@@ -6856,152 +6973,125 @@ img {
       </button>
     </div>
 
-    <!-- 行业解决方案模块 -->
-    <section class="industry-solution" id="solution">
+    <!-- 六，代码，购买激光设备避坑指南-->
+    <section class="avoid-pitfalls" id="pitfalls">
       <div class="container">
         <div class="section-title">
-          <h2>行业解决方案</h2>
-          <p>定制化激光方案，适配多领域工业生产需求</p>
+          <h2>购买激光设备避坑指南</h2>
+          <p>精准规避选型、操作、生产中的核心问题，降低试错成本</p>
         </div>
-        <div class="solution-list">
-          <!-- 行业1：金属板材加工 -->
-          <div class="solution-card">
+        <div class="pitfalls-list">
+          <!-- 避坑点1 -->
+          <div class="pitfalls-card">
+            <div class="card-icon">01</div>
             <div class="card-content">
-              <h3>金属板材加工</h3>
+              <h3>选型避坑：盲目追求大功率</h3>
               <p>
-                针对碳钢、不锈钢、铝合金板材的拼焊、角焊，实现无变形、焊缝美观，适配钣金件批量生产
+                并非功率越大越好，需根据焊接材质、厚度匹配，小功率适配薄材更省成本，大功率过度使用易造成材料变形。
               </p>
             </div>
           </div>
-          <!-- 行业2：工业机器生产 -->
-          <div class="solution-card">
+          <!-- 避坑点2 -->
+          <div class="pitfalls-card">
+            <div class="card-icon">02</div>
             <div class="card-content">
-              <h3>工业机器生产</h3>
+              <h3>操作避坑：忽略设备校准</h3>
               <p>
-                适配机床、自动化设备机架/零部件焊接，高精度对接，满足工业设备高刚性、高稳定性要求
+                新设备/换材后未校准光路、焦距，易导致焊缝不平整、虚焊，建议每次更换工况后做基础校准。
               </p>
             </div>
           </div>
-          <!-- 行业3：发动机/变速器装配 -->
-          <div class="solution-card">
+          <!-- 避坑点3 -->
+          <div class="pitfalls-card">
+            <div class="card-icon">03</div>
             <div class="card-content">
-              <h3>发动机/变速器装配</h3>
+              <h3>生产避坑：无防护直接作业</h3>
               <p>
-                自动化精密焊接，适配齿轮、壳体、法兰等核心部件，无耗材、高效率，满足汽车零部件量产标准
+                激光焊接产生的强光、高温易损伤视力和皮肤，必须配备专业护目镜、防烫手套等防护装备。
               </p>
             </div>
           </div>
-          <!-- 行业4：新能源电池生产 -->
-          <div class="solution-card">
+          <!-- 避坑点4 -->
+          <div class="pitfalls-card">
+            <div class="card-icon">04</div>
             <div class="card-content">
-              <h3>新能源电池生产</h3>
+              <h3>售后避坑：选择无正规质保的产品</h3>
               <p>
-                软包/方形电池极耳、壳体焊接，低温焊接无热损伤，适配新能源电池产线全自动化需求
+                工业设备核心看售后，避免贪便宜选无原厂质保、无线下服务点的品牌，后期维修成本高。
               </p>
             </div>
           </div>
+        </div>
+        <!-- 案例查看更多按钮 -->
+        <div class="pitfalls-more-btn">
+          <a href="javascript:;" class="apple-btn">查看更多</a>
         </div>
       </div>
     </section>
 
-    <!-- 避坑指南板块 - 苹果简约风格 -->
-<section class="avoid-pitfalls" id="pitfalls">
-  <div class="container">
-    <div class="section-title apple-style">
-      <h2>激光焊接避坑指南</h2>
-      <p>精准规避选型、操作、生产中的核心问题，降低试错成本</p>
-    </div>
-    <div class="pitfalls-list">
-      <!-- 避坑点1 -->
-      <div class="pitfalls-card">
-        <div class="card-icon">01</div>
-        <div class="card-content">
-          <h3>选型避坑：盲目追求大功率</h3>
-          <p>并非功率越大越好，需根据焊接材质、厚度匹配，小功率适配薄材更省成本，大功率过度使用易造成材料变形。</p>
+    <!-- 七，代码，海外落地案例 -->
+    <section class="overseas-cases" id="cases">
+      <div class="container">
+        <div class="section-title">
+          <h2>海外落地案例</h2>
+          <p>服务全球多个国家和地区，适配不同行业的国际化生产需求</p>
+        </div>
+        <div class="cases-list">
+          <!-- 案例1 -->
+          <div class="cases-card">
+            <div class="card-img">
+              <img src="./images/case01.jpg" alt="德国钣金加工企业案例" />
+            </div>
+            <div class="card-content">
+              <div class="case-tag">德国 · 钣金加工</div>
+              <h3>某大型钣金加工厂商产线升级</h3>
+              <p>
+                配备20台手持激光焊接机，替代传统氩弧焊，生产效率提升4倍，人工成本降低60%。
+              </p>
+            </div>
+          </div>
+          <!-- 案例2 -->
+          <div class="cases-card">
+            <div class="card-img">
+              <img src="./images/case02.jpg" alt="日本汽车零部件企业案例" />
+            </div>
+            <div class="card-content">
+              <div class="case-tag">日本 · 汽车零部件</div>
+              <h3>汽车发动机零部件自动化焊接</h3>
+              <p>
+                定制化自动化焊接方案，适配变速器壳体精密焊接，良品率提升至99.8%。
+              </p>
+            </div>
+          </div>
+          <!-- 案例3 -->
+          <div class="cases-card">
+            <div class="card-img">
+              <img src="./images/case03.jpg" alt="韩国新能源电池企业案例" />
+            </div>
+            <div class="card-content">
+              <div class="case-tag">韩国 · 新能源电池</div>
+              <h3>电池极耳自动化焊接产线</h3>
+              <p>
+                适配软包电池量产需求，低温焊接无热损伤，产线日均产能提升至50万件。
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- 案例查看更多按钮 -->
+        <div class="case-more-btn">
+          <a href="javascript:;" class="apple-btn">查看更多</a>
         </div>
       </div>
-      <!-- 避坑点2 -->
-      <div class="pitfalls-card">
-        <div class="card-icon">02</div>
-        <div class="card-content">
-          <h3>操作避坑：忽略设备校准</h3>
-          <p>新设备/换材后未校准光路、焦距，易导致焊缝不平整、虚焊，建议每次更换工况后做基础校准。</p>
-        </div>
-      </div>
-      <!-- 避坑点3 -->
-      <div class="pitfalls-card">
-        <div class="card-icon">03</div>
-        <div class="card-content">
-          <h3>生产避坑：无防护直接作业</h3>
-          <p>激光焊接产生的强光、高温易损伤视力和皮肤，必须配备专业护目镜、防烫手套等防护装备。</p>
-        </div>
-      </div>
-      <!-- 避坑点4 -->
-      <div class="pitfalls-card">
-        <div class="card-icon">04</div>
-        <div class="card-content">
-          <h3>售后避坑：选择无正规质保的产品</h3>
-          <p>工业设备核心看售后，避免贪便宜选无原厂质保、无线下服务点的品牌，后期维修成本高。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- 海外案例板块 - 苹果简约风格 -->
-<section class="overseas-cases" id="cases">
-  <div class="container">
-    <div class="section-title apple-style">
-      <h2>海外落地案例</h2>
-      <p>服务全球多个国家和地区，适配不同行业的国际化生产需求</p>
-    </div>
-    <div class="cases-list">
-      <!-- 案例1 -->
-      <div class="cases-card">
-        <div class="card-img">
-          <img src="./images/case01.jpg" alt="德国钣金加工企业案例">
-        </div>
-        <div class="card-content">
-          <div class="case-tag">德国 · 钣金加工</div>
-          <h3>某大型钣金加工厂商产线升级</h3>
-          <p>配备20台手持激光焊接机，替代传统氩弧焊，生产效率提升4倍，人工成本降低60%。</p>
-        </div>
-      </div>
-      <!-- 案例2 -->
-      <div class="cases-card">
-        <div class="card-img">
-          <img src="./images/case02.jpg" alt="日本汽车零部件企业案例">
-        </div>
-        <div class="card-content">
-          <div class="case-tag">日本 · 汽车零部件</div>
-          <h3>汽车发动机零部件自动化焊接</h3>
-          <p>定制化自动化焊接方案，适配变速器壳体精密焊接，良品率提升至99.8%。</p>
-        </div>
-      </div>
-      <!-- 案例3 -->
-      <div class="cases-card">
-        <div class="card-img">
-          <img src="./images/case03.jpg" alt="韩国新能源电池企业案例">
-        </div>
-        <div class="card-content">
-          <div class="case-tag">韩国 · 新能源电池</div>
-          <h3>电池极耳自动化焊接产线</h3>
-          <p>适配软包电池量产需求，低温焊接无热损伤，产线日均产能提升至50万件。</p>
-        </div>
-      </div>
-    </div>
-    <!-- 案例查看更多按钮 -->
-    <div class="case-more-btn">
-      <a href="javascript:;" class="apple-btn">查看更多海外案例</a>
-    </div>
-  </div>
-</section>
-
-    <!-- 板块5. 购买优势板块（在Senrytech购买Machine好处多多） -->
+    <!-- 七，代码，售后服务 -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
+        <div class="section-title">
+          <h2 class="benefit-main-title">售后服务</h2>
+          <p>Senrytech 全周期服务 · 让您无后顾之忧</p>
+        </div>
         <!-- 板块主题文字（保留，仅删除原全局的benefit-intro） -->
-        <h2 class="benefit-main-title">售后服务</h2>
 
         <!-- 图片卡片容器 -->
         <div class="benefit-scroll-wrap" style="position: relative">
@@ -7092,7 +7182,7 @@ img {
       <button class="benefit-nav-btn next-btn" id="benefitNextBtn">&gt;</button>
     </div>
 
-    <!-- 板块6. 切割样品抢先看（修改：左侧+右侧整合为统一大卡片） -->
+    <!-- 八，代码 切割样品抢先看 -->
     <div class="sample-section" style="position: relative">
       <div class="sample-container">
         <!-- 主标题（保持不变） -->
@@ -7133,11 +7223,15 @@ img {
       </div>
     </div>
 
-    <!-- 板块7. 核心优势一眼明（新增） -->
+    <!-- 九，代码 核心优势一眼明-->
     <div class="advantage-section" style="position: relative">
       <div class="advantage-container">
+        <div class="section-title">
+          <h2>核心优势一眼明</h2>
+          <p>Senrytech 核心优势 · 为什么选择我们</p>
+        </div>
         <!-- 主标题：与板块5样式完全一致 -->
-        <h2 class="advantage-main-title">核心优势一眼明</h2>
+        <h2 class="advantage-main-title"></h2>
 
         <!-- 优势卡片滚动容器（类名避免重复） -->
         <div
@@ -7626,11 +7720,13 @@ img {
     </div>
     <div class="advantage-modal-overlay"></div>
 
-    <!-- 板块8. Senrytech设备配件全收录（滚动式改造版） -->
+    <!-- 十，代码 设备配件-->
     <div class="accessory-section" style="position: relative">
       <div class="accessory-container">
-        <!-- 主标题（与其他板块样式统一） -->
-        <h2 class="accessory-main-title">Senrytech设备配件<br />全收录</h2>
+        <div class="section-title">
+          <h2>设备配件</h2>
+          <p>Senrytech 设备配件 · 原厂品质，快速供应</p>
+        </div>
 
         <!-- 纯黑色大卡片（保留外层容器，内部改为滚动结构） -->
         <div class="accessory-big-card" style="position: relative">
@@ -7680,7 +7776,7 @@ img {
       <button class="accessory-scroll-btn next" id="accessoryNext">&gt;</button>
     </div>
 
-    <!-- 板块9. 底部导航（匹配参考图格式，已修正图标问题） -->
+    <!-- 十一，代码 底部导航栏-->
     <footer class="footer-new">
       <div class="footer-container">
         <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->

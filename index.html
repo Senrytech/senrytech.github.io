@@ -3152,6 +3152,9 @@ img {
   .avoid-pitfalls {
     height: auto;
   }
+  .overseas-cases {
+    height: auto;
+  }
   /* 标题样式 */
   .section-title.apple-style h2 {
     font-size: 32px;
@@ -3182,6 +3185,9 @@ img {
 /* 6. 笔记本大屏 (1025-1440px) */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .avoid-pitfalls {
+    height: auto;
+  }
+  .overseas-cases {
     height: auto;
   }
   /* 标题样式 */
@@ -3355,7 +3361,7 @@ img {
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
-        height: 65rem;
+        height: 55rem;
       }
 
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
@@ -3596,7 +3602,7 @@ img {
       /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .benefit-section {
-          height: 38rem;
+          height: 40rem;
         }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -3657,7 +3663,7 @@ img {
       /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
         .benefit-section {
-          height: 40rem;
+          height: 43rem;
         }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -3719,7 +3725,7 @@ img {
       /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
         .benefit-section {
-          height: 42rem;
+          height: 45rem;
         }
         .benefit-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -3781,7 +3787,7 @@ img {
       /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .benefit-section {
-          height: 42rem;
+          height: 50rem;
         }
         .benefit-container {
           margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
@@ -5305,7 +5311,7 @@ img {
 
         .accessory-scroll-btn {
           position: absolute; /* 基于板块容器定位 */
-          top: 100%; /* 垂直居中于产品卡片区域 */
+          top: 95%; /* 垂直居中于产品卡片区域 */
           width: 2rem; /* 原2.5rem → 2rem（≈17.1px），小屏触控适配 */
           height: 2rem;
           font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），图标同步缩小 */
@@ -5389,7 +5395,7 @@ img {
       /* 3. Mobile L（376px~425px）：html基准11.33px | 核心：接近平板，放宽布局 */
       @media (min-width: 376px) and (max-width: 425px) {
         .accessory-section {
-          height: 45rem;
+          height: 50rem;
         }
         /* 容器：恢复小比例左侧margin（5%），向产品板块偏左风格过渡 */
         .accessory-container {
@@ -5441,7 +5447,7 @@ img {
         /* 箭头：位置进一步向桌面端过渡 */
         .accessory-scroll-btn {
           position: absolute; /* 基于板块容器定位 */
-          top: 96%; /* 垂直居中于产品卡片区域 */
+          top: 92%; /* 垂直居中于产品卡片区域 */
           width: 2rem; /* 原2.5rem → 2rem（≈17.1px），小屏触控适配 */
           height: 2rem;
           font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），图标同步缩小 */
@@ -5457,7 +5463,7 @@ img {
       /* 4. Tablet（426px~768px）：html基准14px | 核心：宽松布局，接近桌面端比例 */
       @media (min-width: 426px) and (max-width: 768px) {
         .accessory-section {
-          height: 50rem;
+          height: 60rem;
         }
         /* 容器：左侧margin降至10%，平衡偏左风格与平板宽度 */
         .accessory-container {
@@ -5508,7 +5514,7 @@ img {
         /* 箭头：尺寸接近基础样式，适配平板触控 */
         .accessory-scroll-btn {
           position: absolute; /* 基于板块容器定位 */
-          top: 96%; /* 垂直居中于产品卡片区域 */
+          top: 85%; /* 垂直居中于产品卡片区域 */
           width: 2rem; /* 原2.5rem → 2rem（≈17.1px），小屏触控适配 */
           height: 2rem;
           font-size: 1rem; /* 原1.25rem → 1rem（≈8.5px），图标同步缩小 */
@@ -5524,7 +5530,7 @@ img {
       /* 5. Laptop（769px~1024px）：html基准15px | 核心：逐步过渡到基础样式 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .accessory-section {
-          height: 50rem;
+          height: 55rem;
         }
 
         /* 标题：接近基础样式，突出视觉焦点 */
@@ -5590,6 +5596,11 @@ img {
 
       /* 7. 4K（≥2560px）：html基准18px | 核心：放大元素，避免超高清屏过小 */
       @media (min-width: 2560px) {
+        
+        
+        .accessory-section {
+          height: 70rem;
+        }
         .accessory-container {
           max-width: 120rem;
         }
@@ -5626,7 +5637,7 @@ img {
           width: 3rem; /* 原2.5rem → 3rem（≈54px） */
           height: 3rem;
           font-size: 1.5rem; /* 原1.25rem → 1.5rem（≈27px） */
-          top: 100%; /* 垂直居中于产品卡片区域 */
+          top: 90%; /* 垂直居中于产品卡片区域 */
         }
       }
     </style>

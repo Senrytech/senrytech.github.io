@@ -1424,27 +1424,28 @@
 
   /* 文字层：优化位置和大小 */
   .banner-text {
-    top: 25%;
+    top: 40%;
     padding: 0 4vw;
-    max-width: 95vw;
   }
 
   .banner-text h2 {
+    top: 33%;
     font-size: 0.7rem;
     margin-bottom: 0.8rem;
     letter-spacing: 0.3px;
   }
 
   .banner-text h1 {
+    top: 33%;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     letter-spacing: 0.8px;
   }
 
   .banner-text p {
+    top: 33%;
     font-size: 0.85rem;
     margin-bottom: 1.8rem;
-    max-width: 90vw;
   }
 
   /* 按钮组：缩小按钮和间距 */
@@ -1453,8 +1454,8 @@
   }
 
   .banner-btn {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.5rem;
   }
 
   /* 控制按钮：缩小尺寸和边距 */
@@ -1492,7 +1493,7 @@
   }
 
   .banner-text {
-    top: 28%;
+    top: 40%;
     padding: 0 3vw;
   }
 
@@ -1553,7 +1554,7 @@
   }
 
   .banner-text {
-    top: 29%;
+    top: 40%;
     padding: 0 2.5vw;
   }
 
@@ -1614,7 +1615,7 @@
   }
 
   .banner-text {
-    top: 30%;
+    top: 40%;
     padding: 0 2vw;
     max-width: 85vw;
   }
@@ -1734,6 +1735,7 @@
 /* ========== 媒体适配：1025-1440px（中屏桌面/14寸笔记本） ========== */
 @media (min-width: 1025px) and (max-width: 1440px) {
   .banner-text {
+    top: 40%;
     max-width: 75vw;
   }
 
@@ -1893,6 +1895,332 @@
     </style>
 
     <!--四、CSS 行业解决方案-->
+    <style>
+      /* 全局通用样式重置（可根据项目已有样式调整） */
+.industry-solution {
+  background: linear-gradient(
+    135deg,
+    /* 从左上到右下 */ #ffffff 0%,
+    #f8f8fa 50%,
+    #f5f5f7 100%
+  );
+  width: 100%; /* 占满屏幕宽度（无需转REM） */
+  padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
+  position: relative; /* 作为产品滚动箭头的定位父容器 */
+  overflow: visible; /* 确保箭头不被容器裁剪 */
+  height: auto; /* 改为auto，适配不同屏幕内容高度，避免固定高度溢出/留白 */
+  box-sizing: border-box;
+}
+
+/* —— 4.2 板块内层内容容器：限制宽度+控制左右布局 —— */
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  box-sizing: border-box; /* 新增：统一盒模型 */
+}
+
+/* 模块标题 */
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #1D1D1F;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.section-title h2 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #1D1D1F;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.section-title p {
+  font-size: 1rem; /* 修复：改用rem单位，适配全局字体基准 */
+  color: #1D1D1F;
+  line-height: 1.5;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+/* 方案卡片列表 - 栅格布局 */
+.solution-list {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 方案卡片样式 */
+.solution-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column; /* 卡片内内容垂直排布，避免按钮被挤 */
+}
+
+.solution-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* 卡片图片 */
+.card-img {
+  height: 180px;
+  overflow: hidden;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 卡片内容 */
+.card-content {
+  padding: 1.5rem;
+  flex: 1; /* 撑满卡片剩余空间，按钮固定在底部 */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.25rem;
+  color: #1D1D1F;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.card-content p {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+/* 卡片按钮 */
+.card-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #009688;
+  color: #fff !important;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+  align-self: flex-start; /* 按钮左对齐 */
+  text-decoration: none; /* 去掉链接下划线 */
+}
+
+.card-btn:hover {
+  background-color: #00796b;
+}
+
+/* ========== 媒体适配：按指定节点精细化调整 ========== */
+/* 0-320px（超小屏/旧款手机） */
+@media (max-width: 320px) {
+  .industry-solution {
+    padding: 3rem 0 4.5rem; /* 缩减上下内边距 */
+  }
+  .container {
+    padding: 1rem 0.75rem; /* 缩减容器内边距 */
+  }
+  .section-title, .section-title h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem); /* 缩小标题字号 */
+    margin-bottom: 1rem;
+  }
+  .section-title p {
+    font-size: 0.875rem; /* 缩小副标题字号 */
+  }
+  .solution-list {
+    grid-template-columns: 1fr; /* 单列布局 */
+    gap: 1rem; /* 缩减卡片间距 */
+    margin-top: 2rem; /* 缩减列表上间距 */
+  }
+  .card-img {
+    height: 120px; /* 缩小图片高度 */
+  }
+  .card-content {
+    padding: 1rem; /* 缩减卡片内容内边距 */
+  }
+  .card-content h3 {
+    font-size: 1rem; /* 缩小卡片标题字号 */
+    margin-bottom: 0.5rem;
+  }
+  .card-content p {
+    font-size: 0.75rem; /* 缩小卡片描述字号 */
+    margin-bottom: 1rem;
+  }
+  .card-btn {
+    padding: 0.4rem 0.8rem; /* 缩小按钮内边距 */
+    font-size: 0.75rem; /* 缩小按钮字号 */
+  }
+}
+
+/* 321-375px（小屏手机/iPhone SE/8） */
+@media (min-width: 321px) and (max-width: 375px) {
+  .industry-solution {
+    padding: 3.5rem 0 5rem;
+  }
+  .container {
+    padding: 1.25rem 1rem;
+  }
+  .section-title, .section-title h2 {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    margin-bottom: 1.25rem;
+  }
+  .solution-list {
+    grid-template-columns: 1fr; /* 单列布局 */
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .card-img {
+    height: 140px;
+  }
+  .card-content {
+    padding: 1.25rem;
+  }
+  .card-content h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* 376-425px（大屏手机/iPhone 12/13 mini） */
+@media (min-width: 376px) and (max-width: 425px) {
+  .industry-solution {
+    padding: 4rem 0 6rem;
+  }
+  .solution-list {
+    grid-template-columns: 1fr; /* 单列布局 */
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .card-img {
+    height: 160px;
+  }
+}
+
+/* 426-768px（平板/Pad） */
+@media (min-width: 426px) and (max-width: 768px) {
+  .solution-list {
+    grid-template-columns: repeat(2, 1fr); /* 双列布局 */
+    gap: 1.5rem;
+  }
+  .card-img {
+    height: 160px;
+  }
+  .container {
+    max-width: 90%; /* 缩减容器最大宽度，避免内容过宽 */
+  }
+}
+
+/* 769-1024px（笔记本/小屏桌面） */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .solution-list {
+    grid-template-columns: repeat(3, 1fr); /* 三列布局 */
+    gap: 1.5rem;
+  }
+  .container {
+    max-width: 95%;
+  }
+  .card-img {
+    height: 170px;
+  }
+}
+
+/* 1025-1440px（中屏桌面/14寸笔记本） */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .solution-list {
+    grid-template-columns: repeat(4, 1fr); /* 四列布局（默认） */
+    gap: 1.5rem;
+  }
+  .container {
+    max-width: 1200px; /* 限制容器最大宽度 */
+  }
+}
+
+/* 1441-2560px（大屏桌面/2K屏） */
+@media (min-width: 1441px) and (max-width: 2560px) {
+  .industry-solution {
+    padding: 6rem 0 8rem; /* 适度增加内边距，适配大屏 */
+  }
+  .container {
+    max-width: 1400px; /* 增大容器最大宽度 */
+  }
+  .solution-list {
+    gap: 2rem; /* 增大卡片间距 */
+  }
+  .card-img {
+    height: 200px; /* 增大图片高度 */
+  }
+  .card-content {
+    padding: 2rem; /* 增大卡片内容内边距 */
+  }
+  .card-content h3 {
+    font-size: 1.35rem; /* 增大卡片标题字号 */
+  }
+  .card-content p {
+    font-size: 0.95rem; /* 增大卡片描述字号 */
+  }
+  .card-btn {
+    padding: 0.6rem 1.2rem; /* 增大按钮内边距 */
+    font-size: 0.95rem; /* 增大按钮字号 */
+  }
+}
+
+/* >2561px（4K屏/超高清大屏） */
+@media (min-width: 2561px) {
+  .industry-solution {
+    padding: 7rem 0 9rem; /* 进一步增加内边距 */
+  }
+  .container {
+    max-width: 1600px; /* 最大化容器宽度 */
+  }
+  .section-title, .section-title h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* 增大标题字号 */
+  }
+  .section-title p {
+    font-size: 1.25rem; /* 增大副标题字号 */
+  }
+  .solution-list {
+    gap: 2.5rem; /* 进一步增大卡片间距 */
+  }
+  .card-img {
+    height: 220px; /* 进一步增大图片高度 */
+  }
+  .card-content {
+    padding: 2.5rem; /* 进一步增大卡片内容内边距 */
+  }
+  .card-content h3 {
+    font-size: 1.5rem; /* 进一步增大卡片标题字号 */
+  }
+  .card-content p {
+    font-size: 1rem; /* 进一步增大卡片描述字号 */
+  }
+  .card-btn {
+    padding: 0.7rem 1.4rem; /* 进一步增大按钮内边距 */
+    font-size: 1rem; /* 进一步增大按钮字号 */
+  }
+}
+    </style>
+
+    <!--五、CSS 全系列产品-->
     <style>
       /* —— 4.1 板块外层容器：控制整体布局与定位上下文 —— */
       .product-center-section {
@@ -2111,7 +2439,7 @@
       /* 1. Mobile S（≤320px）：html基准字号8.53px | 核心优化：极致紧凑布局 */
       @media (max-width: 320px) {
         .product-center-section {
-          height: 38rem;
+          height: 50rem;
         }
         .product-container {
           margin: 0 auto; /* 取消左侧15%margin，改为居中布局（小屏空间紧张） */
@@ -2152,7 +2480,7 @@
       /* 2. Mobile M（321px~375px）：html基准字号10px | 核心优化：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .product-center-section {
-          height: 38rem;
+          height: 50rem;
         }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -2193,7 +2521,7 @@
       /* 3. Mobile L（376px~425px）：html基准字号11.33px | 核心优化：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
         .product-center-section {
-          height: 40rem;
+          height: 50rem;
         }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -2234,7 +2562,7 @@
       /* 4. Tablet（426px~768px）：html基准字号14px | 核心优化：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
         .product-center-section {
-          height: 42rem;
+          height: 50rem;
         }
         .product-container {
           margin: 0 auto; /* 取消左侧偏左margin，改为居中 */
@@ -2275,7 +2603,7 @@
       /* 5. Laptop（769px~1024px）：html基准字号15px | 核心优化：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .product-center-section {
-          height: 42rem;
+          height: 50rem;
         }
         .product-container {
           margin: 0 auto 0 12%; /* 原15% → 12%，微调左侧margin */
@@ -2314,6 +2642,10 @@
 
       /* 7. 4K屏（≥2560px）：html基准字号16px | 核心优化：超高清屏放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
+        .product-center-section {
+          height: 70rem;
+        }
+
         .product-container {
           max-width: 120rem; /* 原100rem → 120rem（16px基准下=1920px），适配4K屏宽度 */
         }
@@ -2350,189 +2682,6 @@
         }
         .product-nav-btn.next-btn {
           right: calc(5% + 1.5rem); /* 原1.25rem → 1.5rem，同步放大偏移 */
-        }
-      }
-    </style>
-
-    <!--五、CSS 全系列产品-->
-    <style>
-      /* 全局通用样式重置（可根据项目已有样式调整） */
-      .industry-solution {
-        background: linear-gradient(
-          135deg,
-          /* 从左上到右下 */ #ffffff 0%,
-          #f8f8fa 50%,
-          #f5f5f7 100%
-        );
-        width: 100%; /* 占满屏幕宽度（无需转REM） */
-        padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
-        position: relative; /* 作为产品滚动箭头的定位父容器 */
-        overflow: visible; /* 确保箭头不被容器裁剪 */
-        height: 45rem;
-      }
-
-      /* —— 4.2 板块内层内容容器：限制宽度+控制左右布局 —— */
-      .container {
-        max-width: 100rem;
-        /* 修复2：左侧15% margin改为自适应，避免内容左偏被遮挡 */
-        margin: 0 auto;
-        padding: 2rem 1.25rem;
-        box-sizing: border-box; /* 新增：统一盒模型 */
-      }
-
-      /* 模块标题 */
-      .section-title {
-        /* 修复3：字号改用clamp适配，避免超大字号挤压空间 */
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 500;
-        color: #1D1D1F;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 1.5rem;
-        text-align: left;
-      }
-      .section-title h2 {
-        /* 修复3同步：字号适配 */
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 500;
-        color: #1D1D1F;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 1.5rem;
-        text-align: left;
-      }
-      .section-title p {
-        font-size: 1rem; /* 修复：改用rem单位，适配全局字体基准 */
-        color: #1D1D1F;
-        line-height: 1.5;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-      }
-
-      /* 方案卡片列表 - 栅格布局 */
-      .solution-list {
-        margin-top: 5rem;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        /* 修复4：gap改用rem单位，适配不同屏幕 */
-        gap: 1.5rem;
-        /* 新增：确保列表撑开父容器，不被截断 */
-        width: 100%;
-        box-sizing: border-box;
-      }
-
-      /* 方案卡片样式 */
-      .solution-card {
-        background-color: #fff;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        transition: all 0.3s ease;
-        cursor: pointer;
-        /* 新增：卡片最小高度，避免内容挤压 */
-        min-height: 100%;
-        display: flex;
-        flex-direction: column; /* 新增：卡片内内容垂直排布，避免按钮被挤 */
-      }
-
-      .solution-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-      }
-
-      /* 卡片图片 */
-      .card-img {
-        height: 180px;
-        overflow: hidden;
-        /* 新增：图片自适应，避免拉伸 */
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      /* 卡片内容 */
-      .card-content {
-        padding: 1.5rem; /* 修复：改用rem单位 */
-        flex: 1; /* 新增：撑满卡片剩余空间，按钮固定在底部 */
-        display: flex;
-        flex-direction: column;
-      }
-
-      .card-content h3 {
-        font-size: 1.25rem; /* 修复：改用rem单位 */
-        color: #1D1D1F;
-        margin-bottom: 0.75rem; /* 修复：改用rem单位 */
-        font-weight: 600;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-      }
-
-      .card-content p {
-        font-size: 0.875rem; /* 修复：改用rem单位 */
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 1.25rem;
-      }
-
-      /* 卡片按钮 */
-      .card-btn {
-        display: inline-block;
-        padding: 0.5rem 1rem; /* 修复：改用rem单位 */
-        background-color: #009688;
-        color: #fff !important;
-        border-radius: 4px;
-        font-size: 0.875rem; /* 修复：改用rem单位 */
-        transition: background-color 0.3s ease;
-        /* 新增：按钮固定在卡片底部 */
-        margin-top: auto;
-        align-self: flex-start; /* 新增：按钮左对齐 */
-        text-decoration: none; /* 新增：去掉链接下划线 */
-      }
-
-      .card-btn:hover {
-        background-color: #00796b;
-      }
-
-      /* 媒体适配 - 平板（768px-1024px） */
-      @media (max-width: 1024px) {
-        .solution-list {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1.25rem; /* 修复：改用rem单位 */
-        }
-        .section-title h2 {
-          font-size: 1.75rem; /* 修复：改用rem单位 */
-        }
-        .industry-solution {
-          padding: 3.75rem 0; /* 修复：改用rem单位 */
-        }
-      }
-
-      /* 媒体适配 - 手机（≤767px） */
-      @media (max-width: 767px) {
-        .solution-list {
-          grid-template-columns: 1fr;
-          gap: 1rem; /* 修复：改用rem单位 */
-        }
-        .section-title h2 {
-          font-size: 1.5rem; /* 修复：改用rem单位 */
-        }
-        .section-title {
-          margin-bottom: 2.5rem; /* 修复：改用rem单位 */
-        }
-        .card-content {
-          padding: 1.25rem; /* 修复：改用rem单位 */
-        }
-        .card-img {
-          height: 150px;
-        }
-        .industry-solution {
-          padding: 2.5rem 0; /* 修复：改用rem单位 */
         }
       }
     </style>

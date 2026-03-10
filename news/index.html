@@ -1180,15 +1180,282 @@
     <style>
       /* ================================== 新闻模块 - 优化版 ================================== */
       .news-section {
+        position: relative;
         width: 100%;
         max-width: 1600px;
         margin: 6rem auto;
         padding: 0 4rem;
         box-sizing: border-box;
+        /* 给右侧时间线留基础间距 */
+        padding-right: 80px;
+      }
+
+      /* 时间线容器核心样式 */
+      .news-timeline {
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 999;
+        width: 50px;
+        /* 防止时间线被选中 */
+        user-select: none;
+      }
+
+      /* 时间线列表：倒叙2026→2017，已在DOM中排好序 */
+      .timeline-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      /* 时间线节点基础样式 */
+      .timeline-item {
+        padding: 8px 0;
+        margin: 12px 0;
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+      }
+
+      /* 节点高亮：当前可视/点击的年份 */
+      .timeline-item.active {
+        background-color: #0071e3; /* 可替换为你的网站主色 */
+        color: #fff;
+        font-weight: 500;
+        padding: 8px;
+      }
+
+      /* 节点悬浮效果（非高亮时） */
+      .timeline-item:hover:not(.active) {
+        color: #0071e3;
+        background-color: #f5f5f7;
+      }
+
+      /* 媒体适配1：0-320px（超小屏/小手机） */
+      @media (max-width: 320px) {
+        .news-section {
+          padding: 0 1rem;
+          padding-right: 0;
+          margin: 3rem auto;
+        }
+        .news-timeline {
+          position: static;
+          transform: none;
+          width: 100%;
+          margin: 2rem auto 1rem;
+          padding: 0 1rem;
+        }
+        .timeline-list {
+          display: flex;
+          gap: 6px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          /* 隐藏滚动条 */
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .timeline-list::-webkit-scrollbar {
+          display: none;
+        }
+        .timeline-item {
+          margin: 0;
+          padding: 6px 8px;
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+        .timeline-item.active {
+          padding: 6px 8px;
+        }
+      }
+
+      /* 媒体适配2：321-375px（小屏/苹果SE/小安卓） */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .news-section {
+          padding: 0 1.5rem;
+          padding-right: 0;
+          margin: 3.5rem auto;
+        }
+        .news-timeline {
+          position: static;
+          transform: none;
+          width: 100%;
+          margin: 2rem auto 1rem;
+          padding: 0 1.5rem;
+        }
+        .timeline-list {
+          display: flex;
+          gap: 8px;
+          overflow-x: auto;
+          padding-bottom: 8px;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .timeline-list::-webkit-scrollbar {
+          display: none;
+        }
+        .timeline-item {
+          margin: 0;
+          padding: 6px 10px;
+          font-size: 12px;
+          flex-shrink: 0;
+        }
+        .timeline-item.active {
+          padding: 6px 10px;
+        }
+      }
+
+      /* 媒体适配3：376-425px（中屏/iPhone12/安卓中端机） */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .news-section {
+          padding: 0 2rem;
+          padding-right: 0;
+          margin: 4rem auto;
+        }
+        .news-timeline {
+          position: static;
+          transform: none;
+          width: 100%;
+          margin: 2rem auto 1rem;
+          padding: 0 2rem;
+        }
+        .timeline-list {
+          display: flex;
+          gap: 10px;
+          overflow-x: auto;
+          padding-bottom: 10px;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .timeline-list::-webkit-scrollbar {
+          display: none;
+        }
+        .timeline-item {
+          margin: 0;
+          padding: 7px 12px;
+          font-size: 13px;
+          flex-shrink: 0;
+        }
+        .timeline-item.active {
+          padding: 7px 12px;
+        }
+      }
+
+      /* 媒体适配4：426-768px（大屏手机/平板竖屏） */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .news-section {
+          padding: 0 3rem;
+          padding-right: 0;
+          margin: 5rem auto;
+        }
+        .news-timeline {
+          position: static;
+          transform: none;
+          width: 100%;
+          margin: 2rem auto 1.5rem;
+          padding: 0 3rem;
+        }
+        .timeline-list {
+          display: flex;
+          gap: 12px;
+          overflow-x: auto;
+          padding-bottom: 10px;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .timeline-list::-webkit-scrollbar {
+          display: none;
+        }
+        .timeline-item {
+          margin: 0;
+          padding: 8px 14px;
+          font-size: 14px;
+          flex-shrink: 0;
+        }
+        .timeline-item.active {
+          padding: 8px 14px;
+        }
+      }
+
+      /* 媒体适配5：769-1024px（平板横屏/小笔记本） */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .news-section {
+          padding: 0 3rem;
+          padding-right: 70px;
+        }
+        .news-timeline {
+          right: 15px;
+          width: 45px;
+        }
+        .timeline-item {
+          font-size: 13px;
+          margin: 10px 0;
+          padding: 7px 0;
+        }
+        .timeline-item.active {
+          padding: 7px;
+        }
+      }
+
+      /* 媒体适配6：1025-1440px（主流电脑/笔记本） */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .news-section {
+          padding: 0 4rem;
+          padding-right: 80px;
+        }
+        .news-timeline {
+          right: 20px;
+          width: 50px;
+        }
+      }
+
+      /* 媒体适配7：1441-2560px（2K/4K宽屏/专业显示器） */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .news-section {
+          padding: 0 5rem;
+          padding-right: 90px;
+          max-width: 1800px;
+        }
+        .news-timeline {
+          right: 30px;
+          width: 55px;
+        }
+        .timeline-item {
+          font-size: 15px;
+          margin: 14px 0;
+        }
+      }
+
+      /* 媒体适配8：≥2561px（超宽屏/多屏） */
+      @media (min-width: 2561px) {
+        .news-section {
+          padding: 0 6rem;
+          padding-right: 100px;
+          max-width: 2000px;
+        }
+        .news-timeline {
+          right: 40px;
+          width: 60px;
+        }
+        .timeline-item {
+          font-size: 16px;
+          margin: 16px 0;
+          padding: 10px 0;
+        }
+        .timeline-item.active {
+          padding: 10px;
+        }
       }
 
       .news-title-wrap {
-        margin-bottom: 3rem;
+        margin-top: 6rem; /* 元素顶部外边距 6rem */
+        margin-bottom: 6rem; /* 元素底部外边距 6rem */
+        margin-left: auto; /* 左侧自动填充空白 */
+        margin-right: auto; /* 右侧自动填充空白 */
       }
 
       .news-main-title {
@@ -1522,106 +1789,106 @@
     </style>
 
     <style>
-    /* 右侧竖向时间线样式：无缝适配现有页面，不影响原有样式 */
-    .news-section {
-      position: relative;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-right: 80px; /* 为时间线预留右侧空间 */
-      box-sizing: border-box;
-    }
-    /* 竖向时间线容器：固定右侧，随页面滚动 */
-    .news-timeline-vertical {
-      position: fixed;
-      top: 200px;
-      right: 50px;
-      z-index: 99;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 400px;
-    }
-    .timeline-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      height: 100%;
-    }
-    /* 时间线竖线 */
-    .timeline-list::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 100%;
-      background: #f0f0f0;
-    }
-    /* 时间线年份节点 */
-    .timeline-item {
-      position: relative;
-      padding: 10px 0;
-      text-align: center;
-      cursor: pointer;
-      color: #666;
-      font-size: 14px;
-      transition: all 0.3s ease;
-      z-index: 2;
-    }
-    /* 节点小圆点 */
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #ccc;
-      transition: all 0.3s ease;
-      z-index: 3;
-    }
-    /* 未来节点特殊样式 */
-    .timeline-item.future {
-      color: #409eff;
-      font-size: 12px;
-    }
-    /* 高亮样式（滚动/点击触发） */
-    .timeline-item.active {
-      color: #409eff;
-    }
-    .timeline-item.active::before {
-      width: 14px;
-      height: 14px;
-      background: #409eff;
-      border: 2px solid #e8f4ff;
-    }
-    /* 鼠标悬浮效果 */
-    .timeline-item:hover:not(.active) {
-      color: #409eff;
-    }
-    .timeline-item:hover:not(.active)::before {
-      background: #409eff;
-    }
-    /* 年份锚点容器：用于定位，不影响原有样式 */
-    .news-year-anchor {
-      position: relative;
-      top: -100px;
-      visibility: hidden;
-    }
-    /* 小屏端隐藏时间线，适配移动端 */
-    @media (max-width: 1200px) {
+      /* 右侧竖向时间线样式：无缝适配现有页面，不影响原有样式 */
       .news-section {
-        padding-right: 20px;
+        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-right: 80px; /* 为时间线预留右侧空间 */
+        box-sizing: border-box;
       }
+      /* 竖向时间线容器：固定右侧，随页面滚动 */
       .news-timeline-vertical {
-        display: none;
+        position: fixed;
+        top: 200px;
+        right: 50px;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 400px;
       }
-    }
-  </style>
+      .timeline-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        height: 100%;
+      }
+      /* 时间线竖线 */
+      .timeline-list::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background: #f0f0f0;
+      }
+      /* 时间线年份节点 */
+      .timeline-item {
+        position: relative;
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+        color: #666;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+      /* 节点小圆点 */
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ccc;
+        transition: all 0.3s ease;
+        z-index: 3;
+      }
+      /* 未来节点特殊样式 */
+      .timeline-item.future {
+        color: #409eff;
+        font-size: 12px;
+      }
+      /* 高亮样式（滚动/点击触发） */
+      .timeline-item.active {
+        color: #409eff;
+      }
+      .timeline-item.active::before {
+        width: 14px;
+        height: 14px;
+        background: #409eff;
+        border: 2px solid #e8f4ff;
+      }
+      /* 鼠标悬浮效果 */
+      .timeline-item:hover:not(.active) {
+        color: #409eff;
+      }
+      .timeline-item:hover:not(.active)::before {
+        background: #409eff;
+      }
+      /* 年份锚点容器：用于定位，不影响原有样式 */
+      .news-year-anchor {
+        position: relative;
+        top: -100px;
+        visibility: hidden;
+      }
+      /* 小屏端隐藏时间线，适配移动端 */
+      @media (max-width: 1200px) {
+        .news-section {
+          padding-right: 20px;
+        }
+        .news-timeline-vertical {
+          display: none;
+        }
+      }
+    </style>
 
     <!--十、底部导航模块 -->
     <style>
@@ -1896,9 +2163,9 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
-                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                      alt="Senrytech A 经济款光纤激光切割机"
-                    />
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                        alt="Senrytech A 经济款光纤激光切割机"
+                      />
                     </a>
                     <!-- 文字加链接：与图片跳转地址一致 -->
                     <a
@@ -1913,9 +2180,9 @@
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
-                      src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                      alt="Senrytech B 中厚板光纤激光切割机"
-                    />
+                        src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        alt="Senrytech B 中厚板光纤激光切割机"
+                      />
                     </a>
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
@@ -3047,31 +3314,13 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <section class="news-section">
-
-       <!-- 右侧竖向时间线：核心联动模块 -->
-  <div class="news-timeline-vertical">
-    <ul class="timeline-list">
-      <li class="timeline-item" data-year="2017">2017</li>
-      <li class="timeline-item" data-year="2018">2018</li>
-      <li class="timeline-item" data-year="2019">2019</li>
-      <li class="timeline-item" data-year="2020">2020</li>
-      <li class="timeline-item" data-year="2021">2021</li>
-      <li class="timeline-item" data-year="2022">2022</li>
-      <li class="timeline-item" data-year="2023">2023</li>
-      <li class="timeline-item" data-year="2024">2024</li>
-      <li class="timeline-item" data-year="2025">2025</li>
-      <li class="timeline-item" data-year="2026">2026</li>
-      <li class="timeline-item future" data-year="future">未来 →</li>
-    </ul>
-  </div>
-
       <div class="news-title-wrap">
         <h2 class="news-main-title">最新动态</h2>
       </div>
 
       <!-- 2022：保持卡片，右下角加号 -->
       <div class="news-list">
-       <div class="news-card">
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3204,11 +3453,10 @@
             </button>
           </div>
         </div>
-      
 
-      <!-- 2021：保持卡片，右下角加号 -->
-      
-       <div class="news-card">
+        <!-- 2021：保持卡片，右下角加号 -->
+
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3339,11 +3587,10 @@
             </button>
           </div>
         </div>
-      
 
-      <!-- 2020：保持卡片，右下角加号 -->
-      
-       <div class="news-card">
+        <!-- 2020：保持卡片，右下角加号 -->
+
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3374,7 +3621,6 @@
             </button>
           </div>
         </div>
-
 
         <div class="news-card">
           <div class="news-card-img">
@@ -3418,7 +3664,7 @@
           <div class="news-card-content">
             <span class="news-date">2020年2月</span>
             <h4 class="news-card-title">
-               森睿激光捐赠防疫口罩助力疫情防控，践行企业责任传递温暖力量
+              森睿激光捐赠防疫口罩助力疫情防控，践行企业责任传递温暖力量
             </h4>
             <p class="news-card-desc">
               疫情防控关键时期，口罩等防疫物资紧缺，森睿激光积极履行企业社会责任，紧急采购一批防疫口罩，捐赠给当地社区、复工复产企业及一线防疫人员，助力疫情防控工作，用实际行动传递企业温暖，彰显责任与担当。
@@ -3489,7 +3735,8 @@
             森睿激光2019年度总结：钣金行业客户突破200家，海外订单增长65%
           </h3>
           <p class="news-featured-desc">
-            2019年11月18日，森睿激光（Senrytech Laser）召开2019年度工作总结大会，全面回顾了公司2019年的发展成果，分析了当前行业发展形势和公司面临的机遇与挑战，明确了2020年的发展目标和工作规划。大会上，公司各部门负责人分别汇报了2019年的工作情况，公司负责人发布了2019年度业绩报告，报告显示，2019年森睿激光实现销售额1.8亿元，较2018年增长80%；钣金行业客户突破200家，较2018年增长100%；海外订单同比增长65%，国际市场拓展取得显著成效，各项业绩指标均超额完成，实现了稳步快速发展。
+            2019年11月18日，森睿激光（Senrytech
+            Laser）召开2019年度工作总结大会，全面回顾了公司2019年的发展成果，分析了当前行业发展形势和公司面临的机遇与挑战，明确了2020年的发展目标和工作规划。大会上，公司各部门负责人分别汇报了2019年的工作情况，公司负责人发布了2019年度业绩报告，报告显示，2019年森睿激光实现销售额1.8亿元，较2018年增长80%；钣金行业客户突破200家，较2018年增长100%；海外订单同比增长65%，国际市场拓展取得显著成效，各项业绩指标均超额完成，实现了稳步快速发展。
           </p>
           <button
             class="news-expand-btn"
@@ -3526,7 +3773,8 @@
               森睿激光推出交换平台高速切割机，专为钣金24小时连续生产设计
             </h4>
             <p class="news-card-desc">
-              2019年9月26日，森睿激光（Senrytech Laser）正式推出Senry-Exchange 3000交换平台高速光纤激光切割机，该设备是森睿激光研发中心结合钣金行业24小时连续生产的需求，历时8个月自主研发的一款高端激光切割设备，专为钣金企业大规模批量生产设计，具备高速切割、稳定运行、高效便捷等优势，能够有效提升钣金企业的生产效率，满足企业24小时连续生产的需求，填补了公司在交换平台激光切割设备领域的空白，进一步丰富了公司的产品系列，提升了公司的核心竞争力。
+              2019年9月26日，森睿激光（Senrytech Laser）正式推出Senry-Exchange
+              3000交换平台高速光纤激光切割机，该设备是森睿激光研发中心结合钣金行业24小时连续生产的需求，历时8个月自主研发的一款高端激光切割设备，专为钣金企业大规模批量生产设计，具备高速切割、稳定运行、高效便捷等优势，能够有效提升钣金企业的生产效率，满足企业24小时连续生产的需求，填补了公司在交换平台激光切割设备领域的空白，进一步丰富了公司的产品系列，提升了公司的核心竞争力。
             </p>
             <button
               class="news-expand-btn"
@@ -3559,7 +3807,9 @@
               森睿激光出口马来西亚：为当地钣金工厂提供全套光纤激光切割方案
             </h4>
             <p class="news-card-desc">
-              2019年8月15日，森睿激光（Senrytech Laser）出口马来西亚的首批激光切割设备顺利抵达马来西亚吉隆坡，经过森睿激光海外技术团队的上门安装调试，正式交付当地某大型钣金工厂投入使用，此次出口标志着森睿激光的产品正式进入马来西亚钣金市场，国际市场拓展取得重要突破，也进一步提升了Senrytech Laser的国际知名度和影响力。该马来西亚钣金工厂位于吉隆坡郊区，成立于2010年，是一家专注于钣金加工、钣金零部件出口的中型制造企业，主要产品包括建筑钣金配件、机械钣金外壳、电子钣金零部件等，产品远销东南亚、中东等地区，对激光切割设备的精度、效率和稳定性有着较高的要求。
+              2019年8月15日，森睿激光（Senrytech
+              Laser）出口马来西亚的首批激光切割设备顺利抵达马来西亚吉隆坡，经过森睿激光海外技术团队的上门安装调试，正式交付当地某大型钣金工厂投入使用，此次出口标志着森睿激光的产品正式进入马来西亚钣金市场，国际市场拓展取得重要突破，也进一步提升了Senrytech
+              Laser的国际知名度和影响力。该马来西亚钣金工厂位于吉隆坡郊区，成立于2010年，是一家专注于钣金加工、钣金零部件出口的中型制造企业，主要产品包括建筑钣金配件、机械钣金外壳、电子钣金零部件等，产品远销东南亚、中东等地区，对激光切割设备的精度、效率和稳定性有着较高的要求。
             </p>
             <button
               class="news-expand-btn"
@@ -3579,10 +3829,9 @@
             </button>
           </div>
         </div>
-    
 
-      <!-- 2019：保持卡片，右下角加号 -->
-       <div class="news-card">
+        <!-- 2019：保持卡片，右下角加号 -->
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3595,7 +3844,8 @@
               森睿激光发布新一代智能排版软件，材料利用率提升12%，钣金客户成本直降
             </h4>
             <p class="news-card-desc">
-              2019年5月30日，森睿激光正式发布新一代智能排版软件Senry-Nesting Pro，该软件专为激光切割设计，可帮助钣金企业提升材料利用率、降低生产成本，获得客户一致好评。
+              2019年5月30日，森睿激光正式发布新一代智能排版软件Senry-Nesting
+              Pro，该软件专为激光切割设计，可帮助钣金企业提升材料利用率、降低生产成本，获得客户一致好评。
             </p>
             <button
               class="news-expand-btn"
@@ -3664,7 +3914,8 @@
               森睿激光亮相上海慕尼黑光博会，推出针对钣金厚板专用3000W切割机
             </h4>
             <p class="news-card-desc">
-              2019年3月21日-23日，2019慕尼黑上海光博会在上海新国际博览中心隆重举办，该展会作为亚洲领先的激光、光学及光电显示领域展会，汇聚了全球30多个国家和地区的800余家激光企业，吸引了来自全球各地的采购商、行业专家和媒体记者，是展示激光行业前沿技术和产品的重要平台，也是激光企业拓展国际市场、提升品牌影响力的核心契机。森睿激光（Senrytech Laser）携多款核心产品参展，重点推出了针对钣金厚板加工的专用Senry-3000光纤激光切割机，凭借先进的技术优势、稳定的性能和定制化的解决方案，成为展会焦点，获得了行业各界的广泛关注和认可。
+              2019年3月21日-23日，2019慕尼黑上海光博会在上海新国际博览中心隆重举办，该展会作为亚洲领先的激光、光学及光电显示领域展会，汇聚了全球30多个国家和地区的800余家激光企业，吸引了来自全球各地的采购商、行业专家和媒体记者，是展示激光行业前沿技术和产品的重要平台，也是激光企业拓展国际市场、提升品牌影响力的核心契机。森睿激光（Senrytech
+              Laser）携多款核心产品参展，重点推出了针对钣金厚板加工的专用Senry-3000光纤激光切割机，凭借先进的技术优势、稳定的性能和定制化的解决方案，成为展会焦点，获得了行业各界的广泛关注和认可。
             </p>
             <button
               class="news-expand-btn"
@@ -3697,7 +3948,8 @@
               森睿激光召开2019年度战略发布会：聚焦钣金行业智能切割升级
             </h4>
             <p class="news-card-desc">
-              2019年1月12日，森睿激光（Senrytech Laser）在公司总部隆重召开2019年度战略发布会，本次发布会以“聚焦钣金行业，赋能智能切割升级”为主题，邀请了行业专家、合作伙伴、客户代表及媒体记者共计200余人出席，全面解读森睿激光2019年的发展战略、产品规划和市场布局，明确了以钣金行业为核心，推动激光切割设备智能化、高效化升级的发展方向，为公司2019年的发展奠定了坚实的战略基础。
+              2019年1月12日，森睿激光（Senrytech
+              Laser）在公司总部隆重召开2019年度战略发布会，本次发布会以“聚焦钣金行业，赋能智能切割升级”为主题，邀请了行业专家、合作伙伴、客户代表及媒体记者共计200余人出席，全面解读森睿激光2019年的发展战略、产品规划和市场布局，明确了以钣金行业为核心，推动激光切割设备智能化、高效化升级的发展方向，为公司2019年的发展奠定了坚实的战略基础。
             </p>
             <button
               class="news-expand-btn"
@@ -3716,10 +3968,9 @@
             </button>
           </div>
         </div>
-      
 
-      <!-- 2018：保持卡片，右下角加号 -->
-       <div class="news-card">
+        <!-- 2018：保持卡片，右下角加号 -->
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3732,7 +3983,8 @@
               森睿激光新增生产线，提升产品产能与品质稳定性
             </h4>
             <p class="news-card-desc">
-              2018年12月20日，森睿激光（Senrytech Laser）新增的激光设备生产线正式投产，该生产线采用先进的生产设备和生产工艺，主要用于Senry-2000、Senry-3000光纤激光切割机和Senry-200激光打标机的生产，此次新增生产线的投产，标志着公司的生产规模进一步扩大，产品产能和品质稳定性得到了显著提升，能够更好地满足市场不断增长的需求，为公司的市场拓展提供了坚实的生产保障。
+              2018年12月20日，森睿激光（Senrytech
+              Laser）新增的激光设备生产线正式投产，该生产线采用先进的生产设备和生产工艺，主要用于Senry-2000、Senry-3000光纤激光切割机和Senry-200激光打标机的生产，此次新增生产线的投产，标志着公司的生产规模进一步扩大，产品产能和品质稳定性得到了显著提升，能够更好地满足市场不断增长的需求，为公司的市场拓展提供了坚实的生产保障。
             </p>
             <button
               class="news-expand-btn"
@@ -3764,7 +4016,8 @@
               森睿激光通过ISO9001质量管理体系认证，产品品质再上新台阶
             </h4>
             <p class="news-card-desc">
-              2018年12月5日，森睿激光（Senrytech Laser）顺利通过ISO9001质量管理体系认证，获得了由国际权威认证机构颁发的ISO9001质量管理体系认证证书，标志着公司的质量管理水平达到了国际标准，产品品质和服务水平得到了进一步提升，为公司拓展国内外市场提供了有力保障，也进一步增强了公司的市场竞争力。ISO9001质量管理体系认证是国际公认的质量管理标准，对企业的质量管理、产品研发、生产制造、售后服务等各个环节都有着严格的要求，是企业提升产品品质、增强市场竞争力的重要途径。
+              2018年12月5日，森睿激光（Senrytech
+              Laser）顺利通过ISO9001质量管理体系认证，获得了由国际权威认证机构颁发的ISO9001质量管理体系认证证书，标志着公司的质量管理水平达到了国际标准，产品品质和服务水平得到了进一步提升，为公司拓展国内外市场提供了有力保障，也进一步增强了公司的市场竞争力。ISO9001质量管理体系认证是国际公认的质量管理标准，对企业的质量管理、产品研发、生产制造、售后服务等各个环节都有着严格的要求，是企业提升产品品质、增强市场竞争力的重要途径。
             </p>
             <button
               class="news-expand-btn"
@@ -3796,7 +4049,8 @@
               森睿激光受邀接待地方政府领导来访，助力地方产业升级
             </h4>
             <p class="news-card-desc">
-              2018年11月16日，地方政府相关领导一行莅临森睿激光（Senrytech Laser）考察指导工作，详细了解公司的发展情况、技术研发成果和未来发展规划，对森睿激光在激光装备领域的快速发展给予了高度评价，并表示将全力支持公司的发展，助力地方产业升级。此次考察由地方政府分管工业的副市长带队，市科技局、市经信局、当地街道办等相关部门负责人陪同，森睿激光负责人全程接待了考察团一行。
+              2018年11月16日，地方政府相关领导一行莅临森睿激光（Senrytech
+              Laser）考察指导工作，详细了解公司的发展情况、技术研发成果和未来发展规划，对森睿激光在激光装备领域的快速发展给予了高度评价，并表示将全力支持公司的发展，助力地方产业升级。此次考察由地方政府分管工业的副市长带队，市科技局、市经信局、当地街道办等相关部门负责人陪同，森睿激光负责人全程接待了考察团一行。
             </p>
             <button
               class="news-expand-btn"
@@ -3828,7 +4082,8 @@
               森睿激光参展2018第二十三届中国国际激光、光电子及光电显示产品展览会
             </h4>
             <p class="news-card-desc">
-              2018年10月10日-12日，2018第二十三届中国国际激光、光电子及光电显示产品展览会在北京中国国际展览中心（老馆）举办，该展会是国内规模最大、专业性最强的激光行业展会之一，聚焦激光、光电子及光电显示领域的前沿技术和产品，吸引了来自北方地区的大量制造企业、经销商和行业专家，是激光企业拓展北方市场、提升品牌影响力的重要平台。森睿激光（Senrytech Laser）携Senry-3000光纤激光切割机、Senry-200激光打标机等多款核心产品参展，进一步拓展北方市场，提升品牌在北方地区的影响力。
+              2018年10月10日-12日，2018第二十三届中国国际激光、光电子及光电显示产品展览会在北京中国国际展览中心（老馆）举办，该展会是国内规模最大、专业性最强的激光行业展会之一，聚焦激光、光电子及光电显示领域的前沿技术和产品，吸引了来自北方地区的大量制造企业、经销商和行业专家，是激光企业拓展北方市场、提升品牌影响力的重要平台。森睿激光（Senrytech
+              Laser）携Senry-3000光纤激光切割机、Senry-200激光打标机等多款核心产品参展，进一步拓展北方市场，提升品牌在北方地区的影响力。
             </p>
             <button
               class="news-expand-btn"
@@ -3847,7 +4102,7 @@
           </div>
         </div>
 
-       <div class="news-card">
+        <div class="news-card">
           <div class="news-card-img">
             <img
               src="../img/news/senrytech-exhibition-2017-03-15-suzhou.webp"
@@ -3860,7 +4115,8 @@
               森睿激光与杭州某钣金企业达成合作，提供定制化激光切割解决方案
             </h4>
             <p class="news-card-desc">
-              2018年8月28日，森睿激光（Senrytech Laser）与杭州某大型钣金企业正式签署合作协议，为其提供2台Senry-2000光纤激光切割机及定制化激光切割解决方案，用于钣金产品的加工生产，此次合作标志着森睿激光的产品成功进入钣金行业，市场应用领域进一步拓展，也为公司拓展华东地区钣金行业市场奠定了基础。该钣金企业位于杭州市萧山区，成立于2010年，是一家专注于钣金加工的大型制造企业，主要产品包括钣金外壳、钣金零部件等，广泛应用于机械制造、电子、家电等多个行业，年加工能力超过100万件，拥有稳定的客户群体。
+              2018年8月28日，森睿激光（Senrytech
+              Laser）与杭州某大型钣金企业正式签署合作协议，为其提供2台Senry-2000光纤激光切割机及定制化激光切割解决方案，用于钣金产品的加工生产，此次合作标志着森睿激光的产品成功进入钣金行业，市场应用领域进一步拓展，也为公司拓展华东地区钣金行业市场奠定了基础。该钣金企业位于杭州市萧山区，成立于2010年，是一家专注于钣金加工的大型制造企业，主要产品包括钣金外壳、钣金零部件等，广泛应用于机械制造、电子、家电等多个行业，年加工能力超过100万件，拥有稳定的客户群体。
             </p>
             <button
               class="news-expand-btn"
@@ -3892,7 +4148,8 @@
               森睿激光技术升级，推出Senry-3000光纤激光切割机，功率突破3000W
             </h4>
             <p class="news-card-desc">
-              森睿激光（Senrytech Laser）正式推出技术升级产品——Senry-3000光纤激光切割机，该设备的激光功率突破3000W，是公司自主研发的首款高功率激光切割设备，标志着森睿激光在高功率激光技术领域取得了重要突破，填补了公司在高功率激光设备领域的空白，也进一步提升了公司的核心竞争力，为公司拓展中厚板加工市场奠定了基础。
+              森睿激光（Senrytech
+              Laser）正式推出技术升级产品——Senry-3000光纤激光切割机，该设备的激光功率突破3000W，是公司自主研发的首款高功率激光切割设备，标志着森睿激光在高功率激光技术领域取得了重要突破，填补了公司在高功率激光设备领域的空白，也进一步提升了公司的核心竞争力，为公司拓展中厚板加工市场奠定了基础。
             </p>
             <button
               class="news-expand-btn"
@@ -3924,7 +4181,8 @@
               森睿激光迎来市级政府领导考察，获政策支持助力发展
             </h4>
             <p class="news-card-desc">
-              2018年6月15日，市级政府相关领导一行莅临森睿激光（Senrytech Laser）考察指导工作，详细了解公司的发展情况、技术研发成果、生产经营状况和未来发展规划，对森睿激光在激光装备领域的快速发展给予了高度评价，并表示将全力支持公司的发展，为公司提供政策扶持和资源保障，助力公司实现更高质量的发展。此次考察由市科技局、市经信局等相关部门负责人陪同，森睿激光负责人全程接待了考察团一行。
+              2018年6月15日，市级政府相关领导一行莅临森睿激光（Senrytech
+              Laser）考察指导工作，详细了解公司的发展情况、技术研发成果、生产经营状况和未来发展规划，对森睿激光在激光装备领域的快速发展给予了高度评价，并表示将全力支持公司的发展，为公司提供政策扶持和资源保障，助力公司实现更高质量的发展。此次考察由市科技局、市经信局等相关部门负责人陪同，森睿激光负责人全程接待了考察团一行。
             </p>
             <button
               class="news-expand-btn"
@@ -3957,7 +4215,8 @@
               森睿激光与深圳某电子企业达成长期合作，批量供应激光打标设备
             </h4>
             <p class="news-card-desc">
-              2018年5月18日，森睿激光（Senrytech Laser）与深圳某大型电子企业正式签署长期合作协议，约定未来三年为该企业批量供应Senry-200激光打标机，用于电子元器件、电路板等产品的标记加工，此次合作标志着森睿激光的产品获得了大型企业的认可，市场竞争力进一步提升，也为公司带来了稳定的订单，推动公司实现稳步发展。该电子企业是国内知名的电子元器件制造商，成立于2005年，总部位于深圳市南山区，拥有员工1000余人，年销售额超过10亿元，产品远销全球各地，涵盖电子元器件、电路板、智能终端等多个领域，对标记精度、效率和稳定性有着极高的要求。
+              2018年5月18日，森睿激光（Senrytech
+              Laser）与深圳某大型电子企业正式签署长期合作协议，约定未来三年为该企业批量供应Senry-200激光打标机，用于电子元器件、电路板等产品的标记加工，此次合作标志着森睿激光的产品获得了大型企业的认可，市场竞争力进一步提升，也为公司带来了稳定的订单，推动公司实现稳步发展。该电子企业是国内知名的电子元器件制造商，成立于2005年，总部位于深圳市南山区，拥有员工1000余人，年销售额超过10亿元，产品远销全球各地，涵盖电子元器件、电路板、智能终端等多个领域，对标记精度、效率和稳定性有着极高的要求。
             </p>
             <button
               class="news-expand-btn"
@@ -4143,8 +4402,23 @@
           </div>
         </div>
       </div>
-
     </section>
+
+    <!-- 右侧倒叙时间线：2026→2017，加在.news-section同级后 -->
+    <div class="news-timeline">
+      <ul class="timeline-list">
+        <li class="timeline-item" data-year="2026">2026</li>
+        <li class="timeline-item" data-year="2025">2025</li>
+        <li class="timeline-item" data-year="2024">2024</li>
+        <li class="timeline-item" data-year="2023">2023</li>
+        <li class="timeline-item" data-year="2022">2022</li>
+        <li class="timeline-item" data-year="2021">2021</li>
+        <li class="timeline-item" data-year="2020">2020</li>
+        <li class="timeline-item" data-year="2019">2019</li>
+        <li class="timeline-item" data-year="2018">2018</li>
+        <li class="timeline-item" data-year="2017">2017</li>
+      </ul>
+    </div>
 
     <!-- 弹窗层：点击加号后弹出 -->
     <div class="news-modal" id="newsModal">
@@ -4684,6 +4958,158 @@
           }
         });
       });
+    </script>
+
+    <script>
+      // 核心配置：时间线年份倒叙2026-2017
+      const years = [
+        2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017,
+      ];
+      // 存储每个年份对应的第一条新闻元素（兼容大/小卡片）
+      const yearToNews = {};
+      // 高亮类名
+      const ACTIVE_CLASS = "active";
+
+      // 初始化：匹配每个年份的第一条新闻【核心修改：同时兼容news-featured和news-card】
+      function initNewsMap() {
+        years.forEach((year) => {
+          // 找到页面中包含该年份的第一个日期标签（.news-date是你的日期类名，不用改）
+          const dateEl = document.querySelector(`.news-date:contains(${year})`);
+          if (dateEl) {
+            // 核心修改：同时查找大卡片(news-featured)和小卡片(news-card)，找到任意一个就赋值
+            yearToNews[year] = dateEl.closest(".news-featured, .news-card");
+          } else {
+            // 无新闻时，继承上一个有新闻的年份，不影响跳转
+            const lastValidYear = years.find((prev) => yearToNews[prev]);
+            yearToNews[year] = lastValidYear ? yearToNews[lastValidYear] : null;
+          }
+        });
+      }
+
+      // 扩展:contains精准匹配（避免2022匹配20220等子串，保留）
+      if (window.jQuery) {
+        jQuery.expr[":"].contains = function (a, i, m) {
+          return jQuery(a).text().trim().indexOf(m[3]) === 0;
+        };
+      } else {
+        // 无jQuery时原生JS兼容，保留
+        const originalQuery = document.querySelector;
+        document.querySelector = function (selector) {
+          if (selector.includes(":contains(")) {
+            const [baseSel, yearPart] = selector.split(":contains(");
+            const pureYear = yearPart.replace(")", "").trim();
+            const els = document.querySelectorAll(baseSel);
+            return (
+              Array.from(els).find((el) =>
+                el.textContent.trim().includes(pureYear)
+              ) || null
+            );
+          }
+          return originalQuery.call(this, selector);
+        };
+      }
+
+      // 高亮指定年份的时间线节点，保留
+      function highlightYear(targetYear) {
+        const allItems = document.querySelectorAll(".timeline-item");
+        allItems.forEach((item) => {
+          const itemYear = Number(item.dataset.year);
+          item.classList.toggle(ACTIVE_CLASS, itemYear === targetYear);
+        });
+      }
+
+      // 点击时间线节点，滚动到对应年份第一条新闻，保留
+      function bindClickEvent() {
+        const timelineItems = document.querySelectorAll(".timeline-item");
+        timelineItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const targetYear = Number(item.dataset.year);
+            const targetNews = yearToNews[targetYear];
+            if (targetNews) {
+              // 平滑滚动+轻微偏移，避免贴边/被导航栏遮挡
+              targetNews.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+                inline: "nearest",
+              });
+              // 若有固定导航栏，加这行偏移（把60改成你的导航栏高度）
+              // window.scrollBy(0, -60);
+              highlightYear(targetYear);
+            }
+          });
+        });
+      }
+
+      // 节流函数：减少滚动触发次数，提升性能，保留
+      function throttle(fn, delay = 100) {
+        let timer = null;
+        return (...args) => {
+          if (!timer) {
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = null;
+            }, delay);
+          }
+        };
+      }
+
+      // 监听滚动，自动高亮当前可视区域年份【核心修改区】
+      function bindScrollEvent() {
+        // 新增：缓存上一次激活的年份，避免无匹配时回退到2017
+        let lastActiveYear = 2026;
+
+        window.addEventListener(
+          "scroll",
+          throttle(() => {
+            let currentActiveYear = null; // ① 取消默认2017，改为null
+
+            // ② 倒叙遍历（优先匹配最新年份），且调整可视区域判定条件（更宽松）
+            for (let i = 0; i < years.length; i++) {
+              const year = years[i];
+              const newsEl = yearToNews[year];
+              if (!newsEl) continue;
+
+              const rect = newsEl.getBoundingClientRect();
+              // 判定条件优化：只要元素有任意部分在可视区域内（更宽松）
+              const isInView = rect.bottom > 0 && rect.top < window.innerHeight;
+
+              if (isInView) {
+                currentActiveYear = year;
+                break; // ③ 找到第一个（最新）满足条件的年份就停止遍历，避免覆盖
+              }
+            }
+
+            // ④ 无匹配年份时，沿用上次激活的年份（而非跳2017）
+            const finalYear = currentActiveYear || lastActiveYear;
+            highlightYear(finalYear);
+            // 更新缓存的上次年份
+            if (currentActiveYear) lastActiveYear = currentActiveYear;
+          })
+        );
+      }
+
+      // 初始化所有逻辑，保留
+      function initTimeline() {
+        initNewsMap();
+        bindClickEvent();
+        bindScrollEvent();
+        // 页面首次加载，高亮第一个可视的年份
+        const firstVisibleYear = years.find((year) => {
+          const el = yearToNews[year];
+          if (!el) return false;
+          const rect = el.getBoundingClientRect();
+          return rect.top < window.innerHeight && rect.bottom > 0;
+        });
+        if (firstVisibleYear) {
+          highlightYear(firstVisibleYear);
+        } else {
+          highlightYear(2026); // 无可视区域时默认高亮2026
+        }
+      }
+
+      // 页面加载+窗口大小变化都初始化，保留
+      document.addEventListener("DOMContentLoaded", initTimeline);
+      window.addEventListener("resize", initTimeline);
     </script>
   </body>
 </html>

@@ -1521,6 +1521,108 @@
       }
     </style>
 
+    <style>
+    /* 右侧竖向时间线样式：无缝适配现有页面，不影响原有样式 */
+    .news-section {
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-right: 80px; /* 为时间线预留右侧空间 */
+      box-sizing: border-box;
+    }
+    /* 竖向时间线容器：固定右侧，随页面滚动 */
+    .news-timeline-vertical {
+      position: fixed;
+      top: 200px;
+      right: 50px;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 400px;
+    }
+    .timeline-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      height: 100%;
+    }
+    /* 时间线竖线 */
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: #f0f0f0;
+    }
+    /* 时间线年份节点 */
+    .timeline-item {
+      position: relative;
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+      color: #666;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    /* 节点小圆点 */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ccc;
+      transition: all 0.3s ease;
+      z-index: 3;
+    }
+    /* 未来节点特殊样式 */
+    .timeline-item.future {
+      color: #409eff;
+      font-size: 12px;
+    }
+    /* 高亮样式（滚动/点击触发） */
+    .timeline-item.active {
+      color: #409eff;
+    }
+    .timeline-item.active::before {
+      width: 14px;
+      height: 14px;
+      background: #409eff;
+      border: 2px solid #e8f4ff;
+    }
+    /* 鼠标悬浮效果 */
+    .timeline-item:hover:not(.active) {
+      color: #409eff;
+    }
+    .timeline-item:hover:not(.active)::before {
+      background: #409eff;
+    }
+    /* 年份锚点容器：用于定位，不影响原有样式 */
+    .news-year-anchor {
+      position: relative;
+      top: -100px;
+      visibility: hidden;
+    }
+    /* 小屏端隐藏时间线，适配移动端 */
+    @media (max-width: 1200px) {
+      .news-section {
+        padding-right: 20px;
+      }
+      .news-timeline-vertical {
+        display: none;
+      }
+    }
+  </style>
+
     <!--十、底部导航模块 -->
     <style>
       /* 底部导航整体样式（匹配参考图深灰背景） */
@@ -2945,6 +3047,24 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <section class="news-section">
+
+       <!-- 右侧竖向时间线：核心联动模块 -->
+  <div class="news-timeline-vertical">
+    <ul class="timeline-list">
+      <li class="timeline-item" data-year="2017">2017</li>
+      <li class="timeline-item" data-year="2018">2018</li>
+      <li class="timeline-item" data-year="2019">2019</li>
+      <li class="timeline-item" data-year="2020">2020</li>
+      <li class="timeline-item" data-year="2021">2021</li>
+      <li class="timeline-item" data-year="2022">2022</li>
+      <li class="timeline-item" data-year="2023">2023</li>
+      <li class="timeline-item" data-year="2024">2024</li>
+      <li class="timeline-item" data-year="2025">2025</li>
+      <li class="timeline-item" data-year="2026">2026</li>
+      <li class="timeline-item future" data-year="future">未来 →</li>
+    </ul>
+  </div>
+
       <div class="news-title-wrap">
         <h2 class="news-main-title">最新动态</h2>
       </div>

@@ -1657,15 +1657,17 @@
 
       .news-modal-content {
         position: relative;
-        width: 100%;
         max-width: 800px;
         max-height: 90vh;
         background: #fff;
-        border-radius: 1.8rem; /* 更大的圆角，更苹果 */
-        overflow: hidden;
-        overflow-y: auto;
-        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2); /* 更柔和的阴影 */
-        animation: modalFadeIn 0.3s ease;
+        border-radius: 1.8rem;
+        overflow: hidden; /* 这里改成 hidden，不要 auto */
+        padding-top: 3rem;
+      }
+      .news-modal-body {
+        overflow-y: auto; /* 内容区自己滚动 */
+        max-height: calc(90vh - 3rem);
+        padding: 0 1.5rem 1.5rem;
       }
 
       @keyframes modalFadeIn {
@@ -1681,25 +1683,40 @@
 
       .news-modal-close {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
-        width: 2.5rem;
-        height: 2.5rem;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.8); /* 半透明白色 */
-        color: #333;
-        border: none;
+        /* 苹果风格：浅玻璃拟态 */
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #0071e3;
+        border: 1px solid rgba(0, 113, 227, 0.1);
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        z-index: 10;
+        font-size: 14px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        user-select: none;
+        outline: none;
       }
 
       .news-modal-close:hover {
-        background: #fff;
+        background: rgba(255, 255, 255, 0.95);
+        color: #0066cc;
+        border-color: rgba(0, 113, 227, 0.2);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transform: scale(1.08);
+      }
+
+      .news-modal-close:active {
+        transform: scale(0.96);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
       }
 
       .news-modal-body {
@@ -4404,36 +4421,36 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 代码 时间线 -->
-    <div class="news-timeline">
-      <ul class="timeline-list">
-        <li class="timeline-item" data-year="2026">2026</li>
-        <li class="timeline-item" data-year="2025">2025</li>
-        <li class="timeline-item" data-year="2024">2024</li>
-        <li class="timeline-item" data-year="2023">2023</li>
-        <li class="timeline-item" data-year="2022">2022</li>
-        <li class="timeline-item" data-year="2021">2021</li>
-        <li class="timeline-item" data-year="2020">2020</li>
-        <li class="timeline-item" data-year="2019">2019</li>
-        <li class="timeline-item" data-year="2018">2018</li>
-        <li class="timeline-item" data-year="2017">2017</li>
-      </ul>
-    </div>
+      <!-- 代码 时间线 -->
+      <div class="news-timeline">
+        <ul class="timeline-list">
+          <li class="timeline-item" data-year="2026">2026</li>
+          <li class="timeline-item" data-year="2025">2025</li>
+          <li class="timeline-item" data-year="2024">2024</li>
+          <li class="timeline-item" data-year="2023">2023</li>
+          <li class="timeline-item" data-year="2022">2022</li>
+          <li class="timeline-item" data-year="2021">2021</li>
+          <li class="timeline-item" data-year="2020">2020</li>
+          <li class="timeline-item" data-year="2019">2019</li>
+          <li class="timeline-item" data-year="2018">2018</li>
+          <li class="timeline-item" data-year="2017">2017</li>
+        </ul>
+      </div>
 
-    <!-- 代码 新闻弹窗 -->
-    <div class="news-modal" id="newsModal">
-      <div class="news-modal-backdrop" id="modalBackdrop"></div>
-      <div class="news-modal-content">
-        <button class="news-modal-close" id="modalClose">
-          <i class="fa fa-times"></i>
-        </button>
-        <div class="news-modal-body" id="modalBody">
-          <!-- JS 动态填充内容 -->
+      <!-- 代码 新闻弹窗 -->
+      <div class="news-modal" id="newsModal">
+        <div class="news-modal-backdrop" id="modalBackdrop"></div>
+        <div class="news-modal-content">
+          <button class="news-modal-close" id="modalClose">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="news-modal-body" id="modalBody">
+            <!-- JS 动态填充内容 -->
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- 代码 底部导航-->
     <footer class="footer-new">

@@ -1192,12 +1192,15 @@
       .news-timeline {
         position: fixed;
         top: 50%;
-        right: 20px;
+        left: 20px; /* 从right改为left，固定到左侧 */
         transform: translateY(-50%);
         z-index: 999;
         width: 50px;
-        /* 防止时间线被选中 */
-        user-select: none;
+        user-select: none; /* 防止时间线被选中 */
+        /* 基础响应式：小屏缩小间距，大屏保持原有尺寸 */
+        transition:
+          left 0.3s ease,
+          width 0.3s ease;
       }
 
       /* 时间线列表：倒叙2026→2017，已在DOM中排好序 */
@@ -1503,11 +1506,20 @@
       }
 
       .news-featured-content {
-        padding: 2.5rem;
+        padding: clamp(
+          1rem,
+          3vw,
+          2.5rem
+        ); /* 关键：响应式内边距（小屏1rem/大屏2.5rem） */
         position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        box-sizing: border-box; /* 强制盒模型，避免padding撑大卡片 */
+        width: 100%; /* 确保卡片占满父容器宽度，不溢出 */
+        min-height: fit-content; /* 最小高度自适应内容，避免内容被截断 */
+        overflow: hidden; /* 兜底：防止极端情况下内容溢出（可选） */
+        max-width: 100%; /* 限制最大宽度，适配宽屏 */
       }
 
       .news-date {
@@ -3335,6 +3347,22 @@
         <h2 class="news-main-title">最新动态</h2>
       </div>
 
+      <!-- 代码 时间线 -->
+      <div class="news-timeline">
+        <ul class="timeline-list">
+          <li class="timeline-item" data-year="2026">2026</li>
+          <li class="timeline-item" data-year="2025">2025</li>
+          <li class="timeline-item" data-year="2024">2024</li>
+          <li class="timeline-item" data-year="2023">2023</li>
+          <li class="timeline-item" data-year="2022">2022</li>
+          <li class="timeline-item" data-year="2021">2021</li>
+          <li class="timeline-item" data-year="2020">2020</li>
+          <li class="timeline-item" data-year="2019">2019</li>
+          <li class="timeline-item" data-year="2018">2018</li>
+          <li class="timeline-item" data-year="2017">2017</li>
+        </ul>
+      </div>
+
       <!-- 260311 -->
       <div class="news-featured">
         <div class="news-featured-img">
@@ -4849,22 +4877,6 @@
             </button>
           </div>
         </div>
-      </div>
-
-      <!-- 代码 时间线 -->
-      <div class="news-timeline">
-        <ul class="timeline-list">
-          <li class="timeline-item" data-year="2026">2026</li>
-          <li class="timeline-item" data-year="2025">2025</li>
-          <li class="timeline-item" data-year="2024">2024</li>
-          <li class="timeline-item" data-year="2023">2023</li>
-          <li class="timeline-item" data-year="2022">2022</li>
-          <li class="timeline-item" data-year="2021">2021</li>
-          <li class="timeline-item" data-year="2020">2020</li>
-          <li class="timeline-item" data-year="2019">2019</li>
-          <li class="timeline-item" data-year="2018">2018</li>
-          <li class="timeline-item" data-year="2017">2017</li>
-        </ul>
       </div>
 
       <!-- 代码 新闻弹窗 -->

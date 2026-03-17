@@ -1155,455 +1155,238 @@
     </style>
 
     <style>
-      /* ================================== 避坑指南-混合小卡片版 样式 ================================== */
-      .avoid-pit-section {
-        width: 100%;
-        max-width: 1600px;
-        margin: 8rem auto 8rem;
-        padding: 0 2rem;
-        box-sizing: border-box;
-        font-family: "Public Sans", "Noto Sans SC", sans-serif;
-      }
+     /* 详情页简约大气核心样式 */
+.pit-detail-section.apple-design {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 8rem;
+  font-family: "Public Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333333; /* 主文字色：深灰，大气不刺眼 */
+  background-color: #ffffff; /* 全局统一白色背景 */
+  line-height: 1.65;
+}
 
-      /* 标题区域 - 与原有风格统一 */
-      .avoid-pit-title-wrap {
-        text-align: center;
-        margin-bottom: 5rem;
-      }
-      .avoid-pit-main-title {
-        font-size: 2rem;
-        color: #000;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        position: relative;
-        display: inline-block;
-      }
-      .avoid-pit-main-title::after {
-        content: "";
-        position: absolute;
-        bottom: -0.8rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 6rem;
-        height: 2px;
-        background-color: #0071e3;
-      }
-      .avoid-pit-subtitle {
-        font-size: 1rem;
-        color: #666;
-        line-height: 1.6;
-        max-width: 800px;
-        margin: 0 auto;
-      }
+/* 头部：标签+标题 - 简化样式，突出层级 */
+.pit-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
 
-      /* 干货分类标题（采购/代理/售后） */
-      .pit-type-wrap {
-        margin-bottom: 4rem;
-      }
-      .pit-type-title {
-        font-size: 1.4rem;
-        color: #000;
-        font-weight: 500;
-        margin-bottom: 2rem;
-        padding-left: 1rem;
-        border-left: 3px solid #0071e3;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .pit-type-icon {
-        font-size: 1.2rem;
-        color: #0071e3;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: rgba(0, 113, 227, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
+.apple-tag {
+  padding: 0.4rem 1rem;
+  background: #0071e3; /* 纯色品牌蓝，去掉渐变 */
+  color: #ffffff !important;
+  font-size: 0.85rem;
+  font-weight: 600; /* 加粗突出标签 */
+  border-radius: 4px; /* 适度圆角，简约不夸张 */
+  box-shadow: none; /* 去掉阴影，更干净 */
+}
 
-      /* 干货小卡片网格容器 */
-      .pit-card-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.5rem;
-      }
+.apple-title {
+  font-size: 2.2rem;
+  font-weight: 700; /* 加粗强化标题层级 */
+  color: #111111; /* 标题用近黑色，突出重点 */
+  line-height: 1.2;
+  margin: 0;
+}
 
-      /* 核心干货小卡片样式（含图片/纯文字） */
-      .pit-card {
-        background: #f9f9f9;
-        border-radius: 1.2rem;
-        padding: 1.8rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-      /* 有图片的卡片特殊样式 */
-      .pit-card.has-img {
-        padding-top: 14rem; /* 预留图片高度 */
-      }
-      /* 图片容器 */
-      .pit-card-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 12rem; /* 图片固定高度 */
-        border-bottom: 1px solid #e8e8e8;
-        overflow: hidden;
-      }
-      .pit-card-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      .pit-card:hover .pit-card-img img {
-        transform: scale(1.05); /* hover图片轻微缩放 */
-      }
+/* 图片区域：极简风格，弱化装饰 */
+.apple-img-container {
+  margin-bottom: 3rem;
+  text-align: center;
+}
 
-      .pit-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        background: #fff;
-      }
-      /* 干货标签 */
-      .pit-card-tag {
-        position: absolute;
-        top: 1.8rem;
-        right: 1.8rem;
-        font-size: 0.8rem;
-        color: #fff;
-        background: #d93025;
-        padding: 0.3rem 0.8rem;
-        border-radius: 999px;
-        z-index: 1; /* 标签在图片上方 */
-      }
-      .pit-card-name {
-        font-size: 1.1rem;
-        color: #000;
-        font-weight: 500;
-        margin-bottom: 1rem;
-        padding-right: 3rem;
-      }
-      .pit-card-desc {
-        font-size: 0.95rem;
-        color: #666;
-        line-height: 1.8;
-        margin-bottom: 1.2rem;
-      }
-      /* 避坑方案 */
-      .pit-card-solution {
-        border-top: 1px solid #e8e8e8;
-        padding-top: 1.2rem;
-      }
-      .solution-label {
-        font-size: 0.95rem;
-        color: #008a69;
-        font-weight: 600;
-        display: block;
-        margin-bottom: 0.5rem;
-      }
-      .pit-card-solution p {
-        font-size: 0.95rem;
-        color: #666;
-        line-height: 1.8;
-      }
+.apple-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* 简约小圆角 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 轻量阴影，不抢视觉 */
+  transition: transform 0.3s ease; /* 仅保留位移过渡，简化动效 */
+}
 
-      /* 右下角加号按钮 */
-      .pit-expand-btn {
-        position: absolute;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: #0071e3;
-        color: #fff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.3);
-        z-index: 2;
-      }
-      .pit-expand-btn:hover {
-        background: #005fc4;
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.4);
-      }
+.apple-img:hover {
+  transform: translateY(-2px); /* 轻微上浮，保留交互感 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* hover仅轻微加深阴影 */
+}
 
-      /* 避坑详情弹窗 */
-      .pit-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 9999;
-        display: none; /* 默认隐藏 */
-        align-items: center;
-        justify-content: center;
-      }
-      /* 弹窗容器 */
-      .pit-modal {
-        position: relative; /* 作为关闭按钮定位的参考 */
-        width: 90%;
-        max-width: 800px; /* 限制弹窗最大宽度 */
-        max-height: 90vh; /* 弹窗最大高度为视口90%，避免超出屏幕 */
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        overflow: hidden; /* 隐藏内部溢出，让body单独滚动 */
-      }
-      @keyframes modalFadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-      .pit-modal-close {
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: rgba(255, 0, 0, 0.8);
-        color: #ffffff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        z-index: 10;
-      }
-      .pit-modal-close:hover {
-        background: #005fc4;
-        color: #000000;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-      .pit-modal-body {
-        padding: 3rem 2.5rem;
-      }
-      .pit-modal-title {
-        font-size: 1.6rem;
-        color: #000;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #e8e8e8;
-      }
-      .pit-modal-content {
-        font-size: 1rem;
-        color: #333;
-        line-height: 1.8;
-      }
-      .pit-modal-content p {
-        margin-bottom: 1.5rem;
-      }
-      .pit-modal-content .desc-title,
-      .pit-modal-content .solution-title {
-        font-weight: 600;
-        color: #0071e3;
-        margin-bottom: 0.5rem;
-        display: block;
-      }
-      /* 弹窗内容区（可滚动） */
-      .pit-modal-body {
-        padding: 3rem 2rem 2rem; /* 顶部预留关闭按钮空间 */
-        max-height: calc(90vh - 4rem); /* 减去关闭按钮区域高度 */
-        overflow-y: auto; /* 内容过长时垂直滚动 */
-        line-height: 1.6; /* 优化文字可读性 */
-      }
+/* 正文内容：统一文字色，仅加粗区分重点 */
+.apple-content {
+  font-size: 1.1rem;
+  color: #1d1d1f; /* 正文统一深灰，去掉次要色区分 */
+}
 
-      /* ================================== 全尺寸响应式适配 ================================== */
-      @media (max-width: 1024px) {
-        .avoid-pit-section {
-          margin: 3rem auto 6rem;
-        }
-        .avoid-pit-title-wrap {
-          margin-bottom: 4rem;
-        }
-        .pit-card.has-img {
-          padding-top: 12rem;
-        }
-        .pit-card-img {
-          height: 10rem;
-        }
-      }
+.apple-content p {
+  margin-bottom: 1.8rem;
+  text-align: justify;
+}
 
-      @media (max-width: 768px) {
-        .avoid-pit-section {
-          padding: 0 1.5rem;
-          margin: 2rem auto 4rem;
-        }
-        .avoid-pit-main-title {
-          font-size: 1.8rem;
-        }
-        .pit-type-title {
-          font-size: 1.2rem;
-        }
-        .pit-card {
-          padding: 1.5rem;
-        }
-        .pit-card.has-img {
-          padding-top: 10rem;
-        }
-        .pit-card-img {
-          height: 8rem;
-        }
-        .pit-card-tag {
-          top: 1.5rem;
-          right: 1.5rem;
-        }
-        .pit-expand-btn {
-          width: 2.2rem;
-          height: 2.2rem;
-        }
-        .pit-modal-body {
-          padding: 2.5rem 1.8rem;
-        }
-        .pit-modal-title {
-          font-size: 1.4rem;
-        }
-      }
+.apple-content strong {
+  color: #1d1d1f; /* 加粗文字用近黑色，强化重点 */
+  font-weight: 700; /* 加粗层级提升 */
+}
 
-      @media (max-width: 425px) {
-        .avoid-pit-section {
-          padding: 0 1rem;
-        }
-        .avoid-pit-main-title {
-          font-size: 1.6rem;
-        }
-        .avoid-pit-subtitle {
-          font-size: 0.95rem;
-        }
-        .pit-card-list {
-          grid-template-columns: 1fr;
-        }
-        .pit-card {
-          padding: 1.2rem;
-        }
-        .pit-card.has-img {
-          padding-top: 8rem;
-        }
-        .pit-card-img {
-          height: 6.5rem;
-        }
-        .pit-card-tag {
-          top: 1.2rem;
-          right: 1.2rem;
-        }
-        .pit-modal-body {
-          padding: 2rem 1.5rem;
-        }
-      }
-    </style>
+/* 列表：极简背景，弱化分割线 */
+.apple-list {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #ffffff; /* 浅灰背景，统一且柔和 */
+  border-radius: 4px; /* 简约圆角 */
+}
 
-    <style>
-    /* 原页面的全局样式、REM适配、导航样式、底部样式 全部复制到这里 */
-    
-    /* 新增详情页专属样式 */
-    .pit-detail-section {
-      width: 100%;
-      max-width: 1200px;
-      margin: 8rem auto 8rem;
-      padding: 0 2rem;
-      box-sizing: border-box;
-      font-family: "Public Sans", "Noto Sans SC", sans-serif;
-    }
-    .pit-detail-header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 2rem;
-    }
-    .pit-detail-title {
-      font-size: 2rem;
-      color: #000;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    .pit-detail-tag {
-      display: inline-block;
-      font-size: 0.8rem;
-      color: #fff;
-      background: #d93025;
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-    .pit-detail-img {
-      width: 100%;
-      height: 30rem;
-      border-radius: 1.2rem;
-      overflow: hidden;
-      margin-bottom: 3rem;
-    }
-    .pit-detail-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .pit-detail-content {
-      font-size: 1rem;
-      color: #333;
-      line-height: 1.8;
-    }
-    .pit-detail-content .desc-title,
-    .pit-detail-content .solution-title {
-      font-weight: 600;
-      color: #0071e3;
-      margin: 2rem 0 1rem;
-      font-size: 1.2rem;
-    }
-    .back-btn {
-      display: inline-block;
-      margin-top: 3rem;
-      padding: 0.8rem 2rem;
-      background: #0071e3;
-      color: #fff;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .back-btn:hover {
-      background: #005fc4;
-    }
+.apple-list-item {
+  padding: 0.5rem 0;
+}
 
-    /* 响应式适配 */
-    @media (max-width: 768px) {
-      .pit-detail-section {
-        margin: 4rem auto;
-        padding: 0 1.5rem;
-      }
-      .pit-detail-title {
-        font-size: 1.6rem;
-      }
-      .pit-detail-img {
-        height: 18rem;
-      }
-    }
-    @media (max-width: 425px) {
-      .pit-detail-section {
-        padding: 0 1rem;
-      }
-      .pit-detail-img {
-        height: 12rem;
-      }
-    }
-  </style>
+.apple-list-item:last-child {
+  border-bottom: none;
+}
+
+/* 卡片模块：统一白色背景，极简边框 */
+.apple-module {
+  margin: 2.5rem 0;
+  padding: 2rem;
+  background: #ffffff; /* 统一白色背景 */
+  border-radius: 8px; /* 简约圆角 */
+  box-shadow: none; /* 去掉阴影，靠边框区分 */
+  border: 1px solid #eeeeee; /* 轻量边框，大气整洁 */
+}
+
+.apple-module-title {
+  font-size: 1.4rem;
+  font-weight: 700; /* 加粗强化模块标题 */
+  color: #111111; /* 标题近黑色，突出层级 */
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #eeeeee; /* 浅灰分割线 */
+}
+
+/* 代码块：极简深色背景，统一文字色 */
+.apple-code-block {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  color: #0d00ff; /* 统一浅灰文字，简约易读 */
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.95rem;
+  border-radius: 4px; /* 简约圆角 */
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+/* 避坑方案模块：仅边框区分，去掉渐变背景 */
+.apple-module.apple-solution {
+  background: #ffffff; /* 统一白色背景 */
+  border-color: #0071e3; /* 仅品牌蓝边框，突出模块 */
+}
+
+.apple-solution-item {
+  padding: 1rem 0;
+  list-style: none;
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+.apple-solution-item::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0071e3; /* 仅对勾用品牌色，极简点缀 */
+  font-weight: 700;
+}
+
+/* 按钮：纯色背景，极简风格 */
+.apple-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 2rem;
+  background: #0071e3; /* 纯色品牌蓝，去掉玻璃态 */
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600; /* 加粗按钮文字 */
+  border-radius: 4px; /* 简约圆角，去掉超圆角 */
+  box-shadow: none; /* 去掉阴影，更大气 */
+  transition: background-color 0.3s ease; /* 仅保留背景色过渡 */
+}
+
+.apple-btn:hover {
+  background: #005fc4; /* hover仅加深颜色，无多余动效 */
+  transform: none; /* 去掉上浮，保持简约 */
+  box-shadow: none;
+}
+
+.apple-btn i {
+  font-size: 1.1rem;
+}
+
+/* 渐入动画：简化动效，仅透明度变化 */
+.animate-fade-in,
+.animate-fade-in-delay,
+.animate-fade-in-delay-1,
+.animate-fade-in-delay-2,
+.animate-fade-in-delay-3,
+.animate-fade-in-delay-4,
+.animate-fade-in-delay-5 {
+  opacity: 0;
+  animation: appleFadeIn 0.8s ease forwards;
+}
+
+.animate-fade-in-delay { animation-delay: 0.2s; }
+.animate-fade-in-delay-1 { animation-delay: 0.4s; }
+.animate-fade-in-delay-2 { animation-delay: 0.6s; }
+.animate-fade-in-delay-3 { animation-delay: 0.8s; }
+.animate-fade-in-delay-4 { animation-delay: 1s; }
+.animate-fade-in-delay-5 { animation-delay: 1.2s; }
+
+@keyframes appleFadeIn {
+  from {
+    opacity: 0;
+    transform: none; /* 去掉位移，仅保留透明度动画 */
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 响应式适配：保持简约逻辑，仅调整尺寸 */
+@media (max-width: 768px) {
+  .pit-detail-section.apple-design {
+    padding: 2rem 1.5rem;
+  }
+  
+  .apple-title {
+    font-size: 1.8rem;
+  }
+  
+  .apple-module {
+    padding: 1.5rem;
+  }
+  
+  .apple-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .apple-title {
+    font-size: 1.5rem;
+  }
+  
+  .apple-content {
+    font-size: 1rem;
+  }
+  
+  .apple-list, .apple-module {
+    padding: 1.2rem;
+    border-radius: 4px;
+  }
+}
+</style>
 
     <!--十、底部导航模块 -->
     <style>
@@ -3005,70 +2788,112 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 详情页核心内容 -->
-  <section class="pit-detail-section">
-    <div class="pit-detail-header">
-      <span class="pit-detail-tag">干货</span>
-      <h1 class="pit-detail-title">低价噱头，核心部件激光器功率虚标（上篇）</h1>
+    <!-- 详情页核心内容 → 苹果风美化版 -->
+<section class="pit-detail-section apple-design">
+  <!-- 头部：标签+标题 -->
+  <div class="pit-detail-header animate-fade-in">
+    <span class="pit-detail-tag apple-tag">干货</span>
+    <h1 class="pit-detail-title apple-title">
+      低价噱头，核心部件激光器功率虚标+偷梁换柱
+    </h1>
+  </div>
+
+  <!-- 图片区域：苹果大圆角+阴影+渐入 -->
+  <div class="pit-detail-img apple-img-container animate-fade-in-delay">
+    <img
+      src="../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-source.webp"
+      alt="核心部件偷梁换柱"
+      class="apple-img"
+    />
+  </div>
+
+  <!-- 正文内容：苹果排版+分段动画 -->
+  <div class="pit-detail-content apple-content">
+    <p class="animate-fade-in-delay-1">
+      市面上主流激光器厂家众多，包括IPG、通快、锐科、创鑫、杰普特、飞博光电、恩耐、SPI、中电科、长飞光坊、凯普林、海富光子、光惠激光、联品激光等（排名不分先后），每家企业均有自身深耕的优势领域与核心特色。
+    </p>
+    <p class="animate-fade-in-delay-1">
+      当前市场上，<strong>有部分厂家宣传自身为“自研激光器”，但实际上多数依赖锐科、创鑫等专业激光器厂商代工生产</strong>，这也导致很多客户难以判断所购激光器的耐用性与性价比。接下来，我们为大家详细解析各厂家的核心优势与擅长领域，方便精准选型：
+    </p>
+
+    <!-- 厂家列表：苹果式干净列表 -->
+    <div class="apple-list animate-fade-in-delay-2">
+      <div class="apple-list-item"><strong>IPG</strong>：光纤激光器发明者，切割/焊接/3D打印首选，但价格高、交付周期长；</div>
+      <div class="apple-list-item"><strong>通快</strong>：切割精度/速度/断面质量行业天花板，价格极高，更偏向整线解决方案；</div>
+      <div class="apple-list-item"><strong>锐科</strong>：全系列覆盖（切割/焊接/打标/清洗）；</div>
+      <div class="apple-list-item"><strong>创鑫</strong>：全系列覆盖（切割/焊接/打标/清洗）；</div>
+      <div class="apple-list-item"><strong>杰普特</strong>：MOPA脉冲激光器全球龙头，精密打标/焊接/清洗领域专家；</div>
+      <div class="apple-list-item"><strong>飞博光电</strong>：主打脉冲/准连续激光器，在打标、精密焊接、医疗领域有特色；</div>
+      <div class="apple-list-item"><strong>恩耐</strong>：高功率光纤激光器稳定性好，半导体泵浦源领域有技术积累；</div>
+      <div class="apple-list-item"><strong>SPI</strong>：欧洲老牌厂商，脉冲/连续激光器在精密加工领域有口碑；</div>
+      <div class="apple-list-item"><strong>中电科</strong>：特种光纤、超快激光，军工/科研场景有技术优势；</div>
+      <div class="apple-list-item"><strong>长飞光坊</strong>：从特种光纤（PCVD/MCVD预制棒）→核心器件（泵浦、合束器、光栅）→激光器整机，实现全产业链垂直整合（与锐科、创鑫核心差异点）；</div>
+      <div class="apple-list-item"><strong>凯普林</strong>：专注激光焊接、熔覆、3D打印；</div>
+      <div class="apple-list-item"><strong>海富光子</strong>：主打打标、精密焊接、清洗；</div>
+      <div class="apple-list-item"><strong>光惠激光</strong>：擅长中厚板切割、管材加工；</div>
+      <div class="apple-list-item"><strong>联品激光</strong>：聚焦打标、小功率切割。</div>
     </div>
-    <div class="pit-detail-img">
-      <img
-        src="../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-source.webp"
-        alt="核心部件偷梁换柱"
-      />
-    </div>
-    <div class="pit-detail-content">
-      <p>
-        市面上主流激光器厂家众多，包括IPG、通快、锐科、创鑫、杰普特、飞博光电、恩耐、SPI、中电科、长飞光坊、凯普林、海富光子、光惠激光、联品激光等（排名不分先后），每家企业均有自身深耕的优势领域与核心特色。
-      </p>
-      <p>
-        当前市场上，<strong>有部分厂家宣传自身为“自研激光器”，但实际上多数依赖锐科、创鑫等专业激光器厂商代工生产</strong>，这也导致很多客户难以判断所购激光器的耐用性与性价比。接下来，我们为大家详细解析各厂家的核心优势与擅长领域，方便精准选型：
-      </p>
-      <p>
-        • <strong>IPG</strong>：光纤激光器发明者，切割/焊接/3D打印首选，但价格高、交付周期长；<br>
-        • <strong>通快</strong>：切割精度/速度/断面质量行业天花板，价格极高，更偏向整线解决方案；<br>
-        • <strong>锐科</strong>：全系列覆盖（切割/焊接/打标/清洗）；<br>
-        • <strong>创鑫</strong>：全系列覆盖（切割/焊接/打标/清洗）；<br>
-        • <strong>杰普特</strong>：MOPA脉冲激光器全球龙头，精密打标/焊接/清洗领域专家；<br>
-        • <strong>飞博光电</strong>：主打脉冲/准连续激光器，在打标、精密焊接、医疗领域有特色；<br>
-        • <strong>恩耐</strong>：高功率光纤激光器稳定性好，半导体泵浦源领域有技术积累；<br>
-        • <strong>SPI</strong>：欧洲老牌厂商，脉冲/连续激光器在精密加工领域有口碑；<br>
-        • <strong>中电科</strong>：特种光纤、超快激光，军工/科研场景有技术优势；<br>
-        • <strong>长飞光坊</strong>：从特种光纤（PCVD/MCVD预制棒）→核心器件（泵浦、合束器、光栅）→激光器整机，实现全产业链垂直整合（与锐科、创鑫核心差异点）；<br>
-        • <strong>凯普林</strong>：专注激光焊接、熔覆、3D打印；<br>
-        • <strong>海富光子</strong>：主打打标、精密焊接、清洗；<br>
-        • <strong>光惠激光</strong>：擅长中厚板切割、管材加工；<br>
-        • <strong>联品激光</strong>：聚焦打标、小功率切割。
-      </p>
-      <h3 class="desc-title">核心陷阱：型号混淆虚标功率</h3>
+
+    <!-- 核心陷阱模块：苹果卡片式模块 -->
+    <div class="apple-module animate-fade-in-delay-3">
+      <h3 class="desc-title apple-module-title">核心陷阱一：型号混淆虚标功率</h3>
       <p>
         了解各厂家优势后，选购时还有一个<strong>关键要点</strong>：除了确认激光器品牌，一定要仔细核对具体型号！型号，正是行业里最常见的“降配陷阱”，<strong>很多不良商家会通过混淆型号，用低功率产品冒充足额功率，欺骗不懂行的客户</strong>。
       </p>
+      <div class="apple-code-block">
+        典型案例（锐科激光器）<br>
+        标准足额型号：<br>
+        1500W → RFL‑C1500S / RFL‑C1500SM<br>
+        2000W → RFL‑C2000S / RFL‑C2000SM<br>
+        3000W → RFL‑C3000S / RFL‑C3000SM<br><br>
+        商家虚标套路：<br>
+        RFL‑C015（实际1200W）冒充1500W<br>
+        RFL‑C020（实际1500W）冒充2000W<br>
+        RFL‑C030（实际2500W）冒充3000W
+      </div>
+    </div>
+
+    <!-- 核心陷阱模块：苹果卡片式模块 -->
+    <div class="apple-module animate-fade-in-delay-3">
+      <h3 class="desc-title apple-module-title">核心陷阱二：将原装激光器替换为二手翻新件牟利</h3>
       <p>
-        典型案例（以国内主流的锐科激光器为例）：<br>
-        若采购配锐科激光器的激光切割机，明确需求为1500W/2000W/3000W，<strong>标准足额的正规型号</strong>如下：<br>
-        - 1500W规格 → RFL‑C1500S / RFL‑C1500SM<br>
-        - 2000W规格 → RFL‑C2000S / RFL‑C2000SM<br>
-        - 3000W规格 → RFL‑C3000S / RFL‑C3000SM
-      </p>
-      <p>
-        但不良商家为压低价格、偷减成本，会用低功率老款型号冒充足额功率，套路如下：<br>
-        - 用 RFL‑C015（<strong>实际功率仅1200W</strong>）冒充1500W规格；<br>
-        - 用 RFL‑C020（<strong>实际功率仅1500W</strong>）冒充2000W规格；<br>
-        - 用 RFL‑C030（<strong>实际功率仅2500W</strong>）冒充3000W规格。
-      </p>
-      <h3 class="solution-title">避坑方案</h3>
-      <p>
-        1. 签订正式合同，明确标注激光器的品牌、型号，拒绝模糊表述；<br>
-        2. 验机时通过官方软件核对激光器序列号、功率曲线，确认足额功率；<br>
-        3. 要求厂家提供激光器原厂质保证明，避免翻新/高仿件。
-      </p>
-      <!-- 返回列表页按钮 -->
-      <a href="https://www.senrytech.com/pitfall-avoidance-guide/" class="back-btn">
+        二手设备的价格与价值远低于全新设备，我们并非排斥二手设备交易，而是<strong>坚决反对以全新产品的价格，售卖二手/翻新激光器</strong>的欺诈行为。
+  <br></p>
+
+  <div class="apple-code-block">
+        典型案例（锐科激光器）<br>
+        以锐科1500W激光器为例：<br>
+        • 全新原装激光器：约1400 USD<br>
+        • 二手/翻新激光器：仅约600 USD<br>
+        巨大的差价成为不良商家的核心隐性利润来源。在此为采购新手分享3个简单有效的辨别方法：<br>
+        1. 外观检查：查看激光器外壳是否有积灰、划痕、油污、锈点，或明显的拆装痕迹；<br>
+        2. 铭牌核验：检查机身铭牌是否字迹模糊、序列号被打磨，或存在涂改、重贴、更换的迹象；<br>
+        3. 核心验证（最有效）：整机空载切割运行10分钟后，通过设备软件/电脑连接激光器，用官方软件查看：<br>
+        ▶ 内部运行日志与实际工作时长<br>
+        ▶ 真实功率曲线是否稳定<br>
+        ▶ 历史故障记录是否异常<br>
+        若发现功率持续下降，大概率是泵源老化、激光器翻新所致。
+      </div>
+    </div>
+    </div>
+
+    <!-- 避坑方案：苹果高亮模块 -->
+    <div class="apple-module apple-solution animate-fade-in-delay-4">
+      <h3 class="solution-title apple-module-title">避坑方案</h3>
+      <div class="apple-solution-item">1. 签订正式合同，明确标注激光器的品牌、型号，拒绝模糊表述；</div>
+      <div class="apple-solution-item">2. 验机时通过官方软件核对激光器序列号、功率曲线，确认足额功率；</div>
+      <div class="apple-solution-item">3. 要求厂家提供激光器原厂质保证明，避免翻新/高仿件。</div>
+    </div>
+
+    <!-- 返回按钮：苹果玻璃态按钮 -->
+    <div class="animate-fade-in-delay-5">
+      <a href="https://www.senrytech.com/pitfall-avoidance-guide/" class="back-btn apple-btn">
         <i class="fa fa-arrow-left"></i> 返回避坑指南列表
       </a>
     </div>
-  </section>
+  </div>
+  </div>
+</section>
 
     <!-- 板块10. 底部导航（匹配参考图格式，已修正图标问题） -->
     <footer class="footer-new">

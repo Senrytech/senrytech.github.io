@@ -2,18 +2,19 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <title>激光切割控制系统避坑指南 | 系统选型对比</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
+      content="Senrytech激光独家激光器被锁解决方案！详解激光器被锁原因、解锁方法、预防措施，避开激光切割机锁机成本陷阱，专业激光切割机厂家直供售后保障。"
       name="description"
-      content="激光切割系统怎么选？柏楚、维宏、嘉强、大族智控四大主流系统真实特点与功率适配，专业避坑指南。"
     />
     <meta
+      content="激光器被锁,激光器解锁方法,激光器被锁原因,激光切割机锁机,激光切割机售后,Senrytech激光,激光切割机厂家"
       name="keywords"
-      content="激光切割系统,维宏系统,柏楚系统,嘉强系统,大族智控,激光系统避坑"
     />
+    <title>Senrytech激光-激光器被锁 原因/解锁/预防 | 激光切割机厂家直供</title>
     <link
       rel="canonical"
-      href="https://www.senrytech.com/pitfall-avoidance-guide/agency-agreement/"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/laser-source-lock/"
     />
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -25,133 +26,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
     />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      }
-      body {
-        background: #f7f8fa;
-        padding: 30px 20px;
-        color: #333;
-        line-height: 1.7;
-      }
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0;
-      }
-      .page-title {
-        font-size: 26px;
-        font-weight: 600;
-        color: #111;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-      .page-desc {
-        text-align: center;
-        color: #666;
-        font-size: 15px;
-        margin-bottom: 40px;
-      }
-      .tab-box {
-        background: #fff;
-        border-radius: 16px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-        margin-bottom: 30px;
-      }
-      .tab-header {
-        display: flex;
-        background: #f2f4f6;
-      }
-      .tab-btn {
-        flex: 1;
-        padding: 16px;
-        border: none;
-        background: transparent;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        outline: none;
-        transition: all 0.3s;
-      }
-      .tab-btn.active {
-        background: #fff;
-        color: #0066cc;
-        border-bottom: 3px solid #0066cc;
-      }
-      .tab-content {
-        padding: 25px;
-        display: none;
-      }
-      .tab-content.show {
-        display: block;
-        animation: fadeIn 0.3s ease;
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .content-title {
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #222;
-      }
-      .content-list {
-        padding-left: 20px;
-        margin-bottom: 18px;
-      }
-      .content-list li {
-        margin-bottom: 10px;
-      }
-      .power-card {
-        background: #f9fbfd;
-        border-radius: 12px;
-        padding: 18px;
-        margin-top: 15px;
-      }
-      .power-title {
-        font-weight: 600;
-        color: #0066cc;
-        margin-bottom: 10px;
-      }
-      .warn-box {
-        background: #fff5f5;
-        border-left: 4px solid #ff4d4f;
-        padding: 15px;
-        margin: 20px 0;
-        border-radius: 0 8px 8px 0;
-      }
-      .warn-title {
-        font-weight: 600;
-        color: #d32029;
-        margin-bottom: 6px;
-      }
-      .good-box {
-        background: #f6ffed;
-        border-left: 4px solid #52c41a;
-        padding: 15px;
-        margin: 20px 0;
-        border-radius: 0 8px 8px 0;
-      }
-      .good-title {
-        font-weight: 600;
-        color: #389e0d;
-        margin-bottom: 6px;
-      }
-    </style>
 
+    <!-- 全局模式 -->
     <style>
       /* ================================== 一、全局基础样式 ================================== */
       /* 模块说明：重置浏览器默认表现，统一全局字体、盒模型及复用工具类，确保多设备基础样式一致性 */
@@ -281,6 +157,231 @@
         html {
           font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
         }
+      }
+    </style>
+
+    <style>
+      /* 容器：撑开高度，避免被导航/页脚吃掉 + 响应式适配 */
+      .os-guide-container {
+        height: auto;
+        width: 100%; /* 改为100%适配所有屏幕 */
+        max-width: 1000px; /* 最大宽度限制，大屏不超限 */
+        margin: 0 auto;
+        /* 移动端用rem+百分比，避免固定值导致的适配问题 */
+        padding: clamp(2rem, 8vw, 8rem) 2vw 2rem;
+        box-sizing: border-box; /* 确保padding不超出宽度 */
+        position: relative; /* 新增：防止子元素层级错乱 */
+        z-index: 1; /* 新增：确保容器在导航下方但可交互 */
+      }
+
+      /* 标签页容器：修复 overflow 导致的内容截断 + 移动端圆角优化 */
+      .tab-box {
+        background: #fff;
+        border-radius: clamp(8px, 1.6vw, 16px); /* 响应式圆角 */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        overflow: visible;
+        margin-bottom: clamp(15px, 3vw, 30px); /* 响应式间距 */
+        width: 100%; /* 确保占满容器宽度 */
+        position: relative; /* 新增：层级上下文 */
+        z-index: 1; /* 新增：避免被其他元素遮挡 */
+      }
+
+      /* 标签栏：大屏均分 + 移动端可滚动，避免按钮挤压 */
+.tab-header {
+  display: flex;
+  background: #f2f4f6;
+  position: relative;
+  z-index: 2;
+  /* 移动端标签过多时可横向滚动（小屏生效） */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch; /* 移动端顺滑滚动 */
+  scrollbar-width: none; /* 隐藏滚动条（Firefox） */
+  pointer-events: auto; /* 修复滚动时点击失效 */
+}
+
+/* 隐藏滚动条（Chrome/Safari） */
+.tab-header::-webkit-scrollbar {
+  display: none;
+}
+
+/* 标签按钮：默认均分（大屏）+ 小屏自适应 */
+.tab-btn {
+  /* 大屏：均分宽度（flex: 1），填满tab-header */
+  flex: 1; 
+  padding: clamp(10px, 1.6vw, 16px) clamp(8px, 1vw, 10px);
+  border: none;
+  background: transparent;
+  font-size: clamp(12px, 1.4vw, 14px);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  outline: none;
+  white-space: nowrap; /* 防止文字换行 */
+  text-align: center; /* 文字居中，均分更美观 */
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+/* 小屏响应式：取消均分，改为可滚动 */
+@media (max-width: 320px) {
+  .tab-btn {
+    flex: 0 0 auto; /* 取消均分，按内容宽度自适应 */
+    min-width: clamp(80px, 15vw, 120px); /* 保证最小点击区域 */
+  }
+}
+
+/* 激活态样式（保留原有） */
+.tab-btn.active {
+  background: #fff;
+  color: #0066cc;
+  border-bottom: 3px solid #0066cc;
+}
+
+      /* 内容区：响应式内边距 + 最小高度适配 */
+      .tab-content {
+        padding: clamp(15px, 2.5vw, 25px);
+        display: none;
+        min-height: clamp(200px, 30vh, 300px); /* 响应式最小高度 */
+        width: 100%;
+        box-sizing: border-box;
+        position: relative; /* 新增：层级上下文 */
+        z-index: 1;
+      }
+
+      .tab-content.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 内容标题：响应式字号 */
+      .content-title,
+      .apple-module-title {
+        font-size: clamp(16px, 1.8vw, 18px);
+        font-weight: 600;
+        margin-bottom: clamp(10px, 1.5vw, 15px);
+        color: #222;
+      }
+
+      /* 列表：移动端缩进优化 */
+      .content-list {
+        padding-left: clamp(15px, 2vw, 20px);
+        margin-bottom: clamp(12px, 1.8vw, 18px);
+      }
+
+      .content-list li {
+        margin-bottom: clamp(8px, 1vw, 10px);
+        font-size: clamp(13px, 1.4vw, 14px); /* 移动端字号适配 */
+        color: #444;
+        line-height: 1.6; /* 提高行高，增强移动端可读性 */
+      }
+
+      /* 卡片样式：响应式内边距 + 圆角 */
+      .power-card {
+        background: #f9fbfd;
+        border-radius: clamp(8px, 1.2vw, 12px);
+        padding: clamp(12px, 1.8vw, 18px);
+        margin-top: clamp(10px, 1.5vw, 15px);
+      }
+
+      .power-title {
+        font-weight: 600;
+        font-size: clamp(14px, 1.4vw, 15px);
+        color: #0066cc;
+        margin-bottom: clamp(8px, 1vw, 10px);
+      }
+
+      /* 提示框：移动端边框圆角优化 */
+      .good-box {
+        background: #f6ffed;
+        border-left: 4px solid #52c41a;
+        padding: clamp(10px, 1.5vw, 15px);
+        margin: clamp(15px, 2vw, 20px) 0;
+        border-radius: 0 clamp(6px, 0.8vw, 8px) clamp(6px, 0.8vw, 8px) 0;
+      }
+
+      .good-title {
+        font-weight: 600;
+        font-size: clamp(14px, 1.4vw, 15px);
+        color: #389e0d;
+        margin-bottom: clamp(4px, 0.6vw, 6px);
+      }
+
+      /* 针对小屏幕的额外优化（768px以下） */
+      @media (max-width: 768px) {
+        /* 移动端标签按钮激活态改为上边框（底部边框在滚动时可能被遮挡） */
+        .tab-btn.active {
+          border-bottom: none;
+          border-top: 3px solid #0066cc;
+        }
+
+        /* 移动端内容区最小高度降低，适配小屏 */
+        .tab-content {
+          min-height: clamp(150px, 25vh, 200px);
+        }
+
+        /* 移动端提示框改为全圆角，更友好 */
+        .good-box {
+          border-radius: clamp(6px, 0.8vw, 8px);
+          border-left: none;
+          border-top: 4px solid #52c41a;
+        }
+      }
+
+      /* 超小屏（480px以下）极致适配 */
+      @media (max-width: 480px) {
+        .os-guide-container {
+          padding-top: clamp(4rem, 6vw, 2rem); /* 减少顶部内边距，适配手机 */
+        }
+
+        .tab-btn {
+          min-width: clamp(60px, 12vw, 80px); /* 进一步缩小标签最小宽度 */
+          padding: 12px 6px;
+        }
+      }
+    </style>
+
+    <style>
+      .power-system-full {
+        max-width: 900px;
+        margin: 25px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        padding: 0 10px;
+      }
+      .p-item {
+        flex: 1;
+        min-width: 170px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      }
+      .p-watt {
+        font-size: 15px;
+        font-weight: 600;
+        color: #0066cc;
+        margin-bottom: 8px;
+      }
+      .p-sys {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #333;
       }
     </style>
 
@@ -1301,6 +1402,262 @@
         /* 9. 三级内容区标题：同Mobile M，缩小字号 */
         .submenu-content-title {
           font-size: 1rem;
+        }
+      }
+    </style>
+
+    <style>
+      /* 详情页简约大气核心样式 */
+      .pit-detail-section.apple-design {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 8rem 8rem;
+        font-family:
+          "Public Sans",
+          "Noto Sans SC",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        color: #333333; /* 主文字色：深灰，大气不刺眼 */
+        background-color: #ffffff; /* 全局统一白色背景 */
+        line-height: 1.65;
+      }
+
+      /* 头部：标签+标题 - 简化样式，突出层级 */
+      .pit-detail-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .apple-tag {
+        padding: 0.4rem 1rem;
+        background: #0071e3; /* 纯色品牌蓝，去掉渐变 */
+        color: #ffffff !important;
+        font-size: 0.85rem;
+        font-weight: 600; /* 加粗突出标签 */
+        border-radius: 4px; /* 适度圆角，简约不夸张 */
+        box-shadow: none; /* 去掉阴影，更干净 */
+      }
+
+      .apple-title {
+        font-size: 2.2rem;
+        font-weight: 700; /* 加粗强化标题层级 */
+        color: #111111; /* 标题用近黑色，突出重点 */
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      /* 图片区域：极简风格，弱化装饰 */
+      .apple-img-container {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      .apple-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px; /* 简约小圆角 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 轻量阴影，不抢视觉 */
+        transition: transform 0.3s ease; /* 仅保留位移过渡，简化动效 */
+      }
+
+      .apple-img:hover {
+        transform: translateY(-2px); /* 轻微上浮，保留交互感 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* hover仅轻微加深阴影 */
+      }
+
+      /* 正文内容：统一文字色，仅加粗区分重点 */
+      .apple-content {
+        font-size: 1.1rem;
+        color: #1d1d1f; /* 正文统一深灰，去掉次要色区分 */
+      }
+
+      .apple-content p {
+        margin-bottom: 1.8rem;
+        text-align: justify;
+      }
+
+      .apple-content strong {
+        color: #1d1d1f; /* 加粗文字用近黑色，强化重点 */
+        font-weight: 700; /* 加粗层级提升 */
+      }
+
+      /* 列表：极简背景，弱化分割线 */
+      .apple-list {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #ffffff; /* 浅灰背景，统一且柔和 */
+        border-radius: 4px; /* 简约圆角 */
+      }
+
+      .apple-list-item {
+        padding: 0.5rem 0;
+      }
+
+      .apple-list-item:last-child {
+        border-bottom: none;
+      }
+
+      /* 卡片模块：统一白色背景，极简边框 */
+      .apple-module {
+        margin: 2.5rem 0;
+        padding: 2rem;
+        background: #ffffff; /* 统一白色背景 */
+        border-radius: 8px; /* 简约圆角 */
+        box-shadow: none; /* 去掉阴影，靠边框区分 */
+        border: 1px solid #eeeeee; /* 轻量边框，大气整洁 */
+      }
+
+      .apple-module-title {
+        font-size: 1.4rem;
+        font-weight: 700; /* 加粗强化模块标题 */
+        color: #111111; /* 标题近黑色，突出层级 */
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #eeeeee; /* 浅灰分割线 */
+      }
+
+      /* 代码块：极简深色背景，统一文字色 */
+      .apple-code-block {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        color: #0d00ff; /* 统一浅灰文字，简约易读 */
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.95rem;
+        border-radius: 4px; /* 简约圆角 */
+        line-height: 1.8;
+        white-space: pre-wrap;
+      }
+
+      /* 避坑方案模块：仅边框区分，去掉渐变背景 */
+      .apple-module.apple-solution {
+        background: #ffffff; /* 统一白色背景 */
+        border-color: #0071e3; /* 仅品牌蓝边框，突出模块 */
+      }
+
+      .apple-solution-item {
+        padding: 1rem 0;
+        list-style: none;
+        position: relative;
+        padding-left: 1.8rem;
+      }
+
+      .apple-solution-item::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #0071e3; /* 仅对勾用品牌色，极简点缀 */
+        font-weight: 700;
+      }
+
+      /* 按钮：纯色背景，极简风格 */
+      .apple-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem 2rem;
+        background: #0071e3; /* 纯色品牌蓝，去掉玻璃态 */
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600; /* 加粗按钮文字 */
+        border-radius: 4px; /* 简约圆角，去掉超圆角 */
+        box-shadow: none; /* 去掉阴影，更大气 */
+        transition: background-color 0.3s ease; /* 仅保留背景色过渡 */
+      }
+
+      .apple-btn:hover {
+        background: #005fc4; /* hover仅加深颜色，无多余动效 */
+        transform: none; /* 去掉上浮，保持简约 */
+        box-shadow: none;
+      }
+
+      .apple-btn i {
+        font-size: 1.1rem;
+      }
+
+      /* 渐入动画：简化动效，仅透明度变化 */
+      .animate-fade-in,
+      .animate-fade-in-delay,
+      .animate-fade-in-delay-1,
+      .animate-fade-in-delay-2,
+      .animate-fade-in-delay-3,
+      .animate-fade-in-delay-4,
+      .animate-fade-in-delay-5 {
+        opacity: 0;
+        animation: appleFadeIn 0.8s ease forwards;
+      }
+
+      .animate-fade-in-delay {
+        animation-delay: 0.2s;
+      }
+      .animate-fade-in-delay-1 {
+        animation-delay: 0.4s;
+      }
+      .animate-fade-in-delay-2 {
+        animation-delay: 0.6s;
+      }
+      .animate-fade-in-delay-3 {
+        animation-delay: 0.8s;
+      }
+      .animate-fade-in-delay-4 {
+        animation-delay: 1s;
+      }
+      .animate-fade-in-delay-5 {
+        animation-delay: 1.2s;
+      }
+
+      @keyframes appleFadeIn {
+        from {
+          opacity: 0;
+          transform: none; /* 去掉位移，仅保留透明度动画 */
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* 响应式适配：保持简约逻辑，仅调整尺寸 */
+      @media (max-width: 768px) {
+        .pit-detail-section.apple-design {
+          padding: 2rem 1.5rem;
+        }
+
+        .apple-title {
+          font-size: 1.8rem;
+        }
+
+        .apple-module {
+          padding: 1.5rem;
+        }
+
+        .apple-btn {
+          padding: 0.7rem 1.8rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 425px) {
+        .apple-title {
+          font-size: 1.5rem;
+        }
+
+        .apple-content {
+          font-size: 1rem;
+        }
+
+        .apple-list,
+        .apple-module {
+          padding: 1.2rem;
+          border-radius: 4px;
         }
       }
     </style>
@@ -2728,269 +3085,292 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <section>
-      <div class="container">
-        <h2 class="page-title">激光切割控制系统避坑指南</h2>
-        <p class="page-desc">柏楚｜维宏｜嘉强｜大族智控 四大主流系统真实对比</p>
+    <!-- 把整个 tab-box 包在一个容器里，避免被导航/页脚挤压 -->
+    <section class="os-guide-container">
+      <div class="tab-box">
+        <div class="tab-header">
+          <button class="tab-btn active" data-tab="1">柏楚系统</button>
+          <button class="tab-btn" data-tab="2">维宏系统</button>
+          <button class="tab-btn" data-tab="3">嘉强系统</button>
+          <button class="tab-btn" data-tab="4">大族智控</button>
+          <button class="tab-btn" data-tab="5">系统避坑</button>
+        </div>
 
-        <div class="tab-box">
-          <div class="tab-header">
-            <button class="tab-btn active" data-tab="1">柏楚系统</button>
-            <button class="tab-btn" data-tab="2">维宏系统</button>
-            <button class="tab-btn" data-tab="3">嘉强系统</button>
-            <button class="tab-btn" data-tab="4">大族智控</button>
-            <button class="tab-btn" data-tab="5">避坑总结</button>
+        <!-- 柏楚 -->
+        <div class="tab-content show" id="tab1">
+          <div class="content-title">柏楚系统（CypCut）</div>
+          <ul class="content-list">
+            <li>市场占有率高，行业普及度广，接近80%</li>
+            <li>操作简单、界面友好、易上手、深入人心</li>
+            <li>算法成熟，智能切割、自动寻边、断点续切功能完善</li>
+            <li>高功率、高速、高精度场景表现稳定</li>
+          </ul>
+          <div class="power-card">
+            <div class="power-title">✅ 适用场景</div>
+            <p>全功率段通用，尤其适合高功率、高精度、高产量加工需求</p>
           </div>
+        </div>
 
-          <!-- 柏楚 -->
-          <div class="tab-content show" id="tab1">
-            <div class="content-title">柏楚系统（CypCut）</div>
-            <ul class="content-list">
-              <li>市场占有率高，行业普及度广，接近80%</li>
-              <li>操作简单、界面友好、易上手、深入人心</li>
-              <li>算法成熟，智能切割、自动寻边、断点续切功能完善</li>
-              <li>高功率、高速、高精度场景表现稳定</li>
-            </ul>
-            <div class="power-card">
-              <div class="power-title">✅ 适用场景</div>
-              <p>全功率段通用，尤其适合高功率、高精度、高产量加工需求</p>
-            </div>
+        <!-- 维宏（主推） -->
+        <div class="tab-content" id="tab2">
+          <div class="content-title">维宏系统（Weihong）—— 主流强势选择</div>
+          <ul class="content-list">
+            <li>国内<strong>唯一可与柏楚正面抗衡</strong>的专业激光切割系统</li>
+            <li>宏山阿尔法、007系统等，均为维宏平台的深度定制版本</li>
+            <li>稳定性强、响应快、适配性广，长期使用故障率低</li>
+            <li>操作逻辑清晰，工艺成熟，高性价比之选</li>
+            <li>全功率段覆盖，中高功率表现尤为出色</li>
+          </ul>
+          <div class="good-box">
+            <div class="good-title">✅ 核心优势</div>
+            <p>
+              主流品牌主力机型标配，性能强、价格友好、售后完善，是目前市场最均衡的选择之一。
+            </p>
           </div>
-
-          <!-- 维宏（主推） -->
-          <div class="tab-content" id="tab2">
-            <div class="content-title">维宏系统（Weihong）—— 主流强势选择</div>
-            <ul class="content-list">
-              <li>
-                国内<strong>唯一可与柏楚正面抗衡</strong>的专业激光切割系统
-              </li>
-              <li>宏山阿尔法、007系统以及超控等，均为维宏平台的深度定制版本</li>
-              <li>稳定性强、响应快、适配性广，长期使用故障率低</li>
-              <li>操作逻辑清晰，工艺成熟，高性价比之选</li>
-              <li>全功率段覆盖，中高功率表现尤为出色</li>
-            </ul>
-            <div class="good-box">
-              <div class="good-title">✅ 核心优势</div>
-              <p>
-                主流品牌主力机型标配，性能强、价格友好、售后完善，是目前市场最均衡的选择之一。
-              </p>
-            </div>
-            <div class="power-card">
-              <div class="power-title">✅ 功率适配</div>
-              <p>1500W–30000W全功率段通用，中高功率首选推荐</p>
-            </div>
+          <div class="power-card">
+            <div class="power-title">✅ 功率适配</div>
+            <p>1500W–30000W全功率段通用，中高功率首选推荐</p>
           </div>
+        </div>
 
-          <!-- 嘉强 -->
-          <div class="tab-content" id="tab3">
-            <div class="content-title">嘉强系统（RayTools）</div>
-            <ul class="content-list">
-              <li>与嘉强切割头搭配兼容性最佳</li>
-              <li>
-                操作简单、稳定可靠，<strong>在简易切板方面具备明显优势</strong>
-              </li>
-              <li>功能实用，满足常规板材切割需求</li>
-              <li>性价比高，适合标准加工场景</li>
-            </ul>
-            <div class="power-card">
-              <div class="power-title">✅ 适用场景</div>
-              <p>常规切板、标准加工、中低功率设备使用</p>
-            </div>
+        <!-- 嘉强 -->
+        <div class="tab-content" id="tab3">
+          <div class="content-title">嘉强系统（RayTools）</div>
+          <ul class="content-list">
+            <li>与嘉强切割头搭配兼容性最佳</li>
+            <li>
+              操作简单、稳定可靠，<strong>在简易切板方面具备明显优势</strong>
+            </li>
+            <li>功能实用，满足常规板材切割需求</li>
+            <li>性价比高，适合标准加工场景</li>
+          </ul>
+          <div class="power-card">
+            <div class="power-title">✅ 适用场景</div>
+            <p>常规切板、标准加工、中低功率设备使用</p>
           </div>
+        </div>
 
-          <!-- 大族智控 -->
-          <div class="tab-content" id="tab4">
-            <div class="content-title">大族智控系统</div>
-            <ul class="content-list">
-              <li>替换原PA系统后，凭借稳定体验收获大量用户</li>
-              <li>设计理念参考行业成熟方案，操作友好易上手</li>
-              <li>稳定性强，工艺适配度高，大族整机主力搭配系统</li>
-              <li>功能完整，满足高要求加工场景</li>
-            </ul>
-            <div class="power-card">
-              <div class="power-title">✅ 适用场景</div>
-              <p>高要求加工、品牌整机、追求稳定与工艺的用户</p>
-            </div>
+        <!-- 大族智控 -->
+        <div class="tab-content" id="tab4">
+          <div class="content-title">大族智控系统</div>
+          <ul class="content-list">
+            <li>替换原PA系统后，凭借稳定体验收获大量用户</li>
+            <li>设计理念参考行业成熟方案，操作友好易上手</li>
+            <li>稳定性强，工艺适配度高，大族整机主力搭配系统</li>
+            <li>功能完整，满足高要求加工场景</li>
+          </ul>
+          <div class="power-card">
+            <div class="power-title">✅ 适用场景</div>
+            <p>高要求加工、品牌整机、追求稳定与工艺的用户</p>
           </div>
+        </div>
 
-          <!-- 避坑总结 -->
-          <div class="tab-content" id="tab5">
-            <div class="content-title">采购避坑总结（行业真实建议）</div>
-            <ul class="content-list">
-              <li>✅ 柏楚：市场占有率最高，操作简单，稳定性强，全功率适用</li>
-              <li>
-                ✅
-                维宏：<strong>国内唯一可对标柏楚的主流系统</strong>，定制版本多（阿尔法/007），性能强、性价比高，<strong
-                  >我们主推选择</strong
-                >
-              </li>
-              <li>✅ 嘉强：简易切板优势明显，搭配嘉强切割头更稳定</li>
-              <li>✅ 大族智控：替换PA系统后口碑出色，工艺成熟</li>
-            </ul>
-            <div class="warn-box">
-              <div class="warn-title">⚠️ 避坑提醒</div>
-              <p>
-                尽量避开<strong>艾伦、PA、奥森、法格、倍福、海德蒙</strong>等系统，操作难度高、工艺复杂、上手极慢，现场使用易出错、影响效率。
-              </p>
-            </div>
-            <div class="power-card">
-              <div class="power-title">一句话建议</div>
-              <p>
-                追求稳定与性价比 → 选<strong>维宏</strong><br />
-                追求市场普及度 → 选柏楚<br />
-                标准简易切板 → 选嘉强<br />
-                品牌整机高配 → 选大族智控
-              </p>
-            </div>
+        <!-- 系统避坑 -->
+        <div class="tab-content" id="tab5">
+          <h3 class="apple-module-title">激光切割机操作系统·必避6大核心坑</h3>
+          <p>
+            <strong>1. 系统与功率不匹配，小马拉大车</strong><br />
+            低功率系统强行用于高功率机型，易出现高速丢步、穿孔不稳、断面差、长期高负荷故障率高。
+          </p>
+          <p>
+            <strong>2. 操作逻辑复杂，工人难上手、易出错</strong><br />
+            界面不友好、参数复杂、培训成本高，换个工人就不会操作，严重影响生产效率。
+          </p>
+          <p>
+            <strong>3. 破解版、改装版、仿界面系统：无售后、无升级</strong><br />
+            很多低价机使用破解系统或仿冒界面，看似与主流系统相似，实则无官方授权、无软件升级、无工艺库，出问题只能自费维修。
+          </p>
+          <p>
+            <strong>4. 系统与切割头不兼容，抖动、跑边、割缝不均</strong><br />
+            系统与切割头品牌不匹配，会出现高度跟随异常、切割偏差、厚板切不动等隐性故障。
+          </p>
+          <p>
+            <strong>5. 功能阉割，智能工艺缺失</strong><br />
+            缺少自动寻边、断点续切、智能穿孔、自动排版等基础功能，人工效率低、废料多、生产成本高。
+          </p>
+          <p>
+            <strong>6. 小众冷门系统，二手保值率极低</strong><br />
+            非市场主流系统、淘汰系统、兼容性差的系统，设备后期转让无人敢接，贬值极快。<br />
+            艾伦、PA、奥森、法格、倍福、海德蒙
+          </p>
+          <div class="good-box">
+            <strong>✅ 如何一眼识别正版系统 vs 破解/仿冒系统：</strong><br />
+            1. 开机有官方LOGO，进入系统有官方版权信息<br />
+            2. 可正常注册、升级、绑定厂家售后<br />
+            3. 有完整工艺库、参数模板、官方帮助文档<br />
+            4. 支持官方远程诊断、售后维保<br />
+            5. 机身或电脑端有正版授权标识
+          </div>
+        </div>
+      </div>
+
+      <!-- 1000W–60000W 功率→系统型号+特点 纯本地版（无报错） -->
+      <div class="power-system-full">
+        <div class="p-item">
+          <div class="p-watt">1000W–1500W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>FSCUT1000/2000C<br />稳定、入门够用 <br /><br />
+            <b>维宏：</b>LS2000M/V15<br />性价比高、操作简单 <br /><br />
+            <b>嘉强：</b>A+/B+基础版<br />切板稳定、兼容性好
+          </div>
+        </div>
+        <div class="p-item">
+          <div class="p-watt">2000W–3000W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>FSCUT2000E/4000E<br />智能工艺全、口碑好 <br /><br />
+            <b>维宏：</b>LS3000/LS4000M<br />中功率主力、长期稳定 <br /><br />
+            <b>嘉强：</b>XC3000S<br />简易切板优势明显
+          </div>
+        </div>
+        <div class="p-item">
+          <div class="p-watt">4000W–6000W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>FSCUT4000E/5000<br />高速稳定、厚板友好 <br /><br />
+            <b>维宏：</b>LS4000M/LS6000M<br />性能强、适配大功率 <br /><br />
+            <b>嘉强：</b>高配版<br />常规加工够用
+          </div>
+        </div>
+        <div class="p-item">
+          <div class="p-watt">8000W–12000W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>FSCUT6000<br />高功率成熟方案 <br /><br />
+            <b>维宏：</b>LS6000M/LS8000<br />稳定抗造、产能高 <br /><br />
+            <b>大族智控：</b>高配版<br />替换PA后口碑好
+          </div>
+        </div>
+        <div class="p-item">
+          <div class="p-watt">15000W–30000W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>FSCUT8000/10000<br />超功率稳定标杆 <br /><br />
+            <b>维宏：</b>LS10000+定制<br />可对标柏楚的主力 <br /><br />
+            <b>大族智控：</b>顶配<br />工艺成熟、稳定
+          </div>
+        </div>
+        <div class="p-item">
+          <div class="p-watt">40000W–60000W</div>
+          <div class="p-sys">
+            <b>柏楚：</b>超高端系列<br />工业级顶流 <br /><br />
+            <b>维宏：</b>工业级定制系统<br />唯一可抗衡品牌 <br /><br />
+            其他系统不推荐
           </div>
         </div>
       </div>
     </section>
 
     <!-- 十一，代码 底部导航栏-->
-    <section>
-      <footer class="footer-new">
-        <div class="footer-container">
-          <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
-          <div class="footer-brand">
-            <div class="brand-logo">
-              <img
-                src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
-                alt="Senrytech Logo"
-              />
-              <span class="brand-name">Senrytech</span>
-            </div>
-            <p class="brand-desc">
-              专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
-            </p>
-            <div class="social-icons">
-              <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
-              <a class="icon" href="#" title="Facebook">
-                <i class="fa fa-facebook text-xl"></i>
-                <!-- 4.7.0 支持的默认前缀 fa -->
-              </a>
-              <a class="icon" href="#" title="Instagram">
-                <i class="fa fa-instagram text-xl"></i>
-              </a>
-              <a class="icon" href="#" title="YouTube">
-                <i class="fa fa-youtube-play text-xl"></i>
-              </a>
-            </div>
+    <footer class="footer-new">
+      <div class="footer-container">
+        <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <img
+              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              alt="Senrytech Logo"
+            />
+            <span class="brand-name">Senrytech</span>
           </div>
-
-          <!-- 2. 中间：产品中心 -->
-          <div class="footer-column">
-            <h3>产品中心</h3>
-            <ul>
-              <li><a href="#">板材切割机</a></li>
-              <li><a href="#">管材切割机</a></li>
-              <li><a href="#">板管一体机</a></li>
-              <li><a href="#">激光焊接机</a></li>
-              <li><a href="#">激光清洗机</a></li>
-              <li><a href="#">激光打标机</a></li>
-            </ul>
+          <p class="brand-desc">
+            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
+          </p>
+          <div class="social-icons">
+            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
+            <a class="icon" href="#" title="Facebook">
+              <i class="fa fa-facebook text-xl"></i>
+              <!-- 4.7.0 支持的默认前缀 fa -->
+            </a>
+            <a class="icon" href="#" title="Instagram">
+              <i class="fa fa-instagram text-xl"></i>
+            </a>
+            <a class="icon" href="#" title="YouTube">
+              <i class="fa fa-youtube-play text-xl"></i>
+            </a>
           </div>
+        </div>
 
-          <!-- 3. 右侧：关于我们 -->
-          <div class="footer-column">
-            <h3>关于我们</h3>
-            <ul>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">公司简介</a>
-              </li>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">企业责任</a>
-              </li>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">核心团队</a>
-              </li>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">发展历程</a>
-              </li>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">员工福利</a>
-              </li>
-              <li>
-                <a href="https://www.senrytech.com/about-us/">合作案例</a>
-              </li>
-            </ul>
-          </div>
+        <!-- 2. 中间：产品中心 -->
+        <div class="footer-column">
+          <h3>产品中心</h3>
+          <ul>
+            <li><a href="#">板材切割机</a></li>
+            <li><a href="#">管材切割机</a></li>
+            <li><a href="#">板管一体机</a></li>
+            <li><a href="#">激光焊接机</a></li>
+            <li><a href="#">激光清洗机</a></li>
+            <li><a href="#">激光打标机</a></li>
+          </ul>
+        </div>
 
-          <!-- 4. 最右侧：联系我们+二维码 -->
-          <div class="footer-column footer-contact">
-            <h3>联系我们</h3>
-            <ul class="contact-list">
-              <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
-              <li>
-                <span class="contact-icon"
-                  ><i class="fa fa-map-marker"></i
-                ></span>
-                <span>中国·济南市历城区舜华路街道综合产业工业园</span>
-              </li>
-              <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
-              <li>
-                <span class="contact-icon"><i class="fa fa-phone"></i></span>
-                <span>+86 134 6557 5719</span>
-              </li>
-              <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
-              <li>
-                <span class="contact-icon"><i class="fa fa-envelope"></i></span>
-                <span>info@senrytech.com</span>
-              </li>
-              <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
-              <li>
-                <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
-                <span>周一至周六: 9:00-18:00</span>
-              </li>
-            </ul>
-            <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
-            <div class="wechat-qrcode">
-              <h4>微信咨询</h4>
-              <div class="qrcode-group">
-                <div class="qrcode-item">
-                  <img
-                    src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
-                    alt="售前客服咨询"
-                  />
-                  <p>售前客服咨询</p>
-                </div>
-                <div class="qrcode-item">
-                  <img
-                    src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
-                    alt="微信二维码2"
-                  />
-                  <p>售后客户咨询</p>
-                </div>
+        <!-- 3. 右侧：关于我们 -->
+        <div class="footer-column">
+          <h3>关于我们</h3>
+          <ul>
+            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">企业责任</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">核心团队</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">发展历程</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">员工福利</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">合作案例</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. 最右侧：联系我们+二维码 -->
+        <div class="footer-column footer-contact">
+          <h3>联系我们</h3>
+          <ul class="contact-list">
+            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+              <span>中国·济南市历城区舜华路街道综合产业工业园</span>
+            </li>
+            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-phone"></i></span>
+              <span>+86 134 6557 5719</span>
+            </li>
+            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+              <span>info@senrytech.com</span>
+            </li>
+            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
+              <span>周一至周六: 9:00-18:00</span>
+            </li>
+          </ul>
+          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
+          <div class="wechat-qrcode">
+            <h4>微信咨询</h4>
+            <div class="qrcode-group">
+              <div class="qrcode-item">
+                <img
+                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  alt="售前客服咨询"
+                />
+                <p>售前客服咨询</p>
+              </div>
+              <div class="qrcode-item">
+                <img
+                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  alt="微信二维码2"
+                />
+                <p>售后客户咨询</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- 底部版权信息（补充完整结构） -->
-        <div class="footer-bottom">
-          <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
-          <div class="bottom-right">
-            <a href="#">隐私政策</a>
-            <a href="#">服务条款</a>
-            <a href="#">网站地图</a>
-          </div>
+      <!-- 底部版权信息（补充完整结构） -->
+      <div class="footer-bottom">
+        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
+        <div class="bottom-right">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">网站地图</a>
         </div>
-      </footer>
-    </section>
-
-    <script>
-      const tabs = document.querySelectorAll(".tab-btn");
-      const contents = document.querySelectorAll(".tab-content");
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-          let id = tab.getAttribute("data-tab");
-          tabs.forEach((t) => t.classList.remove("active"));
-          contents.forEach((c) => c.classList.remove("show"));
-          tab.classList.add("active");
-          document.getElementById("tab" + id).classList.add("show");
-        });
-      });
-    </script>
+      </div>
+    </footer>
 
     <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
     <script>
@@ -4115,6 +4495,38 @@
         ) {
           link.classList.add("active");
         }
+      });
+    </script>
+
+    <script>
+      // 等待页面DOM加载完成
+      document.addEventListener("DOMContentLoaded", function () {
+        // 获取所有标签按钮和内容区
+        const tabBtns = document.querySelectorAll(".tab-btn");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        // 初始化：显示第一个标签页
+        if (tabBtns.length > 0 && tabContents.length > 0) {
+          tabBtns[0].classList.add("active");
+          tabContents[0].classList.add("show");
+        }
+
+        // 为每个标签按钮添加点击事件
+        tabBtns.forEach((btn, index) => {
+          btn.addEventListener("click", function () {
+            // 1. 移除所有标签的active类
+            tabBtns.forEach((btn) => btn.classList.remove("active"));
+            // 2. 给当前点击的标签添加active类
+            this.classList.add("active");
+            // 3. 移除所有内容区的show类
+            tabContents.forEach((content) => content.classList.remove("show"));
+            // 4. 显示对应索引的内容区
+            tabContents[index].classList.add("show");
+
+            // 已删除：滚动到内容区顶部的代码
+            // tabContents[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
       });
     </script>
   </body>

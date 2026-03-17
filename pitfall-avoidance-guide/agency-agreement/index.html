@@ -1,0 +1,4180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Senrytech激光独家激光器被锁解决方案！详解激光器被锁原因、解锁方法、预防措施，避开激光切割机锁机成本陷阱，专业激光切割机厂家直供售后保障。"
+      name="description"
+    />
+    <meta
+      content="激光器被锁,激光器解锁方法,激光器被锁原因,激光切割机锁机,激光切割机售后,Senrytech激光,激光切割机厂家"
+      name="keywords"
+    />
+    <title>Senrytech激光-激光器被锁 原因/解锁/预防 | 激光切割机厂家直供</title>
+    <link
+      rel="canonical"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/agency-agreement/"
+    />
+    <!-- 引入思源黑体字体文件 -->
+    <link
+      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 引入Font Awesome图标库（商务图标依赖） -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      /* ================================== 一、全局基础样式 ================================== */
+      /* 模块说明：重置浏览器默认表现，统一全局字体、盒模型及复用工具类，确保多设备基础样式一致性 */
+
+      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* 统一盒模型规则：padding/margin不额外增加元素宽高 */
+        /* 字体优先级：优先加载类SF Pro的Public Sans，降级为思源黑体，保证多场景显示统一 */
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+      }
+
+      /* 1.2 图标字体强制声明（解决：全局字体覆盖Font Awesome图标字体的问题） */
+      .social-icons .icon i,
+      .footer-contact .contact-icon i {
+        font-family: "FontAwesome" !important; /* !important 强制优先级，确保图标正常渲染 */
+      }
+
+      /* 1.3 全局复用工具类：元素隐藏类（用途：控制任意元素显示/隐藏，全局通用） */
+      .hidden {
+        display: none !important; /* !important 避免被其他样式覆盖，确保隐藏效果稳定 */
+      }
+
+      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
+      .body-fixed {
+        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
+        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
+        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+      }
+
+      /* ================================== 标题滚动向上淡出动画 ================================== */
+      /* 1. 重定义“向上淡出”动画：结束时保留30%透明度+轻微向上位移（不消失） */
+      @keyframes titleFadeUp {
+        from {
+          opacity: 0; /* 初始：完全显示 */
+          transform: translateY(0); /* 初始：无位移 */
+        }
+        to {
+          opacity: 1; /* 关键：结束时保留30%透明度（不消失），可根据需求调整0.2~0.5 */
+          transform: translateY(
+            0
+          ); /* 关键：轻微向上位移（10px，原20px太夸张），更自然 */
+        }
+      }
+
+      /* 2. 动画激活类：保留原逻辑，确保动画执行后维持结束状态 */
+      .title-fade-active {
+        animation: titleFadeUp 1.5s ease forwards; /* forwards必须保留，维持结束状态 */
+        pointer-events: none; /* 避免透明后误触 */
+        transition: none !important; /* 禁用过渡，避免与动画冲突 */
+      }
+
+      /* 3. 标题初始状态：确保所有标题默认显示，且支持动画过渡 */
+      /* 目标标题范围：所有h1-h6 + 自定义标题类（如.product-main-title） */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .product-main-title,
+      .submenu-content-title,
+      .content-item h3 {
+        opacity: 1; /* 默认显示 */
+        transform: translateY(0); /* 默认无位移 */
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease; /* 初始状态过渡（可选，优化视觉） */
+        will-change: opacity, transform; /* 提前告知浏览器优化渲染 */
+      }
+
+      /* ================================== 一、全局基础样式-REM（1:16基准核心：1rem基准=16px） ================================== */
+      /* 子模块说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
+
+      /* 1.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
+      /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
+      @media (max-width: 320px) {
+        html {
+          font-size: 12px; /* 原8.53px→12px：优化小屏文字清晰度，例：24px=2rem */
+        }
+      }
+
+      /* 1.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
+      /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        html {
+          font-size: 14px; /* 原10px→14px：避免小屏元素过小，同时向16px基准过渡 */
+        }
+      }
+
+      /* 1.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
+      /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        html {
+          font-size: 15px; /* 原11.33px→15px：缩小与16px基准的差距，优化大屏手机布局 */
+        }
+      }
+
+      /* 1.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
+      /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        html {
+          font-size: 16px; /* 原14px→16px：平板屏空间足够，直接启用1:16核心基准 */
+        }
+      }
+
+      /* 1.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
+      /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        html {
+          font-size: 16px; /* 原15px→16px：核心场景严格对齐1:16基准，确保设计还原度 */
+        }
+      }
+
+      /* 1.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
+      /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        html {
+          font-size: 16px; /* 不变：2K屏无需放大基准，16px=1rem可避免布局松散 */
+        }
+      }
+
+      /* 1.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
+      /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
+      @media (min-width: 2560px) {
+        html {
+          font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
+        }
+      }
+    </style>
+
+    <!--二、CSS 导航栏-->
+    <style>
+      /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
+        /* 调整为低饱和工业灰蓝基底，透明度降低更沉稳，适配BANNER常见的科技蓝/金属灰风格 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        /* 边框调整为低饱和蓝灰色，弱化存在感但保留轮廓，更贴合激光设备的金属质感 */
+        z-index: 1000;
+        /* 过渡包含所有质感属性，保证滚动平滑 */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        /* 阴影优化：更浅的灰度+更低的不透明度，工业哑光质感更突出 */
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
+      }
+
+      /* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
+      .navbar.scrolled {
+        /* 滚动后背景加深，采用偏深蓝的工业灰，增强层次感但不压抑 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        /* 滚动后模糊度提升，饱和度微调增强质感 */
+        backdrop-filter: blur(15px) saturate(115%);
+        -webkit-backdrop-filter: blur(15px) saturate(115%);
+        /* 滚动后阴影加深，强化悬浮感 */
+        box-shadow: 0 2px 12px rgba(245, 245, 257, 0.3);
+      }
+
+      /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%; /* 让 LOGO 容器和导航栏等高 */
+        cursor: pointer;
+      }
+
+      /* 给 SVG 本身加自适应样式 */
+      .navbar .logo svg {
+        width: auto;
+        height: 100%;
+        max-height: 20px;
+        object-fit: contain;
+        fill: #1b4c42; /* 原始填充色（你的 SVG 现有颜色） */
+        transition: all 0.5s ease; /* 过渡动画，让效果更丝滑 */
+      }
+      /* hover 效果：颜色变浅 + 轻微缩放 */
+      .navbar .logo:hover svg {
+        fill: #2d7d71; /* hover 时的填充色（比原始色浅，更醒目） */
+        transform: scale(1.05); /* 轻微放大 5%，增强视觉反馈 */
+        /* 可选：加阴影增强层次感 */
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      /* 可选：点击激活效果（如果需要） */
+      .navbar .logo:active svg {
+        transform: scale(1.05); /* 点击时轻微缩小，模拟按压感 */
+      }
+      /* —— 2.3 导航栏普通链接样式（非LOGO/按钮的导航项） —— */
+      .navbar a {
+        color: #1d1d1f; /* 其他标题颜色 */
+        text-decoration: none; /* 去掉默认下划线，提升精致感 */
+        font-size: 0.75rem; /* 统一小型化字号，适配窄导航高度 */
+        font-weight: 400; /* 字体偏细，符合苹果风格轻量化设计 */
+        transition: color 0.5s ease; /* hover时颜色过渡，增强交互感 */
+      }
+      /* 链接hover状态：文字变浅灰，提示可交互 */
+      .navbar a:hover {
+        color: #1d1d1f;
+        font-weight: 700;
+      }
+
+      /* —— 2.4 导航栏功能按钮样式（语言切换/询价按钮，统一基础样式） —— */
+      .navbar .btn {
+        padding: 0.4rem 1.2rem; /* 按钮内边距：上下0.4rem、左右1.2rem，保证点击区域 */
+        border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
+        font-size: 0.7rem; /* 按钮文字字号与导航链接统一，视觉协调 */
+        font-weight: 400; /* 字体偏细，避免与导航风格冲突 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
+        border: none; /* 清除默认边框，避免样式干扰 */
+        transition: background-color 0.2s ease; /* 背景色过渡，增强交互细腻度 */
+      }
+      /* 2.4.1 语言切换按钮（透明边框+浅白文字，适配深背景） */
+      .language-btn {
+        background-color: transparent; /* 透明背景，突出导航背景 */
+        color: #1d1d1f; /* 文字浅白色，与导航文字一致 */
+      }
+      .lang-dropdown {
+        position: relative; /* 作为下拉菜单的定位容器 */
+        display: inline-block; /* 与询价按钮、汉堡按钮同排显示 */
+        z-index: 1001; /* 层级高于导航栏，避免被遮挡 */
+        margin-right: 0.5rem; /* 与询价按钮保持间距 */
+      }
+
+      /* 下拉菜单默认隐藏 */
+      .lang-dropdown-list {
+        position: absolute;
+        top: 100%; /* 紧贴语言按钮下方 */
+        right: 0; /* 与语言按钮右对齐 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        border-radius: 8px; /* 匹配按钮圆角风格 */
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        display: none; /* 默认隐藏 */
+        min-width: 100px; /* 保证语言文字不换行 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影区分层级 */
+      }
+
+      /* 下拉语言链接样式 */
+      .lang-dropdown-list .lang-link {
+        display: block;
+        padding: 8px 16px;
+        color: #1d1d1f; /* 与导航文字颜色一致 */
+        text-decoration: none;
+        font-size: 0.75rem; /* 匹配导航文字字号 */
+        text-align: right; /* 与下拉菜单右对齐 */
+        transition: background-color 0.2s ease;
+      }
+
+      /* 语言链接hover效果 */
+      .lang-dropdown-list .lang-link:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* 浅白背景加深 */
+        border-radius: 4px; /* 轻微圆角增强质感 */
+      }
+
+      /* 当前语言高亮（匹配当前页面） */
+      .lang-dropdown-list .lang-link.active {
+        color: #1b4c42; /* 品牌蓝色突出当前语言 */
+        font-weight: 500;
+      }
+      /* 2.4.2 询价按钮（蓝色背景+浅白文字，突出核心转化功能） */
+      .navbar .inquiry-btn {
+        background-color: #0071e3;
+        color: #f7f5f5 !important; /* 浅白色，若仍被覆盖可加 !important */
+      }
+
+      /* —— 2.6 下拉菜单父容器 —— */
+      .nav-item {
+        position: relative; /* 作为下拉菜单的绝对定位上下文，确保菜单位置准确 */
+        height: 100%; /* 继承导航栏高度，保证hover触发区域完整 */
+        display: flex;
+        align-items: center; /* 导航项文字垂直居中，视觉协调 */
+      }
+
+      /* —— 2.7 下拉菜单容器样式（桌面端，默认隐藏，hover展开） —— */
+      .dropdown-menu {
+        position: fixed; /* 固定定位：避免随导航滚动偏移，宽度占满屏幕 */
+        top: 2.8rem; /* 紧贴导航栏底部（导航栏高度45px），无间隙 */
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100vw; /* 限制最大宽度为屏幕宽度，避免超宽溢出 */
+        background: linear-gradient(
+          135deg,
+          /* 左上到右下 */ rgba(255, 255, 255, 0.95) 0%,
+          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 1) 50%,
+          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
+            /* 浅灰2 + 0.9透明度 */
+        );
+        box-shadow: 0 1px 3px rgba(29, 29, 31, 0.5); /* 极淡阴影，避免厚重感 */
+        z-index: 1001; /* 层级高于导航栏（1000），确保菜单显示在最上层 */
+        border-radius: 0; /* 取消圆角，与屏幕边缘贴合，增强全屏感 */
+        overflow-y: hidden; /* 隐藏超出高度的内容，配合max-height实现展开动画 */
+        overflow-x: hidden;
+        box-sizing: border-box;
+
+        /* 默认隐藏状态：高度0+透明+无内边距，确保完全不可见 */
+        max-height: 0; /* 高度压缩为0，核心隐藏逻辑，勿修改（避免误触发） */
+        opacity: 0; /* 透明度0，视觉隐藏 */
+        padding: 0; /* 隐藏时取消内边距，避免空白占位 */
+
+        /* 展开/隐藏过渡动画：高度、透明度、内边距同步变化，确保流畅 */
+        transition:
+          max-height 0.3s ease,
+          opacity 0.3s ease,
+          padding 0.3s ease;
+      }
+
+      /* —— 2.8 下拉菜单展开/隐藏控制（hover父容器触发，桌面端核心交互） —— */
+      .nav-item:hover .dropdown-menu {
+        max-height: 55rem; /* 足够大的高度（大于实际内容高度），避免滚动 */
+        opacity: 1; /* 透明度1，完全显示 */
+        padding: 2.4rem 0; /* 恢复上下内边距，给内容留呼吸空间 */
+        display: block; /* 兼容部分浏览器，确保hover时正常显示 */
+      }
+
+      /* —— 2.9 下拉菜单内部容器（分左右栏：左侧分类栏+右侧产品内容区） —— */
+      .dropdown-inner {
+        display: flex; /* 左右栏横向排列，实现双栏布局 */
+        width: 100%; /* 占满下拉菜单宽度 */
+        max-width: 1600px; /* 限制内部内容最大宽度，避免超宽屏幕内容过散 */
+        margin: 0 auto; /* 内部内容水平居中，适配宽屏 */
+        padding: 0 4rem; /* 左右留白，避免内容贴屏幕边缘 */
+        gap: 5rem; /* 左右栏之间的间距，提升布局层次感 */
+      }
+
+      /* —— 2.10 下拉菜单左侧分类栏（固定宽度，展示产品分类） —— */
+      .dropdown-category {
+        width: 240px; /* 固定宽度，确保分类栏不被压缩，布局稳定 */
+        flex-shrink: 0; /* 禁止收缩，保持宽度不变 */
+        max-height: calc(
+          100vh - 120px
+        ); /* 限制最大高度：屏幕高度 - 导航栏/内边距高度，避免超出屏幕 */
+        overflow-y: auto; /* 分类过多时显示垂直滚动条，避免内容溢出 */
+      }
+
+      /* —— 2.11 左侧目录（左侧单个分类，可hover/激活） —— */
+      .category-item {
+        padding: 1rem 1.6rem; /* 内边距：上下1.2rem、左右1.6rem，保证点击区域 */
+        border-radius: 10rem; /* 椭圆背景，增强精致感 */
+        margin-bottom: 1rem; /* 分类项之间的间距，避免拥挤 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 背景色过渡，曲线更细腻 */
+        position: relative; /* 为内部a标签提供层级铺垫，避免被背景遮挡 */
+      }
+      /* 分类项hover/激活状态：背景加深+文字加粗，突出当前项 */
+      .category-item:hover,
+      .category-item.active {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.08
+        ); /* 浅白半透明背景，与深背景区分 */
+        font-weight: 500; /* 文字加粗，增强视觉识别度 */
+      }
+
+      /* —— 2.12 分类项内部链接样式（左侧目录） —— */
+      /* 核心：用更具体的选择器提升优先级，覆盖导航栏a标签的白色小字号样式 */
+      .navbar .dropdown-category .category-item a {
+        color: #1d1d1f; /* 链接基础色：浅白色，与分类栏背景区分 */
+        font-size: 1rem; /* 链接字号放大，确保可读性 */
+        text-align: center; /* 文字水平居中 */
+        text-decoration: none; /* 去掉下划线 */
+        display: block; /* 链接占满分类项宽度，hover区域完整 */
+        transition: none; /* 取消颜色过渡，避免hover时文字闪烁 */
+        position: relative;
+        z-index: 1; /* 确保文字在最上层，不被背景覆盖 */
+      }
+      /* hover/激活时强制浅白色，用!important彻底锁死样式，避免冲突 */
+      .navbar .dropdown-category .category-item:hover a,
+      .navbar .dropdown-category .category-item.active a {
+        color: #1d1d1f !important;
+      }
+
+      /* —— 2.13 下拉菜单右侧内容区（产品列表容器，随分类切换显示） —— */
+      .dropdown-content {
+        flex: 1; /* 占满剩余宽度，与左侧分类栏形成自适应布局 */
+        max-height: calc(
+          100vh - 120px
+        ); /* 限制最大高度，与左侧分类栏视觉统一 */
+        overflow-y: auto; /* 内容超出时显示垂直滚动条，避免遮挡 */
+        padding-right: 1rem; /* 给滚动条预留空间，避免产品卡片被挤压 */
+      }
+
+      /* —— 2.14 内容区标题样式（如“激光板材切割机系列”，区分分类层级） —— */
+      .content-item h3 {
+        font-size: 1rem; /* 标题字号，与分类项链接区分 */
+        color: #1d1d1f; /* 标题颜色：浅白色，突出层级 */
+        margin-bottom: 24px; /* 与下方产品列表的间距，避免拥挤 */
+        padding-bottom: 0.8rem; /* 下划线上方留白，增强视觉层次 */
+        border-bottom: 1px solid #eee; /* 浅灰色下划线，分隔标题与内容 */
+      }
+
+      /* —— 2.15 内容区产品列表容器（产品卡片横向排列，自动换行） —— */
+      .product-list {
+        display: flex; /* 产品卡片横向排列 */
+        flex-wrap: wrap; /* 超出宽度时自动换行，适配不同屏幕 */
+        gap: 1.4rem; /* 产品卡片之间的间距，保证布局呼吸感 */
+        padding-bottom: 1rem; /* 列表底部留白，避免最后一行产品贴滚动条 */
+      }
+
+      /* —— 2.16 产品卡片基础样式（下拉菜单内，统一卡片布局） —— */
+      .product-card {
+        width: calc(
+          (100% - 7.2rem) / 4
+        ); /* 4列布局：总间距1.4rem×3=4.2rem？原7.2rem需核对，确保4列均匀分布 */
+        text-align: center; /* 卡片内内容（图片+文字）水平居中 */
+        transition: transform 0.2s ease; /* 悬浮时上浮动画，增强交互感 */
+        padding: 0.2rem 0; /* 卡片上下留白，避免图片贴边 */
+        position: relative; /* 为卡片内后续添加按钮预留定位上下文 */
+        overflow: hidden; /* 防止图片圆角被父容器截断，确保圆角效果 */
+      }
+      /* 卡片悬浮效果：轻微上浮，提升层次感 */
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      /* —— 2.17 产品卡片图片样式（统一尺寸与视觉效果） —— */
+      .product-card img {
+        width: 100%; /* 图片占满卡片宽度 */
+        height: 160px; /* 固定高度，确保所有卡片图片对齐，避免布局错乱 */
+        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸变形） */
+        margin-bottom: 0.8rem; /* 图片与文字的间距，视觉分隔 */
+        border-radius: 1.5rem; /* 苹果风格大圆角，提升精致感 */
+        background: #f0f0f0; /* 图片加载失败时的占位背景色，避免空白 */
+
+        /* 阴影效果：增强图片立体感 */
+        box-shadow:
+          0 4px 12px rgba(0, 0, 0, 0.1),
+          /* 主阴影：增强层次感 */ 0 2px 4px rgba(0, 0, 0, 0.08); /* 次阴影：增加柔和度 */
+        transform: translateZ(0); /* 触发硬件加速，优化圆角边缘锯齿 */
+        backface-visibility: hidden; /* 解决部分浏览器圆角锯齿问题 */
+
+        /* 图片悬浮阴影过渡，增强交互 */
+        transition: box-shadow 0.3s ease;
+      }
+      /* 图片悬浮效果：阴影加深，强化立体感 */
+      .product-card:hover img {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      /* —— 2.18 产品卡片文字样式（产品名称，简洁展示） —— */
+      .product-card p {
+        font-size: 0.9rem; /* 产品名称字号，确保简洁不换行 */
+        color: #1d1d1f; /* 文字颜色：浅白色，与背景区分 */
+        line-height: 1.5; /* 行高，提升可读性 */
+        padding: 0 0.5rem; /* 文字左右留白，避免超出卡片边界 */
+      }
+
+      /* —— 2.19 内容区切换控制（默认隐藏所有内容，激活分类时显示对应内容） —— */
+      .content-item {
+        display: none; /* 默认隐藏所有内容区，避免初始混乱 */
+        height: 100%; /* 占满右侧内容区高度，避免布局塌陷 */
+      }
+      /* 激活状态：显示对应分类的产品内容 */
+      .content-item.active {
+        display: block;
+      }
+
+      /* —— 2.20 导航栏按钮组容器（语言切换+询价+汉堡按钮的父容器，控制布局） —— */
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        /* 关键：让三个按钮在容器内等距分布 */
+        justify-content: space-between;
+        /* 给按钮组一个固定宽度，让 space-between 生效 */
+        width: 120px; /* 可根据实际按钮大小微调 */
+        /* 禁止收缩，避免被挤压 */
+        flex-shrink: 0;
+      }
+
+      /* —— 2.21 汉堡按钮样式（移动端核心交互，默认隐藏，小屏幕显示） —— */
+      .hamburger-btn {
+        display: none; /* 默认隐藏，仅在小屏幕通过媒体查询显示 */
+        background: transparent; /* 透明背景，融入导航风格 */
+        border: none; /* 清除默认边框 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
+        padding: 0.8rem 0; /* 上下内边距，保证点击区域 */
+        z-index: 1002; /* 层级高于侧边菜单（1000），确保点击优先 */
+      }
+      /* 汉堡按钮线条样式（三横线） */
+      .hamburger-line {
+        display: block;
+        width: 22px; /* 固定线条宽度，确保按钮识别度（不转REM，避免过小） */
+        height: 2px; /* 固定线条高度，细线条更精致（不转REM） */
+        background-color: #1d1d1f; /* 线条浅白色，与导航文字一致 */
+        margin: 0.4rem 0; /* 线条之间的间距 */
+        transition: all 0.3s ease; /* 点击时线条旋转过渡，实现“汉堡→关闭”动画 */
+      }
+      /* 汉堡按钮激活状态（变为关闭图标：上线下沉旋转、中线隐藏、下线上浮旋转） */
+      .hamburger-btn.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(0.4rem, 0.4rem);
+      }
+      .hamburger-btn.active .hamburger-line:nth-child(2) {
+        opacity: 0; /* 中线隐藏 */
+      }
+      .hamburger-btn.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(0.4rem, -0.4rem); /* 原-4rem为笔误，修正为-0.4rem */
+      }
+
+      /* —— 2.22 侧边菜单遮罩层（移动端，默认隐藏，打开菜单时显示） —— */
+      .sidebar-overlay {
+        position: fixed; /* 全屏遮罩，覆盖整个视口 */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明，弱化背景内容 */
+        backdrop-filter: blur(2px); /* 轻微模糊，增强玻璃拟态 */
+        z-index: 999; /* 层级低于侧边菜单（1000），确保菜单显示在遮罩上层 */
+        opacity: 0; /* 默认透明，隐藏状态 */
+        visibility: hidden; /* 默认不可见，避免遮挡点击 */
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease; /* 显示/隐藏过渡，确保流畅 */
+      }
+      /* 激活状态：显示遮罩 */
+      .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* —— 2.23 侧边菜单容器（移动端，默认隐藏，右侧滑出） —— */
+      .sidebar-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 85%; /* 小屏幕占85%宽度，Tablet占70%，通过媒体查询调整 */
+        max-width: 380px; /* 限制最大宽度，避免宽屏移动端菜单过宽 */
+        height: 100vh; /* 占满屏幕高度 */
+        background: linear-gradient(
+          135deg,
+          /* 从左上到右下 */ #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
+        backdrop-filter: blur(10px); /* 背景模糊，增强玻璃拟态 */
+        -webkit-backdrop-filter: blur(10px); /* 兼容Safari */
+        z-index: 1000; /* 层级高于遮罩层（999），确保菜单显示优先 */
+        transform: translateX(100%); /* 初始在屏幕右侧外，隐藏状态 */
+        transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 滑入/滑出过渡，曲线更流畅 */
+        overflow-y: auto; /* 菜单内容过多时可滚动 */
+        padding-top: 6rem; /* 顶部留白，避开头部LOGO+关闭按钮区域 */
+        box-sizing: border-box;
+      }
+      /* 激活状态：滑入屏幕 */
+      .sidebar-menu.active {
+        transform: translateX(0);
+      }
+
+      /* —— 2.24 侧边栏头部（LOGO+关闭按钮，固定在顶部） —— */
+      .sidebar-header {
+        position: absolute; /* 固定在侧边栏顶部，不随滚动移动 */
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 45px; /* 与导航栏高度一致，视觉统一 */
+        display: flex;
+        justify-content: space-between; /* LOGO居左，关闭按钮居右 */
+        align-items: center; /* 内容垂直居中 */
+        padding: 0 2rem; /* 左右留白，避免内容贴边 */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 浅灰色下边框，分隔头部与菜单 */
+      }
+      /* 侧边栏LOGO */
+      .sidebar-logo {
+        font-size: 1rem; /* 与导航栏LOGO字号一致 */
+        font-weight: 500;
+        color: #1d1d1f;
+      }
+      /* 侧边栏关闭按钮 */
+      .sidebar-close-btn {
+        background: transparent;
+        border: none;
+        color: #1d1d1f;
+        font-size: 2rem; /* 大号关闭图标，确保易点击 */
+        cursor: pointer;
+      }
+
+      /* —— 2.25 侧边栏菜单列表（一级菜单容器，无默认列表样式） —— */
+      .sidebar-menu-list {
+        list-style: none; /* 清除默认列表圆点 */
+        padding: 0 2rem; /* 左右留白，避免内容贴边 */
+        margin: 0; /* 清除默认margin */
+      }
+      /* 侧边栏一级菜单项（单个一级菜单，如“产品中心”） */
+      .sidebar-menu-item {
+        margin-bottom: 0.4rem; /* 菜单项之间的间距，避免拥挤 */
+      }
+
+      /* —— 2.26 侧边栏一级菜单链接（带箭头，控制二级菜单展开/隐藏） —— */
+      .sidebar-menu-link {
+        display: flex;
+        justify-content: space-between; /* 文字居左，箭头居右 */
+        align-items: center; /* 内容垂直居中 */
+        padding: 1.4rem 1.6rem; /* 内边距，保证点击区域 */
+        color: #1d1d1f; /* 文字浅白色 */
+        text-decoration: none; /* 去掉下划线 */
+        font-size: 1rem; /* 字号，确保可读性 */
+        border-radius: 1rem; /* 圆角，增强精致感 */
+        transition: background-color 0.2s ease; /* 背景色过渡，增强交互 */
+      }
+      /* 一级菜单链接hover状态：背景加深，突出当前项 */
+      .sidebar-menu-link:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      /* —— 2.27 侧边栏箭头样式（一级菜单右侧，指示二级菜单展开状态） —— */
+      .sidebar-arrow {
+        font-size: 1rem; /* 箭头字号，与一级菜单文字协调 */
+        transition: transform 0.3s ease; /* 旋转过渡，显示展开/收起状态 */
+      }
+      /* 二级菜单展开时，箭头旋转180度（向下→向上） */
+      .sidebar-menu-item.has-submenu.active .sidebar-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* —— 2.28 侧边栏二级菜单（产品分类列表，默认隐藏） —— */
+      .sidebar-submenu {
+        list-style: none; /* 清除默认列表样式 */
+        padding: 0 1.6rem; /* 左右留白，与一级菜单对齐 */
+        margin: 0;
+        max-height: 0; /* 默认高度0，隐藏状态 */
+        overflow: hidden; /* 隐藏超出内容 */
+        transition: max-height 0.3s ease; /* 展开/收起过渡，确保流畅 */
+      }
+      /* 一级菜单激活时，显示二级菜单 */
+      .sidebar-menu-item.has-submenu.active .sidebar-submenu {
+        max-height: 500px; /* 足够大的高度，容纳所有分类 */
+        padding: 0.8rem 1.6rem 1.6rem; /* 上下内边距，给分类项留空间 */
+      }
+      /* 二级菜单项（单个分类，如“激光板材切割机”） */
+      .sidebar-submenu-item {
+        margin-bottom: 0.4rem; /* 菜单项之间的间距 */
+      }
+
+      /* —— 2.29 侧边栏二级菜单链接（分类链接，带右箭头指示） —— */
+      .sidebar-submenu-link {
+        display: block; /* 链接占满父容器宽度，确保点击区域完整 */
+        padding: 1.2rem 1.6rem; /* 内边距，保证点击区域 */
+        color: #1d1d1f; /* 文字浅灰色，与一级菜单区分层级 */
+        text-decoration: none; /* 去掉下划线 */
+        font-size: 1rem; /* 字号，确保可读性 */
+        border-radius: 0.8rem; /* 圆角，增强精致感 */
+        transition: background-color 0.2s ease; /* 背景色过渡，增强交互 */
+        position: relative; /* 为右箭头提供定位上下文 */
+        padding-right: 2.4rem; /* 右侧留白，给箭头留空间 */
+      }
+      /* 二级菜单链接右箭头（通过伪元素添加，避免额外标签） */
+      .sidebar-submenu-link::after {
+        content: "→"; /* 箭头符号 */
+        position: absolute;
+        right: 1.6rem; /* 箭头居右，与文字间距1.6rem */
+        top: 50%;
+        transform: translateY(-50%); /* 箭头垂直居中 */
+        font-size: 1.2rem; /* 箭头字号，略大于文字 */
+        color: #1d1d1f; /* 箭头颜色，与文字一致 */
+        opacity: 0.7; /* 箭头半透明，弱化视觉权重 */
+      }
+      /* 二级菜单链接hover/激活状态：背景加深+文字变白，突出当前项 */
+      .sidebar-submenu-link:hover,
+      .sidebar-submenu-item.active .sidebar-submenu-link {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #1d1d1f;
+      }
+
+      /* —— 2.30 侧边栏三级内容区（产品列表，默认隐藏，激活分类时显示） —— */
+      .sidebar-submenu-content {
+        padding: 0 1.6rem 1.6rem; /* 左右下留白，与二级菜单对齐 */
+        display: none; /* 默认隐藏 */
+        max-height: 0; /* 默认高度0，避免空白占位 */
+        overflow: hidden; /* 隐藏超出内容 */
+        transition: max-height 0.3s ease; /* 展开/收起过渡 */
+      }
+
+      /* —— 2.31 三级内容区显示控制（一级菜单展开+二级分类激活时，显示对应产品） —— */
+      .sidebar-menu-item.has-submenu.active
+        .sidebar-submenu-item.active
+        ~ .sidebar-submenu-content {
+        display: block; /* 显示对应产品内容 */
+        max-height: calc(
+          100vh - 20rem
+        ); /* 限制最大高度：屏幕高度 - 顶部留白，避免超出屏幕 */
+      }
+
+      /* —— 2.32 三级内容区标题（产品分类标题，如“激光板材切割机系列”） —— */
+      .submenu-content-title {
+        font-size: 1.6rem; /* 标题字号，突出层级 */
+        color: #1d1d1f; /* 文字浅白色 */
+        margin: 0 0 1.6rem; /* 与下方产品列表的间距 */
+        padding-bottom: 0.8rem; /* 下划线上方留白 */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 浅灰色下划线，分隔标题与内容 */
+      }
+
+      /* —— 2.33 三级内容区产品卡片（移动端适配，小尺寸卡片） —— */
+      .submenu-product-card {
+        transition: transform 0.2s ease; /* 悬浮上浮动画 */
+      }
+      /* 产品卡片悬浮效果：轻微上浮 */
+      .submenu-product-card:hover {
+        transform: translateY(-0.3rem);
+      }
+
+      /* —— 2.34 三级内容区产品图片（适配移动端小卡片） —— */
+      .submenu-product-card img {
+        width: 100%; /* 图片占满卡片宽度 */
+        height: 8rem; /* 固定高度，适配侧边栏小卡片 */
+        object-fit: cover; /* 保持图片比例，避免拉伸 */
+        border-radius: 0.8rem; /* 圆角，与卡片风格统一 */
+        background-color: #f0f0f0; /* 加载占位背景色 */
+        margin-bottom: 0.8rem; /* 图片与文字的间距 */
+      }
+
+      /* —— 2.35 三级内容区产品文字（产品名称，适配移动端） —— */
+      .submenu-product-card p {
+        font-size: 0.8rem; /* 字号缩小，适配小卡片 */
+        color: #1d1d1f; /* 文字浅白色 */
+        margin: 0; /* 清除默认margin */
+      }
+
+      /* —— 2.36 三级内容区切换控制（默认隐藏所有产品内容，激活分类时显示） —— */
+      .submenu-content-item {
+        display: none; /* 默认隐藏 */
+      }
+      /* 激活状态：显示对应分类的产品内容 */
+      .submenu-content-item.active {
+        display: block;
+      }
+
+      /* —— 2.37 核心：导航栏 - 媒体查询适配（按屏幕尺寸切换导航样式：桌面→平板→移动端） —— */
+      /* 1. Laptop及以上（1024px+：Laptop、Laptop L、4K）：隐藏汉堡/侧边栏，显示桌面端导航+下拉菜单 */
+      @media (min-width: 1024px) {
+        .hamburger-btn,
+        .sidebar-menu,
+        .sidebar-overlay {
+          display: none !important; /* 强制隐藏移动端元素 */
+        }
+
+        .navbar {
+          justify-content: center; /* 导航项水平居中 */
+          gap: 2rem; /* 恢复导航项间距 */
+          padding: 0 2rem; /* 左右留白 */
+        }
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: flex; /* 恢复桌面端导航链接和下拉菜单显示 */
+        }
+      }
+
+      /* 2. Tablet到Laptop之间（769px~1023px）：显示汉堡按钮，隐藏部分导航链接 */
+      @media (min-width: 769px) and (max-width: 1023px) {
+        /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none; /* 隐藏桌面端导航链接和下拉菜单 */
+        }
+        .hamburger-btn {
+          display: block !important; /* 强制显示汉堡按钮 */
+        }
+
+        /* 3.2 导航栏布局调整：LOGO居左，按钮组居右 */
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          gap: 0; /* 清除间距，避免挤压 */
+          padding: 0 1rem; /* 缩小左右留白，适配小屏幕 */
+        }
+
+        /* 3.3 按钮组布局：按钮+汉堡横向排列 */
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem; /* 按钮之间的基础间距，子断点再调整 */
+        }
+
+        /* 3.4 按钮尺寸适配：缩小内边距和字号，适配小屏幕 */
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 3.5 侧边栏宽度基础设置：Tablet占90% */
+        .sidebar-menu {
+          width: 100%;
+        }
+
+        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 4.0 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+      }
+
+      /* 3. Tablet及以下（=426到≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡/侧边栏，隐藏桌面端导航 */
+      @media (max-width: 768px) {
+        /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none; /* 隐藏桌面端导航链接和下拉菜单 */
+        }
+        .hamburger-btn {
+          display: block !important; /* 强制显示汉堡按钮 */
+        }
+
+        /* 3.2 导航栏布局调整：LOGO居左，按钮组居右 */
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          gap: 0; /* 清除间距，避免挤压 */
+          padding: 0 1rem; /* 缩小左右留白，适配小屏幕 */
+        }
+
+        /* 3.3 按钮组布局：按钮+汉堡横向排列 */
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem; /* 按钮之间的基础间距，子断点再调整 */
+        }
+
+        /* 3.4 按钮尺寸适配：缩小内边距和字号，适配小屏幕 */
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 3.5 侧边栏宽度基础设置：Tablet占70% */
+        .sidebar-menu {
+          width: 80%;
+        }
+
+        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 4.0 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+      }
+
+      /* —— 子断点：Mobile L（376px ~ 425px）优化 —— */
+      @media (min-width: 376px) and (max-width: 425px) {
+        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            80vh - 1rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 5. 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+
+        /* 6. 侧边栏宽度：占85%，提升可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      /* —— 子断点：Mobile M（321px ~ 375px）优化 —— */
+      @media (min-width: 321px) and (max-width: 375px) {
+        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important; /* 两列间距，与宽度计算匹配 */
+          padding: 0 !important; /* 清除多余内边距 */
+          width: 100% !important; /* 占满父容器宽度 */
+        }
+
+        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important; /* 保底宽度，避免挤压 */
+          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
+          box-sizing: border-box !important; /* 确保padding不影响宽度 */
+        }
+
+        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(
+            100vh - 25rem
+          ) !important; /* 屏幕高度-顶部留白，避免超出 */
+          overflow-y: auto !important; /* 强制开启滚动 */
+          padding-right: 1rem !important; /* 给滚动条留空间 */
+          gap: 1rem; /* 缩小间距，适配窄屏 */
+        }
+
+        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important; /* 完整显示图片，不裁剪 */
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 5. 父容器滚动优化：避免双重滚动条 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important; /* 父容器高度兜底 */
+          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
+        }
+
+        /* 6. 侧边栏宽度：占85%，提升可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      /* —— 子断点：Mobile S（≤320px）优化（最小手机屏，极致适配） —— */
+      @media (max-width: 320px) {
+        /* 1. 产品列表容器：同Mobile M，确保两列布局 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        /* 2. 产品卡片宽度：同Mobile M，两列均匀分布 */
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        /* 3. 产品列表滚动：同Mobile M，限制高度+开启滚动 */
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(100vh - 25rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        /* 4. 产品图片统一：同Mobile M，完整显示 */
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        /* 5. 父容器滚动优化：同Mobile M，避免双重滚动 */
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important;
+          overflow-y: hidden;
+        }
+
+        /* 6. 侧边栏宽度：占85%，最大化可视面积 */
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        /* 7. 一级菜单链接：同Mobile M，缩小尺寸 */
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        /* 8. 二级菜单链接：同Mobile M，缩小尺寸 */
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        /* 9. 三级内容区标题：同Mobile M，缩小字号 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+
+    <style>
+      /* 详情页简约大气核心样式 */
+      .pit-detail-section.apple-design {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 8rem 8rem;
+        font-family:
+          "Public Sans",
+          "Noto Sans SC",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+        color: #333333; /* 主文字色：深灰，大气不刺眼 */
+        background-color: #ffffff; /* 全局统一白色背景 */
+        line-height: 1.65;
+      }
+
+      /* 头部：标签+标题 - 简化样式，突出层级 */
+      .pit-detail-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+        flex-wrap: wrap;
+      }
+
+      .apple-tag {
+        padding: 0.4rem 1rem;
+        background: #0071e3; /* 纯色品牌蓝，去掉渐变 */
+        color: #ffffff !important;
+        font-size: 0.85rem;
+        font-weight: 600; /* 加粗突出标签 */
+        border-radius: 4px; /* 适度圆角，简约不夸张 */
+        box-shadow: none; /* 去掉阴影，更干净 */
+      }
+
+      .apple-title {
+        font-size: 2.2rem;
+        font-weight: 700; /* 加粗强化标题层级 */
+        color: #111111; /* 标题用近黑色，突出重点 */
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      /* 图片区域：极简风格，弱化装饰 */
+      .apple-img-container {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+
+      .apple-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px; /* 简约小圆角 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 轻量阴影，不抢视觉 */
+        transition: transform 0.3s ease; /* 仅保留位移过渡，简化动效 */
+      }
+
+      .apple-img:hover {
+        transform: translateY(-2px); /* 轻微上浮，保留交互感 */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* hover仅轻微加深阴影 */
+      }
+
+      /* 正文内容：统一文字色，仅加粗区分重点 */
+      .apple-content {
+        font-size: 1.1rem;
+        color: #1d1d1f; /* 正文统一深灰，去掉次要色区分 */
+      }
+
+      .apple-content p {
+        margin-bottom: 1.8rem;
+        text-align: justify;
+      }
+
+      .apple-content strong {
+        color: #1d1d1f; /* 加粗文字用近黑色，强化重点 */
+        font-weight: 700; /* 加粗层级提升 */
+      }
+
+      /* 列表：极简背景，弱化分割线 */
+      .apple-list {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background: #ffffff; /* 浅灰背景，统一且柔和 */
+        border-radius: 4px; /* 简约圆角 */
+      }
+
+      .apple-list-item {
+        padding: 0.5rem 0;
+      }
+
+      .apple-list-item:last-child {
+        border-bottom: none;
+      }
+
+      /* 卡片模块：统一白色背景，极简边框 */
+      .apple-module {
+        margin: 2.5rem 0;
+        padding: 2rem;
+        background: #ffffff; /* 统一白色背景 */
+        border-radius: 8px; /* 简约圆角 */
+        box-shadow: none; /* 去掉阴影，靠边框区分 */
+        border: 1px solid #eeeeee; /* 轻量边框，大气整洁 */
+      }
+
+      .apple-module-title {
+        font-size: 1.4rem;
+        font-weight: 700; /* 加粗强化模块标题 */
+        color: #111111; /* 标题近黑色，突出层级 */
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #eeeeee; /* 浅灰分割线 */
+      }
+
+      /* 代码块：极简深色背景，统一文字色 */
+      .apple-code-block {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        color: #0d00ff; /* 统一浅灰文字，简约易读 */
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.95rem;
+        border-radius: 4px; /* 简约圆角 */
+        line-height: 1.8;
+        white-space: pre-wrap;
+      }
+
+      /* 避坑方案模块：仅边框区分，去掉渐变背景 */
+      .apple-module.apple-solution {
+        background: #ffffff; /* 统一白色背景 */
+        border-color: #0071e3; /* 仅品牌蓝边框，突出模块 */
+      }
+
+      .apple-solution-item {
+        padding: 1rem 0;
+        list-style: none;
+        position: relative;
+        padding-left: 1.8rem;
+      }
+
+      .apple-solution-item::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #0071e3; /* 仅对勾用品牌色，极简点缀 */
+        font-weight: 700;
+      }
+
+      /* 按钮：纯色背景，极简风格 */
+      .apple-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.8rem 2rem;
+        background: #0071e3; /* 纯色品牌蓝，去掉玻璃态 */
+        color: #ffffff !important;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600; /* 加粗按钮文字 */
+        border-radius: 4px; /* 简约圆角，去掉超圆角 */
+        box-shadow: none; /* 去掉阴影，更大气 */
+        transition: background-color 0.3s ease; /* 仅保留背景色过渡 */
+      }
+
+      .apple-btn:hover {
+        background: #005fc4; /* hover仅加深颜色，无多余动效 */
+        transform: none; /* 去掉上浮，保持简约 */
+        box-shadow: none;
+      }
+
+      .apple-btn i {
+        font-size: 1.1rem;
+      }
+
+      /* 渐入动画：简化动效，仅透明度变化 */
+      .animate-fade-in,
+      .animate-fade-in-delay,
+      .animate-fade-in-delay-1,
+      .animate-fade-in-delay-2,
+      .animate-fade-in-delay-3,
+      .animate-fade-in-delay-4,
+      .animate-fade-in-delay-5 {
+        opacity: 0;
+        animation: appleFadeIn 0.8s ease forwards;
+      }
+
+      .animate-fade-in-delay {
+        animation-delay: 0.2s;
+      }
+      .animate-fade-in-delay-1 {
+        animation-delay: 0.4s;
+      }
+      .animate-fade-in-delay-2 {
+        animation-delay: 0.6s;
+      }
+      .animate-fade-in-delay-3 {
+        animation-delay: 0.8s;
+      }
+      .animate-fade-in-delay-4 {
+        animation-delay: 1s;
+      }
+      .animate-fade-in-delay-5 {
+        animation-delay: 1.2s;
+      }
+
+      .pit-content-item {
+        line-height: 1.8;
+        color: #333;
+        font-size: 1rem;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .pit-content-item .warning-block {
+        margin-bottom: 1.2rem;
+        background-color: #f8f8fa;
+        padding: 1rem;
+        border-left: 3px solid #e63946;
+        border-radius: 4px;
+      }
+      .pit-content-item strong.key-title {
+        color: #1b4c42;
+        font-weight: 600;
+      }
+      .pit-content-item strong.warning-title {
+        color: #e63946;
+        font-weight: 600;
+      }
+      .pit-content-item p {
+        margin-bottom: 1.2rem;
+      }
+
+      @keyframes appleFadeIn {
+        from {
+          opacity: 0;
+          transform: none; /* 去掉位移，仅保留透明度动画 */
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* 响应式适配：保持简约逻辑，仅调整尺寸 */
+      @media (max-width: 768px) {
+        .pit-detail-section.apple-design {
+          padding: 2rem 1.5rem;
+        }
+
+        .apple-title {
+          font-size: 1.8rem;
+        }
+
+        .apple-module {
+          padding: 1.5rem;
+        }
+
+        .apple-btn {
+          padding: 0.7rem 1.8rem;
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 425px) {
+        .apple-title {
+          font-size: 1.5rem;
+        }
+
+        .apple-content {
+          font-size: 1rem;
+        }
+
+        .apple-list,
+        .apple-module {
+          padding: 1.2rem;
+          border-radius: 4px;
+        }
+      }
+    </style>
+
+    <!--十一、CSS 底部导航栏 -->
+    <style>
+      /* 底部导航整体样式（匹配参考图深灰背景） */
+      .footer-new {
+        background-color: #1d1d1f; /* 参考图的深灰背景色 */
+        color: #f5f5f7;
+        padding: 15rem 1rem;
+        font-size: 12px;
+      }
+
+      /* 内容容器：四列布局 */
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* 小屏幕自动换行 */
+        gap: 30px;
+      }
+
+      /* 1. 品牌区样式 */
+      .footer-brand {
+        flex: 1;
+        min-width: 220px;
+      }
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .brand-logo img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+      .brand-name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .brand-desc {
+        color: #d1d1d6;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .social-icons {
+        display: flex;
+        gap: 12px;
+      }
+      .social-icons .icon {
+        color: #d1d1d6; /* 与文字色统一 */
+        text-decoration: none;
+        font-size: 16px; /* 图标大小适中 */
+        width: 28px; /* 固定宽高，确保图标对齐 */
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px; /* 轻微圆角，更精致 */
+        transition: background-color 0.2s; /* hover效果更柔和 */
+      }
+
+      /* 2. hover效果（商务低调反馈） */
+      .social-icons .icon:hover {
+        color: #d1d1d6;
+        background-color: rgba(255, 255, 255, 0.15); /* 淡背景加深，不突兀 */
+      }
+
+      /* 2. 产品中心/关于我们 列样式 */
+      .footer-column {
+        flex: 1;
+        min-width: 150px;
+      }
+      .footer-column h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: #d1d1d6;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-column li {
+        margin-bottom: 10px;
+      }
+      .footer-column a {
+        color: #d1d1d6;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-column a:hover {
+        color: #d1d1d6;
+      }
+
+      /* 3. 联系我们列样式 */
+      .footer-contact .contact-list {
+        margin-bottom: 20px;
+      }
+      .footer-contact .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 10px;
+        color: #d1d1d6;
+      }
+      .footer-contact .contact-icon {
+        width: 18px; /* 固定图标宽度，确保文字对齐 */
+        text-align: center; /* 图标居中 */
+        color: #d1d1d6; /* 与文字同色，保持统一 */
+        font-size: 14px; /* 图标大小与文字匹配 */
+      }
+      .footer-contact .contact-icon i {
+        vertical-align: middle; /* 图标与文字垂直居中对齐 */
+      }
+      .wechat-qrcode h4 {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #d1d1d6;
+      }
+      .qrcode-group {
+        display: flex;
+        gap: 16px;
+      }
+      .qrcode-item {
+        text-align: center;
+      }
+      .qrcode-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 6px;
+        border: 1px solid #444;
+      }
+      .qrcode-item p {
+        color: #d1d1d6;
+        font-size: 12px;
+        margin: 0;
+      }
+
+      /* 底部版权+政策样式 */
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 30px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 12px;
+        color: #d1d1d6;
+      }
+      .footer-bottom .bottom-right a {
+        color: #d1d1d6;
+        text-decoration: none;
+        margin: 0 8px;
+      }
+      .footer-bottom .bottom-right a:hover {
+        color: #d1d1d6;
+      }
+
+      /* ================================== 底部导航栏 - 媒体查询适配 ================================== */
+      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
+
+      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
+      @media (max-width: 320px) {
+      }
+
+      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
+      @media (min-width: 321px) and (max-width: 375px) {
+      }
+
+      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
+      @media (min-width: 376px) and (max-width: 425px) {
+      }
+
+      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
+      @media (min-width: 426px) and (max-width: 768px) {
+      }
+
+      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+      }
+
+      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
+      }
+
+      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
+      @media (min-width: 2560px) {
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 二，代码 导航栏 -->
+    <nav class="navbar">
+      <div class="logo">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="144"
+          height="39"
+          viewBox="0 0 2305 629"
+        >
+          <path
+            d="M0 0 C18.48 0 36.96 0 56 0 C56.33 70.95 56.66 141.9 57 215 C60.63 210.71 64.26 206.42 68 202 C91.55298775 175.16054885 119.972833 158.74273619 156 156 C186.11221555 154.44573394 215.70468564 157.84192595 239.62890625 177.78515625 C257.47745526 194.4575241 268.09072161 218.88240199 269.0918504 243.23420048 C269.12508335 245.695924 269.12855615 248.15586213 269.12025452 250.61779785 C269.12110894 251.55568319 269.12196337 252.49356853 269.12284368 253.45987463 C269.12448384 256.58589972 269.11900117 259.71187052 269.11352539 262.83789062 C269.11324318 265.08534748 269.11340192 267.33280443 269.1139679 269.58026123 C269.11425453 275.67051045 269.10837931 281.76073993 269.10139394 287.85098457 C269.09513824 294.21978785 269.09455484 300.58859159 269.09336853 306.95739746 C269.09061463 317.64347718 269.08437047 328.32954912 269.07543945 339.015625 C269.0662524 350.01953088 269.05917789 361.0234348 269.05493164 372.02734375 C269.05466892 372.70627695 269.05440619 373.38521016 269.05413551 374.08471709 C269.05283042 377.49092025 269.05156672 380.89712343 269.05032361 384.30332661 C269.03996656 412.53555723 269.02153665 440.76777557 269 469 C250.52 469 232.04 469 213 469 C212.9906543 462.70244629 212.98130859 456.40489258 212.97167969 449.91650391 C212.93786796 429.07749929 212.88249487 408.23859279 212.81609726 387.39966774 C212.77637575 374.76872179 212.74394832 362.13783752 212.72900391 349.50683594 C212.71595163 338.49100184 212.68889603 327.47530386 212.64538693 316.45954645 C212.62285243 310.6328179 212.6070845 304.80625673 212.60811615 298.97948074 C212.60886751 293.48171329 212.59072709 287.98431473 212.55883217 282.48664284 C212.55039678 280.4817492 212.5485393 278.47681388 212.55419731 276.47191048 C212.60916704 253.97624644 209.23982585 232.92821924 193 216 C180.52594118 204.58434617 165.45168018 201.18001691 149.0078125 201.65625 C131.41076112 202.5911977 116.40016948 211.05750352 103 222 C102.24847656 222.60972656 101.49695312 223.21945312 100.72265625 223.84765625 C95.98570211 227.83906291 91.90947168 232.20310223 88 237 C86.82244141 238.43859375 86.82244141 238.43859375 85.62109375 239.90625 C70.57569384 258.646299 61.62198074 280.25590407 58 304 C57.83193848 305.05184982 57.66387695 306.10369965 57.49072266 307.18742371 C56.66934543 313.86425258 56.82114017 320.60363954 56.79467773 327.3203125 C56.78508613 328.86827346 56.77507532 330.41623186 56.76467896 331.96418762 C56.73776267 336.14744838 56.71668167 340.33072026 56.69667697 344.51401901 C56.67473502 348.89291129 56.64738668 353.27176979 56.62062073 357.65063477 C56.57080443 365.93414456 56.52582478 374.21767323 56.48259836 382.50121975 C56.43313115 391.93534724 56.37824834 401.36944082 56.32291877 410.80353546 C56.20926865 430.20232683 56.10310778 449.60114954 56 469 C37.52 469 19.04 469 0 469 C-0.33 454.81 -0.66 440.62 -1 426 C-3.31 428.64 -5.62 431.28 -8 434 C-35.75245451 459.97562053 -72.45003302 471.21685919 -109.875 471.25 C-110.56185883 471.25067474 -111.24871765 471.25134949 -111.95639038 471.25204468 C-123.20639894 471.23454346 -134.01504768 470.54810766 -145 468 C-145.73927734 467.83371094 -146.47855469 467.66742188 -147.24023438 467.49609375 C-171.25961763 461.92936973 -191.73621063 450.35779286 -210 434 C-211.32451172 432.87464844 -211.32451172 432.87464844 -212.67578125 431.7265625 C-219.25465236 426.05829719 -224.60565317 419.77605673 -230 413 C-230.75539063 412.05640625 -231.51078125 411.1128125 -232.2890625 410.140625 C-232.85367187 409.43421875 -233.41828125 408.7278125 -234 408 C-234.4125 408.67804688 -234.825 409.35609375 -235.25 410.0546875 C-254.59927081 441.23811054 -283.79446645 461.57234611 -319.24707031 470.5703125 C-323.47274839 471.55859174 -327.70824262 472.36309537 -332 473 C-332.62092529 473.0928125 -333.24185059 473.185625 -333.8815918 473.28125 C-373.83471499 478.52530226 -416.58178866 470.39529617 -448.9453125 445.7578125 C-450.61406546 444.42962137 -452.27239127 443.08808506 -453.9140625 441.7265625 C-455.89276641 440.08875889 -457.94512563 438.54115578 -460 437 C-460.33 446.24 -460.66 455.48 -461 465 C-472.31776652 469.03640624 -483.33578772 472.53703249 -495.125 474.875 C-496.65048462 475.17893677 -496.65048462 475.17893677 -498.20678711 475.48901367 C-522.00692175 479.99394889 -551.44596635 481.25388484 -575 475 C-575.73444336 474.80664062 -576.46888672 474.61328125 -577.22558594 474.4140625 C-594.64034626 469.6181574 -609.9989503 461.58237183 -623 449 C-623.90492187 448.12472656 -624.80984375 447.24945313 -625.7421875 446.34765625 C-647.15870397 424.18253814 -651.18294082 394.51229339 -651.11352539 364.9621582 C-651.11324282 363.26597597 -651.11340261 361.56979361 -651.1139679 359.87361145 C-651.11425315 355.30001766 -651.10840057 350.72645044 -651.10139394 346.15286279 C-651.09511494 341.36160942 -651.09455302 336.57035535 -651.09336853 331.77909851 C-651.09026857 322.72005457 -651.08207327 313.6610228 -651.07201904 304.6019842 C-651.05871892 292.35069102 -651.05334721 280.09939448 -651.04751682 267.84809589 C-651.03813241 248.56538816 -651.01820459 229.28270609 -651 210 C-676.41 210 -701.82 210 -728 210 C-729.485 214.95 -729.485 214.95 -731 220 C-731.61684051 221.78647321 -732.25287704 223.56665872 -732.92260742 225.33398438 C-733.2717923 226.26044266 -733.62097717 227.18690094 -733.98074341 228.14143372 C-734.35190277 229.11569809 -734.72306213 230.08996246 -735.10546875 231.09375 C-735.50144257 232.14128952 -735.89741638 233.18882904 -736.3053894 234.26811218 C-737.59610171 237.68001103 -738.89171897 241.09002331 -740.1875 244.5 C-741.09522706 246.89614314 -742.00269464 249.29238458 -742.90991211 251.6887207 C-745.60148141 258.79443141 -748.29967275 265.89761356 -751 273 C-751.37459351 273.98546814 -751.74918701 274.97093628 -752.13513184 275.98626709 C-755.73497366 285.4554342 -759.34202174 294.92184122 -762.953125 304.38671875 C-767.41704068 316.08704566 -771.86521385 327.7933441 -776.3125 339.5 C-777.11596557 341.61482794 -777.91943237 343.72965541 -778.72290039 345.84448242 C-780.34088785 350.10332721 -781.9587929 354.3622033 -783.57666016 358.62109375 C-786.3665321 365.96503167 -789.1570611 373.30871986 -791.94779968 380.65232849 C-793.91916129 385.83981363 -795.89034751 391.02736523 -797.86108398 396.21508789 C-801.47627504 405.73110405 -805.09303454 415.24651268 -808.71629333 424.75946045 C-817.06922912 446.69056343 -825.40364029 468.6266524 -833.53659058 490.64045715 C-834.45379201 493.12218251 -835.37335069 495.60303376 -836.29248047 498.08404541 C-837.0484789 500.13128028 -837.79854609 502.18064434 -838.54882812 504.22998047 C-843.57555364 517.89328998 -849.33801133 529.94086022 -859 541 C-859.54011719 541.68320312 -860.08023437 542.36640625 -860.63671875 543.0703125 C-873.11332603 558.47726096 -892.42186564 566.62772602 -911.80102539 568.82348633 C-931.85725161 570.43341767 -954.63163004 570.18418498 -973 561 C-973 542.52 -973 524.04 -973 505 C-964 508 -964 508 -960.2265625 509.31640625 C-942.26770852 515.52993599 -921.38106704 518.93372875 -903.5 510.3125 C-896.44149699 503.78338472 -892.58246687 495.84076559 -889 487 C-888.70863159 486.33956192 -888.41726318 485.67912384 -888.11706543 484.99867249 C-885.68169209 478.87806587 -886.09425367 475.35877212 -888.57421875 469.3671875 C-888.88420303 468.55445374 -889.19418732 467.74171997 -889.51356506 466.90435791 C-890.54563577 464.21704662 -891.61639872 461.54696729 -892.6875 458.875 C-893.43075328 456.96051612 -894.17125734 455.04496293 -894.90917969 453.12841797 C-896.46392229 449.10259599 -898.03399285 445.08326856 -899.61669922 441.06835938 C-901.90699909 435.25193869 -904.15113486 429.41874127 -906.37890625 423.578125 C-906.73707428 422.63943069 -907.09524231 421.70073639 -907.46426392 420.7335968 C-908.19187195 418.82654794 -908.91940056 416.91946876 -909.64685059 415.01235962 C-911.14213816 411.098626 -912.64545191 407.18799347 -914.14834595 403.2771759 C-919.46622042 389.43454994 -924.71000671 375.5644703 -929.9375 361.6875 C-937.15400062 342.53339597 -944.40030455 323.39098642 -951.67724609 304.25976562 C-952.45802059 302.20703611 -953.23878217 300.15430168 -954.01953125 298.1015625 C-954.41150696 297.07101746 -954.80348267 296.04047241 -955.20733643 294.97869873 C-958.48066943 286.37058317 -961.74704896 277.75984117 -965.01171875 269.1484375 C-965.52178858 267.80309513 -966.03185938 266.45775313 -966.54193115 265.1124115 C-968.78090586 259.20678471 -971.01955628 253.3010354 -973.25732327 247.39495087 C-974.39126688 244.40249687 -975.52576864 241.41025446 -976.66015625 238.41796875 C-977.07069748 237.33393768 -977.48123871 236.24990662 -977.90422058 235.13302612 C-978.47382256 233.63088058 -978.47382256 233.63088058 -979.05493164 232.09838867 C-979.38401016 231.2299382 -979.71308868 230.36148773 -980.05213928 229.46672058 C-980.70996307 227.7547945 -981.40242182 226.05593505 -982.12156677 224.36885071 C-983 222 -983 222 -983 219 C-1019.18640828 215.48797424 -1051.95679293 219.51217431 -1081 243 C-1082.20462891 243.97259766 -1082.20462891 243.97259766 -1083.43359375 244.96484375 C-1089.41222811 250.03165866 -1094.21060762 255.81960149 -1099 262 C-1099.73089844 262.91523438 -1100.46179687 263.83046875 -1101.21484375 264.7734375 C-1106.48107177 271.52975815 -1111.09961361 278.54932638 -1115.23332214 286.04966736 C-1116.58634884 288.50155972 -1117.95374018 290.92497705 -1119.42366982 293.30887032 C-1130.36767486 311.07091168 -1130.56411711 327.88597686 -1130.31726241 348.03492808 C-1130.27600649 352.37373066 -1130.29822755 356.71225481 -1130.31306458 361.05116272 C-1130.33171451 369.22843866 -1130.29514658 377.4044491 -1130.23759204 385.58150536 C-1130.16292157 396.65850011 -1130.17587317 407.73539428 -1130.18332005 418.81258106 C-1130.19275547 436.20914413 -1130.08713683 453.60303114 -1130 471 C-1160.69 471 -1191.38 471 -1223 471 C-1223.04898438 456.44777344 -1223.09796875 441.89554687 -1223.1484375 426.90234375 C-1223.18383001 417.67382224 -1223.21971388 408.44530695 -1223.2578125 399.21679688 C-1223.31817013 384.57447742 -1223.37654303 369.93216964 -1223.421875 355.28979492 C-1223.45490337 344.62451087 -1223.49479391 333.95927786 -1223.54279006 323.29405028 C-1223.56794756 317.65134233 -1223.58976013 312.00866778 -1223.60334396 306.36591911 C-1223.61626243 301.04472295 -1223.63842036 295.72364195 -1223.66738319 290.40250969 C-1223.67638305 288.45924126 -1223.68213123 286.51595432 -1223.68421364 284.57266617 C-1223.71387551 261.07744614 -1225.79033039 237.11193869 -1242.73828125 219.06640625 C-1254.4436652 208.37184993 -1269.48956488 203.43778029 -1285.19140625 203.81640625 C-1304.49372807 205.07817138 -1320.46402769 213.63578586 -1335 226 C-1335.68707031 226.55300781 -1336.37414063 227.10601562 -1337.08203125 227.67578125 C-1342.87210465 232.46087149 -1347.41551528 238.07568348 -1352 244 C-1353.00546875 245.26457031 -1353.00546875 245.26457031 -1354.03125 246.5546875 C-1373.74071245 272.2864857 -1380.07426071 303.19832635 -1380.20532227 334.99658203 C-1380.21492026 336.4857255 -1380.22493141 337.97486636 -1380.23532104 339.46400452 C-1380.26216827 343.47773028 -1380.28328602 347.49146757 -1380.30332303 351.50523233 C-1380.3253083 355.71061159 -1380.35263517 359.91595617 -1380.37937927 364.12130737 C-1380.42913765 372.07183996 -1380.47413845 380.02239197 -1380.51740164 387.97296226 C-1380.56691879 397.02987667 -1380.62178286 406.08675627 -1380.67708123 415.14363694 C-1380.79064227 433.76239364 -1380.8968312 452.38118261 -1381 471 C-1399.48 471 -1417.96 471 -1437 471 C-1437.33 454.17 -1437.66 437.34 -1438 420 C-1441.3 424.29 -1444.6 428.58 -1448 433 C-1449.99678588 435.28722747 -1451.91557589 437.44496568 -1454.0625 439.5625 C-1454.59649414 440.09004883 -1455.13048828 440.61759766 -1455.68066406 441.16113281 C-1476.14707308 460.74124719 -1503.131316 472.86423639 -1531 477 C-1531.62092529 477.0928125 -1532.24185059 477.185625 -1532.8815918 477.28125 C-1540.32808851 478.25864087 -1547.81327947 478.24258787 -1555.3125 478.25 C-1556.02042694 478.25100708 -1556.72835388 478.25201416 -1557.45773315 478.25305176 C-1569.18279489 478.24180327 -1580.52220022 477.51571892 -1592 475 C-1593.00039307 474.7831958 -1593.00039307 474.7831958 -1594.02099609 474.56201172 C-1631.17745485 466.20111407 -1662.43731035 444.05508306 -1683.06640625 412.08984375 C-1685 409 -1685 409 -1686 407 C-1686.59425781 408.13695312 -1687.18851563 409.27390625 -1687.80078125 410.4453125 C-1704.52921215 441.85512015 -1730.37052549 464.85397473 -1764.68554688 475.328125 C-1768.93488146 476.56168711 -1773.20442847 477.68911206 -1777.5 478.75 C-1778.68964355 479.04825684 -1778.68964355 479.04825684 -1779.90332031 479.35253906 C-1793.99763854 482.64064932 -1808.27113436 483.38304435 -1822.6875 483.3125 C-1823.85863846 483.30976578 -1823.85863846 483.30976578 -1825.05343628 483.30697632 C-1860.14962521 483.16971591 -1895.85615034 475.58769025 -1923 452 C-1923.80824219 451.32453125 -1924.61648438 450.6490625 -1925.44921875 449.953125 C-1953.32371295 425.97318336 -1966.0081274 392.90247122 -1969 357 C-1969 347.76 -1969 338.52 -1969 329 C-1947.88 329 -1926.76 329 -1905 329 C-1904.67 337.58 -1904.34 346.16 -1904 355 C-1901.27359757 377.0982092 -1894.69853122 396.30448856 -1877 411 C-1855.36627516 427.62496316 -1830.66371072 431.60942241 -1804 428.49609375 C-1786.65446578 425.9881677 -1769.2788958 418.80797913 -1758 405 C-1744.58940648 386.84643194 -1738.24875487 366.65579301 -1740 344 C-1743.37017384 322.29779776 -1757.6691021 304.68535431 -1775 292 C-1797.55264242 275.73160121 -1822.16530662 264.13734738 -1848 254.0625 C-1873.83121784 243.96071473 -1898.86677322 231.11419438 -1920 213 C-1921.26650391 211.93652344 -1921.26650391 211.93652344 -1922.55859375 210.8515625 C-1942.46160547 193.64989559 -1955.82934428 169.22738959 -1957.875 142.76171875 C-1959.36228232 109.90207509 -1952.80256263 76.69882594 -1930.25 51.5625 C-1929.53328125 50.80066406 -1928.8165625 50.03882813 -1928.078125 49.25390625 C-1925.94417557 46.99460897 -1925.94417557 46.99460897 -1923.94140625 44.41015625 C-1904.70709679 20.53174793 -1870.63793472 7.7880014 -1841.11476135 4.20918274 C-1834.86343959 3.59082994 -1828.52822682 3.75484996 -1822.25 3.75 C-1821.0763237 3.74898788 -1821.0763237 3.74898788 -1819.87893677 3.74795532 C-1807.69057641 3.76464594 -1795.9289134 4.29450095 -1784 7 C-1783.25621094 7.16097168 -1782.51242187 7.32194336 -1781.74609375 7.48779297 C-1764.46491394 11.34493452 -1748.56441405 18.55171919 -1735 30 C-1734.26652344 30.58394531 -1733.53304687 31.16789062 -1732.77734375 31.76953125 C-1727.36737174 36.22051015 -1723.1378658 41.36853991 -1719 47 C-1717.84177734 48.56814453 -1717.84177734 48.56814453 -1716.66015625 50.16796875 C-1702.93053614 69.4097 -1694.05256249 91.56019162 -1690.125 114.8125 C-1690.00447266 115.51600586 -1689.88394531 116.21951172 -1689.75976562 116.94433594 C-1688.66054385 124.41699575 -1689 131.23201133 -1689 139 C-1710.12 139 -1731.24 139 -1753 139 C-1753 134.71 -1753 130.42 -1753 126 C-1754.99879167 106.95887937 -1762.58614866 89.10317795 -1776.71875 75.83984375 C-1792.95745618 62.74321599 -1811.99333101 58.64784603 -1832.48828125 60.27734375 C-1851.72524063 62.37483153 -1868.22333857 69.42023958 -1881.0078125 84.34375 C-1892.11577255 99.1543634 -1894.63470621 117.48186665 -1892.60546875 135.50390625 C-1889.75697405 151.65762779 -1881.57801545 166.0250831 -1868.19091797 175.63476562 C-1847.43587659 189.81002916 -1823.72621429 199.16256495 -1800.58984375 208.625 C-1774.47160341 219.32348886 -1748.78260044 231.76673261 -1727 250 C-1726.43522949 250.46615723 -1725.87045898 250.93231445 -1725.28857422 251.41259766 C-1717.08192239 258.19744873 -1709.39299052 265.33543023 -1702 273 C-1701.84442627 272.45698242 -1701.68885254 271.91396484 -1701.52856445 271.35449219 C-1695.15337466 249.24135682 -1687.09229926 228.66530109 -1672 211 C-1671.56961426 210.49130371 -1671.13922852 209.98260742 -1670.69580078 209.45849609 C-1645.47512821 179.95489136 -1610.04746756 163.808477 -1571.74291992 160.19628906 C-1555.05181772 159.00183903 -1538.38854158 159.59405931 -1522 163 C-1521.33645508 163.13390137 -1520.67291016 163.26780273 -1519.98925781 163.40576172 C-1498.8567277 167.84197987 -1480.02267746 178.77108673 -1464 193 C-1463.15824219 193.74636719 -1462.31648438 194.49273437 -1461.44921875 195.26171875 C-1456.53750055 199.88316433 -1452.50219939 204.80042576 -1448.75 210.375 C-1448.36191162 210.95072754 -1447.97382324 211.52645508 -1447.57397461 212.11962891 C-1443.8341683 217.89378207 -1441.12898122 223.74203756 -1438 230 C-1437.67 208.22 -1437.34 186.44 -1437 164 C-1418.52 164 -1400.04 164 -1381 164 C-1380.67 181.82 -1380.34 199.64 -1380 218 C-1374.555 211.565 -1374.555 211.565 -1369 205 C-1346.64835936 179.52952578 -1320.20114686 162.74785811 -1286 159 C-1279.98520463 158.61833124 -1273.96217586 158.61057923 -1267.9375 158.625 C-1267.1218457 158.62521149 -1266.30619141 158.62542297 -1265.46582031 158.62564087 C-1239.0649391 158.69393464 -1214.47849669 163.9514192 -1195 183 C-1194.29230469 183.680625 -1193.58460938 184.36125 -1192.85546875 185.0625 C-1188.18662849 189.62674303 -1188.18662849 189.62674303 -1187 192 C-1186.67 182.76 -1186.34 173.52 -1186 164 C-1167.52 164 -1149.04 164 -1130 164 C-1129.67 188.42 -1129.34 212.84 -1129 238 C-1126.36 234.04 -1123.72 230.08 -1121 226 C-1096.03990657 191.2597792 -1061.51469259 167.81537817 -1019.07275391 160.49511719 C-1006.70577835 158.5845945 -994.51235031 157.50318609 -982 158 C-982 158.99 -982 159.98 -982 161 C-969.46 161 -956.92 161 -944 161 C-938.47700185 174.95798578 -933.33421287 189.03172982 -928.27249146 203.16275024 C-925.84117438 209.94961911 -923.4001214 216.73298656 -920.95703125 223.515625 C-920.58283837 224.55461913 -920.58283837 224.55461913 -920.20108604 225.61460304 C-915.06302321 239.87493702 -909.82354769 254.09710428 -904.5625 268.3125 C-896.19299391 290.93309797 -887.99767947 313.61243195 -879.86657715 336.31950474 C-878.68245295 339.62596731 -877.49774266 342.93221944 -876.3125 346.23828125 C-876.08353027 346.87696325 -875.85456055 347.51564526 -875.61865234 348.17368126 C-870.7760968 361.67448014 -865.83147182 375.13696667 -860.80688477 388.57104492 C-860.40947083 389.63860771 -860.40947083 389.63860771 -860.00402832 390.72773743 C-859.31198483 392.58621768 -858.61624416 394.44332009 -857.92016602 396.30029297 C-857 399 -857 399 -857 401 C-854.41225456 399.70612728 -854.39984157 398.84583912 -853.48217773 396.15014648 C-853.19614685 395.32216049 -852.91011597 394.4941745 -852.61541748 393.64109802 C-852.30791565 392.72699661 -852.00041382 391.8128952 -851.68359375 390.87109375 C-851.19176605 389.43921471 -851.19176605 389.43921471 -850.69000244 387.97840881 C-849.97616484 385.89798112 -849.2656298 383.81641808 -848.55795288 381.73388672 C-846.6420991 376.09742037 -844.70177255 370.46936397 -842.765625 364.83984375 C-842.36731979 363.67943573 -841.96901459 362.51902771 -841.55863953 361.32345581 C-837.67581525 350.0224161 -833.69191495 338.75841032 -829.6875 327.5 C-828.27388994 323.52113469 -826.86125329 319.5419247 -825.44921875 315.5625 C-825.09178085 314.55518326 -824.73434296 313.54786652 -824.36607361 312.51002502 C-819.87827057 299.85142082 -815.44109008 287.17504913 -811 274.5 C-804.37194575 255.58549409 -797.71333438 236.68223873 -791.01370239 217.79296875 C-784.30401716 198.87534826 -777.64449941 179.94064199 -771 161 C-750.54 161 -730.08 161 -709 161 C-709.33 162.32 -709.66 163.64 -710 165 C-680.795 165.495 -680.795 165.495 -651 166 C-651 130.69 -651 95.38 -651 59 C-632.52 59 -614.04 59 -595 59 C-595 94.31 -595 129.62 -595 166 C-558.04 166 -521.08 166 -483 166 C-483 180.52 -483 195.04 -483 210 C-519.96 210 -556.92 210 -595 210 C-594.90933969 240.76178688 -594.90933969 240.76178688 -594.79101562 271.5234375 C-594.73659958 284.0742052 -594.68518351 296.62493265 -594.65356445 309.17578125 C-594.63051885 318.31791571 -594.59704798 327.45994387 -594.55129844 336.60199392 C-594.52745444 341.43817596 -594.50866803 346.27425332 -594.50238609 351.11049271 C-594.49629508 355.67253077 -594.476152 360.23430126 -594.44572449 364.79623985 C-594.43700814 366.46094968 -594.43320822 368.12569457 -594.43499184 369.79042625 C-594.44758946 386.99026896 -592.434554 404.24194559 -579.953125 417.3203125 C-565.22059916 429.99028473 -541.8797664 427.98620115 -523.81738281 426.7890625 C-510.06936567 425.64230846 -497.1223438 422.83577873 -484.00097656 418.61669922 C-482.01432982 418.00441644 -480.02094916 417.4856852 -478 417 C-478.54527344 416.20980469 -479.09054687 415.41960937 -479.65234375 414.60546875 C-506.82715672 374.34513469 -512.63533163 322.53686223 -504 275.40234375 C-499.44338247 252.0402062 -491.10783886 229.66574819 -476 211 C-475.55253418 210.44715332 -475.10506836 209.89430664 -474.64404297 209.32470703 C-450.0352346 179.17048347 -416.16118427 161.11482062 -377.48974609 156.71435547 C-339.78661454 152.92574311 -302.12141226 158.78848508 -272 183 C-268.55836044 185.89647627 -265.25274667 188.89403793 -262 192 C-261.38898438 192.54785156 -260.77796875 193.09570312 -260.1484375 193.66015625 C-250.85660485 202.29434778 -244.69228661 213.81676167 -239 225 C-238.39865234 224.00033203 -238.39865234 224.00033203 -237.78515625 222.98046875 C-233.37305929 215.82706892 -228.4531678 209.3863302 -223 203 C-222.39027344 202.26652344 -221.78054688 201.53304687 -221.15234375 200.77734375 C-197.79307657 173.1612625 -161.65176935 156.39706443 -126.01904297 153.2109375 C-89.33304773 150.64772386 -47.6642361 156.07578743 -18.6484375 180.76953125 C-12.50504543 186.23410068 -6.80936385 192.19063615 -1 198 C-0.67 132.66 -0.34 67.32 0 0 Z M-1004 161 C-1001.72469435 168.72112012 -1001.72469435 168.72112012 -999.09887695 176.26611328 C-998.75875076 177.16629181 -998.41862457 178.06647034 -998.06819153 178.993927 C-997.71182114 179.92663422 -997.35545074 180.85934143 -996.98828125 181.8203125 C-996.61519333 182.80498505 -996.24210541 183.78965759 -995.85771179 184.8041687 C-994.67919847 187.91234758 -993.49593566 191.01869242 -992.3125 194.125 C-991.50684522 196.24727581 -990.7015037 198.36967057 -989.89648438 200.4921875 C-987.93460668 205.6628381 -985.96883883 210.83199628 -984 216 C-983.67 216 -983.34 216 -983 216 C-983 197.85 -983 179.7 -983 161 C-989.93 161 -996.86 161 -1004 161 Z M-743 166 C-743 180.19 -743 194.38 -743 209 C-738.05 209 -733.1 209 -728 209 C-725.71924785 203.03766803 -723.44064348 197.07452159 -721.1640625 191.1105957 C-720.38861751 189.0800943 -719.61257669 187.04982033 -718.8359375 185.01977539 C-717.72240532 182.10882614 -716.61098932 179.19707679 -715.5 176.28515625 C-715.15001953 175.3716188 -714.80003906 174.45808136 -714.43945312 173.51686096 C-713.95895508 172.25566689 -713.95895508 172.25566689 -713.46875 170.96899414 C-713.18451172 170.22508926 -712.90027344 169.48118439 -712.60742188 168.71473694 C-711.94434911 167.14608953 -711.94434911 167.14608953 -712 166 C-722.23 166 -732.46 166 -743 166 Z M-1185 198 C-1185 287.76 -1185 377.52 -1185 470 C-1179.72 470 -1174.44 470 -1169 470 C-1168.93143911 440.9547049 -1168.87840761 411.90941774 -1168.84680401 382.86405778 C-1168.84305227 379.42849607 -1168.83916926 375.99293452 -1168.83520508 372.55737305 C-1168.83402468 371.53151294 -1168.83402468 371.53151294 -1168.83282044 370.48492838 C-1168.81979615 359.43727656 -1168.79615888 348.38967198 -1168.76854161 337.3420481 C-1168.74040426 325.99100186 -1168.7240305 314.63999045 -1168.71773452 303.28890711 C-1168.71383393 296.91956205 -1168.70470817 290.55032383 -1168.68280983 284.18101311 C-1168.66233594 278.17695164 -1168.65618816 272.17304028 -1168.66067696 266.16894722 C-1168.65985662 263.97409879 -1168.65395638 261.77924495 -1168.64238358 259.58442688 C-1168.52850898 236.85893441 -1172.53228988 217.89498988 -1184 198 C-1184.33 198 -1184.66 198 -1185 198 Z M-176.3046875 234.42578125 C-198.43886174 260.04802575 -199.92338152 298.17599089 -197.7890625 330.16113281 C-195.33841839 358.11147145 -186.06745326 381.90563149 -165 401 C-146.14919011 416.38326961 -124.13642445 422.6397756 -100 421 C-78.85108475 418.56339774 -59.95640278 410.62609347 -46 394 C-34.94668488 378.73483699 -32 360.45147305 -32 342 C-21.44 342 -10.88 342 0 342 C0 315.27 0 288.54 0 261 C-19.8 260.505 -19.8 260.505 -40 260 C-40.99 254.39 -41.98 248.78 -43 243 C-48.17236166 228.05762188 -56.28320087 218.4155804 -70.46313477 211.4753418 C-108.67760089 193.57628267 -148.35408439 205.00658713 -176.3046875 234.42578125 Z M-422.1015625 228.125 C-430.66351449 237.9490724 -443 257.36254107 -443 271 C-391.85 271 -340.7 271 -288 271 C-291.83932115 250.52362054 -297.10173272 229.2973802 -314.75 216.3125 C-347.92262839 194.39664941 -394.39834423 200.11282391 -422.1015625 228.125 Z M1 204 C1 222.48 1 240.96 1 260 C7.27 260 13.54 260 20 260 C19.21713059 239.64539529 14.36544335 220.6916453 2 204 C1.67 204 1.34 204 1 204 Z M-1618 229 C-1628.03863861 239.57582329 -1642 259.48301607 -1642 275 C-1591.18 275 -1540.36 275 -1488 275 C-1488.88551212 265.0892842 -1488.88551212 265.0892842 -1491.125 255.625 C-1491.34381836 254.9023999 -1491.56263672 254.1797998 -1491.78808594 253.43530273 C-1496.87973273 237.43474971 -1506.74512363 223.99720214 -1521.44921875 215.6015625 C-1552.30710217 200.38018503 -1592.81925178 205.16671657 -1618 229 Z M-240 229 C-251.53393574 253.23882943 -258.3067308 278.15586758 -258.0625 305.125 C-258.041875 308.38375 -258.02125 311.6425 -258 315 C-247.11 315 -236.22 315 -225 315 C-225 285.99884574 -227.61069329 256.00892734 -239 229 C-239.33 229 -239.66 229 -240 229 Z M-1436 241 C-1436 266.74 -1436 292.48 -1436 319 C-1432.04 319 -1428.08 319 -1424 319 C-1423.67539846 278.47906518 -1423.67539846 278.47906518 -1436 241 Z M-1701 278 C-1702.52506172 282.92875309 -1703.52726143 287.72960394 -1704.10546875 292.86328125 C-1704.18935349 293.59879715 -1704.27323822 294.33431305 -1704.35966492 295.09211731 C-1705.21041182 303.1221247 -1705.3532755 311.11897873 -1705.3125 319.1875 C-1705.31067719 319.94491486 -1705.30885437 320.70232971 -1705.30697632 321.48269653 C-1705.25585121 334.1762118 -1704.52069659 346.5280101 -1702 359 C-1701.75056641 360.25176025 -1701.75056641 360.25176025 -1701.49609375 361.52880859 C-1696.94446315 383.6816676 -1696.94446315 383.6816676 -1686 403 C-1682.91820595 394.66399971 -1680.48686547 386.40466033 -1678.75 377.6875 C-1678.58725586 376.87700195 -1678.42451172 376.06650391 -1678.25683594 375.23144531 C-1672.27551197 343.9279133 -1676.55972108 312.93711096 -1694 286 C-1696.82625694 281.86616954 -1696.82625694 281.86616954 -1700 278 C-1700.33 278 -1700.66 278 -1701 278 Z M-446 316 C-446 342.66759364 -443.1897729 371.39315484 -426 393 C-425.42894531 393.74636719 -424.85789062 394.49273437 -424.26953125 395.26171875 C-410.75995521 411.76702167 -389.00984913 421.4399974 -368.12280273 423.81689453 C-344.56847755 425.84860746 -322.18585198 421.71276312 -303.4375 406.5 C-291.61123896 395.46772822 -284.97417228 379.79337825 -283 364 C-273.1 364 -263.2 364 -253 364 C-254.21378922 357.18034417 -254.21378922 357.18034417 -255.45263672 350.36523438 C-257.42870391 338.88503237 -258.0186221 327.77653484 -259 316 C-320.71 316 -382.42 316 -446 316 Z M-1645 320 C-1645 350.57117971 -1640.94051729 381.57898832 -1618.73046875 404.32421875 C-1600.47369566 421.69617247 -1577.11478966 428.55988158 -1552.38964844 428.35375977 C-1533.51297348 427.83957349 -1513.36549519 422.09618285 -1500 408 C-1491.05737685 397.23735179 -1482 382.45349756 -1482 368 C-1467.15 368 -1452.3 368 -1437 368 C-1437 352.16 -1437 336.32 -1437 320 C-1505.64 320 -1574.28 320 -1645 320 Z M1 343 C1 368.74 1 394.48 1 421 C4.91334777 417.08665223 7.69898712 413.72434054 10.4375 409.0625 C10.82510498 408.40717285 11.21270996 407.7518457 11.61206055 407.07666016 C15.35273019 400.61331684 18.35847018 393.99276146 21 387 C21.37898438 386.00097656 21.75796875 385.00195312 22.1484375 383.97265625 C24.46785323 377.19752083 25.71150201 370.37614632 26.75 363.3125 C26.87785889 362.4455249 27.00571777 361.5785498 27.13745117 360.68530273 C27.95380123 354.63305229 28 349.26974765 28 343 C19.09 343 10.18 343 1 343 Z M-251 365 C-247.86718124 379.09768444 -242.42735985 390.76559253 -235 403 C-234.34 403 -233.68 403 -233 403 C-229.5596218 395.12153393 -226.59734073 387.31994808 -224.625 378.9375 C-224.45774414 378.23633057 -224.29048828 377.53516113 -224.11816406 376.81274414 C-223.19415038 372.67107637 -223 369.33084329 -223 365 C-232.24 365 -241.48 365 -251 365 Z M-1436 369 C-1436 383.19 -1436 397.38 -1436 412 C-1426.2997305 402.2997305 -1422.80588651 382.09565576 -1422 369 C-1426.62 369 -1431.24 369 -1436 369 Z M-469.625 414 C-470.62789062 414.556875 -471.63078125 415.11375 -472.6640625 415.6875 C-473.43492188 416.120625 -474.20578125 416.55375 -475 417 C-473.38419835 420.87792397 -470.75734641 423.71078788 -467.9375 426.75 C-467.47794922 427.25660156 -467.01839844 427.76320313 -466.54492188 428.28515625 C-465.38757425 429.54617231 -464.19649813 430.77606893 -463 432 C-462.67 432 -462.34 432 -462 432 C-462 425.07 -462 418.14 -462 411 C-465.0271098 411 -467.00416068 412.53720596 -469.625 414 Z "
+            fill="#1B4C43"
+            transform="translate(1998,36)"
+          />
+        </svg>
+      </div>
+      <a href="https://www.senrytech.com/" class="nav-link">首页</a>
+      <!-- 全系列产品细细看-添加下拉菜单结构 -->
+      <div class="nav-item">
+        <a href="https://www.senrytech.com/products/" class="nav-link"
+          >产品中心</a
+        >
+        <!-- 半屏二级菜单（新增内部分栏结构） -->
+        <div class="dropdown-menu">
+          <div class="dropdown-inner">
+            <!-- 左侧：分类列表 -->
+            <div class="dropdown-category">
+              <div class="category-item active" data-target="board">
+                <a
+                  href="https://www.senrytech.com/products/laser-sheet-cutting/"
+                  >板材切割机</a
+                >
+              </div>
+              <div class="category-item" data-target="tube">
+                <a href="https://www.senrytech.com/products/laser-tube-cutting/"
+                  >管材切割机</a
+                >
+              </div>
+              <div class="category-item" data-target="board-tube">
+                <a href="https://www.senrytech.com/products/laser-sheet-tube/"
+                  >板管一体机</a
+                >
+              </div>
+              <div class="category-item" data-target="welding">
+                <a href="https://www.senrytech.com/products/laser-welding/"
+                  >激光焊接机</a
+                >
+              </div>
+              <div class="category-item" data-target="cleaning">
+                <a href="https://www.senrytech.com/products/laser-cleaning/"
+                  >激光清洗机</a
+                >
+              </div>
+              <div class="category-item" data-target="marking">
+                <a href="https://www.senrytech.com/products/laser-marking/"
+                  >激光打标机</a
+                >
+              </div>
+            </div>
+
+            <!-- 右侧：对应分类的内容区 -->
+            <div class="dropdown-content">
+              <!-- 1. 板材切割机内容（默认显示） -->
+              <div class="content-item active" id="board">
+                <h3>激光板材切割机系列</h3>
+                <div class="product-list">
+                  <!-- 产品1：Senrytech A -->
+                  <div class="product-card">
+                    <!-- 图片加链接：对应板材切割机下的Senrytech A详情页 -->
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                        alt="Senrytech A 经济款光纤激光切割机"
+                      />
+                    </a>
+                    <!-- 文字加链接：与图片跳转地址一致 -->
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    >
+                      <p>Senrytech A</p>
+                    </a>
+                  </div>
+                  <!-- 产品2：Senrytech B -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        alt="Senrytech B 中厚板光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    >
+                      <p>Senrytech B</p>
+                    </a>
+                  </div>
+                  <!-- 产品3：Senrytech B Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                        alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    >
+                      <p>Senrytech B Plus</p>
+                    </a>
+                  </div>
+                  <!-- 产品4：Senrytech B Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                        alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    >
+                      <p>Senrytech B Pro</p>
+                    </a>
+                  </div>
+                  <!-- 产品5：Senrytech B ProMax -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                        alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    >
+                      <p>Senrytech B ProMax</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                        alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    >
+                      <p>Senrytech B Ultra</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                        alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    >
+                      <p>Senrytech C</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                        alt="Senrytech C Pro 铝卷光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                    >
+                      <p>Senrytech C Pro</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                        alt="Senrytech G 12000W-60000W光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    >
+                      <p>Senrytech G</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                        alt="Senrytech M 小型精密光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    >
+                      <p>Senrytech M</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                        alt="Senrytech S 型钢光纤激光切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    >
+                      <p>Senrytech S</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. 管材切割机内容（默认隐藏） -->
+              <div class="content-item" id="tube">
+                <h3>激光管材切割机系列</h3>
+                <div class="product-list">
+                  <!-- 产品1：Senrytech A2 -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 高性价比管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                    >
+                      <p>Senrytech A2</p>
+                    </a>
+                  </div>
+                  <!-- 产品2：Senrytech A2 Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 Plus 高功率电机管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                    >
+                      <p>Senrytech A2 Plus</p>
+                    </a>
+                  </div>
+                  <!-- 产品3：Senrytech A2 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                    >
+                      <p>Senrytech A2 Ultra</p>
+                    </a>
+                  </div>
+                  <!-- 产品4：Senrytech B3 Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech B3 Plus 三卡盘管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                    >
+                      <p>Senrytech B3 Plus</p>
+                    </a>
+                  </div>
+                  <!-- 产品5：Senrytech B3 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                    >
+                      <p>Senrytech B3 Ultra</p>
+                    </a>
+                  </div>
+                  <!-- 产品6：Senrytech C4 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                    >
+                      <p>Senrytech C4 Ultra</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. 板管一体机内容（默认隐藏） -->
+              <div class="content-item" id="board-tube">
+                <h3>激光板管一体机系列</h3>
+                <div class="product-list">
+                  <!-- 产品1：Senrytech BT -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
+                        alt="Senrytech BT 高性价比板管一体机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                    >
+                      <p>Senrytech BT</p>
+                    </a>
+                  </div>
+                  <!-- 产品2：Senrytech BT Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
+                        alt="Senrytech BT Pro 中小批量板管加工设备"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <p>Senrytech BT Pro</p>
+                    </a>
+                  </div>
+                  <!-- 产品3：Senrytech BT ProMax -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
+                        alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <p>Senrytech BT ProMax</p>
+                    </a>
+                  </div>
+                  <!-- 产品4：Senrytech BT Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
+                        alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                    >
+                      <p>Senrytech BT Ultra</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. 焊接机内容（默认隐藏） -->
+              <div class="content-item" id="welding">
+                <h3>激光焊接机系列</h3>
+                <div class="product-list">
+                  <!-- 焊接机：Series A -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                        alt="Series A 四合一激光焊接机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a/"
+                    >
+                      <p>Series A</p>
+                    </a>
+                  </div>
+                  <!-- 焊接机：Series A Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                        alt="Series A Pro 1500-3000W激光焊接机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                    >
+                      <p>Series A Pro</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                        alt="Series A Ultra 大功率激光焊接机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                    >
+                      <p>Series A Ultra</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                        alt="Robot 4 in 1 四合一焊接设备"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                    >
+                      <p>R 4in1</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                        alt="R Workstation 1500-3000W 移动焊接机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                    >
+                      <p>R Workstation</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                        alt="R Mobile 协作机器人焊接设备"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                    >
+                      <p>R Mobile</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. 清洗内容（默认隐藏） -->
+              <div class="content-item" id="cleaning">
+                <h3>激光清洗机系列</h3>
+                <div class="product-list">
+                  <!-- 清洗机：家用 -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/residential/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                        alt="Residential 家用除锈激光清洗机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/residential/"
+                    >
+                      <p>Residential</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                        alt="Commercial cc"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                    >
+                      <p>Commercial</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/industrial/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                        alt="Industrial 大功率激光清洗机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/industrial/"
+                    >
+                      <p>Industrial</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 6. 打标机内容（默认隐藏） -->
+              <div class="content-item" id="marking">
+                <h3>激光打标机系列</h3>
+                <div class="product-list">
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-p/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                        alt="便携台式激光打标机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-p/"
+                    >
+                      <p>Series P</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-d/"
+                    >
+                      <img
+                        src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                        alt="台式激光打标机"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/series-d/"
+                    >
+                      <p>Series D</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.senrytech.com/solutions/" class="nav-link"
+        >选型方案</a
+      >
+      <a
+        href="https://www.senrytech.com/pitfall-avoidance-guide/"
+        class="nav-link"
+        >避坑指南</a
+      >
+      <a href="https://www.senrytech.com/news/" class="nav-link">新闻动态</a>
+      <a href="https://www.senrytech.com/download/" class="nav-link"
+        >资料下载</a
+      >
+      <a href="https://www.senrytech.com/about-us/" class="nav-link"
+        >关于我们</a
+      >
+      <a href="https://www.senrytech.com/join-us/" class="nav-link">加入我们</a>
+      <a href="https://www.senrytech.com/contact-us/" class="nav-link"
+        >联系我们</a
+      >
+      <div class="navbar-right">
+        <div class="lang-dropdown" id="langDropdown">
+          <!-- 语言触发按钮（保留原“中/EN”样式） -->
+          <button class="btn language-btn">
+            <i class="fa fa-globe"></i>
+            <!-- Font Awesome 地球图标 -->
+          </button>
+          <!-- 多语言首页链接列表 -->
+          <ul class="lang-dropdown-list">
+            <li><a href="/index.html" lang="zh" class="lang-link">中文</a></li>
+            <li>
+              <a href="https://www.senrytech.com/en" lang="en" class="lang-link"
+                >英语</a
+              >
+            </li>
+            <li>
+              <a href="/de/index.html" lang="de" class="lang-link">德语</a>
+            </li>
+            <li>
+              <a href="/es/index.html" lang="es" class="lang-link">西班牙语</a>
+            </li>
+            <li>
+              <a href="/fr/index.html" lang="fr" class="lang-link">法语</a>
+            </li>
+            <li>
+              <a href="/ru/index.html" lang="ru" class="lang-link">俄语</a>
+            </li>
+            <li>
+              <a href="/ar/index.html" lang="ar" class="lang-link">阿拉伯语</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 询价/看厂按钮（信封/工厂图标，二选一） - 新增超链接 -->
+        <a href="https://www.senrytech.com/contact-us" target="_blank">
+          <!-- href填实际跳转地址，target="_blank"可选（新标签页打开） -->
+          <button class="btn inquiry-btn">
+            <i class="fa fa-envelope"></i>
+            <!-- 询价：信封图标 -->
+          </button>
+        </a>
+        <!-- 新增：汉堡按钮（仅小屏幕显示） -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 新增：手机移动端的侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
+    <div class="sidebar-menu" id="sidebarMenu">
+      <!-- 侧边栏头部（LOGO+关闭按钮） -->
+      <div class="sidebar-header">
+        <div class="sidebar-logo">Senrytech</div>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn">×</button>
+      </div>
+      <!-- 侧边栏菜单列表 -->
+      <ul class="sidebar-menu-list">
+        <!-- 首页（无下拉） -->
+        <li class="sidebar-menu-item">
+          <a href="https://www.senrytech.com/" class="sidebar-menu-link">
+            首页
+          </a>
+        </li>
+        <!-- 产品中心（带下拉子菜单） -->
+        <li class="sidebar-menu-item has-submenu">
+          <div class="sidebar-menu-link submenu-trigger">
+            产品中心
+            <i class="sidebar-arrow fa fa-chevron-down"></i>
+            <!-- 箭头图标 -->
+          </div>
+          <!-- 产品子菜单（默认隐藏） -->
+          <ul class="sidebar-submenu" id="productSubmenu">
+            <!-- 子菜单项：对应原有分类 -->
+            <li class="sidebar-submenu-item" data-target="board">
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/"
+                class="sidebar-submenu-link"
+              >
+                板材切割机
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="tube">
+              <a
+                href="https://www.senrytech.com/products/laser-tube-cutting/"
+                class="sidebar-submenu-link"
+              >
+                管材切割机
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="board-tube">
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-tube/"
+                class="sidebar-submenu-link"
+              >
+                板管一体机
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="welding">
+              <a
+                href="https://www.senrytech.com/products/laser-welding/"
+                class="sidebar-submenu-link"
+              >
+                激光焊接机
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="cleaning">
+              <a
+                href="https://www.senrytech.com/products/laser-cleaning/"
+                class="sidebar-submenu-link"
+              >
+                激光清洗机
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="marking">
+              <a
+                href="https://www.senrytech.com/products/laser-marking/"
+                class="sidebar-submenu-link"
+              >
+                激光打标机
+              </a>
+            </li>
+          </ul>
+          <!-- 产品子菜单内容（三列小图，默认隐藏） -->
+          <div class="sidebar-submenu-content" id="productSubmenuContent">
+            <!-- 板材切割机内容（默认显示） -->
+            <div class="submenu-content-item active" id="boardContent">
+              <h4 class="submenu-content-title">激光板材切割机系列</h4>
+              <div class="submenu-product-list">
+                <!-- 产品1：Senrytech A -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                  >
+                    <img
+                      src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                      alt="Senrytech A 经济款光纤激光切割机"
+                    />
+                    <p>Senrytech A</p>
+                  </a>
+                </div>
+                <!-- 产品2：Senrytech B -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                      alt="Senrytech B 中厚板光纤激光切割机"
+                    />
+                    <p>Senrytech B</p>
+                  </a>
+                </div>
+                <!-- 产品3：Senrytech B Plus -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                      alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                    />
+                    <p>Senrytech B Plus</p>
+                  </a>
+                </div>
+                <!-- 产品4：Senrytech B Pro -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                      alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                    />
+                    <p>Senrytech B Pro</p>
+                  </a>
+                </div>
+                <!-- 产品5：Senrytech B ProMax -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                      alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                    />
+                    <p>Senrytech B ProMax</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech B Ultra -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                    />
+                    <p>Senrytech B Ultra</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech C -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
+                      alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                    />
+                    <p>Senrytech C</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech C Pro -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/c-pro/banner/senrytech-c-laser-coil-sheet-cutting-2.png"
+                      alt="Senrytech C Pro 铝卷光纤激光切割机"
+                    />
+                    <p>Senrytech C Pro</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech G -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-2.png"
+                      alt="Senrytech G 12000W-60000W光纤激光切割机"
+                    />
+                    <p>Senrytech G</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech M -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-2.webp"
+                      alt="Senrytech M 小型精密光纤激光切割机"
+                    />
+                    <p>Senrytech M</p>
+                  </a>
+                </div>
+                <!-- 产品6：Senrytech S -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/s/banner/senrytech-s-profile-steel-cutting-2.webp"
+                      alt="Senrytech S 型钢光纤激光切割机"
+                    />
+                    <p>Senrytech S</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- 管材切割机内容（默认隐藏） -->
+            <div class="submenu-content-item" id="tubeContent">
+              <h4 class="submenu-content-title">激光管材切割机系列</h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 高性价比管材切割机"
+                    />
+                    <p>Senrytech A2</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 Plus 高功率电机管材切割机"
+                    />
+                    <p>Senrytech A2 Plus</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                    />
+                    <p>Senrytech A2 Ultra</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech B3 Plus 三卡盘管材切割机"
+                    />
+                    <p>Senrytech B3 Plus</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                    />
+                    <p>Senrytech B3 Ultra</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                    />
+                    <p>Senrytech C4 Ultra</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="board-tubeContent">
+              <h4 class="submenu-content-title">板管一体机系列</h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
+                      alt="Senrytech BT 高性价比板管一体机"
+                    />
+                    <p>Senrytech BT</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
+                      alt="Senrytech BT Pro 中小批量板管加工设备"
+                    />
+                    <p>Senrytech BT Pro</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
+                      alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                    />
+                    <p>Senrytech BT ProMax</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
+                      alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                    />
+                    <p>Senrytech BT Ultra</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="weldingContent">
+              <h4 class="submenu-content-title">激光焊接机系列</h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                      alt="Series A 四合一激光焊接机"
+                    />
+                    <p>Series A</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                      alt="Series A Pro 1500-3000W激光焊接机"
+                    />
+                    <p>Series A Pro</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                      alt="Series A Ultra 大功率激光焊接机"
+                    />
+                    <p>Series A Ultra</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                      alt="Robot 4 in 1 四合一焊接设备"
+                    />
+                    <p>R 4in1</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                      alt="R Workstation 1500-3000W 移动焊接机"
+                    />
+                    <p>R Workstation</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                      alt="R Mobile 协作机器人焊接设备"
+                    />
+                    <p>R Mobile</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="cleaningContent">
+              <h4 class="submenu-content-title">激光清洗机系列</h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/residential/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                      alt="Residential 家用除锈激光清洗机"
+                    />
+                    <p>Residential</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                      alt="Commercial 家用除锈激光清洗机"
+                    />
+                    <p>Commercial</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/industrial/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                      alt="Industrial 大功率激光清洗机"
+                    />
+                    <p>Industrial</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="markingContent">
+              <h4 class="submenu-content-title">激光打标机系列</h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-p/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                      alt="便携台式激光打标机"
+                    />
+                    <p>Series P</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-d/"
+                  >
+                    <img
+                      src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                      alt="台式激光打标机"
+                    />
+                    <p>Series D</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 其他菜单项（无下拉） -->
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/solutions/"
+            class="sidebar-menu-link"
+          >
+            选型方案
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/pitfall-avoidance-guide/"
+            class="sidebar-menu-link"
+          >
+            避坑指南
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
+            新闻动态
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/download/"
+            class="sidebar-menu-link"
+          >
+            资料下载
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/about-us/"
+            class="sidebar-menu-link"
+          >
+            关于我们
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/contact-us/"
+            class="sidebar-menu-link"
+          >
+            联系我们
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- 详情页核心内容 → 苹果风美化版 -->
+    <section class="pit-detail-section apple-design">
+      <!-- 头部：标签+标题 -->
+      <div class="pit-detail-header animate-fade-in">
+        <span class="pit-detail-tag apple-tag">干货</span>
+        <h1 class="pit-detail-title apple-title">
+          为什么发现即使与厂家签署独家协议，但是市面上依然有同款机型？
+        </h1>
+      </div>
+
+      <!-- 图片区域：苹果大圆角+阴影+渐入 -->
+      <div class="pit-detail-img apple-img-container animate-fade-in-delay">
+        <img
+          src="../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-source.webp"
+          alt="核心部件偷梁换柱"
+          class="apple-img"
+        />
+      </div>
+
+      <div class="pit-detail-content apple-content pit-content-item">
+        <p class="animate-fade-in-delay-1">
+          <strong class="key-title">核心真相：</strong
+          >很多激光设备厂家会注册多家空壳公司/关联企业，规避独家代理协议约束。
+        </p>
+        <p class="animate-fade-in-delay-1">
+          若你与公司A签署独家代理销售协议，公司A往往会通过关联公司B、C继续向你的代理区域出口同款设备，这是行业最普遍的规避手段；<br />
+          更隐蔽的方式是：厂家将同款机器更换外观、配色甚至仅修改设备型号编码，以「新品」名义继续销往你的区域，形式上规避协议条款，实质侵犯你的独家代理权益。
+        </p>
+        <p class="animate-fade-in-delay-2 warning-block">
+          <strong class="warning-title">协议陷阱：</strong
+          >多数独家代理协议看似双向约束，实则条款设计极度偏向厂家——仅严格限制客户（禁止从其他供应商采购、禁止跨区域销售等），对厂家的「独家履约义务」却模糊化处理，甚至添加「最终解释权归厂家所有」「因市场变化厂家可单方调整条款」等霸王条款，属于典型的不公平、不对等商业条款。
+        </p>
+        <p class="animate-fade-in-delay-3">
+          <strong class="key-title">行业现状与应对建议：</strong
+          >这类现象并非仅存在于中小厂家，大型企业同样存在「店大欺客」的情况，全球市场均遵循这一逻辑。<br />
+          切勿盲目迷信厂家的广告宣传、品牌包装，合作前务必实地考察工厂产能、核实企业股权关系（排查关联公司）；优先以小机型、小批量订单切入合作，逐步建立信任；<br />
+          签署协议时，务必明确「关联企业视同厂家履约主体」「设备外观/型号调整需提前书面告知代理」「厂家违约的具体赔偿标准」等核心条款，从法律层面降低合作风险——毕竟国际贸易中，信任的建立永远需要规则兜底。
+        </p>
+
+        <!-- 返回按钮：苹果玻璃态按钮 -->
+        <div class="animate-fade-in-delay-5">
+          <a
+            href="https://www.senrytech.com/pitfall-avoidance-guide/"
+            class="back-btn apple-btn"
+          >
+            <i class="fa fa-arrow-left"></i> 返回避坑指南列表
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 十一，代码 底部导航栏-->
+    <footer class="footer-new">
+      <div class="footer-container">
+        <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <img
+              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              alt="Senrytech Logo"
+            />
+            <span class="brand-name">Senrytech</span>
+          </div>
+          <p class="brand-desc">
+            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
+          </p>
+          <div class="social-icons">
+            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
+            <a class="icon" href="#" title="Facebook">
+              <i class="fa fa-facebook text-xl"></i>
+              <!-- 4.7.0 支持的默认前缀 fa -->
+            </a>
+            <a class="icon" href="#" title="Instagram">
+              <i class="fa fa-instagram text-xl"></i>
+            </a>
+            <a class="icon" href="#" title="YouTube">
+              <i class="fa fa-youtube-play text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. 中间：产品中心 -->
+        <div class="footer-column">
+          <h3>产品中心</h3>
+          <ul>
+            <li><a href="#">板材切割机</a></li>
+            <li><a href="#">管材切割机</a></li>
+            <li><a href="#">板管一体机</a></li>
+            <li><a href="#">激光焊接机</a></li>
+            <li><a href="#">激光清洗机</a></li>
+            <li><a href="#">激光打标机</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. 右侧：关于我们 -->
+        <div class="footer-column">
+          <h3>关于我们</h3>
+          <ul>
+            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">企业责任</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">核心团队</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">发展历程</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">员工福利</a></li>
+            <li><a href="https://www.senrytech.com/about-us/">合作案例</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. 最右侧：联系我们+二维码 -->
+        <div class="footer-column footer-contact">
+          <h3>联系我们</h3>
+          <ul class="contact-list">
+            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+              <span>中国·济南市历城区舜华路街道综合产业工业园</span>
+            </li>
+            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-phone"></i></span>
+              <span>+86 134 6557 5719</span>
+            </li>
+            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+              <span>info@senrytech.com</span>
+            </li>
+            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
+              <span>周一至周六: 9:00-18:00</span>
+            </li>
+          </ul>
+          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
+          <div class="wechat-qrcode">
+            <h4>微信咨询</h4>
+            <div class="qrcode-group">
+              <div class="qrcode-item">
+                <img
+                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  alt="售前客服咨询"
+                />
+                <p>售前客服咨询</p>
+              </div>
+              <div class="qrcode-item">
+                <img
+                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  alt="微信二维码2"
+                />
+                <p>售后客户咨询</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部版权信息（补充完整结构） -->
+      <div class="footer-bottom">
+        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
+        <div class="bottom-right">
+          <a href="#">隐私政策</a>
+          <a href="#">服务条款</a>
+          <a href="#">网站地图</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
+    <script>
+      /* ================================== 二、导航栏滚动透视效果 ================================== */
+      // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
+      // 触发时机：页面滚动事件（scroll）
+      window.addEventListener("scroll", function () {
+        // 获取导航栏DOM元素（仅需查询1次，避免重复DOM操作）
+        const navbar = document.querySelector(".navbar");
+        // 逻辑判断：滚动距离>0时显示透视效果，否则恢复初始样式
+        if (window.scrollY > 0) {
+          navbar.classList.add("scrolled"); // 添加透视样式类
+        } else {
+          navbar.classList.remove("scrolled"); // 移除透视样式类
+        }
+      });
+
+      // 等待DOM加载完成
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 获取元素
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sidebarMenu = document.getElementById("sidebarMenu");
+        const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const submenuTrigger = document.querySelector(".submenu-trigger"); // 产品中心展开/收起触发器
+        const hasSubmenuItem = document.querySelector(
+          ".sidebar-menu-item.has-submenu"
+        ); // 产品中心父项
+        const productSubmenuItems = document.querySelectorAll(
+          ".sidebar-submenu-item"
+        ); // 产品分类项
+        const submenuContentItems = document.querySelectorAll(
+          ".submenu-content-item"
+        ); // 产品内容项（boardContent等）
+        const submenuContent = document.getElementById("productSubmenuContent"); // 产品内容总容器
+        const body = document.body;
+
+        // 2. 汉堡按钮：展开/收起侧边菜单
+        function toggleSidebar() {
+          sidebarMenu.classList.toggle("active");
+          sidebarOverlay.classList.toggle("active");
+          hamburgerBtn.classList.toggle("active");
+          // 禁止背景滚动
+          body.classList.toggle("body-fixed");
+
+          // 【新增】侧边菜单收起时，同步收起产品内容（避免残留）
+          if (!sidebarMenu.classList.contains("active")) {
+            resetProductSubmenu();
+          }
+        }
+        hamburgerBtn.addEventListener("click", toggleSidebar);
+        sidebarCloseBtn.addEventListener("click", toggleSidebar);
+        sidebarOverlay.addEventListener("click", toggleSidebar); // 点击遮罩层收起
+
+        // 3. 产品中心：点击展开/收起【分类列表】+ 同步控制产品内容
+        submenuTrigger.addEventListener("click", function () {
+          // 切换分类列表的展开/收起状态
+          hasSubmenuItem.classList.toggle("active");
+
+          // 【核心修复】判断分类列表是否收起，同步处理产品内容
+          if (!hasSubmenuItem.classList.contains("active")) {
+            resetProductSubmenu(); // 收起时重置产品内容
+          } else {
+            // 展开时仅显示分类列表，不默认展开任何产品内容（符合原需求）
+            submenuContent.style.display = "none";
+            submenuContent.style.maxHeight = "0";
+          }
+        });
+
+        // 4. 产品分类切换：点击分类项，显示对应产品内容
+        productSubmenuItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // 步骤1：重置所有分类项的active状态
+            productSubmenuItems.forEach((i) => i.classList.remove("active"));
+            this.classList.add("active"); // 标记当前分类为激活
+
+            // 步骤2：获取目标内容ID（确保data-target和内容ID匹配，如data-target="board" → ID="boardContent"）
+            const targetId = this.getAttribute("data-target") + "Content";
+            const targetContent = document.getElementById(targetId);
+            if (!targetContent) return; // 防止ID不匹配导致报错
+
+            // 步骤3：隐藏所有产品内容项，显示当前项
+            submenuContentItems.forEach((content) => {
+              content.style.display = "none";
+            });
+            targetContent.style.display = "block";
+
+            // 步骤4：显示产品内容总容器（展开动画）
+            submenuContent.style.display = "block";
+            // 用setTimeout确保display生效后再设置maxHeight，触发过渡动画
+            setTimeout(() => {
+              submenuContent.style.maxHeight = "calc(100vh - 200px)";
+            }, 10);
+
+            // （可选）滚动到产品内容区域
+            targetContent.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          });
+        });
+
+        // 5. 侧边菜单滚动：同步导航栏模糊效果
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // 6. 窗口 resize 时：自动收起侧边菜单+产品内容（避免适配异常）
+        window.addEventListener("resize", function () {
+          if (
+            window.innerWidth >= 1024 &&
+            sidebarMenu.classList.contains("active")
+          ) {
+            toggleSidebar(); // 收起侧边菜单
+            resetProductSubmenu(); // 同步收起产品内容
+          }
+        });
+
+        // 【新增】统一重置产品内容的工具函数（避免重复代码）
+        function resetProductSubmenu() {
+          // 1. 隐藏所有产品内容项（boardContent等）
+          submenuContentItems.forEach((content) => {
+            content.style.display = "none";
+          });
+          // 2. 收起产品内容总容器（先置maxHeight为0，再隐藏display）
+          submenuContent.style.maxHeight = "0";
+          // 用setTimeout确保过渡动画完成后再隐藏display，避免闪烁
+          setTimeout(() => {
+            submenuContent.style.display = "none";
+          }, 300); // 延迟时间需与CSS中submenuContent的transition-duration一致
+          // 3. 重置产品分类项的active状态
+          productSubmenuItems.forEach((i) => i.classList.remove("active"));
+        }
+      });
+
+      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
+      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
+      // 触发时机：分类项的mouseenter事件
+
+      // —— 3.1 初始化分类切换所需变量 ——
+      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
+      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
+
+      // —— 3.2 绑定分类项hover事件 ——
+      categoryItems.forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          // 1. 重置所有分类项状态：移除激活类
+          categoryItems.forEach((catItem) =>
+            catItem.classList.remove("active")
+          );
+          // 2. 激活当前hover的分类项
+          this.classList.add("active");
+
+          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
+          const targetId = this.getAttribute("data-target");
+          // 4. 重置所有内容区状态：隐藏所有内容
+          contentItems.forEach((content) => content.classList.remove("active"));
+          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
+          const targetContent = document.getElementById(targetId);
+          if (targetContent) {
+            targetContent.classList.add("active");
+          }
+        });
+      });
+
+      /* ================================== 三、BANNER轮播模块（含圆点指示器） ================================== */
+      // 作用：实现BANNER图自动切换、手动控制（箭头）、圆点指示器联动
+      // 核心逻辑：通过索引控制轮播图/文字/圆点的激活状态，支持循环切换
+
+      // —— 2.1 初始化轮播所需变量 ——
+      const slides = document.querySelectorAll(".carousel-slide"); // 所有轮播图容器
+      const bannerTexts = document.querySelectorAll(".banner-text"); // 所有轮播文字容器
+      const prevBtn = document.querySelector(".carousel-control.prev-btn"); // 轮播左按钮（指定类名避免与产品箭头冲突）
+      const nextBtn = document.querySelector(".carousel-control.next-btn"); // 轮播右按钮
+      const dotContainer = document.querySelector(".dot-container"); // 圆点指示器容器
+      let currentIndex = 0; // 当前轮播图索引（初始为第1张）
+      const slideCount = slides.length; // 轮播图总数（动态获取，支持灵活增减）
+      let autoSlideInterval; // 自动轮播定时器（后续用于暂停/恢复）
+
+      // —— 2.2 动态生成圆点指示器 ——
+      // 功能：根据轮播图数量生成对应圆点，默认激活第1个圆点，绑定点击切换事件
+      function createDots() {
+        // 循环生成圆点（数量=轮播图数量）
+        for (let i = 0; i < slideCount; i++) {
+          const dot = document.createElement("span"); // 创建圆点DOM元素
+          dot.className = "banner-dot"; // 添加圆点基础样式类
+          if (i === 0) dot.classList.add("active"); // 初始激活第1个圆点
+
+          // 圆点点击事件：切换到对应索引的轮播图
+          dot.addEventListener("click", () => {
+            showSlide(i); // 调用核心切换函数，传入目标索引
+          });
+
+          dotContainer.appendChild(dot); // 将圆点添加到容器中
+        }
+      }
+      createDots(); // 页面加载时执行，生成圆点
+      const dots = document.querySelectorAll(".banner-dot"); // 获取所有生成的圆点（用于后续状态更新）
+
+      // —— 2.3 核心：切换轮播图（含文字、圆点同步） ——
+      // 功能：根据传入索引，更新轮播图、文字、圆点的激活状态，支持循环切换
+      // 参数：index - 目标轮播图索引
+      function showSlide(index) {
+        // 1. 先移除所有元素的激活状态（重置）
+        slides.forEach((slide) => slide.classList.remove("active"));
+        bannerTexts.forEach((text) => text.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active"));
+
+        // 2. 计算当前索引（处理循环逻辑：避免索引为负或超出总数）
+        currentIndex = (index + slideCount) % slideCount;
+
+        // 3. 激活当前索引对应的元素
+        slides[currentIndex].classList.add("active");
+        bannerTexts[currentIndex].classList.add("active");
+        dots[currentIndex].classList.add("active");
+      }
+
+      // —— 2.4 手动切换控制（上一张/下一张） ——
+      // 下一张：当前索引+1，调用切换函数
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+      // 上一张：当前索引-1，调用切换函数
+      function prevSlide() {
+        showSlide(currentIndex - 1);
+      }
+
+      // —— 2.5 绑定手动控制事件（箭头按钮） ——
+      prevBtn.addEventListener("click", prevSlide); // 左按钮点击→上一张
+      nextBtn.addEventListener("click", nextSlide); // 右按钮点击→下一张
+
+      // —— 2.6 自动轮播控制 ——
+      // 功能：默认3秒切换一次，鼠标hover时暂停，离开时恢复
+      function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 3000); // 3秒执行一次下一张
+      }
+      startAutoSlide(); // 页面加载时启动自动轮播
+
+      // 鼠标hover轮播容器→暂停自动轮播
+      const carousel = document.querySelector(".banner-carousel");
+      carousel.addEventListener("mouseenter", () => {
+        clearInterval(autoSlideInterval); // 清除定时器
+      });
+      // 鼠标离开轮播容器→恢复自动轮播
+      carousel.addEventListener("mouseleave", () => {
+        startAutoSlide(); // 重新启动定时器
+      });
+
+      /* ================================== 四、全系列产品板块交互（分类+滚动） ================================== */
+      // 作用：实现产品分类切换（副标题背景跟随）、产品卡片横向滚动、箭头禁用状态控制
+      // 依赖：页面DOM加载完成后执行（避免DOM未渲染导致查询失败）
+      document.addEventListener("DOMContentLoaded", () => {
+        // —— 4.1 初始化产品板块所需变量 ——
+        const subtitleBar = document.querySelector(".product-subtitle-bar"); // 副标题容器
+        const subtitleItems = document.querySelectorAll(".subtitle-item"); // 所有分类副标题
+        const activeBg = document.querySelector(".subtitle-active-bg"); // 副标题激活背景（跟随用）
+        const productDisplay = document.getElementById("productScroll"); // 产品卡片容器
+        const scrollContainer = document.querySelector(".product-scroll-wrap"); // 产品滚动容器
+        const productItems = document.querySelectorAll(".product-item"); // 所有产品卡片
+        const prevBtn = document.getElementById("productPrevBtn"); // 产品左滚动箭头
+        const nextBtn = document.getElementById("productNextBtn"); // 产品右滚动箭头
+
+        // —— 4.2 初始化参数（含默认值，避免报错） ——
+        let currentTab = "board"; // 当前激活的分类（默认：板材切割机）
+        // 卡片宽度=单张卡片宽度+间距（默认364px，容错处理：若卡片不存在则用默认值）
+        let itemWidth = productItems[0]
+          ? productItems[0].offsetWidth + 24
+          : 364;
+        const itemCount = subtitleItems.length; // 分类数量（用于计算背景宽度）
+        let barTotalWidth = 0; // 副标题容器总宽度（动态计算）
+        let barPaddingX = 0; // 副标题容器左右内边距（动态计算）
+        let equalWidth = 0; // 单个分类项的宽度（用于背景跟随）
+
+        // —— 4.3 计算副标题激活背景宽度（补全缺失的宽度计算，修复背景不显示） ——
+        const calcEqualWidth = () => {
+          if (!subtitleBar || !activeBg) return; // 容错：容器/背景不存在则不执行
+          barTotalWidth = subtitleBar.getBoundingClientRect().width; // 获取容器实际宽度（电脑端适配不同屏幕）
+          // 获取容器左内边距（转为数字，默认0）
+          barPaddingX =
+            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0;
+          // 计算单个分类项宽度：（容器总宽-2倍内边距）/分类数量（电脑端均分更精准）
+          equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
+          activeBg.style.width = `${equalWidth}px`; // 【补全】填充宽度数值，背景终于显示
+          activeBg.style.transition =
+            "left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)"; // 电脑端加缓动，避免背景跳变
+        };
+
+        // —— 4.4 初始化副标题激活背景位置（补全缺失的偏移计算，修复背景不跟随） ——
+        const initActiveBg = () => {
+          calcEqualWidth(); // 先计算宽度
+          if (!activeBg || subtitleItems.length === 0) return; // 容错
+          // 找到默认激活的分类索引（若无则取0）
+          const activeIndex =
+            Array.from(subtitleItems).findIndex((item) =>
+              item.classList.contains("active")
+            ) || 0;
+          // 【补全】填充左偏移数值：内边距+索引×单个分类宽度（电脑端定位精准）
+          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
+          currentTab = subtitleItems[activeIndex].dataset.tab; // 更新当前分类
+          switchTab(currentTab); // 切换到默认分类的产品
+        };
+
+        // —— 4.5 计算产品卡片滚动步长（电脑端动态适配，避免单次滚动过量） ——
+        const initItemWidth = () => {
+          // 找到当前显示的卡片（非hidden类）
+          const visibleItem = document.querySelector(
+            ".product-item:not(.hidden)"
+          );
+          if (visibleItem && scrollContainer) {
+            // 获取卡片容器的间距（默认24px，电脑端间距可能更大，动态获取更精准）
+            const containerGap =
+              parseInt(getComputedStyle(productDisplay).gap) || 24;
+            itemWidth = visibleItem.offsetWidth + containerGap; // 基础步长=卡片宽+间距
+
+            // 【电脑端优化】步长不超过滚动容器可视宽度的70%（避免宽屏单次滚动“跳太多”）
+            const containerWidth = scrollContainer.clientWidth;
+            itemWidth = Math.min(itemWidth, containerWidth * 0.7);
+          }
+        };
+
+        // —— 4.6 产品分类切换逻辑（电脑端重置滚动加平滑，避免生硬跳回左侧） ——
+        const switchTab = (tabName) => {
+          currentTab = tabName; // 更新当前分类
+          // 循环所有卡片：匹配分类则显示，否则隐藏
+          productItems.forEach((item) => {
+            const itemTab = item.getAttribute("data-tab");
+            item.classList.toggle("hidden", itemTab !== tabName); // hidden类控制显示/隐藏
+          });
+
+          // 【电脑端优化】重置滚动加平滑动画（替代原生硬的scrollLeft=0）
+          if (scrollContainer) {
+            scrollContainer.scrollTo({
+              left: 0,
+              behavior: "smooth",
+              timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)", // 苹果风格缓动，电脑端更丝滑
+            });
+          }
+
+          updateBtnState(); // 更新箭头禁用状态
+          initItemWidth(); // 重新计算当前分类下的卡片宽度
+        };
+
+        // —— 4.7 副标题hover切换（含背景跟随，补全背景位置计算） ——
+        const hoverSubtitle = (item, index) => {
+          // 重置所有副标题状态：移除激活类
+          subtitleItems.forEach((i) => i.classList.remove("active"));
+          // 激活当前hover的副标题
+          item.classList.add("active");
+          // 【补全】移动激活背景到当前分类（电脑端hover反馈更流畅）
+          if (activeBg) {
+            activeBg.style.left = `${barPaddingX + index * equalWidth}px`;
+          }
+          // 切换到当前分类的产品
+          switchTab(item.dataset.tab);
+        };
+
+        // 为每个副标题添加hover事件（电脑端支持鼠标enter/leave，优化交互）
+        subtitleItems.forEach((item, index) => {
+          item.addEventListener("mouseenter", () => hoverSubtitle(item, index));
+          // 【电脑端优化】添加mouseleave时保持当前激活（避免hover离开后背景错位）
+          item.addEventListener("mouseleave", () => {
+            const activeItem = document.querySelector(".subtitle-item.active");
+            if (activeItem) {
+              const activeIdx = Array.from(subtitleItems).indexOf(activeItem);
+              if (activeBg)
+                activeBg.style.left = `${barPaddingX + activeIdx * equalWidth}px`;
+            }
+          });
+        });
+
+        // —— 4.8 产品卡片滚动控制（核心：电脑端优化滚动动画） ——
+        const updateBtnState = () => {
+          if (!scrollContainer || !prevBtn || !nextBtn) return; // 容错：容器不存在则不执行
+          // 左箭头：滚动到最左侧（≤10px误差）则禁用
+          prevBtn.disabled = scrollContainer.scrollLeft <= 10;
+          // 右箭头：滚动到最右侧（≤10px误差）则禁用
+          nextBtn.disabled =
+            scrollContainer.scrollLeft >=
+            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
+
+          // 【电脑端优化】禁用时加半透明+指针反馈（避免生硬的灰色禁用，更细腻）
+          prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
+          nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
+          prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
+          nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
+          // 箭头状态过渡（电脑端视觉反馈更流畅）
+          prevBtn.style.transition = "opacity 0.2s ease";
+          nextBtn.style.transition = "opacity 0.2s ease";
+        };
+
+        // 【核心修复】右箭头点击：电脑端加苹果风格缓动（解决滚动生硬）
+        nextBtn.addEventListener("click", () => {
+          if (!scrollContainer) return;
+          scrollContainer.scrollBy({
+            left: itemWidth,
+            behavior: "smooth",
+            // 苹果标志性缓动曲线：电脑端滚动“先柔后顺”，避免默认smooth的生硬感
+            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+          });
+        });
+
+        // 【核心修复】左箭头点击：与右箭头保持动画一致性（电脑端交互统一）
+        prevBtn.addEventListener("click", () => {
+          if (!scrollContainer) return;
+          scrollContainer.scrollBy({
+            left: -itemWidth,
+            behavior: "smooth",
+            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+          });
+        });
+
+        // 【电脑端优化】滚动时加防抖（避免高频触发导致的电脑端卡顿）
+        let scrollDebounce;
+        scrollContainer.addEventListener("scroll", () => {
+          clearTimeout(scrollDebounce);
+          scrollDebounce = setTimeout(updateBtnState, 30); // 30ms防抖，平衡流畅度与性能
+        });
+
+        // —— 4.9 页面初始化（执行顺序：先定位背景→计算宽度→更新箭头） ——
+        initActiveBg(); // 初始化副标题背景位置（补全后电脑端背景正常显示）
+        initItemWidth(); // 初始化卡片滚动步长（电脑端步长更精准）
+        updateBtnState(); // 初始化箭头禁用状态
+
+        // —— 4.10 窗口缩放适配（电脑端多屏幕适配，避免布局错乱） ——
+        let resizeDebounce;
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeDebounce);
+          resizeDebounce = setTimeout(() => {
+            calcEqualWidth(); // 重新计算副标题背景宽度（电脑端窗口缩放后适配）
+            initActiveBg(); // 重新定位背景
+            initItemWidth(); // 重新计算卡片步长（电脑端窗口缩放后步长适配）
+            updateBtnState(); // 重新更新箭头状态
+          }, 100); // 100ms防抖，避免电脑端窗口缩放时频繁计算
+        });
+      });
+
+      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
+      // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
+      document.addEventListener("DOMContentLoaded", () => {
+        // —— 5.1 初始化优势板块滚动所需变量 ——
+        const benefitScrollWrap = document.querySelector(
+          ".benefit-scroll-wrap"
+        ); // 滚动容器
+        const benefitCardContainer = document.getElementById("benefitScroll"); // 卡片容器（对应第3板块#productScroll）
+        const benefitItems = document.querySelectorAll(".benefit-card"); // 所有优势卡片
+        const prevBtn = document.getElementById("benefitPrevBtn"); // 左箭头
+        const nextBtn = document.getElementById("benefitNextBtn"); // 右箭头
+
+        // —— 5.2 初始化参数（与第3板块逻辑一致） ——
+        let itemWidth = benefitItems[0]
+          ? benefitItems[0].offsetWidth + 24
+          : 364; // 滚动步长=卡片宽+间距（24px）
+        const containerGap =
+          parseInt(getComputedStyle(benefitCardContainer).gap) || 24; // 卡片间距
+
+        // —— 5.3 计算卡片宽度（适配窗口缩放） ——
+        const initItemWidth = () => {
+          if (benefitItems[0]) {
+            itemWidth = benefitItems[0].offsetWidth + containerGap; // 重新计算滚动步长
+          }
+        };
+
+        // —— 5.4 箭头滚动控制（与第3板块一致） ——
+        // 右滚动：一次滚动一个步长
+        const scrollRight = () => {
+          benefitScrollWrap.scrollBy({
+            left: itemWidth,
+            behavior: "smooth", // 平滑滚动
+          });
+        };
+        // 左滚动：一次滚动一个步长
+        const scrollLeft = () => {
+          benefitScrollWrap.scrollBy({
+            left: -itemWidth,
+            behavior: "smooth",
+          });
+        };
+
+        // —— 5.5 箭头禁用状态控制（与第3板块一致） ——
+        const updateBtnState = () => {
+          if (!benefitScrollWrap) return;
+          // 左箭头：滚动到最左侧（误差≤10px）则禁用
+          prevBtn.disabled = benefitScrollWrap.scrollLeft <= 10;
+          // 右箭头：滚动到最右侧（误差≤10px）则禁用
+          nextBtn.disabled =
+            benefitScrollWrap.scrollLeft >=
+            benefitScrollWrap.scrollWidth - benefitScrollWrap.clientWidth - 10;
+        };
+
+        // —— 5.6 绑定箭头点击事件 ——
+        nextBtn.addEventListener("click", scrollRight);
+        prevBtn.addEventListener("click", scrollLeft);
+        // 滚动时实时更新箭头状态
+        benefitScrollWrap.addEventListener("scroll", updateBtnState);
+
+        // —— 5.7 窗口缩放适配（与第3板块一致） ——
+        window.addEventListener("resize", () => {
+          initItemWidth(); // 重新计算滚动步长
+          updateBtnState(); // 重新更新箭头状态
+        });
+
+        // —— 5.8 初始化（页面加载时执行） ——
+        initItemWidth();
+        updateBtnState();
+      });
+
+      /* ================================== 六、切割样品模块（纯图片，无文字） ================================== */
+      // 1. 材质数据配置（保持原数据不变）
+      const materialData = {
+        carbon: {
+          name: "碳钢",
+          thicknesses: [
+            {
+              thickness: "6mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp",
+              alt: "碳钢板材 6mm厚度 实物图",
+            },
+            {
+              thickness: "14mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-14mm-final.webp",
+              alt: "碳钢板材 14mm厚度 高清图",
+            },
+            {
+              thickness: "20mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-20mm-final.webp",
+              alt: "碳钢板材 20mm厚度 细节图",
+            },
+            {
+              thickness: "40mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-40mm-final.webp",
+              alt: "碳钢板材 40mm厚度 产品图",
+            },
+            {
+              thickness: "50mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-50mm-final.webp",
+              alt: "碳钢板材 50mm厚度 实物展示图",
+            },
+            {
+              thickness: "70mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-70mm-final.webp",
+              alt: "碳钢板材 70mm厚度 高清细节图",
+            },
+            {
+              thickness: "100mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-100mm-final.webp",
+              alt: "碳钢板材 100mm厚度 产品实物图",
+            },
+          ],
+        },
+        stainless: {
+          name: "不锈钢",
+          thicknesses: [
+            {
+              thickness: "2mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp",
+              alt: "不锈钢板材 2mm厚度 实物图",
+            },
+            {
+              thickness: "5mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-5mm-final.webp",
+              alt: "不锈钢板材 5mm厚度 高清图",
+            },
+            {
+              thickness: "6mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-6mm-2-final.webp",
+              alt: "不锈钢板材 6mm厚度 细节图",
+            },
+            {
+              thickness: "8mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-8mm-final.webp",
+              alt: "不锈钢板材 8mm厚度 产品图",
+            },
+            {
+              thickness: "10mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-10mm-3-final.webp",
+              alt: "不锈钢板材 10mm厚度 实物展示图",
+            },
+            {
+              thickness: "12mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-12mm-final.webp",
+              alt: "不锈钢板材 12mm厚度 高清细节图",
+            },
+            {
+              thickness: "20mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-20mm.webp",
+              alt: "不锈钢板材 20mm厚度 产品实物图",
+            },
+          ],
+        },
+        aluminum: {
+          name: "铝合金",
+          thicknesses: [
+            {
+              thickness: "3mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp",
+              alt: "铝合金板材 3mm厚度 实物图",
+            },
+            {
+              thickness: "6mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-6mm-final.webp",
+              alt: "铝合金板材 6mm厚度 高清图",
+            },
+            {
+              thickness: "7mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-7mm-final.webp",
+              alt: "铝合金板材 7mm厚度 细节图",
+            },
+            {
+              thickness: "15mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-15mm-final.webp",
+              alt: "铝合金板材 15mm厚度 产品图",
+            },
+            {
+              thickness: "20mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-20mm-final.webp",
+              alt: "铝合金板材 20mm厚度 实物展示图",
+            },
+            {
+              thickness: "25mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-25mm-final.webp",
+              alt: "铝合金板材 25mm厚度 高清细节图",
+            },
+            {
+              thickness: "30mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-30mm-final.webp",
+              alt: "铝合金板材 30mm厚度 产品实物图",
+            },
+          ],
+        },
+        brass: {
+          name: "黄铜",
+          thicknesses: [
+            {
+              thickness: "3mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp",
+              alt: "黄铜 3mm厚度 实物图",
+            },
+            {
+              thickness: "5mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp",
+              alt: "黄铜 5mm厚度 实物图",
+            },
+            {
+              thickness: "8mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp",
+              alt: "黄铜 8mm厚度 实物图",
+            },
+            {
+              thickness: "10mm",
+              src: "http://senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp",
+              alt: "黄铜 10mm厚度 实物图",
+            },
+          ],
+        },
+      };
+
+      // 2. 初始化变量（增加容错判断，避免DOM不存在报错）
+      const thicknessList = document.getElementById("thicknessList");
+      const sampleImageWrap = document.getElementById("sampleImageWrap");
+      const sampleSubtitleBar = document.querySelector(".sample-subtitle-bar");
+      const sampleSubtitleItems = document.querySelectorAll(
+        ".sample-subtitle-item"
+      );
+      const sampleActiveBg = document.querySelector(
+        ".sample-subtitle-active-bg"
+      );
+      let currentMaterial = "carbon"; // 默认材质：碳钢
+      let resizeDebounceTimer; // 窗口缩放防抖定时器
+
+      // 3. 生成厚度选项（新增HOVER激活+恢复默认第一个激活）
+      function renderThicknesses(materialKey) {
+        // 容错：材质不存在或厚度列表DOM缺失，直接返回
+        if (!materialData[materialKey] || !thicknessList) return;
+
+        thicknessList.innerHTML = ""; // 清空原有厚度项
+        const thicknesses = materialData[materialKey].thicknesses;
+
+        thicknesses.forEach((item, index) => {
+          const thicknessItem = document.createElement("div");
+          // 关键：默认给第一个厚度加active类（恢复初始激活状态）
+          thicknessItem.className = `sample-thickness-item ${index === 0 ? "active" : ""}`;
+          thicknessItem.textContent = item.thickness;
+          thicknessItem.dataset.src = item.src;
+
+          // 【新增】厚度项HOVER激活：滑入时切换图片+激活状态
+          thicknessItem.addEventListener("mouseenter", () => {
+            document
+              .querySelectorAll(".sample-thickness-item")
+              .forEach((el) => el.classList.remove("active"));
+            thicknessItem.classList.add("active");
+            updateSampleImage(item.src); // 同步更新图片
+          });
+
+          // 保留：原厚度项点击激活（兼容原有操作习惯）
+          thicknessItem.addEventListener("click", () => {
+            document
+              .querySelectorAll(".sample-thickness-item")
+              .forEach((el) => el.classList.remove("active"));
+            thicknessItem.classList.add("active");
+            updateSampleImage(item.src);
+          });
+
+          thicknessList.appendChild(thicknessItem);
+        });
+
+        // 初始化显示第一个厚度的图片（容错：确保有厚度数据）
+        if (thicknesses.length > 0) {
+          updateSampleImage(thicknesses[0].src);
+        }
+      }
+
+      // 4. 核心：更新样品图片（保持原逻辑不变）
+      function updateSampleImage(imgSrc) {
+        if (!sampleImageWrap) return; // 容错：图片容器缺失
+
+        sampleImageWrap.innerHTML = ""; // 彻底清空容器（避免残留元素）
+        const img = document.createElement("img");
+
+        // 图片样式：确保铺满容器，无空白
+        img.src = imgSrc;
+        img.alt = "切割样品图";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.minHeight = "400px";
+        img.style.objectFit = "cover";
+        img.style.backgroundColor = "#e0e0e0";
+
+        sampleImageWrap.appendChild(img);
+      }
+
+      // 5. 修复：副标题激活背景计算（补全left/width变量，解决背景不显示问题）
+      function updateSubtitleActiveBg(activeItem) {
+        // 容错：关键元素缺失，直接返回
+        if (!sampleActiveBg || !activeItem || !sampleSubtitleBar) return;
+
+        // 计算相对位置（避免绝对定位受窗口滚动影响）
+        const activeItemRect = activeItem.getBoundingClientRect();
+        const barRect = sampleSubtitleBar.getBoundingClientRect();
+        const left = activeItemRect.left - barRect.left; // 背景相对副标题栏的左边距
+        const width = activeItemRect.width; // 背景宽度=当前激活项宽度
+
+        // 关键修复：补全变量，确保背景位置和宽度生效
+        sampleActiveBg.style.left = `${left}px`;
+        sampleActiveBg.style.width = `${width}px`;
+      }
+
+      // 6. 统一处理副标题激活逻辑（hover+点击通用）
+      function handleSubtitleActivate(activeItem) {
+        if (!activeItem) return;
+
+        // 1. 切换副标题激活状态
+        sampleSubtitleItems.forEach((el) => el.classList.remove("active"));
+        activeItem.classList.add("active");
+
+        // 2. 更新材质并渲染对应厚度+图片
+        const targetMaterial = activeItem.dataset.material;
+        if (targetMaterial && materialData[targetMaterial]) {
+          currentMaterial = targetMaterial;
+          renderThicknesses(currentMaterial); // 渲染该材质的厚度列表
+        }
+
+        // 3. 移动激活背景到当前项
+        updateSubtitleActiveBg(activeItem);
+      }
+
+      // 7. 副标题交互（hover+点击，保持原逻辑不变）
+      function initSubtitleInteraction() {
+        if (!sampleSubtitleItems.length) return; // 容错：无副标题项
+
+        sampleSubtitleItems.forEach((item) => {
+          // 鼠标滑入（hover）激活
+          item.addEventListener("mouseenter", () => {
+            handleSubtitleActivate(item);
+          });
+
+          // 原点击激活（兼容）
+          item.addEventListener("click", () => {
+            handleSubtitleActivate(item);
+          });
+        });
+      }
+
+      // 8. 窗口缩放防抖处理（保持原逻辑不变）
+      function initResizeHandler() {
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeDebounceTimer);
+          // 100ms防抖：避免缩放时频繁计算，提升性能
+          resizeDebounceTimer = setTimeout(() => {
+            // 找到当前激活的副标题项，重新计算背景位置
+            const currentActiveItem =
+              document.querySelector(".sample-subtitle-item.active") ||
+              sampleSubtitleItems[0];
+            if (currentActiveItem) {
+              updateSubtitleActiveBg(currentActiveItem);
+            }
+          }, 100);
+        });
+      }
+
+      // 9. 模块初始化（整合所有初始化逻辑）
+      function initSampleModule() {
+        // 容错：核心DOM缺失，不执行初始化
+        if (!thicknessList || !sampleImageWrap || !sampleSubtitleBar) return;
+
+        // 1. 初始化副标题交互（hover+点击）
+        initSubtitleInteraction();
+
+        // 2. 初始化窗口缩放处理
+        initResizeHandler();
+
+        // 3. 初始化厚度列表和默认图片
+        renderThicknesses(currentMaterial);
+
+        // 4. 初始化副标题激活背景（默认激活第一个项）
+        const defaultActiveItem =
+          document.querySelector(".sample-subtitle-item.active") ||
+          sampleSubtitleItems[0];
+        if (defaultActiveItem) {
+          defaultActiveItem.classList.add("active"); // 确保默认项有激活类
+          updateSubtitleActiveBg(defaultActiveItem);
+        }
+      }
+
+      // 执行模块初始化（页面加载完成后运行）
+      document.addEventListener("DOMContentLoaded", initSampleModule);
+
+      // ================================== 七、核心优势一眼明板块JS（修复版） ==================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 先处理「卡片横向滚动」逻辑（保留原功能，无修改）
+        const advantageScroll = document.getElementById("advantageScroll");
+        const advantagePrevBtn = document.getElementById("advantagePrevBtn");
+        const advantageNextBtn = document.getElementById("advantageNextBtn");
+        const advantageCardWidth = 340 + 24; // 卡片宽340px + 间距24px（与CSS一致）
+
+        // 容错：元素未找到则不执行滚动逻辑
+        if (advantageScroll && advantagePrevBtn && advantageNextBtn) {
+          // 滚动函数
+          function scrollAdvantageCards(direction) {
+            const currentScroll = advantageScroll.scrollLeft;
+            const maxScroll =
+              advantageScroll.scrollWidth - advantageScroll.clientWidth;
+            let newScroll =
+              direction === "next"
+                ? Math.min(currentScroll + advantageCardWidth, maxScroll)
+                : Math.max(currentScroll - advantageCardWidth, 0);
+
+            advantageScroll.scrollTo({ left: newScroll, behavior: "smooth" });
+            // 延迟更新箭头状态（确保滚动完成后判断）
+            setTimeout(updateArrowStatus, 300);
+          }
+
+          // 箭头状态更新函数
+          function updateArrowStatus() {
+            const currentScroll = advantageScroll.scrollLeft;
+            const maxScroll =
+              advantageScroll.scrollWidth - advantageScroll.clientWidth;
+            advantagePrevBtn.disabled = currentScroll <= 10;
+            advantageNextBtn.disabled = currentScroll >= maxScroll - 10;
+          }
+
+          // 绑定箭头点击事件
+          advantageNextBtn.addEventListener("click", () =>
+            scrollAdvantageCards("next")
+          );
+          advantagePrevBtn.addEventListener("click", () =>
+            scrollAdvantageCards("prev")
+          );
+
+          // 初始检查箭头状态
+          setTimeout(() => {
+            updateArrowStatus();
+            const maxScroll =
+              advantageScroll.scrollWidth - advantageScroll.clientWidth;
+            console.log("板块7箭头状态初始化：");
+            console.log("可滚动总距离：", maxScroll + "px");
+            console.log("左箭头禁用：", advantagePrevBtn.disabled);
+            console.log("右箭头禁用：", advantageNextBtn.disabled);
+          }, 300);
+        } else {
+          console.error("板块7：未找到卡片容器或箭头元素，请检查ID是否匹配！");
+        }
+
+        // 2. 统一处理「弹出卡片」逻辑（删除重复代码，修复隐藏逻辑）
+        const plusBtns = document.querySelectorAll(".advantage-plus-btn");
+        const modal = document.querySelector(".advantage-modal");
+        const modalOverlay = document.querySelector(".advantage-modal-overlay");
+        const closeBtn = document.querySelector(".advantage-modal-close");
+        const body = document.body;
+        let scrollTop = 0; // 用于保存弹出前的页面滚动位置
+
+        // 容错：若弹出层元素未找到，不执行后续逻辑
+        if (!modal || !modalOverlay || !closeBtn) {
+          console.error(
+            "弹出层：未找到modal/modalOverlay/closeBtn，请检查类名！"
+          );
+          return;
+        }
+
+        // 2.1 打开弹出层（含动态填充内容）
+        function showModal(e) {
+          // 从点击的加号按钮，找到父级卡片（.advantage-card）
+          const currentCard = e.currentTarget.closest(".advantage-card");
+          if (!currentCard) return; // 若未找到卡片，不执行
+
+          // 从卡片的 data-* 属性读取内容（需确保HTML中卡片有这些属性）
+          const cardTitle = currentCard.dataset.modalTitle || "默认标题";
+          const cardContent =
+            currentCard.dataset.modalContent || "默认详情内容";
+
+          // 填充内容到弹出卡片
+          const modalTitle = modal.querySelector(".advantage-modal-title");
+          const modalContent = modal.querySelector(".advantage-modal-content");
+          if (modalTitle) modalTitle.textContent = cardTitle; // 标题不需要HTML，保留textContent
+          if (modalContent) modalContent.innerHTML = cardContent; // 内容用innerHTML解析HTML标签
+
+          // 显示弹出层+遮罩，固定页面滚动
+          scrollTop = window.scrollY; // 保存当前滚动位置
+          modal.classList.remove("hidden"); // 显示卡片
+          modalOverlay.classList.add("active"); // 显示遮罩
+          body.classList.add("body-fixed"); // 禁止页面滚动
+          body.style.top = `-${scrollTop}px`; // 固定页面位置，避免抖动（修复原代码少scrollTop的bug）
+        }
+
+        // 2.2 关闭弹出层（核心修复：同步隐藏卡片+遮罩）
+        function hideModal() {
+          modal.classList.add("hidden"); // 隐藏卡片（修复原代码加active的错误）
+          modalOverlay.classList.remove("active"); // 隐藏遮罩
+          body.classList.remove("body-fixed"); // 恢复页面滚动
+          body.style.top = ""; // 清除top定位
+          window.scrollTo(0, scrollTop); // 恢复到弹出前的滚动位置
+        }
+
+        // 2.3 绑定所有事件（去重：只绑定一次加号按钮事件）
+        plusBtns.forEach((btn) => {
+          btn.addEventListener("click", (e) => showModal(e)); // 传递点击事件，用于找到当前卡片
+        });
+
+        closeBtn.addEventListener("click", hideModal); // 关闭按钮
+        modalOverlay.addEventListener("click", hideModal); // 点击遮罩
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) hideModal(); // 点击卡片空白处（避免点击内容误关闭）
+        });
+
+        // 2.4 ESC键关闭（修复后：同步隐藏卡片+遮罩）
+        document.addEventListener("keydown", (e) => {
+          // 只有当卡片显示（无hidden）且遮罩显示（有active）时，ESC才生效
+          if (
+            (e.key === "Escape" || e.keyCode === 27) &&
+            !modal.classList.contains("hidden") &&
+            modalOverlay.classList.contains("active")
+          ) {
+            hideModal();
+          }
+        });
+      });
+
+      // ================================== 八、设备配件板块JS（新增） ==================================
+      document.addEventListener("DOMContentLoaded", function () {
+        const scrollContainer = document.querySelector(
+          ".accessory-scroll-container"
+        );
+        const cardList = document.querySelector(".accessory-card-list");
+        const prevBtn = document.getElementById("accessoryPrev");
+        const nextBtn = document.getElementById("accessoryNext");
+
+        // 单次滚动距离（单张卡片宽度 + 间距）
+        const cardWidth = 18 * 16 + 2 * 16; // 18rem(卡片宽) + 2rem(间距)，转换为px（html font-size=16px）
+
+        // 响应式调整滚动距离（小屏幕适配）
+        function getScrollStep() {
+          const screenWidth = window.innerWidth;
+          if (screenWidth <= 767) return 12 * 16 + 1.5 * 16; // Mobile：12rem + 1.5rem
+          if (screenWidth <= 1024) return 15 * 16 + 1.5 * 16; // Tablet：15rem + 1.5rem
+          return cardWidth; // 桌面端：18rem + 2rem
+        }
+
+        // 左滚动
+        prevBtn.addEventListener("click", () => {
+          scrollContainer.scrollBy({
+            left: -getScrollStep(),
+            behavior: "smooth", // 平滑滚动
+          });
+        });
+
+        // 右滚动
+        nextBtn.addEventListener("click", () => {
+          scrollContainer.scrollBy({
+            left: getScrollStep(),
+            behavior: "smooth",
+          });
+        });
+
+        // 滚动时更新箭头禁用状态（避免滚动到两端后箭头仍可点击）
+        function updateButtonStates() {
+          // 容器可滚动的总宽度 = 内容总宽度 - 容器可视宽度
+          const maxScrollLeft =
+            scrollContainer.scrollWidth - scrollContainer.clientWidth;
+
+          // 滚动到最左侧时禁用左箭头
+          prevBtn.disabled = scrollContainer.scrollLeft <= 0;
+          prevBtn.style.opacity = scrollContainer.scrollLeft <= 0 ? "0.5" : "1";
+          prevBtn.style.pointerEvents =
+            scrollContainer.scrollLeft <= 0 ? "none" : "auto";
+
+          // 滚动到最右侧时禁用右箭头
+          nextBtn.disabled = scrollContainer.scrollLeft >= maxScrollLeft - 10; // 预留10px误差
+          nextBtn.style.opacity =
+            scrollContainer.scrollLeft >= maxScrollLeft - 10 ? "0.5" : "1";
+          nextBtn.style.pointerEvents =
+            scrollContainer.scrollLeft >= maxScrollLeft - 10 ? "none" : "auto";
+        }
+
+        // 初始化状态
+        updateButtonStates();
+
+        // 滚动时更新状态
+        scrollContainer.addEventListener("scroll", updateButtonStates);
+
+        // 窗口大小改变时重新计算滚动参数
+        window.addEventListener("resize", () => {
+          updateButtonStates();
+        });
+      });
+    </script>
+
+    <script>
+      // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 目标标题：保持与CSS一致（所有h1-h6 + 自定义标题类）
+        const titleElements = document.querySelectorAll(
+          "h1, h2, h3, h4, h5, h6, .product-main-title, .submenu-content-title, .content-item h3"
+        );
+
+        // 2. 核心滚动逻辑：优化触发时机 + 排除不可见元素 + 精准恢复
+        function handleTitleScroll() {
+          const viewportHeight = window.innerHeight; // 视口高度（屏幕可见区域）
+
+          titleElements.forEach((title) => {
+            // 关键：排除隐藏元素（如下拉菜单/侧边栏中的标题，避免无效计算）
+            if (!title.offsetParent) return; // offsetParent为null表示元素不可见，直接跳过
+
+            const titleRect = title.getBoundingClientRect(); // 标题相对于视口的位置
+            const titleHeight = titleRect.height; // 标题自身高度（用于精准判断滚出时机）
+
+            // ✅ 条件1：向下滚动时，标题“开始滚出视口底部”就触发动画（视觉上最自然）
+            // 逻辑：标题底部 < 视口高度 + 标题顶部 > 0 → 标题部分滚出底部（非完全隐藏）
+            // 补充：标题顶部 > 视口高度 → 标题完全滚出底部（避免漏触发）
+            if (
+              (titleRect.bottom < viewportHeight && titleRect.top > 0) ||
+              titleRect.top > viewportHeight
+            ) {
+              title.classList.add("title-fade-active");
+            }
+
+            // ✅ 条件2：向上滚动时，标题“开始进入视口”就恢复显示（避免延迟）
+            // 逻辑：标题顶部 < 视口高度 + 标题底部 > 0 → 标题部分/完全进入视口
+            else if (titleRect.top < viewportHeight && titleRect.bottom > 0) {
+              title.classList.remove("title-fade-active");
+            }
+          });
+        }
+
+        // 3. 初始化：页面加载时执行一次（处理初始就滚出视口的标题）
+        handleTitleScroll();
+
+        // 4. 滚动监听：保留性能优化，同时确保滚动时实时触发
+        window.addEventListener("scroll", function () {
+          // 使用requestAnimationFrame确保动画流畅（与屏幕刷新率同步）
+          window.requestAnimationFrame(handleTitleScroll);
+        });
+
+        // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
+        window.addEventListener("resize", handleTitleScroll);
+      });
+    </script>
+
+    <script>
+      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
+      const langDropdown = document.getElementById("langDropdown");
+      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
+      const langTrigger = langDropdown.querySelector(".language-btn");
+
+      // 点击语言按钮，切换下拉菜单显示状态
+      langTrigger.addEventListener("click", (e) => {
+        e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
+        langMenu.style.display =
+          langMenu.style.display === "block" ? "none" : "block";
+      });
+
+      // 点击页面其他区域，关闭下拉菜单
+      document.addEventListener("click", () => {
+        if (langMenu.style.display === "block") {
+          langMenu.style.display = "none";
+        }
+      });
+
+      // 2. 当前语言自动高亮（根据页面URL匹配）
+      const currentPath = window.location.pathname;
+      const langLinks = document.querySelectorAll(".lang-link");
+
+      // 语言与首页路径的映射（需与你的实际文件路径一致）
+      const langHomePathMap = {
+        zh: "/index.html", // 中文首页
+        en: "/en/index.html", // 英语首页
+        de: "/de/index.html", // 德语首页
+        es: "/es/index.html", // 西班牙语首页
+        fr: "/fr/index.html", // 法语首页
+        ru: "/ru/index.html", // 俄语首页
+        ar: "/ar/index.html", // 阿拉伯语首页
+      };
+
+      // 匹配当前路径，给对应语言链接添加高亮样式
+      langLinks.forEach((link) => {
+        const lang = link.getAttribute("lang");
+        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
+        if (
+          currentPath === langHomePathMap[lang] ||
+          (lang === "zh" && currentPath === "/")
+        ) {
+          link.classList.add("active");
+        }
+      });
+    </script>
+  </body>
+</html>

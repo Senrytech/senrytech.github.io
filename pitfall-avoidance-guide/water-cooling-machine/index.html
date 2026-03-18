@@ -14,7 +14,7 @@
     <title>激光设备伺服电机选型避坑指南 | 森睿激光 Senrytech</title>
     <link
       rel="canonical"
-      href="https://www.senrytech.com/pitfall-avoidance-guide/linear-and-slider/"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/water-cooling-machine/"
     />
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -1179,7 +1179,222 @@
       }
     </style>
 
+    <style>
+      /* 激光切割机 冷水机 避坑指南 CSS 蓝色统一版 */
+      .laser-chiller-guide {
+        width: 100%;
+        padding: 30px 15px;
+        box-sizing: border-box;
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        background: #f8f9fa;
+      }
+      .cl-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .cl-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .cl-title h1 {
+        font-size: 26px;
+        color: #222;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      .cl-title p {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.6;
+      }
+      .cl-block {
+        margin-bottom: 40px;
+      }
+      .cl-block h2 {
+        font-size: 22px;
+        color: #0066cc;
+        margin-bottom: 20px;
+        padding-left: 10px;
+        border-left: 4px solid #0066cc;
+      }
+      .cl-item {
+        margin-bottom: 22px;
+      }
+      .cl-item h3 {
+        font-size: 18px;
+        color: #222;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .cl-item p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.8;
+        margin: 0;
+      }
+      .cl-item strong {
+        color: #0066cc;
+        font-weight: bold;
+      }
+      .cl-summary {
+        background: #e6f7ff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        border-left: 4px solid #0066cc;
+        margin-bottom: 30px;
+      }
+      .cl-summary h2 {
+        font-size: 20px;
+        color: #0056b3;
+        margin-bottom: 15px;
+      }
+      .cl-summary p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 6px;
+      }
+      .cl-back-wrap {
+        text-align: left;
+        margin-top: 20px;
+      }
+      .cl-back-btn {
+        display: inline-block;
+        background: #0066cc;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      .cl-back-btn:hover {
+        background: #0056b3;
+      }
 
+      /* 0-320 */
+      @media (min-width: 0) and (max-width: 320px) {
+        .cl-title h1 {
+          font-size: 20px;
+        }
+        .cl-block h2 {
+          font-size: 19px;
+        }
+        .cl-item h3 {
+          font-size: 16px;
+        }
+        .cl-item p {
+          font-size: 14px;
+        }
+        .cl-summary {
+          padding: 20px;
+        }
+        .cl-back-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+      }
+      /* 321-375 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .cl-title h1 {
+          font-size: 21px;
+        }
+        .cl-block h2 {
+          font-size: 20px;
+        }
+        .cl-item p {
+          font-size: 14px;
+        }
+      }
+      /* 376-425 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .cl-title h1 {
+          font-size: 22px;
+        }
+      }
+      /* 426-768 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .laser-chiller-guide {
+          padding: 25px 20px;
+        }
+      }
+      /* 769-1024 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .laser-chiller-guide {
+          padding: 35px 25px;
+        }
+      }
+      /* 1025-1440 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .laser-chiller-guide {
+          padding: 40px 30px;
+        }
+      }
+      /* 1441-2560 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .laser-chiller-guide {
+          padding: 45px 40px;
+        }
+        .cl-title h1 {
+          font-size: 28px;
+        }
+        .cl-block h2 {
+          font-size: 24px;
+        }
+        .cl-item h3 {
+          font-size: 19px;
+        }
+        .cl-item p {
+          font-size: 16px;
+          line-height: 1.85;
+        }
+        .cl-summary h2 {
+          font-size: 22px;
+        }
+        .cl-summary p {
+          font-size: 16px;
+        }
+        .cl-back-btn {
+          padding: 14px 32px;
+          font-size: 17px;
+        }
+      }
+      /* >2561 */
+      @media (min-width: 2561px) {
+        .laser-chiller-guide {
+          padding: 50px;
+        }
+        .cl-container {
+          max-width: 1600px;
+        }
+        .cl-title h1 {
+          font-size: 32px;
+        }
+        .cl-block h2 {
+          font-size: 26px;
+        }
+        .cl-item h3 {
+          font-size: 21px;
+        }
+        .cl-item p {
+          font-size: 18px;
+          line-height: 1.9;
+        }
+        .cl-summary {
+          padding: 35px 40px;
+        }
+        .cl-summary h2 {
+          font-size: 24px;
+        }
+        .cl-summary p {
+          font-size: 17px;
+        }
+        .cl-back-btn {
+          padding: 16px 36px;
+          font-size: 18px;
+        }
+      }
+    </style>
 
     <!--十一、CSS 底部导航栏 -->
     <style>
@@ -2604,7 +2819,155 @@
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <!-- 激光切割机 冷水机 避坑指南 SECTION -->
+    <section class="laser-chiller-guide">
+      <div class="cl-container">
+        <div class="cl-title">
+          <h1>激光切割机冷水机避坑指南（选型·安装·使用·维护）</h1>
+          <p>
+            本文覆盖品牌等级、功率匹配、制冷量、水温控制、水质维护、安装规范、常见故障，帮你一次性避开所有陷阱。
+          </p>
+        </div>
 
+        <!-- 冷水机选型避坑 -->
+        <div class="cl-block">
+          <h2>一、冷水机选型避坑指南</h2>
+          <div class="cl-item">
+            <h3>1. 品牌星级排名（激光机出口级真实参考）</h3>
+            <p>
+              <strong>★★★★★ 顶级品牌：</strong
+              >特域（S&A）、同飞（Tongfei）。激光行业公认最稳，控温精准、故障率极低，高端机与出口机首选。
+            </p>
+            <p>
+              <strong>★★★★☆ 一线品牌：</strong>汉立
+              Hanli、东露阳、凯德利、科力达。质量稳定、性价比高，商用激光机主流选择。
+            </p>
+            <p>
+              <strong>★★★☆☆ 二线品牌：</strong
+              >国产常规工业冷水机。满足普通使用，精度与稳定性一般。
+            </p>
+            <p>
+              <strong>★★☆☆☆ 低端杂牌：</strong
+              >无标小厂、改装机。制冷不足、水温漂移、漏液、烧激光器，绝对不建议使用。
+            </p>
+          </div>
+
+          <div class="cl-item">
+            <h3>2. 制冷量必须匹配，小马拉大车必烧激光器</h3>
+            <p>激光器发热巨大，冷水机制量必须**留足余量**，不能刚好匹配：</p>
+            <p><strong>≤1500W 激光器 → 建议 1.5HP~2HP</strong></p>
+            <p><strong>2000W~3000W → 建议 3HP~5HP</strong></p>
+            <p><strong>6000W~8000W → 建议 5HP~10HP</strong></p>
+            <p><strong>10000W 以上 → 建议 10HP~20HP 或双系统</strong></p>
+            <p>
+              制冷量不足 → 水温飙升 → 激光器保护停机 → 严重直接烧坏激光器芯片。
+            </p>
+          </div>
+
+          <div class="cl-item">
+            <h3>3. 必须区分：单温机 vs 双温机（非常关键）</h3>
+            <p>
+              <strong>单温机：</strong>只有一个水温设定，适合<strong
+                >≤1500W 小功率激光器</strong
+              >。
+            </p>
+            <p>
+              <strong>双温机：</strong>一路冷却激光器、一路冷却 QBH
+              输出头，<strong>2000W 以上必须用双温</strong>。
+            </p>
+            <p>
+              大功率机器用单温机 → QBH 过热 → 跳保护、切割不稳定、烧坏输出头。
+            </p>
+          </div>
+
+          <div class="cl-item">
+            <h3>4. 水泵流量与扬程不能缩水</h3>
+            <p>
+              流量不足 → 散热慢；扬程不足 →
+              水路循环不动。大功率机器必须用<strong>大流量高压泵</strong>，保证水路畅通、无气泡、无过热。
+            </p>
+          </div>
+        </div>
+
+        <!-- 安装与使用避坑 -->
+        <div class="cl-block">
+          <h2>二、安装与使用避坑</h2>
+          <div class="cl-item">
+            <h3>1. 必须用去离子水/纯净水，严禁用自来水</h3>
+            <p>
+              自来水含杂质、水垢 → 堵塞激光器管道 → 散热失效 →
+              激光器报废。必须用<strong>纯净水+专用防冻液</strong>，定期检测水质。
+            </p>
+          </div>
+          <div class="cl-item">
+            <h3>2. 水温不能乱设：光纤激光标准 22℃~26℃</h3>
+            <p>
+              温度太低 → 结露 → 烧坏激光器；温度太高 → 过热保护。<strong
+                >标准设定 24℃~25℃ 最安全</strong
+              >。
+            </p>
+          </div>
+          <div class="cl-item">
+            <h3>3. 必须先开水机，再开激光器</h3>
+            <p>
+              顺序错误会导致激光器无冷却直接启动，几秒就可能造成过热损坏。正确顺序：<strong
+                >开水机 → 等待水温稳定 → 开激光器</strong
+              >。
+            </p>
+          </div>
+          <div class="cl-item">
+            <h3>4. 水路不能压扁、弯折、堵塞</h3>
+            <p>
+              水管弯折 → 流量变小 → 散热变差；管道堵塞 → 压力异常 → 激光器报警。
+            </p>
+          </div>
+        </div>
+
+        <!-- 维护与故障避坑 -->
+        <div class="cl-block">
+          <h2>三、维护与故障避坑</h2>
+          <div class="cl-item">
+            <h3>1. 每3~6个月必须换水、清洗过滤器</h3>
+            <p>长期不换水 → 微生物滋生、水垢、管道堵塞 → 散热直线下降。</p>
+          </div>
+          <div class="cl-item">
+            <h3>2. 定期排气：水路严禁有气泡</h3>
+            <p>
+              气泡会导致水流不稳、温度跳变、激光器异常报警。换水后必须<strong>彻底排空管路空气</strong>。
+            </p>
+          </div>
+          <div class="cl-item">
+            <h3>3. 散热风扇、冷凝器必须定期清灰</h3>
+            <p>灰尘堵住冷凝器 → 散热变差 → 制冷量下降 → 高温报警。</p>
+          </div>
+          <div class="cl-item">
+            <h3>4. 冬季必须防冻，否则冻裂水箱与管道</h3>
+            <p>
+              低温环境停机必须<strong>排空水或加防冻液</strong>，否则冻裂水箱、水泵、激光器，损失极大。
+            </p>
+          </div>
+        </div>
+
+        <!-- 总结 -->
+        <div class="cl-summary">
+          <h2>四、激光切割机冷水机避坑总结</h2>
+          <p>1. 品牌：优先特域、同飞，稳定性最强，保护激光器最安全。</p>
+          <p>
+            2. 功率：制冷量必须<strong>大于激光器发热功率，留足余量</strong>。
+          </p>
+          <p>3. 类型：<strong>≤1500W用单温，2000W以上必须双温</strong>。</p>
+          <p>4. 水质：只用纯净水/去离子水，严禁自来水。</p>
+          <p>5. 水温：标准设定 <strong>24℃~25℃</strong>，不高不低。</p>
+          <p>6. 顺序：先开水机，再开激光器。</p>
+          <p>7. 维护：定期换水、清洗、排气、防冻，寿命提升3倍以上。</p>
+        </div>
+
+        <!-- 返回按钮 -->
+        <div class="cl-back-wrap">
+          <a href="#guide-list" class="cl-back-btn">← 返回避坑指南列表</a>
+        </div>
+      </div>
+    </section>
 
     <!-- 十一，代码 底部导航栏-->
     <footer class="footer-new">

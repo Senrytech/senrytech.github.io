@@ -1179,7 +1179,155 @@
       }
     </style>
 
+    <style>
+/* 激光切割机 气体系统 避坑指南 CSS 蓝色统一版 */
+.laser-gas-system-guide {
+  width: 100%;
+  padding: 30px 15px;
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: #f8f9fa;
+}
+.gs-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gs-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.gs-title h1 {
+  font-size: 26px;
+  color: #222;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.gs-title p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+.gs-block {
+  margin-bottom: 40px;
+}
+.gs-block h2 {
+  font-size: 22px;
+  color: #0066cc;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border-left: 4px solid #0066cc;
+}
+.gs-item {
+  margin-bottom: 22px;
+}
+.gs-item h3 {
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.gs-item p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+  margin: 0;
+}
+.gs-item strong {
+  color: #0066cc;
+  font-weight: bold;
+}
+.gs-summary {
+  background: #e6f7ff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  border-left: 4px solid #0066cc;
+  margin-bottom: 30px;
+}
+.gs-summary h2 {
+  font-size: 20px;
+  color: #0056b3;
+  margin-bottom: 15px;
+}
+.gs-summary p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.gs-back-wrap {
+  text-align: left;
+  margin-top: 20px;
+}
+.gs-back-btn {
+  display: inline-block;
+  background: #0066cc;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+.gs-back-btn:hover {
+  background: #0056b3;
+}
 
+/* 0-320 */
+@media (min-width: 0) and (max-width: 320px) {
+  .gs-title h1 { font-size: 20px; }
+  .gs-block h2 { font-size: 19px; }
+  .gs-item h3 { font-size: 16px; }
+  .gs-item p { font-size: 14px; }
+  .gs-summary { padding: 20px; }
+  .gs-back-btn { padding: 10px 20px; font-size: 14px; }
+}
+/* 321-375 */
+@media (min-width: 321px) and (max-width: 375px) {
+  .gs-title h1 { font-size: 21px; }
+  .gs-block h2 { font-size: 20px; }
+  .gs-item p { font-size: 14px; }
+}
+/* 376-425 */
+@media (min-width: 376px) and (max-width: 425px) {
+  .gs-title h1 { font-size: 22px; }
+}
+/* 426-768 */
+@media (min-width: 426px) and (max-width: 768px) {
+  .laser-gas-system-guide { padding: 25px 20px; }
+}
+/* 769-1024 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .laser-gas-system-guide { padding: 35px 25px; }
+}
+/* 1025-1440 */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .laser-gas-system-guide { padding: 40px 30px; }
+}
+/* 1441-2560 */
+@media (min-width: 1441px) and (max-width: 2560px) {
+  .laser-gas-system-guide { padding: 45px 40px; }
+  .gs-title h1 { font-size: 28px; }
+  .gs-block h2 { font-size: 24px; }
+  .gs-item h3 { font-size: 19px; }
+  .gs-item p { font-size: 16px; line-height: 1.85; }
+  .gs-summary h2 { font-size: 22px; }
+  .gs-summary p { font-size: 16px; }
+  .gs-back-btn { padding: 14px 32px; font-size: 17px; }
+}
+/* >2561 */
+@media (min-width: 2561px) {
+  .laser-gas-system-guide { padding: 50px; }
+  .gs-container { max-width: 1600px; }
+  .gs-title h1 { font-size: 32px; }
+  .gs-block h2 { font-size: 26px; }
+  .gs-item h3 { font-size: 21px; }
+  .gs-item p { font-size: 18px; line-height: 1.9; }
+  .gs-summary { padding: 35px 40px; }
+  .gs-summary h2 { font-size: 24px; }
+  .gs-summary p { font-size: 17px; }
+  .gs-back-btn { padding: 16px 36px; font-size: 18px; }
+}
+</style>
 
     <!--十一、CSS 底部导航栏 -->
     <style>
@@ -2603,6 +2751,130 @@
 
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- 激光切割机 气体系统 避坑指南 SECTION -->
+<section class="laser-gas-system-guide">
+  <div class="gs-container">
+    <div class="gs-title">
+      <h1>激光切割机气体系统避坑指南（选型·供气·管路·使用·维护）</h1>
+      <p>本文覆盖氧气/氮气/空气三种切割气体、供气方式、管路规范、纯度要求、常见故障，帮你一次性避开所有陷阱。</p>
+    </div>
+
+    <!-- 气体选型避坑 -->
+    <div class="gs-block">
+      <h2>一、切割气体选型避坑指南</h2>
+      <div class="gs-item">
+        <h3>1. 三种气体核心用途（千万别用错）</h3>
+        <p><strong>✅ 氧气（O₂）：</strong>专用于碳钢切割，利用氧化反应辅助切割，速度快、成本低。</p>
+        <p><strong>✅ 氮气（N₂）：</strong>专用于不锈钢/铝板切割，无氧化、切面光亮、无渣，属于保护性切割。</p>
+        <p><strong>✅ 压缩空气：</strong>用于薄板、粗加工、辅助穿孔，成本极低，但切面易氧化，适合对外观要求不高的场景。</p>
+        <p>用错气体 → 碳钢用氮气切不动、不锈钢用氧气切面发黑报废。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>2. 纯度要求：纯度不够直接报废切割质量</h3>
+        <p><strong>氧气纯度：</strong>≥99.5%（碳钢切割），纯度低会导致挂渣、切面发黑、切割速度慢。</p>
+        <p><strong>氮气纯度：</strong>≥99.99%（不锈钢/铝），纯度低会导致切面发黄、氧化、无光泽，甚至切不透。</p>
+        <p><strong>压缩空气：</strong>必须经过除水除油过滤，含油含水会污染镜片、割嘴，导致切割异常。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>3. 供气方式怎么选？气瓶/液氮/制氮机对比</h3>
+        <p><strong>气瓶：</strong>适合小功率、小批量、临时使用，成本高、频繁换瓶麻烦。</p>
+        <p><strong>杜瓦罐/液氮：</strong>适合中功率、连续生产，供气稳定、成本比气瓶低。</p>
+        <p><strong>制氮机/制氧机：</strong>适合大功率、24小时连续生产，长期使用成本最低，但设备投资高。</p>
+        <p>小功率用气瓶，大功率必须上制氮机/液氮，否则供气不足会导致切割中断。</p>
+      </div>
+    </div>
+
+    <!-- 管路与安装避坑 -->
+    <div class="gs-block">
+      <h2>二、管路与安装避坑</h2>
+      <div class="gs-item">
+        <h3>1. 管路材质必须选不锈钢/铜管，严禁用普通塑料管</h3>
+        <p>激光切割气体压力高（最高3MPa），普通塑料管耐压不足、易老化开裂、漏气，甚至引发安全事故。</p>
+        <p>推荐：<strong>304不锈钢管/紫铜管</strong>，耐腐蚀、耐压高、寿命长。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>2. 管径必须匹配流量，小管径供大气量必掉压</h3>
+        <p>小功率机用<strong>Φ8–Φ10</strong>管路；中功率用<strong>Φ10–Φ12</strong>；大功率用<strong>Φ12–Φ16</strong>。</p>
+        <p>管径太小 → 高压切割时气压瞬间跌落 → 断火、挂渣、切不透。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>3. 必须加装多级过滤：除水+除油+除尘</h3>
+        <p>压缩空气/氮气必须经过：<strong>前置过滤器→冷冻干燥机→精密过滤器（0.01μm）</strong>。</p>
+        <p>不过滤 → 水、油、粉尘进入激光头 → 污染保护镜片 → 功率下降、炸枪、激光器损坏。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>4. 管路必须无泄漏，漏气会导致气压不稳</h3>
+        <p>安装后必须用肥皂水/检漏仪检测所有接头、阀门、管路。</p>
+        <p>漏气 → 气压波动 → 切割质量不稳定、气体浪费、成本飙升。</p>
+      </div>
+    </div>
+
+    <!-- 使用与调试避坑 -->
+    <div class="gs-block">
+      <h2>三、使用与调试避坑</h2>
+      <div class="gs-item">
+        <h3>1. 压力/流量必须匹配功率与板材厚度</h3>
+        <p><strong>碳钢氧气切割：</strong>压力0.5–1.0MPa，流量随厚度增加。</p>
+        <p><strong>不锈钢氮气切割：</strong>压力1.5–3.0MPa，大功率厚板需更高压力。</p>
+        <p>压力不足 → 切不透、挂渣；压力过高 → 浪费气体、切割面变宽。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>2. 冬季管路必须防冻，否则结冰堵死</h3>
+        <p>低温环境下，管路残留水分会结冰 → 堵塞管路 → 无气输出 → 设备停机。</p>
+        <p>解决：加装伴热带、保温棉，或使用干燥机彻底除水。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>3. 严禁混用气体管路，防止交叉污染</h3>
+        <p>氧气、氮气、空气必须独立管路，严禁共用，否则会导致气体纯度下降、切割质量报废。</p>
+      </div>
+    </div>
+
+    <!-- 维护与故障避坑 -->
+    <div class="gs-block">
+      <h2>四、维护与故障避坑</h2>
+      <div class="gs-item">
+        <h3>1. 定期更换过滤器滤芯，否则必堵</h3>
+        <p>前置滤芯：1–2个月更换；精密滤芯：3–6个月更换；干燥机滤芯：6–12个月更换。</p>
+        <p>不更换 → 滤芯堵塞 → 流量不足、气压下降、切割异常。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>2. 定期排水：储气罐/过滤器/干燥机</h3>
+        <p>每天手动排水，否则水分进入管路 → 结冰、腐蚀、污染镜片。</p>
+      </div>
+
+      <div class="gs-item">
+        <h3>3. 常见故障：气压不稳、断火、挂渣</h3>
+        <p>原因：管路漏气、滤芯堵塞、管径太小、气体纯度不够。</p>
+        <p>解决：检漏、更换滤芯、加粗管路、提高气体纯度。</p>
+      </div>
+    </div>
+
+    <!-- 总结 -->
+    <div class="gs-summary">
+      <h2>五、激光切割机气体系统避坑总结</h2>
+      <p>1. 气体：碳钢用氧气，不锈钢/铝用氮气，薄板可用空气。</p>
+      <p>2. 纯度：氧气≥99.5%，氮气≥99.99%，空气必须除水除油。</p>
+      <p>3. 管路：必须用<strong>不锈钢/铜管</strong>，管径匹配流量，严禁泄漏。</p>
+      <p>4. 过滤：必须多级过滤，除水除油除尘，保护激光头。</p>
+      <p>5. 供气：小功率用气瓶，大功率用制氮机/液氮，保证连续供气。</p>
+      <p>6. 维护：定期换滤芯、排水、防冻，延长设备寿命。</p>
+    </div>
+
+    <!-- 返回按钮 -->
+    <div class="gs-back-wrap">
+      <a href="#guide-list" class="gs-back-btn">← 返回避坑指南列表</a>
+    </div>
+  </div>
+</section>
 
 
 

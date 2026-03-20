@@ -1661,7 +1661,7 @@
       /* ========== 媒体适配：426-768px（平板/iPad mini/Air） ========== */
       @media (min-width: 426px) and (max-width: 768px) {
         .banner-carousel {
-          aspect-ratio: 16/9;
+          aspect-ratio: 16/10;
           padding-top: 100%; /* 微调老浏览器兼容比例 */
         }
 
@@ -1787,6 +1787,9 @@
 
       /* ========== 媒体适配：1025-1440px（中屏桌面/14寸笔记本） ========== */
       @media (min-width: 1025px) and (max-width: 1440px) {
+        .banner-carousel {
+          aspect-ratio: 16 / 9;
+        }
         .banner-text {
           top: 40%;
           max-width: 85vw; /* 原75vw → 85vw */
@@ -1839,6 +1842,9 @@
 
       /* ========== 媒体适配：1441-2560px（大屏桌面/2K屏） ========== */
       @media (min-width: 1441px) and (max-width: 2560px) {
+        .banner-carousel {
+          aspect-ratio: 16 / 9;
+        }
         .banner-text {
           max-width: 80vw; /* 原70vw → 80vw */
         }

@@ -1191,15 +1191,15 @@
     <style>
       /* —— 3.1 轮播容器基础样式（核心：16:9固定比例实现） ——*/
       .banner-carousel {
-        position: relative; /* 作为子元素绝对定位的参考容器 */
-        width: 100%; /* 占满父容器宽度，实现全屏效果 */
-        overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
-        /* 核心1：现代浏览器16:9比例（优先生效） */
-        aspect-ratio: 16 / 9;
-        /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 45%;
-        height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
-      }
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* 核心：PC端16:9，移动端9:16（通过媒体查询覆盖） */
+  aspect-ratio: 21 / 9;
+  /* 老浏览器降级：仅当aspect-ratio不支持时生效 */
+  height: auto;
+  min-height: 300px; /* 保底高度，避免内容为空时塌陷 */
+}
 
       /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
       .carousel-slides {
@@ -1239,14 +1239,13 @@
         position: absolute; /* 文字层悬浮于图片上方 */
         top: 30%; /* 基于父容器垂直居中（替代固定15%，适配不同比例banner） */
         left: 50%;
-        transform: translate(-30%, -70%); /* 水平+垂直双居中，适配任意高度 */
+        transform: translate(-50%, -50%); /* 水平+垂直双居中，适配任意高度 */
         color: #f5f5f7; /* 浅白色文字，适配深色背景图 */
         text-align: center;
         z-index: 10; /* 层级高于图片，确保文字可见 */
         opacity: 0; /* 默认隐藏，随轮播图同步淡入 */
         transition:
-          opacity 0.6s cubic-bezier(0.25, 0.1, 0.25, 1),
-          /* 更丝滑的淡入曲线 */ transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1); /* 新增位移过渡，增强交互 */
+          opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1);
         padding: 0 2vw; /* 改用视口单位，适配不同屏幕宽度 */
         max-width: 90vw; /* 限制最大宽度，避免超宽文字溢出 */
         text-shadow:
@@ -1274,7 +1273,7 @@
         /* 优化间距：从2rem调整为2.5rem，增强主标题与副标题的呼吸感 */
         margin-bottom: 2.5rem;
         /* 苹果行高：1.15，紧凑但不重叠，适配大标题 */
-        line-height: 1.15;
+        line-height: 1.3;
         /* 苹果字距：0.5px，舒展不松散，提升高级感 */
         letter-spacing: 0.5px;
         /* 新增：苹果风格轻量文字阴影，增强层次感但不刺眼 */
@@ -1407,26 +1406,34 @@
         right: 1.25rem;
       }
 
-      /* —— 3.7 轮播圆点指示器（核心：底部居中+当前页标记） ——*/
-      .dot-container {
-        position: absolute; /* 悬浮于轮播图底部 */
-        bottom: 1.25rem; /* 底部留白，避免贴边 */
-        left: 50%;
-        transform: translateX(-50%); /* 水平居中 */
-        display: flex; /* 圆点横向排列 */
-        gap: 0.5rem; /* 圆点间距，避免拥挤 */
-        z-index: 20; /* 层级最高，确保不被遮挡 */
-      }
+      /* —— 3.7 轮播横线指示器（核心：底部居中+当前页标记） ——*/
+.dot-container {
+  position: absolute; /* 悬浮于轮播图底部 */
+  bottom: 1.25rem; /* 底部留白，避免贴边 */
+  left: 50%;
+  transform: translateX(-50%); /* 水平居中 */
+  display: flex; /* 横线横向排列 */
+  gap: 0.75rem; /* 横线间距，优化视觉呼吸感 */
+  z-index: 20; /* 层级最高，确保不被遮挡 */
+}
 
-      /* 单个圆点样式 */
-      .banner-dot {
-        width: 0.625rem; /* 宽高一致，确保圆形 */
-        height: 0.625rem;
-        border-radius: 50%; /* 圆形外观 */
-        background-color: rgba(255, 255, 255, 0.5); /* 半透明白色，未激活状态 */
-        cursor: pointer; /* 提示可交互 */
-        transition: background-color 0.3s ease; /* 颜色过渡，提升反馈感 */
-      }
+/* 单个横线样式 */
+.banner-dot {
+  width: 1.5rem; /* 横线宽度 */
+  height: 0.1rem; /* 横线高度，保持纤细 */
+  border-radius: 0.1rem; /* 轻微圆角，避免尖锐边缘 */
+  background-color: rgba(255, 255, 255, 0.5); /* 半透明白色，未激活状态 */
+  cursor: pointer; /* 提示可交互 */
+  transition: 
+    background-color 0.3s ease,
+    width 0.3s ease; /* 增加宽度过渡，强化激活反馈 */
+}
+
+/* 激活状态横线样式（可选，增强交互） */
+.banner-dot.active {
+  background-color: rgba(255, 255, 255, 1); /* 纯白高亮，激活状态 */
+  width: 2rem; /* 激活时宽度增加，更醒目 */
+}
 
       /* 当前页圆点：纯白高亮，明确标记 */
       .banner-dot.active {
@@ -1449,7 +1456,7 @@
       @media (max-width: 320px) {
         /* 轮播容器：微调比例适配超小屏 */
         .banner-carousel {
-          aspect-ratio: 9 / 21;
+          aspect-ratio: 9 / 16;
           padding-top: 150%; /* 微调老浏览器兼容比例 */
         }
 
@@ -1524,7 +1531,7 @@
       /* ========== 媒体适配：321-375px（小屏手机/iPhone SE/8） ========== */
       @media (min-width: 321px) and (max-width: 375px) {
         .banner-carousel {
-          aspect-ratio: 9 / 21;
+          aspect-ratio: 9 / 16;
           padding-top: 150%; /* 微调老浏览器兼容比例 */
         }
 
@@ -1589,7 +1596,7 @@
       /* ========== 媒体适配：376-425px（大屏手机/iPhone 12/13 mini） ========== */
       @media (min-width: 376px) and (max-width: 425px) {
         .banner-carousel {
-          aspect-ratio: 9 / 21;
+          aspect-ratio: 9 / 16;
           padding-top: 150%; /* 微调老浏览器兼容比例 */
         }
 
@@ -1654,7 +1661,7 @@
       /* ========== 媒体适配：426-768px（平板/iPad mini/Air） ========== */
       @media (min-width: 426px) and (max-width: 768px) {
         .banner-carousel {
-          aspect-ratio: 9 / 21;
+          aspect-ratio: 16/9;
           padding-top: 100%; /* 微调老浏览器兼容比例 */
         }
 
@@ -1720,7 +1727,7 @@
       /* ========== 媒体适配：769-1024px（笔记本/小屏桌面） ========== */
       @media (min-width: 769px) and (max-width: 1024px) {
         .banner-carousel {
-          aspect-ratio: 9 / 21;
+          aspect-ratio: 16 / 9;
           padding-top: 100%; /* 微调老浏览器兼容比例 */
         }
         .banner-text {
@@ -2283,7 +2290,7 @@
         padding: 5rem 0 7.5rem; /* 原80px 0 120px → 16px基准下：80/16=5rem，120/16=7.5rem，为箭头预留空间 */
         position: relative; /* 作为产品滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
-        height: 65rem;
+        height: 60rem;
       }
 
       /* —— 4.2 板块内层内容容器：限制宽度+控制左右布局 —— */
@@ -3410,7 +3417,7 @@
         padding: 5rem 0 7.5rem; /* 16px基准：上下内边距80px/120px，为滚动箭头预留空间 */
         position: relative; /* 作为滚动箭头的定位父容器 */
         overflow: visible; /* 确保箭头不被容器裁剪 */
-        height: 55rem;
+        height: 60rem;
       }
 
       /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
@@ -7429,7 +7436,7 @@
             alt="Senrytech光纤激光机"
           />
           <div class="banner-text active">
-            <h1>Senrytech · 工业激光切割与焊接设备</h1>
+            <h1>Senrytech  ·  工业激光切割与焊接设备</h1>
             <h2>拒绝品牌溢价，专注服务与风险管控</h2>
             <p>严选配置 | 全程质检 | 全球交付 | 售后保障</p>
             <div class="banner-btns">
@@ -7456,7 +7463,7 @@
           />
           <div class="banner-text">
             <h1>激光板材切割机</h1>
-            <h2>Senrytech A・精准切割・高效赋能</h2>
+            <h2>Senrytech A  ·  精准切割  ·  高效赋能</h2>
             <p>CE/ISO 9001认证 | 原厂核心配件 | 24小时技术支持</p>
             <div class="banner-btns">
               <!-- 关键修改：button → a，添加href，保留所有样式类 -->
@@ -7482,7 +7489,7 @@
           />
           <div class="banner-text">
             <h1>激光管材切割机</h1>
-            <h2>Senrytech A2 Ultra・全新侧置结构・大口径管材夹持</h2>
+            <h2>Senrytech A2 Ultra  ·  全新侧置结构  ·  大口径管材夹持</h2>
             <p>两卡盘夹持 | 最高550mm管径 | 最长上料12米</p>
             <div class="banner-btns">
               <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
@@ -7508,7 +7515,7 @@
           />
           <div class="banner-text">
             <h1>激光焊接机</h1>
-            <h2>Senrytech A・4in1・手持式</h2>
+            <h2>Senrytech A  ·  4in1  ·  手持式</h2>
             <p>10 分钟上手 | 无需持证焊工 | 比传统焊接效率提升 3-5 倍</p>
             <div class="banner-btns">
               <!-- 跳转至页面内产品板块的锚点 -->
@@ -7568,7 +7575,7 @@
                   alt="3000W 以下光纤激光切割机"
                 />
               </a>
-              <p>Senrytech A<br />·经济实惠·稳定可靠·新手首选</p>
+              <p>Senrytech A<br />经济实惠  ·  稳定可靠  ·  新手首选</p>
               <div class="info-btn"></div>
             </div>
 
@@ -7583,7 +7590,7 @@
                   alt="12000W光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B<br />・床身更重・可切厚板・性能更强</p>
+              <p>Senrytech B<br />床身更重  ·  可切厚板  ·  性能更强</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7599,7 +7606,7 @@
                   alt="省空间光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Plus<br />・侧开包围・占地更小・使用方便</p>
+              <p>Senrytech B Plus<br />侧开包围  ·  占地更小  ·  使用方便</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7614,7 +7621,7 @@
                   alt="批量加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Pro<br />·上料超快·产量更高·省人工</p>
+              <p>Senrytech B Pro<br />上料超快 · 产量更高 · 省人工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7629,7 +7636,7 @@
                   alt="安全加工光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B ProMax<br />・全包围罩・欧洲合规・安全防护</p>
+              <p>Senrytech B ProMax<br />全包围罩  ·  欧洲合规  ·  安全防护</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7644,7 +7651,7 @@
                   alt="自动化工厂光纤激光切割机"
                 />
               </a>
-              <p>Senrytech B Ultra<br />・全自动料・无人生产・顶配效率</p>
+              <p>Senrytech B Ultra<br />全自动料  ·  无人生产  ·  顶配效率</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7659,7 +7666,7 @@
                   alt="铝板光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C<br />・铝卷切割・连续送料・薄铝专用</p>
+              <p>Senrytech C<br />铝卷切割  ·  连续送料  ·  薄铝专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7674,7 +7681,7 @@
                   alt="防护型铝卷光纤激光切割机"
                 />
               </a>
-              <p>Senrytech C Pro<br />・铝卷专用・全包围罩・安全整洁</p>
+              <p>Senrytech C Pro<br />铝卷专用  ·  全包围罩  ·  安全整洁</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7689,7 +7696,7 @@
                   alt="长幅光纤激光切割机"
                 />
               </a>
-              <p>Senrytech G<br />・超长地轨・超大功率・重型切割</p>
+              <p>Senrytech G<br />超长地轨  ·  超大功率  ·  重型切割</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7704,7 +7711,7 @@
                   alt="高精度迷你激光切割机"
                 />
               </a>
-              <p>Senrytech M<br />・迷你机身・超高精度・精密加工</p>
+              <p>Senrytech M<br />迷你机身  ·  超高精度  ·  精密加工</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7719,7 +7726,7 @@
                   alt="槽钢光纤激光切割机"
                 />
               </a>
-              <p>Senrytech S<br />・专切型钢・长度够长・型材专用</p>
+              <p>Senrytech S<br />专切型钢  ·  长度够长  ·  型材专用</p>
               <div class="info-btn"></div>
               <!-- 卡片内圆形箭头（关键元素） -->
             </div>
@@ -7736,7 +7743,7 @@
                   alt="小口径管材切割机"
                 />
               </a>
-              <p>Senrytech A2<br />・经济款・双卡盘・小口径专用</p>
+              <p>Senrytech A2<br />经济款  ·  双卡盘  ·  小口径专用</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7749,7 +7756,7 @@
                   alt="高功率电机管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Plus<br />・床身加固・高功率・中厚管高效</p>
+              <p>Senrytech A2 Plus<br />床身加固  ·  高功率  ·  中厚管高效</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7762,7 +7769,7 @@
                   alt="侧挂式管材切割机"
                 />
               </a>
-              <p>Senrytech A2 Ultra<br />・侧挂结构・双卡盘・特殊场景适配</p>
+              <p>Senrytech A2 Ultra<br />侧挂结构  ·  双卡盘  ·  特殊场景适配</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7775,7 +7782,7 @@
                   alt="三卡盘加持管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Plus<br />・三卡盘・正装升级・批量加工优选</p>
+              <p>Senrytech B3 Plus<br />三卡盘  ·  正装升级  ·  批量加工优选</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7788,7 +7795,7 @@
                   alt="创新结构管材切割机"
                 />
               </a>
-              <p>Senrytech B3 Ultra<br />・侧挂创新・三卡盘・高效兼特殊</p>
+              <p>Senrytech B3 Ultra<br />侧挂创新  ·  三卡盘  ·  高效兼特殊</p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7801,7 +7808,7 @@
                   alt="高阶定制化管材切割机"
                 />
               </a>
-              <p>Senrytech C4 Ultra<br />・四卡盘・高阶定制・大批次量产</p>
+              <p>Senrytech C4 Ultra<br />四卡盘  ·  高阶定制  ·  大批次量产</p>
             </div>
 
             <!-- 3. 板管一体分类：4个卡片（默认隐藏） -->
@@ -7816,7 +7823,7 @@
                   alt="亲民价板管切割机"
                 />
               </a>
-              <p>Senrytech BT<br />・高性价比・板管兼顾・入门首选</p>
+              <p>Senrytech BT<br />高性价比  ·  板管兼顾  ·  入门首选</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7829,7 +7836,7 @@
                   alt="高效生产板管一体机"
                 />
               </a>
-              <p>Senrytech BT Pro<br />・交换平台・高效流转・减少停机</p>
+              <p>Senrytech BT Pro<br />交换平台  ·  高效流转  ·  减少停机</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7842,7 +7849,7 @@
                   alt="全钣金包围板管切割机"
                 />
               </a>
-              <p>Senrytech BT Promax<br />・钣金包围・防尘降噪・安全防护</p>
+              <p>Senrytech BT Promax<br />钣金包围  ·  防尘降噪  ·  安全防护</p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7856,7 +7863,7 @@
                 />
               </a>
               <p>
-                Senrytech BT Ultra<br />・全自动上下料・24h 无人化・产能拉满
+                Senrytech BT Ultra<br />全自动上下料  ·  24h 无人化  ·  产能拉满
               </p>
             </div>
 
@@ -7872,7 +7879,7 @@
                   alt="焊接切割清渣除锈一体机"
                 />
               </a>
-              <p>Senrytech A<br />・入门首选・四合一・轻便易携</p>
+              <p>Senrytech A<br />入门首选  ·  四合一  ·  轻便易携</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7886,7 +7893,7 @@
                   alt="双丝送丝激光焊接机"
                 />
               </a>
-              <p>Senrytech A Pro<br />・三档功率・分体散热・8mm 厚板焊</p>
+              <p>Senrytech A Pro<br />三档功率  ·  分体散热  ·  8mm 厚板焊</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7901,7 +7908,7 @@
                 />
               </a>
               <p>
-                Senrytech A Ultra<br />・6000W 超高功率・四丝送丝・16mm 厚板焊
+                Senrytech A Ultra<br />6000W 超高功率  ·  四丝送丝  ·  16mm 厚板焊
               </p>
             </div>
 
@@ -7916,7 +7923,7 @@
                   alt="SUP23T 专业枪头激光焊接机"
                 />
               </a>
-              <p>Senrytech R 4in1<br />・入门首选・专业枪头・四合一</p>
+              <p>Senrytech R 4in1<br />入门首选  ·  专业枪头  ·  四合一</p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7931,7 +7938,7 @@
                 />
               </a>
               <p>
-                Senrytech R workstation<br />・移动工作站・功率可调・柔性生产
+                Senrytech R workstation<br />移动工作站  ·  功率可调  ·  柔性生产
               </p>
             </div>
 
@@ -7946,7 +7953,7 @@
                   alt="1500-3000W 机器人焊接机"
                 />
               </a>
-              <p>Senrytech R mobile<br />・协作机器人・24h 无人・批量稳焊</p>
+              <p>Senrytech R mobile<br />协作机器人  ·  24h 无人  ·  批量稳焊</p>
             </div>
 
             <!-- 5. 清洗分类：5个卡片（默认隐藏） -->
@@ -7957,11 +7964,11 @@
                 target="_blank"
               >
                 <img
-                  src="./img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                  src="./img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-1.webp"
                   alt="小型除锈激光清洗机"
                 />
               </a>
-              <p>Senrytech Residential<br />・背包式・家用・双电机遥控</p>
+              <p>Senrytech Residential<br />背包式  ·  家用  ·  双电机遥控</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -7971,11 +7978,11 @@
                 target="_blank"
               >
                 <img
-                  src="./img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-1.webp"
+                  src="./img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
                   alt="多功率商用清洗设备"
                 />
               </a>
-              <p>Senrytech Commercial<br />・拉杆箱式・商用便携・多功率</p>
+              <p>Senrytech Commercial<br />拉杆箱式  ·  商用便携  ·  多功率</p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -7989,7 +7996,7 @@
                   alt="工业级激光清洗设备"
                 />
               </a>
-              <p>Senrytech Industrial<br />・工业级・大功率・高效稳定</p>
+              <p>Senrytech Industrial<br />工业级  ·  大功率  ·  高效稳定</p>
             </div>
 
             <!-- 6. 打标分类：2个卡片（默认隐藏） -->
@@ -8004,7 +8011,7 @@
                   alt="便携台式打标设备"
                 />
               </a>
-              <p>Senrytech P<br />・便携台式・高精准・多材质适配</p>
+              <p>Senrytech P<br />便携台式  ·  高精准  ·  多材质适配</p>
             </div>
             <div class="product-item hidden" data-tab="mark">
               <a
@@ -8017,7 +8024,7 @@
                   alt="高效稳定打标设备"
                 />
               </a>
-              <p>Senrytech D<br />・台式设计・高精准・多材质适配</p>
+              <p>Senrytech D<br />台式设计  ·  高精准  ·  多材质适配</p>
             </div>
           </div>
         </div>
@@ -8038,7 +8045,7 @@
     <section class="avoid-pitfalls" id="pitfalls">
       <div class="container">
         <div class="section-title">
-          <h2>Senrytech 激光设备采购避坑指南 | 让您的每一分投资都物超所值</h2>
+          <h2>激光设备采购避坑指南 | 让您的每一分投资都物超所值</h2>
           <p>精准规避选型、操作、生产中的核心问题，降低试错成本</p>
         </div>
         <div class="pitfalls-list">
@@ -8046,9 +8053,9 @@
           <div class="pitfalls-card">
             <div class="card-icon">01</div>
             <div class="card-content">
-              <h3>选型避坑：盲目追求大功率</h3>
+              <h3>低价噱头，核心部件激光器功率虚标+偷梁换柱</h3>
               <p>
-                并非功率越大越好，需根据焊接材质、厚度匹配，小功率适配薄材更省成本，大功率过度使用易造成材料变形。
+                低价吸引采购，将原装激光器替换为杂牌仿品或高仿型号，甚至通过型号混淆虚标功率；更有无良商家将原装激光器替换为二手翻新件牟利！
               </p>
             </div>
           </div>
@@ -8056,9 +8063,9 @@
           <div class="pitfalls-card">
             <div class="card-icon">02</div>
             <div class="card-content">
-              <h3>操作避坑：忽略设备校准</h3>
+              <h3>花高价但是买到低配激光头，切割头如何选择适合自己的？</h3>
               <p>
-                新设备/换材后未校准光路、焦距，易导致焊缝不平整、虚焊，建议每次更换工况后做基础校准。
+                一是用二手翻新切割头冒充原厂全新配件；二是以高价低配的切割头以次充好。
               </p>
             </div>
           </div>
@@ -8066,9 +8073,9 @@
           <div class="pitfalls-card">
             <div class="card-icon">03</div>
             <div class="card-content">
-              <h3>生产避坑：无防护直接作业</h3>
+              <h3>整机质保 vs 核心部件质保？</h3>
               <p>
-                激光焊接产生的强光、高温易损伤视力和皮肤，必须配备专业护目镜、防烫手套等防护装备。
+                很多厂家只保整机，不保核心易坏部件，一定要写进合同。
               </p>
             </div>
           </div>
@@ -8076,9 +8083,9 @@
           <div class="pitfalls-card">
             <div class="card-icon">04</div>
             <div class="card-content">
-              <h3>售后避坑：选择无正规质保的产品</h3>
+              <h3>简易包装 ≠ 省钱</h3>
               <p>
-                工业设备核心看售后，避免贪便宜选无原厂质保、无线下服务点的品牌，后期维修成本高。
+                机床几吨～十几吨，地面松软、楼板承重不足会塌陷。
               </p>
             </div>
           </div>
@@ -8163,7 +8170,7 @@
               <img src="./img/news/senrytech-after-sales-260115.webp" alt="Senrytech 印度尼西亚机器培训安装" />
             </div>
             <div class="card-content">
-              <div class="case-tag">印度尼西亚 · 钣金加工</div>
+              <div class="case-tag">印度尼西亚  ·  钣金加工</div>
               <h3>森睿激光赴印度尼西亚开展设备售后安装与技术培训</h3>
               <p>
                 为进一步完善海外服务体系，保障印度尼西亚客户激光设备稳定高效运行...
@@ -8173,10 +8180,10 @@
           <!-- 案例2 -->
           <div class="cases-card">
             <div class="card-img">
-              <img src="./img/news/senrytech-mexico-after-sales-240906.webp" alt="Senrytech墨西哥 · 汽车零部件" />
+              <img src="./img/news/senrytech-mexico-after-sales-240906.webp" alt="Senrytech墨西哥  ·  汽车零部件" />
             </div>
             <div class="card-content">
-              <div class="case-tag">墨西哥 · 汽车零部件</div>
+              <div class="case-tag">墨西哥  ·  汽车零部件</div>
               <h3>汽车发动机零部件自动化切割与焊接</h3>
               <p>
                 精准对接当地钣金加工、汽车零部件制造等行业客户需求，严格遵循墨西哥工业安全规范与设备运行标准...
@@ -8186,10 +8193,10 @@
           <!-- 案例3 -->
           <div class="cases-card">
             <div class="card-img">
-              <img src="./img/news/senrytech-after-sales-2 (3)-italy-231025.webp" alt="Senrytech意大利 · 不锈钢制品行业" />
+              <img src="./img/news/senrytech-after-sales-2 (3)-italy-231025.webp" alt="Senrytech意大利  ·  不锈钢制品行业" />
             </div>
             <div class="card-content">
-              <div class="case-tag">意大利 · 不锈钢制品行业</div>
+              <div class="case-tag">意大利  ·  不锈钢制品行业</div>
               <h3>森睿激光赴意大利开展Senrytech系列设备安装调试与技术培训</h3>
               <p>
                 精准对接客户不锈钢制品生产需求，保障设备稳定高效投产，助力客户提升生产效率与产品品质...
@@ -8849,7 +8856,7 @@
       <div class="accessory-container">
         <div class="section-title">
           <h2>设备配件</h2>
-          <p>Senrytech 设备配件 · 原厂品质，快速供应</p>
+          <p>Senrytech 设备配件  ·  原厂品质，快速供应</p>
         </div>
 
         <!-- 纯黑色大卡片（保留外层容器，内部改为滚动结构） -->
@@ -9049,7 +9056,7 @@
             <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-              <span>中国·济南市历城区舜华路街道综合产业工业园</span>
+              <span>中国 · 济南市历城区舜华路街道综合产业工业园</span>
             </li>
             <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
             <li>

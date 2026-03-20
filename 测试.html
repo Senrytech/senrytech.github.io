@@ -1,35 +1,10 @@
 <!doctype html>
 <html lang="zh-CN">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      content="专业激光设备厂家分享伺服电机选型避坑指南：涵盖铭牌套路、检验原厂配置、避免以次充好等实战经验，帮您精准采购伺服电机，降低设备故障风险。"
-      name="description"
-    />
-    <meta
-      content="激光设备伺服电机,伺服电机选型避坑,激光切割机伺服电机采购,伺服电机原厂验证,森睿激光Senrytech"
-      name="keywords"
-    />
-    <title>激光设备伺服电机选型避坑指南 | 森睿激光 Senrytech</title>
-    <link
-      rel="canonical"
-      href="https://www.senrytech.com/pitfall-avoidance-guide/water-cooling-machine/"
-    />
-    <!-- 引入思源黑体字体文件 -->
-    <link
-      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- 引入Font Awesome图标库（商务图标依赖） -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
-    />
-    <style>
-      /* ================================== 一、全局基础样式 ================================== */
-      /* 模块说明：重置浏览器默认表现，统一全局字体、盒模型及复用工具类，确保多设备基础样式一致性 */
+    
 
+    <!-- 一、CSS 全局基础样式 -->
+    <style>
       /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
@@ -55,47 +30,6 @@
         position: fixed; /* 固定页面位置，防止背景随滚动移动 */
         width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
         overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
-      }
-
-      /* ================================== 标题滚动向上淡出动画 ================================== */
-      /* 1. 重定义“向上淡出”动画：结束时保留30%透明度+轻微向上位移（不消失） */
-      @keyframes titleFadeUp {
-        from {
-          opacity: 0; /* 初始：完全显示 */
-          transform: translateY(0); /* 初始：无位移 */
-        }
-        to {
-          opacity: 1; /* 关键：结束时保留30%透明度（不消失），可根据需求调整0.2~0.5 */
-          transform: translateY(
-            0
-          ); /* 关键：轻微向上位移（10px，原20px太夸张），更自然 */
-        }
-      }
-
-      /* 2. 动画激活类：保留原逻辑，确保动画执行后维持结束状态 */
-      .title-fade-active {
-        animation: titleFadeUp 1.5s ease forwards; /* forwards必须保留，维持结束状态 */
-        pointer-events: none; /* 避免透明后误触 */
-        transition: none !important; /* 禁用过渡，避免与动画冲突 */
-      }
-
-      /* 3. 标题初始状态：确保所有标题默认显示，且支持动画过渡 */
-      /* 目标标题范围：所有h1-h6 + 自定义标题类（如.product-main-title） */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .product-main-title,
-      .submenu-content-title,
-      .content-item h3 {
-        opacity: 1; /* 默认显示 */
-        transform: translateY(0); /* 默认无位移 */
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease; /* 初始状态过渡（可选，优化视觉） */
-        will-change: opacity, transform; /* 提前告知浏览器优化渲染 */
       }
 
       /* ================================== 一、全局基础样式-REM（1:16基准核心：1rem基准=16px） ================================== */
@@ -157,6 +91,7 @@
         }
       }
     </style>
+
 
     <!--二、CSS 导航栏-->
     <style>
@@ -1377,9 +1312,8 @@
       @media (min-width: 2560px) {
       }
     </style>
-  </head>
 
-  <body>
+
     <!-- 二，代码 导航栏 -->
     <nav class="navbar">
       <div class="logo">
@@ -2606,20 +2540,20 @@
 
 
 
-    <!-- 十一，代码 底部导航栏-->
+    <!-- 十三，底部导航栏 -->
     <footer class="footer-new">
       <div class="footer-container">
         <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="../../../img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
           </div>
           <p class="brand-desc">
-            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
+            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工解决方案。
           </p>
           <div class="social-icons">
             <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
@@ -2693,14 +2627,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="../../../img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="../../../img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>
@@ -2721,280 +2655,4 @@
       </div>
     </footer>
 
-    <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
-    <script>
-      /* ================================== 二、导航栏滚动透视效果 ================================== */
-      // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
-      // 触发时机：页面滚动事件（scroll）
-      window.addEventListener("scroll", function () {
-        // 获取导航栏DOM元素（仅需查询1次，避免重复DOM操作）
-        const navbar = document.querySelector(".navbar");
-        // 逻辑判断：滚动距离>0时显示透视效果，否则恢复初始样式
-        if (window.scrollY > 0) {
-          navbar.classList.add("scrolled"); // 添加透视样式类
-        } else {
-          navbar.classList.remove("scrolled"); // 移除透视样式类
-        }
-      });
 
-      // 等待DOM加载完成
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. 获取元素
-        const hamburgerBtn = document.getElementById("hamburgerBtn");
-        const sidebarMenu = document.getElementById("sidebarMenu");
-        const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
-        const sidebarOverlay = document.getElementById("sidebarOverlay");
-        const submenuTrigger = document.querySelector(".submenu-trigger"); // 产品中心展开/收起触发器
-        const hasSubmenuItem = document.querySelector(
-          ".sidebar-menu-item.has-submenu"
-        ); // 产品中心父项
-        const productSubmenuItems = document.querySelectorAll(
-          ".sidebar-submenu-item"
-        ); // 产品分类项
-        const submenuContentItems = document.querySelectorAll(
-          ".submenu-content-item"
-        ); // 产品内容项（boardContent等）
-        const submenuContent = document.getElementById("productSubmenuContent"); // 产品内容总容器
-        const body = document.body;
-
-        // 2. 汉堡按钮：展开/收起侧边菜单
-        function toggleSidebar() {
-          sidebarMenu.classList.toggle("active");
-          sidebarOverlay.classList.toggle("active");
-          hamburgerBtn.classList.toggle("active");
-          // 禁止背景滚动
-          body.classList.toggle("body-fixed");
-
-          // 【新增】侧边菜单收起时，同步收起产品内容（避免残留）
-          if (!sidebarMenu.classList.contains("active")) {
-            resetProductSubmenu();
-          }
-        }
-        hamburgerBtn.addEventListener("click", toggleSidebar);
-        sidebarCloseBtn.addEventListener("click", toggleSidebar);
-        sidebarOverlay.addEventListener("click", toggleSidebar); // 点击遮罩层收起
-
-        // 3. 产品中心：点击展开/收起【分类列表】+ 同步控制产品内容
-        submenuTrigger.addEventListener("click", function () {
-          // 切换分类列表的展开/收起状态
-          hasSubmenuItem.classList.toggle("active");
-
-          // 【核心修复】判断分类列表是否收起，同步处理产品内容
-          if (!hasSubmenuItem.classList.contains("active")) {
-            resetProductSubmenu(); // 收起时重置产品内容
-          } else {
-            // 展开时仅显示分类列表，不默认展开任何产品内容（符合原需求）
-            submenuContent.style.display = "none";
-            submenuContent.style.maxHeight = "0";
-          }
-        });
-
-        // 4. 产品分类切换：点击分类项，显示对应产品内容
-        productSubmenuItems.forEach((item) => {
-          item.addEventListener("click", function (e) {
-            e.preventDefault();
-
-            // 步骤1：重置所有分类项的active状态
-            productSubmenuItems.forEach((i) => i.classList.remove("active"));
-            this.classList.add("active"); // 标记当前分类为激活
-
-            // 步骤2：获取目标内容ID（确保data-target和内容ID匹配，如data-target="board" → ID="boardContent"）
-            const targetId = this.getAttribute("data-target") + "Content";
-            const targetContent = document.getElementById(targetId);
-            if (!targetContent) return; // 防止ID不匹配导致报错
-
-            // 步骤3：隐藏所有产品内容项，显示当前项
-            submenuContentItems.forEach((content) => {
-              content.style.display = "none";
-            });
-            targetContent.style.display = "block";
-
-            // 步骤4：显示产品内容总容器（展开动画）
-            submenuContent.style.display = "block";
-            // 用setTimeout确保display生效后再设置maxHeight，触发过渡动画
-            setTimeout(() => {
-              submenuContent.style.maxHeight = "calc(100vh - 200px)";
-            }, 10);
-
-            // （可选）滚动到产品内容区域
-            targetContent.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          });
-        });
-
-        // 5. 侧边菜单滚动：同步导航栏模糊效果
-        window.addEventListener("scroll", function () {
-          const navbar = document.querySelector(".navbar");
-          navbar.classList.toggle("scrolled", window.scrollY > 50);
-        });
-
-        // 6. 窗口 resize 时：自动收起侧边菜单+产品内容（避免适配异常）
-        window.addEventListener("resize", function () {
-          if (
-            window.innerWidth >= 1024 &&
-            sidebarMenu.classList.contains("active")
-          ) {
-            toggleSidebar(); // 收起侧边菜单
-            resetProductSubmenu(); // 同步收起产品内容
-          }
-        });
-
-        // 【新增】统一重置产品内容的工具函数（避免重复代码）
-        function resetProductSubmenu() {
-          // 1. 隐藏所有产品内容项（boardContent等）
-          submenuContentItems.forEach((content) => {
-            content.style.display = "none";
-          });
-          // 2. 收起产品内容总容器（先置maxHeight为0，再隐藏display）
-          submenuContent.style.maxHeight = "0";
-          // 用setTimeout确保过渡动画完成后再隐藏display，避免闪烁
-          setTimeout(() => {
-            submenuContent.style.display = "none";
-          }, 300); // 延迟时间需与CSS中submenuContent的transition-duration一致
-          // 3. 重置产品分类项的active状态
-          productSubmenuItems.forEach((i) => i.classList.remove("active"));
-        }
-      });
-
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
-      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
-      // 触发时机：分类项的mouseenter事件
-
-      // —— 3.1 初始化分类切换所需变量 ——
-      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
-      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
-
-      // —— 3.2 绑定分类项hover事件 ——
-      categoryItems.forEach((item) => {
-        item.addEventListener("mouseenter", function () {
-          // 1. 重置所有分类项状态：移除激活类
-          categoryItems.forEach((catItem) =>
-            catItem.classList.remove("active")
-          );
-          // 2. 激活当前hover的分类项
-          this.classList.add("active");
-
-          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
-          const targetId = this.getAttribute("data-target");
-          // 4. 重置所有内容区状态：隐藏所有内容
-          contentItems.forEach((content) => content.classList.remove("active"));
-          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
-          const targetContent = document.getElementById(targetId);
-          if (targetContent) {
-            targetContent.classList.add("active");
-          }
-        });
-      });
-    </script>
-
-    <script>
-      // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
-      document.addEventListener("DOMContentLoaded", function () {
-        // 1. 目标标题：保持与CSS一致（所有h1-h6 + 自定义标题类）
-        const titleElements = document.querySelectorAll(
-          "h1, h2, h3, h4, h5, h6, .product-main-title, .submenu-content-title, .content-item h3"
-        );
-
-        // 2. 核心滚动逻辑：优化触发时机 + 排除不可见元素 + 精准恢复
-        function handleTitleScroll() {
-          const viewportHeight = window.innerHeight; // 视口高度（屏幕可见区域）
-
-          titleElements.forEach((title) => {
-            // 关键：排除隐藏元素（如下拉菜单/侧边栏中的标题，避免无效计算）
-            if (!title.offsetParent) return; // offsetParent为null表示元素不可见，直接跳过
-
-            const titleRect = title.getBoundingClientRect(); // 标题相对于视口的位置
-            const titleHeight = titleRect.height; // 标题自身高度（用于精准判断滚出时机）
-
-            // ✅ 条件1：向下滚动时，标题“开始滚出视口底部”就触发动画（视觉上最自然）
-            // 逻辑：标题底部 < 视口高度 + 标题顶部 > 0 → 标题部分滚出底部（非完全隐藏）
-            // 补充：标题顶部 > 视口高度 → 标题完全滚出底部（避免漏触发）
-            if (
-              (titleRect.bottom < viewportHeight && titleRect.top > 0) ||
-              titleRect.top > viewportHeight
-            ) {
-              title.classList.add("title-fade-active");
-            }
-
-            // ✅ 条件2：向上滚动时，标题“开始进入视口”就恢复显示（避免延迟）
-            // 逻辑：标题顶部 < 视口高度 + 标题底部 > 0 → 标题部分/完全进入视口
-            else if (titleRect.top < viewportHeight && titleRect.bottom > 0) {
-              title.classList.remove("title-fade-active");
-            }
-          });
-        }
-
-        // 3. 初始化：页面加载时执行一次（处理初始就滚出视口的标题）
-        handleTitleScroll();
-
-        // 4. 滚动监听：保留性能优化，同时确保滚动时实时触发
-        window.addEventListener("scroll", function () {
-          // 使用requestAnimationFrame确保动画流畅（与屏幕刷新率同步）
-          window.requestAnimationFrame(handleTitleScroll);
-        });
-
-        // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
-        window.addEventListener("resize", handleTitleScroll);
-      });
-    </script>
-
-    <script>
-      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
-      const langDropdown = document.getElementById("langDropdown");
-      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
-      const langTrigger = langDropdown.querySelector(".language-btn");
-
-      // 点击语言按钮，切换下拉菜单显示状态
-      langTrigger.addEventListener("click", (e) => {
-        e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
-        langMenu.style.display =
-          langMenu.style.display === "block" ? "none" : "block";
-      });
-
-      // 点击页面其他区域，关闭下拉菜单
-      document.addEventListener("click", () => {
-        if (langMenu.style.display === "block") {
-          langMenu.style.display = "none";
-        }
-      });
-
-      // 2. 当前语言自动高亮（根据页面URL匹配）
-      const currentPath = window.location.pathname;
-      const langLinks = document.querySelectorAll(".lang-link");
-
-      // 语言与首页路径的映射（需与你的实际文件路径一致）
-      const langHomePathMap = {
-        zh: "/index.html", // 中文首页
-        en: "/en/index.html", // 英语首页
-        de: "/de/index.html", // 德语首页
-        es: "/es/index.html", // 西班牙语首页
-        fr: "/fr/index.html", // 法语首页
-        ru: "/ru/index.html", // 俄语首页
-        ar: "/ar/index.html", // 阿拉伯语首页
-      };
-
-      // 匹配当前路径，给对应语言链接添加高亮样式
-      langLinks.forEach((link) => {
-        const lang = link.getAttribute("lang");
-        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
-        if (
-          currentPath === langHomePathMap[lang] ||
-          (lang === "zh" && currentPath === "/")
-        ) {
-          link.classList.add("active");
-        }
-      });
-    </script>
-
-    <script>
-      // 进入视口动画
-      document.addEventListener("DOMContentLoaded", function () {
-        setTimeout(() => {
-          document.querySelector(".fadeIn").style.opacity = 1;
-        }, 300);
-      });
-    </script>
-  </body>
-</html>

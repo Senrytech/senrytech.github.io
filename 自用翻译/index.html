@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档翻译工具 - Google 翻译内核</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+
+        .upload-box {
+            border: 2px dashed #409eff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .upload-box:hover {
+            background: #f0f7ff;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .lang-select {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            padding: 10px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .lang-btn.active {
+            background: #409eff;
+            color: white;
+            border-color: #409eff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            background: #409eff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .action-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            margin-top: 25px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 350px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .tip {
+            color: #666;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">📄 文档智能翻译工具（Google 翻译内核）</h1>
+
+        <!-- 上传区域 -->
+        <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+            <h3>点击或拖拽上传文档（支持 .txt / .docx）</h3>
+            <p style="margin-top:10px;color:#666">支持无限制字符翻译</p>
+        </div>
+        <input type="file" id="fileInput" accept=".txt,.docx">
+
+        <!-- 语言选择 -->
+        <div class="lang-select">
+            <button class="lang-btn active" data-lang="en">英语</button>
+            <button class="lang-btn" data-lang="ru">俄语</button>
+            <button class="lang-btn" data-lang="fr">法语</button>
+            <button class="lang-btn" data-lang="es">西班牙语</button>
+            <button class="lang-btn" data-lang="ar">沙特阿拉伯语</button>
+            <button class="lang-btn" data-lang="de">德语</button>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="btn-group">
+            <button class="action-btn" id="translateBtn" disabled>开始翻译</button>
+            <button class="action-btn" id="exportBtn" disabled>导出翻译结果</button>
+        </div>
+
+        <!-- 结果区域 -->
+        <div class="result-box">
+            <textarea id="resultArea" placeholder="翻译结果将显示在这里……"></textarea>
+            <div class="tip">✅ 自动识别中文 → 目标语言 | ✅ 无字符限制 | ✅ Google 官方翻译内核</div>
+        </div>
+    </div>
+
+    <!-- 依赖库 -->
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.4.18/bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
+    <script>
+        let originalText = "";
+        let targetLang = "en";
+        let translatedText = "";
+
+        // 语言选择
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.lang-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                targetLang = btn.dataset.lang;
+            });
+        });
+
+        // 上传文档
+        document.getElementById('fileInput').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            try {
+                if (file.name.endsWith('.txt')) {
+                    originalText = await file.text();
+                } else if (file.name.endsWith('.docx')) {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const result = await mammoth.convertToHtml({ arrayBuffer });
+                    originalText = result.value.replace(/<[^>]+>/g, '');
+                }
+                document.getElementById('translateBtn').disabled = false;
+                alert("文档读取成功！可点击翻译");
+            } catch (err) {
+                alert("读取失败：" + err.message);
+            }
+        });
+
+        // 分段翻译（突破字符限制）
+        async function translateText(text, toLang) {
+            const chunks = splitText(text, 2000);
+            let result = "";
+            for (let chunk of chunks) {
+                const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=${toLang}&dt=t&q=${encodeURIComponent(chunk)}`);
+                const data = await res.json();
+                result += data[0].map(item => item[0]).join('');
+            }
+            return result;
+        }
+
+        // 文本分段
+        function splitText(text, maxLength) {
+            const chunks = [];
+            while (text.length > 0) {
+                let cut = Math.min(maxLength, text.length);
+                chunks.push(text.substring(0, cut));
+                text = text.substring(cut);
+            }
+            return chunks;
+        }
+
+        // 翻译按钮
+        document.getElementById('translateBtn').addEventListener('click', async () => {
+            if (!originalText) {
+                alert("请先上传文档");
+                return;
+            }
+            document.getElementById('translateBtn').disabled = true;
+            document.getElementById('translateBtn').innerText = "翻译中...";
+
+            try {
+                translatedText = await translateText(originalText, targetLang);
+                document.getElementById('resultArea').value = translatedText;
+                document.getElementById('exportBtn').disabled = false;
+            } catch (err) {
+                alert("翻译失败：" + err.message);
+            }
+
+            document.getElementById('translateBtn').innerText = "开始翻译";
+            document.getElementById('translateBtn').disabled = false;
+        });
+
+        // 导出
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            if (!translatedText) {
+                alert("暂无翻译结果");
+                return;
+            }
+            const blob = new Blob([translatedText], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, "翻译结果.txt");
+        });
+    </script>
+</body>
+</html>

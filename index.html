@@ -5215,7 +5215,7 @@
         object-position: center bottom;
         /* 注：图片自身的 overflow: hidden 无效（子元素无法裁剪自身），可删除 */
         border-radius: 1.25rem;
-        
+
         box-shadow: 0 0.25rem 1rem rgba(223, 9, 9, 0.05);
         transition:
           transform 0.3s ease,
@@ -6097,7 +6097,7 @@
         margin-bottom: 16px;
         color: #d1d1d6;
       }
-      
+
       .footer-column ul {
         list-style: none;
         padding: 0;
@@ -6111,10 +6111,10 @@
         transition: color 0.2s;
       }
       /* 6. Hover 核心效果：下划线+文字变色+轻微位移 */
-.footer-column a:hover {
-  color: #1b4c42; /* 匹配LOGO hover的品牌色 */
-  transform: translateX(3px); /* 轻微右移，增强交互感 */
-}
+      .footer-column a:hover {
+        color: #1b4c42; /* 匹配LOGO hover的品牌色 */
+        transform: translateX(3px); /* 轻微右移，增强交互感 */
+      }
 
       /* 3. 联系我们列样式 */
       .footer-contact .contact-list {
@@ -6863,28 +6863,35 @@
           </button>
           <!-- 多语言首页链接列表 -->
           <ul class="lang-dropdown-list">
-            <li><a href="/index.html" lang="zh" class="lang-link">中文</a></li>
-            <li>
-              <a href="https://www.senrytech.com/en" lang="en" class="lang-link"
-                >英语</a
-              >
-            </li>
-            <li>
-              <a href="/de/index.html" lang="de" class="lang-link">德语</a>
-            </li>
-            <li>
-              <a href="/es/index.html" lang="es" class="lang-link">西班牙语</a>
-            </li>
-            <li>
-              <a href="/fr/index.html" lang="fr" class="lang-link">法语</a>
-            </li>
-            <li>
-              <a href="/ru/index.html" lang="ru" class="lang-link">俄语</a>
-            </li>
-            <li>
-              <a href="/ar/index.html" lang="ar" class="lang-link">阿拉伯语</a>
-            </li>
-          </ul>
+  <!-- 中文（默认语言，根目录） -->
+  <li>
+    <a href="https://www.senrytech.com/cn/" lang="zh-CN" class="lang-link">中文</a>
+  </li>
+  <!-- 英语（en 目录，建议用 en-US 更精准） -->
+  <li>
+    <a href="https://www.senrytech.com/en/" lang="en-US" class="lang-link active">英语</a>
+  </li>
+  <!-- 德语（de 目录） -->
+  <li>
+    <a href="https://www.senrytech.com/de/" lang="de-DE" class="lang-link">德语</a>
+  </li>
+  <!-- 西班牙语（es 目录，区分西班牙/拉美可加 es-ES/es-MX） -->
+  <li>
+    <a href="https://www.senrytech.com/es/" lang="es-ES" class="lang-link">西班牙语</a>
+  </li>
+  <!-- 法语（fr 目录，区分法国/加拿大可加 fr-FR/fr-CA） -->
+  <li>
+    <a href="https://www.senrytech.com/fr/" lang="fr-FR" class="lang-link">法语</a>
+  </li>
+  <!-- 俄语（ru 目录） -->
+  <li>
+    <a href="https://www.senrytech.com/ru/" lang="ru-RU" class="lang-link">俄语</a>
+  </li>
+  <!-- 阿拉伯语（ar 目录，区分沙特/埃及可加 ar-SA/ar-EG） -->
+  <li>
+    <a href="https://www.senrytech.com/ar/" lang="ar-SA" class="lang-link">阿拉伯语</a>
+  </li>
+</ul>
         </div>
 
         <!-- 询价/看厂按钮（信封/工厂图标，二选一） - 新增超链接 -->
@@ -8889,36 +8896,57 @@
           <div class="accessory-scroll-container" id="accessoryScroll">
             <!-- 第1个：高容器 -->
             <div class="accessory-image-item high-item">
-              <img src="./img/index/accessories/senrytech-accessories-ceramic-ring.webp" alt="陶瓷环" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-ceramic-ring.webp"
+                alt="陶瓷环"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <!-- 第2个：低容器 -->
             <div class="accessory-image-item low-item">
-              <img src="./img/index/accessories/senrytech-accessories-focus-collimation-lens-assembly.webp" alt="聚焦准直镜片" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-focus-collimation-lens-assembly.webp"
+                alt="聚焦准直镜片"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <!-- 第3个：高容器（对称中心） -->
             <div class="accessory-image-item high-item">
-              <img src="./img/index/accessories/senrytech-accessories-laser-head.webp" alt="激光头" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-laser-head.webp"
+                alt="激光头"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <!-- 第4个：低容器 -->
             <div class="accessory-image-item low-item">
-              <img src="./img/index/accessories/senrytech-accessories-protective-lenses.webp" alt="保护镜片" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-protective-lenses.webp"
+                alt="保护镜片"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <!-- 第5个：高容器 -->
             <div class="accessory-image-item high-item">
-              <img src="./img/index/accessories/senrytech-accessories-system-boards.webp" alt="系统板卡" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-system-boards.webp"
+                alt="系统板卡"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <!-- 可扩展：新增更多卡片（滚动自动生效） -->
             <div class="accessory-image-item low-item">
-              <img src="./img/index/accessories/senrytech-accessories-transformer.webp" alt="变压器" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-transformer.webp"
+                alt="变压器"
+              />
               <div class="accessory-image-text"></div>
             </div>
             <div class="accessory-image-item high-item">
-              <img src="./img/index/accessories/senrytech-accessories-welding-nozzle.webp" alt="喷嘴" />
+              <img
+                src="./img/index/accessories/senrytech-accessories-welding-nozzle.webp"
+                alt="喷嘴"
+              />
               <div class="accessory-image-text"></div>
             </div>
           </div>
@@ -9034,14 +9062,26 @@
           </p>
           <div class="social-icons">
             <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
-            <a class="icon" href="https://www.facebook.com/profile.php?id=61572514366742" title="Facebook">
+            <a
+              class="icon"
+              href="https://www.facebook.com/profile.php?id=61572514366742"
+              title="Facebook"
+            >
               <i class="fa fa-facebook text-xl"></i>
               <!-- 4.7.0 支持的默认前缀 fa -->
             </a>
-            <a class="icon" href="https://www.instagram.com/senrytech/" title="Instagram">
+            <a
+              class="icon"
+              href="https://www.instagram.com/senrytech/"
+              title="Instagram"
+            >
               <i class="fa fa-instagram text-xl"></i>
             </a>
-            <a class="icon" href="https://www.youtube.com/@senrytech" title="YouTube">
+            <a
+              class="icon"
+              href="https://www.youtube.com/@senrytech"
+              title="YouTube"
+            >
               <i class="fa fa-youtube-play text-xl"></i>
             </a>
           </div>
@@ -9051,12 +9091,30 @@
         <div class="footer-column">
           <h3>产品中心</h3>
           <ul>
-            <li><a href="https://www.senrytech.com/laser-sheet-cutting/">板材切割机</a></li>
-            <li><a href="https://www.senrytech.com/laser-tube-cutting/">管材切割机</a></li>
-            <li><a href="https://www.senrytech.com/laser-sheet-tube/">板管一体机</a></li>
-            <li><a href="https://www.senrytech.com/laser-welding/">激光焊接机</a></li>
-            <li><a href="https://www.senrytech.com/laser-cleaning/">激光清洗机</a></li>
-            <li><a href="https://www.senrytech.com/laser-marking/">激光打标机</a></li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-cutting/"
+                >板材切割机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-tube-cutting/"
+                >管材切割机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-tube/"
+                >板管一体机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-welding/">激光焊接机</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-cleaning/">激光清洗机</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-marking/">激光打标机</a>
+            </li>
           </ul>
         </div>
 
@@ -9066,10 +9124,16 @@
           <ul>
             <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
             <li><a href="https://www.senrytech.com/solutions/">选型方案</a></li>
-            <li><a href="https://www.senrytech.com/pitfall-avoidance-guide/">避坑指南</a></li>
+            <li>
+              <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
+                >避坑指南</a
+              >
+            </li>
             <li><a href="https://www.senrytech.com/news/">新闻动态</a></li>
             <li><a href="https://www.senrytech.com/join-us/">加入我们</a></li>
-            <li><a href="https://www.senrytech.com/contact-us/">联系我们</a></li>
+            <li>
+              <a href="https://www.senrytech.com/contact-us/">联系我们</a>
+            </li>
           </ul>
         </div>
 

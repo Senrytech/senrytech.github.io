@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-EN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -3013,21 +3013,21 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08); /* 细白边模拟玻璃通透感 */
-  /* 3. 液态质感：多层阴影（内阴影+外阴影）模拟玻璃的厚度和液态反光 */
-  box-shadow: 
-    inset 0 1px 3px rgba(255, 255, 255, 0.1),  /* 内高光：模拟玻璃内部反光 */
-    inset 0 -1px 2px rgba(0, 0, 0, 0.8),       /* 内阴影：增强液态深邃感 */
-    0 4px 20px rgba(0, 0, 0, 0.4);             /* 外阴影：增加立体悬浮感 */
-  /* 4. 圆角+padding：保留原有布局，圆角更贴合液态圆润感 */
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08); /* 细白边模拟玻璃通透感 */
+        /* 3. 液态质感：多层阴影（内阴影+外阴影）模拟玻璃的厚度和液态反光 */
+        box-shadow:
+          inset 0 1px 3px rgba(255, 255, 255, 0.1),
+          /* 内高光：模拟玻璃内部反光 */ inset 0 -1px 2px rgba(0, 0, 0, 0.8),
+          /* 内阴影：增强液态深邃感 */ 0 4px 20px rgba(0, 0, 0, 0.4); /* 外阴影：增加立体悬浮感 */
+        /* 4. 圆角+padding：保留原有布局，圆角更贴合液态圆润感 */
         background: linear-gradient(
-    135deg, 
-    #2a2827 0%,    /* 浅黑（高光侧） */
-    #17171a 30%,   /* 中黑（过渡） */
-    #0f0f12 60%,   /* 深黑（主体） */
-    #050507 100%   /* 纯黑（暗部） */
-  );
+          135deg,
+          #2a2827 0%,
+          /* 浅黑（高光侧） */ #17171a 30%,
+          /* 中黑（过渡） */ #0f0f12 60%,
+          /* 深黑（主体） */ #050507 100% /* 纯黑（暗部） */
+        );
         border-radius: 20px;
         padding: 2.5rem 1.5rem;
       }
@@ -6383,26 +6383,61 @@
           </button>
           <!-- 多语言首页链接列表 -->
           <ul class="lang-dropdown-list">
-            <li><a href="/index.html" lang="zh" class="lang-link">中文</a></li>
             <li>
-              <a href="https://www.senrytech.com/en" lang="en" class="lang-link"
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/cn/"
+                lang="zh"
+                class="lang-link"
+                >中文</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                lang="en"
+                class="lang-link active"
                 >英语</a
               >
             </li>
             <li>
-              <a href="/de/index.html" lang="de" class="lang-link">德语</a>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/de/"
+                lang="de"
+                class="lang-link"
+                >德语</a
+              >
             </li>
             <li>
-              <a href="/es/index.html" lang="es" class="lang-link">西班牙语</a>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/es/"
+                lang="es"
+                class="lang-link"
+                >西班牙语</a
+              >
             </li>
             <li>
-              <a href="/fr/index.html" lang="fr" class="lang-link">法语</a>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/fr/"
+                lang="fr"
+                class="lang-link"
+                >法语</a
+              >
             </li>
             <li>
-              <a href="/ru/index.html" lang="ru" class="lang-link">俄语</a>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ru/"
+                lang="ru"
+                class="lang-link"
+                >俄语</a
+              >
             </li>
             <li>
-              <a href="/ar/index.html" lang="ar" class="lang-link">阿拉伯语</a>
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ar/"
+                lang="ar"
+                class="lang-link"
+                >阿拉伯语</a
+              >
             </li>
           </ul>
         </div>
@@ -8736,13 +8771,13 @@
 
       // 语言与首页路径的映射（需与你的实际文件路径一致）
       const langHomePathMap = {
-        zh: "/index.html", // 中文首页
-        en: "/en/index.html", // 英语首页
-        de: "/de/index.html", // 德语首页
-        es: "/es/index.html", // 西班牙语首页
-        fr: "/fr/index.html", // 法语首页
-        ru: "/ru/index.html", // 俄语首页
-        ar: "/ar/index.html", // 阿拉伯语首页
+        zh: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/cn/", // 中文首页
+        en: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/", // 英语首页
+        de: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/de/", // 德语首页
+        es: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/es/", // 西班牙语首页
+        fr: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/fr/", // 法语首页
+        ru: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ru/", // 俄语首页
+        ar: "https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ar/", // 阿拉伯语首页
       };
 
       // 匹配当前路径，给对应语言链接添加高亮样式

@@ -1057,12 +1057,9 @@
         position: relative;
         width: 100%;
         overflow: hidden;
-
         aspect-ratio: 16 / 7 !important;
-
         height: auto !important;
         min-height: 200px;
-
         padding-top: calc(7 / 16 * 100%);
       }
 
@@ -1128,19 +1125,12 @@
 
       .banner-text h1 {
         font-size: clamp(1.875rem, 5vw, 3.5rem);
-
         font-weight: 600;
-
         color: #1d1d1f;
-
         margin-bottom: 2.5rem;
-
         line-height: 1.3;
-
         letter-spacing: 0.5px;
-
         text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -1148,39 +1138,25 @@
 
       .banner-text h2 {
         font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-
         margin-bottom: 2rem;
-
         font-weight: 300;
-
         letter-spacing: 0.2px;
-
         color: #1d1d1f;
-
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
 
       .banner-text p {
         font-size: clamp(1rem, 2vw, 1.25rem);
-
         margin-bottom: 3rem;
-
         letter-spacing: 0.3px;
-
         line-height: 1.6;
-
         color: #1d1d1f;
-
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-
         max-width: 75vw;
-
         margin-left: auto;
         margin-right: auto;
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -1786,495 +1762,569 @@
     <!--四，CSS 先刷重点-->
     <style>
       .benefit-section {
-        background: radial-gradient(
-          ellipse at center,
-          #f8f8f8 0%,
-          #fafafa 30%,
-          #ffffff 70%,
-          #ffffff 100%
-        );
-        width: 100%;
-        padding: 5rem 0 8rem;
-        position: relative;
-        overflow: visible;
-        height: auto;
-      }
+  /* 苹果黑渐变：中心亮、边缘暗，更有空间感 */
+  background: radial-gradient(ellipse at center, #1d1b1a 0%, #121215 40%, #000000 100%);
+  /* 加一层微弱的环境光，避免死黑 */
+  background-image: 
+    radial-gradient(ellipse at center, rgba(120, 120, 255, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at center, #1a1a1d 0%, #121215 40%, #000000 100%);
+  width: auto;
+  min-height: 5vh;
+  padding: 40px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 整个section水平居中 */
+  justify-content: flex-start;
+}
 
-      .benefit-container {
-        max-width: 100rem;
-        margin: 0 auto 0 15%;
-        box-sizing: border-box;
-      }
+/* 新增容器：统一包裹内容，确保居中 */
+.benefit-container {
+  width: 100%;
+  max-width: 1600px; /* 最大宽度限制，适配大屏 */
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-      .benefit-main-title {
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        font-size: 3.5rem;
-        font-weight: 500;
-        color: #000000;
-        margin-bottom: 0rem;
-        text-align: left;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-left: 2rem;
-      }
+.benefit-main-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -0.02em;
+  /* 蓝紫渐变文字 */
+  background: #f5f5f7;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* 轻微发光，增强质感 */
+  text-shadow: 0 0 20px rgba(80, 123, 255, 0.2);
+  margin: 0 auto 20px; /* 标题居中并增加底部间距 */
+}
 
-      .benefit-subtitle-wrap {
-        margin: 0 0 3rem 2rem;
-      }
+/* 副标题：浅蓝渐变，弱化但清晰 */
+.benefit-subtitle-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(14px, 2vw, 16px);
+  text-align: center;
+  /* 浅蓝渐变 */
+  background: #f5f5f7;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  margin: 0 auto 40px; /* 副标题居中并增加底部间距 */
+  max-width: 85%; /* 限制宽度，避免太宽 */
+}
 
-      .benefit-subtitle-text {
-        background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
+.benefit-scroll-wrap {
+  position: relative;
+  overflow: visible;
+  overflow-x: auto;
+  padding: 2rem 0; /* 去掉左右padding，避免居中偏移 */
+  margin: 0 auto; /* 滚动容器居中 */
+  width: 100%;
+  max-width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-        font-size: clamp(1rem, 2vw, 1.125rem);
-        text-align: left;
-        margin-bottom: 0.8rem;
-        line-height: 1.4;
-      }
+.benefit-scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
 
-      .benefit-scroll-wrap {
-        position: relative;
-        overflow: visible;
-        overflow-x: auto;
-        padding: 2rem 2rem 2rem;
+.benefit-card-container {
+  display: flex;
+  gap: 1.5rem;
+  width: auto;
+  transition: transform 0.4s ease-out;
+  justify-content: center; /* 卡片容器居中 */
+  padding: 0 1rem; /* 左右留白，避免贴边 */
+}
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .benefit-scroll-wrap::-webkit-scrollbar {
-        display: none;
-      }
+/* 解除卡片宽度限制 */
+.benefit-card {
+  width: auto !important;
+  max-width: none !important;
+  flex-shrink: 0 !important;
+  position: relative;
+  overflow: visible !important;
+  /* 可选增强：添加内边距/阴影/过渡，与现有产品卡片风格统一 */
+  padding: 1rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+  transition: box-shadow 0.3s ease, transform 0.2s ease !important;
+}
 
-      .benefit-card-container {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-        transition: transform 0.4s ease-out;
-      }
 
-      .benefit-card {
-        width: 85rem;
-        flex-shrink: 0;
-        position: relative;
-        height: auto;
-        overflow: visible;
-        background-color: transparent;
-        padding: 0;
-        box-shadow: none;
-        border-radius: 0;
-        transition: none;
-        cursor: inherit;
-        border: none;
-        margin: 0;
-      }
+/* 强制图片显示原始尺寸，不拉伸、不裁剪、不限制 */
+.benefit-card img {
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: unset !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transition: 
+    transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform, box-shadow; /* 提升性能，告知浏览器元素将变化 */
+  border-radius: 1.25rem !important; /* 20px 圆角，适配现有设计的大圆角风格 */
+}
 
-      .benefit-card-text {
-        position: absolute;
-        top: 1.25rem;
-        left: 1.25rem;
-        z-index: 10;
-        width: calc(100% - 2.5rem);
-        text-align: left;
-        pointer-events: none;
-      }
+.benefit-card:hover img {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15) !important;
+}
 
-      .benefit-card .benefit-subtitle {
-        color: #1d1d1f;
-        font-size: 1rem;
-        font-weight: 400;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      }
+/* 核心：文字容器定位到图片框外上方 + 左对齐 */
+.benefit-card-text {
+  position: absolute; /* 改为absolute，基于卡片容器定位 */
+  top: -2rem; /* 向上偏移，脱离图片区域（可根据需求调整数值） */
+  left: 40px; /* 严格对齐图片左端 */
+  z-index: 10; /* 确保文字在图片上方显示 */
+  text-align: left; /* 文字左对齐 */
+  pointer-events: none; /* 避免文字遮挡图片交互 */
+  width: 80%; /* 限制文字宽度，防止溢出 */
+  padding-left: 0; /* 清除默认左内边距，保证和图片左端对齐 */
+  box-sizing: border-box; /* 宽度包含内边距/边框，避免错位 */
+}
 
-      .benefit-card .benefit-heading {
-        color: #1d1d1f;
-        font-size: 1.75rem;
-        font-weight: 500;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.5px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      }
+/* 修改：副标题白色、加粗、字号加大 */
+.benefit-card .benefit-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(26px, 4vw, 50px); /* 字号加大 */
+  font-weight: 500; /* 加粗 */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left; /* 左对齐 */
+  color: #ffffff; /* 白色字体 */
+  margin: 0 0 8px 0; /* 取消auto，左对齐 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* 增加阴影提升可读性 */
+}
 
-      .benefit-card .benefit-desc {
-        color: #1d1d1f;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-      }
+/* 保留彩色渐变色，调整对齐方式为左对齐 */
+.benefit-card .benefit-heading {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(24px, 3.5vw, 16px); /* 适度加大字号 */
+  font-weight: 600;
+  text-align: left; /* 左对齐 */
+  line-height: 1.2;
+  background: linear-gradient(135deg, #de8c4a 0%, #0a3ada 50%, #c2d704 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 12px 0; /* 取消auto，左对齐 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-      .benefit-card img {
-        width: 100%;
-        height: 34.375rem;
-        object-fit: cover;
-        object-position: center bottom;
-        border-radius: 1.25rem;
-        background-color: transparent;
-        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-        display: block;
-        cursor: pointer;
-        transform: translateY(0.125rem);
-        transform-origin: bottom 10%;
-      }
+/* 修改：描述文字小字体、左对齐 */
+.benefit-card .benefit-desc {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(12px, 1.2vw, 14px); /* 小字体 */
+  line-height: 1.6;
+  text-align: left; /* 左对齐 */
+  background: linear-gradient(135deg, #d0d0e0 0%, #f0f0f8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  margin: 0; /* 取消auto，左对齐 */
+}
 
-      .benefit-card:hover img {
-        transform: translateY(-0.375rem) scale(1.01);
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
-      }
 
-      .benefit-nav-btn {
-        position: absolute;
-        top: 90%;
-        transform: translateY(-50%) !important;
-        bottom: auto !important;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background-color: rgba(222, 222, 226, 0.9);
-        color: #696969;
-        border: none;
-        font-size: 1.25rem;
-        cursor: pointer;
-        outline: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        z-index: 999;
-      }
 
-      .benefit-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem);
-        right: auto;
-        display: flex !important;
-      }
 
-      .benefit-nav-btn.next-btn {
-        right: calc(5% + 1.25rem);
-        left: auto;
-      }
+/* 导航按钮容器：居中定位 */
+.benefit-nav-wrapper {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem; /* 按钮之间的间距 */
+  z-index: 999;
+}
 
-      .benefit-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9);
-        color: #333;
-      }
-      .benefit-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9);
-        color: #aaa;
-        cursor: not-allowed;
-        display: flex !important;
-      }
+.benefit-nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(222, 222, 226, 0.9);
+  color: #696969;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: all 0.2s ease;
+}
 
-      @media (max-width: 320px) {
-        .benefit-section {
-          padding: 3rem 0 6rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 35rem;
-        }
-        .benefit-card img {
-          height: 25rem;
-          border-radius: 1rem;
-          object-fit: cover;
-        }
-        .benefit-nav-btn {
-          width: 1.5rem;
-          height: 1.5rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
+.benefit-nav-btn:hover {
+  background-color: rgba(180, 180, 180, 0.9);
+  color: #333;
+}
 
-        .benefit-card .benefit-subtitle {
-          font-size: 1rem;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+.benefit-nav-btn:disabled {
+  background-color: rgba(240, 240, 240, 0.9);
+  color: #aaa;
+  cursor: not-allowed;
+}
 
-        .benefit-card .benefit-heading {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+/* 移动端适配 */
+@media (max-width: 320px) {
+  .benefit-section {
+    padding: 3rem 0 6rem;
+  }
+  .benefit-container {
+    padding: 0 10px;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .benefit-subtitle-text {
+    margin-bottom: 2rem;
+    max-width: 90%;
+  }
+  .benefit-card {
+    width: 90vw;
+  }
+  .benefit-card img {
+    height: clamp(200px, 60vw, 400px);
+    border-radius: 1rem;
+  }
+  .benefit-nav-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-wrapper {
+    gap: 1rem;
+    bottom: 10px;
+  }
+  /* 移动端副标题样式优化 */
+  .benefit-card .benefit-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  /* 移动端标题样式优化 */
+  .benefit-card .benefit-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  /* 移动端描述文字样式优化 */
+  .benefit-card .benefit-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+  }
+  /* 移动端文字容器位置调整 */
+  .benefit-card-text {
+    top: 15px;
+    width: 85%;
+  }
+}
 
-        .benefit-card .benefit-desc {
-          font-size: 1rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          font-weight: 400;
-        }
-      }
+@media (min-width: 321px) and (max-width: 375px) {
+  .benefit-section {
+    padding: 3rem 0 6rem;
+  }
+  .benefit-container {
+    padding: 0 10px;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .benefit-subtitle-text {
+    margin-bottom: 2rem;
+    max-width: 90%;
+  }
+  .benefit-card {
+    width: 90vw;
+  }
+  .benefit-card img {
+    height: clamp(220px, 60vw, 420px);
+    border-radius: 1rem;
+  }
+  .benefit-nav-btn {
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-wrapper {
+    gap: 1rem;
+    bottom: 10px;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+  }
+  .benefit-card-text {
+    top: 15px;
+    width: 85%;
+  }
+}
 
-      @media (min-width: 321px) and (max-width: 375px) {
-        .benefit-section {
-          padding: 3rem 0 6rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 35rem;
-        }
-        .benefit-card img {
-          height: 25rem;
-          border-radius: 1rem;
-          object-fit: cover;
-        }
-        .benefit-nav-btn {
-          width: 1.6rem;
-          height: 1.6rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          position: absolute;
-          left: 75%;
-          transform: translate(-50%, -50%);
-        }
-        .benefit-nav-btn.next-btn {
-          left: calc(75% + 2.5rem);
-          transform: translate(-50%, -50%);
-        }
+@media (min-width: 376px) and (max-width: 425px) {
+  .benefit-section {
+    padding: 3rem 0 6rem;
+  }
+  .benefit-container {
+    padding: 0 15px;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .benefit-subtitle-text {
+    margin-bottom: 2rem;
+    max-width: 90%;
+  }
+  .benefit-card {
+    width: 90vw;
+  }
+  .benefit-card img {
+    height: clamp(240px, 60vw, 440px);
+    border-radius: 1rem;
+  }
+  .benefit-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-wrapper {
+    gap: 1.2rem;
+    bottom: 15px;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+  }
+  .benefit-card-text {
+    top: 18px;
+    width: 85%;
+  }
+}
 
-        .benefit-card .benefit-subtitle {
-          font-size: 1rem;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+@media (min-width: 426px) and (max-width: 768px) {
+  .benefit-section {
+    padding: 3rem 0 6rem;
+  }
+  .benefit-container {
+    padding: 0 20px;
+  }
+  .benefit-main-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-subtitle-text {
+    margin-bottom: 2.5rem;
+    max-width: 85%;
+  }
+  .benefit-card {
+    width: 85vw;
+  }
+  .benefit-card img {
+    height: clamp(280px, 50vw, 500px);
+    border-radius: 1rem;
+  }
+  .benefit-nav-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-wrapper {
+    gap: 1.5rem;
+    bottom: 20px;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+  }
+  .benefit-card-text {
+    top: 20px;
+    width: 80%;
+  }
+}
 
-        .benefit-card .benefit-heading {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .benefit-section {
+    padding: 3rem 0 6rem;
+  }
+  .benefit-container {
+    padding: 0 30px;
+  }
+  .benefit-main-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-subtitle-text {
+    margin-bottom: 3rem;
+    max-width: 80%;
+  }
+  .benefit-card {
+    width: 70vw;
+  }
+  .benefit-card img {
+    height: clamp(300px, 45vw, 550px);
+    border-radius: 1.25rem;
+  }
+  .benefit-nav-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+  }
+  .benefit-nav-wrapper {
+    gap: 1.5rem;
+    bottom: 20px;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-heading {
+    font-size: 2.1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  .benefit-card .benefit-desc {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+  }
+  .benefit-card-text {
+    top: 25px;
+    width: 75%;
+  }
+}
 
-        .benefit-card .benefit-desc {
-          font-size: 1rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          font-weight: 400;
-        }
-      }
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .benefit-container {
+    max-width: 1200px;
+  }
+  .benefit-card {
+    width: clamp(400px, 40vw, 600px);
+  }
+  .benefit-nav-wrapper {
+    gap: 1.5rem;
+    bottom: 20px;
+  }
+  .benefit-card-text {
+    top: 30px;
+    width: 70%;
+  }
+}
 
-      @media (min-width: 376px) and (max-width: 425px) {
-        .benefit-section {
-          padding: 3rem 0 6rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 35rem;
-        }
-        .benefit-card img {
-          height: 25rem;
-          border-radius: 1rem;
-          object-fit: cover;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
+@media (min-width: 1441px) and (max-width: 2559px) {
+  .benefit-container {
+    max-width: 1600px;
+  }
+  .benefit-card {
+    width: clamp(450px, 35vw, 650px);
+  }
+  .benefit-card-text {
+    top: 35px;
+    width: 70%;
+  }
+}
 
-        .benefit-card .benefit-subtitle {
-          font-size: 1rem;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          font-size: 1rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          font-weight: 400;
-        }
-      }
-
-      @media (min-width: 426px) and (max-width: 768px) {
-        .benefit-section {
-          padding: 3rem 0 6rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 35rem;
-        }
-        .benefit-card img {
-          height: 25rem;
-          border-radius: 1rem;
-          object-fit: cover;
-        }
-        .benefit-nav-btn {
-          width: 2.5rem;
-          height: 2.5rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-
-        .benefit-card .benefit-subtitle {
-          font-size: 1rem;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          font-size: 1rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          font-weight: 400;
-        }
-      }
-
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .benefit-section {
-          padding: 3rem 0 6rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 35rem;
-        }
-        .benefit-card img {
-          height: 25rem;
-          border-radius: 1rem;
-          object-fit: cover;
-        }
-        .benefit-nav-btn {
-          width: 2.5rem;
-          height: 2.5rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-
-        .benefit-card .benefit-subtitle {
-          font-size: 1rem;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          font-size: 1.5rem;
-          font-weight: 500;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          font-size: 1rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-          font-weight: 400;
-        }
-      }
-
-      @media (min-width: 1025px) and (max-width: 1440px) {
-        .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(10% + 0.8rem);
-        }
-      }
-
-      @media (min-width: 2560px) {
-        .benefit-container {
-          max-width: 160rem;
-          margin: 0 auto 0 15%;
-          padding: 0 1.25rem;
-          box-sizing: border-box;
-        }
-      }
-    </style>
+@media (min-width: 2560px) {
+  .benefit-container {
+    max-width: 1800px;
+    margin: 0 auto; /* 大屏下依然居中 */
+    padding: 0 40px;
+  }
+  .benefit-card {
+    width: clamp(500px, 30vw, 700px);
+  }
+  .benefit-nav-wrapper {
+    gap: 2rem;
+    bottom: 30px;
+  }
+  .benefit-nav-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+  .benefit-card-text {
+    top: 40px;
+    width: 70%;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.4rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 2.4rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 1.1rem;
+  }
+}
+      </style>
 
     <!--五，CSS 设计工艺-->
     <style>
@@ -6402,7 +6452,7 @@
         <div class="banner-mask"></div>
         <!-- 原轮播图片（承载lightOn/lightSpread动画） -->
         <img
-          src="../../../img/products/laser-sheet-cutting/a/banner/senrytech-a-laser-sheet-cutting-1-1.webp"
+          src="../../../img/products/laser-sheet-cutting/a/banner/senrytech-a-laser-sheet-cutting-1-3.webp"
           alt="Senrytech A系列激光切割机"
         />
         <!-- 原文字内容（承载contentFade动画） -->
@@ -6438,7 +6488,7 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-cutting-accuracy.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-cutting-accuracy-1.webp"
                 alt="专业安装服务"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
@@ -6448,11 +6498,23 @@
                 <p class="benefit-desc">薄钢板切割，精度刚好不 “过剩”。</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四，代码 先刷重点 -->
+    <div class="benefit-section" style="position: relative">
+      <div class="benefit-container">
+
+        <!-- 图片卡片容器 -->
+        <div class="benefit-scroll-wrap" style="position: relative">
+          <div class="benefit-card-container" id="benefitScroll">
 
             <!-- 优势卡片2：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-module.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-laser-module-2.webp"
                 alt="透明费用"
               />
               <div class="benefit-card-text">
@@ -6463,11 +6525,23 @@
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 四，代码 先刷重点 -->
+    <div class="benefit-section" style="position: relative">
+      <div class="benefit-container">
+
+        <!-- 图片卡片容器 -->
+        <div class="benefit-scroll-wrap" style="position: relative">
+          <div class="benefit-card-container" id="benefitScroll">
 
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-nest-app.webp"
+                src="../../../img/products/laser-sheet-cutting/a/core-advangtage/senrytech-a-nest-app-2.webp"
                 alt="定制流程"
               />
               <div class="benefit-card-text">
@@ -6482,12 +6556,6 @@
           </div>
         </div>
       </div>
-
-      <!-- 滚动箭头（与第3板块一致） -->
-      <button class="benefit-nav-btn prev-btn" id="benefitPrevBtn" disabled>
-        &lt;
-      </button>
-      <button class="benefit-nav-btn next-btn" id="benefitNextBtn">&gt;</button>
     </div>
 
     <!-- 五，代码 设计工艺 -->
@@ -6564,6 +6632,7 @@
       </button>
       <button class="design-nav-btn next-btn" id="designNextBtn">&gt;</button>
     </div>
+    
 
     <!-- 六，代码 展示参数 -->
     <section class="specs-section">

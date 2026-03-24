@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>苹果GIF式帧动画复刻</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* 核心容器：承载所有帧 */
+    .apple-hero {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* 所有帧图片：绝对定位叠在一起，默认隐藏 */
+    .frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out; /* 帧切换的丝滑过渡 */
+    }
+
+    /* 激活的帧显示 */
+    .frame.active {
+      opacity: 1;
+    }
+
+    /* PRO文字层：单独渐显（模拟苹果的文字弹出） */
+    .pro-text {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: clamp(5rem, 15vw, 12rem);
+      font-weight: bold;
+      color: #ff7a00; /* 苹果橙色 */
+      opacity: 0;
+      z-index: 10;
+      transition: opacity 1s ease-in-out 1.5s; /* 延迟渐显 */
+    }
+
+    .pro-text.show {
+      opacity: 1;
+    }
+
+    /* 购买按钮+价格：还原苹果样式 */
+    .buy-btn {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #0071e3;
+      color: white;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      opacity: 0;
+      z-index: 10;
+      transition: opacity 1s ease-in-out 2s;
+    }
+
+    .buy-btn.show {
+      opacity: 1;
+    }
+
+    .price {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 16px;
+      opacity: 0;
+      z-index: 10;
+      transition: opacity 1s ease-in-out 2s;
+    }
+
+    .price.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="apple-hero">
+    <!-- 帧1：初始摄像头特写（你的第一张图） -->
+    <div class="frame active" style="background-image: url('https://picsum.photos/id/1/1920/1080');"></div>
+    
+    <!-- 帧2：过渡帧（摄像头稍微旋转） -->
+    <div class="frame" style="background-image: url('https://picsum.photos/id/2/1920/1080');"></div>
+    
+    <!-- 帧3：过渡帧（露出部分整机） -->
+    <div class="frame" style="background-image: url('https://picsum.photos/id/3/1920/1080');"></div>
+    
+    <!-- 帧4：最终帧（整机+摄像头，你的第二张图） -->
+    <div class="frame" style="background-image: url('https://picsum.photos/id/4/1920/1080');"></div>
+    
+    <!-- PRO文字（单独渐显） -->
+    <div class="pro-text">PRO</div>
+    
+    <!-- 按钮+价格 -->
+    <button class="buy-btn">购买</button>
+    <div class="price">RMB 375/月起或 RMB 8999 起*</div>
+  </div>
+
+  <script>
+    // 核心逻辑：逐帧切换，模拟GIF式流畅动画
+    const frames = document.querySelectorAll('.frame');
+    const proText = document.querySelector('.pro-text');
+    const buyBtn = document.querySelector('.buy-btn');
+    const price = document.querySelector('.price');
+
+    // 帧切换定时器（控制每帧停留时间，模拟GIF节奏）
+    let currentFrame = 0;
+    const frameInterval = setInterval(() => {
+      // 隐藏当前帧
+      frames[currentFrame].classList.remove('active');
+      // 切换到下一帧
+      currentFrame++;
+      if (currentFrame < frames.length) {
+        frames[currentFrame].classList.add('active');
+        
+        // 到最后一帧时，显示PRO文字+按钮+价格
+        if (currentFrame === frames.length - 1) {
+          proText.classList.add('show');
+          buyBtn.classList.add('show');
+          price.classList.add('show');
+          clearInterval(frameInterval); // 停止帧切换
+        }
+      } else {
+        clearInterval(frameInterval);
+      }
+    }, 800); // 每800ms切换一帧（可调整，越小越丝滑）
+  </script>
+</body>
+</html>

@@ -950,10 +950,10 @@
       }
     </style>
 
-
-<!--九，CSS 技术参数-->
+    <!--六，CSS 展示参数-->
     <style>
-      .tech-specs-section {
+      .specs-section {
+        padding: 3rem 0;
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
@@ -961,373 +961,292 @@
           #ffffff 70%,
           #ffffff 100%
         );
-        width: 100%;
-        padding: 5rem 0 8rem;
-        position: relative;
-        overflow: visible;
-        height: auto;
+        height: 25rem;
+        margin: 5% auto 0 15%;
+        padding: 0 1.25rem;
+      }
+      .specs-container {
+        max-width: 1400px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        box-shadow:
+          inset 0 1px 3px rgba(255, 255, 255, 0.1),
+          inset 0 -1px 2px rgba(0, 0, 0, 0.8),
+          0 4px 20px rgba(0, 0, 0, 0.4);
+
+        background: linear-gradient(
+          135deg,
+          #2a2827 0%,
+          #17171a 30%,
+          #0f0f12 60%,
+          #050507 100%
+        );
+        border-radius: 20px;
+        padding: 2.5rem 1.5rem;
       }
 
-      .tech-specs-container {
-        max-width: 100%;
+      .specs-item {
+        text-align: left;
+        padding: 1rem 2rem;
         margin: 0 auto;
-        box-sizing: border-box;
-        z-index: 1;
+        max-width: 600px;
       }
 
-      .tech-specs-title {
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+      .specs-label {
+        font-size: 2rem;
+        color: #f5f5f7;
+        margin-bottom: 0.5rem;
+      }
+      .specs-value .text-gradient {
+        font-size: 2rem;
+        /* 1. 定义三色渐变（可自行调整颜色和过渡方向）
+      格式：linear-gradient(方向, 颜色1, 颜色2, 颜色3)
+      示例：从左到右 → 紫色→蓝色→绿色，也可替换为品牌色 */
+        background-image: linear-gradient(to right, #9333ea, #3b82f6, #22c55e);
 
-        font-size: 3.5rem;
-        font-weight: 500;
-        color: #000;
-        letter-spacing: -0.02em;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        margin-bottom: 5rem;
-      }
+        -webkit-background-clip: text;
+        background-clip: text;
 
-      .tech-specs-table-wrap {
-        max-width: 70rem;
-        margin: 0 auto;
-        border-radius: 1.5rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        overflow: hidden;
-        background-color: #fff;
-      }
+        color: transparent;
+        -webkit-text-fill-color: transparent;
 
-      .tech-specs-table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #f5f5f7;
-        border-radius: 1rem;
-        overflow: hidden;
-      }
-
-      .tech-specs-table thead {
-        background-color: #f5f5f7;
-      }
-      .tech-specs-table thead tr th {
-        padding: 1.5rem;
-        text-align: center;
-        font-weight: 600;
-        font-size: 1rem;
-        color: #1d1d1f;
-        width: 30%;
-      }
-
-      .tech-specs-table thead tr th:nth-child(2),
-      .tech-specs-table thead tr th:nth-child(3) {
-        width: 23%;
-        text-align: center;
-      }
-      .tech-specs-table thead tr th:nth-child(4) {
-        width: 24%;
-        text-align: center;
-      }
-
-      .tech-specs-table tbody {
-        color: #424245;
-        font-size: 0.9375rem;
-        text-align: center;
-      }
-
-      .tech-specs-table tbody tr {
-        transition: background-color 0.2s ease;
-      }
-      .tech-specs-table tbody tr:hover {
-        background-color: #fafafa;
-      }
-
-      .tech-specs-table tbody tr td {
-        padding: 1.5rem;
         font-weight: 500;
       }
-
-      .tech-specs-table tbody tr td:nth-child(2),
-      .tech-specs-table tbody tr td:nth-child(3),
-      .tech-specs-table tbody tr td:nth-child(4) {
-        text-align: center;
-        font-weight: normal;
+      .text-purple {
+        color: #a58eff;
+      }
+      .text-green {
+        color: #6bcb77;
       }
 
-      .tech-specs-table tbody tr td .specs-note {
-        display: block;
-        font-size: 0.75rem;
-        color: #86868b;
-        margin-top: 0.25rem;
-      }
-
-      .tech-specs-note {
-        margin-top: 2rem;
-        text-align: center;
-        font-size: 0.875rem;
-        color: #86868b;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-
-      .tech-specs-note i {
-        font-size: 0.875rem;
+      .specs-desc {
+        font-size: 0.85rem;
+        color: #f5f5f7;
+        margin-top: 0.5rem;
       }
 
       @media (max-width: 320px) {
-        .tech-specs-section {
-          padding: 5rem 0 0rem;
-        height: 800px;
-      }
-        .tech-specs-section {
-          padding: 3rem 0 6rem;
+        .specs-section {
+          padding: 3rem 0 3rem;
+          margin: 0 auto;
+          height: 40rem;
         }
-
-        .tech-specs-title {
-          font-size: 2rem;
-          margin: 0 5%;
-          margin-bottom: 1.5rem;
+        .specs-container {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
-
-        .tech-specs-table-wrap {
-          max-width: 90%;
-          overflow-x: auto;
-          border-radius: 1rem;
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-          padding: 0 0.5rem;
+        .specs-item {
+          padding: 0.8rem 1.2rem;
+          text-align: center;
         }
-
-        .tech-specs-table {
-          min-width: 500px;
-          border-radius: 0.8rem;
+        .specs-value .text-gradient {
+          font-size: 1.5rem;
         }
-
-        .tech-specs-table thead tr th {
-          padding: 1rem;
-          font-size: 0.85rem;
-          width: 28%;
-        }
-        .tech-specs-table thead tr th:nth-child(2),
-        .tech-specs-table thead tr th:nth-child(3) {
-          width: 24%;
-        }
-        .tech-specs-table thead tr th:nth-child(4) {
-          width: 24%;
-        }
-
-        .tech-specs-table tbody {
+        .specs-label,
+        .specs-desc {
           font-size: 0.8rem;
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1rem;
-        }
-
-        .tech-specs-table tbody tr td .specs-note {
-          font-size: 0.7rem;
-          margin-top: 0.15rem;
-        }
-
-        .tech-specs-note {
-          margin-top: 1.2rem;
-          font-size: 0.8rem;
-          gap: 0.3rem;
         }
       }
 
       @media (min-width: 321px) and (max-width: 375px) {
-        .tech-specs-section {
-          padding: 3rem 0 3rem;
+        .specs-section {
+          margin: 0 1rem 0;
+          padding: 6rem 0 6rem;
+          height: auto;
         }
-
-        .tech-specs-title {
-          font-size: 2rem;
-          margin: 0 8%;
-          margin-bottom: 1.8rem;
+        .specs-container {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
-
-        .tech-specs-table-wrap {
-          max-width: 88%;
-          overflow-x: auto;
-          border-radius: 1.2rem;
+        .specs-item {
+          padding: 0.8rem 1.2rem;
+          text-align: center;
         }
-
-        .tech-specs-table {
-          min-width: 550px;
+        .specs-value .text-gradient {
+          font-size: 1.5rem;
         }
-
-        .tech-specs-table thead tr th {
-          padding: 1.2rem;
-          font-size: 0.9rem;
-        }
-        .tech-specs-table tbody {
-          font-size: 0.85rem;
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1.2rem;
-        }
-
-        .tech-specs-note {
-          margin-top: 1.5rem;
-          font-size: 0.85rem;
+        .specs-label,
+        .specs-desc {
+          font-size: 0.8rem;
         }
       }
 
       @media (min-width: 376px) and (max-width: 425px) {
-        .tech-specs-section {
-          padding: 3.5rem 0 5rem;
+        .specs-section {
+          margin: 0 auto;
+          height: 35rem;
         }
-
-        .tech-specs-title {
-          font-size: 2.2rem;
-          margin: 0 10%;
-          margin-bottom: 2rem;
+        .specs-container {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
-
-        .tech-specs-table-wrap {
-          max-width: 85%;
-          overflow-x: auto;
-          border-radius: 1.3rem;
+        .specs-item {
+          padding: 0.8rem 1.2rem;
+          text-align: center;
         }
-
-        .tech-specs-table {
-          min-width: 600px;
+        .specs-value .text-gradient {
+          font-size: 1.5rem;
         }
-
-        .tech-specs-table thead tr th {
-          padding: 1.3rem;
-          font-size: 0.95rem;
-        }
-        .tech-specs-table tbody {
-          font-size: 0.9rem;
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1.3rem;
-        }
-
-        .tech-specs-note {
-          margin-top: 1.8rem;
-          font-size: 0.875rem;
+        .specs-label,
+        .specs-desc {
+          font-size: 0.8rem;
         }
       }
 
       @media (min-width: 426px) and (max-width: 768px) {
-        .tech-specs-section {
-          padding: 4rem 0 5.5rem;
+        .specs-section {
+          padding: 3rem 0;
+          background-color: #ffffff;
+          height: 40rem;
+          margin: 0 auto;
+          padding: 0 1.25rem;
+        }
+        .specs-container {
+          max-width: 768px;
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          gap: 2rem;
+          background-color: #f5f5f7;
+          border-radius: 20px;
+          padding: 2.5rem 1.5rem;
         }
 
-        .tech-specs-title {
-          font-size: 2rem;
-          margin: 0 12%;
-          margin-bottom: 2.2rem;
+        .specs-item {
+          text-align: center;
+          padding: 1rem 2rem;
+          margin: 0 auto;
+          max-width: 600px;
         }
 
-        .tech-specs-table-wrap {
-          max-width: 82%;
-          overflow-x: auto;
-          box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+        .specs-label {
+          font-size: 0.85rem;
+          color: #000000;
+          margin-bottom: 0.5rem;
         }
+        .specs-value .text-gradient {
+          font-size: 1.5rem;
+          /* 1. 定义三色渐变（可自行调整颜色和过渡方向）
+      格式：linear-gradient(方向, 颜色1, 颜色2, 颜色3)
+      示例：从左到右 → 紫色→蓝色→绿色，也可替换为品牌色 */
+          background-image: linear-gradient(
+            to right,
+            #9333ea,
+            #3b82f6,
+            #22c55e
+          );
 
-        .tech-specs-table {
-          min-width: 700px;
-        }
+          -webkit-background-clip: text;
+          background-clip: text;
 
-        .tech-specs-table thead tr th {
-          padding: 1.5rem;
-          font-size: 1rem;
-        }
-        .tech-specs-table tbody {
-          font-size: 0.9375rem;
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1.5rem;
-        }
+          color: transparent;
+          -webkit-text-fill-color: transparent;
 
-        .tech-specs-note {
-          margin-top: 2rem;
-          font-size: 0.875rem;
+          font-weight: 500;
         }
       }
 
       @media (min-width: 769px) and (max-width: 1024px) {
-        .tech-specs-section {
-          padding: 4rem 0 6rem;
+        .specs-section {
+          padding: 3rem 0;
+          background-color: #ffffff;
+          height: 20rem;
+          margin: 0 auto 0 auto;
+          padding: 0 1.25rem;
+        }
+        .specs-container {
+          max-width: 1024px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          background-color: #f5f5f7;
+          border-radius: 20px;
+          padding: 2.5rem 1.5rem;
         }
 
-        .tech-specs-title {
-          font-size: 2rem;
-          margin: 0 15%;
-          margin-bottom: 2.5rem;
+        .specs-item {
+          text-align: left;
+          padding: 1rem 2rem;
+          margin: 0 auto;
+          max-width: 600px;
         }
 
-        .tech-specs-table-wrap {
-          max-width: 88%;
-          overflow-x: visible;
+        .specs-label {
+          font-size: 0.85rem;
+          color: #000000;
+          margin-bottom: 0.5rem;
+        }
+        .specs-value .text-gradient {
+          font-size: 1.5rem;
+          /* 1. 定义三色渐变（可自行调整颜色和过渡方向）
+      格式：linear-gradient(方向, 颜色1, 颜色2, 颜色3)
+      示例：从左到右 → 紫色→蓝色→绿色，也可替换为品牌色 */
+          background-image: linear-gradient(
+            to right,
+            #9333ea,
+            #3b82f6,
+            #22c55e
+          );
+
+          -webkit-background-clip: text;
+          background-clip: text;
+
+          color: transparent;
+          -webkit-text-fill-color: transparent;
+
+          font-weight: 500;
+        }
+        .text-purple {
+          color: #a58eff;
+        }
+        .text-green {
+          color: #6bcb77;
         }
 
-        .tech-specs-table {
-          min-width: auto;
-        }
-
-        .tech-specs-table thead tr th {
-          width: 29%;
-        }
-        .tech-specs-table thead tr th:nth-child(2),
-        .tech-specs-table thead tr th:nth-child(3) {
-          width: 23%;
-        }
-        .tech-specs-table thead tr th:nth-child(4) {
-          width: 25%;
+        .specs-desc {
+          font-size: 0.85rem;
+          color: #000000;
+          margin-top: 0.5rem;
         }
       }
 
-      @media (min-width: 1025px) and (max-width: 1440px) {
-        .tech-specs-section {
-          width: 100%;
-          margin: 0 !important;
-        }
-
-        .tech-specs-container {
-          max-width: 100%;
-          margin: 0 auto;
-          box-sizing: border-box;
-          z-index: 1;
-        }
+      @media (min-width: 1025px) and (max-width: 2559px) {
       }
 
       @media (min-width: 2560px) {
-        .tech-specs-section {
-          padding: 5rem 0 7rem;
+        .specs-section {
+          margin: 5% auto 0 15%;
+          padding: 0 2rem;
         }
-
-        .tech-specs-table-wrap {
-          max-width: 65%;
-          border-radius: 2rem;
-          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+        .specs-container {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+          padding: 3rem 2rem;
+          max-width: 2560px;
         }
-
-        .tech-specs-table {
-          border-radius: 1.5rem;
+        .specs-item {
+          padding: 1.2rem 2.5rem;
+          max-width: 700px;
         }
-
-        .tech-specs-table thead tr th {
-          padding: 1.8rem;
-          font-size: 1.1rem;
+        .specs-value .text-gradient {
+          font-size: 2.5rem;
         }
-
-        .tech-specs-table tbody {
-          font-size: 1.05rem;
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1.8rem;
-        }
-
-        .tech-specs-table tbody tr td .specs-note {
-          font-size: 0.85rem;
-          margin-top: 0.3rem;
+        .specs-label,
+        .specs-desc {
+          font-size: 1rem;
         }
       }
     </style>
-    
-<!--十，CSS 客户评价-->
+
+
+    <!--十，CSS 客户评价-->
     <style>
       .evaluation-section {
         background: radial-gradient(

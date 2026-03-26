@@ -4806,25 +4806,22 @@
 
     <!--十一、CSS 底部导航栏 -->
     <style>
-      /* 底部导航整体样式（匹配参考图深灰背景） */
       .footer-new {
-        background-color: #1d1d1f; /* 参考图的深灰背景色 */
+        background-color: #1d1d1f;
         color: #f5f5f7;
         padding: 15rem 1rem;
         font-size: 12px;
       }
 
-      /* 内容容器：四列布局 */
       .footer-container {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap; /* 小屏幕自动换行 */
+        flex-wrap: wrap;
         gap: 30px;
       }
 
-      /* 1. 品牌区样式 */
       .footer-brand {
         flex: 1;
         min-width: 220px;
@@ -4854,25 +4851,23 @@
         gap: 12px;
       }
       .social-icons .icon {
-        color: #d1d1d6; /* 与文字色统一 */
+        color: #d1d1d6;
         text-decoration: none;
-        font-size: 16px; /* 图标大小适中 */
-        width: 28px; /* 固定宽高，确保图标对齐 */
+        font-size: 16px;
+        width: 28px;
         height: 28px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 4px; /* 轻微圆角，更精致 */
-        transition: background-color 0.2s; /* hover效果更柔和 */
+        border-radius: 4px;
+        transition: background-color 0.2s;
       }
 
-      /* 2. hover效果（商务低调反馈） */
       .social-icons .icon:hover {
         color: #d1d1d6;
-        background-color: rgba(255, 255, 255, 0.15); /* 淡背景加深，不突兀 */
+        background-color: rgba(255, 255, 255, 0.15);
       }
 
-      /* 2. 产品中心/关于我们 列样式 */
       .footer-column {
         flex: 1;
         min-width: 150px;
@@ -4883,6 +4878,7 @@
         margin-bottom: 16px;
         color: #d1d1d6;
       }
+
       .footer-column ul {
         list-style: none;
         padding: 0;
@@ -4895,11 +4891,12 @@
         text-decoration: none;
         transition: color 0.2s;
       }
+
       .footer-column a:hover {
-        color: #d1d1d6;
+        color: #1b4c42;
+        transform: translateX(3px);
       }
 
-      /* 3. 联系我们列样式 */
       .footer-contact .contact-list {
         margin-bottom: 20px;
       }
@@ -4911,13 +4908,13 @@
         color: #d1d1d6;
       }
       .footer-contact .contact-icon {
-        width: 18px; /* 固定图标宽度，确保文字对齐 */
-        text-align: center; /* 图标居中 */
-        color: #d1d1d6; /* 与文字同色，保持统一 */
-        font-size: 14px; /* 图标大小与文字匹配 */
+        width: 18px;
+        text-align: center;
+        color: #d1d1d6;
+        font-size: 14px;
       }
       .footer-contact .contact-icon i {
-        vertical-align: middle; /* 图标与文字垂直居中对齐 */
+        vertical-align: middle;
       }
       .wechat-qrcode h4 {
         font-size: 14px;
@@ -4945,7 +4942,6 @@
         margin: 0;
       }
 
-      /* 底部版权+政策样式 */
       .footer-bottom {
         max-width: 1200px;
         margin: 30px auto 0;
@@ -4968,35 +4964,24 @@
         color: #d1d1d6;
       }
 
-      /* ================================== 底部导航栏 - 媒体查询适配 ================================== */
-      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
-
-      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
       @media (max-width: 320px) {
       }
 
-      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
       }
 
-      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
       }
 
-      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
       }
 
-      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
       }
 
-      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
       }
     </style>

@@ -8029,39 +8029,38 @@
       });
     </script>
 
-    <script type="text/javascript">
-      function sendEmail(event) {
-        const submitBtn = document.getElementById("submitBtn");
-        const submitTip = document.getElementById("submitTip");
-        submitBtn.disabled = true;
-        submitBtn.innerText = "提交中...";
-        submitTip.innerHTML = "";
+<script type="text/javascript">
+/* ================================== JS 联系专家 ================================== */
+document.addEventListener("DOMContentLoaded", function() {
+  // 把整个 sendEmail 包在安全壳里
+  window.sendEmail = function(event) {
+    const submitBtn = document.getElementById("submitBtn");
+    const submitTip = document.getElementById("submitTip");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "提交中...";
+    submitTip.innerHTML = "";
 
-        // 替换成你EmailJS后台的 服务ID、模板ID
-        emailjs
-          .send("service_waa3l9d", "template_zvfvl5p", {
-            sender_name: document.getElementById("name").value,
-            sender_contact: document.getElementById("contact").value,
-            sender_message: document.getElementById("message").value,
-          })
-          .then(
-            function () {
-              submitTip.innerHTML =
-                '<span style="color: green;">✅ 提交成功！</span>';
-              document.getElementById("laserForm").reset();
-              submitBtn.disabled = false;
-              submitBtn.innerText = "提交咨询";
-            },
-            function (error) {
-              submitTip.innerHTML =
-                '<span style="color: red;">❌ 提交失败，请重试</span>';
-              submitBtn.disabled = false;
-              submitBtn.innerText = "重新提交";
-              console.error("错误：", error);
-            }
-          );
+    emailjs.send("service_waa3l9d", "template_zvfvl5p", {
+      sender_name: document.getElementById("name").value,
+      sender_contact: document.getElementById("contact").value,
+      sender_message: document.getElementById("message").value,
+    }).then(
+      function() {
+        submitTip.innerHTML = '<span style="color: green;">✅ 提交成功！</span>';
+        document.getElementById("laserForm").reset();
+        submitBtn.disabled = false;
+        submitBtn.innerText = "提交咨询";
+      },
+      function(error) {
+        submitTip.innerHTML = '<span style="color: red;">❌ 提交失败，请重试</span>';
+        submitBtn.disabled = false;
+        submitBtn.innerText = "重新提交";
+        console.error("错误：", error);
       }
-    </script>
+    );
+  };
+});
+</script>
 
     <script>
       // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================

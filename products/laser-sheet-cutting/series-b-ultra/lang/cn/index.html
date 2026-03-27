@@ -4,25 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      content="Senrytech B ProMax系列激光板材切割机 - 高端专业级激光切割设备，基于B Pro升级，配备全钣金包围设计，为精密加工提供卓越性能"
+      content="Senrytech B Ultra系列激光板材切割机 - 全自动高端激光切割设备，配备双自动上料系统，实现无人化生产"
       name="description"
     />
     <meta
-      content="激光板材切割机Senrytech B ProMax系列,高端激光切割机,钣金包围激光设备,精密金属切割"
+      content="激光板材切割机Senrytech B Ultra系列,全自动激光切割机,高端激光设备,双自动上料系统"
       name="keywords"
     />
     <link
       rel="canonical"
-      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/cn/"
+      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/cn/"
     />
-    <title>激光板材切割机B ProMax系列 - Senrytech</title>
+    <title>激光板材切割机B Ultra系列 - Senrytech</title>
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500&display=swap"
       rel="stylesheet"
     />
     <!-- 引入Font Awesome图标库（商务图标依赖） -->
-    <link
+    <link   
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
     />
@@ -990,592 +990,742 @@
       }
     </style>
 
-    <style>
-      /* ================================== 标题滚动向上淡出动画 ================================== */
-      /* 1. 重定义“向上淡出”动画：结束时保留30%透明度+轻微向上位移（不消失） */
-      @keyframes titleFadeUp {
-        from {
-          opacity: 0; /* 初始：完全显示 */
-          transform: translateY(0); /* 初始：无位移 */
-        }
-        to {
-          opacity: 1; /* 关键：结束时保留30%透明度（不消失），可根据需求调整0.2~0.5 */
-          transform: translateY(
-            0
-          ); /* 关键：轻微向上位移（10px，原20px太夸张），更自然 */
-        }
-      }
-
-      /* 2. 动画激活类：保留原逻辑，确保动画执行后维持结束状态 */
-      .title-fade-active {
-        animation: titleFadeUp 1.5s ease forwards; /* forwards必须保留，维持结束状态 */
-        pointer-events: none; /* 避免透明后误触 */
-        transition: none !important; /* 禁用过渡，避免与动画冲突 */
-      }
-
-      /* 3. 标题初始状态：确保所有标题默认显示，且支持动画过渡 */
-      /* 目标标题范围：所有h1-h6 + 自定义标题类（如.product-main-title） */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .product-main-title,
-      .submenu-content-title,
-      .content-item h3 {
-        opacity: 1; /* 默认显示 */
-        transform: translateY(0); /* 默认无位移 */
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease; /* 初始状态过渡（可选，优化视觉） */
-        will-change: opacity, transform; /* 提前告知浏览器优化渲染 */
-      }
-    </style>
-
     <!--三，CSS BANNER-->
     <style>
-      /* —— 3.1 轮播容器基础样式（核心：16:9固定比例实现） ——*/
       .banner-carousel {
-        position: relative; /* 作为子元素绝对定位的参考容器 */
-        width: 100%; /* 占满父容器宽度，实现全屏效果 */
-        overflow: hidden; /* 隐藏轮播内容溢出部分，保证16:9比例纯净 */
-        /* 核心1：现代浏览器16:9比例（优先生效） */
-        aspect-ratio: 16 / 7;
-        /* 核心2：老浏览器兼容（IE/低版本Chrome）- 用padding-top计算比例：9/16×100%=56.25% */
-        padding-top: 43.75%;
-        height: 0; /* 清除默认高度，避免与aspect-ratio冲突 */
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+        aspect-ratio: 16 / 7 !important;
+
+        height: auto !important;
+        min-height: 200px;
+
+        padding-top: calc(7 / 16 * 100%);
       }
 
-      /* —— 3.2 轮播图片容器（核心：贴合16:9父容器） ——*/
-      .carousel-slides {
-        position: absolute; /* 脱离文档流，贴合父容器 */
-        top: 0;
-        left: 0;
-        width: 100%; /* 宽高100%填充父容器，继承16:9比例 */
-        height: 100%;
-      }
-
-      /* —— 3.3 单个轮播图样式（核心：淡入淡出切换+图片比例控制） ——*/
-      .carousel-slide {
-        position: absolute; /* 轮播图重叠排列 */
+      .banner-carousel .carousel-inner {
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0; /* 默认隐藏，未激活状态 */
-        transition: opacity 0.5s ease; /* 淡入淡出动画，提升切换流畅度 */
       }
 
-      /* 轮播图图片：避免拉伸，按16:9比例裁剪 */
+      .carousel-slides {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .carousel-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
       .carousel-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* 核心属性：按容器比例裁剪图片，保留核心内容 */
+        object-fit: cover;
+        border-radius: 0;
       }
 
-      /* 激活状态：显示当前轮播图 */
       .carousel-slide.active {
         opacity: 1;
       }
 
-      /* —— 3.4 轮播文字内容（核心：垂直居中+适配16:9比例） ——*/
       .banner-text {
         position: absolute;
-        top: 10%;
-        left: 50%; /* 水平居中第一步：让元素左边缘对齐父容器50%处 */
-        /* 关键：水平居中第二步 + 动画的垂直位移（合并写，避免冲突） */
-        transform: translateX(-50%) translateY(20px); /* 同时处理水平居中+初始垂直下移 */
-        -webkit-transform: translateX(-50%) translateY(20px); /* 兼容Safari */
-        color: #000000;
-        text-align: center; /* 文字内部（如换行内容）水平居中 */
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #f5f5f7;
+        text-align: center;
         z-index: 10;
         opacity: 0;
-        transition: opacity 0.5s ease;
-        padding: 0 1rem;
-        width: 46%; /* 新增：让文字容器占满父容器宽度，避免内容过宽时溢出 */
-        max-width: 1200px; /* 新增：限制最大宽度，避免宽屏文字过散 */
-        margin: 0 auto; /* 配合max-width，确保容器本身水平居中 */
+        transition: opacity 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        padding: 0 2vw;
+        max-width: 90vw;
+        text-shadow:
+          0 1px 4px rgba(0, 0, 0, 0.4),
+          0 2px 8px rgba(0, 0, 0, 0.2);
+        transform-origin: center center;
       }
 
-      /* 激活状态：显示当前文字 */
       .banner-text.active {
         opacity: 1;
+        transform: translate(-50%, -50%) translateY(-5px);
       }
 
-      /* 标题样式：突出视觉焦点 + 神通妙彩渐变色 */
       .banner-text h1 {
-        font-size: 3.5rem; /* 基础字号（基于全局html font-size） */
-        margin-bottom: 1.5rem; /* 与描述文字间距，保持布局呼吸感 */
-        line-height: 1.2; /* 紧凑行高，减少标题换行 */
-        /* 神通妙彩渐变：浅紫 → 浅绿 */
-        background-image: linear-gradient(to right, #ae912a, #c622ab);
-        /* 文字渐变核心：将背景裁剪为文字形状（兼容浏览器前缀） */
-        -webkit-background-clip: text;
-        -webkit-font-smoothing: antialiased; /* 文字抗锯齿（关键） */
-        -moz-osx-font-smoothing: grayscale;
-        background-clip: text;
-        /* 文字设为透明，显示背景渐变 */
+        font-size: clamp(1.875rem, 5vw, 3.5rem);
+
+        font-weight: 600;
+
         color: transparent;
-        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          #5c0418 0%,
+          #5f0478 45%,
+          #380355 100%
+        );
         background-clip: text;
+        -webkit-background-clip: text;
+
+        margin-bottom: 2.5rem;
+
+        line-height: 1.3;
+
+        letter-spacing: 0.5px;
+
+        text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
       }
 
-      /* 描述文字样式：辅助说明，与标题形成层级 */
+      .banner-text h2 {
+        font-size: clamp(0.875rem, 1.8vw, 1.125rem);
+
+        margin-bottom: 2rem;
+
+        font-weight: 300;
+
+        letter-spacing: 0.2px;
+
+        color: #000000;
+
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
       .banner-text p {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-        line-height: 1.4;
-        /* 新增：确保Banner文字换行 */
-        white-space: normal;
-        word-break: break-all; /* 解决“3000w--”这类组合的断行问题 */
-        max-width: 59%; /* 限制文字宽度=屏幕宽度的90%（避免贴边，同时触发换行） */
-        margin-left: auto; /* 配合max-width实现文字水平居中 */
+        font-size: clamp(1rem, 2vw, 1.25rem);
+
+        margin-bottom: 3rem;
+
+        letter-spacing: 0.3px;
+
+        line-height: 1.6;
+
+        color: #000000;
+
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+
+        max-width: 75vw;
+
+        margin-left: auto;
         margin-right: auto;
-        font-weight: 400;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
-      /* 基础按钮样式 */
-      .banner-btn {
-        padding: 0.5rem 1.5rem; /* 内边距：保证点击区域大小 */
-        border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
-        font-size: 1rem; /* 基础字号，确保可读性 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
-        border: none; /* 清除默认边框 */
-        transition: background-color 0.2s ease; /* 背景色过渡，提升交互细腻度 */
-      }
-
-      /* —— 3.5 轮播按钮组（核心：弹性布局+交互反馈） ——*/
       .banner-btns {
-        display: flex; /* 按钮横向排列 */
-        justify-content: center; /* 按钮组水平居中 */
-        gap: 1rem; /* 按钮间距，避免拥挤 */
-        flex-wrap: nowrap; /* 强制不换行，保持横向布局 */
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: nowrap;
       }
 
-      /* 「了解更多」按钮（主按钮） */
+      .banner-btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 9999px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease;
+      }
+
       .learn-more-btn {
-        background-color: #0071e3; /* 品牌蓝色，突出核心转化 */
-        color: #f5f5f7; /* 白色文字，高对比度 */
-        font-weight: 200;
+        background-color: #0071e3;
+        color: #f5f5f7;
+        text-decoration: none;
+        font-weight: 300;
       }
 
       .learn-more-btn:hover {
-        background-color: #0066cc; /* hover时加深蓝色，强化反馈 */
+        background-color: #0066cc;
+        text-decoration: none;
       }
 
-      /* 「立即购买」按钮（次按钮） */
       .buy-btn {
-        background-color: transparent; /* 透明背景 */
-        color: #0071e3; /* 蓝色文字，与主按钮呼应 */
-        border: 0.1rem solid #0071e3; /* 蓝色边框，明确按钮边界 */
+        background-color: transparent;
+        color: #0071e3;
+        border: 0.1rem solid #0071e3;
       }
 
       .buy-btn:hover {
-        background-color: #0066cc; /* hover时背景变蓝 */
-        color: #f5f5f7; /* 文字变白 */
-        border-color: #0066cc; /* 边框同步变色，保持样式统一 */
+        background-color: #0066cc;
+        color: #f5f5f7;
+        border-color: #0066cc;
       }
 
-      /* 接你原有的@keyframes代码后，新增以下内容 */
-      /* 1. 轮播图片：组合lightOn（亮度变化）和lightSpread（缩放淡入）动画 */
-      .carousel-slide.active img {
-        /* 现代浏览器：标准语法（必须先写，浏览器优先识别） */
-        animation:
-          lightOn 1.2s ease-out forwards,
-          /* 亮度动画 */ lightSpread 1s ease-out forwards; /* 缩放淡入动画 */
-        /* Safari/Chrome兼容：webkit前缀语法（后写，仅兼容老版本） */
-        -webkit-animation:
-          lightOn 1.2s ease-out forwards,
-          /* 同步绑定亮度动画 */ lightSpread 1s ease-out forwards; /* 同步绑定缩放动画 */
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: rgba(153, 153, 154, 0.2);
+        color: #f5f5f7;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 10;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      /* 2. 遮罩层：maskFade（从深黑到半透明） */
-      .banner-mask {
-        position: absolute; /* 遮罩覆盖在图片上 */
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* 避免遮罩遮挡图片点击 */
-        /* 初始状态（与动画0%一致） */
-        background-color: rgba(0, 0, 0, 0.85);
-        /* 绑定动画 */
-        animation: maskFade 1.5s ease-out forwards;
-        -webkit-animation: maskFade 1.5s ease-out forwards;
+      .carousel-control:hover {
+        background-color: rgba(0, 113, 227, 0.9);
       }
 
-      /* 3. 文字内容：contentFade（从下往上淡入） */
-      .banner-text.active {
-        /* 标准语法 */
-        animation: contentFade 1.2s ease-out forwards;
-        animation-delay: 0.3s; /* 延迟0.3秒，等图片动画启动后再动 */
-        /* webkit兼容 */
-        -webkit-animation: contentFade 1.2s ease-out forwards;
-        -webkit-animation-delay: 0.3s;
+      .carousel-control.prev-btn {
+        left: 1.25rem;
       }
 
-      /* 4. 按钮：btnUp（从下往上淡入，最后出现） */
+      .carousel-control.next-btn {
+        right: 1.25rem;
+      }
+
+      .dot-container {
+        position: absolute;
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.75rem;
+        z-index: 20;
+      }
+
+      .banner-dot {
+        width: 1.5rem;
+        height: 0.1rem;
+        border-radius: 0.1rem;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition:
+          background-color 0.3s ease,
+          width 0.3s ease;
+      }
+
+      .banner-dot.active {
+        background-color: rgba(255, 255, 255, 1);
+        width: 2rem;
+      }
+
+      .banner-dot.active {
+        background-color: #ffffff;
+      }
+
+      .banner-text h1,
+      .banner-text h2,
+      .banner-text p,
       .banner-btn {
-        /* 初始状态（与动画0%一致，避免跳变） */
-        opacity: 0;
-        transform: translateY(15px);
-        -webkit-transform: translateY(15px);
-        /* 标准语法 */
-        animation: btnUp 1s ease-out forwards;
-        animation-delay: 0.8s; /* 延迟0.8秒，文字出现后再显示按钮 */
-        /* webkit兼容 */
-        -webkit-animation: btnUp 1s ease-out forwards;
-        -webkit-animation-delay: 0.8s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      /* ================================== 补全所有动画的关键帧（标准+webkit） ================================== */
-      /* 1. 遮罩淡入动画：maskFade（先标准，后webkit） */
-      @keyframes maskFade {
-        /* 标准关键帧：现代浏览器核心 */
-        0% {
-          background-color: rgba(0, 0, 0, 0.85);
-        }
-        100% {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
-      }
-      @-webkit-keyframes maskFade {
-        /* webkit前缀：兼容老版Safari */
-        0% {
-          background-color: rgba(0, 0, 0, 0.85);
-        }
-        100% {
-          background-color: rgba(0, 0, 0, 0.2);
-        }
-      }
-
-      /* 2. 图片亮度动画：lightOn（原代码可能遗漏，补全完整定义） */
-      @keyframes lightOn {
-        /* 标准关键帧 */
-        0% {
-          filter: brightness(0.3); /* 初始亮度60%（偏暗） */
-        }
-        100% {
-          filter: brightness(1); /* 最终亮度100%（正常） */
-        }
-      }
-      @-webkit-keyframes lightOn {
-        /* webkit前缀（注意：webkit的filter需加前缀） */
-        0% {
-          -webkit-filter: brightness(0.6); /* webkit专属filter前缀 */
-        }
-        100% {
-          -webkit-filter: brightness(1);
-        }
-      }
-
-      /* 3. 图片缩放淡入动画：lightSpread（补全标准+webkit） */
-      @keyframes lightSpread {
-        /* 标准关键帧 */
-        0% {
-          opacity: 0;
-          transform: scale(0.8); /* 初始透明+缩小80% */
-        }
-        0% {
-          opacity: 1.2;
-          transform: scale(1.2); /* 中间过度：略亮+放大120% */
-        }
-        0% {
-          opacity: 0.9;
-          transform: scale(1); /* 最终：轻微透明+原尺寸 */
-        }
-      }
-      @-webkit-keyframes lightSpread {
-        /* webkit前缀 */
-        0% {
-          opacity: 0;
-          -webkit-transform: scale(0.8); /* webkit的transform前缀 */
-        }
-        60% {
-          opacity: 1.2;
-          -webkit-transform: scale(1.2);
-        }
-        100% {
-          opacity: 0.9;
-          -webkit-transform: scale(1);
-        }
-      }
-
-      /* 4. 文字淡入动画：contentFade（补全，用于banner-text） */
-      @keyframes contentFade {
-        0% {
-          opacity: 0;
-          transform: translateX(-50%) translateY(20px); /* 只动垂直方向，水平居中靠基础样式 */
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(-50%) translateY(20px); /* 垂直归位，水平居中不变 */
-        }
-      }
-      @-webkit-keyframes contentFade {
-        0% {
-          opacity: 0;
-          -webkit-transform: translateX(-50%) translateY(20px); /* ✅ 补充 */
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateX(-50%) translateY(0); /* ✅ 补充 */
-        }
-      }
-
-      /* 5. 按钮淡入动画：btnUp（补全，用于banner-btn） */
-      @keyframes btnUp {
-        /* 标准关键帧 */
-        0% {
-          opacity: 0;
-          transform: translateY(15px); /* 初始透明+下移15px */
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0); /* 最终：不透明+归位 */
-        }
-      }
-      @-webkit-keyframes btnUp {
-        /* webkit前缀 */
-        0% {
-          opacity: 0;
-          -webkit-transform: translateY(15px);
-        }
-        100% {
-          opacity: 1;
-          -webkit-transform: translateY(0);
-        }
-      }
-
-      /* ================================== BANNER 媒体适配（基于指定基准字体） ================================== */
-      /* 核心逻辑：按各断点基准font-size（14px~18px）调整rem值，确保视觉大小统一且适配屏幕 */
-
-      /* 1. 超小屏手机（0-320px：基准font-size=14px） */
       @media (max-width: 320px) {
         .banner-carousel {
           aspect-ratio: 9 / 16;
-          padding-top: 177.77%;
-          height: 0;
-          width: 100%;
-          overflow: hidden;
+          padding-top: 150%;
         }
+
         .banner-text {
-          top: 8%;
-          width: 90%;
-          padding: 0 0.8rem;
+          top: 40%;
+          padding: 0 4vw;
+          width: 100%;
         }
-        /* 标题：1.5rem=14px×1.5=21px（小屏清晰不换行） */
-        .banner-text h1 {
-          font-size: 1.5rem;
+
+        .banner-text h2 {
+          top: 33%;
+          font-size: 0.65rem;
           margin-bottom: 0.8rem;
+          letter-spacing: 0.2px;
         }
-        /* 描述：0.875rem=14px×0.875=12.25px（适配小屏可读性） */
+
+        .banner-text h1 {
+          top: 33%;
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+          letter-spacing: 0.5px;
+        }
+
         .banner-text p {
-          font-size: 0.875rem;
-          max-width: 100%;
-          line-height: 1.3;
+          top: 33%;
+          font-size: 0.75rem;
+          margin-bottom: 1.8rem;
+          white-space: nowrap;
         }
-        /* 按钮：0.875rem=14px×0.875=12.25px（点击区域适配小屏） */
+
+        .banner-btns {
+          gap: 0.8rem;
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: center;
+        }
+
         .banner-btn {
-          padding: 0.4rem 0.9rem;
-          font-size: 0.875rem;
+          padding: 0.5rem 1.2rem;
+          font-size: 0.45rem;
         }
-        .buy-btn {
-          border-width: 0.1rem;
+
+        .carousel-control {
+          width: 2rem;
+          height: 2rem;
+          font-size: 1.2rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 0.8rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 0.8rem;
+        }
+
+        .dot-container {
+          bottom: 0.8rem;
+          gap: 0.4rem;
+        }
+
+        .banner-dot {
+          width: 0.5rem;
+          height: 0.5rem;
         }
       }
 
-      /* 2. 小屏手机（321-375px：基准font-size=15px） */
       @media (min-width: 321px) and (max-width: 375px) {
         .banner-carousel {
           aspect-ratio: 9 / 16;
-          padding-top: 177.77%;
-          height: 0;
-          width: 100%;
-          overflow: hidden;
+          padding-top: 150%;
         }
+
         .banner-text {
-          top: 9%;
-          width: 85%;
-          padding: 0 0.8rem;
+          top: 40%;
+          padding: 0 3vw;
+          width: 100%;
         }
-        /* 标题：1.75rem=15px×1.75=26.25px（比超小屏略大，适配375px宽度） */
-        .banner-text h1 {
-          font-size: 1.75rem;
+
+        .banner-text h2 {
+          font-size: 0.7rem;
           margin-bottom: 0.9rem;
+          letter-spacing: 0.2px;
         }
-        /* 描述：0.875rem=15px×0.875=13.125px（保持与标题比例，提升可读性） */
+
+        .banner-text h1 {
+          font-size: 1.5rem;
+          margin-bottom: 1.2rem;
+          letter-spacing: 0.6px;
+        }
+
         .banner-text p {
-          font-size: 0.875rem;
-          max-width: 100%;
+          font-size: 0.8rem;
+          margin-bottom: 2rem;
         }
-        /* 按钮：0.9rem=15px×0.9=13.5px（按钮文字与描述文字协调） */
+
+        .banner-btns {
+          gap: 1rem;
+          flex-wrap: nowrap;
+        }
+
         .banner-btn {
-          padding: 0.45rem 1rem;
-          font-size: 0.9rem;
+          padding: 0.45rem 1.1rem;
+          font-size: 0.75rem;
+        }
+
+        .carousel-control {
+          width: 2.2rem;
+          height: 2.2rem;
+          font-size: 1.3rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 1rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 1rem;
+        }
+
+        .dot-container {
+          bottom: 1rem;
+          gap: 0.45rem;
+        }
+
+        .banner-dot {
+          width: 0.55rem;
+          height: 0.55rem;
         }
       }
 
-      /* 3. 大屏手机（376-425px：基准font-size=16px） */
       @media (min-width: 376px) and (max-width: 425px) {
         .banner-carousel {
           aspect-ratio: 9 / 16;
-          padding-top: 177.77%;
-          height: 0;
-          width: 100%;
-          overflow: hidden;
+          padding-top: 150%;
         }
+
         .banner-text {
-          top: 10%;
-          width: 80%;
+          top: 40%;
+          padding: 0 2.5vw;
+          width: 100%;
         }
-        /* 标题：2.2rem=16px×2.2=35.2px（425px屏视觉突出，不换行） */
-        .banner-text h1 {
-          font-size: 2.2rem;
+
+        .banner-text h2 {
+          font-size: 0.75rem;
           margin-bottom: 1rem;
+          letter-spacing: 0.3px;
         }
-        /* 描述：1rem=16px×1=16px（主流手机阅读舒适尺寸） */
+
+        .banner-text h1 {
+          font-size: 1.8rem;
+          margin-bottom: 1.3rem;
+          letter-spacing: 0.7px;
+        }
+
         .banner-text p {
-          font-size: 1rem;
-          max-width: 95%;
+          font-size: 0.85rem;
+          margin-bottom: 2.2rem;
         }
-        /* 按钮：0.95rem=16px×0.95=15.2px（按钮文字略小于描述，层级清晰） */
+
+        .banner-btns {
+          gap: 1.1rem;
+          flex-wrap: nowrap;
+        }
+
         .banner-btn {
-          padding: 0.5rem 1.1rem;
-          font-size: 0.95rem;
+          padding: 0.48rem 1.2rem;
+          font-size: 0.8rem;
+        }
+
+        .carousel-control {
+          width: 2.3rem;
+          height: 2.3rem;
+          font-size: 1.4rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 1.1rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 1.1rem;
+        }
+
+        .dot-container {
+          bottom: 1.1rem;
+          gap: 0.48rem;
+        }
+
+        .banner-dot {
+          width: 0.6rem;
+          height: 0.6rem;
         }
       }
 
-      /* 4. 平板/折叠屏（426-768px：基准font-size=16px） */
       @media (min-width: 426px) and (max-width: 768px) {
         .banner-carousel {
-          aspect-ratio: 3 / 4;
-          padding-top: 133.33%;
-          height: 0;
-          width: 100%;
-          overflow: hidden;
+          aspect-ratio: 16/10;
+          padding-top: 100%;
         }
+
         .banner-text {
-          top: 12%;
-          width: 70%;
+          top: 40%;
+          padding: 0 2vw;
+          max-width: 95vw;
         }
-        /* 标题：2.8rem=16px×2.8=44.8px（平板宽度充足，标题视觉占比合理） */
+
+        .banner-text h2 {
+          font-size: 0.9rem;
+          margin-bottom: 1.1rem;
+          letter-spacing: 0.3px;
+        }
+
         .banner-text h1 {
-          font-size: 2.8rem;
-          margin-bottom: 1.2rem;
+          font-size: 2.5rem;
+          margin-bottom: 1.4rem;
+          letter-spacing: 0.8px;
         }
-        /* 描述：1.1rem=16px×1.1=17.6px（平板阅读距离略远，文字适度放大） */
+
         .banner-text p {
-          font-size: 1.1rem;
-          max-width: 90%;
-          line-height: 1.4;
+          font-size: 1rem;
+          margin-bottom: 2.4rem;
+          max-width: 85vw;
         }
-        /* 按钮：1.05rem=16px×1.05=16.8px（按钮文字与描述文字比例协调，点击区域足够） */
+
+        .banner-btns {
+          gap: 1.2rem;
+          flex-wrap: nowrap;
+        }
+
         .banner-btn {
-          padding: 0.6rem 1.3rem;
-          font-size: 1.05rem;
+          padding: 0.5rem 1.3rem;
+          font-size: 0.9rem;
+        }
+
+        .carousel-control {
+          width: 2.4rem;
+          height: 2.4rem;
+          font-size: 1.5rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 1.2rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 1.2rem;
+        }
+
+        .dot-container {
+          bottom: 1.2rem;
+          gap: 0.5rem;
+        }
+
+        .banner-dot {
+          width: 0.65rem;
+          height: 0.65rem;
         }
       }
 
-      /* 5. 笔记本小屏（769-1024px：基准font-size=16px） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .banner-carousel {
-          aspect-ratio: 4 / 3;
-          padding-top: 75%;
+          aspect-ratio: 16 / 9;
+          padding-top: 100%;
         }
         .banner-text {
-          top: 11%;
-          width: 65%;
+          max-width: 90vw;
         }
-        /* 标题：3.2rem=16px×3.2=51.2px（13寸笔记本屏，标题突出且不压占内容） */
+
+        .banner-text h2 {
+          font-size: 1rem;
+          margin-bottom: 1.2rem;
+        }
+
         .banner-text h1 {
-          font-size: 3.2rem;
-          margin-bottom: 1.3rem;
+          font-size: 3rem;
+          margin-bottom: 1.5rem;
         }
-        /* 描述：1.2rem=16px×1.2=19.2px（笔记本阅读舒适，与标题层级分明） */
+
         .banner-text p {
-          font-size: 1.2rem;
-          max-width: 85%;
-        }
-        /* 按钮：1.1rem=16px×1.1=17.6px（按钮文字清晰，适配鼠标点击习惯） */
-        .banner-btn {
-          padding: 0.65rem 1.4rem;
           font-size: 1.1rem;
+          margin-bottom: 2.5rem;
+          max-width: 80vw;
+        }
+
+        .banner-btns {
+          gap: 1.3rem;
+          flex-wrap: nowrap;
+        }
+
+        .banner-btn {
+          padding: 0.55rem 1.4rem;
+          font-size: 0.95rem;
+        }
+
+        .carousel-control {
+          width: 2.5rem;
+          height: 2.5rem;
+          font-size: 1.6rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 1.5rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 1.5rem;
+        }
+
+        .dot-container {
+          bottom: 1.5rem;
+          gap: 0.6rem;
+        }
+
+        .banner-dot {
+          width: 0.7rem;
+          height: 0.7rem;
         }
       }
 
-      /* 6. 基础设计屏（1025-1440px：基准font-size=16px） */
       @media (min-width: 1025px) and (max-width: 1440px) {
         .banner-carousel {
           aspect-ratio: 16 / 9;
-          padding-top: 56.25%;
         }
         .banner-text {
-          top: 15%;
-          width: 55%;
+          top: 40%;
+          max-width: 85vw;
         }
-        /* 标题：3.8rem=16px×3.8=60.8px（1920×1080屏，标题视觉焦点明确） */
+
+        .banner-text h2 {
+          font-size: 1.1rem;
+          letter-spacing: 0.4px;
+        }
+
         .banner-text h1 {
-          font-size: 3.8rem;
-          margin-bottom: 1.5rem;
+          font-size: 3.2rem;
+          letter-spacing: 0.8px;
         }
-        /* 描述：1.3rem=16px×1.3=20.8px（桌面端阅读距离适中，文字大小舒适） */
+
         .banner-text p {
-          font-size: 1.3rem;
-          max-width: 80%;
-          line-height: 1.5;
+          font-size: 1.15rem;
+          max-width: 75vw;
         }
-        /* 按钮：1.15rem=16px×1.15=18.4px（按钮文字与描述文字区分，点击区域合理） */
+
+        .banner-btn {
+          padding: 0.6rem 1.5rem;
+          font-size: 1rem;
+        }
+
+        .carousel-control {
+          width: 2.6rem;
+          height: 2.6rem;
+          font-size: 1.7rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 2rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 2rem;
+        }
+
+        .dot-container {
+          bottom: 1.8rem;
+          gap: 0.7rem;
+        }
+
+        .banner-dot {
+          width: 0.75rem;
+          height: 0.75rem;
+        }
+      }
+
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .banner-carousel {
+          aspect-ratio: 16 / 9;
+        }
+        .banner-text {
+          max-width: 80vw;
+        }
+
+        .banner-text h2 {
+          font-size: 1.2rem;
+        }
+
+        .banner-text h1 {
+          font-size: 3.5rem;
+        }
+
+        .banner-text p {
+          font-size: 1.2rem;
+          max-width: 70vw;
+          margin-bottom: 2.8rem;
+        }
+
         .banner-btn {
           padding: 0.7rem 1.6rem;
-          font-size: 1.15rem;
+          font-size: 1.05rem;
+        }
+
+        .carousel-control {
+          width: 2.8rem;
+          height: 2.8rem;
+          font-size: 1.8rem;
+        }
+
+        .carousel-control.prev-btn {
+          left: 2.5rem;
+        }
+
+        .carousel-control.next-btn {
+          right: 2.5rem;
+        }
+
+        .dot-container {
+          bottom: 2rem;
+          gap: 0.8rem;
+        }
+
+        .banner-dot {
+          width: 0.8rem;
+          height: 0.8rem;
         }
       }
 
-      /* 7. 大屏/2K屏（1441-2560px：基准font-size=17px） */
-      @media (min-width: 1441px) and (max-width: 2560px) {
-      }
-
-      /* 8. 超高清屏（2561px及以上：基准font-size=18px） */
       @media (min-width: 2561px) {
         .banner-carousel {
-          aspect-ratio: 21 / 9;
-          padding-top: 42.85%;
+          max-width: 100vw;
+          margin: 0 auto;
         }
+
         .banner-text {
-          top: 13%;
-          width: 70%; /* 超宽屏扩大文字容器，避免内容分散 */
+          max-width: 75vw;
         }
-        /* 标题：4.8rem=18px×4.8=86.4px（4K/5K屏，标题大幅放大，确保视觉焦点） */
+
+        .banner-text h2 {
+          font-size: 1.3rem;
+          letter-spacing: 0.5px;
+        }
+
         .banner-text h1 {
-          font-size: 4.8rem;
-          margin-bottom: 1.8rem;
-          letter-spacing: -0.5px;
+          font-size: 4rem;
+          letter-spacing: 1px;
+          margin-bottom: 2rem;
         }
-        /* 描述：1.6rem=18px×1.6=28.8px（超高清屏阅读距离可能更远，文字放大提升体验） */
+
         .banner-text p {
-          font-size: 1.6rem;
-          max-width: 90%;
-          line-height: 1.6;
+          font-size: 1.3rem;
+          margin-bottom: 3rem;
+          max-width: 65vw;
+          line-height: 1.7;
         }
-        /* 按钮：1.35rem=18px×1.35=24.3px（按钮文字与描述文字比例协调，适配超高清屏点击） */
+
         .banner-btn {
-          padding: 0.85rem 1.9rem;
-          font-size: 1.35rem;
-          border-radius: 9999px;
+          padding: 0.8rem 1.8rem;
+          font-size: 1.15rem;
         }
-        /* 优化超高清屏动画细节：延长时长，提升视觉细腻度 */
-        .carousel-slide.active img {
-          animation-duration: 1.5s;
+
+        .carousel-control {
+          width: 3rem;
+          height: 3rem;
+          font-size: 2rem;
         }
-        .banner-text.active {
-          animation-duration: 1.4s;
-          animation-delay: 0.4s;
+
+        .carousel-control.prev-btn {
+          left: 3rem;
         }
-        .banner-btn {
-          animation-duration: 1.2s;
-          animation-delay: 0.9s;
+
+        .carousel-control.next-btn {
+          right: 3rem;
+        }
+
+        .dot-container {
+          bottom: 2.5rem;
+          gap: 0.9rem;
+        }
+
+        .banner-dot {
+          width: 0.9rem;
+          height: 0.9rem;
         }
       }
     </style>
@@ -4500,7 +4650,7 @@
 
     <style>
       /* —— 十二， 联系专家 —— */
-      #contact {
+      #contact-section {
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
@@ -4516,7 +4666,7 @@
       }
 
       /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
-      #contact .container {
+      #contact-section .container {
         max-width: 100rem; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
         margin-left: auto;
         margin-right: auto;
@@ -4525,20 +4675,20 @@
       }
 
       /* 内容核心容器：控制表单区域居中与宽度 */
-      #contact .max-w-5xl {
+      #contact-section .max-w-5xl {
         max-width: 64rem; /* 16px基准：1024px，表单最大宽度，避免宽屏中表单过宽 */
         margin-left: auto;
         margin-right: auto;
       }
 
       /* —— 12.2 标题组样式：强化层级，与其他板块标题逻辑统一 —— */
-      #contact .text-center {
+      #contact-section .text-center {
         text-align: center;
         margin-bottom: 3rem; /* 16px基准：48px，与下方表单间距，避免拥挤 */
       }
 
       /* 主标题：优化响应式字号与视觉权重 */
-      #contact h2 {
+      #contact-section h2 {
         font-family:
           "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
@@ -4551,7 +4701,7 @@
       }
 
       /* 副标题：统一文本样式，与“杜绝虚假宣传”等副标题逻辑对齐 */
-      #contact p {
+      #contact-section p {
         font-family: "SF Pro Text" sans-serif;
         font-size: clamp(
           0.9375rem,
@@ -4573,7 +4723,7 @@
       }
 
       /* —— 12.3 表单容器：优化卡片质感与阴影层次 —— */
-      #contact .bg-white {
+      #contact-section .bg-white {
         background-color: #ffffff; /* 纯白背景，突出表单内容，与浅色模块背景形成对比 */
         border-radius: 1.5rem; /* 大圆角（16px基准：24px），延续全局卡片圆角风格（如产品卡片、Banner） */
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* 柔和阴影，增强“悬浮感”但不厚重 */
@@ -4582,13 +4732,13 @@
       }
 
       /* 表单容器hover效果：轻微加深阴影，提升页面交互感（非必需，可选增强） */
-      #contact .bg-white:hover {
+      #contact-section .bg-white:hover {
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
       }
 
       /* —— 12.4 表单控件样式：统一交互反馈与视觉一致性 —— */
       /* 标签：明确文本层级，引导用户输入 */
-      #contact label {
+      #contact-section label {
         display: block; /* 独占一行，避免与输入框挤在一起 */
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.875rem; /* 16px基准：14px，标签字号小于输入框文字，突出输入内容 */
@@ -4656,7 +4806,7 @@
       }
 
       /* —— 12.5 提交按钮：强化转化引导，统一交互逻辑 —— */
-      #contact button[type="submit"] {
+      #contact-section button[type="submit"] {
         width: 100%; /* 移动端占满宽度，提升点击便捷性；桌面端随表单宽度自适应 */
         padding: 1rem 1.5rem; /* 16px基准：16px/24px，按钮内边距，保证点击区域 */
         background-color: var(
@@ -5638,7 +5788,7 @@
           <ul class="lang-dropdown-list">
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/cn/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/cn/"
                 lang="zh"
                 class="lang-link active"
                 >中文</a
@@ -5646,7 +5796,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                 lang="en"
                 class="lang-link"
                 >英语</a
@@ -5654,7 +5804,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/de/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/de/"
                 lang="de"
                 class="lang-link"
                 >德语</a
@@ -5662,7 +5812,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/es/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/es/"
                 lang="es"
                 class="lang-link"
                 >西班牙语</a
@@ -5670,7 +5820,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/fr/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/fr/"
                 lang="fr"
                 class="lang-link"
                 >法语</a
@@ -5678,7 +5828,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ru/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/ru/"
                 lang="ru"
                 class="lang-link"
                 >俄语</a
@@ -5686,7 +5836,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/sa/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/sa/"
                 lang="ar"
                 class="lang-link"
                 >阿拉伯语</a
@@ -6252,16 +6402,15 @@
         <div class="banner-mask"></div>
         <!-- 原轮播图片（承载lightOn/lightSpread动画） -->
         <img
-          src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/banner/senrytech-b-promax-laser-sheet-cutting-1-1.webp"
-          alt="Senrytech B ProMax系列激光切割机"
+          src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/banner/senrytech-b-ultra-laser-sheet-cutting.webp"
+          alt="Senrytech B Ultra系列激光切割机"
         />
         <!-- 原文字内容（承载contentFade动画） -->
         <div class="banner-text active">
-          <h1>Senrytech B ProMax</h1>
+          <h1>Senrytech B Ultra</h1>
           <p>
-            全钣金包围 + 国际安全认证，专为出口企业定制！继承 B Pro 15 秒上料 +
-            2.0G
-            加速度核心优势，安全防护与生产效能双重达标，欧洲市场合规畅行，无额外溢价。
+            真全自动上下料闭环！上料、切割、下料全自主，叠加全包围 +
+            高功率，把激光切割的智能天花板拉到新高度，黑灯工厂直接落地。
           </p>
           <!-- 原按钮（承载btnUp动画） -->
           <div class="banner-btns">
@@ -6284,7 +6433,7 @@
         <h2 class="benefit-main-title">先刷重点</h2>
         <!-- 新增：副标题容器 -->
         <div class="benefit-subtitle-wrap">
-          <p class="benefit-subtitle-text">国际合规安全旗舰派</p>
+          <p class="benefit-subtitle-text">无人化生产顶配款</p>
           <div class="benefit-subtitle-divider"></div>
         </div>
 
@@ -6294,17 +6443,17 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="benefit-card">
               <img
-                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/core-advantage/senrytech-b-promax-metal-wrap.webp"
-                alt="钣金全包围光纤激光切割机"
+                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/core-advantage/senrytech-b-ultra-load-unload.webp"
+                alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
               />
               <!-- 新增：卡片内三段文字容器（左上角定位） -->
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">钣金全包围，防护 + 整洁双在线</p>
+                <p class="benefit-subtitle">全自动上下料，无人 + 高效双在线</p>
                 <h3 class="benefit-heading">
-                  钣金包围 + 15 秒交换 效率双 buff
+                  全自动上下料 + 0 等待衔接 生产不停歇 buff
                 </h3>
                 <p class="benefit-desc">
-                  15 秒快交换，双上料台无缝衔接，待机耗时砍到底。
+                  自动完成上料、下料全流程，无需人工介入，加工与物料流转无缝衔接，生产间隙缩到极致。
                 </p>
               </div>
             </div>
@@ -6313,7 +6462,7 @@
             <div class="benefit-card">
               <img
                 src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-pro/core advantage/senrytech-b-pro-servo-motor.webp"
-                alt="钣金全包围光纤激光切割机伺服电机"
+                alt="Senrytech B Ultra 伺服电机"
               />
               <div class="benefit-card-text">
                 <p class="benefit-subtitle">核心动力伺服电机</p>
@@ -6327,18 +6476,17 @@
             <!-- 优势卡片3：同结构复制 -->
             <div class="benefit-card">
               <img
-                src="https://senrytech.github.io/img/index/core-advantage/high-clear/sensory-free-punching.png"
-                alt="Senrytech B PROMAX无感穿孔技术"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
+                alt="Senrytech B Ultra 一笔飞切技术"
               />
               <!-- 新增 card3-text-white 类，专门控制卡片3的文字颜色 -->
               <div class="benefit-card-text-3">
-                <p class="benefit-subtitle-3">无感穿孔技术</p>
+                <p class="benefit-subtitle-3">一笔飞切技术</p>
                 <h3 class="benefit-heading-3">
-                  “穿孔 - 切割” 无缝衔接的一体化加工
+                  精准控切，毫米级切割误差轻松把控
                 </h3>
                 <p class="benefit-desc-3">
-                  穿孔效率提升 20% 以上，较传统预热穿孔省时 80%，配合 ±0.03mm
-                  级重复定位精度，实现高效与精密的统一。
+                  减少穿孔次数与空程时间，多孔件效率可提升 30%–50%。
                 </p>
               </div>
             </div>
@@ -6378,8 +6526,8 @@
             <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
             <div class="design-card">
               <img
-                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/core-advantage/senrytech-b-promax-metal-wrap-2.webp"
-                alt="安全型光纤激光切割机板焊床身"
+                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/core-advantage/senrytech-b-ultra-metal-wrap.webp"
+                alt="Senrytech B Ultra 无人值守光纤激光切割机"
               />
             </div>
           </div>
@@ -6404,7 +6552,7 @@
             <div class="design-card">
               <img
                 src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/core-advantage/senrytech-b-promax-exchange-platform.webp"
-                alt="出口型光纤激光切割机"
+                alt="Senrytech B Ultra 高效上下料光纤激光切割机"
               />
             </div>
 
@@ -6427,7 +6575,7 @@
             <div class="design-card">
               <img
                 src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-pro/core advantage/senrytech-b-pro-guide-rail.webp"
-                alt="安全加工光纤激光切割机分区除尘"
+                alt="Senrytech B Ultra 分区除尘"
               />
             </div>
 
@@ -6447,7 +6595,7 @@
             <div class="design-card">
               <img
                 src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-pro/core advantage/senrytech-b-pro-zone-dust-removal.webp"
-                alt="Senrytech B PROMAX 符合欧洲安全标准激光设备"
+                alt="Senrytech B Ultra高效生产激光切割设备"
               />
             </div>
           </div>
@@ -6472,7 +6620,7 @@
           <div class="specs-icon placeholder"></div>
           <div class="specs-label">最大</div>
           <div class="specs-value">
-            <span class="text-gradient">加工幅面 6030x2510mm</span>
+            <span class="text-gradient">加工幅面 6050x1510mm</span>
             <!-- 改为渐变类 -->
           </div>
           <div class="specs-desc">切割工作台</div>
@@ -6565,10 +6713,10 @@
             controls
             width="100%"
             height="auto"
-            poster="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/banner/senrytech-b-promax-laser-sheet-cutting-1.webp"
+            poster="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/banner/senrytech-b-ultra-laser-sheet-cutting-1.webp"
           >
             <source
-              src="https://senrytech.github.io/img/video/senrytech-b-promax-video-2.mp4"
+              src="https://senrytech.github.io/img/video/senrytech-b-ultra-laser-cutting-video-4.mp4"
               type="video/mp4"
             />
             <!-- 视频文件路径（需根据实际项目目录调整） -->
@@ -6588,10 +6736,10 @@
             <thead>
               <tr>
                 <th>型号</th>
-                <th>B20 ProMax</th>
-                <th>B30 ProMax</th>
-                <th>B60 ProMax</th>
-                <th>B120 ProMax</th>
+                <th>B20 Ultra</th>
+                <th>B30 Ultra</th>
+                <th>B60 Ultra</th>
+                <th>B120 Ultra</th>
               </tr>
             </thead>
             <tbody>
@@ -6607,26 +6755,22 @@
                 <td>
                   1510x3050mm <br />
                   1510x6050mm <br />
-                  2000x4050mm <br />
-                  2510x6030mm
+                  2000x4050mm
                 </td>
                 <td>
                   1510x3050mm <br />
                   1510x6050mm <br />
-                  2000x4050mm <br />
-                  2510x6030mm
+                  2000x4050mm
                 </td>
                 <td>
                   1510x3050mm <br />
                   1510x6050mm <br />
-                  2000x4050mm <br />
-                  2510x6030mm
+                  2000x4050mm
                 </td>
                 <td>
                   1510x3050mm <br />
                   1510x6050mm <br />
-                  2000x4050mm <br />
-                  2510x6030mm
+                  2000x4050mm
                 </td>
               </tr>
               <tr>
@@ -6775,20 +6919,22 @@
             <div class="evaluation-quote">"</div>
             <!-- 评价文本 -->
             <p class="evaluation-content">
-              我们工厂引进 B PROMAX 激光板材切割机后，生产效率提升了近
-              40%。全钣金包围设计不仅大幅降低了工作噪音，精密的切割精度更是让产品合格率从原来的
-              92% 提升到 99%
-              以上。复杂的不锈钢异形件切割也能一次成型，省去了大量后续打磨工序，这台设备绝对是高端加工领域的得力助手。
+              我们工厂引入 B Ultra 系列激光板材切割机后，生产效率提升了至少
+              40%。双自动上料系统完全实现了无人化操作，以前需要 3
+              个人轮班看管的工序，现在 1
+              个人就能轻松兼顾。切割精度更是没话说，0.03mm
+              的误差控制让我们的产品合格率从 92% 提升到了
+              99%，客户对产品质量的投诉几乎降为零。
             </p>
             <!-- 客户信息（头像+名称+职位） -->
             <div class="evaluation-customer">
               <img
-                alt="客户头像-钱先生"
+                alt="客户头像-孙先生"
                 class="customer-avatar"
-                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/customer/mr-qian.png"
+                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/customer/mr-sun.png"
               />
               <div class="customer-info">
-                <div class="customer-name">钱先生</div>
+                <div class="customer-name">孙先生</div>
                 <div class="customer-position">某钣金加工有限公司 总经理</div>
               </div>
             </div>
@@ -6798,20 +6944,19 @@
           <div class="evaluation-card">
             <div class="evaluation-quote">"</div>
             <p class="evaluation-content">
-              作为一家专业从事航空航天零部件加工的企业，我们对设备精度要求极高。B
-              PROMAX 的表现完全超出预期 ——0.03mm
-              的定位精度让复杂曲面切割变得轻而易举，而且持续工作 12
-              小时后热变形控制得非常好，稳定性远超我们之前使用的其他品牌设备。售后服务响应也很及时，这台机器让我们在精密加工领域更有竞争力。
+              作为一家精密钣金加工企业，我们对设备的稳定性要求极高。B Ultra
+              系列连续运行三个月以来，从未出现过任何故障停机，设备的耐用性超出了我们的预期。而且它的能耗比之前使用的传统设备降低了
+              25%，每年能为我们节省一大笔电费开支。操作界面也很人性化，新员工半天就能熟练上手。
             </p>
             <div class="evaluation-customer">
               <img
-                alt="客户头像-王先生"
+                alt="客户头像-赵先生"
                 class="customer-avatar"
-                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/customer/mr-wang.png"
+                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/customer/mr-zhao.png"
               />
               <div class="customer-info">
-                <div class="customer-name">王先生</div>
-                <div class="customer-position">某大型国企机械厂 生产总监</div>
+                <div class="customer-name">赵先生</div>
+                <div class="customer-position">某钣金折弯机械公司</div>
               </div>
             </div>
           </div>
@@ -6820,19 +6965,19 @@
           <div class="evaluation-card">
             <div class="evaluation-quote">"</div>
             <p class="evaluation-content">
-              从 B Pro 升级到 B PROMAX
-              是最明智的决定！新机型的智能排版系统能将材料利用率提高
-              15%，每年光原材料成本就能节省十几万。全包围结构让车间环境整洁了不少，粉尘和光污染得到有效控制，工人操作起来更安心。无论是厚板切割的穿透力还是薄板切割的光滑度，都展现了顶尖设备的品质，值得推荐给所有追求高效精密加工的企业。
+              选择 B Ultra
+              是我们今年最明智的决策之一。它不仅能处理各种厚度的板材，而且切割速度比同类型设备快
+              30%，让我们在旺季也能轻松应对订单高峰。售后服务也很到位，安装调试期间工程师全程指导，后期有任何疑问都能得到及时响应。现在我们的交付周期缩短了近一半，客户满意度显著提升。
             </p>
             <div class="evaluation-customer">
               <img
-                alt="客户头像-谢先生"
+                alt="客户头像-郑先生"
                 class="customer-avatar"
-                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/customer/mr-xie.png"
+                src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/customer/mr-zheng.png"
               />
               <div class="customer-info">
-                <div class="customer-name">谢先生</div>
-                <div class="customer-position">某机械配件厂 老板</div>
+                <div class="customer-name">郑先生</div>
+                <div class="customer-position">某汽车配件厂 老板</div>
               </div>
             </div>
           </div>
@@ -6934,22 +7079,23 @@
               </div>
             </a>
 
-            <!-- 优势卡片5：同结构复制 -->
+            <!-- 优势卡片4：同结构复制 -->
             <a
-              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+              href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
               class="card-link"
             >
               <div class="other-card">
                 <img
-                  src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-ultra/banner/senrytech-b-ultra-laser-sheet-cutting-1.webp"
-                  alt="全自动上下料光纤激光切割机"
+                  src="https://senrytech.github.io/img/products/laser-sheet-cutting/b-promax/banner/senrytech-b-promax-laser-sheet-cutting-1.webp"
+                  alt="全防护光纤激光切割机"
                 />
                 <div class="other-card-text">
-                  <p class="other-subtitle">Senrytech B Ultra</p>
-                  <h3 class="other-heading">B Ultra系列</h3>
+                  <p class="other-subtitle">Senrytech B ProMax</p>
+                  <h3 class="other-heading">B ProMax系列</h3>
                   <p class="other-desc">
-                    真全自动上下料闭环！上料、切割、下料全自主，叠加全包围 +
-                    高功率，把激光切割的智能天花板拉到新高度，黑灯工厂直接落地。
+                    全钣金包围 + 国际安全认证，专为出口企业定制！继承 B Pro 10
+                    秒上料 + 2.0G
+                    加速度核心优势，安全防护与生产效能双重达标，欧洲市场合规畅行，无额外溢价。
                   </p>
                 </div>
               </div>
@@ -7082,7 +7228,7 @@
                   type="text"
                   id="name"
                   name="sender_name"
-autocomplete="name"
+                  autocomplete="name"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
                   placeholder="请输入姓名或公司名称"
                   required
@@ -7497,8 +7643,6 @@ autocomplete="name"
       });
     </script>
 
-
-
     <!--七，JS 切割有道-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -7678,10 +7822,10 @@ autocomplete="name"
         // 1. 碳钢切割厚度（保留原数据/颜色/动画，仅应用苹果风格配置）
         const carbonSteelData = {
           labels: [
-            "B20 ProMax (2000W)",
-            "B30 ProMax (3000W)",
-            "B60 ProMax (6000W)",
-            "B120 ProMax (12000W)",
+            "B20 Ultra (2000W)",
+            "B30 Ultra (3000W)",
+            "B60 Ultra (6000W)",
+            "B120 Ultra (12000W)",
           ],
           datasets: [
             {
@@ -7728,10 +7872,10 @@ autocomplete="name"
         // 2. 不锈钢切割厚度（同碳钢优化逻辑）
         const stainlessSteelData = {
           labels: [
-            "B20 ProMax (2000W)",
-            "B30 ProMax (3000W)",
-            "B60 ProMax (6000W)",
-            "B120 ProMax (12000W)",
+            "B20 Ultra (2000W)",
+            "B30 Ultra (3000W)",
+            "B60 Ultra (6000W)",
+            "B120 Ultra (12000W)",
           ],
           datasets: [
             {
@@ -7777,10 +7921,10 @@ autocomplete="name"
         // 3. 铝合金切割厚度（同优化逻辑）
         const aluminumData = {
           labels: [
-            "B20 ProMax (2000W)",
-            "B30 ProMax (3000W)",
-            "B60 ProMax (6000W)",
-            "B120 ProMax (12000W)",
+            "B20 Ultra (2000W)",
+            "B30 Ultra (3000W)",
+            "B60 Ultra (6000W)",
+            "B120 Ultra (12000W)",
           ],
           datasets: [
             {
@@ -7826,10 +7970,10 @@ autocomplete="name"
         // 4. 铜切割厚度（同优化逻辑）
         const copperData = {
           labels: [
-            "B20 ProMax (2000W)",
-            "B30 ProMax (3000W)",
-            "B60 ProMax (6000W)",
-            "B120 ProMax (12000W)",
+            "B20 Ultra (2000W)",
+            "B30 Ultra (3000W)",
+            "B60 Ultra (6000W)",
+            "B120 Ultra (12000W)",
           ],
           datasets: [
             {
@@ -7942,38 +8086,41 @@ autocomplete="name"
 
     <script type="text/javascript">
       /* ================================== JS 联系专家 ================================== */
-      function sendEmail(event) {
-        const submitBtn = document.getElementById("submitBtn");
-        const submitTip = document.getElementById("submitTip");
-        submitBtn.disabled = true;
-        submitBtn.innerText = "提交中...";
-        submitTip.innerHTML = "";
+      document.addEventListener("DOMContentLoaded", function () {
+        // 把整个 sendEmail 包在安全壳里
+        window.sendEmail = function (event) {
+          const submitBtn = document.getElementById("submitBtn");
+          const submitTip = document.getElementById("submitTip");
+          submitBtn.disabled = true;
+          submitBtn.innerText = "提交中...";
+          submitTip.innerHTML = "";
 
-        // 替换成你EmailJS后台的 服务ID、模板ID
-        emailjs
-          .send("service_waa3l9d", "template_zvfvl5p", {
-            sender_name: document.getElementById("name").value,
-            sender_contact: document.getElementById("contact").value,
-            sender_message: document.getElementById("message").value,
-          })
-          .then(
-            function () {
-              submitTip.innerHTML =
-                '<span style="color: green;">✅ 提交成功！</span>';
-              document.getElementById("laserForm").reset();
-              submitBtn.disabled = false;
-              submitBtn.innerText = "提交咨询";
-            },
-            function (error) {
-              submitTip.innerHTML =
-                '<span style="color: red;">❌ 提交失败，请重试</span>';
-              submitBtn.disabled = false;
-              submitBtn.innerText = "重新提交";
-              console.error("错误：", error);
-            }
-          );
-      }
+          emailjs
+            .send("service_waa3l9d", "template_zvfvl5p", {
+              sender_name: document.getElementById("name").value,
+              sender_contact: document.getElementById("contact").value,
+              sender_message: document.getElementById("message").value,
+            })
+            .then(
+              function () {
+                submitTip.innerHTML =
+                  '<span style="color: green;">✅ 提交成功！</span>';
+                document.getElementById("laserForm").reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = "提交咨询";
+              },
+              function (error) {
+                submitTip.innerHTML =
+                  '<span style="color: red;">❌ 提交失败，请重试</span>';
+                submitBtn.disabled = false;
+                submitBtn.innerText = "重新提交";
+                console.error("错误：", error);
+              }
+            );
+        };
+      });
     </script>
+
     <script>
       // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
       document.addEventListener("DOMContentLoaded", function () {
@@ -8024,6 +8171,7 @@ autocomplete="name"
         window.addEventListener("resize", handleTitleScroll);
       });
     </script>
+
     <script>
       // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
       const langDropdown = document.getElementById("langDropdown");
@@ -8050,13 +8198,13 @@ autocomplete="name"
 
       // 语言与首页路径的映射（需与你的实际文件路径一致）
       const langHomePathMap = {
-        zh: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/cn/", // 中文首页
-        en: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/", // 英语首页
-        de: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/de/", // 德语首页
-        es: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/es/", // 西班牙语首页
-        fr: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/fr/", // 法语首页
-        ru: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/ru/", // 俄语首页
-        ar: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/lang/sa/", // 阿拉伯语首页
+        zh: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/cn/", // 中文首页
+        en: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/", // 英语首页
+        de: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/de/", // 德语首页
+        es: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/es/", // 西班牙语首页
+        fr: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/fr/", // 法语首页
+        ru: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/ru/", // 俄语首页
+        ar: "https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/lang/sa/", // 阿拉伯语首页
       };
 
       // 匹配当前路径，给对应语言链接添加高亮样式

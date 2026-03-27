@@ -2389,6 +2389,312 @@
       }
     </style>
 
+    <style>
+      /* —— 十二， 联系专家 —— */
+      #contact-section {
+        background: radial-gradient(
+          ellipse at center,
+          #f8f8f8 0%,
+          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
+          /* 靠近中心：过渡色1 */ #ffffff 70%,
+          /* 远离中心：过渡色2 */ #ffffff 100%
+            /* 边缘：白色（与页面背景融合） */
+        );
+        width: 100%;
+        padding: 5rem 0 8rem;
+        position: relative;
+        overflow: visible;
+      }
+
+      /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
+      #contact-section .container {
+        max-width: 100rem; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.25rem; /* 16px基准：20px，移动端左右留白 */
+        padding-right: 1.25rem;
+      }
+
+      /* 内容核心容器：控制表单区域居中与宽度 */
+      #contact-section .max-w-5xl {
+        max-width: 64rem; /* 16px基准：1024px，表单最大宽度，避免宽屏中表单过宽 */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* —— 12.2 标题组样式：强化层级，与其他板块标题逻辑统一 —— */
+      #contact-section .text-center {
+        text-align: center;
+        margin-bottom: 3rem; /* 16px基准：48px，与下方表单间距，避免拥挤 */
+      }
+
+      /* 主标题：优化响应式字号与视觉权重 */
+      #contact-section h2 {
+        font-family:
+          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
+        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
+        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
+        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
+        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
+        text-align: center; /* 左对齐，符合阅读习惯 */
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
+      }
+
+      /* 副标题：统一文本样式，与“杜绝虚假宣传”等副标题逻辑对齐 */
+      #contact-section p {
+        font-family: "SF Pro Text" sans-serif;
+        font-size: clamp(
+          0.9375rem,
+          2vw,
+          1.125rem
+        ); /* 响应式区间：小屏15px→大屏18px，适配不同屏幕阅读 */
+        font-weight: 300; /* 轻字重，突出主标题，保持细腻感 */
+        color: rgba(
+          29,
+          29,
+          31,
+          0.8
+        ); /* 半透明深灰，与其他模块副标题透明度统一 */
+        max-width: 36rem; /* 16px基准：576px，限制副标题宽度，避免单行过长影响阅读 */
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5; /* 舒适行高，适配长文本阅读 */
+        margin-top: 0.5rem; /* 与主标题间距微调，增强标题组整体性 */
+      }
+
+      /* —— 12.3 表单容器：优化卡片质感与阴影层次 —— */
+      #contact-section .bg-white {
+        background-color: #ffffff; /* 纯白背景，突出表单内容，与浅色模块背景形成对比 */
+        border-radius: 1.5rem; /* 大圆角（16px基准：24px），延续全局卡片圆角风格（如产品卡片、Banner） */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* 柔和阴影，增强“悬浮感”但不厚重 */
+        padding: 2.5rem; /* 16px基准：40px，表单内边距，避免内容贴边 */
+        transition: box-shadow 0.3s ease; /* 阴影过渡， hover时增强交互反馈 */
+      }
+
+      /* 表单容器hover效果：轻微加深阴影，提升页面交互感（非必需，可选增强） */
+      #contact-section .bg-white:hover {
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      /* —— 12.4 表单控件样式：统一交互反馈与视觉一致性 —— */
+      /* 标签：明确文本层级，引导用户输入 */
+      #contact-section label {
+        display: block; /* 独占一行，避免与输入框挤在一起 */
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
+        font-size: 0.875rem; /* 16px基准：14px，标签字号小于输入框文字，突出输入内容 */
+        font-weight: 400;
+        color: #424245; /* 中灰色，比主文本浅，避免喧宾夺主 */
+        margin-bottom: 0.5rem; /* 与输入框间距，优化垂直布局 */
+        text-align: left;
+      }
+
+      /* 输入框/下拉框/文本域：统一基础样式与焦点反馈 */
+      #contact input[type="text"],
+      #contact input[type="tel"],
+      #contact input[type="email"],
+      #contact select,
+      #contact textarea {
+        width: 100%; /* 占满父容器宽度，适配不同屏幕 */
+        padding: 0.875rem 1rem; /* 16px基准：14px/16px，输入框内边距，保证点击区域与文字间距 */
+        border: 1px solid #e0e0e0; /* 浅灰色边框，未聚焦时弱化视觉权重 */
+        border-radius: 0.75rem; /* 中等圆角（16px基准：12px），比容器圆角小，增强层级 */
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
+        font-size: 0.9375rem; /* 16px基准：15px，输入文字字号，确保可读性 */
+        color: #1d1d1f;
+        background-color: #ffffff;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease; /* 边框与阴影过渡，聚焦时平滑反馈 */
+        box-sizing: border-box; /* 确保padding不撑大输入框宽度 */
+      }
+
+      /* 输入框聚焦状态：强化视觉反馈，引导用户注意力 */
+      #contact input[type="text"]:focus,
+      #contact input[type="tel"]:focus,
+      #contact input[type="email"]:focus,
+      #contact select:focus,
+      #contact textarea:focus {
+        outline: none; /* 清除默认聚焦轮廓 */
+        border-color: var(
+          --primary,
+          #0071e3
+        ); /* 品牌主色边框（与导航栏询价按钮、Banner按钮一致） */
+        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15); /* 品牌色外发光，增强聚焦识别度 */
+      }
+
+      /* 下拉框：优化默认箭头样式（隐藏原生箭头，自定义） */
+      #contact select {
+        appearance: none; /* 隐藏原生下拉箭头 */
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='16' height='16' fill='%231d1d1f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l4-4H4l4 4z'/%3E%3C/svg%3E"); /* 自定义向下箭头（SVG），与文字颜色统一 */
+        background-repeat: no-repeat;
+        background-position: right 1rem center; /* 箭头位置：右侧1rem，垂直居中 */
+        background-size: 1rem; /* 箭头大小 */
+        padding-right: 2.5rem; /* 为箭头预留空间，避免文字被遮挡 */
+      }
+
+      /* 文本域：禁止拉伸，固定高度 */
+      #contact textarea {
+        resize: none; /* 禁止用户拉伸文本域，保持布局稳定 */
+        min-height: 8rem; /* 16px基准：128px，文本域最小高度，适配多行输入 */
+        line-height: 1.5; /* 行高优化，提升输入文字可读性 */
+      }
+
+      /* 表单字段间距：控制垂直布局紧凑度 */
+      #contact .mb-6 {
+        margin-bottom: 1.5rem; /* 16px基准：24px，字段之间的垂直间距，避免拥挤 */
+      }
+
+      /* —— 12.5 提交按钮：强化转化引导，统一交互逻辑 —— */
+      #contact-section button[type="submit"] {
+        width: 100%; /* 移动端占满宽度，提升点击便捷性；桌面端随表单宽度自适应 */
+        padding: 1rem 1.5rem; /* 16px基准：16px/24px，按钮内边距，保证点击区域 */
+        background-color: var(
+          --primary,
+          #0071e3
+        ); /* 品牌主色，与导航栏询价按钮、Banner按钮一致 */
+        color: #ffffff;
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
+        font-size: 0.9375rem; /* 16px基准：15px，按钮文字字号，确保可读性 */
+        font-weight: 500; /* 中等字重，突出按钮视觉权重 */
+        border-radius: 0.75rem; /* 与输入框圆角一致，视觉统一 */
+        border: none; /* 清除默认边框 */
+        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        transition:
+          background-color 0.2s ease,
+          transform 0.1s ease,
+          box-shadow 0.2s ease; /* 多属性过渡，增强点击反馈 */
+        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2); /* 品牌色阴影，提升按钮“悬浮感” */
+      }
+
+      /* 按钮hover状态：加深背景色，增强反馈 */
+      #contact button[type="submit"]:hover {
+        background-color: var(
+          --primary-90,
+          #0066cc
+        ); /* 品牌主色深一度，hover时明确反馈 */
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); /* 阴影加深，强化交互感 */
+      }
+
+      /* 按钮点击状态：轻微下沉，模拟物理按压反馈 */
+      #contact button[type="submit"]:active {
+        transform: translateY(1px); /* 点击时下移1px */
+        box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2); /* 阴影减弱，模拟“按压后贴近屏幕” */
+      }
+
+      /* 按钮禁用状态（可选：表单验证不通过时使用） */
+      #contact button[type="submit"]:disabled {
+        background-color: #a0c4ff; /* 品牌色浅化，提示“不可点击” */
+        cursor: not-allowed; /* 鼠标样式提示禁用 */
+        box-shadow: none; /* 移除阴影，弱化视觉权重 */
+        transform: none; /* 取消点击下沉效果 */
+      }
+
+      /* —— 12.6 提交状态提示：优化反馈文案样式 —— */
+      #contact #submitTip {
+        font-family: "SF Pro Text", "Segoe UI", sans-serif;
+        font-size: 0.875rem; /* 16px基准：14px，提示文字字号 */
+        padding: 0.75rem 1rem; /* 内边距，避免文字贴边 */
+        border-radius: 0.5rem; /* 小圆角，增强提示框质感 */
+      }
+
+      /* 成功提示（绿色系） */
+      #contact #submitTip.success {
+        color: #2e7d32;
+        background-color: #e8f5e9;
+        border: 1px solid #c8e6c9;
+      }
+
+      /* 失败提示（红色系） */
+      #contact #submitTip.error {
+        color: #c62828;
+        background-color: #ffebee;
+        border: 1px solid #ffcdd2;
+      }
+
+      /* —— 12.7 联系专家 - 媒体适配：按屏幕尺寸优化布局 —— */
+      /* 1. 大屏桌面（≥1200px）：微调表单宽度，避免过宽 */
+      @media (min-width: 1200px) {
+        #contact .bg-white {
+          padding: 3rem; /* 16px基准：48px，大屏增加内边距，提升豪华感 */
+        }
+        #contact .max-w-5xl {
+          max-width: 72rem; /* 16px基准：1152px，大屏适当放宽表单最大宽度 */
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        #contact {
+          padding-top: 3.5rem;
+          padding-bottom: 3.5rem;
+        }
+        #contact .bg-white {
+          padding: 2.25rem; /* 16px基准：36px，平板减少内边距，适配屏幕 */
+        }
+        #contact h2 {
+          font-size: 2rem;
+        }
+      }
+
+      @media (min-width: 426px) and (max-width: 768px) {
+        #contact {
+          padding-top: 3rem;
+          padding-bottom: 3rem;
+        }
+        #contact .bg-white {
+          padding: 2rem; /* 16px基准：32px，进一步减少内边距 */
+          border-radius: 1.25rem; /* 缩小圆角，适配小屏视觉比例 */
+        }
+        #contact .mb-6 {
+          margin-bottom: 1.25rem; /* 16px基准：20px，减少字段间距，节省垂直空间 */
+        }
+        #contact button[type="submit"] {
+          padding: 0.9375rem 1.25rem; /* 16px基准：15px/20px，缩小按钮内边距 */
+        }
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+        }
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+        #contact {
+          padding-top: 2.5rem;
+          padding-bottom: 2.5rem;
+        }
+        #contact .bg-white {
+          padding: 1.5rem; /* 16px基准：24px，小屏最小内边距，避免内容溢出 */
+          border-radius: 1rem; /* 最小圆角，适配小屏 */
+        }
+        #contact .text-center {
+          margin-bottom: 2rem; /* 16px基准：32px，减少标题组与表单间距 */
+        }
+        #contact h2 {
+          font-size: clamp(
+            1.25rem,
+            3vw,
+            1.75rem
+          ); /* 小屏标题最小字号1.25rem，避免拥挤 */
+          margin-bottom: 0.75rem;
+        }
+        #contact p {
+          font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+      }
+
+      @media (min-width: 321px) and (max-width: 375px) {
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+        }
+      }
+
+      @media (max-width: 320px) {
+        #contact h2 {
+          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+        }
+      }
+    </style>
+
     <!--十一、CSS 底部导航栏 -->
     <style>
       .footer-new {

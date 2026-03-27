@@ -4650,7 +4650,7 @@
 
     <style>
       /* —— 十二， 联系专家 —— */
-      #contact {
+      #contact-section {
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
@@ -4666,7 +4666,7 @@
       }
 
       /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
-      #contact .container {
+      #contact-section .container {
         max-width: 100rem; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
         margin-left: auto;
         margin-right: auto;
@@ -4675,20 +4675,20 @@
       }
 
       /* 内容核心容器：控制表单区域居中与宽度 */
-      #contact .max-w-5xl {
+      #contact-section .max-w-5xl {
         max-width: 64rem; /* 16px基准：1024px，表单最大宽度，避免宽屏中表单过宽 */
         margin-left: auto;
         margin-right: auto;
       }
 
       /* —— 12.2 标题组样式：强化层级，与其他板块标题逻辑统一 —— */
-      #contact .text-center {
+      #contact-section .text-center {
         text-align: center;
         margin-bottom: 3rem; /* 16px基准：48px，与下方表单间距，避免拥挤 */
       }
 
       /* 主标题：优化响应式字号与视觉权重 */
-      #contact h2 {
+      #contact-section h2 {
         font-family:
           "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
         font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
@@ -4701,7 +4701,7 @@
       }
 
       /* 副标题：统一文本样式，与“杜绝虚假宣传”等副标题逻辑对齐 */
-      #contact p {
+      #contact-section p {
         font-family: "SF Pro Text" sans-serif;
         font-size: clamp(
           0.9375rem,
@@ -4723,7 +4723,7 @@
       }
 
       /* —— 12.3 表单容器：优化卡片质感与阴影层次 —— */
-      #contact .bg-white {
+      #contact-section .bg-white {
         background-color: #ffffff; /* 纯白背景，突出表单内容，与浅色模块背景形成对比 */
         border-radius: 1.5rem; /* 大圆角（16px基准：24px），延续全局卡片圆角风格（如产品卡片、Banner） */
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* 柔和阴影，增强“悬浮感”但不厚重 */
@@ -4732,13 +4732,13 @@
       }
 
       /* 表单容器hover效果：轻微加深阴影，提升页面交互感（非必需，可选增强） */
-      #contact .bg-white:hover {
+      #contact-section .bg-white:hover {
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
       }
 
       /* —— 12.4 表单控件样式：统一交互反馈与视觉一致性 —— */
       /* 标签：明确文本层级，引导用户输入 */
-      #contact label {
+      #contact-section label {
         display: block; /* 独占一行，避免与输入框挤在一起 */
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
         font-size: 0.875rem; /* 16px基准：14px，标签字号小于输入框文字，突出输入内容 */
@@ -4806,7 +4806,7 @@
       }
 
       /* —— 12.5 提交按钮：强化转化引导，统一交互逻辑 —— */
-      #contact button[type="submit"] {
+      #contact-section button[type="submit"] {
         width: 100%; /* 移动端占满宽度，提升点击便捷性；桌面端随表单宽度自适应 */
         padding: 1rem 1.5rem; /* 16px基准：16px/24px，按钮内边距，保证点击区域 */
         background-color: var(
@@ -7315,7 +7315,7 @@
     </div>
 
     <!-- двенадцать，код，Связаться с нами-->
-    <section class="py-16 bg-primary/5" id="contact">
+    <section class="py-16 bg-primary/5" id="contact-section">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-12">

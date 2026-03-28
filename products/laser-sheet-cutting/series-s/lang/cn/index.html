@@ -46,7 +46,6 @@
 
     <!-- 一、CSS 全局基础样式 -->
     <style>
-      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
@@ -54,40 +53,35 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
-      /* 全局锁死：禁止任何横向溢出 */
       html,
       body {
         margin: 0;
         padding: 0;
         width: 100%;
-        max-width: 100vw; /* 永远不超过视口宽度 */
-        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        max-width: 100vw;
+        overflow-x: hidden;
         box-sizing: border-box;
       }
 
-      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
       *,
       *::before,
       *::after {
         box-sizing: inherit;
       }
 
-      /* 1.2 图标字体强制声明 */
       .social-icons .icon i,
       .footer-contact .contact-icon i {
         font-family: "FontAwesome" !important;
       }
 
-      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
         display: none !important;
       }
 
-      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
       .body-fixed {
-        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
-        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
-        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+        position: fixed;
+        width: 100%;
+        overflow-y: auto;
       }
 
       @media (max-width: 320px) {
@@ -172,11 +166,11 @@
     <!--二、CSS 导航栏-->
     <style>
       .navbar {
-        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
-        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
-        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
-        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
-        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
 
         background: linear-gradient(
           135deg,
@@ -184,15 +178,15 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgba(245, 245, 247, 1) 100%
         );
-        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
-        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
-        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
-        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
-        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
-        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
-        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
       }
 
       .navbar.scrolled {
@@ -482,13 +476,12 @@
         flex-shrink: 0;
       }
 
-      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
         padding: 0.4rem 1.2rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        display: none; /* 默认隐藏，仅移动端显示 */
+        display: none;
         align-items: center;
         justify-content: center;
         color: #1d1d1f !important;
@@ -502,7 +495,7 @@
       .hamburger-btn i {
         font-family: "FontAwesome" !important;
         font-size: 0.875rem;
-        color: inherit; /* 继承按钮颜色 */
+        color: inherit;
       }
 
       .sidebar-overlay {
@@ -1732,16 +1725,13 @@
 
     <!--四，CSS 先刷重点-->
     <style>
-      /* —— 5.1 板块外层容器：控制整体背景与定位上下文 —— */
       .benefit-section {
-        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
@@ -1750,551 +1740,517 @@
         height: auto;
       }
 
-      /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
       .benefit-container {
-        max-width: 100rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
-        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        max-width: 100rem;
+        margin: 0 auto 0 15%;
         box-sizing: border-box;
       }
 
-      /* —— 5.3 板块主标题：强化视觉焦点 —— */
       .benefit-main-title {
-        font-family:
-          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
-        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
-        text-align: left; /* 左对齐，符合阅读习惯 */
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0rem;
+        text-align: left;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
+        margin-left: 2rem;
       }
 
-      /* 副标题外层容器：控制与主标题、卡片的间距 */
       .benefit-subtitle-wrap {
-        margin: 0 0 3rem 2rem; /* 上 右 下 左， */
+        margin: 0 0 3rem 2rem;
       }
 
-      /* 副标题文字：（三色渐变：绿→黄→红） */
       .benefit-subtitle-text {
-        /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
         background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
-        -webkit-background-clip: text; /* 兼容webkit内核（Safari/Chrome） */
-        background-clip: text; /* 标准语法：将背景裁剪为文字形状 */
-        color: transparent; /* 文字透明，让渐变背景透出 */
-        -webkit-text-fill-color: transparent; /* 兼容Safari，防止文字颜色覆盖 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
 
-        /* 保留原有基础样式，确保与其他板块风格统一 */
-        font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
-        text-align: left; /* 左对齐，契合板块布局 */
-        margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
-        line-height: 1.4; /* 优化文字可读性，避免拥挤 */
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: left;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
       }
 
-      /* —— 5.5 卡片滚动容器：控制横向滚动与滚动条隐藏 —— */
       .benefit-scroll-wrap {
-        position: relative; /* 作为卡片容器的定位父容器 */
-        overflow: visible; /* 允许箭头超出容器范围 */
-        overflow-x: auto; /* 仅横向滚动，纵向固定 */
-        padding: 2rem 2rem 2rem; /* 16px基准：40px，底部留白避免卡片贴箭头 */
-        /* 全浏览器隐藏横向滚动条，保持视觉整洁 */
-        -ms-overflow-style: none; /* IE/Edge */
-        scrollbar-width: none; /* Firefox */
+        position: relative;
+        overflow: visible;
+        overflow-x: auto;
+        padding: 2rem 2rem 2rem;
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       .benefit-scroll-wrap::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
+        display: none;
       }
 
-      /* —— 5.6 卡片容器：横向排列卡片 —— */
       .benefit-card-container {
-        display: flex; /* 卡片横向排列 */
-        gap: 1.5rem; /* 16px基准：24px，卡片之间间距 */
-        width: max-content; /* 宽度随卡片数量自适应，确保所有卡片显示 */
-        transition: transform 0.4s ease-out; /* 平滑滚动过渡，优化切换体验 */
+        display: flex;
+        gap: 1.5rem;
+        width: max-content;
+        transition: transform 0.4s ease-out;
       }
 
-      /* —— 5.7 优势卡片：仅保留定位功能，视觉由图片主导 —— */
       .benefit-card {
-        width: 85rem; /* 16px基准：340px，固定宽度确保卡片一致性 */
-        flex-shrink: 0; /* 禁止收缩，避免卡片被挤压变形 */
-        position: relative; /* 作为卡片内文字/图片的定位上下文 */
-        height: auto; /* 高度由图片自动撑开 */
-        overflow: visible; /* 允许文字/阴影超出卡片范围 */
-        background-color: transparent; /* 透明背景，图片完全主导视觉 */
-        padding: 0; /* 清除内边距，避免干扰图片布局 */
-        box-shadow: none; /* 无阴影，阴影由图片单独控制 */
-        border-radius: 0; /* 无圆角，圆角由图片单独控制 */
-        transition: none; /* 无过渡，过渡效果由图片单独控制 */
-        cursor: inherit; /* 鼠标样式由子元素（图片）控制 */
-        border: none; /* 无边框 */
-        margin: 0; /* 清除margin */
+        width: 85rem;
+        flex-shrink: 0;
+        position: relative;
+        height: auto;
+        overflow: visible;
+        background-color: transparent;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        transition: none;
+        cursor: inherit;
+        border: none;
+        margin: 0;
       }
 
-      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
       .benefit-card-text {
         position: absolute;
-        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
-        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
-        z-index: 10; /* 层级高于图片，确保文字可见 */
-        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
+        top: 1.25rem;
+        left: 1.25rem;
+        z-index: 10;
+        width: calc(100% - 2.5rem);
         text-align: left;
-        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
+        pointer-events: none;
       }
 
-      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
-      /* 卡片内二级标题 */
       .benefit-card .benefit-subtitle {
-        color: #1d1d1f; /* 浅灰文字，适配图片深色背景 */
-        font-size: 1rem; /* 16px基准：16px */
+        color: #1d1d1f;
+        font-size: 1rem;
         font-weight: 400;
-        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        margin-bottom: 0.5rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
-      /* 卡片内一级标题 */
+
       .benefit-card .benefit-heading {
-        color: #1d1d1f; /* 同上，适配图片背景 */
-        font-size: 1.75rem; /* 16px基准：28px */
+        color: #1d1d1f;
+        font-size: 1.75rem;
         font-weight: 500;
-        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+        margin-bottom: 0.75rem;
         letter-spacing: -0.5px;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
-      /* 卡片内描述文本 */
+
       .benefit-card .benefit-desc {
-        color: #1d1d1f; /* 同上，适配图片背景 */
-        font-size: 0.875rem; /* 16px基准：14px */
+        color: #1d1d1f;
+        font-size: 0.875rem;
         line-height: 1.5;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
-      /* —— 5.8 卡片内顶部文字容器：基于卡片定位 —— */
       .benefit-card-text-3 {
         position: absolute;
-        top: 1.25rem; /* 16px基准：20px，距离图片顶部 */
-        left: 1.25rem; /* 16px基准：20px，距离图片左侧 */
-        z-index: 10; /* 层级高于图片，确保文字可见 */
-        width: calc(100% - 2.5rem); /* 16px基准：40px，左右留白后剩余宽度 */
+        top: 1.25rem;
+        left: 1.25rem;
+        z-index: 10;
+        width: calc(100% - 2.5rem);
         text-align: left;
-        pointer-events: none; /* 禁止文字拦截点击（确保图片可点击） */
+        pointer-events: none;
       }
 
-      /* —— 5.9 卡片内文字样式（适配图片背景，与独立文本区分） —— */
-      /* 卡片内二级标题 */
       .benefit-card .benefit-subtitle-3 {
-        color: #f5f5f7; /* 浅灰文字，适配图片深色背景 */
-        font-size: 1rem; /* 16px基准：16px */
+        color: #f5f5f7;
+        font-size: 1rem;
         font-weight: 400;
-        margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+        margin-bottom: 0.5rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
-      /* 卡片内一级标题 */
+
       .benefit-card .benefit-heading-3 {
-        color: #f5f5f7; /* 同上，适配图片背景 */
-        font-size: 1.75rem; /* 16px基准：28px */
+        color: #f5f5f7;
+        font-size: 1.75rem;
         font-weight: 500;
-        margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+        margin-bottom: 0.75rem;
         letter-spacing: -0.5px;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
-      /* 卡片内描述文本 */
+
       .benefit-card .benefit-desc-3 {
-        color: #f5f5f7; /* 同上，适配图片背景 */
-        font-size: 0.875rem; /* 16px基准：14px */
+        color: #f5f5f7;
+        font-size: 0.875rem;
         line-height: 1.5;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
 
-      /* —— 5.10 卡片图片：核心视觉元素，控制交互效果 —— */
       .benefit-card img {
-        width: 100%; /* 图片占满卡片宽度 */
-        height: 34.375rem; /* 16px基准：550px，固定高度确保卡片对齐 */
-        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸） */
-        object-position: center bottom; /* 图片定位：居中靠下，优先显示底部内容 */
-        border-radius: 1.25rem; /* 16px基准：20px，与产品板块卡片圆角统一 */
-        background-color: transparent; /* 透明背景，避免加载时显白 */
-        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05); /* 16px基准：0 4px 16px，轻微阴影增强立体感 */
+        width: 100%;
+        height: 34.375rem;
+        object-fit: cover;
+        object-position: center bottom;
+        border-radius: 1.25rem;
+        background-color: transparent;
+        box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.05);
         transition:
           transform 0.3s ease,
-          box-shadow 0.3s ease; /* 过渡效果：上浮+阴影加深 */
-        display: block; /* 清除图片默认空隙 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
-        transform: translateY(
-          0.125rem
-        ); /* 16px基准：2px，初始轻微下沉，增强hover对比 */
-        transform-origin: bottom 10%; /* 变换原点：底部偏左，优化动画质感 */
-      }
-      /* 图片hover效果：轻微上浮+放大+阴影加深 */
-      .benefit-card:hover img {
-        transform: translateY(-0.375rem) scale(1.01); /* 16px基准：-6px上浮+1%放大 */
-        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15); /* 16px基准：0 8px 24px，阴影加深 */
+          box-shadow 0.3s ease;
+        display: block;
+        cursor: pointer;
+        transform: translateY(0.125rem);
+        transform-origin: bottom 10%;
       }
 
-      /* —— 5.12 滚动箭头：与产品板块样式统一，确保交互一致 —— */
+      .benefit-card:hover img {
+        transform: translateY(-0.375rem) scale(1.01);
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+      }
+
       .benefit-nav-btn {
-        position: absolute; /* 基于板块容器定位 */
-        top: 90%; /* 垂直居中于产品卡片区域 */
-        transform: translateY(
-          -50%
-        ) !important; /* 垂直居中校准（!important避免被覆盖） */
-        bottom: auto !important; /* 取消底部定位，避免冲突 */
-        width: 2.5rem; /* 16px基准：40px，圆形按钮直径 */
+        position: absolute;
+        top: 90%;
+        transform: translateY(-50%) !important;
+        bottom: auto !important;
+        width: 2.5rem;
         height: 2.5rem;
-        border-radius: 50%; /* 圆形按钮，符合交互直觉 */
-        background-color: rgba(222, 222, 226, 0.9); /* 浅灰背景，弱化但可见 */
-        color: #696969; /* 灰色箭头，与背景区分 */
-        border: none; /* 清除默认边框 */
-        font-size: 1.25rem; /* 16px基准：20px，箭头图标大小 */
-        cursor: pointer; /* 提示可点击 */
-        outline: none; /* 清除聚焦轮廓 */
+        border-radius: 50%;
+        background-color: rgba(222, 222, 226, 0.9);
+        color: #696969;
+        border: none;
+        font-size: 1.25rem;
+        cursor: pointer;
+        outline: none;
         display: flex;
-        justify-content: center; /* 箭头水平居中 */
-        align-items: center; /* 箭头垂直居中 */
-        padding: 0; /* 清除默认内边距 */
-        z-index: 999; /* 层级高于卡片，确保不被遮挡 */
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        z-index: 999;
       }
-      /* 左箭头位置 */
+
       .benefit-nav-btn.prev-btn {
-        left: calc(85%); /* 基于容器左侧15%margin，向右偏移2.5rem */
+        left: calc(85%);
         right: auto;
-        display: flex !important; /* 强制显示，避免被隐藏 */
+        display: flex !important;
       }
-      /* 右箭头位置 */
+
       .benefit-nav-btn.next-btn {
-        right: calc(5% + 1.25rem); /* 基于屏幕右侧5%，向右偏移1.25rem */
+        right: calc(5% + 1.25rem);
         left: auto;
       }
-      /* 箭头交互效果 */
+
       .benefit-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9); /* 背景加深 */
-        color: #333; /* 文字加深，增强反馈 */
+        background-color: rgba(180, 180, 180, 0.9);
+        color: #333;
       }
       .benefit-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9); /* 更浅背景，视觉弱化 */
-        color: #aaa; /* 浅灰箭头 */
-        cursor: not-allowed; /* 提示不可点击 */
-        display: flex !important; /* 禁用时仍显示，避免布局跳动 */
+        background-color: rgba(240, 240, 240, 0.9);
+        color: #aaa;
+        cursor: not-allowed;
+        display: flex !important;
       }
 
-      /* ================================== 先刷重点 - 媒体查询适配 ================================== */
-      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
-
-      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
       @media (max-width: 320px) {
         .benefit-section {
           padding: 3rem 0 6rem;
         }
         .benefit-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          margin: 0 auto;
         }
         .benefit-main-title {
-          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+          margin-bottom: 2rem;
         }
         .benefit-card {
-          width: 35rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 35rem;
         }
         .benefit-card img {
           height: 25rem;
-          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          border-radius: 1rem;
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 1.5rem; /* 12px基准：24px，缩小箭头尺寸 */
+          width: 1.5rem;
           height: 1.5rem;
-          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+          font-size: 1rem;
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          left: calc(75% + 0rem);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5%); /* 12px基准：~9.6px，调整右箭头位置 */
+          right: calc(5%);
         }
-        /* 卡片内二级标题 */
+
         .benefit-card .benefit-subtitle {
-          font-size: 1rem; /* 16px基准：16px */
+          font-size: 1rem;
           font-weight: 400;
-          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+          margin-bottom: 0.5rem;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内一级标题 */
+
         .benefit-card .benefit-heading {
-          font-size: 1.5rem; /* 16px基准：28px */
+          font-size: 1.5rem;
           font-weight: 500;
-          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          margin-bottom: 0.75rem;
           letter-spacing: -0.5px;
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内描述文本 */
+
         .benefit-card .benefit-desc {
-          font-size: 1rem; /* 16px基准：14px */
+          font-size: 1rem;
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           font-weight: 400;
         }
       }
 
-      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .benefit-section {
           padding: 3rem 0 6rem;
         }
         .benefit-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          margin: 0 auto;
         }
         .benefit-main-title {
-          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+          margin-bottom: 2rem;
         }
         .benefit-card {
-          width: 35rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 35rem;
         }
         .benefit-card img {
           height: 25rem;
-          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          border-radius: 1rem;
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 1.6rem; /* 12px基准：24px，缩小箭头尺寸 */
+          width: 1.6rem;
           height: 1.6rem;
-          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+          font-size: 1rem;
         }
         .benefit-nav-btn.prev-btn {
           position: absolute;
-          left: 75%; /* 左箭头基准位置 */
+          left: 75%;
           transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
           left: calc(75% + 2.5rem);
           transform: translate(-50%, -50%);
         }
-        /* 卡片内二级标题 */
+
         .benefit-card .benefit-subtitle {
-          font-size: 1rem; /* 16px基准：16px */
+          font-size: 1rem;
           font-weight: 400;
-          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+          margin-bottom: 0.5rem;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内一级标题 */
+
         .benefit-card .benefit-heading {
-          font-size: 1.5rem; /* 16px基准：28px */
+          font-size: 1.5rem;
           font-weight: 500;
-          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          margin-bottom: 0.75rem;
           letter-spacing: -0.5px;
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内描述文本 */
+
         .benefit-card .benefit-desc {
-          font-size: 1rem; /* 16px基准：14px */
+          font-size: 1rem;
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           font-weight: 400;
         }
       }
 
-      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
         .benefit-section {
           padding: 3rem 0 6rem;
         }
         .benefit-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          margin: 0 auto;
         }
         .benefit-main-title {
-          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+          margin-bottom: 2rem;
         }
         .benefit-card {
-          width: 35rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 35rem;
         }
         .benefit-card img {
           height: 25rem;
-          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          border-radius: 1rem;
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 1.8rem; /* 12px基准：24px，缩小箭头尺寸 */
+          width: 1.8rem;
           height: 1.8rem;
-          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+          font-size: 1rem;
         }
         .benefit-nav-btn.prev-btn {
           position: absolute;
-          left: 75%; /* 左箭头基准位置 */
+          left: 75%;
           transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
           left: calc(75% + 2.8rem);
           transform: translate(-50%, -50%);
         }
-        /* 卡片内二级标题 */
+
         .benefit-card .benefit-subtitle {
-          font-size: 1rem; /* 16px基准：16px */
+          font-size: 1rem;
           font-weight: 400;
-          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+          margin-bottom: 0.5rem;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内一级标题 */
+
         .benefit-card .benefit-heading {
-          font-size: 1.5rem; /* 16px基准：28px */
+          font-size: 1.5rem;
           font-weight: 500;
-          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          margin-bottom: 0.75rem;
           letter-spacing: -0.5px;
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内描述文本 */
+
         .benefit-card .benefit-desc {
-          font-size: 1rem; /* 16px基准：14px */
+          font-size: 1rem;
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           font-weight: 400;
         }
       }
 
-      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
         .benefit-section {
           padding: 3rem 0 6rem;
         }
         .benefit-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          margin: 0 auto;
         }
         .benefit-main-title {
-          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+          margin-bottom: 2rem;
         }
         .benefit-card {
-          width: 35rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 35rem;
         }
         .benefit-card img {
           height: 25rem;
-          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          border-radius: 1rem;
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2rem; /* 12px基准：24px，缩小箭头尺寸 */
+          width: 2rem;
           height: 2rem;
-          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+          font-size: 1rem;
         }
         .benefit-nav-btn.prev-btn {
           position: absolute;
-          left: 78%; /* 左箭头基准位置 */
+          left: 78%;
           transform: translate(-50%, -50%);
         }
         .benefit-nav-btn.next-btn {
           left: calc(78% + 3rem);
           transform: translate(-50%, -50%);
         }
-        /* 卡片内二级标题 */
+
         .benefit-card .benefit-subtitle {
-          font-size: 1rem; /* 16px基准：16px */
+          font-size: 1rem;
           font-weight: 400;
-          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+          margin-bottom: 0.5rem;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内一级标题 */
+
         .benefit-card .benefit-heading {
-          font-size: 1.5rem; /* 16px基准：28px */
+          font-size: 1.5rem;
           font-weight: 500;
-          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          margin-bottom: 0.75rem;
           letter-spacing: -0.5px;
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内描述文本 */
+
         .benefit-card .benefit-desc {
-          font-size: 1rem; /* 16px基准：14px */
+          font-size: 1rem;
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           font-weight: 400;
         }
       }
 
-      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
         .benefit-section {
           padding: 3rem 0 6rem;
         }
         .benefit-container {
-          margin: 0 auto; /* 取消左侧15%margin，改为居中（小屏空间紧张） */
+          margin: 0 auto;
         }
         .benefit-main-title {
-          font-size: 2rem; /* 12px基准：24px，避免标题换行 */
-          margin-bottom: 1rem; /* 12px基准：12px，缩小间距 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
         .benefit-intro {
-          margin-bottom: 2rem; /* 12px基准：24px，缩小与卡片区间距 */
+          margin-bottom: 2rem;
         }
         .benefit-card {
-          width: 35rem; /* 12px基准：156px，适配小屏宽度 */
+          width: 35rem;
         }
         .benefit-card img {
           height: 25rem;
-          border-radius: 1rem; /* 12px基准：12px，缩小圆角 */
+          border-radius: 1rem;
           object-fit: cover;
         }
         .benefit-nav-btn {
-          width: 2.5rem; /* 12px基准：24px，缩小箭头尺寸 */
+          width: 2.5rem;
           height: 2.5rem;
-          font-size: 1rem; /* 12px基准：12px，缩小箭头图标 */
+          font-size: 1rem;
         }
         .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          left: calc(80% + 0rem);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          right: calc(5% + 0.8rem);
         }
-        /* 卡片内二级标题 */
+
         .benefit-card .benefit-subtitle {
-          font-size: 1rem; /* 16px基准：16px */
+          font-size: 1rem;
           font-weight: 400;
-          margin-bottom: 0.5rem; /* 16px基准：8px，与标题间距 */
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 文字阴影，提升图片上可读性 */
+          margin-bottom: 0.5rem;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内一级标题 */
+
         .benefit-card .benefit-heading {
-          font-size: 1.5rem; /* 16px基准：28px */
+          font-size: 1.5rem;
           font-weight: 500;
-          margin-bottom: 0.75rem; /* 16px基准：12px，与描述间距 */
+          margin-bottom: 0.75rem;
           letter-spacing: -0.5px;
           text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
-        /* 卡片内描述文本 */
+
         .benefit-card .benefit-desc {
-          font-size: 1rem; /* 16px基准：14px */
+          font-size: 1rem;
           line-height: 1.5;
           text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
           font-weight: 400;
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
       @media (min-width: 1025px) and (max-width: 1440px) {
         .benefit-nav-btn.prev-btn {
-          left: calc(80% + 0rem); /* 调整左箭头位置，避免超出屏幕 */
+          left: calc(80% + 0rem);
         }
         .benefit-nav-btn.next-btn {
-          right: calc(10% + 0.8rem); /* 12px基准：~9.6px，调整右箭头位置 */
+          right: calc(10% + 0.8rem);
         }
       }
 
-      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
-        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
-        /* —— 5.2 板块内层内容容器：限制宽度+控制左右布局 —— */
         .benefit-container {
-          max-width: 160rem; /* 16px基准：1600px，避免超宽屏幕内容过散 */
-          margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
-          padding: 0 1.25rem; /* 16px基准：20px，左右留白避免内容贴边 */
+          max-width: 160rem;
+          margin: 0 auto 0 15%;
+          padding: 0 1.25rem;
           box-sizing: border-box;
         }
       }
@@ -2750,16 +2706,14 @@
 
     <!--六，CSS 展示参数-->
     <style>
-      /* 第六个板块样式（延续原设计风格） */
       .specs-section {
         padding: 3rem 0;
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         height: 20rem;
         margin: 5% auto 0 15%;
@@ -2774,14 +2728,14 @@
         border-radius: 20px;
         padding: 2.5rem 1.5rem;
       }
-      /* 单个参数项：左对齐 + 自定义位置（通过padding调整） */
+
       .specs-item {
-        text-align: left; /* 文字左对齐 */
-        padding: 1rem 2rem; /* 上下1rem，左右2rem（可自行修改2rem来调整水平位置） */
-        margin: 0 auto; /* 保持容器水平居中（可选，不需要可删除） */
-        max-width: 600px; /* 限制单项目宽度（可选，避免文字太宽） */
+        text-align: left;
+        padding: 1rem 2rem;
+        margin: 0 auto;
+        max-width: 600px;
       }
-      /* 标签（如“最高”“最长续航”） */
+
       .specs-label {
         font-size: 0.85rem;
         color: #000000;
@@ -2794,16 +2748,13 @@
       示例：从左到右 → 紫色→蓝色→绿色，也可替换为品牌色 */
         background-image: linear-gradient(to right, #9333ea, #3b82f6, #22c55e);
 
-        /* 2. 核心属性：将渐变背景裁剪为文字形状（兼容多浏览器） */
-        -webkit-background-clip: text; /* Safari/Chrome 兼容 */
-        background-clip: text; /* 标准语法 */
+        -webkit-background-clip: text;
+        background-clip: text;
 
-        /* 3. 文字设为透明，让渐变背景透出（必须） */
         color: transparent;
-        -webkit-text-fill-color: transparent; /* Safari 额外兼容，防止文字颜色覆盖 */
+        -webkit-text-fill-color: transparent;
 
-        /* 可选：增强文字视觉效果（按需保留） */
-        font-weight: 500; /* 文字加粗，让渐变更醒目 */
+        font-weight: 500;
       }
       .text-purple {
         color: #a58eff;
@@ -2811,97 +2762,84 @@
       .text-green {
         color: #6bcb77;
       }
-      /* 描述（如“中央处理器”） */
+
       .specs-desc {
         font-size: 0.85rem;
         color: #000000;
         margin-top: 0.5rem;
       }
 
-      /* ================================== 展示参数 - 媒体查询适配 ================================== */
-      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
-
-      /* 1. Mobile S（≤320px）：极致紧凑，单列布局 */
       @media (max-width: 320px) {
         .specs-section {
-          /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
           padding: 3rem 0 3rem;
           margin: 0 auto;
           height: 35rem;
         }
         .specs-container {
-          /* 核心：改为1列布局 */
           grid-template-columns: 1fr;
-          gap: 1rem; /* 缩小卡片间距，紧凑布局 */
-          padding: 1.5rem 1rem; /* 缩小内边距，节省空间 */
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
         .specs-item {
-          padding: 0.8rem 1.2rem; /* 缩小项内边距 */
+          padding: 0.8rem 1.2rem;
           text-align: center;
         }
         .specs-value .text-gradient {
-          font-size: 1.5rem; /* 缩小渐变文字，避免超出 */
+          font-size: 1.5rem;
         }
         .specs-label,
         .specs-desc {
-          font-size: 0.8rem; /* 缩小辅助文字 */
+          font-size: 0.8rem;
         }
       }
 
-      /* 2. Mobile M（321px~375px）：小屏过渡，单列布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .specs-section {
-          /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
           margin: 0 1rem 0;
           padding: 6rem 0 6rem;
           height: auto;
         }
         .specs-container {
-          /* 核心：改为1列布局 */
           grid-template-columns: 1fr;
-          gap: 1rem; /* 缩小卡片间距，紧凑布局 */
-          padding: 1.5rem 1rem; /* 缩小内边距，节省空间 */
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
         .specs-item {
-          padding: 0.8rem 1.2rem; /* 缩小项内边距 */
+          padding: 0.8rem 1.2rem;
           text-align: center;
         }
         .specs-value .text-gradient {
-          font-size: 1.5rem; /* 缩小渐变文字，避免超出 */
+          font-size: 1.5rem;
         }
         .specs-label,
         .specs-desc {
-          font-size: 0.8rem; /* 缩小辅助文字 */
+          font-size: 0.8rem;
         }
       }
 
-      /* 3. Mobile L（376px~425px）：大屏手机，单列布局 */
       @media (min-width: 376px) and (max-width: 425px) {
         .specs-section {
-          /* 小屏幕居中：去掉左侧15%margin，改为上下5%、左右auto */
           margin: 0 auto;
           height: 35rem;
         }
         .specs-container {
-          /* 核心：改为1列布局 */
           grid-template-columns: 1fr;
-          gap: 1rem; /* 缩小卡片间距，紧凑布局 */
-          padding: 1.5rem 1rem; /* 缩小内边距，节省空间 */
+          gap: 1rem;
+          padding: 1.5rem 1rem;
         }
         .specs-item {
-          padding: 0.8rem 1.2rem; /* 缩小项内边距 */
+          padding: 0.8rem 1.2rem;
           text-align: center;
         }
         .specs-value .text-gradient {
-          font-size: 1.5rem; /* 缩小渐变文字，避免超出 */
+          font-size: 1.5rem;
         }
         .specs-label,
         .specs-desc {
-          font-size: 0.8rem; /* 缩小辅助文字 */
+          font-size: 0.8rem;
         }
       }
 
-      /* 4. Tablet（426px~768px）：平板适配，单列布局（宽度不足3列，单列更美观） */
       @media (min-width: 426px) and (max-width: 768px) {
         .specs-section {
           padding: 3rem 0;
@@ -2919,14 +2857,14 @@
           border-radius: 20px;
           padding: 2.5rem 1.5rem;
         }
-        /* 单个参数项：左对齐 + 自定义位置（通过padding调整） */
+
         .specs-item {
-          text-align: center; /* 文字左对齐 */
-          padding: 1rem 2rem; /* 上下1rem，左右2rem（可自行修改2rem来调整水平位置） */
-          margin: 0 auto; /* 保持容器水平居中（可选，不需要可删除） */
-          max-width: 600px; /* 限制单项目宽度（可选，避免文字太宽） */
+          text-align: center;
+          padding: 1rem 2rem;
+          margin: 0 auto;
+          max-width: 600px;
         }
-        /* 标签（如“最高”“最长续航”） */
+
         .specs-label {
           font-size: 0.85rem;
           color: #000000;
@@ -2944,20 +2882,16 @@
             #22c55e
           );
 
-          /* 2. 核心属性：将渐变背景裁剪为文字形状（兼容多浏览器） */
-          -webkit-background-clip: text; /* Safari/Chrome 兼容 */
-          background-clip: text; /* 标准语法 */
+          -webkit-background-clip: text;
+          background-clip: text;
 
-          /* 3. 文字设为透明，让渐变背景透出（必须） */
           color: transparent;
-          -webkit-text-fill-color: transparent; /* Safari 额外兼容，防止文字颜色覆盖 */
+          -webkit-text-fill-color: transparent;
 
-          /* 可选：增强文字视觉效果（按需保留） */
-          font-weight: 500; /* 文字加粗，让渐变更醒目 */
+          font-weight: 500;
         }
       }
 
-      /* 5. Laptop（769px~1024px）：笔记本屏，2列布局（介于小屏单列与大屏3列之间） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .specs-section {
           padding: 3rem 0;
@@ -2975,14 +2909,14 @@
           border-radius: 20px;
           padding: 2.5rem 1.5rem;
         }
-        /* 单个参数项：左对齐 + 自定义位置（通过padding调整） */
+
         .specs-item {
-          text-align: left; /* 文字左对齐 */
-          padding: 1rem 2rem; /* 上下1rem，左右2rem（可自行修改2rem来调整水平位置） */
-          margin: 0 auto; /* 保持容器水平居中（可选，不需要可删除） */
-          max-width: 600px; /* 限制单项目宽度（可选，避免文字太宽） */
+          text-align: left;
+          padding: 1rem 2rem;
+          margin: 0 auto;
+          max-width: 600px;
         }
-        /* 标签（如“最高”“最长续航”） */
+
         .specs-label {
           font-size: 0.85rem;
           color: #000000;
@@ -3000,16 +2934,13 @@
             #22c55e
           );
 
-          /* 2. 核心属性：将渐变背景裁剪为文字形状（兼容多浏览器） */
-          -webkit-background-clip: text; /* Safari/Chrome 兼容 */
-          background-clip: text; /* 标准语法 */
+          -webkit-background-clip: text;
+          background-clip: text;
 
-          /* 3. 文字设为透明，让渐变背景透出（必须） */
           color: transparent;
-          -webkit-text-fill-color: transparent; /* Safari 额外兼容，防止文字颜色覆盖 */
+          -webkit-text-fill-color: transparent;
 
-          /* 可选：增强文字视觉效果（按需保留） */
-          font-weight: 500; /* 文字加粗，让渐变更醒目 */
+          font-weight: 500;
         }
         .text-purple {
           color: #a58eff;
@@ -3017,7 +2948,7 @@
         .text-green {
           color: #6bcb77;
         }
-        /* 描述（如“中央处理器”） */
+
         .specs-desc {
           font-size: 0.85rem;
           color: #000000;
@@ -3025,48 +2956,43 @@
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：设计基准区间，保留3列布局 */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用3列布局，保持大屏视觉统一 */
       }
 
-      /* 7. 4K屏（≥2560px）：超高清屏，放大元素避免视觉过小 */
       @media (min-width: 2560px) {
         .specs-section {
           margin: 5% auto 0 15%;
-          padding: 0 2rem; /* 放大左右留白，适配4K屏 */
+          padding: 0 2rem;
         }
         .specs-container {
-          grid-template-columns: repeat(3, 1fr); /* 保留3列 */
-          gap: 2.5rem; /* 放大间距，避免拥挤 */
-          padding: 3rem 2rem; /* 放大内边距，提升精致感 */
-          max-width: 2560px; /* 放大最大宽度，适配4K屏 */
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+          padding: 3rem 2rem;
+          max-width: 2560px;
         }
         .specs-item {
           padding: 1.2rem 2.5rem;
           max-width: 700px;
         }
         .specs-value .text-gradient {
-          font-size: 2.5rem; /* 放大渐变文字，适配4K视觉 */
+          font-size: 2.5rem;
         }
         .specs-label,
         .specs-desc {
-          font-size: 1rem; /* 放大辅助文字，提升可读性 */
+          font-size: 1rem;
         }
       }
     </style>
 
     <!--七，CSS 切割有道-->
     <style>
-      /* 1. 板块外层容器：仅控制背景和上下间距，不控制左右对齐 */
       .section-chart {
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
@@ -3076,12 +3002,11 @@
       }
       .section-container {
         max-width: 100rem;
-        margin: 0 auto 0 15%; /* 左侧15%margin实现偏左布局，右侧auto自适应 */
+        margin: 0 auto 0 15%;
         box-sizing: border-box;
         padding: 0;
       }
 
-      /* 3. 板块标题区域（无需修改，基于内层容器对齐） */
       .chart-title {
         color: #000;
         font-size: 3.5rem;
@@ -3094,7 +3019,6 @@
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
       }
 
-      /* 标题核心文字（“道”）- 继承标题样式，无需修改 */
       .chart-title-core {
         color: #000;
         font-size: inherit;
@@ -3105,7 +3029,6 @@
         font-family: inherit;
       }
 
-      /* 标题符号（┌┘）- 无需修改 */
       .chart-title-symbol {
         color: #ff5100;
       }
@@ -3114,24 +3037,20 @@
         margin: 5rem 0 0rem 2rem;
       }
 
-      /* 4. 板块描述文字（无需修改，基于内层容器对齐） */
       .chart-desc {
-        /* 核心修改：linear-gradient增加第三个颜色，默认均匀过渡 */
         background: linear-gradient(59deg, #559e01, #ff0000, #ff0040);
-        -webkit-background-clip: text; /* 兼容webkit内核（Safari/Chrome） */
-        background-clip: text; /* 标准语法：将背景裁剪为文字形状 */
-        color: transparent; /* 文字透明，让渐变背景透出 */
-        -webkit-text-fill-color: transparent; /* 兼容Safari，防止文字颜色覆盖 */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
 
-        /* 保留原有基础样式，确保与其他板块风格统一 */
-        font-size: clamp(1rem, 2vw, 1.125rem); /* 响应式字号（16px~18px） */
-        text-align: left; /* 左对齐，契合板块布局 */
-        margin-bottom: 0.8rem; /* 与下方分隔线保持间距 */
-        line-height: 1.4; /* 优化文字可读性，避免拥挤 */
+        font-size: clamp(1rem, 2vw, 1.125rem);
+        text-align: left;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
         margin: 0 0 0rem 2rem;
       }
 
-      /* 5. 图表卡片样式（无需修改，卡片布局基于内层容器） */
       .chart-card {
         background-color: #f5f5f7;
         backdrop-filter: blur(12px);
@@ -3148,13 +3067,11 @@
         height: 18rem;
       }
 
-      /* 卡片hover效果（无需修改） */
       .chart-card:hover {
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         transform: translateY(-2px);
       }
 
-      /* 卡片标题区域（无需修改） */
       .chart-card-header h3 {
         color: rgba(0, 0, 0, 0.8);
         font-size: clamp(1rem, 2vw, 1.125rem);
@@ -3162,247 +3079,208 @@
         font-weight: 500;
       }
 
-      /* ================================== 媒体查询适配 - 切割有道 ================================== */
-      /* 1. Mobile S（≤320px）：极致紧凑，单列布局（适配最小手机屏） */
       @media (max-width: 320px) {
         .section-chart {
-          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem;
         }
-        /* 外层容器：取消偏左布局，改为全屏居中 */
+
         .section-container {
-          margin: 0 auto; /* 清除左侧15%margin，避免内容贴边 */
+          margin: 0 auto;
         }
 
-        /* 板块标题：缩小字号，减少底部间距 */
         .chart-title {
-          font-size: 2rem; /* 基础字号从56px→32px，避免超出屏幕 */
-          margin-bottom: 1rem; /* 间距从16px→12px，紧凑布局 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
 
-        /* 描述文字：缩小字号，优化可读性 */
         .chart-desc {
-          font-size: clamp(0.8rem, 3vw, 0.9rem); /* 最小12.8px，最大14.4px */
-          margin-bottom: 1rem; /* 减少与分隔线间距 */
+          font-size: clamp(0.8rem, 3vw, 0.9rem);
+          margin-bottom: 1rem;
         }
 
-        /* 图表卡片：全屏宽度，缩小内边距 */
         .chart-card {
-          margin: 0 auto 1.25rem; /* 卡片居中，底部间距20px */
-          width: 95%; /* 卡片占屏幕95%，避免贴边 */
+          margin: 0 auto 1.25rem;
+          width: 95%;
         }
 
-        /* 卡片标题：缩小字号 */
         .chart-card-header h3 {
-          font-size: clamp(0.9rem, 2.5vw, 1rem); /* 最小14.4px，最大16px */
-          padding: 0.75rem 0; /* 内边距12px，减少卡片高度 */
+          font-size: clamp(0.9rem, 2.5vw, 1rem);
+          padding: 0.75rem 0;
         }
 
-        /* 图表容器：固定高度，避免拉伸 */
         .chart-container {
-          height: 180px; /* 适配小屏的图表高度，确保显示完整 */
-          padding: 0.5rem; /* 缩小内边距 */
+          height: 180px;
+          padding: 0.5rem;
         }
       }
 
-      /* 2. Mobile M（321px~375px）：小屏过渡，单列布局（适配iPhone 8/SE等） */
       @media (min-width: 321px) and (max-width: 375px) {
         .section-chart {
-          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem;
         }
-        /* 外层容器：居中布局，适度留白 */
+
         .section-container {
-          margin: 0 auto; /* 取消偏左，全屏居中 */
+          margin: 0 auto;
         }
 
-        /* 板块标题：适度放大字号 */
         .chart-title {
-          font-size: 2rem; /* 从32px→36px，提升视觉权重 */
-          margin-bottom: 1rem; /* 间距14px */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
 
-        /* 描述文字：恢复基础可读性 */
         .chart-desc {
-          font-size: clamp(0.85rem, 2.5vw, 1rem); /* 最小13.6px，最大16px */
+          font-size: clamp(0.85rem, 2.5vw, 1rem);
           margin-bottom: 1.25rem;
         }
 
-        /* 图表卡片：优化宽度与间距 */
         .chart-card {
-          margin: 0 auto 1.5rem; /* 底部间距24px */
-          width: 92%; /* 卡片占比92%，保留呼吸感 */
+          margin: 0 auto 1.5rem;
+          width: 92%;
         }
 
-        /* 卡片标题：提升内边距 */
         .chart-card-header h3 {
-          padding: 1rem 0; /* 内边距16px，优化点击区域 */
+          padding: 1rem 0;
         }
 
-        /* 图表容器：增加高度，确保图表清晰 */
         .chart-container {
-          height: 220px; /* 比Mobile S增加40px，提升数据可读性 */
+          height: 220px;
         }
       }
 
-      /* 3. Mobile L（376px~425px）：大屏手机，单列布局（适配iPhone 12/13 mini等） */
       @media (min-width: 376px) and (max-width: 425px) {
         .section-chart {
-          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem;
         }
-        /* 外层容器：维持居中，留白适配大屏手机 */
+
         .section-container {
           margin: 0 auto;
         }
 
-        /* 板块标题：接近平板尺寸 */
         .chart-title {
-          font-size: 2rem; /* 从36px→40px，增强视觉焦点 */
-          margin-bottom: 1rem; /* 间距16px，恢复基础值 */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
 
-        /* 描述文字：恢复标准字号 */
         .chart-desc {
-          font-size: clamp(0.9rem, 2.5vw, 1.05rem); /* 最小14.4px，最大16.8px */
+          font-size: clamp(0.9rem, 2.5vw, 1.05rem);
         }
 
-        /* 图表卡片：优化阴影与间距 */
         .chart-card {
-          margin: 0 auto 1.75rem; /* 底部间距28px */
-          width: 90%; /* 卡片占比90%，提升精致感 */
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* 轻微增强阴影，提升层次感 */
+          margin: 0 auto 1.75rem;
+          width: 90%;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        /* 图表容器：进一步增加高度 */
         .chart-container {
-          height: 260px; /* 比Mobile M增加40px，适配大屏手机数据展示 */
-          padding: 1rem; /* 内边距16px，确保图表不贴边 */
+          height: 260px;
+          padding: 1rem;
         }
       }
 
-      /* 4. Tablet（426px~768px）：平板适配，单列布局（宽度不足3列，单列更美观） */
       @media (min-width: 426px) and (max-width: 768px) {
         .section-chart {
-          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
+          padding: 3rem 0 6rem;
         }
-        /* 外层容器：取消偏左，平板全屏居中 */
+
         .section-container {
           margin: 0 auto;
         }
 
-        /* 板块标题：适配平板视觉 */
         .chart-title {
-          font-size: 2rem; /* 从40px→44px，提升标题权重 */
-          margin-bottom: 1rem; /* 间距20px */
+          font-size: 2rem;
+          margin-bottom: 1rem;
         }
 
-        /* 描述文字：优化平板可读性 */
         .chart-desc {
-          font-size: clamp(1rem, 2vw, 1.1rem); /* 最小16px，最大17.6px */
-          line-height: 1.5; /* 增加行高，提升长文本可读性 */
+          font-size: clamp(1rem, 2vw, 1.1rem);
+          line-height: 1.5;
           margin-bottom: 1.5rem;
         }
 
-        /* 图表卡片：平板专属样式 */
         .chart-card {
-          margin: 0 auto 2rem; /* 底部间距32px */
-          width: 85%; /* 卡片占比85%，保留左右呼吸感 */
-          border-radius: 1.75rem; /* 圆角从24px→28px，适配平板视觉 */
+          margin: 0 auto 2rem;
+          width: 85%;
+          border-radius: 1.75rem;
         }
 
-        /* 卡片标题：放大字号与内边距 */
         .chart-card-header h3 {
-          font-size: clamp(1.1rem, 2vw, 1.2rem); /* 最小17.6px，最大19.2px */
-          padding: 1.25rem 0; /* 内边距20px，提升卡片高度 */
+          font-size: clamp(1.1rem, 2vw, 1.2rem);
+          padding: 1.25rem 0;
         }
 
-        /* 图表容器：平板适配高度 */
         .chart-container {
-          height: 320px; /* 比Mobile L增加60px，适配平板数据可视化需求 */
-          padding: 1.25rem; /* 内边距20px */
+          height: 320px;
+          padding: 1.25rem;
         }
       }
 
-      /* 5. Laptop（769px~1024px）：笔记本屏，2列布局（介于单列与3列之间） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .section-chart {
-          padding: 3rem 0 6rem; /* 保留上下padding，与核心优势板块上下间距匹配（可根据视觉微调） */
-          background-color: var(
-            --color-neutral
-          ); /* 与核心优势板块背景色统一（建议设为#f5f5f7，和.benefit-section一致） */
-          width: 100%; /* 确保外层占满屏幕宽度，避免左右留白 */
+          padding: 3rem 0 6rem;
+          background-color: var(--color-neutral);
+          width: 100%;
         }
-        /* 外层容器：调整偏左比例，适配笔记本屏 */
+
         .section-container {
-          margin: 0 auto; /* 左侧margin从15%→10%，减少偏左程度 */
+          margin: 0 auto;
 
-          max-width: 1024px; /* 限制最大宽度，避免1024px屏内容过散 */
+          max-width: 1024px;
         }
 
-        /* 板块标题：接近桌面端字号 */
         .chart-title {
-          font-size: 2rem; /* 从44px→48px，适配笔记本视觉 */
+          font-size: 2rem;
         }
 
-        /* 图表卡片：2列布局核心样式 */
         .chart-card-wrapper {
           display: grid;
-          grid-template-columns: repeat(2, 1fr); /* 2列均分 */
-          gap: 1.5rem; /* 卡片间距24px，确保不拥挤 */
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
           margin-top: 2rem;
         }
 
-        /* 图表卡片：适配2列布局 */
         .chart-card {
-          margin: 0; /* 清除单列时的auto margin */
-          width: 100%; /* 卡片占满网格列宽 */
+          margin: 0;
+          width: 100%;
         }
 
-        /* 图表容器：适配2列宽度的高度 */
         .chart-container {
-          height: 280px; /* 比平板减少40px，适配2列窄宽度 */
+          height: 280px;
         }
 
-        /* 响应式调整：笔记本小屏（769px~850px）优化间距 */
         @media (max-width: 850px) {
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：设计基准区间，保留3列布局 */
       @media (min-width: 1025px) and (max-width: 2559px) {
       }
 
-      /* 2K屏（1920px+）优化：增加卡片间距，避免内容过密 */
       @media (min-width: 1920px) {
         .chart-card-wrapper {
-          gap: 2rem; /* 间距从28px→32px */
+          gap: 2rem;
         }
         .chart-container {
-          height: 320px; /* 增加高度，适配2K屏视觉 */
+          height: 320px;
         }
       }
 
-      /* 7. 4K屏（≥2560px）：超高清屏，放大元素避免视觉过小 */
       @media (min-width: 2560px) {
-        /* 外层容器：限制最大宽度，避免4K屏内容过散 */
         .section-container {
-          margin: 0 auto 0 15%; /* 左侧margin从15%→18%，适配4K宽屏 */
-          max-width: 160rem; /* 最大宽度1920px，避免内容过宽 */
-          padding: 0 2rem; /* 左右留白32px，提升呼吸感 */
+          margin: 0 auto 0 15%;
+          max-width: 160rem;
+          padding: 0 2rem;
         }
       }
     </style>
 
     <!--八，CSS 产品演示视频-->
     <style>
-      /* —— 8.1 板块外层容器：控制整体间距与背景，与其他板块视觉衔接 —— */
       .section-8 {
-        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
@@ -3411,152 +3289,133 @@
         height: auto;
       }
 
-      /* —— 8.2 内容容器：控制板块内部宽度，确保居中与适配 —— */
       .section-8 .container {
-        /* 最大宽度：与优势板块（benefit-container）保持一致，避免宽屏内容过散 */
         max-width: 100%;
-        margin: 0 auto; /* 水平居中 */
-        padding: 0 1.25rem; /* 小屏幕左右留白（16px基准下为20px），避免内容贴边 */
+        margin: 0 auto;
+        padding: 0 1.25rem;
         box-sizing: border-box;
       }
 
-      /* —— 8.3 板块标题：与其他板块标题风格统一，突出视觉焦点 —— */
       .section-8 .section-title {
-        /* 字体：继承全局字体，确保跨平台显示一致 */
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        /* 字号：响应式适配（小屏1.8rem/28.8px，大屏2.5rem/40px），兼顾层级与可读性 */
+
         font-size: 3.5rem;
-        font-weight: 400; /* 偏细字体，契合页面轻量化设计风格 */
-        color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
+        font-weight: 400;
+        color: #000;
         text-align: center;
         letter-spacing: -0.02em;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-bottom: 5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
+        margin-bottom: 5rem;
       }
 
-      /* —— 8.4 视频容器：优化视频显示区域，增强视觉层次 —— */
       .section-8 .video-container {
-        /* 最大宽度：限制视频在宽屏上的尺寸，避免过大导致加载缓慢或视觉失衡 */
         max-width: 70rem;
-        margin: 0 auto; /* 视频水平居中 */
-        border-radius: 1.5rem; /* 大圆角设计，与产品卡片、Banner图片圆角风格统一 */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 轻微阴影，增强立体感（不突兀） */
-        overflow: hidden; /* 确保视频/海报图不超出圆角容器，避免视觉割裂 */
-        background-color: #fff; /* 视频加载前的占位背景，避免空白突兀 */
+        margin: 0 auto;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        background-color: #fff;
       }
 
-      /* —— 8.5 视频元素：确保响应式与兼容性，优化播放体验 —— */
       .section-8 video {
-        width: 100%; /* 视频宽度自适应容器，避免拉伸 */
-        height: auto; /* 高度自动，保持视频原有比例（防止变形） */
-        display: block; /* 清除视频默认inline带来的底部间隙 */
-        object-fit: cover; /* 确保视频/海报图填充容器（避免黑边，适配不同比例视频） */
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
       }
 
-      /* —— 8.6 视频不支持提示文字：优化兼容性提示的视觉呈现 —— */
       .section-8 video::-webkit-media-loading-logo,
       .section-8 video + text {
-        color: #6e6e73; /* 浅灰文字，避免过于刺眼 */
-        font-size: 1rem; /* 字号适配，确保可读性 */
-        text-align: center; /* 提示文字居中 */
-        padding: 2rem; /* 上下留白，避免文字贴边 */
-        display: block; /* 块级显示，确保占据完整宽度 */
+        color: #6e6e73;
+        font-size: 1rem;
+        text-align: center;
+        padding: 2rem;
+        display: block;
       }
 
-      /* —— 8.7 产品演示视频 —— */
-
-      /* 1. Mobile S（≤320px）：极致紧凑，单列布局 */
       @media (max-width: 320px) {
         .section-8 {
-          padding: 3rem 0 3rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 3rem 0 3rem;
         }
         .section-8 .section-title {
-          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+          margin-bottom: 2rem;
           font-size: 2rem;
         }
         .section-8 .video-container {
-          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
       }
 
-      /* 2. Mobile M（321px~375px）：小屏过渡，单列布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .section-8 {
-          padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 0rem 0 4rem;
         }
         .section-8 .section-title {
           font-size: 2rem;
-          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+          margin-bottom: 2rem;
         }
         .section-8 .video-container {
-          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
       }
 
-      /* 3. Mobile L（376px~425px）：大屏手机，单列布局 */
       @media (min-width: 376px) and (max-width: 425px) {
         .section-8 {
-          padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 0rem 0 4rem;
         }
         .section-8 .section-title {
           font-size: 2rem;
-          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+          margin-bottom: 2rem;
         }
         .section-8 .video-container {
-          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
       }
 
-      /* 4. Tablet（426px~768px）：平板适配，单列布局（宽度不足3列，单列更美观） */
       @media (min-width: 426px) and (max-width: 768px) {
         .section-8 {
-          padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 0rem 0 4rem;
         }
         .section-8 .section-title {
           font-size: 2rem;
-          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+          margin-bottom: 2rem;
         }
         .section-8 .video-container {
-          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
       }
 
-      /* 5. Laptop（769px~1024px）：笔记本屏，2列布局（介于小屏单列与大屏3列之间） */
       @media (min-width: 769px) and (max-width: 1024px) {
         .section-8 {
-          padding: 0rem 0 4rem; /* 减少上下间距，避免小屏内容过长 */
+          padding: 0rem 0 4rem;
         }
         .section-8 .section-title {
           font-size: 2rem;
-          margin-bottom: 2rem; /* 缩小标题与视频的间距 */
+          margin-bottom: 2rem;
         }
         .section-8 .video-container {
-          border-radius: 1rem; /* 减小圆角，适配小屏视觉比例 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); /* 弱化阴影，避免小屏视觉沉重 */
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
       }
 
-      /* 7. 4K屏（≥2560px）：超高清屏，放大元素避免视觉过小 */
       @media (min-width: 2560px) {
       }
     </style>
 
     <!--九，CSS 技术参数-->
     <style>
-      /* —— 9.1 技术参数板块外层容器：控制背景、内边距与锚点定位 —— */
       .tech-specs-section {
-        /* 核心修改：径向渐变（从中心向四周扩散）+ 对称色标，实现“中间向两边过渡” */
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
@@ -3565,158 +3424,142 @@
         height: auto;
       }
 
-      /* —— 9.2 内容容器：控制宽度、居中与响应式内边距 —— */
       .tech-specs-container {
-        max-width: 100%; /* 保留视频最大宽度，避免超宽变形 */
-        margin: 0 auto; /* 水平居中 */
+        max-width: 100%;
+        margin: 0 auto;
         box-sizing: border-box;
-        z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
+        z-index: 1;
       }
 
-      /* —— 9.3 板块标题：控制字体、大小、间距与视觉效果 —— */
       .tech-specs-title {
         font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        /* 字号：响应式适配（小屏1.8rem/28.8px，大屏2.5rem/40px），兼顾层级与可读性 */
+
         font-size: 3.5rem;
-        font-weight: 500; /* 偏细字体，契合页面轻量化设计风格 */
-        color: #000; /* 深色文字，与浅灰背景形成清晰对比 */
+        font-weight: 500;
+        color: #000;
         letter-spacing: -0.02em;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         text-align: center;
-        margin-bottom: 5rem; /* 与下方视频容器间距（16px基准下为40px），避免拥挤 */
+        margin-bottom: 5rem;
       }
 
-      /* —— 9.4 表格包裹层：控制滚动、阴影与圆角 —— */
       .tech-specs-table-wrap {
         max-width: 80rem;
         margin: 0 auto;
-        border-radius: 1.5rem; /* 大圆角设计，与产品卡片、Banner图片圆角风格统一 */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 轻微阴影，增强立体感（不突兀） */
-        overflow: hidden; /* 确保视频/海报图不超出圆角容器，避免视觉割裂 */
-        background-color: #fff; /* 视频加载前的占位背景，避免空白突兀 */
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        background-color: #fff;
       }
 
-      /* —— 9.5 表格基础样式：控制边框、背景与溢出 —— */
       .tech-specs-table {
         width: 100%;
-        border-collapse: collapse; /* 替代内联border-collapse */
-        background-color: #f5f5f7; /* 替代内联bg-[#f5f5f7] */
-        border-radius: 1rem; /* 与包裹层圆角一致，避免漏角 */
-        overflow: hidden; /* 确保圆角生效，替代内联overflow-hidden */
+        border-collapse: collapse;
+        background-color: #f5f5f7;
+        border-radius: 1rem;
+        overflow: hidden;
       }
 
-      /* —— 9.6 表格表头（thead）：控制背景、文字与单元格样式 —— */
       .tech-specs-table thead {
-        background-color: #f5f5f7; /* 表头背景，替代内联bg-[#f5f5f7] */
+        background-color: #f5f5f7;
       }
       .tech-specs-table thead tr th {
-        padding: 1.5rem; /* 替代内联py-6 px-6（1.5rem=24px） */
-        text-align: center; /* 基础左对齐 */
-        font-weight: 600; /* 替代内联font-medium */
-        font-size: 1rem; /* 替代内联text-[1rem] */
-        color: #1d1d1f; /* 替代内联text-[#1d1d1f] */
-        width: 30%; /* 第一列宽度，替代内联w-[30%] */
+        padding: 1.5rem;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #1d1d1f;
+        width: 30%;
       }
-      /* 表头非第一列：居中对齐+固定宽度 */
+
       .tech-specs-table thead tr th:nth-child(2),
       .tech-specs-table thead tr th:nth-child(3),
       .tech-specs-table thead tr th:nth-child(4),
       .tech-specs-table thead tr th:nth-child(5),
       .tech-specs-table thead tr th:nth-child(6),
       .tech-specs-table thead tr th:nth-child(7) {
-        width: 14%; /* 替代内联w-[23%] */
-        text-align: center; /* 替代内联text-center */
-      }
-
-      /* —— 9.7 表格内容（tbody）：控制文字、行 hover 与单元格样式 —— */
-      .tech-specs-table tbody {
-        color: #424245; /* 替代内联text-[#424245] */
-        font-size: 0.9375rem; /* 替代内联text-[0.9375rem] */
+        width: 14%;
         text-align: center;
       }
-      /* 表格行：hover 效果 */
+
+      .tech-specs-table tbody {
+        color: #424245;
+        font-size: 0.9375rem;
+        text-align: center;
+      }
+
       .tech-specs-table tbody tr {
-        transition: background-color 0.2s ease; /* 替代内联transition-colors duration-200 */
+        transition: background-color 0.2s ease;
       }
       .tech-specs-table tbody tr:hover {
-        background-color: #fafafa; /* 替代内联hover:bg-[#fafafa] */
+        background-color: #fafafa;
       }
-      /* 表格单元格：基础样式 */
+
       .tech-specs-table tbody tr td {
-        padding: 1.5rem; /* 替代内联py-6 px-6（1.5rem=24px） */
-        font-weight: 500; /* 替代内联font-medium（第一列） */
+        padding: 1.5rem;
+        font-weight: 500;
       }
-      /* 内容单元格非第一列：居中对齐 */
+
       .tech-specs-table thead tr th:nth-child(2),
       .tech-specs-table thead tr th:nth-child(3),
       .tech-specs-table thead tr th:nth-child(4),
       .tech-specs-table thead tr th:nth-child(5),
       .tech-specs-table thead tr th:nth-child(6),
       .tech-specs-table thead tr th:nth-child(7) {
-        text-align: center; /* 替代内联text-center */
-        font-weight: normal; /* 非第一列取消加粗 */
+        text-align: center;
+        font-weight: normal;
       }
-      /* 表格内小字体说明：统一样式（如“特殊情况”备注） */
+
       .tech-specs-table tbody tr td .specs-note {
-        display: block; /* 独占一行，替代内联block */
-        font-size: 0.75rem; /* 替代内联text-xs */
-        color: #86868b; /* 替代内联text-[#86868b] */
-        margin-top: 0.25rem; /* 替代内联mt-1 */
+        display: block;
+        font-size: 0.75rem;
+        color: #86868b;
+        margin-top: 0.25rem;
       }
 
-      /* —— 9.8 补充说明文字：控制间距、字体与对齐 —— */
       .tech-specs-note {
-        margin-top: 2rem; /* 替代内联mt-8（2rem=32px） */
-        text-align: center; /* 替代内联text-center */
-        font-size: 0.875rem; /* 替代内联text-sm */
-        color: #86868b; /* 替代内联text-[#86868b] */
-        display: flex; /* 图标与文字横向对齐，替代内联flex */
-        align-items: center; /* 替代内联items-center */
-        justify-content: center; /* 替代内联justify-center */
-        gap: 0.5rem; /* 图标与文字间距，替代内联gap-2 */
+        margin-top: 2rem;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #86868b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
       }
-      /* 补充说明图标：保持默认样式 */
+
       .tech-specs-note i {
-        font-size: 0.875rem; /* 与文字字号一致 */
+        font-size: 0.875rem;
       }
 
-      /* ================================== 技术参数 - 媒体查询适配（补充完整） ================================== */
-      /* 适配逻辑：按屏幕从小到大排序，小屏横向滚动+紧凑布局，大屏保持原样式 */
-
-      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑+横向滚动 */
       @media (max-width: 320px) {
-        /* 外层容器：缩小上下内边距，适配小屏垂直空间 */
         .tech-specs-section {
-          padding: 3rem 0 6rem; /* 原4rem/6rem → 30px/48px，减少冗余空间 */
+          padding: 3rem 0 6rem;
         }
 
-        /* 板块标题：缩小字号+调整左右边距，避免贴边 */
         .tech-specs-title {
-          font-size: 2rem; /* 原3.5rem → 21.6px，适配小屏视觉层级 */
-          margin: 0 5%; /* 原15% → 5%，增加左右留白 */
-          margin-bottom: 1.5rem; /* 原2.5rem → 18px，缩小与表格间距 */
+          font-size: 2rem;
+          margin: 0 5%;
+          margin-bottom: 1.5rem;
         }
 
-        /* 表格包裹层：添加横向滚动+缩小圆角/阴影，适配小屏 */
         .tech-specs-table-wrap {
-          max-width: 90%; /* 原70rem → 90%屏幕宽，避免贴边 */
-          overflow-x: auto; /* 核心：开启横向滚动，解决表格溢出问题 */
-          border-radius: 1rem; /* 原1.5rem → 12px，缩小圆角更精致 */
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); /* 弱化阴影，减少厚重感 */
-          padding: 0 0.5rem; /* 左右留白，避免滚动条贴边 */
+          max-width: 90%;
+          overflow-x: auto;
+          border-radius: 1rem;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+          padding: 0 0.5rem;
         }
 
-        /* 表格：强制最小宽度（确保单元格不挤压）+ 缩小内边距 */
         .tech-specs-table {
-          min-width: 800px; /* 强制表格最小宽度，确保内容完整显示（横向滚动触发） */
-          border-radius: 0.8rem; /* 原1rem → 9.6px，匹配包裹层圆角 */
+          min-width: 800px;
+          border-radius: 0.8rem;
         }
 
-        /* 表头单元格：缩小内边距+字号，紧凑布局 */
         .tech-specs-table thead tr th {
-          padding: 1rem; /* 原1.5rem → 12px，减少垂直占用 */
-          font-size: 0.85rem; /* 原1rem → 10.2px，适配小屏可读性 */
-          width: 30%; /* 微调列宽，优化小屏分布 */
+          padding: 1rem;
+          font-size: 0.85rem;
+          width: 30%;
         }
         .tech-specs-table thead tr th:nth-child(2),
         .tech-specs-table thead tr th:nth-child(3),
@@ -3726,242 +3569,204 @@
           width: 17.5%;
         }
 
-        /* 内容单元格：缩小内边距+字号，避免文字溢出 */
         .tech-specs-table tbody {
-          font-size: 0.8rem; /* 原0.9375rem → 9.6px，紧凑显示 */
+          font-size: 0.8rem;
         }
         .tech-specs-table tbody tr td {
-          padding: 1rem; /* 原1.5rem → 12px，减少垂直占用 */
+          padding: 1rem;
         }
 
-        /* 表格内小备注：进一步缩小字号，适配紧凑布局 */
         .tech-specs-table tbody tr td .specs-note {
-          font-size: 0.7rem; /* 原0.75rem → 8.4px */
-          margin-top: 0.15rem; /* 原0.25rem → 1.8px，缩小间距 */
+          font-size: 0.7rem;
+          margin-top: 0.15rem;
         }
 
-        /* 补充说明文字：缩小字号+间距，适配小屏 */
         .tech-specs-note {
-          margin-top: 1.2rem; /* 原2rem → 14.4px */
-          font-size: 0.8rem; /* 原0.875rem → 9.6px */
-          gap: 0.3rem; /* 原0.5rem → 3.6px，缩小图标与文字间距 */
+          margin-top: 1.2rem;
+          font-size: 0.8rem;
+          gap: 0.3rem;
         }
       }
 
-      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡+横向滚动 */
       @media (min-width: 321px) and (max-width: 375px) {
-        /* 外层容器：适度缩小内边距 */
         .tech-specs-section {
-          padding: 3rem 0 3rem; /* 原4rem/6rem → 42px/63px */
+          padding: 3rem 0 3rem;
         }
 
-        /* 板块标题：调整字号与边距 */
         .tech-specs-title {
-          font-size: 2rem; /* 原3.5rem → 28px */
-          margin: 0 8%; /* 原15% → 8%，平衡留白与内容宽度 */
-          margin-bottom: 1.8rem; /* 原2.5rem → 25.2px */
+          font-size: 2rem;
+          margin: 0 8%;
+          margin-bottom: 1.8rem;
         }
 
-        /* 表格包裹层：横向滚动+优化尺寸 */
         .tech-specs-table-wrap {
-          max-width: 88%; /* 原70rem → 88%屏幕宽 */
-          overflow-x: auto; /* 核心：横向滚动 */
-          border-radius: 1.2rem; /* 原1.5rem → 16.8px */
+          max-width: 88%;
+          overflow-x: auto;
+          border-radius: 1.2rem;
         }
 
-        /* 表格：强制最小宽度，确保内容完整 */
-        .tech-specs-table {
-          min-width: 800px; /* 比Mobile S稍宽，适配大屏手机 */
-        }
-
-        /* 表头/内容单元格：适度调整内边距与字号 */
-        .tech-specs-table thead tr th {
-          padding: 1.2rem; /* 原1.5rem → 16.8px */
-          font-size: 0.9rem; /* 原1rem → 12.6px */
-        }
-        .tech-specs-table tbody {
-          font-size: 0.85rem; /* 原0.9375rem → 11.9px */
-        }
-        .tech-specs-table tbody tr td {
-          padding: 1.2rem; /* 原1.5rem → 16.8px */
-        }
-
-        /* 补充说明文字：微调尺寸 */
-        .tech-specs-note {
-          margin-top: 1.5rem; /* 原2rem → 21px */
-          font-size: 0.85rem; /* 原0.875rem → 11.9px */
-        }
-      }
-
-      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配+横向滚动 */
-      @media (min-width: 376px) and (max-width: 425px) {
-        /* 外层容器：接近基础样式，略缩小内边距 */
-        .tech-specs-section {
-          padding: 3.5rem 0 5rem; /* 原4rem/6rem → 52.5px/75px */
-        }
-
-        /* 板块标题：优化层级 */
-        .tech-specs-title {
-          font-size: 2.2rem; /* 原3.5rem → 33px */
-          margin: 0 10%; /* 原15% → 10% */
-          margin-bottom: 2rem; /* 原2.5rem → 30px */
-        }
-
-        /* 表格包裹层：横向滚动+接近平板样式 */
-        .tech-specs-table-wrap {
-          max-width: 85%; /* 原70rem → 85%屏幕宽 */
-          overflow-x: auto; /* 核心：横向滚动 */
-          border-radius: 1.3rem; /* 原1.5rem → 19.5px */
-        }
-
-        /* 表格：强制最小宽度，适配大屏手机显示 */
         .tech-specs-table {
           min-width: 800px;
         }
 
-        /* 表头/内容单元格：进一步放宽尺寸 */
         .tech-specs-table thead tr th {
-          padding: 1.3rem; /* 原1.5rem → 19.5px */
-          font-size: 0.95rem; /* 原1rem → 14.25px */
+          padding: 1.2rem;
+          font-size: 0.9rem;
         }
         .tech-specs-table tbody {
-          font-size: 0.9rem; /* 原0.9375rem → 13.5px */
+          font-size: 0.85rem;
         }
         .tech-specs-table tbody tr td {
-          padding: 1.3rem; /* 原1.5rem → 19.5px */
+          padding: 1.2rem;
         }
 
-        /* 补充说明文字：接近基础样式 */
         .tech-specs-note {
-          margin-top: 1.8rem; /* 原2rem → 27px */
-          font-size: 0.875rem; /* 与基础样式一致，13.125px */
+          margin-top: 1.5rem;
+          font-size: 0.85rem;
         }
       }
 
-      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向滚动+适配触控 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .tech-specs-section {
+          padding: 3.5rem 0 5rem;
+        }
+
+        .tech-specs-title {
+          font-size: 2.2rem;
+          margin: 0 10%;
+          margin-bottom: 2rem;
+        }
+
+        .tech-specs-table-wrap {
+          max-width: 85%;
+          overflow-x: auto;
+          border-radius: 1.3rem;
+        }
+
+        .tech-specs-table {
+          min-width: 800px;
+        }
+
+        .tech-specs-table thead tr th {
+          padding: 1.3rem;
+          font-size: 0.95rem;
+        }
+        .tech-specs-table tbody {
+          font-size: 0.9rem;
+        }
+        .tech-specs-table tbody tr td {
+          padding: 1.3rem;
+        }
+
+        .tech-specs-note {
+          margin-top: 1.8rem;
+          font-size: 0.875rem;
+        }
+      }
+
       @media (min-width: 426px) and (max-width: 768px) {
-        /* 外层容器：恢复基础内边距，适配平板垂直空间 */
         .tech-specs-section {
-          padding: 4rem 0 5.5rem; /* 原6rem → 88px，略缩小底部间距 */
+          padding: 4rem 0 5.5rem;
         }
 
-        /* 板块标题：适配平板视觉层级 */
         .tech-specs-title {
-          font-size: 2rem; /* 原3.5rem → 44.8px */
-          margin: 0 12%; /* 原15% → 12% */
-          margin-bottom: 2.2rem; /* 原2.5rem → 35.2px */
+          font-size: 2rem;
+          margin: 0 12%;
+          margin-bottom: 2.2rem;
         }
 
-        /* 表格包裹层：横向滚动（平板仍需滚动）+ 优化阴影 */
         .tech-specs-table-wrap {
-          max-width: 82%; /* 原70rem → 82%屏幕宽，增加内容占比 */
-          overflow-x: auto; /* 核心：横向滚动（平板屏幕仍不足以容纳表格） */
-          box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06); /* 增强阴影，适配平板视觉 */
+          max-width: 82%;
+          overflow-x: auto;
+          box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
         }
 
-        /* 表格：强制最小宽度，确保列宽合理 */
         .tech-specs-table {
-          min-width: 1000px; /* 适配平板横向滚动需求 */
+          min-width: 1000px;
         }
 
-        /* 表头/内容单元格：恢复基础内边距，适配手指触控 */
         .tech-specs-table thead tr th {
-          padding: 1.5rem; /* 与基础样式一致，24px */
-          font-size: 1rem; /* 与基础样式一致 */
+          padding: 1.5rem;
+          font-size: 1rem;
         }
         .tech-specs-table tbody {
-          font-size: 0.9375rem; /* 与基础样式一致，15px */
+          font-size: 0.9375rem;
         }
         .tech-specs-table tbody tr td {
-          padding: 1.5rem; /* 与基础样式一致，24px，确保触控点击区域 */
+          padding: 1.5rem;
         }
 
-        /* 补充说明文字：恢复基础样式 */
         .tech-specs-note {
-          margin-top: 2rem; /* 与基础样式一致，32px */
-          font-size: 0.875rem; /* 与基础样式一致，14px */
+          margin-top: 2rem;
+          font-size: 0.875rem;
         }
       }
 
-      /* 5. Laptop（769px~1024px）：html基准16px | 核心：取消滚动，完整显示表格 */
       @media (min-width: 769px) and (max-width: 1024px) {
-        /* 外层容器：恢复基础内边距 */
         .tech-specs-section {
-          padding: 4rem 0 6rem; /* 与基础样式一致 */
+          padding: 4rem 0 6rem;
         }
 
-        /* 板块标题：适配笔记本屏幕层级 */
         .tech-specs-title {
-          font-size: 2rem; /* 原3.5rem → 51.2px，略缩小避免过宽 */
-          margin: 0 15%; /* 与基础样式一致 */
-          margin-bottom: 2.5rem; /* 与基础样式一致 */
+          font-size: 2rem;
+          margin: 0 15%;
+          margin-bottom: 2.5rem;
         }
 
-        /* 表格包裹层：取消横向滚动（笔记本屏幕足够显示） */
         .tech-specs-table-wrap {
-          max-width: 88%; /* 原70rem → 75%屏幕宽，适配笔记本宽度 */
-          overflow-x: visible; /* 取消滚动，完整显示表格 */
+          max-width: 88%;
+          overflow-x: visible;
         }
 
-        /* 表格：无需强制最小宽度，自适应笔记本屏幕 */
         .tech-specs-table {
-          min-width: auto; /* 取消最小宽度限制 */
+          min-width: auto;
         }
       }
 
-      /* 6. Laptop L + 2K屏（1025px~1440px） */
       @media (min-width: 1025px) and (max-width: 1440px) {
         .tech-specs-section {
           width: 100%;
           margin: 0 !important;
         }
 
-        /* —— 9.2 内容容器：控制宽度、居中与响应式内边距 —— */
         .tech-specs-container {
-          max-width: 100%; /* 保留视频最大宽度，避免超宽变形 */
-          margin: 0 auto; /* 水平居中 */
+          max-width: 100%;
+          margin: 0 auto;
           box-sizing: border-box;
-          z-index: 1; /* 确保视频在板块背景之上，不被遮挡 */
+          z-index: 1;
         }
       }
 
-      /* 7. 4K屏（≥2560px）：html基准16px | 核心：放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
-        /* 外层容器：增加内边距，适配4K屏垂直空间 */
         .tech-specs-section {
-          padding: 5rem 0 7rem; /* 原4rem/6rem → 80px/112px，增加冗余空间 */
+          padding: 5rem 0 7rem;
         }
 
-        /* 表格包裹层：放大尺寸，适配4K屏 */
         .tech-specs-table-wrap {
-          max-width: 65%; /* 原70rem → 65%屏幕宽，避免表格过宽 */
-          border-radius: 2rem; /* 原1.5rem → 32px，放大圆角更协调 */
-          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1); /* 增强阴影，提升立体感 */
+          max-width: 65%;
+          border-radius: 2rem;
+          box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
         }
 
-        /* 表格：放大圆角，匹配包裹层 */
         .tech-specs-table {
-          border-radius: 1.5rem; /* 原1rem → 24px */
+          border-radius: 1.5rem;
         }
 
-        /* 表头单元格：放大字号与内边距，适配4K屏触控/阅读 */
         .tech-specs-table thead tr th {
-          padding: 1.8rem; /* 原1.5rem → 28.8px */
-          font-size: 1.1rem; /* 原1rem → 17.6px */
+          padding: 1.8rem;
+          font-size: 1.1rem;
         }
 
-        /* 内容单元格：放大字号与内边距，提升可读性 */
         .tech-specs-table tbody {
-          font-size: 1.05rem; /* 原0.9375rem → 16.8px */
+          font-size: 1.05rem;
         }
         .tech-specs-table tbody tr td {
-          padding: 1.8rem; /* 原1.5rem → 28.8px */
+          padding: 1.8rem;
         }
 
-        /* 表格内小备注：放大字号，适配4K屏阅读 */
         .tech-specs-table tbody tr td .specs-note {
-          font-size: 0.85rem; /* 原0.75rem → 13.6px */
-          margin-top: 0.3rem; /* 原0*/
+          font-size: 0.85rem;
+          margin-top: 0.3rem;
         }
       }
     </style>
@@ -4651,15 +4456,13 @@
     </style>
 
     <style>
-      /* —— 十二， 联系专家 —— */
       #contact-section {
         background: radial-gradient(
           ellipse at center,
           #f8f8f8 0%,
-          /* 中心：较深的浅灰色（原30%的颜色移到0%） */ #fafafa 30%,
-          /* 靠近中心：过渡色1 */ #ffffff 70%,
-          /* 远离中心：过渡色2 */ #ffffff 100%
-            /* 边缘：白色（与页面背景融合） */
+          #fafafa 30%,
+          #ffffff 70%,
+          #ffffff 100%
         );
         width: 100%;
         padding: 5rem 0 8rem;
@@ -4667,221 +4470,179 @@
         overflow: visible;
       }
 
-      /* 内层容器：限制内容宽度，避免超宽屏幕内容过散 */
       #contact-section .container {
-        max-width: 100rem; /* 全局统一最大宽度，与导航栏、产品板块对齐 */
+        max-width: 100rem;
         margin-left: auto;
         margin-right: auto;
-        padding-left: 1.25rem; /* 16px基准：20px，移动端左右留白 */
+        padding-left: 1.25rem;
         padding-right: 1.25rem;
       }
 
-      /* 内容核心容器：控制表单区域居中与宽度 */
       #contact-section .max-w-5xl {
-        max-width: 64rem; /* 16px基准：1024px，表单最大宽度，避免宽屏中表单过宽 */
+        max-width: 64rem;
         margin-left: auto;
         margin-right: auto;
       }
 
-      /* —— 12.2 标题组样式：强化层级，与其他板块标题逻辑统一 —— */
       #contact-section .text-center {
         text-align: center;
-        margin-bottom: 3rem; /* 16px基准：48px，与下方表单间距，避免拥挤 */
+        margin-bottom: 3rem;
       }
 
-      /* 主标题：优化响应式字号与视觉权重 */
       #contact-section h2 {
-        font-family:
-          "SF Pro Display", "Segoe UI", sans-serif; /* 与全局字体统一 */
-        font-size: 3.5rem; /* 16px基准：64px，大字号突出主题 */
-        font-weight: 500; /* 偏细字体，契合整体轻量化风格 */
-        color: #000000; /* 浅灰文字，与深灰背景形成对比 */
-        margin-bottom: 0rem; /* 16px基准：48px，与下方内容间距 */
-        text-align: center; /* 左对齐，符合阅读习惯 */
+        font-family: "SF Pro Display", "Segoe UI", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 0rem;
+        text-align: center;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-left: 2rem; /* 新增：标题右移2rem（核心修改） */
+        margin-left: 2rem;
       }
 
-      /* 副标题：统一文本样式，与“杜绝虚假宣传”等副标题逻辑对齐 */
       #contact-section p {
         font-family: "SF Pro Text" sans-serif;
-        font-size: clamp(
-          0.9375rem,
-          2vw,
-          1.125rem
-        ); /* 响应式区间：小屏15px→大屏18px，适配不同屏幕阅读 */
-        font-weight: 300; /* 轻字重，突出主标题，保持细腻感 */
-        color: rgba(
-          29,
-          29,
-          31,
-          0.8
-        ); /* 半透明深灰，与其他模块副标题透明度统一 */
-        max-width: 36rem; /* 16px基准：576px，限制副标题宽度，避免单行过长影响阅读 */
+        font-size: clamp(0.9375rem, 2vw, 1.125rem);
+        font-weight: 300;
+        color: rgba(29, 29, 31, 0.8);
+        max-width: 36rem;
         margin-left: auto;
         margin-right: auto;
-        line-height: 1.5; /* 舒适行高，适配长文本阅读 */
-        margin-top: 0.5rem; /* 与主标题间距微调，增强标题组整体性 */
+        line-height: 1.5;
+        margin-top: 0.5rem;
       }
 
-      /* —— 12.3 表单容器：优化卡片质感与阴影层次 —— */
       #contact-section .bg-white {
-        background-color: #ffffff; /* 纯白背景，突出表单内容，与浅色模块背景形成对比 */
-        border-radius: 1.5rem; /* 大圆角（16px基准：24px），延续全局卡片圆角风格（如产品卡片、Banner） */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* 柔和阴影，增强“悬浮感”但不厚重 */
-        padding: 2.5rem; /* 16px基准：40px，表单内边距，避免内容贴边 */
-        transition: box-shadow 0.3s ease; /* 阴影过渡， hover时增强交互反馈 */
+        background-color: #ffffff;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        padding: 2.5rem;
+        transition: box-shadow 0.3s ease;
       }
 
-      /* 表单容器hover效果：轻微加深阴影，提升页面交互感（非必需，可选增强） */
       #contact-section .bg-white:hover {
         box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
       }
 
-      /* —— 12.4 表单控件样式：统一交互反馈与视觉一致性 —— */
-      /* 标签：明确文本层级，引导用户输入 */
       #contact-section label {
-        display: block; /* 独占一行，避免与输入框挤在一起 */
+        display: block;
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.875rem; /* 16px基准：14px，标签字号小于输入框文字，突出输入内容 */
+        font-size: 0.875rem;
         font-weight: 400;
-        color: #424245; /* 中灰色，比主文本浅，避免喧宾夺主 */
-        margin-bottom: 0.5rem; /* 与输入框间距，优化垂直布局 */
+        color: #424245;
+        margin-bottom: 0.5rem;
         text-align: left;
       }
 
-      /* 输入框/下拉框/文本域：统一基础样式与焦点反馈 */
       #contact input[type="text"],
       #contact input[type="tel"],
       #contact input[type="email"],
       #contact select,
       #contact textarea {
-        width: 100%; /* 占满父容器宽度，适配不同屏幕 */
-        padding: 0.875rem 1rem; /* 16px基准：14px/16px，输入框内边距，保证点击区域与文字间距 */
-        border: 1px solid #e0e0e0; /* 浅灰色边框，未聚焦时弱化视觉权重 */
-        border-radius: 0.75rem; /* 中等圆角（16px基准：12px），比容器圆角小，增强层级 */
+        width: 100%;
+        padding: 0.875rem 1rem;
+        border: 1px solid #e0e0e0;
+        border-radius: 0.75rem;
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.9375rem; /* 16px基准：15px，输入文字字号，确保可读性 */
+        font-size: 0.9375rem;
         color: #1d1d1f;
         background-color: #ffffff;
         transition:
           border-color 0.2s ease,
-          box-shadow 0.2s ease; /* 边框与阴影过渡，聚焦时平滑反馈 */
-        box-sizing: border-box; /* 确保padding不撑大输入框宽度 */
+          box-shadow 0.2s ease;
+        box-sizing: border-box;
       }
 
-      /* 输入框聚焦状态：强化视觉反馈，引导用户注意力 */
       #contact input[type="text"]:focus,
       #contact input[type="tel"]:focus,
       #contact input[type="email"]:focus,
       #contact select:focus,
       #contact textarea:focus {
-        outline: none; /* 清除默认聚焦轮廓 */
-        border-color: var(
-          --primary,
-          #0071e3
-        ); /* 品牌主色边框（与导航栏询价按钮、Banner按钮一致） */
-        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15); /* 品牌色外发光，增强聚焦识别度 */
+        outline: none;
+        border-color: var(--primary, #0071e3);
+        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
       }
 
-      /* 下拉框：优化默认箭头样式（隐藏原生箭头，自定义） */
       #contact select {
-        appearance: none; /* 隐藏原生下拉箭头 */
+        appearance: none;
         -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='16' height='16' fill='%231d1d1f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l4-4H4l4 4z'/%3E%3C/svg%3E"); /* 自定义向下箭头（SVG），与文字颜色统一 */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='16' height='16' fill='%231d1d1f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l4-4H4l4 4z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
-        background-position: right 1rem center; /* 箭头位置：右侧1rem，垂直居中 */
-        background-size: 1rem; /* 箭头大小 */
-        padding-right: 2.5rem; /* 为箭头预留空间，避免文字被遮挡 */
+        background-position: right 1rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem;
       }
 
-      /* 文本域：禁止拉伸，固定高度 */
       #contact textarea {
-        resize: none; /* 禁止用户拉伸文本域，保持布局稳定 */
-        min-height: 8rem; /* 16px基准：128px，文本域最小高度，适配多行输入 */
-        line-height: 1.5; /* 行高优化，提升输入文字可读性 */
+        resize: none;
+        min-height: 8rem;
+        line-height: 1.5;
       }
 
-      /* 表单字段间距：控制垂直布局紧凑度 */
       #contact .mb-6 {
-        margin-bottom: 1.5rem; /* 16px基准：24px，字段之间的垂直间距，避免拥挤 */
+        margin-bottom: 1.5rem;
       }
 
-      /* —— 12.5 提交按钮：强化转化引导，统一交互逻辑 —— */
       #contact-section button[type="submit"] {
-        width: 100%; /* 移动端占满宽度，提升点击便捷性；桌面端随表单宽度自适应 */
-        padding: 1rem 1.5rem; /* 16px基准：16px/24px，按钮内边距，保证点击区域 */
-        background-color: var(
-          --primary,
-          #0071e3
-        ); /* 品牌主色，与导航栏询价按钮、Banner按钮一致 */
+        width: 100%;
+        padding: 1rem 1.5rem;
+        background-color: var(--primary, #0071e3);
         color: #ffffff;
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.9375rem; /* 16px基准：15px，按钮文字字号，确保可读性 */
-        font-weight: 500; /* 中等字重，突出按钮视觉权重 */
-        border-radius: 0.75rem; /* 与输入框圆角一致，视觉统一 */
-        border: none; /* 清除默认边框 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
+        font-size: 0.9375rem;
+        font-weight: 500;
+        border-radius: 0.75rem;
+        border: none;
+        cursor: pointer;
         transition:
           background-color 0.2s ease,
           transform 0.1s ease,
-          box-shadow 0.2s ease; /* 多属性过渡，增强点击反馈 */
-        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2); /* 品牌色阴影，提升按钮“悬浮感” */
+          box-shadow 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
       }
 
-      /* 按钮hover状态：加深背景色，增强反馈 */
       #contact button[type="submit"]:hover {
-        background-color: var(
-          --primary-90,
-          #0066cc
-        ); /* 品牌主色深一度，hover时明确反馈 */
-        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3); /* 阴影加深，强化交互感 */
+        background-color: var(--primary-90, #0066cc);
+        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
       }
 
-      /* 按钮点击状态：轻微下沉，模拟物理按压反馈 */
       #contact button[type="submit"]:active {
-        transform: translateY(1px); /* 点击时下移1px */
-        box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2); /* 阴影减弱，模拟“按压后贴近屏幕” */
+        transform: translateY(1px);
+        box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2);
       }
 
-      /* 按钮禁用状态（可选：表单验证不通过时使用） */
       #contact button[type="submit"]:disabled {
-        background-color: #a0c4ff; /* 品牌色浅化，提示“不可点击” */
-        cursor: not-allowed; /* 鼠标样式提示禁用 */
-        box-shadow: none; /* 移除阴影，弱化视觉权重 */
-        transform: none; /* 取消点击下沉效果 */
+        background-color: #a0c4ff;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
       }
 
-      /* —— 12.6 提交状态提示：优化反馈文案样式 —— */
       #contact #submitTip {
         font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.875rem; /* 16px基准：14px，提示文字字号 */
-        padding: 0.75rem 1rem; /* 内边距，避免文字贴边 */
-        border-radius: 0.5rem; /* 小圆角，增强提示框质感 */
+        font-size: 0.875rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
       }
 
-      /* 成功提示（绿色系） */
       #contact #submitTip.success {
         color: #2e7d32;
         background-color: #e8f5e9;
         border: 1px solid #c8e6c9;
       }
 
-      /* 失败提示（红色系） */
       #contact #submitTip.error {
         color: #c62828;
         background-color: #ffebee;
         border: 1px solid #ffcdd2;
       }
 
-      /* —— 12.7 联系专家 - 媒体适配：按屏幕尺寸优化布局 —— */
-      /* 1. 大屏桌面（≥1200px）：微调表单宽度，避免过宽 */
       @media (min-width: 1200px) {
         #contact .bg-white {
-          padding: 3rem; /* 16px基准：48px，大屏增加内边距，提升豪华感 */
+          padding: 3rem;
         }
         #contact .max-w-5xl {
-          max-width: 72rem; /* 16px基准：1152px，大屏适当放宽表单最大宽度 */
+          max-width: 72rem;
         }
       }
 
@@ -4891,7 +4652,7 @@
           padding-bottom: 3.5rem;
         }
         #contact .bg-white {
-          padding: 2.25rem; /* 16px基准：36px，平板减少内边距，适配屏幕 */
+          padding: 2.25rem;
         }
         #contact h2 {
           font-size: 2rem;
@@ -4904,17 +4665,17 @@
           padding-bottom: 3rem;
         }
         #contact .bg-white {
-          padding: 2rem; /* 16px基准：32px，进一步减少内边距 */
-          border-radius: 1.25rem; /* 缩小圆角，适配小屏视觉比例 */
+          padding: 2rem;
+          border-radius: 1.25rem;
         }
         #contact .mb-6 {
-          margin-bottom: 1.25rem; /* 16px基准：20px，减少字段间距，节省垂直空间 */
+          margin-bottom: 1.25rem;
         }
         #contact button[type="submit"] {
-          padding: 0.9375rem 1.25rem; /* 16px基准：15px/20px，缩小按钮内边距 */
+          padding: 0.9375rem 1.25rem;
         }
         #contact h2 {
-          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+          font-size: 2rem;
         }
       }
 
@@ -4924,18 +4685,14 @@
           padding-bottom: 2.5rem;
         }
         #contact .bg-white {
-          padding: 1.5rem; /* 16px基准：24px，小屏最小内边距，避免内容溢出 */
-          border-radius: 1rem; /* 最小圆角，适配小屏 */
+          padding: 1.5rem;
+          border-radius: 1rem;
         }
         #contact .text-center {
-          margin-bottom: 2rem; /* 16px基准：32px，减少标题组与表单间距 */
+          margin-bottom: 2rem;
         }
         #contact h2 {
-          font-size: clamp(
-            1.25rem,
-            3vw,
-            1.75rem
-          ); /* 小屏标题最小字号1.25rem，避免拥挤 */
+          font-size: clamp(1.25rem, 3vw, 1.75rem);
           margin-bottom: 0.75rem;
         }
         #contact p {
@@ -4945,13 +4702,13 @@
 
       @media (min-width: 321px) and (max-width: 375px) {
         #contact h2 {
-          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+          font-size: 2rem;
         }
       }
 
       @media (max-width: 320px) {
         #contact h2 {
-          font-size: 2rem; /* 16px基准：64px，大字号突出主题 */
+          font-size: 2rem;
         }
       }
     </style>
@@ -7382,7 +7139,6 @@
 
     <!--二，JS 导航栏跟下拉菜单-->
     <script>
-      /* ================================== 二、导航栏滚动透视效果 ================================== */
       // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
       // 触发时机：页面滚动事件（scroll）
       window.addEventListener("scroll", function () {
@@ -7487,7 +7243,6 @@
         });
       });
 
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
       // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
       // 触发时机：分类项的mouseenter事件
 
@@ -7944,7 +7699,6 @@
     </script>
 
     <script>
-      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
       // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
       document.addEventListener("DOMContentLoaded", () => {
         // —— 5.1 初始化优势板块滚动所需变量 ——
@@ -8012,7 +7766,6 @@
     </script>
 
     <script type="text/javascript">
-      /* ================================== JS 联系专家 ================================== */
       document.addEventListener("DOMContentLoaded", function () {
         // 把整个 sendEmail 包在安全壳里
         window.sendEmail = function (event) {

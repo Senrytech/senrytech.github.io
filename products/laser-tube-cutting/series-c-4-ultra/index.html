@@ -7915,38 +7915,36 @@ autocomplete="name"
     </script>
 
     <script type="text/javascript">
-      /* ================================== JS 联系专家 ================================== */
-      function sendEmail(event) {
-        const submitBtn = document.getElementById("submitBtn");
-        const submitTip = document.getElementById("submitTip");
-        submitBtn.disabled = true;
-        submitBtn.innerText = "提交中...";
-        submitTip.innerHTML = "";
+/* ================================== JS 联系专家 ================================== */
+document.addEventListener("DOMContentLoaded", function() {
+  // 把整个 sendEmail 包在安全壳里
+  window.sendEmail = function(event) {
+    const submitBtn = document.getElementById("submitBtn");
+    const submitTip = document.getElementById("submitTip");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "提交中...";
+    submitTip.innerHTML = "";
 
-        // 替换成你EmailJS后台的 服务ID、模板ID
-        emailjs
-          .send("service_waa3l9d", "template_zvfvl5p", {
-            sender_name: document.getElementById("name").value,
-            sender_contact: document.getElementById("contact").value,
-            sender_message: document.getElementById("message").value,
-          })
-          .then(
-            function () {
-              submitTip.innerHTML =
-                '<span style="color: green;">✅ 提交成功！</span>';
-              document.getElementById("laserForm").reset();
-              submitBtn.disabled = false;
-              submitBtn.innerText = "提交咨询";
-            },
-            function (error) {
-              submitTip.innerHTML =
-                '<span style="color: red;">❌ 提交失败，请重试</span>';
-              submitBtn.disabled = false;
-              submitBtn.innerText = "重新提交";
-              console.error("错误：", error);
-            }
-          );
+    emailjs.send("service_waa3l9d", "template_zvfvl5p", {
+      sender_name: document.getElementById("name").value,
+      sender_contact: document.getElementById("contact").value,
+      sender_message: document.getElementById("message").value,
+    }).then(
+      function() {
+        submitTip.innerHTML = '<span style="color: green;">✅ 提交成功！</span>';
+        document.getElementById("laserForm").reset();
+        submitBtn.disabled = false;
+        submitBtn.innerText = "提交咨询";
+      },
+      function(error) {
+        submitTip.innerHTML = '<span style="color: red;">❌ 提交失败，请重试</span>';
+        submitBtn.disabled = false;
+        submitBtn.innerText = "重新提交";
+        console.error("错误：", error);
       }
+    );
+  };
+});
     </script>
     <script>
       // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
@@ -7996,6 +7994,53 @@ autocomplete="name"
 
         // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
         window.addEventListener("resize", handleTitleScroll);
+      });
+    </script>
+        <script>
+      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
+      const langDropdown = document.getElementById("langDropdown");
+      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
+      const langTrigger = langDropdown.querySelector(".language-btn");
+
+      // 点击语言按钮，切换下拉菜单显示状态
+      langTrigger.addEventListener("click", (e) => {
+        e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
+        langMenu.style.display =
+          langMenu.style.display === "block" ? "none" : "block";
+      });
+
+      // 点击页面其他区域，关闭下拉菜单
+      document.addEventListener("click", () => {
+        if (langMenu.style.display === "block") {
+          langMenu.style.display = "none";
+        }
+      });
+
+      // 2. 当前语言自动高亮（根据页面URL匹配）
+      const currentPath = window.location.pathname;
+      const langLinks = document.querySelectorAll(".lang-link");
+
+      // 语言与首页路径的映射（需与你的实际文件路径一致）
+      const langHomePathMap = {
+        zh: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/cn/", // 中文首页
+        en: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/", // 英语首页
+        de: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/de/", // 德语首页
+        es: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/es/", // 西班牙语首页
+        fr: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/fr/", // 法语首页
+        ru: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/ru/", // 俄语首页
+        ar: "https://www.senrytech.com/products/laser-tube-cutting/series-a-2/lang/sa/", // 阿拉伯语首页
+      };
+
+      // 匹配当前路径，给对应语言链接添加高亮样式
+      langLinks.forEach((link) => {
+        const lang = link.getAttribute("lang");
+        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
+        if (
+          currentPath === langHomePathMap[lang] ||
+          (lang === "zh" && currentPath === "/")
+        ) {
+          link.classList.add("active");
+        }
       });
     </script>
   </body>

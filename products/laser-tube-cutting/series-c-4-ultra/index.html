@@ -6412,7 +6412,7 @@
             在 B3 ULTRA
             基础上升级四卡盘配置，高阶定制化设计，适配大批次、高要求的管材切割作业，多工位同步加工，大幅提升生产效率。
           </p>
-                    <!-- 原按钮（承载btnUp动画） -->
+          <!-- 原按钮（承载btnUp动画） -->
           <div class="banner-btns">
             <a href="#specs" class="banner-btn learn-more-btn">技术指标</a>
             <button
@@ -7077,7 +7077,7 @@
                   type="text"
                   id="name"
                   name="sender_name"
-autocomplete="name"
+                  autocomplete="name"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
                   placeholder="请输入姓名或公司名称"
                   required
@@ -7491,7 +7491,6 @@ autocomplete="name"
         updateBtnState();
       });
     </script>
-
 
     <!--七，JS 切割有道-->
     <script>
@@ -7915,36 +7914,40 @@ autocomplete="name"
     </script>
 
     <script type="text/javascript">
-/* ================================== JS 联系专家 ================================== */
-document.addEventListener("DOMContentLoaded", function() {
-  // 把整个 sendEmail 包在安全壳里
-  window.sendEmail = function(event) {
-    const submitBtn = document.getElementById("submitBtn");
-    const submitTip = document.getElementById("submitTip");
-    submitBtn.disabled = true;
-    submitBtn.innerText = "提交中...";
-    submitTip.innerHTML = "";
+      /* ================================== JS 联系专家 ================================== */
+      document.addEventListener("DOMContentLoaded", function () {
+        // 把整个 sendEmail 包在安全壳里
+        window.sendEmail = function (event) {
+          const submitBtn = document.getElementById("submitBtn");
+          const submitTip = document.getElementById("submitTip");
+          submitBtn.disabled = true;
+          submitBtn.innerText = "提交中...";
+          submitTip.innerHTML = "";
 
-    emailjs.send("service_waa3l9d", "template_zvfvl5p", {
-      sender_name: document.getElementById("name").value,
-      sender_contact: document.getElementById("contact").value,
-      sender_message: document.getElementById("message").value,
-    }).then(
-      function() {
-        submitTip.innerHTML = '<span style="color: green;">✅ 提交成功！</span>';
-        document.getElementById("laserForm").reset();
-        submitBtn.disabled = false;
-        submitBtn.innerText = "提交咨询";
-      },
-      function(error) {
-        submitTip.innerHTML = '<span style="color: red;">❌ 提交失败，请重试</span>';
-        submitBtn.disabled = false;
-        submitBtn.innerText = "重新提交";
-        console.error("错误：", error);
-      }
-    );
-  };
-});
+          emailjs
+            .send("service_waa3l9d", "template_zvfvl5p", {
+              sender_name: document.getElementById("name").value,
+              sender_contact: document.getElementById("contact").value,
+              sender_message: document.getElementById("message").value,
+            })
+            .then(
+              function () {
+                submitTip.innerHTML =
+                  '<span style="color: green;">✅ 提交成功！</span>';
+                document.getElementById("laserForm").reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = "提交咨询";
+              },
+              function (error) {
+                submitTip.innerHTML =
+                  '<span style="color: red;">❌ 提交失败，请重试</span>';
+                submitBtn.disabled = false;
+                submitBtn.innerText = "重新提交";
+                console.error("错误：", error);
+              }
+            );
+        };
+      });
     </script>
     <script>
       // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
@@ -7996,7 +7999,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.addEventListener("resize", handleTitleScroll);
       });
     </script>
-        <script>
+    <script>
       // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
       const langDropdown = document.getElementById("langDropdown");
       const langMenu = langDropdown.querySelector(".lang-dropdown-list");

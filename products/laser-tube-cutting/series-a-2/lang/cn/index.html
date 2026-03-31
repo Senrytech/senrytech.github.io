@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6500,8 +6505,8 @@
         <div class="design-subtitle-wrap">
           <p class="design-subtitle-text">双轮卡爪<br />高精夹持核心</p>
           <p class="design-subtitle-supplement">
-            采用齿轮齿条互联传动结构，配合双滚轮式卡爪设计，实现0.05mm重复定位精度与0.05mm回跳精度，<br />
-            搭载独家单列双气缸驱动单元，在紧凑空间内可输出100kg-800kg最大夹持力，响应时间＜0.3s，<br />
+            采用齿轮齿条互联传动结构，配合双滚轮式卡爪设计，实现0.05mm重复定位精度与0.05mm回跳精度，
+            搭载独家单列双气缸驱动单元，在紧凑空间内可输出100kg-800kg最大夹持力，响应时间＜0.3s，
             模块化集成滚轮组、气缸组与齿条盒，具备高防护等级，适应高粉尘切割工况，维护周期提升
             30%；
           </p>
@@ -6525,9 +6530,9 @@
           <p class="design-subtitle-text">比例阀<br />精准控压核心</p>
           <p class="design-subtitle-supplement">
             搭载高精度压力传感器与数显模块，支持 0.001MPa
-            分辨率实时反馈，输出压力可在 0.005~0.9MPa 范围内连续无级调节；<br />
+            分辨率实时反馈，输出压力可在 0.005~0.9MPa 范围内连续无级调节；
             采用高速响应电磁阀驱动，响应时间＜100ms，配合 PID
-            闭环控制，压力控制精度可达 ±0.5%；<br />
+            闭环控制，压力控制精度可达 ±0.5%；
             集成 IP65
             级防尘防水结构，适应高振动、高粉尘的工业环境，同时具备过压、过流保护功能；
           </p>
@@ -6549,8 +6554,8 @@
                 正装设计<br />稳定承重, 精准切割
               </p>
               <p class="design-subtitle-supplement">
-                采用正装式结构设计，搭载高刚性床身与自适应夹紧机构，承重能力强，装夹稳定性优异；<br />
-                能适配不同管径的管材加工需求，有效避免切割过程中的偏移与振动，确保切割断面光滑、精度可控，<br />
+                采用正装式结构设计，搭载高刚性床身与自适应夹紧机构，承重能力强，装夹稳定性优异；
+                能适配不同管径的管材加工需求，有效避免切割过程中的偏移与振动，确保切割断面光滑、精度可控，
                 适配大批量、高一致性的管材切割生产场景。
               </p>
             </div>

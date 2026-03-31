@@ -2280,17 +2280,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6426,7 +6431,7 @@
           <p class="design-subtitle-text">淬火刚性<br />厚板床身</p>
           <p class="design-subtitle-supplement">
             全新板管Q345B/Q235B 等合金/碳素结构钢，采用分段跳焊，PAG
-            水基淬火液高频淬火，<br />二次时效回火，三次坐标检测让设备承重抗变形更出色，厚板切割/高速运行都能精准稳定，<br />
+            水基淬火液高频淬火，二次时效回火，三次坐标检测让设备承重抗变形更出色，厚板切割/高速运行都能精准稳定，
             还能从低速加工切换到高速切割，有重载工件加工时，床身受力不偏移，让每道焊缝都精准到位。
           </p>
         </div>
@@ -6445,9 +6450,9 @@
             <div class="design-subtitle-wrap">
               <p class="design-subtitle-text">稳若磐石<br />精切每一刻</p>
               <p class="design-subtitle-supplement">
-                高刚性螺栓地脚作为光纤激光切割机的核心支撑组件，通过精准调平结构与强锚固设计，<br />
+                高刚性螺栓地脚作为光纤激光切割机的核心支撑组件，通过精准调平结构与强锚固设计，
                 实现设备水平度误差≤0.1mm/m 的精密校准，同时分散设备重载（适配
-                0.5-12t 吨机型）、缓冲切割震动，<br />
+                0.5-12t 吨机型）、缓冲切割震动，
                 从根基层面规避位移偏差，保障高功率切割（6000W+）时的轨迹精度与设备长效稳定性，是精密加工场景的必备基础配置。
               </p>
             </div>
@@ -6464,7 +6469,7 @@
               <p class="design-subtitle-text">微米级精控<br />十年长寿护航</p>
               <p class="design-subtitle-supplement">
                 日系品质标杆，兼具 350% 瞬间扭矩与静音运行优势，质保保障 +
-                广泛适配性，成为精密制造优选动力核心<br />
+                广泛适配性，成为精密制造优选动力核心
                 支持多通信协议与多轴联动，关键部件 10
                 年长寿设计，安装兼容、操作便捷，降低运维成本，适配全工业自动化场景。
               </p>

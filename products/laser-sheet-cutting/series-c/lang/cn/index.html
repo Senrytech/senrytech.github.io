@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6504,11 +6509,11 @@
         <div class="design-subtitle-wrap">
           <p class="design-subtitle-text">整平横切<br />卷板成平</p>
           <p class="design-subtitle-supplement">
-            采用自动化集成设计，依托精准定尺裁剪与整平工艺，实现钢卷全流程自动化处理，<br />
-            有效完成开卷、整平、横切及叠放全工序衔接。机组通过智能联动控制，将钢卷转化为不同长度的平整板材，<br />
+            采用自动化集成设计，依托精准定尺裁剪与整平工艺，实现钢卷全流程自动化处理，
+            有效完成开卷、整平、横切及叠放全工序衔接。机组通过智能联动控制，将钢卷转化为不同长度的平整板材，
             同步自动规整叠放，较传统分步操作效率提升 60%
-            以上，加工精度跃至行业前沿水平，<br />
-            可满足规模化、高精度的板材加工工况，高速运行状态下裁切一致性趋近最优，确保成品规整度与生产效率双提升。<br />
+            以上，加工精度跃至行业前沿水平，
+            可满足规模化、高精度的板材加工工况，高速运行状态下裁切一致性趋近最优，确保成品规整度与生产效率双提升。
           </p>
         </div>
 
@@ -6530,13 +6535,13 @@
           <p class="design-subtitle-text">整平精整<br />卷料校平</p>
           <p class="design-subtitle-supplement">
             采用集成式辊系 +
-            智能伺服控制设计，依托四重辊组整平与精准参数调节工艺，实现卷料全流程自动化校平处理，<br />
+            智能伺服控制设计，依托四重辊组整平与精准参数调节工艺，实现卷料全流程自动化校平处理，
             有效完成上料、辊压整平、精度校准及出料规整全工序衔接。机组通过智能联动控制，将卷板转化为指定厚度
-            / 宽度的平整板材，<br />
+            / 宽度的平整板材，
             同步完成精度校准与料件规整叠放，较传统人工校平效率提升 70%
-            以上，加工厚度公差控制在 ±0.02mm 内，<br />
-            跃至行业高精度加工梯队，可满足多规格、高一致性的板材校平工况，高速运行状态下辊压整平的一致性趋近最优，<br />
-            确保成品平整度与生产节奏双优化。<br />
+            以上，加工厚度公差控制在 ±0.02mm 内，
+            跃至行业高精度加工梯队，可满足多规格、高一致性的板材校平工况，高速运行状态下辊压整平的一致性趋近最优，
+            确保成品平整度与生产节奏双优化。
           </p>
         </div>
 
@@ -6555,14 +6560,14 @@
               <p class="design-subtitle-text">精密传动<br />效能臻选</p>
               <p class="design-subtitle-supplement">
                 采用YYC精密齿条品牌，依托研磨制齿工艺与高频淬火处理，齿面硬度达
-                HRC42-55，齿形精度符合 DIN5 级标准，累计误差≤0.022mm/300mm。<br />
+                HRC42-55，齿形精度符合 DIN5 级标准，累计误差≤0.022mm/300mm。
                 齿条主体选用 S45C
-                中碳钢基材，配合模块化安装孔位设计，支持无限行程拼接，适配长距离传动场景。<br />
+                中碳钢基材，配合模块化安装孔位设计，支持无限行程拼接，适配长距离传动场景。
                 该精密齿条传动效率高达 98%，高速运行速度可达
-                11m/s，兼具低摩擦、低噪音特性；<br />
+                11m/s，兼具低摩擦、低噪音特性；
                 零背隙结构实现定位精度 ±20
-                微米，较传统传动件（如滚珠丝杠）更适配高精度加工工况。<br />
-                在重负载、长行程、高频次运行状态下，仍保持传动稳定性与定位精准性，满足高精密制造的持续作业需求。<br />
+                微米，较传统传动件（如滚珠丝杠）更适配高精度加工工况。
+                在重负载、长行程、高频次运行状态下，仍保持传动稳定性与定位精准性，满足高精密制造的持续作业需求。
               </p>
             </div>
 

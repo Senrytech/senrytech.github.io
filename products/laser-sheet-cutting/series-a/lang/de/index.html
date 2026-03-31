@@ -999,18 +999,14 @@
       }
     </style>
 
-    <!--三、CSS BANNER-->
     <style>
       .banner-carousel {
         position: relative;
         width: 100%;
         overflow: hidden;
-
         aspect-ratio: 16 / 7 !important;
-
         height: auto !important;
         min-height: 200px;
-
         padding-top: calc(7 / 16 * 100%);
       }
 
@@ -1076,61 +1072,64 @@
 
       .banner-text h1 {
         font-size: clamp(1.875rem, 5vw, 3.5rem);
-
         font-weight: 600;
-
         color: #f5f5f7;
-
         margin-bottom: 2.5rem;
-
         line-height: 1.3;
-
         letter-spacing: 0.5px;
-
         text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-text h2 {
         font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-
         margin-bottom: 2rem;
-
         font-weight: 300;
-
         letter-spacing: 0.2px;
-
         color: #f5f5f7;
-
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-text p {
         font-size: clamp(1rem, 2vw, 1.25rem);
-
         margin-bottom: 3rem;
-
         letter-spacing: 0.3px;
-
         line-height: 1.6;
-
         color: #f5f5f7;
-
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-
         max-width: 75vw;
-
         margin-left: auto;
         margin-right: auto;
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-btns {
@@ -1147,6 +1146,10 @@
         cursor: pointer;
         border: none;
         transition: background-color 0.2s ease;
+        /* 按钮保留单行 */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .learn-more-btn {
@@ -1234,15 +1237,6 @@
         background-color: #ffffff;
       }
 
-      .banner-text h1,
-      .banner-text h2,
-      .banner-text p,
-      .banner-btn {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
       @media (max-width: 320px) {
         .banner-carousel {
           aspect-ratio: 9 / 16;
@@ -1256,24 +1250,20 @@
         }
 
         .banner-text h2 {
-          top: 33%;
           font-size: 0.65rem;
           margin-bottom: 0.8rem;
           letter-spacing: 0.2px;
         }
 
         .banner-text h1 {
-          top: 33%;
           font-size: 1.2rem;
           margin-bottom: 1rem;
           letter-spacing: 0.5px;
         }
 
         .banner-text p {
-          top: 33%;
           font-size: 0.75rem;
           margin-bottom: 1.8rem;
-          white-space: nowrap;
         }
 
         .banner-btns {
@@ -5671,7 +5661,9 @@
         >über uns</a
       >
 
-      <a href="https://www.senrytech.com/join-us/" class="nav-link">Begleiten Sie uns</a>
+      <a href="https://www.senrytech.com/join-us/" class="nav-link"
+        >Begleiten Sie uns</a
+      >
 
       <a href="https://www.senrytech.com/contact-us/" class="nav-link"
         >Kontaktieren Sie uns</a
@@ -6320,9 +6312,9 @@
           <h1>Senrytech A</h1>
           <p>
             3000W Folgendes wird bevorzugt，Originalkernteile schrumpfen
-            nicht！Maßgeschneidert für Start-ups，<br />0.8G Stabile
-            Beschleunigung ±0.05mm Genauigkeit，Senken Sie die Schwelle zum
-            professionellen Schneiden。
+            nicht！Maßgeschneidert für Start-ups，0.8G Stabile Beschleunigung
+            ±0.05mm Genauigkeit，Senken Sie die Schwelle zum professionellen
+            Schneiden。
           </p>
           <!-- Originalknopf（tragenbtnUpAnimation） -->
           <div class="banner-btns">
@@ -6917,8 +6909,10 @@
                   <p class="other-subtitle">Senrytech B</p>
                   <h3 class="other-heading">BSerie</h3>
                   <p class="other-desc">
-                    12000W Stromdecke！Verstärktes Bett, um Verformungen zu widerstehen，Die Leistung des Untersetzungsmotors wurde verdoppelt，1.5G
-                    Beschleunigung，Erhöhen Sie die Effizienz beim Schneiden mitteldicker Platten auf ein neues Niveau。
+                    12000W Stromdecke！Verstärktes Bett, um Verformungen zu
+                    widerstehen，Die Leistung des Untersetzungsmotors wurde
+                    verdoppelt，1.5G Beschleunigung，Erhöhen Sie die Effizienz
+                    beim Schneiden mitteldicker Platten auf ein neues Niveau。
                     <br /><br />
                   </p>
                 </div></div
@@ -6938,7 +6932,10 @@
                   <p class="other-subtitle">Senrytech B Plus</p>
                   <h3 class="other-heading">B PlusSerie</h3>
                   <p class="other-desc">
-                    Seitliche Öffnungseinfassung spart Platz！Der Ladetisch ist manuell ausziehbar，Geeignet für kleine Werkstätten，Doppelte Optimierung von Sicherheit und Raumausnutzung，Seien Sie nicht auffällig。
+                    Seitliche Öffnungseinfassung spart Platz！Der Ladetisch ist
+                    manuell ausziehbar，Geeignet für kleine
+                    Werkstätten，Doppelte Optimierung von Sicherheit und
+                    Raumausnutzung，Seien Sie nicht auffällig。
                     <br /><br />
                   </p>
                 </div>
@@ -6959,8 +6956,13 @@
                   <p class="other-subtitle">Senrytech B Pro</p>
                   <h3 class="other-heading">B ProSerie</h3>
                   <p class="other-desc">
-                    10 Extrem schneller Austausch und Laden in Sekundenschnelle，Automatische und nahtlose Verbindung zwischen zwei Stationen，2.0G
-                    Ausrüstung zur Realisierung hoher Beschleunigungen‘Keine Ausfallzeiten’Produktion，Direkte Verdoppelung der Produktionskapazität，Lösen Sie präzise die Standby-Probleme der Massenverarbeitung in Fabriken.
+                    10 Extrem schneller Austausch und Laden in
+                    Sekundenschnelle，Automatische und nahtlose Verbindung
+                    zwischen zwei Stationen，2.0G Ausrüstung zur Realisierung
+                    hoher Beschleunigungen‘Keine
+                    Ausfallzeiten’Produktion，Direkte Verdoppelung der
+                    Produktionskapazität，Lösen Sie präzise die Standby-Probleme
+                    der Massenverarbeitung in Fabriken.
                   </p>
                 </div>
               </div>
@@ -6980,9 +6982,13 @@
                   <p class="other-subtitle">Senrytech B ProMax</p>
                   <h3 class="other-heading">B ProMaxSerie</h3>
                   <p class="other-desc">
-                    Vollständig von Blech umgeben + Internationale Sicherheitszertifizierung，Speziell auf Exportunternehmen zugeschnitten！erben B Pro 10
-                    Laden in Sekunden + 2.0G
-                    Kernvorteile der Beschleunigung，Sicherheitsschutz und Produktionseffizienz mit zweierlei Maß，Die Einhaltung des europäischen Marktes verläuft reibungslos，Keine zusätzliche Prämie。
+                    Vollständig von Blech umgeben + Internationale
+                    Sicherheitszertifizierung，Speziell auf Exportunternehmen
+                    zugeschnitten！erben B Pro 10 Laden in Sekunden + 2.0G
+                    Kernvorteile der Beschleunigung，Sicherheitsschutz und
+                    Produktionseffizienz mit zweierlei Maß，Die Einhaltung des
+                    europäischen Marktes verläuft reibungslos，Keine zusätzliche
+                    Prämie。
                   </p>
                 </div>
               </div>
@@ -7002,8 +7008,12 @@
                   <p class="other-subtitle">Senrytech B Ultra</p>
                   <h3 class="other-heading">B UltraSerie</h3>
                   <p class="other-desc">
-                    Echter vollautomatischer geschlossener Be- und Entladekreislauf！Füttern、Schneiden、Völlig unabhängiges Schneiden，Vollständiger Surround-Overlay +
-                    Hohe Leistung，Wir bringen lasergeschnittene, intelligente Decken auf ein neues Niveau，Die Schwarzlichtfabrik wurde direkt ins Leben gerufen。
+                    Echter vollautomatischer geschlossener Be- und
+                    Entladekreislauf！Füttern、Schneiden、Völlig unabhängiges
+                    Schneiden，Vollständiger Surround-Overlay + Hohe
+                    Leistung，Wir bringen lasergeschnittene, intelligente Decken
+                    auf ein neues Niveau，Die Schwarzlichtfabrik wurde direkt
+                    ins Leben gerufen。
                   </p>
                 </div>
               </div>
@@ -7022,8 +7032,13 @@
                   <p class="other-subtitle">Senrytech C</p>
                   <h3 class="other-heading">CSerie</h3>
                   <p class="other-desc">
-                    15 Tonnenlastgrenze + Automatisches Materialtransfersystem，0.5-2mm Aluminiumspulen werden direkt in Bleche geschnitten，0.8G
-                    Beschleunigen Sie die kontinuierliche Produktion，Verabschieden Sie sich vollständig von der umständlichen manuellen Zuführung，Bereitstellung effizienter Closed-Loop-Lösungen für Aluminiumproduktunternehmen。
+                    15 Tonnenlastgrenze + Automatisches
+                    Materialtransfersystem，0.5-2mm Aluminiumspulen werden
+                    direkt in Bleche geschnitten，0.8G Beschleunigen Sie die
+                    kontinuierliche Produktion，Verabschieden Sie sich
+                    vollständig von der umständlichen manuellen
+                    Zuführung，Bereitstellung effizienter Closed-Loop-Lösungen
+                    für Aluminiumproduktunternehmen。
                   </p>
                 </div>
               </div>
@@ -7042,9 +7057,10 @@
                   <p class="other-subtitle">Senrytech G</p>
                   <h3 class="other-heading">GSerie</h3>
                   <p class="other-desc">
-                    12-14 Meter lange Bodenschiene，12000-60000W
-                    Ultrahohe Leistung，Konzipiert für große Bauteile、Robustes Design zum Schneiden von Platten，±0.05mm
-                    Präzision gewährleistet die Qualität der Langstückbearbeitung。
+                    12-14 Meter lange Bodenschiene，12000-60000W Ultrahohe
+                    Leistung，Konzipiert für große Bauteile、Robustes Design zum
+                    Schneiden von Platten，±0.05mm Präzision gewährleistet die
+                    Qualität der Langstückbearbeitung。
                     <br /><br />
                   </p>
                 </div>
@@ -7064,8 +7080,11 @@
                   <p class="other-subtitle">Senrytech M</p>
                   <h3 class="other-heading">MSerie</h3>
                   <p class="other-desc">
-                    ±8 Genauigkeit im Mikrometerbereich！Der Mini-Körper nimmt keinen Platz ein，Höchste 6kW
-                    Leistung，Entwickelt für die Präzisionsteilebearbeitung，Kleine Statur verbirgt echte Fähigkeiten，Bringen Sie Präzisionsschneiden auf die Spitze。
+                    ±8 Genauigkeit im Mikrometerbereich！Der Mini-Körper nimmt
+                    keinen Platz ein，Höchste 6kW Leistung，Entwickelt für die
+                    Präzisionsteilebearbeitung，Kleine Statur verbirgt echte
+                    Fähigkeiten，Bringen Sie Präzisionsschneiden auf die
+                    Spitze。
                     <br /><br />
                   </p>
                 </div>
@@ -7085,8 +7104,10 @@
                   <p class="other-subtitle">Senrytech S</p>
                   <h3 class="other-heading">SSerie</h3>
                   <p class="other-desc">
-                    Spezialisiert C/H Profilstahl、Kanalstahl！14
-                    Meterlange Reise，Maßgeschneiderte Schnittpfade，Keine Aufregung、Keine Nacharbeit，Erstellen Sie effiziente Sonderlösungen für die Stahlbauindustrie。
+                    Spezialisiert C/H Profilstahl、Kanalstahl！14 Meterlange
+                    Reise，Maßgeschneiderte Schnittpfade，Keine Aufregung、Keine
+                    Nacharbeit，Erstellen Sie effiziente Sonderlösungen für die
+                    Stahlbauindustrie。
                     <br /><br />
                   </p>
                 </div>
@@ -7475,36 +7496,37 @@
             toggleSidebar();
           }
         });
-      
 
-      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
-      // 触发时机：分类项的mouseenter事件
+        // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
+        // 触发时机：分类项的mouseenter事件
 
-      // —— 3.1 初始化分类切换所需变量 ——
-      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
-      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
+        // —— 3.1 初始化分类切换所需变量 ——
+        const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
+        const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
 
-      // —— 3.2 绑定分类项hover事件 ——
-      categoryItems.forEach((item) => {
-        item.addEventListener("mouseenter", function () {
-          // 1. 重置所有分类项状态：移除激活类
-          categoryItems.forEach((catItem) =>
-            catItem.classList.remove("active")
-          );
-          // 2. 激活当前hover的分类项
-          this.classList.add("active");
+        // —— 3.2 绑定分类项hover事件 ——
+        categoryItems.forEach((item) => {
+          item.addEventListener("mouseenter", function () {
+            // 1. 重置所有分类项状态：移除激活类
+            categoryItems.forEach((catItem) =>
+              catItem.classList.remove("active")
+            );
+            // 2. 激活当前hover的分类项
+            this.classList.add("active");
 
-          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
-          const targetId = this.getAttribute("data-target");
-          // 4. 重置所有内容区状态：隐藏所有内容
-          contentItems.forEach((content) => content.classList.remove("active"));
-          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
-          const targetContent = document.getElementById(targetId);
-          if (targetContent) {
-            targetContent.classList.add("active");
-          }
+            // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
+            const targetId = this.getAttribute("data-target");
+            // 4. 重置所有内容区状态：隐藏所有内容
+            contentItems.forEach((content) =>
+              content.classList.remove("active")
+            );
+            // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+              targetContent.classList.add("active");
+            }
+          });
         });
-      });
       });
     </script>
 
@@ -8068,38 +8090,42 @@
       });
     </script>
 
-<script type="text/javascript">
-/* ================================== JS 联系专家 ================================== */
-document.addEventListener("DOMContentLoaded", function() {
-  // 把整个 sendEmail 包在安全壳里
-  window.sendEmail = function(event) {
-    const submitBtn = document.getElementById("submitBtn");
-    const submitTip = document.getElementById("submitTip");
-    submitBtn.disabled = true;
-    submitBtn.innerText = "提交中...";
-    submitTip.innerHTML = "";
+    <script type="text/javascript">
+      /* ================================== JS 联系专家 ================================== */
+      document.addEventListener("DOMContentLoaded", function () {
+        // 把整个 sendEmail 包在安全壳里
+        window.sendEmail = function (event) {
+          const submitBtn = document.getElementById("submitBtn");
+          const submitTip = document.getElementById("submitTip");
+          submitBtn.disabled = true;
+          submitBtn.innerText = "提交中...";
+          submitTip.innerHTML = "";
 
-    emailjs.send("service_waa3l9d", "template_zvfvl5p", {
-      sender_name: document.getElementById("name").value,
-      sender_contact: document.getElementById("contact").value,
-      sender_message: document.getElementById("message").value,
-    }).then(
-      function() {
-        submitTip.innerHTML = '<span style="color: green;">✅ 提交成功！</span>';
-        document.getElementById("laserForm").reset();
-        submitBtn.disabled = false;
-        submitBtn.innerText = "提交咨询";
-      },
-      function(error) {
-        submitTip.innerHTML = '<span style="color: red;">❌ 提交失败，请重试</span>';
-        submitBtn.disabled = false;
-        submitBtn.innerText = "重新提交";
-        console.error("错误：", error);
-      }
-    );
-  };
-});
-</script>
+          emailjs
+            .send("service_waa3l9d", "template_zvfvl5p", {
+              sender_name: document.getElementById("name").value,
+              sender_contact: document.getElementById("contact").value,
+              sender_message: document.getElementById("message").value,
+            })
+            .then(
+              function () {
+                submitTip.innerHTML =
+                  '<span style="color: green;">✅ 提交成功！</span>';
+                document.getElementById("laserForm").reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = "提交咨询";
+              },
+              function (error) {
+                submitTip.innerHTML =
+                  '<span style="color: red;">❌ 提交失败，请重试</span>';
+                submitBtn.disabled = false;
+                submitBtn.innerText = "重新提交";
+                console.error("错误：", error);
+              }
+            );
+        };
+      });
+    </script>
 
     <script>
       // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================

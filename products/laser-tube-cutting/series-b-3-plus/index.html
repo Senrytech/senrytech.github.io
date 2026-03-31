@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6541,10 +6546,10 @@
           </p>
           <p class="design-subtitle-supplement">
             Adopts rack and pinion interconnected transmission structure，With
-            double roller claw design，Three chuck synchronous drive，<br />
+            double roller claw design，Three chuck synchronous drive，
             accomplish 0.05mm Repeat positioning accuracy and 0.05mm Bounce
             accuracy，Provides extremely stable clamping force for pipe
-            cutting。<br />
+            cutting。
             Modular integrated roller set、Cylinder group and rack box，With
             high protection level，Suitable for high dust cutting
             conditions，Improved maintenance cycle 30%；
@@ -6573,10 +6578,10 @@
             Equipped with high-precision pressure sensor and digital display
             module，support 0.001MPa Resolution real-time feedback，The output
             pressure can be 0.005~0.9MPa Continuous stepless adjustment within
-            the range；<br />
+            the range；
             Driven by high-speed response solenoid valve，response
             time＜100ms，Cooperate PID closed loop control，Pressure control
-            accuracy can reach ±0.5%；<br />
+            accuracy can reach ±0.5%；
             integrated IP65 Grade dustproof and waterproof structure，Adapt to
             high vibration、High dust industrial environment，Also has
             overvoltage、Overcurrent protection function；
@@ -6603,7 +6608,7 @@
                 Japanese quality benchmark，both 350% Instant torque and quiet
                 operation advantages，Warranty protection + Wide
                 adaptability，Become the preferred power core for precision
-                manufacturing<br />
+                manufacturing
                 Support multiple communication protocols and multi-axis
                 linkage，key components 10 Longevity design，Install
                 compatible、Easy to operate，Reduce operation and maintenance

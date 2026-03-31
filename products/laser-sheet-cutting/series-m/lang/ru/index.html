@@ -992,12 +992,9 @@
         position: relative;
         width: 100%;
         overflow: hidden;
-
         aspect-ratio: 16 / 7 !important;
-
         height: auto !important;
         min-height: 200px;
-
         padding-top: calc(7 / 16 * 100%);
       }
 
@@ -1063,9 +1060,7 @@
 
       .banner-text h1 {
         font-size: clamp(1.875rem, 5vw, 3.5rem);
-
         font-weight: 600;
-
         color: transparent;
         background: linear-gradient(
           135deg,
@@ -1075,57 +1070,62 @@
         );
         background-clip: text;
         -webkit-background-clip: text;
-
         margin-bottom: 2.5rem;
-
         line-height: 1.3;
-
         letter-spacing: 0.5px;
-
         text-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-text h2 {
         font-size: clamp(0.875rem, 1.8vw, 1.125rem);
-
         margin-bottom: 2rem;
-
         font-weight: 300;
-
         letter-spacing: 0.2px;
-
         color: #000000;
-
         text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-text p {
         font-size: clamp(1rem, 2vw, 1.25rem);
-
         margin-bottom: 3rem;
-
         letter-spacing: 0.3px;
-
         line-height: 1.6;
-
         color: #000000;
-
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-
         max-width: 75vw;
-
         margin-left: auto;
         margin-right: auto;
-
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* 新增自适应换行规则 */
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+        word-wrap: break-word;
+        word-break: break-all;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .banner-btns {
@@ -1142,6 +1142,10 @@
         cursor: pointer;
         border: none;
         transition: background-color 0.2s ease;
+        /* 按钮保留单行 */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .learn-more-btn {
@@ -1229,15 +1233,6 @@
         background-color: #ffffff;
       }
 
-      .banner-text h1,
-      .banner-text h2,
-      .banner-text p,
-      .banner-btn {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
       @media (max-width: 320px) {
         .banner-carousel {
           aspect-ratio: 9 / 16;
@@ -1251,24 +1246,20 @@
         }
 
         .banner-text h2 {
-          top: 33%;
           font-size: 0.65rem;
           margin-bottom: 0.8rem;
           letter-spacing: 0.2px;
         }
 
         .banner-text h1 {
-          top: 33%;
           font-size: 1.2rem;
           margin-bottom: 1rem;
           letter-spacing: 0.5px;
         }
 
         .banner-text p {
-          top: 33%;
           font-size: 0.75rem;
           margin-bottom: 1.8rem;
-          white-space: nowrap;
         }
 
         .banner-btns {

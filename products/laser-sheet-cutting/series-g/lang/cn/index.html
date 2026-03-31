@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6494,12 +6499,12 @@
           <p class="design-subtitle-text">坡口切割<br />多工艺适配</p>
           <p class="design-subtitle-supplement">
             配备可选坡口切割功能模块，坡口角度覆盖 15°-60°（精度
-            ±0.5°），适配碳钢、不锈钢、铝合金等多种材质的焊接预处理场景；<br />
-            搭载智能坡口参数库，可根据工件厚度（3mm-50mm）匹配切割速度、气体配比，配合动态随动调高系统，<br />
+            ±0.5°），适配碳钢、不锈钢、铝合金等多种材质的焊接预处理场景；
+            搭载智能坡口参数库，可根据工件厚度（3mm-50mm）匹配切割速度、气体配比，配合动态随动调高系统，
             确保坡口面粗糙度
-            Ra≤12.5μm，满足高强度焊接的焊缝熔合需求；无需额外配置专用坡口设备，<br />
+            Ra≤12.5μm，满足高强度焊接的焊缝熔合需求；无需额外配置专用坡口设备，
             仅通过本设备的功能扩展即可实现 “切割 + 坡口”
-            一体化加工，大幅缩减产线工序流转时间，提升复杂构件的加工效率。<br />
+            一体化加工，大幅缩减产线工序流转时间，提升复杂构件的加工效率。
           </p>
         </div>
 
@@ -6521,14 +6526,14 @@
           <p class="design-subtitle-text">模块化床身<br />高拓展架构</p>
           <p class="design-subtitle-supplement">
             采用高精度模块化床身设计，床身单元基于 GB/T 1184-2011
-            精密级形位公差标准加工，单单元直线度≤0.03mm/m、平面度≤0.04mm/m；<br />
+            精密级形位公差标准加工，单单元直线度≤0.03mm/m、平面度≤0.04mm/m；
             床身主体选用 Q355B 低合金高强度钢，经时效退火消除内应力，配合 T 型槽
-            + 定位销的模块化拼接结构，<br />
+            + 定位销的模块化拼接结构，
             支持 5m-30m 超长行程的无缝扩展，拼接后整体直线度误差≤0.08mm /
-            全长；床身单元支持独立拆装维护，配合快装式电缆拖链、管路接口，<br />
+            全长；床身单元支持独立拆装维护，配合快装式电缆拖链、管路接口，
             现场部署周期较传统一体式床身缩短
             60%，同时适配不同产线的布局调整（如线性排布、L
-            型排布），兼顾生产柔性与场地适配性。<br />
+            型排布），兼顾生产柔性与场地适配性。
           </p>
         </div>
 
@@ -6548,16 +6553,16 @@
               <p class="design-subtitle-supplement">
                 搭载YYC 精密研磨齿条，采用 S45C 中碳钢基材经调质处理（硬度
                 HB220-250），齿部经高频感应淬火（硬度
-                HRC42-55）及精密研磨加工，<br />
+                HRC42-55）及精密研磨加工，
                 齿形精度符合 DIN 5 级标准（GB/T 10096-2018
-                等同级），累计齿距误差≤0.022mm/300mm；齿条采用模块化安装孔位设计，支持无限行程拼接，<br />
+                等同级），累计齿距误差≤0.022mm/300mm；齿条采用模块化安装孔位设计，支持无限行程拼接，
                 拼接后传动间隙≤0.01mm，适配长距离（≥10m）高速传动场景，传动效率达
-                98%，最高运行线速度可达 11m/s；配合齿背预紧结构，<br />
+                98%，最高运行线速度可达 11m/s；配合齿背预紧结构，
                 实现定位精度 ±20μm，重复定位精度
                 ±5μm，较传统滚珠丝杠传动，在重负载（≥5000N）、高频次（≥1200 次
-                /h）运行工况下，<br />
+                /h）运行工况下，
                 传动稳定性提升
-                40%，噪音降低至≤65dB（A），适配高精度激光切割、数控加工等连续作业需求。<br />
+                40%，噪音降低至≤65dB（A），适配高精度激光切割、数控加工等连续作业需求。
               </p>
             </div>
 

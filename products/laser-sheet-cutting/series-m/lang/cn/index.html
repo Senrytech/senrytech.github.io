@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6497,8 +6502,8 @@
           <p class="design-subtitle-text">U 型直线电机<br />超稳驱动核心</p>
           <p class="design-subtitle-supplement">
             搭载 U 型磁悬浮直线电机，采用 U
-            型磁路结构设计，推力输出均匀稳定，<br />
-            运行噪音较传统电机大幅降低，动态响应速度快；无接触式传动结构减少机械磨损，<br />
+            型磁路结构设计，推力输出均匀稳定，
+            运行噪音较传统电机大幅降低，动态响应速度快；无接触式传动结构减少机械磨损，
             能适配高速、高精度的切割运动场景，大幅提升设备长期运行的稳定性。
           </p>
         </div>
@@ -6520,8 +6525,8 @@
         <div class="design-subtitle-wrap">
           <p class="design-subtitle-text">松下电机模组<br />精密动力保障</p>
           <p class="design-subtitle-supplement">
-            配置松下电机模组，依托品牌成熟的精密传动技术，传动精度误差可控在极小范围，<br />
-            负载适配能力强，可稳定匹配设备高频率启停、调速需求；长期运行故障率低，<br />
+            配置松下电机模组，依托品牌成熟的精密传动技术，传动精度误差可控在极小范围，
+            负载适配能力强，可稳定匹配设备高频率启停、调速需求；长期运行故障率低，
             为设备动力系统提供持续、可靠的输出支撑。
           </p>
         </div>
@@ -6542,8 +6547,8 @@
                 进口FAGOR光栅读头<br />微米级精度标尺
               </p>
               <p class="design-subtitle-supplement">
-                采用进口进口光栅读头，分辨率可达 0.5μm，<br />
-                定位精度高，重复定位误差极小；能为设备加工运动提供精准的位置反馈，<br />
+                采用进口进口光栅读头，分辨率可达 0.5μm，
+                定位精度高，重复定位误差极小；能为设备加工运动提供精准的位置反馈，
                 确保切割、传动动作的毫厘级精度把控，适配高精度激光切割等精密加工场景。
               </p>
             </div>

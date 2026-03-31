@@ -2343,17 +2343,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6345,12 +6350,12 @@
         <div class="design-subtitle-wrap">
           <p class="design-subtitle-text">Encadrement en tôle<br />La protection augmente régulièrement</p>
           <p class="design-subtitle-supplement">
-            Conçu avec une structure en tôle entièrement fermée，S'appuyant sur des plaques à haute rigidité et une technologie d'étanchéité，Parvenir à une protection complète de l’environnement de traitement，<br />
-            Éviter efficacement la poussière、Problèmes tels que le déversement de débris et les interférences externes。Entouré d’une soudure de précision intégrée，Avec conception de cabine scellée，<br />
-            Le bruit de fonctionnement est contrôlé selon la plage standard la plus basse de l'industrie，Amélioration simultanée de la propreté et de la sécurité de l'environnement d'exploitation。La solution d'encadrement en tôle，<br />
+            Conçu avec une structure en tôle entièrement fermée，S'appuyant sur des plaques à haute rigidité et une technologie d'étanchéité，Parvenir à une protection complète de l’environnement de traitement，
+            Éviter efficacement la poussière、Problèmes tels que le déversement de débris et les interférences externes。Entouré d’une soudure de précision intégrée，Avec conception de cabine scellée，
+            Le bruit de fonctionnement est contrôlé selon la plage standard la plus basse de l'industrie，Amélioration simultanée de la propreté et de la sécurité de l'environnement d'exploitation。La solution d'encadrement en tôle，
             Performances de protection améliorées par rapport aux structures ouvertes 90%
-            au-dessus de，Les performances d'étanchéité du fonctionnement des équipements sont passées à l'avant-garde de l'industrie，Convient pour une grande propreté、Conditions de traitement raffinées et à faible interférence，<br />
-            La stabilité de la cabine est presque optimale dans des conditions de coupe à grande vitesse，S'assurer que l'environnement de traitement est contrôlable et sans omissions，Adaptez-vous aux scénarios de production à forte demande，Fiabilité de la protection et adaptabilité des conditions de travail。<br />
+            au-dessus de，Les performances d'étanchéité du fonctionnement des équipements sont passées à l'avant-garde de l'industrie，Convient pour une grande propreté、Conditions de traitement raffinées et à faible interférence，
+            La stabilité de la cabine est presque optimale dans des conditions de coupe à grande vitesse，S'assurer que l'environnement de traitement est contrôlable et sans omissions，Adaptez-vous aux scénarios de production à forte demande，Fiabilité de la protection et adaptabilité des conditions de travail。
           </p>
         </div>
 
@@ -6372,9 +6377,9 @@
           <p class="design-subtitle-text">Alimentation extrêmement rapide<br />L’efficacité s’envole</p>
           <p class="design-subtitle-supplement">
             Adopter une conception de liaison intelligente de la plate-forme de commutation，S'appuyant sur une transmission à grande vitesse et un système de positionnement précis，accomplir15
-            Alimentation extrêmement rapide en quelques secondes，Évitez efficacement d'attendre dans le processus de chargement traditionnel、Problèmes tels qu'un alignement fastidieux。<br />
-            La plate-forme est fabriquée en alliage léger à haute résistance，Coopérer avec le mécanisme de réponse rapide du servomoteur，Le rythme de commutation est stable et contrôlable，Chargement de l'écart de précision de répétition≤±0.5mm。<br />
-            La solution de chargement de plateforme d'échange，Efficacité améliorée par rapport au chargement manuel conventionnel80%au-dessus de，Le temps de veille des équipements est réduit à des niveaux de pointe，Peut répondre à des lots de grande taille、Conditions de production continue à rotation rapide，<br />
+            Alimentation extrêmement rapide en quelques secondes，Évitez efficacement d'attendre dans le processus de chargement traditionnel、Problèmes tels qu'un alignement fastidieux。
+            La plate-forme est fabriquée en alliage léger à haute résistance，Coopérer avec le mécanisme de réponse rapide du servomoteur，Le rythme de commutation est stable et contrôlable，Chargement de l'écart de précision de répétition≤±0.5mm。
+            La solution de chargement de plateforme d'échange，Efficacité améliorée par rapport au chargement manuel conventionnel80%au-dessus de，Le temps de veille des équipements est réduit à des niveaux de pointe，Peut répondre à des lots de grande taille、Conditions de production continue à rotation rapide，
             La fluidité du fonctionnement de la plate-forme s'approche de l'optimum dans un état de commutation à grande vitesse，Assurez-vous qu’il n’y a pas de points d’arrêt dans la connexion matérielle，S'adapter aux besoins de traitement haute fréquence，Combine commodité opérationnelle et efficacité de production。
           </p>
         </div>
@@ -6394,14 +6399,14 @@
               <p class="design-subtitle-text">Transmission de précision<br />Meilleures performances</p>
               <p class="design-subtitle-supplement">
                 utiliserYYCMarque de rack de précision，S'appuyant sur le processus de fabrication des engrenages de meulage et le traitement de trempe à haute fréquence，La dureté de la surface des dents atteint
-                HRC42-55，La précision de la forme des dents est conforme à DIN5 niveau standard，Erreur cumulée≤0.022mm/300mm。<br />
+                HRC42-55，La précision de la forme des dents est conforme à DIN5 niveau standard，Erreur cumulée≤0.022mm/300mm。
                 Sélection du corps du rack S45C
-                Matériau de base en acier au carbone moyen，Avec conception de trou d'installation modulaire，Prise en charge d'un épissage de course illimité，Adapté aux scénarios de transmission longue distance。<br />
+                Matériau de base en acier au carbone moyen，Avec conception de trou d'installation modulaire，Prise en charge d'un épissage de course illimité，Adapté aux scénarios de transmission longue distance。
                 L'efficacité de la transmission à crémaillère de précision est aussi élevée que 98%，Fonctionnement à grande vitesse jusqu'à
-                11m/s，Combiné avec un faible frottement、Caractéristiques à faible bruit；<br />
+                11m/s，Combiné avec un faible frottement、Caractéristiques à faible bruit；
                 La structure sans jeu permet d'obtenir une précision de positionnement ±20
-                Micron，Pièces de transmission plus traditionnelles（comme une vis à billes）Plus adapté aux conditions de traitement de haute précision。<br />
-                sous une lourde charge、long voyage、Dans des conditions de fonctionnement à haute fréquence，Tout en maintenant la stabilité de la transmission et la précision du positionnement，Répondre aux besoins opérationnels continus de la fabrication de haute précision。<br />
+                Micron，Pièces de transmission plus traditionnelles（comme une vis à billes）Plus adapté aux conditions de traitement de haute précision。
+                sous une lourde charge、long voyage、Dans des conditions de fonctionnement à haute fréquence，Tout en maintenant la stabilité de la transmission et la précision du positionnement，Répondre aux besoins opérationnels continus de la fabrication de haute précision。
               </p>
             </div>
 
@@ -6417,11 +6422,11 @@
               <p class="design-subtitle-text">Zone de dépoussiérage<br />Contrôle intelligent et propre</p>
               <p class="design-subtitle-supplement">
                 utiliser “zone de coupe + Zone de désenfumage + console”
-                Conception de dépoussiérage de zonage à trois niveaux：La zone de découpe est équipée d'une hotte d'aspiration de suivi（Suivez le mouvement de la tête de coupe，Volume d'air≥6000m³/h），<br />
+                Conception de dépoussiérage de zonage à trois niveaux：La zone de découpe est équipée d'une hotte d'aspiration de suivi（Suivez le mouvement de la tête de coupe，Volume d'air≥6000m³/h），
                 Capture ciblée des fumées métalliques générées au moment de la découpe；La zone de désenfumage repose sur des conduits d'air aériens +
-                Cartouche filtrante haute efficacité（Précision du filtrage 0.3μm），Intercepter les fines poussières；<br />
+                Cartouche filtrante haute efficacité（Précision du filtrage 0.3μm），Intercepter les fines poussières；
                 Des ventilateurs à faible puissance à aspiration latérale sont utilisés dans la zone de la console，Gardez l'environnement propre。Le système est équipé d'un capteur de concentration de fumée，Chaque partition démarre et s'arrête indépendamment
-                / Changement，La consommation d'énergie est inférieure à celle du dépoussiérage traditionnel à ventilateur unique 35%。<br />
+                / Changement，La consommation d'énergie est inférieure à celle du dépoussiérage traditionnel à ventilateur unique 35%。
               </p>
             </div>
 

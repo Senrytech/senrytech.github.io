@@ -2351,17 +2351,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6500,11 +6505,11 @@
           <p class="design-subtitle-supplement">
             采用半自动上下料设计，适配 20-650mm
             管径范围的管材，配合托料架与定位机构，实现单根管材 30s
-            内快速上料定位，<br />
+            内快速上料定位，
             重复上料精度达
-            ±0.1mm；搭载气动升降与辊道输送单元，在紧凑空间内完成管材的托举、输送与对接，<br />
+            ±0.1mm；搭载气动升降与辊道输送单元，在紧凑空间内完成管材的托举、输送与对接，
             响应时间＜0.5s，适配高粉尘切割工况；模块化集成上料架、定位组件与输送辊组，具备
-            IP54 防护等级，维护周期提升 25%，<br />
+            IP54 防护等级，维护周期提升 25%，
             可与产线柔性对接，兼顾小批量多品种生产场景。
           </p>
         </div>
@@ -6528,8 +6533,8 @@
             随动上料支撑<br />稳托续切的高效助手
           </p>
           <p class="design-subtitle-supplement">
-            采用随动式联动结构，可与切割进程实时同步，为长管材提供动态支撑，避免因自重下垂导致的切割偏差。<br />
-            搭载自适应调节功能，可兼容不同管径、长度的管材，在紧凑空间内实现稳定上料，大幅提升连续切割的流畅性。<br />
+            采用随动式联动结构，可与切割进程实时同步，为长管材提供动态支撑，避免因自重下垂导致的切割偏差。
+            搭载自适应调节功能，可兼容不同管径、长度的管材，在紧凑空间内实现稳定上料，大幅提升连续切割的流畅性。
             模块化集成防护设计，适应高粉尘切割工况，维护周期延长，让长管加工更省心、高效。
           </p>
         </div>
@@ -6551,9 +6556,9 @@
               </p>
               <p class="design-subtitle-supplement">
                 采用侧挂式气动驱动结构，配合四爪联动定心设计，可实现 0.05mm
-                以内的重复定位精度，为管材切割提供稳固的夹持基准。<br />
+                以内的重复定位精度，为管材切割提供稳固的夹持基准。
                 搭载大推力气缸单元，输出 100kg-800kg
-                可调夹持力，兼容不同壁厚、材质的管材，在高速切割时也能保持无滑移的稳定夹持。<br />
+                可调夹持力，兼容不同壁厚、材质的管材，在高速切割时也能保持无滑移的稳定夹持。
                 模块化集成防尘密封设计，适应高粉尘切割工况，维护周期提升
                 60%，且侧挂布局释放了更多加工空间，适配长管连续切割需求。
               </p>

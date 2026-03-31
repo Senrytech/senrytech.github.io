@@ -2307,17 +2307,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6261,10 +6266,10 @@
             模块化床身<br />高刚快装型设备适配基座
           </p>
           <p class="design-subtitle-supplement">
-            采用高刚性铸铁模块化床身结构，各模块基准面加工精度≤0.02mm，<br />
-            通过精密定位销孔拼接，整体刚性较一体式床身提升 15%；<br />
+            采用高刚性铸铁模块化床身结构，各模块基准面加工精度≤0.02mm，
+            通过精密定位销孔拼接，整体刚性较一体式床身提升 15%；
             支持按大幅面 / 中小幅面激光切割机机型灵活组合，模块运输单件重量降低
-            60%，<br />
+            60%，
             故障模块可快速更换（维护停机时间缩短至 2h
             内），适配多规格切割设备的批量化生产与定制化搭建场景。
           </p>
@@ -6290,8 +6295,8 @@
           </p>
           <p class="design-subtitle-supplement">
             搭载精密谐波减速器 + 伺服直驱的摆动 AB 轴组件，角度重复定位精度达
-            ±5″，动态响应频率≥200Hz；<br />
-            可实现双向摆角控制，适配三维立体工件的坡口切割、异形曲面轨迹切割作业，配合数控系统插补算法，<br />
+            ±5″，动态响应频率≥200Hz；
+            可实现双向摆角控制，适配三维立体工件的坡口切割、异形曲面轨迹切割作业，配合数控系统插补算法，
             动态切割轨迹精度偏差≤0.05mm，满足航空航天、汽车零部件等高精度加工场景需求。
           </p>
         </div>
@@ -6313,9 +6318,9 @@
               </p>
               <p class="design-subtitle-supplement">
                 基于激光三角法的 BCW
-                轮廓扫描系统，轮廓检测分辨率≤10μm，扫描速率≥5000 点 /s；<br />
-                可实时采集工件装夹后的轮廓偏差数据，同步至数控系统完成加工路径动态补偿，<br />
-                同时支持加工后工件的轮廓尺寸全检（检测效率较人工提升 80%），<br />
+                轮廓扫描系统，轮廓检测分辨率≤10μm，扫描速率≥5000 点 /s；
+                可实时采集工件装夹后的轮廓偏差数据，同步至数控系统完成加工路径动态补偿，
+                同时支持加工后工件的轮廓尺寸全检（检测效率较人工提升 80%），
                 适配高精度钣金件、异形结构件的切割质量管控场景，有效降低工件超差率。
               </p>
             </div>

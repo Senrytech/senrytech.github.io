@@ -2307,17 +2307,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6309,13 +6314,13 @@
           <p class="design-subtitle-supplement">
             Nehmen Sie eine modulare Bettstruktur aus Gusseisen mit hoher
             Steifigkeit an，Bearbeitungsgenauigkeit der Bezugsfläche jedes
-            Moduls≤0.02mm，<br />
+            Moduls≤0.02mm，
             Spleißen durch präzise Positionierungsstiftlöcher，Die
             Gesamtsteifigkeit ist im Vergleich zum integrierten Bett verbessert
-            15%；<br />
+            15%；
             Unterstützt Großformat / Flexible Kombination kleiner und mittlerer
             Laserschneidmaschinenmodelle，Das Gewicht der Modultransporteinheit
-            wird reduziert 60%，<br />
+            wird reduziert 60%，
             Defekte Module können schnell ausgetauscht
             werden（Wartungsausfallzeiten reduziert auf 2h Innen），Geeignet für
             die Massenproduktion und kundenspezifische Konstruktionsszenarien
@@ -6346,11 +6351,11 @@
             Ausgestattet mit einem Präzisions-Oberschwingungsreduzierer +
             Servo-Schwenkantrieb mit Direktantrieb AB
             Wellenmontage，Winkelwiederholbare Positionierungsgenauigkeit
-            erreicht ±5″，Dynamische Reaktionsfrequenz≥200Hz；<br />
+            erreicht ±5″，Dynamische Reaktionsfrequenz≥200Hz；
             Kann eine Zwei-Wege-Schwenkwinkelsteuerung realisieren，Geeignet zum
             Fasenschneiden von dreidimensionalen Werkstücken、Speziell geformter
             Oberflächenbahnschnittvorgang，Arbeiten Sie mit dem
-            Interpolationsalgorithmus des CNC-Systems zusammen，<br />
+            Interpolationsalgorithmus des CNC-Systems zusammen，
             Dynamische Abweichung der Schnittbahngenauigkeit≤0.05mm，Lernen Sie
             die Luft- und Raumfahrt kennen、Nachfrage nach hochpräzisen
             Bearbeitungsszenarien wie Automobilteilen。
@@ -6375,15 +6380,15 @@
               </p>
               <p class="design-subtitle-supplement">
                 Basierend auf Lasertriangulation BCW Konturscansystem，Auflösung
-                der Konturerkennung≤10μm，Scanrate≥5000 Punkt /s；<br />
+                der Konturerkennung≤10μm，Scanrate≥5000 Punkt /s；
                 Konturabweichungsdaten nach der Werkstückspannung können in
                 Echtzeit erfasst werden，Synchronisieren Sie mit dem CNC-System,
                 um die dynamische Kompensation des Bearbeitungspfads
-                abzuschließen，<br />
+                abzuschließen，
                 Gleichzeitig unterstützt es die vollständige Kontrolle der
                 Konturmaße des Werkstücks nach der Bearbeitung.（Die
                 Erkennungseffizienz wird im Vergleich zur manuellen Arbeit
-                verbessert 80%），<br />
+                verbessert 80%），
                 Geeignet für hochpräzise Blechteile、Szenarios zur
                 Qualitätskontrolle beim Schneiden speziell geformter
                 Strukturteile，Reduzieren Sie effektiv die Abweichungsrate von

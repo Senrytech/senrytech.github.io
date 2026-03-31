@@ -2309,17 +2309,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6308,12 +6313,12 @@
           <p class="design-subtitle-supplement">
             Adopter une structure de lit modulaire en fonte à haute
             rigidité，Précision du traitement de la surface de référence de
-            chaque module≤0.02mm，<br />
+            chaque module≤0.02mm，
             Épissage à travers des trous de positionnement précis，La rigidité
-            globale est améliorée par rapport au lit intégré 15%；<br />
+            globale est améliorée par rapport au lit intégré 15%；
             Supporte le grand format / Combinaison flexible de modèles de
             machines de découpe laser petit et moyen format，Le poids de l'unité
-            de transport du module est réduit 60%，<br />
+            de transport du module est réduit 60%，
             Les modules défectueux peuvent être rapidement remplacés（Temps
             d'arrêt pour maintenance réduit à 2h À l'intérieur），Convient à la
             production de masse et aux scénarios de construction personnalisés
@@ -6344,12 +6349,12 @@
             Equipé d'un réducteur d'harmoniques de précision + Swing à
             entraînement direct servo AB Assemblage de l'arbre，La précision de
             positionnement à angle reproductible atteint ±5″，Fréquence de
-            réponse dynamique≥200Hz；<br />
+            réponse dynamique≥200Hz；
             Peut réaliser un contrôle d'angle d'oscillation
             bidirectionnel，Convient pour la coupe en biseau de pièces
             tridimensionnelles、Opération de découpe de trajectoire de surface
             de forme spéciale，Coopérer avec l'algorithme d'interpolation du
-            système CNC，<br />
+            système CNC，
             Écart de précision de la trajectoire de coupe
             dynamique≤0.05mm，Rencontrez l'aérospatiale、Demande de scénarios de
             traitement de haute précision tels que les pièces automobiles。
@@ -6375,14 +6380,14 @@
               <p class="design-subtitle-supplement">
                 Basé sur la triangulation laser BCW Système de numérisation de
                 contours，Résolution de détection de contour≤10μm，taux de
-                balayage≥5000 indiquer /s；<br />
+                balayage≥5000 indiquer /s；
                 Les données d'écart de contour après le serrage de la pièce
                 peuvent être collectées en temps réel，Synchronisez avec le
                 système CNC pour compléter la compensation dynamique du chemin
-                d'usinage，<br />
+                d'usinage，
                 En même temps, il permet une inspection complète des dimensions
                 du contour de la pièce après traitement.（L'efficacité de la
-                détection est améliorée par rapport au travail manuel 80%），<br />
+                détection est améliorée par rapport au travail manuel 80%），
                 Convient aux pièces en tôle de haute précision、Scénarios de
                 contrôle qualité de découpe pour pièces structurelles de forme
                 spéciale，Réduire efficacement le taux de hors tolérance des

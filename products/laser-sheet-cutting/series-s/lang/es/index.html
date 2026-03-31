@@ -2309,17 +2309,22 @@
       }
 
       .design-subtitle-supplement {
-        background: #696969;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-
-        color: transparent !important;
-        -webkit-text-fill-color: transparent !important;
-        font-size: 1.3rem;
-        text-align: center;
-        z-index: 0;
-      }
+  background: #696969;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  font-size: 1.3rem;
+  text-align: center;
+  z-index: 0;
+  /* 新增核心断句控制 */
+  max-width: 80rem; /* 大屏最大宽度，避免过长，可根据需求调整 */
+  margin: 0 auto; /* 居中，配合max-width生效 */
+  white-space: normal; /* 正常换行，兼容所有屏幕 */
+  line-height: 1.6; /* 优化行高，小屏断行更舒展 */
+  letter-spacing: 0.02rem; /* 细微字间距，提升可读性 */
+  padding: 0 2rem; /* 左右内边距，小屏避免贴边 */
+}
 
       .design-scroll-wrap {
         position: relative;
@@ -6311,13 +6316,13 @@
           <p class="design-subtitle-supplement">
             Adopte una estructura de cama modular de hierro fundido de alta
             rigidez，Precisión de procesamiento de la superficie de referencia
-            de cada módulo.≤0.02mm，<br />
+            de cada módulo.≤0.02mm，
             Empalme a través de orificios de posicionamiento precisos，La
             rigidez general mejora en comparación con la cama integrada.
-            15%；<br />
+            15%；
             Soporta gran formato / Combinación flexible de modelos de máquinas
             de corte por láser de formato pequeño y mediano，Se reduce el peso
-            de la unidad de transporte del módulo. 60%，<br />
+            de la unidad de transporte del módulo. 60%，
             Los módulos defectuosos se pueden reemplazar rápidamente（El tiempo
             de inactividad por mantenimiento se redujo a 2h Adentro），Adecuado
             para escenarios de producción en masa y construcción personalizados
@@ -6348,11 +6353,11 @@
             Equipado con reductor de armónicos de precisión. + Oscilación servo
             de accionamiento directo AB Conjunto de eje，La precisión de
             posicionamiento repetible del ángulo alcanza ±5″，Frecuencia de
-            respuesta dinámica≥200Hz；<br />
+            respuesta dinámica≥200Hz；
             Puede realizar un control del ángulo de giro bidireccional，Adecuado
             para corte en bisel de piezas tridimensionales.、Operación de corte
             de trayectoria de superficie de forma especial，Cooperar con el
-            algoritmo de interpolación del sistema CNC.，<br />
+            algoritmo de interpolación del sistema CNC.，
             Desviación de precisión de la trayectoria de corte
             dinámica≤0.05mm，Conozca el sector aeroespacial、Demanda de
             escenarios de procesamiento de alta precisión, como piezas de
@@ -6379,15 +6384,15 @@
               <p class="design-subtitle-supplement">
                 Basado en triangulación láser. BCW Sistema de escaneo de
                 contornos，Resolución de detección de contorno≤10μm，tasa de
-                escaneo≥5000 punto /s；<br />
+                escaneo≥5000 punto /s；
                 Los datos de desviación del contorno después de sujetar la pieza
                 de trabajo se pueden recopilar en tiempo real，Sincronizar con
                 el sistema CNC para completar la compensación dinámica de la
-                ruta de mecanizado，<br />
+                ruta de mecanizado，
                 Al mismo tiempo, permite una inspección completa de las
                 dimensiones del contorno de la pieza de trabajo después del
                 procesamiento.（La eficiencia de detección mejora en comparación
-                con el trabajo manual. 80%），<br />
+                con el trabajo manual. 80%），
                 Adecuado para piezas de chapa de alta precisión、Escenarios de
                 control de calidad de corte para piezas estructurales con formas
                 especiales，Reduzca eficazmente la tasa de piezas de trabajo

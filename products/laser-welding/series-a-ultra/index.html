@@ -6807,7 +6807,7 @@
               class="card-link"
               ><div class="other-card">
                 <img
-                  src="../../../img/products/laser-welding/series-a-ultra/banner/senrytech-laser-welding-series-a-ultra.webp"
+                  src="https://senrytech.github.io/img/products/laser-welding/series-a-ultra/banner/senrytech-laser-welding-series-a-ultra.webp"
                   alt="Senrytech 激光焊接机A系列"
                 />
                 <!-- 新增：卡片内三段文字容器（左上角定位） -->
@@ -7467,7 +7467,7 @@
               y: {
                 stacked: false, // 取消堆叠，仅显示单一系列
                 beginAtZero: true,
-                max: 5,
+                max: 20,
                 stepSize: 5,
                 grid: {
                   color: "rgba(229, 229, 234, 0.8)", // 极浅灰网格线（苹果风格低对比度）
@@ -7517,11 +7517,11 @@
         };
         // 1. 碳钢切割厚度（仅保留绿色批量加工数据）
         const carbonSteelData = {
-          labels: ["A12 (1200W)", "null", "null"],
+          labels: ["A60", "null", "null"],
           datasets: [
             {
               label: "batch",
-              data: [4, 0, 0],
+              data: [16, 0, 0],
               backgroundColor: "rgba(34, 197, 94, 0.85)", // 轻微降低不透明度，更柔和
               borderColor: "transparent", // 移除边框
               borderWidth: 0,
@@ -7537,11 +7537,11 @@
         );
         // 2. 不锈钢切割厚度（仅保留绿色批量加工数据）
         const stainlessSteelData = {
-          labels: ["A12 (1200W)", "null", "null"],
+          labels: ["A60", "null", "null"],
           datasets: [
             {
               label: "batch",
-              data: [4, 0, 0],
+              data: [16, 0, 0],
               backgroundColor: "rgba(34, 197, 94, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7557,11 +7557,11 @@
         );
         // 3. 铝合金切割厚度（仅保留绿色批量加工数据）
         const aluminumData = {
-          labels: ["A12 (1200W)", "null", "null"],
+          labels: ["A60", "null", "null"],
           datasets: [
             {
               label: "batch",
-              data: [3, 0, 0],
+              data: [8, 0, 0],
               backgroundColor: "rgba(34, 197, 94, 0.95)",
               borderColor: "transparent",
               borderWidth: 0,
@@ -7575,10 +7575,6 @@
             data: aluminumData,
           }
         );
-        const copperChart = new Chart(document.getElementById("copperChart"), {
-          ...commonConfig,
-          data: copperData,
-        });
       });
     </script>
 

@@ -1,18 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      content="Senrytech激光是专业激光切割机厂家，专注研发生产全系列激光切割设备，涵盖板材激光切割机、管材激光切割机等多品类机型，厂家直供、品质可靠，满足各行业高精度切割需求。"
+      content="SenrytechLaser is a professional laser cutting machine manufacturer，Focus on R&D and production of a full range of laser cutting equipment，Covers sheet laser cutting machines、Pipe laser cutting machines and other types of machines，Direct supply from factory、Reliable quality，Meet the high-precision cutting needs of various industries。"
       name="description"
     />
     <meta
-      content="Senrytech激光,激光切割机厂家,激光切割设备,板材激光切割机,管材激光切割机,全系列激光切割设备"
+      content="Senrytechlaser,Laser cutting machine manufacturers,Laser cutting equipment,Plate laser cutting machine,Pipe laser cutting machine,Full range of laser cutting equipment"
       name="keywords"
     />
-    <title>Senrytech激光 - 专业激光切割机厂家 | 全系列激光切割设备首页</title>
-    <link rel="canonical" href="https://www.senrytech.com/lang/cn/" />
+    <title>
+      Senrytechlaser - Professional laser cutting machine manufacturer | Full
+      range of laser cutting equipment homepage
+    </title>
+    <link rel="canonical" href="https://www.senrytech.com/" />
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
@@ -137,7 +140,6 @@
 
     <!-- 一、CSS 全局基础样式 -->
     <style>
-      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
@@ -145,40 +147,35 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
-      /* 全局锁死：禁止任何横向溢出 */
       html,
       body {
         margin: 0;
         padding: 0;
         width: 100%;
-        max-width: 100vw; /* 永远不超过视口宽度 */
-        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        max-width: 100vw;
+        overflow-x: hidden;
         box-sizing: border-box;
       }
 
-      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
       *,
       *::before,
       *::after {
         box-sizing: inherit;
       }
 
-      /* 1.2 图标字体强制声明 */
       .social-icons .icon i,
       .footer-contact .contact-icon i {
         font-family: "FontAwesome" !important;
       }
 
-      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
         display: none !important;
       }
 
-      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
       .body-fixed {
-        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
-        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
-        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+        position: fixed;
+        width: 100%;
+        overflow-y: auto;
       }
 
       @media (max-width: 320px) {
@@ -263,11 +260,11 @@
     <!--二、CSS 导航栏-->
     <style>
       .navbar {
-        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
-        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
-        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
-        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
-        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
 
         background: linear-gradient(
           135deg,
@@ -275,15 +272,15 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgb(170, 170, 172) 100%
         );
-        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
-        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
-        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
-        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
-        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
-        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
-        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
       }
 
       .navbar.scrolled {
@@ -574,13 +571,12 @@
         flex-shrink: 0;
       }
 
-      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
         padding: 0.4rem 1.2rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        display: none; /* 默认隐藏，仅移动端显示 */
+        display: none;
         align-items: center;
         justify-content: center;
         color: #1d1d1f !important;
@@ -594,7 +590,7 @@
       .hamburger-btn i {
         font-family: "FontAwesome" !important;
         font-size: 0.875rem;
-        color: inherit; /* 继承按钮颜色 */
+        color: inherit;
       }
 
       .sidebar-overlay {
@@ -5759,7 +5755,7 @@
   </head>
 
   <body>
-    <!-- 二，代码 导航栏 -->
+    <!-- two，code Navigation bar -->
     <nav class="navbar">
       <div class="logo">
         <svg
@@ -5777,82 +5773,82 @@
         </svg>
       </div>
 
-      <a href="https://www.senrytech.com/" class="nav-link">首页</a>
+      <a href="https://www.senrytech.com/" class="nav-link">front page</a>
 
       <div class="nav-item">
         <a href="https://www.senrytech.com/products/" class="nav-link"
-          >产品中心</a
+          >Product Center</a
         >
-        <!-- 半屏二级菜单（新增内部分栏结构） -->
+        <!-- Half screen secondary menu（Added internal column structure） -->
         <div class="dropdown-menu">
           <div class="dropdown-inner">
-            <!-- 左侧：分类列表 -->
+            <!-- left side：Category list -->
             <div class="dropdown-category">
               <div class="category-item active" data-target="board">
                 <a
                   href="https://www.senrytech.com/products/laser-sheet-cutting/"
-                  >板材切割机</a
+                  >Plate cutting machine</a
                 >
               </div>
               <div class="category-item" data-target="tube">
                 <a href="https://www.senrytech.com/products/laser-tube-cutting/"
-                  >管材切割机</a
+                  >Pipe cutting machine</a
                 >
               </div>
               <div class="category-item" data-target="board-tube">
                 <a href="https://www.senrytech.com/products/laser-sheet-tube/"
-                  >板管一体机</a
+                  >Plate and tube integrated machine</a
                 >
               </div>
               <div class="category-item" data-target="welding">
                 <a href="https://www.senrytech.com/products/laser-welding/"
-                  >激光焊接机</a
+                  >Laser welding machine</a
                 >
               </div>
               <div class="category-item" data-target="cleaning">
                 <a href="https://www.senrytech.com/products/laser-cleaning/"
-                  >激光清洗机</a
+                  >Laser cleaning machine</a
                 >
               </div>
               <div class="category-item" data-target="marking">
                 <a href="https://www.senrytech.com/products/laser-marking/"
-                  >激光打标机</a
+                  >Laser marking machine</a
                 >
               </div>
             </div>
 
-            <!-- 右侧：对应分类的内容区 -->
+            <!-- right side：Content area corresponding to the category -->
             <div class="dropdown-content">
-              <!-- 1. 板材切割机内容（默认显示） -->
+              <!-- 1. Plate cutting machine content（Displayed by default） -->
               <div class="content-item active" id="board">
-                <h3>激光板材切割机系列</h3>
+                <h3>Laser sheet cutting machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A -->
+                  <!-- product1：Senrytech A -->
                   <div class="product-card">
-                    <!-- 图片加链接：对应板材切割机下的Senrytech A详情页 -->
+                    <!-- Picture plus link：Corresponding to the plate cutting machineSenrytech ADetails page -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                        alt="Senrytech A 经济款光纤激光切割机"
+                        alt="Senrytech A Economical fiber laser cutting machine"
                       />
                     </a>
-                    <!-- 文字加链接：与图片跳转地址一致 -->
+                    <!-- text plus link：Consistent with the image jump address -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <p>Senrytech A</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech B -->
+                  <!-- product2：Senrytech B -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                        alt="Senrytech B 中厚板光纤激光切割机"
+                        alt="Senrytech B Medium and thick plate fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5861,14 +5857,14 @@
                       <p>Senrytech B</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech B Plus -->
+                  <!-- product3：Senrytech B Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                        alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                        alt="Senrytech B Plus Side cutting fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5877,14 +5873,14 @@
                       <p>Senrytech B Plus</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B Pro -->
+                  <!-- product4：Senrytech B Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                        alt="Senrytech B Pro 2.0GAccelerated fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5893,14 +5889,14 @@
                       <p>Senrytech B Pro</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B ProMax -->
+                  <!-- product5：Senrytech B ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                        alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                        alt="Senrytech B ProMax European standard fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5915,7 +5911,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                        alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                        alt="Senrytech B Ultra Fully automatic loading and unloading fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5930,7 +5926,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
-                        alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                        alt="Senrytech C Automatic feeding aluminum coil fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5945,7 +5941,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech C Pro 铝卷光纤激光切割机"
+                        alt="Senrytech C Pro Aluminum coil fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5960,7 +5956,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
-                        alt="Senrytech G 12000W-60000W光纤激光切割机"
+                        alt="Senrytech G 12000W-60000WFiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5975,7 +5971,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
-                        alt="Senrytech M 小型精密光纤激光切割机"
+                        alt="Senrytech M Small precision fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -5990,7 +5986,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
-                        alt="Senrytech S 型钢光纤激光切割机"
+                        alt="Senrytech S Steel fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -6002,18 +5998,18 @@
                 </div>
               </div>
 
-              <!-- 2. 管材切割机内容（默认隐藏） -->
+              <!-- 2. Pipe cutting machine content（Hidden by default） -->
               <div class="content-item" id="tube">
-                <h3>激光管材切割机系列</h3>
+                <h3>Laser pipe cutting machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A2 -->
+                  <!-- product1：Senrytech A2 -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 高性价比管材切割机"
+                        alt="Senrytech A2 Cost-effective pipe cutting machine"
                       />
                     </a>
                     <a
@@ -6022,14 +6018,14 @@
                       <p>Senrytech A2</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech A2 Plus -->
+                  <!-- product2：Senrytech A2 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Plus 高功率电机管材切割机"
+                        alt="Senrytech A2 Plus High power motor pipe cutting machine"
                       />
                     </a>
                     <a
@@ -6038,14 +6034,14 @@
                       <p>Senrytech A2 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech A2 Ultra -->
+                  <!-- product3：Senrytech A2 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                        alt="Senrytech A2 Ultra Double chuck pipe cutting machine"
                       />
                     </a>
                     <a
@@ -6054,14 +6050,14 @@
                       <p>Senrytech A2 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B3 Plus -->
+                  <!-- product4：Senrytech B3 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Plus 三卡盘管材切割机"
+                        alt="Senrytech B3 Plus Three chuck pipe cutting machine"
                       />
                     </a>
                     <a
@@ -6070,14 +6066,14 @@
                       <p>Senrytech B3 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B3 Ultra -->
+                  <!-- product5：Senrytech B3 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                        alt="Senrytech B3 Ultra Three-chuck side-mounted pipe cutting machine"
                       />
                     </a>
                     <a
@@ -6086,14 +6082,14 @@
                       <p>Senrytech B3 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品6：Senrytech C4 Ultra -->
+                  <!-- product6：Senrytech C4 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                        alt="Senrytech C4 Ultra Four-Chuck Pipe Cutting Machine"
                       />
                     </a>
                     <a
@@ -6105,18 +6101,18 @@
                 </div>
               </div>
 
-              <!-- 3. 板管一体机内容（默认隐藏） -->
+              <!-- 3. Contents of plate and tube integrated machine（Hidden by default） -->
               <div class="content-item" id="board-tube">
-                <h3>激光板管一体机系列</h3>
+                <h3>Laser plate and tube all-in-one machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech BT -->
+                  <!-- product1：Senrytech BT -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                        alt="Senrytech BT 高性价比板管一体机"
+                        alt="Senrytech BT Cost-effective plate and tube integrated machine"
                       />
                     </a>
                     <a
@@ -6125,14 +6121,14 @@
                       <p>Senrytech BT</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech BT Pro -->
+                  <!-- product2：Senrytech BT Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Pro 中小批量板管加工设备"
+                        alt="Senrytech BT Pro Small and medium batch plate and tube processing equipment"
                       />
                     </a>
                     <a
@@ -6141,14 +6137,14 @@
                       <p>Senrytech BT Pro</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech BT ProMax -->
+                  <!-- product3：Senrytech BT ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                        alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                        alt="Senrytech BT ProMax Full sheet metal surrounded plate and tube cutting machine"
                       />
                     </a>
                     <a
@@ -6157,14 +6153,14 @@
                       <p>Senrytech BT ProMax</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech BT Ultra -->
+                  <!-- product4：Senrytech BT Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                        alt="Senrytech BT Ultra Fully automatic loading and unloading plate and tube cutting machine"
                       />
                     </a>
                     <a
@@ -6176,18 +6172,18 @@
                 </div>
               </div>
 
-              <!-- 4. 焊接机内容（默认隐藏） -->
+              <!-- 4. Welding machine content（Hidden by default） -->
               <div class="content-item" id="welding">
-                <h3>激光焊接机系列</h3>
+                <h3>Laser welding machine series</h3>
                 <div class="product-list">
-                  <!-- 焊接机：Series A -->
+                  <!-- welding machine：Series A -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a/"
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                        alt="Series A 四合一激光焊接机"
+                        alt="Series A Four-in-one laser welding machine"
                       />
                     </a>
                     <a
@@ -6196,14 +6192,14 @@
                       <p>Series A</p>
                     </a>
                   </div>
-                  <!-- 焊接机：Series A Pro -->
+                  <!-- welding machine：Series A Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                        alt="Series A Pro 1500-3000W激光焊接机"
+                        alt="Series A Pro 1500-3000WLaser welding machine"
                       />
                     </a>
                     <a
@@ -6219,7 +6215,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                        alt="Series A Ultra 大功率激光焊接机"
+                        alt="Series A Ultra High power laser welding machine"
                       />
                     </a>
                     <a
@@ -6235,7 +6231,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                        alt="Robot 4 in 1 四合一焊接设备"
+                        alt="Robot 4 in 1 Four-in-one welding equipment"
                       />
                     </a>
                     <a
@@ -6251,7 +6247,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                        alt="R Workstation 1500-3000W 移动焊接机"
+                        alt="R Workstation 1500-3000W Mobile welding machine"
                       />
                     </a>
                     <a
@@ -6267,7 +6263,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                        alt="R Mobile 协作机器人焊接设备"
+                        alt="R Mobile Collaborative robot welding equipment"
                       />
                     </a>
                     <a
@@ -6279,18 +6275,18 @@
                 </div>
               </div>
 
-              <!-- 5. 清洗内容（默认隐藏） -->
+              <!-- 5. Clean content（Hidden by default） -->
               <div class="content-item" id="cleaning">
-                <h3>激光清洗机系列</h3>
+                <h3>Laser cleaning machine series</h3>
                 <div class="product-list">
-                  <!-- 清洗机：家用 -->
+                  <!-- cleaning machine：Household use -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-cleaning/residential/"
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                        alt="Residential 家用除锈激光清洗机"
+                        alt="Residential Household rust removal laser cleaning machine"
                       />
                     </a>
                     <a
@@ -6322,7 +6318,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                        alt="Industrial 大功率激光清洗机"
+                        alt="Industrial High power laser cleaning machine"
                       />
                     </a>
                     <a
@@ -6334,9 +6330,9 @@
                 </div>
               </div>
 
-              <!-- 6. 打标机内容（默认隐藏） -->
+              <!-- 6. Marking machine content（Hidden by default） -->
               <div class="content-item" id="marking">
-                <h3>激光打标机系列</h3>
+                <h3>Laser marking machine series</h3>
                 <div class="product-list">
                   <div class="product-card">
                     <a
@@ -6344,7 +6340,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                        alt="便携台式激光打标机"
+                        alt="Portable desktop laser marking machine"
                       />
                     </a>
                     <a
@@ -6360,7 +6356,7 @@
                     >
                       <img
                         src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                        alt="台式激光打标机"
+                        alt="Desktop laser marking machine"
                       />
                     </a>
                     <a
@@ -6377,47 +6373,50 @@
       </div>
 
       <a href="https://www.senrytech.com/solutions/" class="nav-link"
-        >选型方案</a
+        >Selection plan</a
       >
 
       <a
         href="https://www.senrytech.com/pitfall-avoidance-guide/"
         class="nav-link"
-        >避坑指南</a
+        >A Guide to Avoiding Pitfalls</a
       >
 
-      <a href="https://www.senrytech.com/news/" class="nav-link">新闻动态</a>
+      <a href="https://www.senrytech.com/news/" class="nav-link">News</a>
 
       <a href="https://www.senrytech.com/about-us/" class="nav-link"
-        >关于我们</a
+        >about Us</a
       >
 
-      <a href="https://www.senrytech.com/join-us/" class="nav-link">加入我们</a>
+      <a href="https://www.senrytech.com/join-us/" class="nav-link">Join us</a>
 
       <a href="https://www.senrytech.com/contact-us/" class="nav-link"
-        >联系我们</a
+        >Contact us</a
       >
 
       <div class="navbar-right">
         <div class="lang-dropdown" id="langDropdown">
-          <!-- 语言按钮 -->
+          <!-- Language button -->
           <button class="btn language-btn">
             <i class="fa fa-globe"></i>
-            <!-- Font Awesome 地球图标 -->
+            <!-- Font Awesome Earth icon -->
           </button>
-          <!-- 展开语言链接 -->
+          <!-- Expand language link -->
           <ul class="lang-dropdown-list">
             <li>
               <a
                 href="https://www.senrytech.com/lang/cn/"
                 lang="zh"
-                class="lang-link active"
-                >中文</a
+                class="lang-link"
+                >Chinese</a
               >
             </li>
             <li>
-              <a href="https://www.senrytech.com/" lang="en" class="lang-link"
-                >英语</a
+              <a
+                href="https://www.senrytech.com/"
+                lang="en"
+                class="lang-link active"
+                >English</a
               >
             </li>
             <li>
@@ -6425,7 +6424,7 @@
                 href="https://www.senrytech.com/lang/de/"
                 lang="de"
                 class="lang-link"
-                >德语</a
+                >German</a
               >
             </li>
             <li>
@@ -6433,7 +6432,7 @@
                 href="https://www.senrytech.com/lang/es/"
                 lang="es"
                 class="lang-link"
-                >西班牙语</a
+                >spanish</a
               >
             </li>
             <li>
@@ -6441,7 +6440,7 @@
                 href="https://www.senrytech.com/lang/fr/"
                 lang="fr"
                 class="lang-link"
-                >法语</a
+                >French</a
               >
             </li>
             <li>
@@ -6449,7 +6448,7 @@
                 href="https://www.senrytech.com/lang/ru/"
                 lang="ru"
                 class="lang-link"
-                >俄语</a
+                >Russian</a
               >
             </li>
             <li>
@@ -6457,60 +6456,60 @@
                 href="https://www.senrytech.com/lang/ar/"
                 lang="ar"
                 class="lang-link"
-                >阿拉伯语</a
+                >Arabic</a
               >
             </li>
           </ul>
         </div>
 
-        <!-- 导航栏询价 -->
+        <!-- Navigation bar inquiry -->
         <a href="https://www.senrytech.com/contact-us" target="_blank">
-          <!-- href填实际跳转地址，target="_blank"可选（新标签页打开） -->
+          <!-- hrefFill in the actual jump address，target="_blank"Optional（New tab opens） -->
           <button class="btn inquiry-btn">
             <i class="fa fa-envelope"></i>
-            <!-- 询价：信封图标 -->
+            <!-- Inquiry：Envelope icon -->
           </button>
         </a>
 
-        <!-- 移动端 菜单展开汉堡 -->
+        <!-- Mobile terminal menu expand burger -->
         <button class="hamburger-btn" id="hamburgerBtn">
           <i class="fa fa-bars"></i>
-          <!-- 核心：用FA汉堡图标替代线条 -->
+          <!-- core：useFABurger icon alternative line -->
         </button>
       </div>
     </nav>
 
-    <!-- 新增：手机移动端的侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
+    <!-- New：Mobile side menu container（Hidden by default，Click on the hamburger on the small screen to expand） -->
     <div class="sidebar-menu" id="sidebarMenu">
-      <!-- 侧边栏头部（LOGO+关闭按钮） -->
+      <!-- Sidebar header（LOGO+close button） -->
       <div class="sidebar-header">
         <div class="sidebar-logo">Senrytech</div>
         <button class="sidebar-close-btn" id="sidebarCloseBtn">×</button>
       </div>
-      <!-- 侧边栏菜单列表 -->
+      <!-- Sidebar menu list -->
       <ul class="sidebar-menu-list">
-        <!-- 首页（无下拉） -->
+        <!-- front page（No drop-down） -->
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/" class="sidebar-menu-link">
-            首页
+            front page
           </a>
         </li>
-        <!-- 产品中心（带下拉子菜单） -->
+        <!-- Product Center（With drop-down submenu） -->
         <li class="sidebar-menu-item has-submenu">
           <div class="sidebar-menu-link submenu-trigger">
-            产品中心
+            Product Center
             <i class="sidebar-arrow fa fa-chevron-down"></i>
-            <!-- 箭头图标 -->
+            <!-- arrow icon -->
           </div>
-          <!-- 产品子菜单（默认隐藏） -->
+          <!-- Product submenu（Hidden by default） -->
           <ul class="sidebar-submenu" id="productSubmenu">
-            <!-- 子菜单项：对应原有分类 -->
+            <!-- submenu item：Corresponds to the original classification -->
             <li class="sidebar-submenu-item" data-target="board">
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/"
                 class="sidebar-submenu-link"
               >
-                板材切割机
+                Plate cutting machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="tube">
@@ -6518,7 +6517,7 @@
                 href="https://www.senrytech.com/products/laser-tube-cutting/"
                 class="sidebar-submenu-link"
               >
-                管材切割机
+                Pipe cutting machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="board-tube">
@@ -6526,7 +6525,7 @@
                 href="https://www.senrytech.com/products/laser-sheet-tube/"
                 class="sidebar-submenu-link"
               >
-                板管一体机
+                Plate and tube integrated machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="welding">
@@ -6534,7 +6533,7 @@
                 href="https://www.senrytech.com/products/laser-welding/"
                 class="sidebar-submenu-link"
               >
-                激光焊接机
+                Laser welding machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="cleaning">
@@ -6542,7 +6541,7 @@
                 href="https://www.senrytech.com/products/laser-cleaning/"
                 class="sidebar-submenu-link"
               >
-                激光清洗机
+                Laser cleaning machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="marking">
@@ -6550,153 +6549,157 @@
                 href="https://www.senrytech.com/products/laser-marking/"
                 class="sidebar-submenu-link"
               >
-                激光打标机
+                Laser marking machine
               </a>
             </li>
           </ul>
-          <!-- 产品子菜单内容（三列小图，默认隐藏） -->
+          <!-- Product submenu content（Three columns of thumbnails，Hidden by default） -->
           <div class="sidebar-submenu-content" id="productSubmenuContent">
-            <!-- 板材切割机内容（默认显示） -->
+            <!-- Plate cutting machine content（Displayed by default） -->
             <div class="submenu-content-item active" id="boardContent">
-              <h4 class="submenu-content-title">激光板材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser sheet cutting machine series
+              </h4>
               <div class="submenu-product-list">
-                <!-- 产品1：Senrytech A -->
+                <!-- product1：Senrytech A -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
                       src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                      alt="Senrytech A 经济款光纤激光切割机"
+                      alt="Senrytech A Economical fiber laser cutting machine"
                     />
                     <p>Senrytech A</p>
                   </a>
                 </div>
-                <!-- 产品2：Senrytech B -->
+                <!-- product2：Senrytech B -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                      alt="Senrytech B 中厚板光纤激光切割机"
+                      alt="Senrytech B Medium and thick plate fiber laser cutting machine"
                     />
                     <p>Senrytech B</p>
                   </a>
                 </div>
-                <!-- 产品3：Senrytech B Plus -->
+                <!-- product3：Senrytech B Plus -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                      alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                      alt="Senrytech B Plus Side cutting fiber laser cutting machine"
                     />
                     <p>Senrytech B Plus</p>
                   </a>
                 </div>
-                <!-- 产品4：Senrytech B Pro -->
+                <!-- product4：Senrytech B Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                      alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                      alt="Senrytech B Pro 2.0GAccelerated fiber laser cutting machine"
                     />
                     <p>Senrytech B Pro</p>
                   </a>
                 </div>
-                <!-- 产品5：Senrytech B ProMax -->
+                <!-- product5：Senrytech B ProMax -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                      alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                      alt="Senrytech B ProMax European standard fiber laser cutting machine"
                     />
                     <p>Senrytech B ProMax</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech B Ultra -->
+                <!-- product6：Senrytech B Ultra -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                      alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                      alt="Senrytech B Ultra Fully automatic loading and unloading fiber laser cutting machine"
                     />
                     <p>Senrytech B Ultra</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C -->
+                <!-- product6：Senrytech C -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
-                      alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                      alt="Senrytech C Automatic feeding aluminum coil fiber laser cutting machine"
                     />
                     <p>Senrytech C</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C Pro -->
+                <!-- product6：Senrytech C Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c-pro/banner/senrytech-c-laser-coil-sheet-cutting-2.png"
-                      alt="Senrytech C Pro 铝卷光纤激光切割机"
+                      alt="Senrytech C Pro Aluminum coil fiber laser cutting machine"
                     />
                     <p>Senrytech C Pro</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech G -->
+                <!-- product6：Senrytech G -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-2.png"
-                      alt="Senrytech G 12000W-60000W光纤激光切割机"
+                      alt="Senrytech G 12000W-60000WFiber laser cutting machine"
                     />
                     <p>Senrytech G</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech M -->
+                <!-- product6：Senrytech M -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-2.webp"
-                      alt="Senrytech M 小型精密光纤激光切割机"
+                      alt="Senrytech M Small precision fiber laser cutting machine"
                     />
                     <p>Senrytech M</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech S -->
+                <!-- product6：Senrytech S -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/s/banner/senrytech-s-profile-steel-cutting-2.webp"
-                      alt="Senrytech S 型钢光纤激光切割机"
+                      alt="Senrytech S Steel fiber laser cutting machine"
                     />
                     <p>Senrytech S</p>
                   </a>
                 </div>
               </div>
             </div>
-            <!-- 管材切割机内容（默认隐藏） -->
+            <!-- Pipe cutting machine content（Hidden by default） -->
             <div class="submenu-content-item" id="tubeContent">
-              <h4 class="submenu-content-title">激光管材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser pipe cutting machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -6704,7 +6707,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 高性价比管材切割机"
+                      alt="Senrytech A2 Cost-effective pipe cutting machine"
                     />
                     <p>Senrytech A2</p>
                   </a>
@@ -6715,7 +6718,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Plus 高功率电机管材切割机"
+                      alt="Senrytech A2 Plus High power motor pipe cutting machine"
                     />
                     <p>Senrytech A2 Plus</p>
                   </a>
@@ -6726,7 +6729,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                      alt="Senrytech A2 Ultra Double chuck pipe cutting machine"
                     />
                     <p>Senrytech A2 Ultra</p>
                   </a>
@@ -6737,7 +6740,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Plus 三卡盘管材切割机"
+                      alt="Senrytech B3 Plus Three chuck pipe cutting machine"
                     />
                     <p>Senrytech B3 Plus</p>
                   </a>
@@ -6748,7 +6751,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                      alt="Senrytech B3 Ultra Three-chuck side-mounted pipe cutting machine"
                     />
                     <p>Senrytech B3 Ultra</p>
                   </a>
@@ -6759,7 +6762,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                      alt="Senrytech C4 Ultra Four-Chuck Pipe Cutting Machine"
                     />
                     <p>Senrytech C4 Ultra</p>
                   </a>
@@ -6768,7 +6771,9 @@
             </div>
 
             <div class="submenu-content-item" id="board-tubeContent">
-              <h4 class="submenu-content-title">板管一体机系列</h4>
+              <h4 class="submenu-content-title">
+                Plate and tube integrated machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -6776,7 +6781,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                      alt="Senrytech BT 高性价比板管一体机"
+                      alt="Senrytech BT Cost-effective plate and tube integrated machine"
                     />
                     <p>Senrytech BT</p>
                   </a>
@@ -6788,7 +6793,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Pro 中小批量板管加工设备"
+                      alt="Senrytech BT Pro Small and medium batch plate and tube processing equipment"
                     />
                     <p>Senrytech BT Pro</p>
                   </a>
@@ -6800,7 +6805,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                      alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                      alt="Senrytech BT ProMax Full sheet metal surrounded plate and tube cutting machine"
                     />
                     <p>Senrytech BT ProMax</p>
                   </a>
@@ -6812,7 +6817,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                      alt="Senrytech BT Ultra Fully automatic loading and unloading plate and tube cutting machine"
                     />
                     <p>Senrytech BT Ultra</p>
                   </a>
@@ -6821,7 +6826,9 @@
             </div>
 
             <div class="submenu-content-item" id="weldingContent">
-              <h4 class="submenu-content-title">激光焊接机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser welding machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -6829,7 +6836,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                      alt="Series A 四合一激光焊接机"
+                      alt="Series A Four-in-one laser welding machine"
                     />
                     <p>Series A</p>
                   </a>
@@ -6841,7 +6848,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                      alt="Series A Pro 1500-3000W激光焊接机"
+                      alt="Series A Pro 1500-3000WLaser welding machine"
                     />
                     <p>Series A Pro</p>
                   </a>
@@ -6853,7 +6860,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                      alt="Series A Ultra 大功率激光焊接机"
+                      alt="Series A Ultra High power laser welding machine"
                     />
                     <p>Series A Ultra</p>
                   </a>
@@ -6865,7 +6872,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                      alt="Robot 4 in 1 四合一焊接设备"
+                      alt="Robot 4 in 1 Four-in-one welding equipment"
                     />
                     <p>R 4in1</p>
                   </a>
@@ -6877,7 +6884,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                      alt="R Workstation 1500-3000W 移动焊接机"
+                      alt="R Workstation 1500-3000W Mobile welding machine"
                     />
                     <p>R Workstation</p>
                   </a>
@@ -6889,7 +6896,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                      alt="R Mobile 协作机器人焊接设备"
+                      alt="R Mobile Collaborative robot welding equipment"
                     />
                     <p>R Mobile</p>
                   </a>
@@ -6898,7 +6905,9 @@
             </div>
 
             <div class="submenu-content-item" id="cleaningContent">
-              <h4 class="submenu-content-title">激光清洗机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser cleaning machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -6906,7 +6915,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                      alt="Residential 家用除锈激光清洗机"
+                      alt="Residential Household rust removal laser cleaning machine"
                     />
                     <p>Residential</p>
                   </a>
@@ -6918,7 +6927,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
-                      alt="Commercial 家用除锈激光清洗机"
+                      alt="Commercial Household rust removal laser cleaning machine"
                     />
                     <p>Commercial</p>
                   </a>
@@ -6930,7 +6939,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                      alt="Industrial 大功率激光清洗机"
+                      alt="Industrial High power laser cleaning machine"
                     />
                     <p>Industrial</p>
                   </a>
@@ -6939,7 +6948,9 @@
             </div>
 
             <div class="submenu-content-item" id="markingContent">
-              <h4 class="submenu-content-title">激光打标机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser marking machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -6947,7 +6958,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                      alt="便携台式激光打标机"
+                      alt="Portable desktop laser marking machine"
                     />
                     <p>Series P</p>
                   </a>
@@ -6959,7 +6970,7 @@
                   >
                     <img
                       src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                      alt="台式激光打标机"
+                      alt="Desktop laser marking machine"
                     />
                     <p>Series D</p>
                   </a>
@@ -6968,13 +6979,13 @@
             </div>
           </div>
         </li>
-        <!-- 其他菜单项（无下拉） -->
+        <!-- Other menu items（No drop-down） -->
         <li class="sidebar-menu-item">
           <a
             href="https://www.senrytech.com/solutions/"
             class="sidebar-menu-link"
           >
-            选型方案
+            Selection plan
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -6982,12 +6993,12 @@
             href="https://www.senrytech.com/pitfall-avoidance-guide/"
             class="sidebar-menu-link"
           >
-            避坑指南
+            A Guide to Avoiding Pitfalls
           </a>
         </li>
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
-            新闻动态
+            News
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -6995,7 +7006,7 @@
             href="https://www.senrytech.com/about-us/"
             class="sidebar-menu-link"
           >
-            关于我们
+            about Us
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -7003,155 +7014,176 @@
             href="https://www.senrytech.com/contact-us/"
             class="sidebar-menu-link"
           >
-            联系我们
+            Contact us
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
+    <!-- New：Side menu mask layer（Click on the blank space to close the menu，Hidden by default） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 三，代码 BANNER -->
+    <!-- three，code BANNER -->
     <div class="banner-carousel" id="home">
-      <!-- 轮播图片 -->
+      <!-- carousel images -->
       <div class="carousel-slides">
-        <!-- 第1张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
+        <!-- No.1openBANNERpicture：learn more → point to「Senrytech A Details page」（Example of using in-page anchors） -->
         <div class="carousel-slide active">
           <img
             src="./img/index/banner/senrytech-laser-machine-banner-1-final.webp"
-            alt="Senrytech光纤激光机"
+            alt="SenrytechFiber laser machine"
           />
           <div class="banner-text active">
-            <h1>Senrytech · 工业激光切割与焊接设备</h1>
-            <h2>拒绝品牌溢价，专注服务与风险管控</h2>
-            <p>严选配置 | 全程质检 | 全球交付 | 售后保障</p>
+            <h1>Senrytech · Industrial laser cutting and welding equipment</h1>
+            <h2>Reject brand premium，Focus on service and risk control</h2>
+            <p>
+              Carefully selected configuration | Full quality inspection |
+              Global delivery | After-sale guarantee
+            </p>
             <div class="banner-btns">
-              <!-- 关键修改：button → a，添加href，保留所有样式类 -->
+              <!-- critical modifications：button → a，Add tohref，Keep all style classes -->
               <a
                 href="https://www.senrytech.com/solutions/"
                 class="banner-btn learn-more-btn"
-                >查看配置清单</a
+                >View configuration list</a
               >
               <a
                 href="https://www.senrytech.com/contact-us/"
                 class="banner-btn buy-btn"
-                >获取精准报价</a
+                >Get an accurate quote</a
               >
             </div>
           </div>
         </div>
 
-        <!-- 第2张BANNER图：了解更多 → 指向「Senrytech A 详情页」（示例用页面内锚点） -->
+        <!-- No.2openBANNERpicture：learn more → point to「Senrytech A Details page」（Example of using in-page anchors） -->
         <div class="carousel-slide">
           <img
             src="./img/index/banner/senrytech-laser-machine-banner-2-final.webp"
-            alt="Senrytech A 小型企业光纤激光切割机"
+            alt="Senrytech A Fiber Laser Cutting Machine for Small Business"
           />
           <div class="banner-text">
-            <h1>激光板材切割机</h1>
-            <h2>Senrytech A · 精准切割 · 高效赋能</h2>
-            <p>CE/ISO 9001认证 | 原厂核心配件 | 24小时技术支持</p>
+            <h1>Laser sheet cutting machine</h1>
+            <h2>Senrytech A · Precise cutting · Efficient empowerment</h2>
+            <p>
+              CE/ISO 9001Certification | Original core accessories | 24Hourly
+              technical support
+            </p>
             <div class="banner-btns">
-              <!-- 关键修改：button → a，添加href，保留所有样式类 -->
+              <!-- critical modifications：button → a，Add tohref，Keep all style classes -->
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                 class="banner-btn learn-more-btn"
-                >了解更多</a
+                >learn more</a
               >
               <a
                 href="https://www.senrytech.com/contact-us/"
                 class="banner-btn buy-btn"
-                >免费咨询</a
+                >Free consultation</a
               >
             </div>
           </div>
         </div>
 
-        <!-- 第3张BANNER图：了解更多 → 指向「Senrytech B ProMax 详情页」（示例用外部页面URL） -->
+        <!-- No.3openBANNERpicture：learn more → point to「Senrytech B ProMax Details page」（Example external pageURL） -->
         <div class="carousel-slide">
           <img
             src="./img/index/banner/senrytech-laser-machine-banner-3-final.webp"
-            alt="Senrytech B Ultra 全自动上下料激光切割机"
+            alt="Senrytech B Ultra Fully automatic loading and unloading laser cutting machine"
           />
           <div class="banner-text">
-            <h1>激光管材切割机</h1>
-            <h2>Senrytech A2 Ultra · 全新侧置结构 · 大口径管材夹持</h2>
-            <p>两卡盘夹持 | 最高550mm管径 | 最长上料12米</p>
+            <h1>Laser pipe cutting machine</h1>
+            <h2>
+              Senrytech A2 Ultra · New side structure · Large diameter pipe
+              clamping
+            </h2>
+            <p>
+              Two chuck clamping | Highest550mmPipe diameter | longest
+              feeding12rice
+            </p>
             <div class="banner-btns">
-              <!-- 跳转至具体产品页面（替换为你的实际页面路径） -->
+              <!-- Jump to specific product page（Replace with your actual page path） -->
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                 class="banner-btn learn-more-btn"
-                >了解更多</a
+                >learn more</a
               >
               <a
                 href="https://www.senrytech.com/contact-us/"
                 class="banner-btn buy-btn"
-                >免费咨询</a
+                >Free consultation</a
               >
             </div>
           </div>
         </div>
 
-        <!-- 第4张BANNER图：了解更多 → 指向「手持激光焊接机 详情页」（示例用锚点） -->
+        <!-- No.4openBANNERpicture：learn more → point to「Handheld laser welding machine Details page」（Example using anchor points） -->
         <div class="carousel-slide">
           <img
             src="./img/index/banner/senrytech-laser-machine-banner-4-final.webp"
-            alt="Senrytech A 手持入门级激光焊接机"
+            alt="Senrytech A Handheld entry-level laser welding machine"
           />
           <div class="banner-text">
-            <h1>激光焊接机</h1>
-            <h2>Senrytech A · 4in1 · 手持式</h2>
-            <p>10 分钟上手 | 无需持证焊工 | 比传统焊接效率提升 3-5 倍</p>
+            <h1>Laser welding machine</h1>
+            <h2>Senrytech A · 4in1 · handheld</h2>
+            <p>
+              10 Get started in minutes | No certified welder required | More
+              efficient than traditional welding 3-5 times
+            </p>
             <div class="banner-btns">
-              <!-- 跳转至页面内产品板块的锚点 -->
+              <!-- Jump to the anchor point of the product section on the page -->
               <a
                 href="https://www.senrytech.com/products/laser-welding/series-a"
                 class="banner-btn learn-more-btn"
-                >了解更多</a
+                >learn more</a
               >
               <a
                 href="https://www.senrytech.com/contact-us/"
                 class="banner-btn buy-btn"
-                >免费咨询</a
+                >Free consultation</a
               >
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 轮播手动切换按钮 -->
+      <!-- Carousel manual switch button -->
       <button class="carousel-control prev-btn">←</button>
       <button class="carousel-control next-btn">→</button>
 
-      <!-- 新增：圆点指示器容器（居中显示在轮播底部） -->
+      <!-- New：dot indicator container（Centered at the bottom of the carousel） -->
       <div class="dot-container"></div>
     </div>
 
-    <!-- 五，代码，全系列产品-->
+    <!-- five，code，Full range of products-->
     <div class="product-center-section" style="position: relative">
       <div class="product-container">
         <h2 class="product-main-title">
-          全系列激光设备 | 精准匹配您的生产需求
+          Full range of laser equipment | Accurately match your production needs
         </h2>
         <div class="product-subtitle-bar">
           <div class="subtitle-active-bg"></div>
-          <div class="subtitle-item active" data-tab="board">板材切割机</div>
-          <div class="subtitle-item" data-tab="tube">管材切割机</div>
-          <div class="subtitle-item" data-tab="board-tube">板管一体机</div>
-          <div class="subtitle-item" data-tab="weld">激光焊接机</div>
-          <div class="subtitle-item" data-tab="clean">激光清洗机</div>
-          <div class="subtitle-item" data-tab="mark">激光打标机</div>
+          <div class="subtitle-item active" data-tab="board">
+            Plate cutting machine
+          </div>
+          <div class="subtitle-item" data-tab="tube">Pipe cutting machine</div>
+          <div class="subtitle-item" data-tab="board-tube">
+            Plate and tube integrated machine
+          </div>
+          <div class="subtitle-item" data-tab="weld">Laser welding machine</div>
+          <div class="subtitle-item" data-tab="clean">
+            Laser cleaning machine
+          </div>
+          <div class="subtitle-item" data-tab="mark">Laser marking machine</div>
         </div>
 
-        <!-- 1. 修改：滚动容器新增定位，用于箭头贴边 -->
+        <!-- 1. Revise：New positioning for scrolling container，Used for arrow welting -->
         <div class="product-scroll-wrap" style="position: relative">
-          <!-- 2. 修改：给产品容器加ID，方便JS获取 -->
+          <!-- 2. Revise：Add to product containerID，convenientJSget -->
           <div class="product-display" id="productScroll">
-            <!-- 原有所有product-item卡片保持不变，无需修改 -->
+            <!-- All originalproduct-itemThe card remains the same，No modification required -->
             <div class="product-item" data-tab="board">
-              <!-- 唯一修改：<a>标签属性写在开始标签内，注释写在标签外 -->
+              <!-- only modification：<a>Tag attributes are written in the opening tag，Comments are written outside the label -->
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                 class="product-img-link"
@@ -7159,10 +7191,13 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                  alt="3000W 以下光纤激光切割机"
+                  alt="3000W The following fiber laser cutting machines"
                 />
               </a>
-              <p>Senrytech A<br />经济实惠 · 稳定可靠 · 新手首选</p>
+              <p>
+                Senrytech A<br />Affordable · Stable and reliable · First choice
+                for newbies
+              </p>
               <div class="info-btn"></div>
             </div>
 
@@ -7174,12 +7209,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                  alt="12000W光纤激光切割机"
+                  alt="12000WFiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech B<br />床身更重 · 可切厚板 · 性能更强</p>
+              <p>
+                Senrytech B<br />The bed is heavier · Can cut thick plates ·
+                Better performance
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
 
             <div class="product-item" data-tab="board">
@@ -7190,12 +7228,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                  alt="省空间光纤激光切割机"
+                  alt="Space-saving fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech B Plus<br />侧开包围 · 占地更小 · 使用方便</p>
+              <p>
+                Senrytech B Plus<br />Side opening surround · Smaller footprint
+                · Easy to use
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7205,12 +7246,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                  alt="批量加工光纤激光切割机"
+                  alt="Batch processing fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech B Pro<br />上料超快 · 产量更高 · 省人工</p>
+              <p>
+                Senrytech B Pro<br />Super fast loading · Higher yield · Save
+                labor
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7220,12 +7264,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                  alt="安全加工光纤激光切割机"
+                  alt="Safe processing of fiber laser cutting machines"
                 />
               </a>
-              <p>Senrytech B ProMax<br />全包围罩 · 欧洲合规 · 安全防护</p>
+              <p>
+                Senrytech B ProMax<br />full coverage · European Compliance ·
+                Security protection
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7235,12 +7282,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                  alt="自动化工厂光纤激光切割机"
+                  alt="Automated factory fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech B Ultra<br />全自动料 · 无人生产 · 顶配效率</p>
+              <p>
+                Senrytech B Ultra<br />Fully automatic material · No one
+                produces · Top configuration efficiency
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7250,12 +7300,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
-                  alt="铝板光纤激光切割机"
+                  alt="Aluminum plate fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech C<br />铝卷切割 · 连续送料 · 薄铝专用</p>
+              <p>
+                Senrytech C<br />Aluminum coil cutting · Continuous feeding ·
+                Special for thin aluminum
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7265,12 +7318,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
-                  alt="防护型铝卷光纤激光切割机"
+                  alt="Protective aluminum coil fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech C Pro<br />铝卷专用 · 全包围罩 · 安全整洁</p>
+              <p>
+                Senrytech C Pro<br />Special for aluminum coils · full coverage
+                · Safe and tidy
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7280,12 +7336,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
-                  alt="长幅光纤激光切割机"
+                  alt="Long fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech G<br />超长地轨 · 超大功率 · 重型切割</p>
+              <p>
+                Senrytech G<br />Extra long ground rail · Super power · Heavy
+                cutting
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7295,12 +7354,15 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
-                  alt="高精度迷你激光切割机"
+                  alt="High precision mini laser cutting machine"
                 />
               </a>
-              <p>Senrytech M<br />迷你机身 · 超高精度 · 精密加工</p>
+              <p>
+                Senrytech M<br />mini body · Ultra high precision · Precision
+                machining
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
             <div class="product-item" data-tab="board">
               <a
@@ -7310,15 +7372,18 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
-                  alt="槽钢光纤激光切割机"
+                  alt="Channel steel fiber laser cutting machine"
                 />
               </a>
-              <p>Senrytech S<br />专切型钢 · 长度够长 · 型材专用</p>
+              <p>
+                Senrytech S<br />Specially cut steel · long enough · Special for
+                profiles
+              </p>
               <div class="info-btn"></div>
-              <!-- 卡片内圆形箭头（关键元素） -->
+              <!-- circular arrow inside card（key elements） -->
             </div>
 
-            <!-- 2. 管材分类：7个卡片（默认隐藏） -->
+            <!-- 2. Pipe classification：7cards（Hidden by default） -->
             <div class="product-item hidden" data-tab="tube">
               <a
                 href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
@@ -7327,10 +7392,13 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                  alt="小口径管材切割机"
+                  alt="Small diameter pipe cutting machine"
                 />
               </a>
-              <p>Senrytech A2<br />经济款 · 双卡盘 · 小口径专用</p>
+              <p>
+                Senrytech A2<br />Economy model · Double chuck · Special for
+                small diameter
+              </p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7340,10 +7408,13 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                  alt="高功率电机管材切割机"
+                  alt="High power motor pipe cutting machine"
                 />
               </a>
-              <p>Senrytech A2 Plus<br />床身加固 · 高功率 · 中厚管高效</p>
+              <p>
+                Senrytech A2 Plus<br />Lathe bed reinforcement · High power ·
+                Medium thick pipe and high efficiency
+              </p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7353,10 +7424,13 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="侧挂式管材切割机"
+                  alt="Side-mounted pipe cutting machine"
                 />
               </a>
-              <p>Senrytech A2 Ultra<br />侧挂结构 · 双卡盘 · 特殊场景适配</p>
+              <p>
+                Senrytech A2 Ultra<br />Side hanging structure · Double chuck ·
+                Special scene adaptation
+              </p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7366,10 +7440,13 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                  alt="三卡盘加持管材切割机"
+                  alt="Three chuck supported pipe cutting machine"
                 />
               </a>
-              <p>Senrytech B3 Plus<br />三卡盘 · 正装升级 · 批量加工优选</p>
+              <p>
+                Senrytech B3 Plus<br />Three chucks · Formal upgrade · Best for
+                batch processing
+              </p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7379,10 +7456,13 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="创新结构管材切割机"
+                  alt="Innovative structural pipe cutting machine"
                 />
               </a>
-              <p>Senrytech B3 Ultra<br />侧挂创新 · 三卡盘 · 高效兼特殊</p>
+              <p>
+                Senrytech B3 Ultra<br />Side-mounted innovation · Three chucks ·
+                Efficient and special
+              </p>
             </div>
             <div class="product-item hidden" data-tab="tube">
               <a
@@ -7392,13 +7472,16 @@
               >
                 <img
                   src="./img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="高阶定制化管材切割机"
+                  alt="High-end customized pipe cutting machine"
                 />
               </a>
-              <p>Senrytech C4 Ultra<br />四卡盘 · 高阶定制 · 大批次量产</p>
+              <p>
+                Senrytech C4 Ultra<br />four chucks · High-end customization ·
+                Mass production
+              </p>
             </div>
 
-            <!-- 3. 板管一体分类：4个卡片（默认隐藏） -->
+            <!-- 3. Plate and tube integrated classification：4cards（Hidden by default） -->
             <div class="product-item hidden" data-tab="board-tube">
               <a
                 href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
@@ -7407,10 +7490,13 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                  alt="亲民价板管切割机"
+                  alt="Affordable plate and tube cutting machine"
                 />
               </a>
-              <p>Senrytech BT<br />高性价比 · 板管兼顾 · 入门首选</p>
+              <p>
+                Senrytech BT<br />High cost performance · Taking into account
+                both plate and tube · First choice for entry
+              </p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7420,10 +7506,13 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                  alt="高效生产板管一体机"
+                  alt="Efficient production of plate and tube integrated machine"
                 />
               </a>
-              <p>Senrytech BT Pro<br />交换平台 · 高效流转 · 减少停机</p>
+              <p>
+                Senrytech BT Pro<br />exchange platform · Efficient circulation
+                · Reduce downtime
+              </p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7433,10 +7522,13 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                  alt="全钣金包围板管切割机"
+                  alt="Full sheet metal surrounded plate and tube cutting machine"
                 />
               </a>
-              <p>Senrytech BT Promax<br />钣金包围 · 防尘降噪 · 安全防护</p>
+              <p>
+                Senrytech BT Promax<br />Sheet metal surround · Dustproof and
+                noise reduction · Security protection
+              </p>
             </div>
             <div class="product-item hidden" data-tab="board-tube">
               <a
@@ -7446,15 +7538,16 @@
               >
                 <img
                   src="./img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                  alt="智能板管一体加工机"
+                  alt="Intelligent plate and tube integrated processing machine"
                 />
               </a>
               <p>
-                Senrytech BT Ultra<br />全自动上下料 · 24h 无人化 · 产能拉满
+                Senrytech BT Ultra<br />Fully automatic loading and unloading ·
+                24h Unmanned · Production capacity is full
               </p>
             </div>
 
-            <!-- 4. 焊接分类：3个卡片（默认隐藏） -->
+            <!-- 4. Welding classification：3cards（Hidden by default） -->
             <div class="product-item hidden" data-tab="weld">
               <a
                 href="https://www.senrytech.com/products/laser-welding/series-a/"
@@ -7463,10 +7556,13 @@
               >
                 <img
                   src="./img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                  alt="焊接切割清渣除锈一体机"
+                  alt="Welding, cutting, slag and rust removal all-in-one machine"
                 />
               </a>
-              <p>Senrytech A<br />入门首选 · 四合一 · 轻便易携</p>
+              <p>
+                Senrytech A<br />First choice for entry · 4-in-1 · Light and
+                easy to carry
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7477,10 +7573,13 @@
               >
                 <img
                   src="./img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                  alt="双丝送丝激光焊接机"
+                  alt="Double wire feed laser welding machine"
                 />
               </a>
-              <p>Senrytech A Pro<br />三档功率 · 分体散热 · 8mm 厚板焊</p>
+              <p>
+                Senrytech A Pro<br />Third gear power · Split cooling · 8mm
+                Thick plate welding
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7491,11 +7590,12 @@
               >
                 <img
                   src="./img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                  alt="大功率激光焊接机"
+                  alt="High power laser welding machine"
                 />
               </a>
               <p>
-                Senrytech A Ultra<br />6000W 超高功率 · 四丝送丝 · 16mm 厚板焊
+                Senrytech A Ultra<br />6000W Ultra high power · Four wire
+                feeding · 16mm Thick plate welding
               </p>
             </div>
 
@@ -7507,10 +7607,13 @@
               >
                 <img
                   src="./img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                  alt="SUP23T 专业枪头激光焊接机"
+                  alt="SUP23T Professional gun head laser welding machine"
                 />
               </a>
-              <p>Senrytech R 4in1<br />入门首选 · 专业枪头 · 四合一</p>
+              <p>
+                Senrytech R 4in1<br />First choice for entry · Professional gun
+                tip · 4-in-1
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="weld">
@@ -7521,11 +7624,12 @@
               >
                 <img
                   src="./img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                  alt="灵活部署激光焊接机"
+                  alt="Flexible deployment of laser welding machines"
                 />
               </a>
               <p>
-                Senrytech R workstation<br />移动工作站 · 功率可调 · 柔性生产
+                Senrytech R workstation<br />mobile workstation · Power
+                adjustable · Flexible production
               </p>
             </div>
 
@@ -7537,13 +7641,16 @@
               >
                 <img
                   src="./img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                  alt="1500-3000W 机器人焊接机"
+                  alt="1500-3000W Robot welding machine"
                 />
               </a>
-              <p>Senrytech R mobile<br />协作机器人 · 24h 无人 · 批量稳焊</p>
+              <p>
+                Senrytech R mobile<br />collaborative robot · 24h unmanned ·
+                Batch stable welding
+              </p>
             </div>
 
-            <!-- 5. 清洗分类：5个卡片（默认隐藏） -->
+            <!-- 5. Cleaning classification：5cards（Hidden by default） -->
             <div class="product-item hidden" data-tab="clean">
               <a
                 href="https://www.senrytech.com/products/laser-cleaning/residential/"
@@ -7552,10 +7659,13 @@
               >
                 <img
                   src="./img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                  alt="小型除锈激光清洗机"
+                  alt="Small rust removal laser cleaning machine"
                 />
               </a>
-              <p>Senrytech Residential<br />背包式 · 家用 · 双电机遥控</p>
+              <p>
+                Senrytech Residential<br />Backpack · Household use · Dual motor
+                remote control
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -7566,10 +7676,13 @@
               >
                 <img
                   src="./img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
-                  alt="多功率商用清洗设备"
+                  alt="Multi-power commercial cleaning equipment"
                 />
               </a>
-              <p>Senrytech Commercial<br />拉杆箱式 · 商用便携 · 多功率</p>
+              <p>
+                Senrytech Commercial<br />Trolley box type · Commercial and
+                portable · multi power
+              </p>
             </div>
 
             <div class="product-item hidden" data-tab="clean">
@@ -7580,13 +7693,16 @@
               >
                 <img
                   src="./img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-1.webp"
-                  alt="工业级激光清洗设备"
+                  alt="Industrial grade laser cleaning equipment"
                 />
               </a>
-              <p>Senrytech Industrial<br />工业级 · 大功率 · 高效稳定</p>
+              <p>
+                Senrytech Industrial<br />Industrial grade · high power ·
+                Efficient and stable
+              </p>
             </div>
 
-            <!-- 6. 打标分类：2个卡片（默认隐藏） -->
+            <!-- 6. Marking classification：2cards（Hidden by default） -->
             <div class="product-item hidden" data-tab="mark">
               <a
                 href="https://www.senrytech.com/products/laser-marking/series-p/"
@@ -7595,10 +7711,13 @@
               >
                 <img
                   src="./img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                  alt="便携台式打标设备"
+                  alt="Portable desktop marking equipment"
                 />
               </a>
-              <p>Series P<br />便携台式 · 高精准 · 多材质适配</p>
+              <p>
+                Series P<br />Portable desktop · High precision · Multi-material
+                adaptation
+              </p>
             </div>
             <div class="product-item hidden" data-tab="mark">
               <a
@@ -7608,128 +7727,178 @@
               >
                 <img
                   src="./img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                  alt="高效稳定打标设备"
+                  alt="Efficient and stable marking equipment"
                 />
               </a>
-              <p>Series D<br />台式设计 · 高精准 · 多材质适配</p>
+              <p>
+                Series D<br />desktop design · High precision · Multi-material
+                adaptation
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 滚动箭头：样式类名 .product-nav-btn 已在 CSS 中定义 -->
+      <!-- scroll arrows：Style class name .product-nav-btn Already in CSS in definition -->
       <button class="product-nav-btn prev-btn" id="productPrevBtn" disabled>
         &lt;
-        <!-- 左侧箭头符号（小于号） -->
+        <!-- left arrow symbol（less than sign） -->
       </button>
       <button class="product-nav-btn next-btn" id="productNextBtn">
         &gt;
-        <!-- 右侧箭头符号（大于号） -->
+        <!-- right arrow symbol（Greater than sign） -->
       </button>
     </div>
 
-    <!-- 六，代码，购买激光设备避坑指南-->
+    <!-- six，code，Guide to avoiding pitfalls when purchasing laser equipment-->
     <section class="avoid-pitfalls" id="pitfalls">
       <div class="container">
         <div class="section-title">
-          <h2>激光设备采购避坑指南 | 让您的每一分投资都物超所值</h2>
-          <p>精准规避选型、操作、生产中的核心问题，降低试错成本</p>
+          <h2>
+            Laser Equipment Purchasing Pitfall Guide | Make every penny of your
+            investment worthwhile
+          </h2>
+          <p>
+            Accurate avoidance selection、operate、Core issues in
+            production，Reduce trial and error costs
+          </p>
         </div>
         <div class="pitfalls-list">
-          <!-- 避坑点1 -->
+          <!-- Avoid pitfalls1 -->
           <div class="pitfalls-card">
             <div class="card-icon">01</div>
             <div class="card-content">
-              <h3>低价噱头，核心部件激光器功率虚标+偷梁换柱</h3>
+              <h3>
+                low price gimmick，Core component laser power virtual
+                standard+Substituting one thing for another
+              </h3>
               <p>
-                低价吸引采购，将原装激光器替换为杂牌仿品或高仿型号，甚至通过型号混淆虚标功率；更有无良商家将原装激光器替换为二手翻新件牟利！
+                Low prices attract purchases，Replace the original laser with an
+                off-brand imitation or high-imitation model，Even confusing
+                virtual power by model number；There are even unscrupulous
+                merchants who replace original lasers with second-hand
+                refurbished parts to make profits.！
               </p>
             </div>
           </div>
-          <!-- 避坑点2 -->
+          <!-- Avoid pitfalls2 -->
           <div class="pitfalls-card">
             <div class="card-icon">02</div>
             <div class="card-content">
-              <h3>花高价但是买到低配激光头，切割头如何选择适合自己的？</h3>
+              <h3>
+                Pay a high price but get a low-end laser head，How to choose the
+                cutting head that suits you？
+              </h3>
               <p>
-                一是用二手翻新切割头冒充原厂全新配件；二是以高价低配的切割头以次充好。
+                One is to use second-hand refurbished cutting heads to pass them
+                off as original brand new accessories.；The second is to use
+                high-priced but low-end cutting heads as shoddy ones.。
               </p>
             </div>
           </div>
-          <!-- 避坑点3 -->
+          <!-- Avoid pitfalls3 -->
           <div class="pitfalls-card">
             <div class="card-icon">03</div>
             <div class="card-content">
-              <h3>整机质保 vs 核心部件质保？</h3>
-              <p>很多厂家只保整机，不保核心易坏部件，一定要写进合同。</p>
+              <h3>Whole machine warranty vs Core component warranty？</h3>
+              <p>
+                Many manufacturers only guarantee the complete machine，No
+                guarantee of core fragile parts，It must be written into the
+                contract。
+              </p>
             </div>
           </div>
-          <!-- 避坑点4 -->
+          <!-- Avoid pitfalls4 -->
           <div class="pitfalls-card">
             <div class="card-icon">04</div>
             <div class="card-content">
-              <h3>简易包装 ≠ 省钱</h3>
-              <p>机床几吨～十几吨，地面松软、楼板承重不足会塌陷。</p>
+              <h3>Simple packaging ≠ save money</h3>
+              <p>
+                How many tons does the machine tool have?～More than ten
+                tons，The ground is soft、The floor slab will collapse due to
+                insufficient load-bearing capacity.。
+              </p>
             </div>
           </div>
         </div>
-        <!-- 案例查看更多按钮 -->
+        <!-- Case view more button -->
         <div class="pitfalls-more-btn">
           <a
             href="https://www.senrytech.com/pitfall-avoidance-guide/"
             class="apple-btn"
-            >查看更多</a
+            >View more</a
           >
         </div>
       </div>
     </section>
 
-    <!-- 四，行业解决方案 -->
+    <!-- Four，Industry solutions -->
     <section class="industry-solution" id="solution">
       <div class="container">
         <div class="section-title">
-          <h2>行业定制化解决方案 | 驱动产业升级</h2>
+          <h2>Industry customized solutions | Drive industrial upgrading</h2>
           <p>
-            Senrytech 深度服务各行业，提供从设备选型到产线集成的一站式解决方案
+            Senrytech Serving various industries in depth，Provide one-stop
+            solutions from equipment selection to production line integration
           </p>
         </div>
         <div class="solution-list">
-          <!-- 行业1：金属板材加工 -->
+          <!-- industry1：Sheet metal processing -->
           <div class="solution-card">
             <div class="card-content">
-              <h3>金属板材加工</h3>
+              <h3>Sheet metal processing</h3>
               <p>
-                针对碳钢、不锈钢、铝合金等板材的切割、拼焊与成型需求，Senrytech
-                提供从设备选型、工艺调试到产线规划的全流程服务。我们的激光设备可实现无变形、高精度加工，焊缝美观、切割无毛刺，大幅提升产品质量与生产效率，助力钣金企业实现批量生产与柔性制造。
+                For carbon steel、Stainless steel、Cutting of aluminum alloy and
+                other plates、Tailor welding and forming needs，Senrytech
+                Provide slave device selection、Full-process services from
+                process debugging to production line planning。Our laser
+                equipment is distortion-free、High precision
+                machining，Beautiful welds、Cutting without burrs，Significantly
+                improve product quality and production efficiency，Helping sheet
+                metal companies achieve mass production and flexible
+                manufacturing。
               </p>
             </div>
           </div>
-          <!-- 行业2：工业机器生产 -->
+          <!-- industry2：Industrial machine production -->
           <div class="solution-card">
             <div class="card-content">
-              <h3>工业机器生产</h3>
+              <h3>Industrial machine production</h3>
               <p>
-                适配机床、自动化设备机架及核心零部件的精密焊接与切割需求。Senrytech
-                的激光设备凭借高稳定性与高精度，可满足工业设备对结构强度、加工精度的严苛要求，帮助企业提升产品可靠性，降低返工率。
+                Adapted to machine tools、Precision welding and cutting
+                requirements for automation equipment racks and core
+                components。Senrytech Laser equipment relies on high stability
+                and high precision，Can meet the structural strength
+                requirements of industrial equipment、Stringent requirements for
+                machining accuracy，Help companies improve product
+                reliability，Reduce rework rate。
               </p>
             </div>
           </div>
-          <!-- 行业3：发动机/变速器装配 -->
+          <!-- industry3：engine/Transmission assembly -->
           <div class="solution-card">
             <div class="card-content">
-              <h3>发动机/变速器装配</h3>
+              <h3>engine/Transmission assembly</h3>
               <p>
-                为汽车发动机、变速器等核心部件提供自动化精密焊接方案。我们的设备可实现齿轮、壳体、法兰等关键部位的无耗材、高效率焊接，满足汽车零部件量产标准，确保良品率与生产稳定性。
+                for car engines、Provide automated precision welding solutions
+                for core components such as transmissions。Our equipment enables
+                gear、case、No consumables for key parts such as flanges、High
+                efficiency welding，Meet automotive parts mass production
+                standards，Ensure yield and production stability。
               </p>
             </div>
           </div>
-          <!-- 行业4：新能源电池生产 -->
+          <!-- industry4：New energy battery production -->
           <div class="solution-card">
             <div class="card-content">
-              <h3>新能源电池生产</h3>
+              <h3>New energy battery production</h3>
               <p>
-                专注于软包 / 方形电池极耳、壳体及模组的低温焊接工艺。Senrytech
-                的激光设备可实现无热损伤、高精度焊接，完美适配新能源电池产线全自动化需求，助力企业提升产能与产品安全性。
+                Focus on soft bags / Square battery tabs、Low-temperature
+                welding process for shells and modules。Senrytech Laser
+                equipment enables no thermal damage、High precision
+                welding，Perfectly adapted to the full automation needs of new
+                energy battery production lines，Helping companies improve
+                production capacity and product safety。
               </p>
             </div>
           </div>
@@ -7737,160 +7906,209 @@
       </div>
     </section>
 
-    <!-- 七，代码，海外落地案例 -->
+    <!-- seven，code，Overseas landing cases -->
     <section class="overseas-cases" id="cases">
       <div class="container">
         <div class="section-title">
-          <h2>Senrytech 全球项目交付案例</h2>
+          <h2>Senrytech Global project delivery cases</h2>
           <p>
-            我们深度参与全球产业升级，为海外客户提供从方案设计到项目交付的全流程服务
+            We are deeply involved in global industrial upgrading，Provide
+            overseas customers with full-process services from solution design
+            to project delivery
           </p>
         </div>
         <div class="cases-list">
-          <!-- 案例1 -->
+          <!-- Case1 -->
           <div class="cases-card">
             <div class="card-img">
               <img
                 src="./img/news/senrytech-after-sales-260115.webp"
-                alt="Senrytech 印度尼西亚机器培训安装"
+                alt="Senrytech Indonesia machine training and installation"
               />
             </div>
             <div class="card-content">
-              <div class="case-tag">印度尼西亚 · 钣金加工</div>
-              <h3>森睿激光赴印度尼西亚开展设备售后安装与技术培训</h3>
+              <div class="case-tag">Indonesia · Sheet metal processing</div>
+              <h3>
+                Senrui Laser went to Indonesia to carry out equipment
+                after-sales installation and technical training
+              </h3>
               <p>
-                为进一步完善海外服务体系，保障印度尼西亚客户激光设备稳定高效运行...
+                In order to further improve the overseas service system，Ensure
+                stable and efficient operation of laser equipment for Indonesian
+                customers...
               </p>
             </div>
           </div>
-          <!-- 案例2 -->
+          <!-- Case2 -->
           <div class="cases-card">
             <div class="card-img">
               <img
                 src="./img/news/senrytech-mexico-after-sales-240906.webp"
-                alt="Senrytech墨西哥  ·  汽车零部件"
+                alt="SenrytechMexico  ·  Auto parts"
               />
             </div>
             <div class="card-content">
-              <div class="case-tag">墨西哥 · 汽车零部件</div>
-              <h3>汽车发动机零部件自动化切割与焊接</h3>
+              <div class="case-tag">Mexico · Auto parts</div>
+              <h3>Automated cutting and welding of automobile engine parts</h3>
               <p>
-                精准对接当地钣金加工、汽车零部件制造等行业客户需求，严格遵循墨西哥工业安全规范与设备运行标准...
+                Accurate docking with local sheet metal processing、Customer
+                needs in industries such as automotive parts
+                manufacturing，Strictly follow Mexican industrial safety
+                regulations and equipment operation standards...
               </p>
             </div>
           </div>
-          <!-- 案例3 -->
+          <!-- Case3 -->
           <div class="cases-card">
             <div class="card-img">
               <img
                 src="./img/news/senrytech-after-sales-2 (3)-italy-231025.webp"
-                alt="Senrytech意大利  ·  不锈钢制品行业"
+                alt="SenrytechItaly  ·  Stainless steel products industry"
               />
             </div>
             <div class="card-content">
-              <div class="case-tag">意大利 · 不锈钢制品行业</div>
-              <h3>森睿激光赴意大利开展Senrytech系列设备安装调试与技术培训</h3>
+              <div class="case-tag">
+                Italy · Stainless steel products industry
+              </div>
+              <h3>
+                Senrui Laser went to Italy for developmentSenrytechSeries
+                equipment installation, commissioning and technical training
+              </h3>
               <p>
-                精准对接客户不锈钢制品生产需求，保障设备稳定高效投产，助力客户提升生产效率与产品品质...
+                Accurately meet customers’ stainless steel product production
+                needs，Ensure equipment is put into production stably and
+                efficiently，Help customers improve production efficiency and
+                product quality...
               </p>
             </div>
           </div>
         </div>
-        <!-- 案例查看更多按钮 -->
+        <!-- Case view more button -->
         <div class="case-more-btn">
           <a href="https://www.senrytech.com/news/" class="apple-btn"
-            >查看更多</a
+            >View more</a
           >
         </div>
       </div>
     </section>
 
-    <!-- 七，代码，售后服务 -->
+    <!-- seven，code，After-sales service -->
     <div class="benefit-section" style="position: relative">
       <div class="benefit-container">
         <div class="section-title">
           <h2 class="benefit-main-title">
-            Senrytech 全生命周期服务 | 让您的设备高效运行无忧
+            Senrytech Full life cycle service | Keep your equipment running
+            efficiently and worry-free
           </h2>
-          <p>从安装调试到终身维护，我们全程为您保驾护航</p>
+          <p>
+            From installation and commissioning to lifelong maintenance，We will
+            escort you every step of the way
+          </p>
         </div>
-        <!-- 板块主题文字（保留，仅删除原全局的benefit-intro） -->
+        <!-- Section theme text（reserve，Only delete the original globalbenefit-intro） -->
 
-        <!-- 图片卡片容器 -->
+        <!-- Picture card container -->
         <div class="benefit-scroll-wrap" style="position: relative">
           <div class="benefit-card-container" id="benefitScroll">
-            <!-- 优势卡片1：内置三段文字（左上角+左对齐） -->
+            <!-- Advantage card1：Built-in three paragraphs of text（upper left corner+left aligned） -->
             <div class="benefit-card">
               <img
                 src="./img/index/after-sales/home-intallation.webp"
-                alt="Senrytech专业安装服务"
+                alt="SenrytechProfessional installation services"
               />
-              <!-- 新增：卡片内三段文字容器（左上角定位） -->
+              <!-- New：Three text containers within the card（Upper left corner positioning） -->
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">灵活上门安装</p>
-                <h3 class="benefit-heading">想上门装设备？按需安排更省心</h3>
+                <p class="benefit-subtitle">
+                  Flexible door-to-door installation
+                </p>
+                <h3 class="benefit-heading">
+                  Want to install equipment at your doorstep?？It’s more
+                  worry-free to arrange on demand
+                </h3>
                 <p class="benefit-desc">
-                  提供专业安装人员，费用透明，按需定制安装流程，不用零散找技工。
+                  Provide professional installers，Transparent fees，Customized
+                  installation process on demand，No need to find technicians
+                  sporadically。
                 </p>
               </div>
             </div>
 
-            <!-- 优势卡片2：同结构复制 -->
+            <!-- Advantage card2：Same structure copy -->
             <div class="benefit-card">
               <img
                 src="./img/index/after-sales/on-site-repair.webp"
-                alt="Senrytech上门维修费用透明"
+                alt="SenrytechTransparent home repair costs"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">按需上门维修</p>
-                <h3 class="benefit-heading">设备出问题？上门维修可按需约</h3>
+                <p class="benefit-subtitle">
+                  On-demand door-to-door maintenance
+                </p>
+                <h3 class="benefit-heading">
+                  Equipment problem？Home repairs can be made on demand
+                </h3>
                 <p class="benefit-desc">
-                  明码标价的上门维修，快速协调适配机型的技术人员，维修资源更匹配。
+                  Home repairs with clearly marked prices，Quickly coordinate
+                  technicians to adapt models，Maintenance resources are better
+                  matched。
                 </p>
               </div>
             </div>
 
-            <!-- 优势卡片3：同结构复制 -->
+            <!-- Advantage card3：Same structure copy -->
             <div class="benefit-card">
               <img
                 src="./img/index/after-sales/quality-guarantee.webp"
-                alt="Senrytech购机享受质保"
+                alt="SenrytechPurchase with warranty"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">明确期质保</p>
-                <h3 class="benefit-heading">购机享质保，非人为问题放心修</h3>
+                <p class="benefit-subtitle">Definite warranty period</p>
+                <h3 class="benefit-heading">
+                  Warranty upon purchase，Don’t worry about repairing non-human
+                  problems
+                </h3>
                 <p class="benefit-desc">
-                  1 年质保覆盖 “非人为、非不当使用” 故障，减少意外成本。
+                  1 Annual warranty coverage “inhuman、Not improper use”
+                  Fault，Reduce unexpected costs。
                 </p>
               </div>
             </div>
 
-            <!-- 优势卡片4：同结构复制 -->
+            <!-- Advantage card4：Same structure copy -->
             <div class="benefit-card">
               <img
                 src="./img/index/after-sales/24-hours.webp"
-                alt="Senrytech光纤激光切割机售后保障"
+                alt="SenrytechFiber laser cutting machine after-sales guarantee"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">24 小时售后咨询</p>
-                <h3 class="benefit-heading">设备有疑问？全天都能找得到人</h3>
+                <p class="benefit-subtitle">
+                  24 Hourly after-sales consultation
+                </p>
+                <h3 class="benefit-heading">
+                  There is a problem with the device？People can be found
+                  throughout the day
+                </h3>
                 <p class="benefit-desc">
-                  24 小时在线响应操作、调试等疑问，不用等工作日解决。
+                  24 Hours of online response operations、Debugging and other
+                  questions，No need to wait for working days to resolve。
                 </p>
               </div>
             </div>
 
-            <!-- 优势卡片5：同结构复制 -->
+            <!-- Advantage card5：Same structure copy -->
             <div class="benefit-card">
               <img
                 src="./img/index/after-sales/fast-reply.webp"
-                alt="Senrytech购买机器快速响应"
+                alt="SenrytechQuick response when buying a machine"
               />
               <div class="benefit-card-text">
-                <p class="benefit-subtitle">实时咨询响应</p>
-                <h3 class="benefit-heading">有任何需求？秒级响应不拖沓</h3>
+                <p class="benefit-subtitle">Real-time consultation response</p>
+                <h3 class="benefit-heading">
+                  Have any needs？Second-level response without delay
+                </h3>
                 <p class="benefit-desc">
-                  咨询实时回，暂无法解决也同步跟进节奏，不用长时间等回复。
+                  Consultation real-time response，If we can't solve it yet, we
+                  will follow up the rhythm simultaneously.，No need to wait
+                  long for a reply。
                 </p>
               </div>
             </div>
@@ -7898,532 +8116,581 @@
         </div>
       </div>
 
-      <!-- 滚动箭头（与第3板块一致） -->
+      <!-- scroll arrows（and No.3Sectors consistent） -->
       <button class="benefit-nav-btn prev-btn" id="benefitPrevBtn" disabled>
         &lt;
       </button>
       <button class="benefit-nav-btn next-btn" id="benefitNextBtn">&gt;</button>
     </div>
 
-    <!-- 八，代码 切割样品抢先看 -->
+    <!-- eight，code Preview of cutting samples -->
     <div class="sample-section" style="position: relative">
       <div class="sample-container">
-        <!-- 主标题（保持不变） -->
-        <h2 class="sample-main-title">切割样品展示 | 直观感受加工效果</h2>
+        <!-- main title（remain unchanged） -->
+        <h2 class="sample-main-title">
+          Cutting sample display | Intuitively feel the processing effect
+        </h2>
 
-        <!-- 副标题栏（保持不变） -->
+        <!-- subtitle bar（remain unchanged） -->
         <div class="sample-subtitle-bar">
           <div class="sample-subtitle-active-bg"></div>
           <div class="sample-subtitle-item active" data-material="carbon">
-            碳钢
+            carbon steel
           </div>
           <div class="sample-subtitle-item" data-material="stainless">
-            不锈钢
+            Stainless steel
           </div>
           <div class="sample-subtitle-item" data-material="aluminum">
-            铝合金
+            Aluminum alloy
           </div>
-          <div class="sample-subtitle-item" data-material="brass">黄铜</div>
+          <div class="sample-subtitle-item" data-material="brass">brass</div>
         </div>
 
-        <!-- 核心修改：左侧+右侧整合为【统一大卡片】 -->
+        <!-- Core modifications：left side+The right side is integrated into【unified big card】 -->
         <div class="sample-big-card">
-          <!-- 左侧：厚度选择区（保留原逻辑，放入大卡片内） -->
+          <!-- left side：Thickness selection area（Keep original logic，put in big card） -->
           <div class="sample-thickness-container">
             <div class="sample-thickness-list" id="thicknessList">
-              <!-- 厚度项由JS动态生成 -->
+              <!-- The thickness term consists ofJSDynamically generated -->
             </div>
           </div>
 
-          <!-- 右侧：样品图片区（保留原逻辑，放入大卡片内） -->
+          <!-- right side：Sample picture area（Keep original logic，put in big card） -->
           <div class="sample-image-container">
-            <!-- 图片容器（单个图片，随厚度切换） -->
+            <!-- image container（single image，Switch with thickness） -->
             <div class="sample-image-wrap" id="sampleImageWrap">
-              <!-- 图片由JS动态生成（预留链接位置） -->
+              <!-- Picture byJSDynamically generated（Reserve link space） -->
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 九，代码 核心优势一眼明-->
+    <!-- Nine，code Core advantages are clear at a glance-->
     <div class="advantage-section" style="position: relative">
       <div class="advantage-container">
         <div class="section-title">
-          <h2>Senrytech 核心优势 | 为什么选择我们</h2>
-          <p>我们制造的设备，具备行业领先的核心技术，为您的生产赋能</p>
+          <h2>Senrytech Core advantages | Why choose us</h2>
+          <p>
+            Equipment we manufacture，Possess industry-leading core
+            technologies，Empower your production
+          </p>
         </div>
-        <!-- 主标题：与板块5样式完全一致 -->
+        <!-- main title：with plate5The style is exactly the same -->
         <h2 class="advantage-main-title"></h2>
 
-        <!-- 优势卡片滚动容器（类名避免重复） -->
+        <!-- Advantage Card Scroll Container（Avoid duplication of class names） -->
         <div
           class="advantage-scroll-wrap"
           id="advantageScroll"
           style="position: relative"
         >
           <div class="advantage-card-container">
-            <!-- 第 1 个卡片：已添加 data-* 属性，预留内容位置 -->
+            <!-- No. 1 cards：Added data-* property，Reserve content location -->
             <div
               class="advantage-card"
-              data-modal-title="自动回切技术"
+              data-modal-title="Automatic switchback technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    集成切割质量检测与路径自动修正系统，通过视觉传感器或激光轮廓仪实时检测切割后的切口质量，当检测到未切断、毛刺超标等缺陷时，自动记录缺陷位置与范围。系统根据缺陷类型调用对应的回切参数库，生成局部回切路径（通常为原路径的1.2-1.5倍覆盖范围），驱动切割头返回缺陷区域，按优化后的功率与速度参数进行二次切割。回切完成后再次检测，确保缺陷消除，形成“切割-检测-回切-复检”的闭环控制。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Integrated cutting quality detection and automatic path correction system，Real-time detection of cut quality after cutting via vision sensor or laser profiler，When it is detected that it is not cut off、When there are defects such as excessive burrs，Automatically record defect location and range。The system calls the corresponding switchback parameter library according to the defect type.，Generate local cutback paths（Usually the original path1.2-1.5times coverage），Drive the cutting head back to the defective area，Carry out secondary cutting according to optimized power and speed parameters。Test again after the switchback is completed，Ensure defects are eliminated，form“cutting-Detection-Cutback-Re-examination”closed loop control。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头像有“透视眼”，能躲开工作台上的夹具和废料，再也不会撞坏设备或刮花工件；遇到障碍物自动绕路，不用人工暂停调整，加工过程更省心；避让时动作平稳，不会因为突然变向影响切割质量，特别适合多工件混排加工。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Laser avatar has“X-ray eyes”，Able to avoid jigs and scraps on the workbench，Never knock your equipment or scratch your workpiece again；Automatically detour when encountering obstacles，No need to manually pause and adjust，The processing process is more worry-free；Move smoothly when avoiding，Cutting quality will not be affected by sudden changes in direction，Especially suitable for mixed processing of multiple workpieces。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/automatic-back-cutting.png"
-                alt="Senrytech薄板加工光纤激光切割机自动回切技术"
+                alt="SenrytechThin plate processing fiber laser cutting machine automatic back-cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">自动回切技术</div>
+              <div class="advantage-card-subtitle">
+                Automatic switchback technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="自动排样技术"
+              data-modal-title="Automatic nesting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    基于智能优化算法（遗传算法与模拟退火算法结合）与材料利用率计算模型，将多个工件图形导入排样系统后，系统自动分析各工件的轮廓特征与尺寸参数，按预设的排样规则（如紧密排列、旋转优化、留白控制）进行图形嵌套。通过多轮迭代计算，生成材料利用率最高的排样方案，同时兼顾切割路径最短化。排样完成后自动输出排样图与加工清单，支持手动微调排样位置，确认后直接导入CNC系统生成切割程序，实现排样与加工的无缝衔接。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Based on intelligent optimization algorithm（Combination of genetic algorithm and simulated annealing algorithm）and material utilization calculation model，After importing multiple workpiece graphics into the layout system，The system automatically analyzes the contour features and dimensional parameters of each workpiece，According to preset layout rules（such as closely arranged、Rotation optimization、White space control）Nest graphics。Calculated through multiple rounds of iterations，Generate a layout plan with the highest material utilization rate，Taking into account the shortest cutting path at the same time。After the layout is completed, the layout drawing and processing list are automatically output.，Support manual fine-tuning of nesting position，Import directly after confirmationCNCSystem generates cutting program，Achieve seamless connection between layout and processing。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>把要切的工件图导进去，系统自动帮你把工件摆得最省料，材料利用率能提15%-20%；不用人工一点点排图，几十种工件几分钟就能排好；排完直接就能开始切割，不用再转格式、调路径，特别方便。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Import the drawing of the workpiece to be cut into，The system automatically helps you arrange the workpiece in the most cost-effective manner，Material utilization can improve15%-20%；No need to manually arrange the drawings bit by bit，Dozens of workpieces can be arranged in a few minutes；You can start cutting immediately after arranging，No need to convert format、adjust path，Very convenient。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/automatic-nesting.png"
-                alt="Senrytech加固床身光纤激光切割机自动排样技术"
+                alt="SenrytechAutomatic layout technology of reinforced bed fiber laser cutting machine"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">自动排样技术</div>
+              <div class="advantage-card-subtitle">
+                Automatic nesting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="避让切割技术"
+              data-modal-title="avoidance cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    融合机器视觉识别与空间坐标校准技术，通过高清工业相机与激光位移传感器实时采集工作台及工件布局数据，构建三维空间模型。基于碰撞检测算法（如分离轴定理）预判切割路径上的障碍物（夹具、已加工工件、废料等），结合动态路径重规划模块，在不影响加工精度的前提下生成绕行轨迹，同时通过伺服系统的急停缓冲控制确保避让过程平稳无冲击。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Integrating machine vision recognition and spatial coordinate calibration technology，Real-time collection of workbench and workpiece layout data through high-definition industrial cameras and laser displacement sensors，Build a 3D space model。Based on collision detection algorithm（Separating axis theorem）Anticipate obstacles on the cutting path（fixture、Processed workpiece、Scrap etc.），Combined with dynamic path re-planning module，Generate detour trajectories without affecting machining accuracy，At the same time, the emergency stop buffer control of the servo system ensures that the avoidance process is smooth and impact-free.。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>把要切的工件图导进去，系统自动帮你把工件摆得最省料，材料利用率能提15%-20%；不用人工一点点排图，几十种工件几分钟就能排好；排完直接就能开始切割，不用再转格式、调路径，特别方便。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Import the drawing of the workpiece to be cut into，The system automatically helps you arrange the workpiece in the most cost-effective manner，Material utilization can improve15%-20%；No need to manually arrange the drawings bit by bit，Dozens of workpieces can be arranged in a few minutes；You can start cutting immediately after arranging，No need to convert format、adjust path，Very convenient。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/avoid-cutting-interference.png"
-                alt="Senrytech中型企业光纤激光切割机避让切割技术"
+                alt="SenrytechFiber laser cutting machine avoidance cutting technology for medium-sized enterprises"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">避让切割技术</div>
+              <div class="advantage-card-subtitle">
+                avoidance cutting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="坡口切割技术"
+              data-modal-title="Bevel cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    采用多轴联动切割头（通常为3轴或5轴）与坡口角度参数化控制模块，通过CAD系统预设坡口角度（0°-60°可调）、坡面宽度等参数，结合激光切割头的姿态调整机构（旋转、倾斜），在切割过程中实时改变切割头与工件表面的夹角。利用动态聚焦系统补偿因切割头倾斜导致的光斑位置偏移，确保坡口表面的激光能量密度均匀，同时通过速度与功率的协同调节，保证坡口坡面的平整度与角度精度。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Adopt multi-axis linkage cutting head（Usually3axis or5axis）Parametric control module with bevel angle，passCADSystem preset bevel angle（0°-60°Adjustable）、Slope width and other parameters，Combined with the attitude adjustment mechanism of the laser cutting head（rotate、tilt），Change the angle between the cutting head and the workpiece surface in real time during the cutting process。Use the dynamic focus system to compensate for the spot position deviation caused by the tilt of the cutting head，Ensure uniform laser energy density on the groove surface，At the same time, through the coordinated regulation of speed and power，Ensure the flatness and angle accuracy of the groove and slope。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不用先切直边再单独磨坡口，一次就能切出符合焊接要求的斜面；坡口角度想调多少就调多少，不管是V型、U型还是复合型坡口都能做；坡面光滑平整，焊接时熔合更好，不用额外修磨，焊接效率和质量都提升不少。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>No need to cut the straight edge first and then grind the bevel separately，Bevels that meet welding requirements can be cut in one go；You can adjust the bevel angle as much as you want.，No matter it isVtype、UBoth type and compound grooves can be made；Smooth and flat slope，Better fusion when welding，No additional grinding required，Welding efficiency and quality have been greatly improved。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/bevel-cutting.png"
-                alt="Senrytech正装管材切割机坡口切割技术"
+                alt="SenrytechFormal pipe cutting machine bevel cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">坡口切割技术</div>
+              <div class="advantage-card-subtitle">
+                Bevel cutting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="圆盘寻中技术"
+              data-modal-title="Disc centering technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-      针对圆盘类工件的中心定位需求，采用三点式激光传感定位与圆拟合算法，通过三组周向均匀分布的激光位移传感器，分别检测圆盘工件的外圆表面坐标。将采集到的三个坐标点代入圆方程拟合模型，计算出圆盘的圆心坐标与半径偏差，与切割路径的基准圆心进行比对，生成X、Y轴方向的补偿值。CNC系统根据补偿值自动调整工作台位置，确保切割路径中心与圆盘实际中心重合，定位精度≤±0.015mm。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+      Aiming at the center positioning requirements of disc workpieces，Using three-point laser sensing positioning and circle fitting algorithm，Through three groups of laser displacement sensors evenly distributed around the circumference，Detect the outer surface coordinates of the disc workpiece respectively。Substitute the collected three coordinate points into the circle equation fitting model，Calculate the center coordinates and radius deviation of the disk，Compare with the reference circle center of the cutting path，generateX、YCompensation value in axis direction。CNCThe system automatically adjusts the position of the workbench based on the compensation value，Make sure the center of the cutting path coincides with the actual center of the disc，Positioning accuracy≤±0.015mm。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>圆盘工件随便放，传感器扫三下就知道圆心在哪，自动对齐切割；切出来的圆盘孔位、偏心结构特别精准，组装时能完美配合；比传统的卡盘定位快得多，适合大批量圆盘加工。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>The disc workpiece can be placed casually，Scan the sensor three times to know where the center of the circle is.，Automatically align cuts；Cut out disc holes、The eccentric structure is particularly precise，Fits perfectly when assembled；Much faster than traditional chuck positioning，Suitable for large-volume disc processing。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/disc-centering.png"
-                alt="Senrytech 10秒交换上料光纤激光切割机圆盘寻中技术技术"
+                alt="Senrytech 10Second exchange loading fiber laser cutting machine disc centering technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">圆盘寻中技术技术</div>
+              <div class="advantage-card-subtitle">
+                Disc centering technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="双Y切割技术"
+              data-modal-title="pairYcutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    采用双Y轴独立驱动结构与协同控制系统，两台切割头分别搭载于独立的Y轴导轨上，由各自的伺服电机驱动，共享X轴与Z轴运动机构。通过CNC系统的多轴联动控制模块，实现两台切割头的同步作业（切割相同工件）或异步作业（切割不同工件），同时支持路径冲突检测与动态避让功能。结合分区加工策略，将大幅面板材划分为两个区域，两台切割头分别负责对应区域加工，提升加工覆盖面与效率。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Adopt doubleYAxis independent drive structure and collaborative control system，The two cutting heads are mounted on independentYon shaft guide，Driven by respective servo motors，sharedXAxis andZAxis motion mechanism。passCNCSystem’s multi-axis linkage control module，Realize synchronous operation of two cutting heads（Cutting the same workpiece）or asynchronous job（Cutting different workpieces），Supports path conflict detection and dynamic avoidance functions at the same time。Combined with partitioning processing strategy，Divide large-format panels into two areas，Two cutting heads are responsible for processing corresponding areas.，Improve processing coverage and efficiency。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>一台设备相当于两台用，两个激光头能同时切相同的工件，效率直接翻倍；也能各自切不同的活儿，适合小批量多品种加工；大幅面板材不用来回移动，两个头分区切，又快又稳，还能减少设备占地面积。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>One device is equivalent to two，Two laser heads can cut the same workpiece at the same time，Efficiency directly doubled；They can also do different jobs each，Suitable for small batch and multi-variety processing；Large-format panels do not need to be moved back and forth，Two head partitions cut，Fast and stable，It can also reduce the equipment footprint。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/double-y-cutting.png"
-                alt="Senrytech双上料台激光切割机双Y切割技术"
+                alt="SenrytechDouble loading table laser cutting machine doubleYcutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">双Y切割技术</div>
+              <div class="advantage-card-subtitle">pairYcutting technology</div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="包络线路技术"
+              data-modal-title="envelope line technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-    基于先进路径规划算法与激光切割运动控制体系的深度融合，通过CAD/CAM系统导入工件图形数据后，利用轮廓提取算法完成加工区域特征识别（孔位、轮廓边缘、复杂型腔等），结合拓扑排序与路径优化算法（遗传算法、贪心算法等）将离散加工特征整合为连续包络轨迹。通过CNC系统与伺服驱动的实时协同，实现路径平滑过渡与速度自适应调节，配合激光功率与切割速度动态匹配模型，在保证±0.01mm轨迹贴合度误差的前提下，优化加工效率与质量。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+    Based on the deep integration of advanced path planning algorithm and laser cutting motion control system，passCAD/CAMAfter the system imports the workpiece graphic data，Use contour extraction algorithm to complete processing area feature identification（Hole position、contour edge、Complex cavity, etc.），Combining topological sorting and path optimization algorithms（genetic algorithm、Greedy algorithm, etc.）Integrate discrete machining features into continuous envelope trajectories。passCNCReal-time collaboration between system and servo drive，Achieve smooth path transition and speed adaptive adjustment，Dynamic matching model of laser power and cutting speed，under guarantee±0.01mmUnder the premise of trajectory fit error，Optimize processing efficiency and quality。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头不再跑冤枉路，沿最优路线连续作业，批量加工效率至少提30%；工件边缘光滑无毛刺、不发黑，省掉后续打磨人工；厚板薄板、密集孔或不规则轮廓都能切得精准，不歪不变形；路径紧凑省材料，设备少启停更省电、损耗低，又快又好又省钱。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Laser heads no longer take the wrong path，Continuous operation along the optimal route，Batch processing efficiency is at least improved30%；The edge of the workpiece is smooth and burr-free、Does not turn black，Save subsequent polishing labor；thick plate thin plate、Dense holes or irregular contours can be cut accurately，Not crooked or deformed；Compact path saves materials，Less equipment starts and stops, saving energy、Low loss，Fast, good and save money。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/envelope-line.png"
-                alt="Senrytech高速上料激光切割设备包络线路技术"
+                alt="SenrytechHigh-speed feeding laser cutting equipment envelope circuit technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">包络线路技术</div>
+              <div class="advantage-card-subtitle">
+                envelope line technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="飞行切割技术"
+              data-modal-title="Flying cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-        基于高动态响应伺服驱动系统与前瞻控制算法，在切割过程中，当切割头完成一个工件的切割并跳转至下一个工件时，工作台与切割头保持高速运动状态（不停止），通过CNC系统的前瞻预判模块提前计算跳转路径的加速度与减速度。利用运动轨迹平滑过渡算法（如贝塞尔曲线插值）消除运动冲击，同时在飞行过程中完成激光功率的瞬时启停与参数切换，实现工件间的无停顿连续切割。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+        Based on high dynamic response servo drive system and forward-looking control algorithm，during the cutting process，When the cutting head completes cutting one workpiece and jumps to the next workpiece，The worktable and cutting head maintain high-speed movement（don't stop），passCNCThe system's forward-looking prediction module calculates the acceleration and deceleration of the jump path in advance.。Using motion trajectory smooth transition algorithm（Such as Bezier curve interpolation）Eliminate sports shock，At the same time, the instantaneous start and stop of laser power and parameter switching are completed during flight.，Achieve non-stop continuous cutting between workpieces。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头切完一个工件不用停下来再挪位置，直接“飞”到下一个工件继续切；工作台一直保持高速动，不会因为启停浪费时间，批量加工效率能提40%以上；运动过程平稳，不会因为“飞移”导致切割精度下降。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>After the laser head cuts a workpiece, it does not need to stop and move again.，direct“fly”Continue cutting to the next workpiece；The workbench keeps moving at high speed，No time wasted by starting and stopping，Batch processing efficiency can be improved40%above；Smooth movement，not because“Flying”Resulting in reduced cutting accuracy。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/flying-cutting.png"
-                alt="Senrytech批量管材加工设备飞行切割技术"
+                alt="SenrytechBatch pipe processing equipment flying cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">飞行切割技术</div>
+              <div class="advantage-card-subtitle">
+                Flying cutting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="四点寻边技术"
+              data-modal-title="Four-point edge-finding technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-通过安装在切割头四周的四组高精度激光位移传感器，分别对板材的四个边缘位置进行接触式或非接触式扫描，采集各边缘的坐标数据。利用坐标拟合算法计算出板材的实际中心点、旋转角度与尺寸偏差，与预设的加工坐标系进行比对，生成补偿参数。CNC系统根据补偿参数自动调整切割路径的坐标原点与方向，确保切割路径与板材实际位置完全匹配，适用于板材摆放不规整的场景。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Through four sets of high-precision laser displacement sensors installed around the cutting head，Contact or non-contact scanning of the four edge positions of the plate，Collect coordinate data of each edge。Use coordinate fitting algorithm to calculate the actual center point of the plate、Rotation angle and size deviation，Compare with the preset processing coordinate system，Generate compensation parameters。CNCThe system automatically adjusts the coordinate origin and direction of the cutting path based on the compensation parameters.，Make sure the cutting path exactly matches the actual position of the board，Suitable for scenes where boards are arranged irregularly。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>板材随便放不用摆得特别正，四个传感器扫一下就知道板材歪了多少、中心在哪；自动把切割图“对齐”到板材上，不会因为板材放斜导致切出来的工件偏边或作废；省了人工找正的时间，装夹效率提升一大截。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Plates can be placed casually, no need to place them in a particularly straight position.，Four sensors scan to know how much the board is crooked、where is the center；Automatically cut the picture“Alignment”onto the board，The cut workpiece will not be deflected or scrapped due to the tilt of the plate.；Save time on manual alignment，Clamping efficiency is greatly improved。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/four-point-edge-finding.png"
-                alt="Senrytech节省占地激光切割设备四点寻边技术"
+                alt="SenrytechFour-point edge-finding technology to save space on laser cutting equipment"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">四点寻边技术</div>
+              <div class="advantage-card-subtitle">
+                Four-point edge-finding technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="智能穿孔技术"
+              data-modal-title="Smart perforation technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-基于材料数据库与自适应控制算法，系统通过扫码或人工输入材料信息（类型、厚度、牌号）后，自动从数据库中调取匹配的基础穿孔参数。穿孔过程中，激光传感器实时检测穿孔区域的熔池状态与孔道形成情况，将数据反馈至控制系统，通过模糊控制算法动态调整激光功率、脉冲频率、气流压力等参数，针对不同材料特性（如碳钢的高导热性、不锈钢的高反光性）优化穿孔策略，确保穿孔成功率与质量。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Based on material database and adaptive control algorithm，The system scans codes or manually inputs material information（type、thickness、Trademark）back，Automatically retrieve matching basic perforation parameters from the database。During the piercing process，Laser sensors detect the molten pool status and channel formation in the perforated area in real time，Feed data back to control system，Dynamically adjust laser power through fuzzy control algorithm、Pulse frequency、Air flow pressure and other parameters，For different material properties（High thermal conductivity like carbon steel、High reflectivity of stainless steel）Optimize perforation strategy，Ensure the success rate and quality of perforation。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不管是碳钢、不锈钢还是铝合金，输入材料信息就能自动调好穿孔参数，不用凭经验摸索；穿孔成功率几乎100%，不会因为参数不对导致穿孔失败、材料报废；不同厚度的材料都能精准穿孔，特别省心。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Whether it is carbon steel、Stainless steel or aluminum alloy，Enter the material information to automatically adjust the perforation parameters.，No need to rely on experience；The success rate of perforation is almost100%，Perforation will not fail due to incorrect parameters、Material scrap；Materials of different thicknesses can be accurately punched，Especially worry-free。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-punching.png"
-                alt="Senrytech智能穿孔技术"
+                alt="SenrytechSmart perforation technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">智能穿孔技术</div>
+              <div class="advantage-card-subtitle">
+                Smart perforation technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="智能收刀技术"
+              data-modal-title="Intelligent knife closing technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-在切割路径的终点位置，系统预设收刀参数模型，当切割头接近终点时，通过位置传感器检测距离，激光功率按预设曲线逐步降低，同时切割速度同步减缓。结合熔池凝固控制算法，在收刀瞬间延迟关闭激光，确保切口末端完全熔合，避免出现“尾坑”或未切断情况。收刀后切割头自动抬升并按优化路径返回原点，同时记录收刀位置与质量参数，用于后续工艺优化。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+At the end position of the cutting path，System preset knife closing parameter model，When the cutting head approaches the end point，Detect distance via position sensor，The laser power gradually decreases according to the preset curve，At the same time, the cutting speed slows down simultaneously.。Combined with molten pool solidification control algorithm，Delays turning off the laser at the moment of retracting the knife，Make sure the cut ends are fully fused，avoid“tail pit”Or not cut off。After retracting the knife, the cutting head automatically lifts and returns to the origin according to the optimized path.，Record the knife retracting position and quality parameters at the same time，for subsequent process optimization。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>切割到最后不会留个小坑或切不断，切口末端特别平整；收刀后激光头自动归位，不用人工操作；批量加工时所有工件的收刀质量都一样，特别稳定。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Cutting will not leave a small hole or cut continuously at the end，The end of the cut is particularly flat；The laser head automatically returns to its original position after retracting the knife.，No manual operation required；The closing quality of all workpieces during batch processing is the same，Extremely stable。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-tool-retraction.png"
-                alt="Senrytech智能收刀技术"
+                alt="SenrytechIntelligent knife closing technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">智能收刀技术</div>
+              <div class="advantage-card-subtitle">
+                Intelligent knife closing technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="闪电穿孔技术"
+              data-modal-title="Lightning piercing technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-基于超短脉冲激光技术与能量集中控制算法，采用纳秒级短脉冲激光（脉冲宽度50-200ns），通过激光谐振腔的能量压缩模块将激光能量集中于极小光斑（直径≤0.1mm），形成极高的能量密度（≥10^6 W/cm²）。瞬间击穿材料形成初始孔道后，通过脉冲能量梯度衰减控制，在孔道扩大过程中避免材料过度熔化，同时配合高速气流快速排出熔融物，实现毫秒级（10-50ms）的快速穿孔过程。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Based on ultra-short pulse laser technology and energy concentration control algorithm，Using nanosecond short pulse laser（pulse width50-200ns），The laser energy is concentrated into a very small spot through the energy compression module of the laser resonator.（diameter≤0.1mm），Create extremely high energy density（≥10^6 W/cm²）。After instantaneous breakdown of the material to form an initial channel，Controlled by pulse energy gradient attenuation，Avoid excessive melting of material during pore enlargement，At the same time, it cooperates with high-speed air flow to quickly discharge the molten material.，Achieve millisecond level（10-50ms）quick piercing process。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>穿孔速度快得像闪电，薄钢板穿孔也只要一眨眼的功夫，比传统穿孔省80%以上时间；穿孔时不会在材料表面烧出大熔坑，孔口整齐；批量加工时，光穿孔环节就能省出大量时间，整体效率直接翻倍。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Pierces as fast as lightning，It only takes a blink of an eye to perforate thin steel plates，Less expensive than traditional perforation80%above time；No large molten pits will be burned on the surface of the material when perforating，Neat orifice；During batch processing，The drilling process alone can save a lot of time，Overall efficiency doubled directly。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/lightning-punching.png"
-                alt="Senrytech闪电穿孔技术"
+                alt="SenrytechLightning piercing technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">闪电穿孔技术</div>
+              <div class="advantage-card-subtitle">
+                Lightning piercing technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="一键切断技术"
+              data-modal-title="One-click cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-集成切割路径自动生成与一键触发模块，通过预设的切断工艺参数库（按材料类型、厚度分类），当需要对工件进行切断分离时，操作人员按下专用按钮或在系统界面点击“切断”指令，系统自动识别工件的待切断边缘，生成最短切断路径。同时加载匹配的激光功率、切割速度、气流压力等参数，驱动切割头沿预设路径完成切断作业，切断过程中支持自动检测切断效果，确保完全分离。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Integrated cutting path automatic generation and one-click trigger module，Via preset cutting process parameter library（By material type、Thickness classification），When it is necessary to cut and separate the workpiece，The operator presses the dedicated button or clicks on the system interface“cut off”instruction，The system automatically identifies the edge of the workpiece to be cut off，Generate the shortest cutting path。Simultaneously load matching laser power、cutting speed、Air flow pressure and other parameters，Drive the cutting head along the preset path to complete the cutting operation，Supports automatic detection of cutting effect during cutting process，Ensure complete separation。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不用手动画切断线、调参数，按一下按钮就能自动把工件切下来；切断速度快，切口平整，不用再修磨；适合流水线作业，操作人员不用懂复杂设置，简单培训就能上手。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Hands-free animated line cutting、Adjust parameters，The workpiece can be automatically cut off at the touch of a button；Fast cutting speed，Smooth cut，No more grinding required；Suitable for assembly line operations，Operators do not need to understand complicated settings，You can get started with simple training。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/one-click-cutting.png"
-                alt="Senrytech一键切断技术"
+                alt="SenrytechOne-click cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">一键切断技术</div>
+              <div class="advantage-card-subtitle">
+                One-click cutting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="一笔飞切技术"
+              data-modal-title="One stroke flying cutting technique"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-基于连续轨迹规划与运动控制一体化技术，通过CAD/CAM系统提取工件的所有加工特征（孔、轮廓、型腔等），利用全局路径优化算法（如蚁群算法）将分散的加工轨迹整合为一条连续无断点的切割路径。切割过程中，CNC系统实时控制伺服驱动实现切割头的平滑转向与速度自适应，激光功率根据加工位置的材料厚度与轮廓复杂度动态调整，同时通过轨迹前瞻控制消除启停冲击，实现“一次起刀、连续切割、一次收刀”的加工模式。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Based on continuous trajectory planning and motion control integration technology，passCAD/CAMThe system extracts all machining features of the workpiece（hole、contour、Cavity, etc.），Utilize global path optimization algorithm（such as ant colony algorithm）Integrate scattered processing trajectories into a continuous cutting path without breakpoints。During cutting，CNCThe system controls the servo drive in real time to achieve smooth steering and speed adaptation of the cutting head.，Laser power is dynamically adjusted based on material thickness and contour complexity at the processing location，At the same time, the start-stop impact is eliminated through trajectory forward control.，accomplish“Knife once、continuous cutting、Once the knife is closed”processing mode。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头从开始切割到结束，中途不用停，一口气切完工件上所有孔和轮廓；没有频繁启停导致的加工痕迹，工件表面特别光滑；空程时间几乎为零，加工一个复杂工件比传统方式省一半时间，效率超高。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Laser head cuts from start to finish，No need to stop midway，Cut all holes and contours on the workpiece in one go；No processing marks caused by frequent starts and stops，The workpiece surface is particularly smooth；Idle time is almost zero，Processing a complex workpiece takes half the time compared to traditional methods，Super efficient。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
-                alt="Senrytech一笔飞切技术"
+                alt="SenrytechOne stroke flying cutting technique"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">一笔飞切技术</div>
+              <div class="advantage-card-subtitle">
+                One stroke flying cutting technique
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="管头对齐技术"
+              data-modal-title="Tube head alignment technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-采用机器视觉定位与管端轮廓识别技术，通过工业相机拍摄管材端部图像，经图像处理算法（边缘检测、轮廓匹配）提取管端实际轮廓特征，与标准管端模型进行比对，计算出角度偏差、位置偏差等参数。由CNC系统驱动工作台进行旋转、平移补偿，确保管端与切割路径基准完全对齐，同时支持多根管材连续上料时的批量对齐校准。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Using machine vision positioning and pipe end contour recognition technology，Capture pipe end images with industrial cameras，image processing algorithm（edge detection、Contour matching）Extract actual contour features of pipe end，Compare with standard pipe end model，Calculate the angle deviation、Position deviation and other parameters。Depend onCNCThe system drives the worktable to rotate、translation compensation，Make sure the pipe end is perfectly aligned with the cutting path datum，Simultaneously supports batch alignment and calibration when multiple pipes are continuously loaded.。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>管材两头就算切得有点斜，也能自动对齐找准加工基准；多根管材一起加工时不用一根根手动调位置，省了大量装夹时间；对齐后切割的管口、管身轮廓能精准对接，组装时不用再修配，特别适合管道工程、钢结构加工。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Even if the two ends of the pipe are cut a little diagonally，It can also automatically align and find the processing benchmark.；When processing multiple pipes together, there is no need to manually adjust the position one by one.，Saves a lot of clamping time；Aligned orifice cut、The contours of the tube body can be accurately connected，No need to repair during assembly，Particularly suitable for pipe work、Steel structure processing。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/pipe-end-alignment.png"
-                alt="Senrytech管头对齐技术"
+                alt="SenrytechTube head alignment technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">管头对齐技术</div>
+              <div class="advantage-card-subtitle">
+                Tube head alignment technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="防止切空技术"
+              data-modal-title="Anti-cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-整合材料检测传感器（电容式或光电式）与路径预校验系统，在切割作业前通过传感器对加工区域进行面扫描，采集材料分布数据并与CAD设计图纸进行坐标比对，标记无材料的“空切区域”。切割过程中，传感器实时反馈切割头下方的材料存在状态，当检测到进入空切区域时，触发激光功率瞬时关闭与切割头抬升动作，同时系统自动跳转至下一有效加工段，避免无效切割动作。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Integrated material detection sensor（Capacitive or photoelectric）and path pre-verification system，Surface scanning of the processing area using sensors before cutting operations，Collect material distribution data and compare it withCADCoordinate comparison of design drawings，mark no material“air cutting area”。During cutting，The sensor provides real-time feedback on the presence status of the material under the cutting head.，When it is detected that entering the air cutting area，Triggers instantaneous shutdown of laser power and lifting action of cutting head，At the same time, the system automatically jumps to the next effective processing section.，Avoid ineffective cutting actions。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头能“看”到哪里有材料、哪里是空的，不会对着空气瞎切；避免了空切时的能源浪费和设备空转损耗，还能减少激光头无谓的启停；就算板材拼接有缝隙或料片摆放有间隔，也能自动跳过，加工节奏不被打乱。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Laser head can“look”Where are the materials?、where is empty，I won’t cut blindly into the air；Avoiding energy waste and equipment idling loss during air cutting，It can also reduce unnecessary starting and stopping of the laser head.；Even if there are gaps in the splicing of boards or gaps in the placement of pieces,，Can also be automatically skipped，The processing rhythm is not disrupted。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/prevent-cutting-voids.png"
-                alt="Senrytech防止切空技术"
+                alt="SenrytechAnti-cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">防止切空技术</div>
+              <div class="advantage-card-subtitle">Anti-cutting technology</div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="穿孔除渣技术"
+              data-modal-title="Perforation and slag removal technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-采用“脉冲穿孔+高压气流辅助”的复合工艺，通过激光控制系统精准调节脉冲频率（500-2000Hz）、峰值功率与脉冲宽度，利用短脉冲高能量密度击穿材料形成初始孔，同时配套可调节气压的环形气流喷嘴，在穿孔过程中通过梯度气压控制（初始低压防熔渣飞溅，穿孔后高压吹除残渣），结合穿孔位置的微幅螺旋切割轨迹，确保熔渣被彻底排出孔外，避免熔渣附着孔壁影响后续切割。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+use“Pulse punch+High pressure air flow assist”composite process，Precisely adjust the pulse frequency through the laser control system（500-2000Hz）、Peak power and pulse width，Using short pulses with high energy density to break down materials to form initial holes，It is also equipped with an annular airflow nozzle with adjustable air pressure.，Controlled by gradient air pressure during piercing process（Initial low pressure to prevent slag splashing，High pressure blowing to remove residue after piercing），Micro spiral cutting trajectory combined with perforation position，Ensure that the molten slag is completely discharged from the hole，Prevent slag from adhering to the hole wall and affecting subsequent cutting。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>穿孔后孔里的废渣全被吹干净，不会堵孔或粘在工件上；不用人工后续掏渣、修孔，省了一道工序；穿孔处边缘整齐，不会出现“塌边”情况，尤其是厚钢板加工时，穿孔质量特别稳定，后续切割能顺利衔接。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>After piercing, all the waste residue in the hole is blown away，Will not clog holes or stick to workpieces；No need for manual follow-up removal of debris、repair hole，Save a process；Neat edges at the perforation，won't appear“collapsed edge”Condition，Especially when processing thick steel plates，The perforation quality is particularly stable，Subsequent cutting can be smoothly connected。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/punching-slag-removal.png"
-                alt="Senrytech穿孔除渣技术"
+                alt="SenrytechPerforation and slag removal technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">穿孔除渣技术</div>
+              <div class="advantage-card-subtitle">
+                Perforation and slag removal technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="扫码导图技术"
+              data-modal-title="Scan code map technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-集成工业扫码模块与CAD文件云同步系统，通过高清扫码枪扫描工件或加工单上的二维码/条形码，解析出对应的CAD图形文件ID与加工参数（材料类型、厚度、切割速度等）。系统自动从本地数据库或云端服务器调取匹配的图形文件，经格式自动转换（支持DXF、DWG等主流格式）后导入CNC控制系统，同时将预设加工参数加载至切割程序，实现“扫码-调图-设参”的全流程自动化。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Integrated industrial code scanning module andCADFile cloud synchronization system，Scan the QR code on the workpiece or processing order with a high-definition code scanner/barcode，Parse out the correspondingCADgraphics fileIDand processing parameters（Material type、thickness、Cutting speed etc.）。The system automatically retrieves matching graphics files from the local database or cloud server，Automatic conversion via format（supportDXF、DWGOther mainstream formats）post-importCNCcontrol system，At the same time, load the preset processing parameters into the cutting program.，accomplish“Scan code-Adjust the image-Set parameters”full process automation。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不用手动找图、输参数，扫一下二维码就能自动调出加工图和设置好参数；再也不会因为选错图纸、输错参数导致工件报废；新员工也能快速上手，加工前的准备时间从几十分钟缩到几秒钟。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>No need to find pictures manually、Input parameters，Scan the QR code to automatically call up the processing drawing and set the parameters.；Never again will you choose the wrong drawing、Wrong input of parameters leads to workpiece scrapping；New employees can also get started quickly，The preparation time before processing is reduced from tens of minutes to a few seconds。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/scan-code-guidance.png"
-                alt="Senrytech扫码导图技术"
+                alt="SenrytechScan code map technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">扫码导图技术</div>
+              <div class="advantage-card-subtitle">
+                Scan code map technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="无感穿孔技术"
+              data-modal-title="Insensitive perforation technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-采用低能量预热+渐进式能量提升的穿孔策略，通过激光控制系统先输出低功率激光（10%-30%额定功率）对材料表面进行预热，形成微小熔融区域，再逐步提升激光功率至穿孔阈值。同时配合特殊设计的双层气流喷嘴，内层喷出保护气体（如氮气）隔绝空气，外层喷出辅助气流吹除熔融物，整个过程中激光头与材料保持固定距离，无机械接触，且穿孔痕迹极小，实现“无感”效果。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Use low energy preheating+Piercing Strategies for Progressive Energy Boosting，First output low-power laser through the laser control system（10%-30%Rated power）Preheat the material surface，Formation of tiny molten areas，Then gradually increase the laser power to the perforation threshold。At the same time, it is equipped with a specially designed double-layer airflow nozzle，The inner layer sprays protective gas（such as nitrogen）Isolate the air，The outer layer sprays auxiliary airflow to blow away the molten material.，The laser head maintains a fixed distance from the material throughout the process，No mechanical contact，And the perforation marks are minimal，accomplish“Indifferent”Effect。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>穿孔后工件表面几乎看不出痕迹，特别适合外观要求高的产品；不会因为穿孔时能量过大导致材料变形或留下凹坑；对于薄板、精密零件加工特别友好，不用后续处理穿孔痕迹。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>There are almost no traces visible on the surface of the workpiece after perforation.，Especially suitable for products with high appearance requirements；No material deformation or pits will be left due to excessive energy during perforation；For thin plates、Especially friendly for precision parts processing，No need for subsequent treatment of perforation marks。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/sensory-free-punching.png"
-                alt="Senrytech无感穿孔技术"
+                alt="SenrytechInsensitive perforation technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">无感穿孔技术</div>
+              <div class="advantage-card-subtitle">
+                Insensitive perforation technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="单面寻中技术"
+              data-modal-title="Single-sided centering technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-基于单侧激光位移传感与坐标计算模型，通过安装在切割头侧方的高精度激光传感器，沿工件单侧表面进行线性扫描，采集距离数据并传输至运动控制单元。利用最小二乘法拟合扫描数据得到工件单侧基准线，结合预设的工件截面参数（如管材直径、板材宽度），计算出工件中心轴线或几何中心坐标，通过CNC系统自动校准切割路径与工件中心的偏差，实现单侧接触即可完成中心定位。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Based on unilateral laser displacement sensing and coordinate calculation model，Through a high-precision laser sensor installed on the side of the cutting head，Linear scan along the surface of one side of the workpiece，Collect distance data and transmit to motion control unit。Use the least squares method to fit the scanned data to obtain the unilateral baseline of the workpiece，Combined with preset workpiece cross-section parameters（Such as pipe diameter、Board width），Calculate the workpiece center axis or geometric center coordinates，passCNCThe system automatically calibrates the deviation between the cutting path and the center of the workpiece，Center positioning can be completed by achieving one-sided contact。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不用把工件翻来覆去测两边，激光头贴住工件一侧扫一下，就知道中心在哪儿；管材、异型材加工时定位特别快，比传统双边寻中省一半时间；就算工件摆放有点歪，也能自动找准中心，切割出来的孔和轮廓都能对齐，不会偏位。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>No need to turn the workpiece over and over to measure both sides，Place the laser head against one side of the workpiece and scan it，Just know where the center is；pipes、Particularly fast positioning when processing special profiles，Saves half the time compared to traditional bilateral search.；Even if the workpiece is placed a little crookedly，It can also automatically find the center，The cut holes and contours can be aligned，Will not shift。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/single-sided-centering.png"
-                alt="Senrytech单面寻中技术"
+                alt="SenrytechSingle-sided centering technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">单面寻中技术</div>
+              <div class="advantage-card-subtitle">
+                Single-sided centering technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="特殊钢寻中技术"
+              data-modal-title="Special steel center finding technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-针对不锈钢、钛合金等特殊钢材料的物理特性（高反光、高硬度），采用抗干扰激光传感与电磁感应复合检测技术。通过调整激光传感器的波长与功率，避免材料反光导致的检测误差，同时利用电磁感应模块检测材料的磁场分布，辅助确定材料中心位置。结合特殊钢的热传导系数预设补偿参数，在寻中过程中修正温度变化对检测精度的影响，确保中心定位误差≤±0.02mm。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+For stainless steel、Physical properties of special steel materials such as titanium alloys（Highly reflective、High hardness），Using anti-interference laser sensing and electromagnetic induction composite detection technology。By adjusting the wavelength and power of the laser sensor，Avoid detection errors caused by material reflection，At the same time, the electromagnetic induction module is used to detect the magnetic field distribution of the material.，Assist in determining the center position of materials。Preset compensation parameters based on the thermal conductivity coefficient of special steel，Correcting the impact of temperature changes on detection accuracy during the centering process，Ensure center positioning error≤±0.02mm。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>不管是不锈钢还是钛合金，都能精准找到中心，不会因为材料反光或硬度高导致定位不准；寻中完成后切割的孔位、轮廓特别正，符合特殊钢精密加工的要求；不用频繁校准传感器，适合大批量特殊钢工件加工。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>Whether it is stainless steel or titanium alloy，Can accurately find the center，There will be no inaccurate positioning due to reflective material or high hardness.；The hole position to be cut after centering is completed、Very straight silhouette，Meet the requirements for precision machining of special steel；No need to calibrate sensors frequently，Suitable for processing large quantities of special steel workpieces。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/special-steel-centering.png"
-                alt="Senrytech特殊钢寻中技术"
+                alt="SenrytechSpecial steel center finding technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">特殊钢寻中技术</div>
+              <div class="advantage-card-subtitle">
+                Special steel center finding technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="无痕微联技术"
+              data-modal-title="Traceless micro-connection technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-在工件切割路径的预设位置（通常为边角或非受力区域），通过CNC系统控制激光功率与切割速度进行精准调节，在即将切割完成时，将激光功率降低至临界切割值的50%-70%，同时提升切割速度，形成宽度0.1-0.3mm、厚度0.05-0.1mm的微小连接点（微联点）。微联点既能确保工件在切割过程中不脱落、不位移，又能在后续工序中通过人工轻掰或自动分离装置轻松断裂，且断裂后无明显痕迹。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+At the preset position of the workpiece cutting path（Usually corners or non-stressed areas），passCNCThe system controls laser power and cutting speed for precise adjustment.，When cutting is about to be completed，Reduce laser power to critical cutting value50%-70%，Increase cutting speed at the same time，form width0.1-0.3mm、thickness0.05-0.1mmtiny connection points（micro-junction）。Micro joints ensure that the workpiece does not fall off during the cutting process、No displacement，It can be easily broken in the subsequent process by manual breaking or automatic separation device.，And there are no obvious traces after breaking。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>切割完的工件不会直接掉下来，靠 tiny 的连接点粘在板材上，避免碰撞刮花；后续掰下来特别轻松，连接点处几乎看不出痕迹，不用再打磨；批量加工时工件排列整齐，方便收集和后续处理。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>The cut workpiece will not fall directly，Depend on tiny The connection points are glued to the board，Avoid collision and scratches；It’s very easy to break it off later.，Almost no traces are visible at the connection points，No need to polish anymore；Workpieces are arranged neatly during batch processing，Facilitates collection and subsequent processing。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/traceless-micro-connection.png"
-                alt="Senrytech无痕微联技术"
+                alt="SenrytechTraceless micro-connection technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">无痕微联技术</div>
+              <div class="advantage-card-subtitle">
+                Traceless micro-connection technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="振动抑制技术"
+              data-modal-title="Vibration suppression technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-采用机械阻尼与主动振动控制相结合的技术方案，在切割头支架与工作台底座安装高阻尼减震器，吸收加工过程中产生的低频振动。同时通过加速度传感器实时采集切割头与工作台的振动数据，传输至振动控制模块，利用PID调节算法生成反向振动控制信号，驱动压电陶瓷执行器产生反向振动，抵消原有振动。配合切割速度与加速度的自适应调整，避免共振频率，确保切割过程中振动幅度≤0.005mm。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Adopt a technical solution that combines mechanical damping and active vibration control，Install high-damping shock absorbers on the cutting head bracket and workbench base，Absorbs low-frequency vibrations generated during processing。At the same time, the vibration data of the cutting head and worktable are collected in real time through the acceleration sensor.，Transmit to vibration control module，usePIDAdjustment algorithm generates reverse vibration control signal，Driving a piezoelectric ceramic actuator to produce reverse vibration，Offset original vibration。Adaptive adjustment of cutting speed and acceleration，Avoid resonant frequencies，Ensure vibration amplitude during cutting≤0.005mm。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>激光头切割时特别稳，不会因为振动导致切口“波浪形”；厚板高速切割时也能保持精准，不会出现切歪、尺寸超差的情况；设备运行噪音也变小了，加工环境更舒适。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>The laser head is particularly stable during cutting，No cuts caused by vibration“wavy”；Precision can be maintained even when cutting thick plates at high speeds，There will be no distortion、The size is out of tolerance；The operating noise of the equipment has also become smaller.，The processing environment is more comfortable。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/vibration-suppression.png"
-                alt="Senrytech振动抑制技术"
+                alt="SenrytechVibration suppression technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">振动抑制技术</div>
+              <div class="advantage-card-subtitle">
+                Vibration suppression technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
 
             <div
               class="advantage-card"
-              data-modal-title="零尾料切技术"
+              data-modal-title="Zero tail material cutting technology"
               data-modal-content="
-       <p><strong>技术原理（专业性表述）</strong>
-基于嵌套优化算法与材料边界识别技术，通过CAD/CAM系统对工件图形进行智能嵌套排版，充分利用板材边缘、角落等传统废料区域。结合切割头行程极限校准与工作台运动边界计算，在确保切割安全的前提下，将最后一个工件的切割路径延伸至板材边缘，同时通过微连接技术（保留极小连接点）防止工件掉落，切割完成后通过自动吹料装置分离工件与残余边料，实现材料利用率最大化。</p>
+       <p><strong>Technical principles（professional expression）</strong>
+Based on nested optimization algorithm and material boundary identification technology，passCAD/CAMThe system performs intelligent nested typesetting of workpiece graphics，Make the most of board edges、Traditional waste areas such as corners。Combining cutting head stroke limit calibration and table motion boundary calculation，On the premise of ensuring cutting safety，Extend the cutting path of the last piece to the edge of the sheet，At the same time, through micro-connection technology（Keep minimal connection points）Prevent workpieces from falling，After cutting is completed, the workpiece and residual edge materials are separated by an automatic blowing device.，Maximize material utilization。</p>
        <br>
-       <p><strong>实现效果（大白话表述）</strong>板材从头到尾都能利用起来，不会剩下窄条、小角等废料；同等面积的板材能多切出10%-15%的工件，材料成本直接降下来；不用人工清理残余尾料，切割完成后工件自动分离，生产流程更顺畅。</p>
+       <p><strong>achieve effect（Vernacular expression）</strong>The board can be used from start to finish，No narrow strips left、Small horns and other scraps；More plates can be cut out of the same area10%-15%artifact，Material costs are directly reduced；No need to manually clean up residual tailings，The workpiece is automatically separated after cutting is completed，The production process is smoother。</p>
      "
             >
               <img
                 src="http://senrytech.github.io/img/index/core-advantage/high-clear/zero-tail-material-cutting.png"
-                alt="Senrytech零尾料切技术"
+                alt="SenrytechZero tail material cutting technology"
                 loading="lazy"
               />
-              <div class="advantage-card-subtitle">零尾料切技术</div>
+              <div class="advantage-card-subtitle">
+                Zero tail material cutting technology
+              </div>
               <button class="advantage-plus-btn">+</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 卡片滚动箭头（类名避免重复，逻辑与板块5一致） -->
+      <!-- card scroll arrows（Avoid duplication of class names，Logic and sectors5consistent） -->
       <button class="advantage-nav-btn prev-btn" id="advantagePrevBtn" disabled>
         &lt;
       </button>
@@ -8432,81 +8699,81 @@
       </button>
     </div>
 
-    <!-- 优势详情弹出卡片（已改为动态模板，无固定内容） -->
+    <!-- Advantage details pop-up card（Changed to dynamic template，No fixed content） -->
     <div class="advantage-modal hidden" id="advantageModal">
       <button class="advantage-modal-close">×</button>
-      <!-- 动态标题：JS 会填充点击卡片的 data-modal-title -->
+      <!-- dynamic title：JS Click card will be populated data-modal-title -->
       <h3 class="advantage-modal-title"></h3>
-      <!-- 动态内容：JS 会填充点击卡片的 data-modal-content -->
+      <!-- dynamic content：JS Click card will be populated data-modal-content -->
       <p class="advantage-modal-content"></p>
-      <!-- （可选）如果需要动态图片，可添加 img 标签：<img class="advantage-modal-img" src="" alt=""> -->
+      <!-- （Optional）If you need dynamic pictures，Can be added img Label：<img class="advantage-modal-img" src="" alt=""> -->
     </div>
     <div class="advantage-modal-overlay"></div>
 
-    <!-- 十，代码 设备配件-->
+    <!-- ten，code Equipment accessories-->
     <div class="accessory-section" style="position: relative">
       <div class="accessory-container">
         <div class="section-title">
-          <h2>设备配件</h2>
-          <p>Senrytech 设备配件 · 原厂品质，快速供应</p>
+          <h2>Equipment accessories</h2>
+          <p>Senrytech Equipment accessories · Original quality，fast supply</p>
         </div>
 
-        <!-- 纯黑色大卡片（保留外层容器，内部改为滚动结构） -->
+        <!-- Pure black large card（Keep outer container，Internally changed to rolling structure） -->
         <div class="accessory-big-card" style="position: relative">
-          <!-- 1. 滚动容器：核心改造，替代原网格布局 -->
+          <!-- 1. scroll container：core transformation，Replace original grid layout -->
           <div class="accessory-scroll-container" id="accessoryScroll">
-            <!-- 第1个：高容器 -->
+            <!-- No.1indivual：tall container -->
             <div class="accessory-image-item high-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-ceramic-ring.webp"
-                alt="陶瓷环"
+                alt="ceramic ring"
               />
               <div class="accessory-image-text"></div>
             </div>
-            <!-- 第2个：低容器 -->
+            <!-- No.2indivual：low container -->
             <div class="accessory-image-item low-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-focus-collimation-lens-assembly.webp"
-                alt="聚焦准直镜片"
+                alt="focusing collimating lens"
               />
               <div class="accessory-image-text"></div>
             </div>
-            <!-- 第3个：高容器（对称中心） -->
+            <!-- No.3indivual：tall container（center of symmetry） -->
             <div class="accessory-image-item high-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-laser-head.webp"
-                alt="激光头"
+                alt="laser head"
               />
               <div class="accessory-image-text"></div>
             </div>
-            <!-- 第4个：低容器 -->
+            <!-- No.4indivual：low container -->
             <div class="accessory-image-item low-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-protective-lenses.webp"
-                alt="保护镜片"
+                alt="Protective lenses"
               />
               <div class="accessory-image-text"></div>
             </div>
-            <!-- 第5个：高容器 -->
+            <!-- No.5indivual：tall container -->
             <div class="accessory-image-item high-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-system-boards.webp"
-                alt="系统板卡"
+                alt="System board"
               />
               <div class="accessory-image-text"></div>
             </div>
-            <!-- 可扩展：新增更多卡片（滚动自动生效） -->
+            <!-- Expandable：Add more cards（Rolling takes effect automatically） -->
             <div class="accessory-image-item low-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-transformer.webp"
-                alt="变压器"
+                alt="transformer"
               />
               <div class="accessory-image-text"></div>
             </div>
             <div class="accessory-image-item high-item">
               <img
                 src="./img/index/accessories/senrytech-accessories-welding-nozzle.webp"
-                alt="喷嘴"
+                alt="nozzle"
               />
               <div class="accessory-image-text"></div>
             </div>
@@ -8520,7 +8787,7 @@
       <button class="accessory-scroll-btn next" id="accessoryNext">&gt;</button>
     </div>
 
-    <!-- 十二，代码，联系咨询-->
+    <!-- twelve，code，Contact us-->
     <section class="py-16 bg-primary/5" id="contact">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
@@ -8528,67 +8795,68 @@
             <h2
               class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
-              联系专家
+              Contact an expert
             </h2>
             <p
               class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2"
             >
-              填写下方表单，我们的专业顾问将在24小时内与您联系
+              Fill out the form below，Our professional consultants will be
+              at24Contact you within hours
             </p>
           </div>
 
           <div class="bg-white p-8 rounded-xl shadow-md">
-            <!-- 1. form标签必须有闭合 -->
+            <!-- 1. formLabel must have closure -->
             <form
               id="laserForm"
               name="laser-consult"
               onsubmit="sendEmail(event); return false;"
             >
-              <!-- 姓名/公司输入框 -->
+              <!-- Name/Company input box -->
               <div class="mb-6">
                 <label for="name" class="block text-gray-700 mb-2"
-                  >姓名或者公司？</label
+                  >name or company？</label
                 >
                 <input
                   type="text"
                   id="name"
                   name="sender_name"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  placeholder="请输入姓名或公司名称"
+                  placeholder="Please enter your name or company name"
                   required
                 />
               </div>
 
-              <!-- 联系电话/邮箱输入框 -->
+              <!-- Contact number/Email input box -->
               <div class="mb-6">
                 <label for="contact" class="block text-gray-700 mb-2"
-                  >联系电话或者邮件？</label
+                  >Contact number or email？</label
                 >
                 <input
                   type="text"
                   id="contact"
                   name="sender_contact"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  placeholder="请输入电话或邮箱"
+                  placeholder="Please enter phone number or email"
                   required
                 />
               </div>
 
-              <!-- 留言框 -->
+              <!-- Message box -->
               <div class="mb-6">
                 <label for="message" class="block text-gray-700 mb-2"
-                  >留言</label
+                  >message</label
                 >
                 <textarea
                   id="message"
                   name="sender_message"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
                   rows="4"
-                  placeholder="请输入需求"
+                  placeholder="Please enter your requirements"
                 ></textarea>
               </div>
 
-              <!-- 提交区域 -->
+              <!-- Submit area -->
               <div>
                 <div id="submitTip" class="mb-4 text-center"></div>
                 <button
@@ -8596,20 +8864,20 @@
                   id="submitBtn"
                   class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-md"
                 >
-                  提交咨询
+                  Submit inquiry
                 </button>
               </div>
             </form>
-            <!-- 关键：闭合form标签 -->
+            <!-- key：closureformLabel -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 十一，代码 底部导航栏-->
+    <!-- eleven，code Bottom navigation bar-->
     <footer class="footer-new">
       <div class="footer-container">
-        <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
+        <!-- 1. left side：Brand area（Logo+Introduction+social media） -->
         <div class="footer-brand">
           <div class="brand-logo">
             <img
@@ -8619,17 +8887,19 @@
             <span class="brand-name">Senrytech</span>
           </div>
           <p class="brand-desc">
-            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
+            Professional laser cutting equipment manufacturer，Committed to
+            providing high quality to global manufacturing
+            industries、Cost-effective laser processing selection solution。
           </p>
           <div class="social-icons">
-            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
+            <!-- Correction：Remove text-white/80 Wait for incompatible styles，Use instead footer global color matching；reserve transition interaction -->
             <a
               class="icon"
               href="https://www.facebook.com/profile.php?id=61572514366742"
               title="Facebook"
             >
               <i class="fa fa-facebook text-xl"></i>
-              <!-- 4.7.0 支持的默认前缀 fa -->
+              <!-- 4.7.0 Supported default prefixes fa -->
             </a>
             <a
               class="icon"
@@ -8648,111 +8918,124 @@
           </div>
         </div>
 
-        <!-- 2. 中间：产品中心 -->
+        <!-- 2. middle：Product Center -->
         <div class="footer-column">
-          <h3>产品中心</h3>
+          <h3>Product Center</h3>
           <ul>
             <li>
               <a href="https://www.senrytech.com/laser-sheet-cutting/"
-                >板材切割机</a
+                >Plate cutting machine</a
               >
             </li>
             <li>
               <a href="https://www.senrytech.com/laser-tube-cutting/"
-                >管材切割机</a
+                >Pipe cutting machine</a
               >
             </li>
             <li>
               <a href="https://www.senrytech.com/laser-sheet-tube/"
-                >板管一体机</a
+                >Plate and tube integrated machine</a
               >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-welding/">激光焊接机</a>
+              <a href="https://www.senrytech.com/laser-welding/"
+                >Laser welding machine</a
+              >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-cleaning/">激光清洗机</a>
+              <a href="https://www.senrytech.com/laser-cleaning/"
+                >Laser cleaning machine</a
+              >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-marking/">激光打标机</a>
+              <a href="https://www.senrytech.com/laser-marking/"
+                >Laser marking machine</a
+              >
             </li>
           </ul>
         </div>
 
-        <!-- 3. 右侧：关于我们 -->
+        <!-- 3. right side：about Us -->
         <div class="footer-column">
-          <h3>关于我们</h3>
+          <h3>about Us</h3>
           <ul>
-            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
-            <li><a href="https://www.senrytech.com/solutions/">选型方案</a></li>
+            <li>
+              <a href="https://www.senrytech.com/about-us/">Company Profile</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/solutions/">Selection plan</a>
+            </li>
             <li>
               <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
-                >避坑指南</a
+                >A Guide to Avoiding Pitfalls</a
               >
             </li>
-            <li><a href="https://www.senrytech.com/news/">新闻动态</a></li>
-            <li><a href="https://www.senrytech.com/join-us/">加入我们</a></li>
+            <li><a href="https://www.senrytech.com/news/">News</a></li>
+            <li><a href="https://www.senrytech.com/join-us/">Join us</a></li>
             <li>
-              <a href="https://www.senrytech.com/contact-us/">联系我们</a>
+              <a href="https://www.senrytech.com/contact-us/">Contact us</a>
             </li>
           </ul>
         </div>
 
-        <!-- 4. 最右侧：联系我们+二维码 -->
+        <!-- 4. rightmost：Contact us+QR code -->
         <div class="footer-column footer-contact">
-          <h3>联系我们</h3>
+          <h3>Contact us</h3>
           <ul class="contact-list">
-            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
+            <!-- Correction1：address icon - 4.7.0 The corresponding icon is fa-map-marker（none alt suffix），The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-              <span>中国 · 济南市历城区舜华路街道综合产业工业园</span>
+              <span
+                >China · Comprehensive Industrial Park, Shunhua Road Street,
+                Licheng District, Jinan City</span
+              >
             </li>
-            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
+            <!-- Correction2：phone icon - 4.7.0 The corresponding icon is fa-phone，The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-phone"></i></span>
               <span>+86 134 6557 5719</span>
             </li>
-            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
+            <!-- Correction3：Mailbox icon - 4.7.0 The corresponding icon is fa-envelope，The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-envelope"></i></span>
               <span>info@senrytech.com</span>
             </li>
-            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
+            <!-- Correction4：time icon - 4.7.0 The corresponding icon is fa-clock-o（bring o suffix），The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
-              <span>周一至周六: 9:00-18:00</span>
+              <span>Monday to Saturday: 9:00-18:00</span>
             </li>
           </ul>
-          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
+          <!-- Replenish：If there is a QR code module，Can be added here（Keep the original design） -->
           <div class="wechat-qrcode">
-            <h4>微信咨询</h4>
+            <h4>WeChat consultation</h4>
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
                   src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
-                  alt="售前客服咨询"
+                  alt="Pre-sales customer service consultation"
                 />
-                <p>售前客服咨询</p>
+                <p>Pre-sales customer service consultation</p>
               </div>
               <div class="qrcode-item">
                 <img
                   src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
-                  alt="微信二维码2"
+                  alt="WeChat QR code2"
                 />
-                <p>售后客户咨询</p>
+                <p>After-sales customer consultation</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 底部版权信息（补充完整结构） -->
+      <!-- Copyright information at the bottom（Supplement the complete structure） -->
       <div class="footer-bottom">
-        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
+        <div class="bottom-left">© 2024 Senrytech. All rights reserved</div>
         <div class="bottom-right">
-          <a href="https://www.senrytech.com/privacy-policy/">隐私政策</a>
-          <a href="https://www.senrytech.com/service-terms">服务条款</a>
-          <a href="#">网站地图</a>
+          <a href="https://www.senrytech.com/privacy-policy/">privacy policy</a>
+          <a href="https://www.senrytech.com/service-terms">Terms of Service</a>
+          <a href="#">Sitemap</a>
         </div>
       </div>
     </footer>

@@ -23,6 +23,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
     />
+
+    
     <!-- 一、CSS 全局基础样式 -->
     <style>
       /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
@@ -2816,8 +2818,6 @@
 
     <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- 加入我们板块 -->
     <!-- 成为我们的代理 核心板块 -->
     <section class="agent-section">
       <!-- 标题区域 -->
@@ -2970,84 +2970,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 应聘弹窗（可选，如需弹窗式应聘表单可添加） -->
-    <div class="job-modal-overlay hidden" id="jobModal">
-      <div class="job-modal">
-        <div class="modal-header">
-          <h3 class="modal-title">应聘 <span id="modalJobTitle"></span></h3>
-          <button class="modal-close-btn" onclick="closeJobModal()">
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="jobApplyForm">
-            <div class="form-group">
-              <label for="name">姓名：</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                placeholder="请输入您的姓名"
-              />
-            </div>
-            <div class="form-group">
-              <label for="phone">电话：</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                required
-                placeholder="请输入您的联系电话"
-              />
-            </div>
-            <div class="form-group">
-              <label for="email">邮箱：</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                placeholder="请输入您的邮箱"
-              />
-            </div>
-            <div class="form-group">
-              <label for="resume">上传简历：</label>
-              <input
-                type="file"
-                id="resume"
-                name="resume"
-                accept=".pdf,.doc,.docx"
-              />
-            </div>
-            <div class="form-group">
-              <label for="remark">备注：</label>
-              <textarea
-                id="remark"
-                name="remark"
-                rows="3"
-                placeholder="可补充过往工作经验/项目经历等信息"
-              ></textarea>
-            </div>
-            <button type="submit" class="form-submit-btn">提交应聘信息</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- 弹窗层：点击加号后弹出 -->
-    <div class="news-modal" id="newsModal">
-      <div class="news-modal-backdrop" id="modalBackdrop"></div>
-      <div class="news-modal-content">
-        <button class="news-modal-close" id="modalClose">
-          <i class="fa fa-times"></i>
-        </button>
-        <div class="news-modal-body" id="modalBody">
-          <!-- JS 动态填充内容 -->
-        </div>
-      </div>
-    </div>
 
     <!-- 十三，底部导航栏 -->
     <footer class="footer-new">

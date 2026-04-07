@@ -2127,438 +2127,463 @@
     </style>
 
     <!--五、CSS 全系列产品-->
-    <style>
-      .product-center-section {
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #f8f8fa 50%,
-          #f5f5f7 100%
-        );
-        width: 100%;
-        padding: 5rem 0 7.5rem;
-        position: relative;
-        overflow: visible;
-        height: 60rem;
-      }
+<style>
+.product-center-section {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8f8fa 50%,
+    #f5f5f7 100%
+  );
+  width: 100%;
+  padding: 5rem 0 7.5rem;
+  position: relative;
+  overflow: visible;
+  /* 修复2：去掉固定高度，改为自适应！*/
+  height: auto;
+  min-height: auto;
+}
 
-      .product-container {
-        max-width: 100rem;
-        margin: 0 auto 0 15%;
-        padding: 0 1.25rem;
-      }
+.product-container {
+  max-width: 100rem;
+  margin: 0 auto 0 15%;
+  padding: 0 1.25rem;
+}
 
-      .product-main-title {
-        font-size: 3.5rem;
-        font-weight: 500;
-        color: #1d1d1f;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 1.5rem;
-        text-align: left;
-      }
+.product-main-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
 
-      .product-subtitle-bar {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
+.product-subtitle-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #eeeef2;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 
-        background-color: #eeeef2;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        margin-bottom: 3rem;
-        position: relative;
-      }
+  /* 👇 关键：移动端显示细滚动条，提示可滑动 */
+  -ms-overflow-style: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #999 transparent;
+}
+.product-subtitle-bar::-webkit-scrollbar {
+  height: 4px; /* 细滚动条，不丑 */
+}
+.product-subtitle-bar::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 2px;
+}
+.product-subtitle-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-      .subtitle-item {
-        font-size: 0.8rem;
-        font-weight: 400;
-        color: #1d1d1f;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-        padding: 0.5rem 1.5rem;
-        border-radius: 9999px;
-        cursor: pointer;
-        transition:
-          color 0.3s ease,
-          transform 0.3s ease;
-        position: relative;
-        z-index: 1;
-      }
+.subtitle-item {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #1d1d1f;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 0.5rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-      .subtitle-item.active {
-        color: #ffffff;
-        transform: scale(1.03);
-      }
+.subtitle-item.active {
+  color: #ffffff;
+  transform: scale(1.03);
+}
 
-      .subtitle-active-bg {
-        position: absolute;
-        top: 0rem;
-        bottom: 0rem;
-        background-color: #0071e3;
-        border-radius: 9999px;
+.subtitle-active-bg {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  background-color: #0071e3;
+  border-radius: 9999px;
+  transition: left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  z-index: 0;
+  /* 关键：初始宽高0，由JS完全控制 */
+  width: 0;
+  left: 0;
+}
 
-        transition:
-          left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1),
-          width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-        z-index: 0;
-      }
+.product-scroll-wrap {
+  position: relative;
+  overflow: visible;
+  overflow-x: auto;
+  padding-bottom: 5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 2.5rem;
+}
+.product-scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
 
-      .product-scroll-wrap {
-        position: relative;
-        overflow: visible;
-        overflow-x: auto;
-        padding-bottom: 5rem;
+#productScroll {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  transition: transform 0.4s ease-out;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#productScroll::-webkit-scrollbar {
+  display: none;
+}
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        padding: 2.5rem;
-      }
-      .product-scroll-wrap::-webkit-scrollbar {
-        display: none;
-      }
+.product-item {
+  width: 21.25rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #eeeef2 50%,
+    #e4e4ea 100%
+  );
+}
 
-      #productScroll {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-        transition: transform 0.4s ease-out;
+.product-item:hover {
+  transform: translateY(-0.375rem);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 8%,
+    rgba(121, 121, 121, 0.5) 50%,
+    rgba(204, 204, 204, 0.3) 100%
+  );
+}
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      #productScroll::-webkit-scrollbar {
-        display: none;
-      }
+.product-item p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+  line-height: 1.4;
+  padding: 0 0.25rem;
+  width: 100%;
+}
 
-      .product-item {
-        width: 21.25rem;
-        flex-shrink: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        transition: transform 0.3s ease;
-        border-radius: 1.25rem;
-        background: linear-gradient(
-          180deg,
-          #ffffff 0%,
-          #eeeef2 50%,
-          #e4e4ea 100%
-        );
-      }
+.product-nav-btn {
+  position: absolute;
+  top: 90%;
+  transform: translateY(-50%) !important;
+  bottom: auto !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(222, 222, 226, 0.9);
+  color: #696969;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  z-index: 999;
+}
 
-      .product-item:hover {
-        transform: translateY(-0.375rem);
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.8) 8%,
-          rgba(121, 121, 121, 0.5) 50%,
-          rgba(204, 204, 204, 0.3) 100%
-        );
-      }
+.product-nav-btn.prev-btn {
+  left: calc(85% + 2.5rem);
+  right: auto;
+  display: flex !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
 
-      .product-item p {
-        font-size: 1rem;
-        font-weight: 500;
-        margin-top: -2rem;
-        margin-bottom: 3rem;
-        line-height: 1.4;
-        padding: 0 0.25rem;
-        width: 100%;
-      }
+.product-nav-btn.next-btn {
+  right: calc(5% + 1.25rem);
+  left: auto;
+}
 
-      .product-nav-btn {
-        position: absolute;
-        top: 90%;
-        transform: translateY(-50%) !important;
-        bottom: auto !important;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background-color: rgba(222, 222, 226, 0.9);
-        color: #696969;
-        border: none;
-        font-size: 1.25rem;
-        cursor: pointer;
-        outline: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        z-index: 999;
-      }
+.product-nav-btn:hover {
+  background-color: rgba(180, 180, 180, 0.9);
+  color: #333;
+}
 
-      .product-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem);
-        right: auto;
-        display: flex !important;
-        opacity: 1 !important;
-        filter: none !important;
-      }
+.product-nav-btn:disabled {
+  background-color: rgba(240, 240, 240, 0.9);
+  color: #aaa;
+  cursor: not-allowed;
+  display: flex !important;
+}
 
-      .product-nav-btn.next-btn {
-        right: calc(5% + 1.25rem);
-        left: auto;
-      }
+/* 以下所有媒体查询，统一把 height 改成 auto，彻底修复 */
+@media (max-width: 320px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .product-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .product-subtitle-bar {
+    margin-bottom: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .subtitle-item {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .product-item {
+    width: 13rem;
+  }
+  .product-item img {
+    height: 15rem;
+    margin-top: 1rem;
+  }
+  .product-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      .product-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9);
-        color: #333;
-      }
+@media (min-width: 321px) and (max-width: 375px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .product-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .product-subtitle-bar {
+    margin-bottom: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .subtitle-item {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .product-item {
+    width: 13rem;
+  }
+  .product-item img {
+    height: 15rem;
+    margin-top: 1rem;
+  }
+  .product-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      .product-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9);
-        color: #aaa;
-        cursor: not-allowed;
-        display: flex !important;
-      }
+@media (min-width: 376px) and (max-width: 425px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .product-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .product-subtitle-bar {
+    margin-bottom: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .subtitle-item {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .product-item {
+    width: 13rem;
+  }
+  .product-item img {
+    height: 15rem;
+    margin-top: 1rem;
+  }
+  .product-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      @media (max-width: 320px) {
-        .product-center-section {
-          height: 50rem;
-        }
-        .product-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .product-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .product-subtitle-bar {
-          margin-bottom: 2rem;
-          padding: 0.2rem 0.5rem;
-        }
-        .subtitle-item {
-          font-size: 0.6rem;
-          padding: 0.3rem 0.8rem;
-        }
-        .product-item {
-          width: 13rem;
-        }
-        .product-item img {
-          height: 15rem;
-          margin-top: 1rem;
-        }
-        .product-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-      }
+@media (min-width: 426px) and (max-width: 768px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .product-main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .product-subtitle-bar {
+    margin-bottom: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .subtitle-item {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .product-item {
+    width: 13rem;
+  }
+  .product-item img {
+    height: 15rem;
+    margin-top: 1rem;
+  }
+  .product-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      @media (min-width: 321px) and (max-width: 375px) {
-        .product-center-section {
-          height: 50rem;
-        }
-        .product-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .product-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .product-subtitle-bar {
-          margin-bottom: 2rem;
-          padding: 0.2rem 0.5rem;
-        }
-        .subtitle-item {
-          font-size: 0.6rem;
-          padding: 0.3rem 0.8rem;
-        }
-        .product-item {
-          width: 13rem;
-        }
-        .product-item img {
-          height: 15rem;
-          margin-top: 1rem;
-        }
-        .product-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-      }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    margin: 0 auto 0 12%;
+    max-width: 90rem;
+  }
+  .product-main-title {
+    font-size: 2.5rem;
+  }
+  .product-item {
+    width: 20rem;
+  }
+  .product-item {
+    width: 13rem;
+  }
+  .product-item img {
+    height: 15rem;
+    margin-top: 1rem;
+  }
+  .product-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      @media (min-width: 376px) and (max-width: 425px) {
-        .product-center-section {
-          height: 50rem;
-        }
-        .product-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .product-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .product-subtitle-bar {
-          margin-bottom: 2rem;
-          padding: 0.2rem 0.5rem;
-        }
-        .subtitle-item {
-          font-size: 0.6rem;
-          padding: 0.3rem 0.8rem;
-        }
-        .product-item {
-          width: 13rem;
-        }
-        .product-item img {
-          height: 15rem;
-          margin-top: 1rem;
-        }
-        .product-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-      }
+@media (min-width: 1025px) and (max-width: 2559px) {
+  .product-center-section {
+    height: auto;
+  }
+}
 
-      @media (min-width: 426px) and (max-width: 768px) {
-        .product-center-section {
-          height: 50rem;
-        }
-        .product-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .product-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .product-subtitle-bar {
-          margin-bottom: 2rem;
-          padding: 0.2rem 0.5rem;
-        }
-        .subtitle-item {
-          font-size: 0.6rem;
-          padding: 0.3rem 0.8rem;
-        }
-        .product-item {
-          width: 13rem;
-        }
-        .product-item img {
-          height: 15rem;
-          margin-top: 1rem;
-        }
-        .product-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-      }
-
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .product-center-section {
-          height: 50rem;
-        }
-        .product-container {
-          margin: 0 auto 0 12%;
-          max-width: 90rem;
-        }
-        .product-main-title {
-          font-size: 2.5rem;
-        }
-        .product-item {
-          width: 20rem;
-        }
-        .product-item {
-          width: 13rem;
-        }
-        .product-item img {
-          height: 15rem;
-          margin-top: 1rem;
-        }
-        .product-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-      }
-
-      @media (min-width: 1025px) and (max-width: 2559px) {
-      }
-
-      @media (min-width: 2560px) {
-        .product-center-section {
-          height: 70rem;
-        }
-
-        .product-container {
-          max-width: 120rem;
-        }
-        .product-main-title {
-          font-size: 4.5rem;
-          margin-bottom: 2rem;
-        }
-        .product-subtitle-bar {
-          margin-bottom: 3.5rem;
-          padding: 0.3rem 0.9rem;
-        }
-        .subtitle-item {
-          font-size: 0.8rem;
-          padding: 0.45rem 1.2rem;
-        }
-        .product-item {
-          width: 24rem;
-        }
-        .product-item img {
-          height: 28rem;
-          border-radius: 1.5rem;
-        }
-        .product-item p {
-          font-size: 1.2rem;
-          margin-top: 1.2rem;
-        }
-        .product-nav-btn {
-          width: 3rem;
-          height: 3rem;
-          font-size: 1.5rem;
-        }
-        .product-nav-btn.prev-btn {
-          left: calc(85% + 3rem);
-        }
-        .product-nav-btn.next-btn {
-          right: calc(5% + 1.5rem);
-        }
-      }
-    </style>
+@media (min-width: 2560px) {
+  .product-center-section {
+    height: auto;
+  }
+  .product-container {
+    max-width: 120rem;
+  }
+  .product-main-title {
+    font-size: 4.5rem;
+    margin-bottom: 2rem;
+  }
+  .product-subtitle-bar {
+    margin-bottom: 3.5rem;
+    padding: 0.3rem 0.9rem;
+  }
+  .subtitle-item {
+    font-size: 0.8rem;
+    padding: 0.45rem 1.2rem;
+  }
+  .product-item {
+    width: 24rem;
+  }
+  .product-item img {
+    height: 28rem;
+    border-radius: 1.5rem;
+  }
+  .product-item p {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+  }
+  .product-nav-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+  .product-nav-btn.prev-btn {
+    left: calc(85% + 3rem);
+  }
+  .product-nav-btn.next-btn {
+    right: calc(5% + 1.5rem);
+  }
+}
+</style>
 
     <!--六、CSS 购买激光设备避坑指南-->
     <style>
@@ -2683,7 +2708,7 @@
         padding: 5rem 0 7.5rem;
         position: relative;
         overflow: visible;
-        height: 55rem;
+        height: auto;
       }
       .cases-list {
         display: grid;
@@ -3182,513 +3207,414 @@
     </style>
 
     <!--七、CSS 售后服务（在Senrytech购买Machine好处多多-->
-    <style>
-      .benefit-section {
-        background: linear-gradient(
-          135deg,
-          #ffffff 0%,
-          #f8f8fa 50%,
-          #f5f5f7 100%
-        );
-        width: 100%;
-        padding: 5rem 0 7.5rem;
-        position: relative;
-        overflow: visible;
-        height: 60rem;
-      }
+<style>
+.benefit-section {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8f8fa 50%,
+    #f5f5f7 100%
+  );
+  width: 100%;
+  /* 🔴 关键1：底部padding加大，给下方内容留足空间，彻底避免截断 */
+  padding: 5rem 0 10rem;
+  position: relative;
+  overflow: visible;
+  /* 🔴 关键2：彻底去掉固定高度，强制自适应 */
+  height: auto !important;
+  min-height: auto !important;
+}
 
-      .benefit-container {
-        max-width: 100rem;
-        margin: 0 auto 0 15%;
-        padding: 0 1.25rem;
-      }
+.benefit-container {
+  max-width: 100rem;
+  margin: 0 auto 0 15%;
+  padding: 0 1.25rem;
+}
 
-      .benefit-main-title {
-        font-family: "Public Sans", "Noto Sans SC", sans-serif;
-        font-size: 3.5rem;
-        font-weight: 500;
-        color: #1d1d1f;
-        text-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
-        margin-bottom: 6rem;
-        text-align: left;
-        line-height: 1.1;
-      }
+.benefit-main-title {
+  font-family: "Public Sans", "Noto Sans SC", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #1d1d1f;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  margin-bottom: 3rem; /* 🔴 减小标题下方间距，给卡片留更多空间 */
+  text-align: left;
+  line-height: 1.1;
+}
 
-      .benefit-scroll-wrap {
-        position: relative;
-        overflow: visible;
-        overflow-x: auto;
-        padding-bottom: 5rem;
+.benefit-scroll-wrap {
+  position: relative;
+  overflow: visible;
+  overflow-x: auto;
+  padding-bottom: 2rem; /* 🔴 减小滚动区底部间距，避免浪费空间 */
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .benefit-scroll-wrap::-webkit-scrollbar {
-        display: none;
-      }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.benefit-scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
 
-      #benefitScroll {
-        display: flex;
-        gap: 1.5rem;
-        width: max-content;
-        transition: transform 0.4s ease-out;
+#benefitScroll {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  transition: transform 0.4s ease-out;
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        padding: 0 2.5rem;
-      }
-      #benefitScroll::-webkit-scrollbar {
-        display: none;
-      }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  padding: 0 2.5rem;
+}
+#benefitScroll::-webkit-scrollbar {
+  display: none;
+}
 
-      .benefit-card {
-        width: 21.25rem;
-        flex-shrink: 0;
-        position: relative;
-        transition: transform 0.3s ease;
-      }
+.benefit-card {
+  width: 21.25rem;
+  flex-shrink: 0;
+  position: relative;
+  transition: transform 0.3s ease;
+  /* 🔴 关键3：给卡片加内边距，防止文字贴边、和图片打架 */
+  padding: 1.5rem;
+  box-sizing: border-box;
+  border-radius: 1.25rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.85) 100%
+  );
+}
 
-      .benefit-card:hover {
-        transform: translateY(-0.3rem);
-      }
+.benefit-card:hover {
+  transform: translateY(-0.3rem);
+}
 
-      .benefit-card-text {
-        position: absolute;
-        top: 3rem;
-        left: 1.25rem;
-        z-index: 10;
-        width: calc(100% - 2.5rem);
-        text-align: left;
-        pointer-events: none;
-      }
+.benefit-card-text {
+  position: relative; /* 🔴 改为relative，不再绝对定位，避免重叠 */
+  z-index: 10;
+  width: 100%;
+  text-align: left;
+  pointer-events: none;
+  /* 🔴 去掉绝对定位的top/left，让文字在图片上方正常排列 */
+  top: auto;
+  left: auto;
+  margin-bottom: 1rem;
+}
 
-      .benefit-card .benefit-subtitle {
-        color: #1d1d1f;
-        font-size: 1rem;
-        font-weight: 400;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      }
+.benefit-card .benefit-subtitle {
+  color: #1d1d1f;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
 
-      .benefit-card .benefit-heading {
-        color: #1d1d1f;
-        font-size: 1.75rem;
-        font-weight: 500;
-        margin-bottom: 0.75rem;
-        letter-spacing: -0.5px;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-      }
+.benefit-card .benefit-heading {
+  color: #1d1d1f;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
 
-      .benefit-card .benefit-desc {
-        color: #1d1d1f;
-        font-size: 1rem;
-        line-height: 1.5;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        font-weight: 400;
-      }
+.benefit-card .benefit-desc {
+  color: #1d1d1f;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+}
 
-      .benefit-card img {
-        width: 100%;
-        height: 35rem;
-        object-fit: cover;
-        border-radius: 1.25rem;
-        box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
-        background: linear-gradient(
-          180deg,
-          #ffffff 0%,
-          #eeeef2 50%,
-          #e4e4ea 100%
-        );
-        margin-top: 1.25rem;
-      }
+.benefit-card img {
+  width: 100%;
+  height: auto; /* 🔴 关键4：图片高度自适应，不再固定35rem，避免被长文本撑出问题 */
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 1rem rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #eeeef2 50%,
+    #e4e4ea 100%
+  );
+  position: relative;
+  z-index: 1;
+}
 
-      .benefit-card:hover img {
-        transform: scale(1);
-        box-shadow: 0 0.2rem 0.5rem rgb(167, 167, 167);
-      }
+.benefit-card:hover img {
+  transform: scale(1);
+  box-shadow: 0 0.2rem 0.5rem rgb(167, 167, 167);
+}
 
-      .benefit-nav-btn {
-        position: absolute;
-        top: 90%;
-        transform: translateY(-50%) !important;
-        bottom: auto !important;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background-color: rgba(222, 222, 226, 0.9);
-        color: #696969;
-        border: none;
-        font-size: 1.25rem;
-        cursor: pointer;
-        outline: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        z-index: 999;
-      }
+.benefit-nav-btn {
+  position: absolute;
+  top: 90%;
+  transform: translateY(-50%) !important;
+  bottom: auto !important;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: rgba(222, 222, 226, 0.9);
+  color: #696969;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  z-index: 999;
+}
 
-      .benefit-nav-btn.prev-btn {
-        left: calc(85% + 2.5rem);
-        right: auto;
-        display: flex !important;
-        white-space: nowrap;
-      }
+.benefit-nav-btn.prev-btn {
+  left: calc(85% + 2.5rem);
+  right: auto;
+  display: flex !important;
+  white-space: nowrap;
+}
 
-      .benefit-nav-btn.next-btn {
-        right: calc(5% + 1.25rem);
-        left: auto;
-        white-space: nowrap;
-      }
+.benefit-nav-btn.next-btn {
+  right: calc(5% + 1.25rem);
+  left: auto;
+  white-space: nowrap;
+}
 
-      .benefit-nav-btn:hover {
-        background-color: rgba(180, 180, 180, 0.9);
-        color: #333;
-      }
-      .benefit-nav-btn:disabled {
-        background-color: rgba(240, 240, 240, 0.9);
-        color: #aaa;
-        cursor: not-allowed;
-        display: flex !important;
-      }
+.benefit-nav-btn:hover {
+  background-color: rgba(180, 180, 180, 0.9);
+  color: #333;
+}
+.benefit-nav-btn:disabled {
+  background-color: rgba(240, 240, 240, 0.9);
+  color: #aaa;
+  cursor: not-allowed;
+  display: flex !important;
+}
 
-      @media (max-width: 320px) {
-        .benefit-section {
-          height: 38rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 13rem;
-        }
-        .benefit-card img {
-          height: 20rem;
-          border-radius: 1rem;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
+/* ==================== 移动端媒体查询（全部修复高度）==================== */
+@media (max-width: 320px) {
+  .benefit-section {
+    height: auto !important;
+    padding-bottom: 6rem !important;
+  }
+  .benefit-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-card {
+    width: 13rem;
+    padding: 1rem;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 0.85rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.1rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.7rem;
+  }
+  .benefit-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .benefit-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-        .benefit-card .benefit-subtitle {
-          color: #1d1d1f;
-          font-size: 1rem;
-          font-weight: 300;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+@media (min-width: 321px) and (max-width: 375px) {
+  .benefit-section {
+    height: auto !important;
+    padding-bottom: 6rem !important;
+  }
+  .benefit-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-card {
+    width: 13rem;
+    padding: 1rem;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 0.85rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.1rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.7rem;
+  }
+  .benefit-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .benefit-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-        .benefit-card .benefit-heading {
-          color: #1d1d1f;
-          font-size: 1.2rem;
-          font-weight: 350;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+@media (min-width: 376px) and (max-width: 425px) {
+  .benefit-section {
+    height: auto !important;
+    padding-bottom: 6rem !important;
+  }
+  .benefit-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-card {
+    width: 13rem;
+    padding: 1rem;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 0.85rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.1rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.7rem;
+  }
+  .benefit-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .benefit-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-        .benefit-card .benefit-desc {
-          color: #1d1d1f;
-          font-size: 0.7rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
+@media (min-width: 426px) and (max-width: 768px) {
+  .benefit-section {
+    height: auto !important;
+    padding-bottom: 6rem !important;
+  }
+  .benefit-container {
+    margin: 0 auto;
+    padding: 0 0.8rem;
+  }
+  .benefit-main-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .benefit-card {
+    width: 13rem;
+    padding: 1rem;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 0.85rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 1.1rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 0.7rem;
+  }
+  .benefit-nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .benefit-nav-btn.prev-btn {
+    left: calc(75% + 0rem);
+  }
+  .benefit-nav-btn.next-btn {
+    right: calc(5% + 0.8rem);
+  }
+}
 
-      @media (min-width: 321px) and (max-width: 375px) {
-        .benefit-section {
-          height: 40rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 13rem;
-        }
-        .benefit-card img {
-          height: 20rem;
-          border-radius: 1rem;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .benefit-section {
+    height: auto !important;
+    padding-bottom: 8rem !important;
+  }
+  .benefit-container {
+    margin: 0 auto 0 12%;
+    max-width: 90rem;
+  }
+  .benefit-main-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .benefit-card {
+    width: 18rem;
+    padding: 1.25rem;
+  }
+  .benefit-nav-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
 
-        .benefit-card .benefit-subtitle {
-          color: #1d1d1f;
-          font-size: 1rem;
-          font-weight: 300;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
+@media (min-width: 1025px) and (max-width: 2559px) {
+  .benefit-section {
+    height: auto !important;
+  }
+}
 
-        .benefit-card .benefit-heading {
-          color: #1d1d1f;
-          font-size: 1.2rem;
-          font-weight: 350;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          color: #1d1d1f;
-          font-size: 0.7rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
-
-      @media (min-width: 376px) and (max-width: 425px) {
-        .benefit-section {
-          height: 43rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 13rem;
-        }
-        .benefit-card img {
-          height: 20rem;
-          border-radius: 1rem;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-
-        .benefit-card .benefit-subtitle {
-          color: #1d1d1f;
-          font-size: 1rem;
-          font-weight: 300;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          color: #1d1d1f;
-          font-size: 1.2rem;
-          font-weight: 350;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          color: #1d1d1f;
-          font-size: 0.7rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
-
-      @media (min-width: 426px) and (max-width: 768px) {
-        .benefit-section {
-          height: 45rem;
-        }
-        .benefit-container {
-          margin: 0 auto;
-          padding: 0 0.8rem;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 13rem;
-        }
-        .benefit-card img {
-          height: 20rem;
-          border-radius: 1rem;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-
-        .benefit-card .benefit-subtitle {
-          color: #1d1d1f;
-          font-size: 1rem;
-          font-weight: 300;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          color: #1d1d1f;
-          font-size: 1.2rem;
-          font-weight: 350;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          color: #1d1d1f;
-          font-size: 0.7rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
-
-      @media (min-width: 769px) and (max-width: 1024px) {
-        .benefit-section {
-          height: 50rem;
-        }
-        .benefit-container {
-          margin: 0 auto 0 12%;
-          max-width: 90rem;
-        }
-        .benefit-main-title {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        .benefit-intro {
-          margin-bottom: 2rem;
-        }
-        .benefit-card {
-          width: 13rem;
-        }
-        .benefit-card img {
-          height: 20rem;
-          border-radius: 1rem;
-        }
-        .benefit-nav-btn {
-          width: 2rem;
-          height: 2rem;
-          font-size: 1rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(75% + 0rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 0.8rem);
-        }
-
-        .benefit-card .benefit-subtitle {
-          color: #1d1d1f;
-          font-size: 1rem;
-          font-weight: 300;
-          margin-bottom: 0.5rem;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-heading {
-          color: #1d1d1f;
-          font-size: 1.2rem;
-          font-weight: 350;
-          margin-bottom: 0.75rem;
-          letter-spacing: -0.5px;
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .benefit-card .benefit-desc {
-          color: #1d1d1f;
-          font-size: 0.7rem;
-          line-height: 1.5;
-          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-      }
-
-      @media (min-width: 1025px) and (max-width: 2559px) {
-      }
-
-      @media (min-width: 2560px) {
-        .benefit-container {
-          max-width: 120rem;
-        }
-        .benefit-main-title {
-          font-size: 4.5rem;
-          margin-bottom: 2rem;
-        }
-        .benefit-intro {
-          margin-bottom: 4rem;
-        }
-        .benefit-card {
-          width: 24rem;
-        }
-        .benefit-card img {
-          height: 28rem;
-          border-radius: 1.5rem;
-        }
-        .benefit-card-name {
-          font-size: 1.2rem;
-          bottom: 1.5rem;
-          left: 1.5rem;
-        }
-        .benefit-nav-btn {
-          width: 3rem;
-          height: 3rem;
-          font-size: 1.5rem;
-        }
-        .benefit-nav-btn.prev-btn {
-          left: calc(85% + 3rem);
-        }
-        .benefit-nav-btn.next-btn {
-          right: calc(5% + 1.5rem);
-        }
-      }
-    </style>
+@media (min-width: 2560px) {
+  .benefit-container {
+    max-width: 120rem;
+  }
+  .benefit-main-title {
+    font-size: 4.5rem;
+    margin-bottom: 3rem;
+  }
+  .benefit-card {
+    width: 24rem;
+    padding: 2rem;
+  }
+  .benefit-card .benefit-subtitle {
+    font-size: 1.2rem;
+  }
+  .benefit-card .benefit-heading {
+    font-size: 2rem;
+  }
+  .benefit-card .benefit-desc {
+    font-size: 1.1rem;
+  }
+  .benefit-nav-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+  .benefit-nav-btn.prev-btn {
+    left: calc(85% + 3rem);
+  }
+  .benefit-nav-btn.next-btn {
+    right: calc(5% + 1.5rem);
+  }
+}
+</style>
 
     <!--八、CSS 切割样品抢先看-->
     <style>
@@ -5318,261 +5244,251 @@
     </style>
 
     <style>
-      #contact {
-        background: radial-gradient(
-          ellipse at center,
-          #f8f8f8 0%,
-          #fafafa 30%,
-          #ffffff 70%,
-          #ffffff 100%
-        );
-        width: 100%;
-        padding: 5rem 0 8rem;
-        position: relative;
-        overflow: visible;
-      }
+      /* —— 十二， 联系专家 —— */
+#contact-section {
+  background: radial-gradient(
+    ellipse at center,
+    #f8f8f8 0%,
+    #fafafa 30%,
+    #ffffff 70%,
+    #ffffff 100%
+  );
+  width: 100%;
+  padding: 5rem 0 8rem;
+  position: relative;
+  overflow: visible;
+}
 
-      #contact .container {
-        max-width: 100rem;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
+#contact-section .container {
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
 
-      #contact .max-w-5xl {
-        max-width: 64rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
+#contact-section .max-w-5xl {
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-      #contact .text-center {
-        text-align: center;
-        margin-bottom: 3rem;
-      }
+#contact-section .text-center {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
-      #contact h2 {
-        font-family: "SF Pro Display", "Segoe UI", sans-serif;
-        font-size: 3.5rem;
-        font-weight: 500;
-        color: #1d1d1f;
-        margin-bottom: 0rem;
-        text-align: center;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        margin-left: 2rem;
-      }
+#contact-section h2 {
+  font-family: "SF Pro Display", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 0rem;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  margin-left: 2rem;
+}
 
-      #contact p {
-        font-family: "SF Pro Text" sans-serif;
-        font-size: clamp(0.9375rem, 2vw, 1.125rem);
-        font-weight: 300;
-        color: rgba(29, 29, 31, 0.8);
-        max-width: 36rem;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.5;
-        margin-top: 0.5rem;
-      }
+#contact-section p {
+  font-family: "SF Pro Text", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: clamp(0.9375rem, 2vw, 1.125rem);
+  font-weight: 300;
+  color: rgba(29, 29, 31, 0.8);
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
 
-      #contact .bg-white {
-        background-color: #ffffff;
-        border-radius: 1.5rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        padding: 2.5rem;
-        transition: box-shadow 0.3s ease;
-      }
+#contact-section .bg-white {
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 2.5rem;
+  transition: box-shadow 0.3s ease;
+}
 
-      #contact .bg-white:hover {
-        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-      }
+#contact-section .bg-white:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
 
-      #contact label {
-        display: block;
-        font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.875rem;
-        font-weight: 400;
-        color: #424245;
-        margin-bottom: 0.5rem;
-        text-align: left;
-      }
+#contact-section label {
+  display: block;
+  font-family: "SF Pro Text", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #424245;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
 
-      #contact input[type="text"],
-      #contact input[type="tel"],
-      #contact input[type="email"],
-      #contact select,
-      #contact textarea {
-        width: 100%;
-        padding: 0.875rem 1rem;
-        border: 1px solid #e0e0e0;
-        border-radius: 0.75rem;
-        font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.9375rem;
-        color: #1d1d1f;
-        background-color: #ffffff;
-        transition:
-          border-color 0.2s ease,
-          box-shadow 0.2s ease;
-        box-sizing: border-box;
-      }
+#contact-section input[type="text"],
+#contact-section input[type="tel"],
+#contact-section input[type="email"],
+#contact-section select,
+#contact-section textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.75rem;
+  font-family: "SF Pro Text", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: 0.9375rem;
+  color: #1d1d1f;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
 
-      #contact input[type="text"]:focus,
-      #contact input[type="tel"]:focus,
-      #contact input[type="email"]:focus,
-      #contact select:focus,
-      #contact textarea:focus {
-        outline: none;
-        border-color: var(--primary, #0071e3);
-        box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
-      }
+#contact-section input[type="text"]:focus,
+#contact-section input[type="tel"]:focus,
+#contact-section input[type="email"]:focus,
+#contact-section select:focus,
+#contact-section textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
 
-      #contact select {
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231d1d1f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l4-4H4l4 4z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 1rem center;
-        background-size: 1rem;
-        padding-right: 2.5rem;
-      }
+#contact-section select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='https://www.w3.org/2000/svg' width='16' height='16' fill='%231d1d1f' viewBox='0 0 16 16'%3E%3Cpath d='M8 11l4-4H4l4 4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
 
-      #contact textarea {
-        resize: none;
-        min-height: 8rem;
-        line-height: 1.5;
-      }
+#contact-section textarea {
+  resize: none;
+  min-height: 8rem;
+  line-height: 1.5;
+}
 
-      #contact .mb-6 {
-        margin-bottom: 1.5rem;
-      }
+#contact-section .mb-6 {
+  margin-bottom: 1.5rem;
+}
 
-      #contact button[type="submit"] {
-        width: 100%;
-        padding: 1rem 1.5rem;
-        background-color: var(--primary, #0071e3);
-        color: #ffffff;
-        font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.9375rem;
-        font-weight: 500;
-        border-radius: 0.75rem;
-        border: none;
-        cursor: pointer;
-        transition:
-          background-color 0.2s ease,
-          transform 0.1s ease,
-          box-shadow 0.2s ease;
-        box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
-      }
+#contact-section button[type="submit"] {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: #0071e3;
+  color: #ffffff;
+  font-family: "SF Pro Text", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+}
 
-      #contact button[type="submit"]:hover {
-        background-color: var(--primary-90, #0066cc);
-        box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-      }
+#contact-section button[type="submit"]:hover {
+  background-color: #0066cc;
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
 
-      #contact button[type="submit"]:active {
-        transform: translateY(1px);
-        box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2);
-      }
+#contact-section button[type="submit"]:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 113, 227, 0.2);
+}
 
-      #contact button[type="submit"]:disabled {
-        background-color: #a0c4ff;
-        cursor: not-allowed;
-        box-shadow: none;
-        transform: none;
-      }
+#contact-section button[type="submit"]:disabled {
+  background-color: #a0c4ff;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
 
-      #contact #submitTip {
-        font-family: "SF Pro Text", "Segoe UI", sans-serif;
-        font-size: 0.875rem;
-        padding: 0.75rem 1rem;
-        border-radius: 0.5rem;
-      }
+#contact-section #submitTip {
+  font-family: "SF Pro Text", "Segoe UI", "Noto Sans SC", sans-serif;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
 
-      #contact #submitTip.success {
-        color: #2e7d32;
-        background-color: #e8f5e9;
-        border: 1px solid #c8e6c9;
-      }
+#contact-section #submitTip.success {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
 
-      #contact #submitTip.error {
-        color: #c62828;
-        background-color: #ffebee;
-        border: 1px solid #ffcdd2;
-      }
+#contact-section #submitTip.error {
+  color: #c62828;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+}
 
-      @media (min-width: 1200px) {
-        #contact .bg-white {
-          padding: 3rem;
-        }
-        #contact .max-w-5xl {
-          max-width: 72rem;
-        }
-      }
+/* 响应式统一修复 */
+@media (min-width: 1200px) {
+  #contact-section .bg-white {
+    padding: 3rem;
+  }
+  #contact-section .max-w-5xl {
+    max-width: 72rem;
+  }
+}
 
-      @media (min-width: 769px) and (max-width: 1024px) {
-        #contact {
-          padding-top: 3.5rem;
-          padding-bottom: 3.5rem;
-        }
-        #contact .bg-white {
-          padding: 2.25rem;
-        }
-        #contact h2 {
-          font-size: 2rem;
-        }
-      }
+@media (min-width: 769px) and (max-width: 1024px) {
+  #contact-section {
+    padding: 3.5rem 0;
+  }
+  #contact-section .bg-white {
+    padding: 2.25rem;
+  }
+  #contact-section h2 {
+    font-size: 2rem;
+  }
+}
 
-      @media (min-width: 426px) and (max-width: 768px) {
-        #contact {
-          padding-top: 3rem;
-          padding-bottom: 3rem;
-        }
-        #contact .bg-white {
-          padding: 2rem;
-          border-radius: 1.25rem;
-        }
-        #contact .mb-6 {
-          margin-bottom: 1.25rem;
-        }
-        #contact button[type="submit"] {
-          padding: 0.9375rem 1.25rem;
-        }
-        #contact h2 {
-          font-size: 2rem;
-        }
-      }
+@media (min-width: 426px) and (max-width: 768px) {
+  #contact-section {
+    padding: 3rem 0;
+  }
+  #contact-section .bg-white {
+    padding: 2rem;
+    border-radius: 1.25rem;
+  }
+  #contact-section .mb-6 {
+    margin-bottom: 1.25rem;
+  }
+  #contact-section button[type="submit"] {
+    padding: 0.9375rem 1.25rem;
+  }
+  #contact-section h2 {
+    font-size: 2rem;
+  }
+}
 
-      @media (min-width: 376px) and (max-width: 425px) {
-        #contact {
-          padding-top: 2.5rem;
-          padding-bottom: 2.5rem;
-        }
-        #contact .bg-white {
-          padding: 1.5rem;
-          border-radius: 1rem;
-        }
-        #contact .text-center {
-          margin-bottom: 2rem;
-        }
-        #contact h2 {
-          font-size: clamp(1.25rem, 3vw, 1.75rem);
-          margin-bottom: 0.75rem;
-        }
-        #contact p {
-          font-size: clamp(0.875rem, 2vw, 1rem);
-        }
-      }
+@media (min-width: 376px) and (max-width: 425px) {
+  #contact-section {
+    padding: 2.5rem 0;
+  }
+  #contact-section .bg-white {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+  #contact-section .text-center {
+    margin-bottom: 2rem;
+  }
+  #contact-section h2 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: 0.75rem;
+    margin-left: 0;
+  }
+  #contact-section p {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+}
 
-      @media (min-width: 321px) and (max-width: 375px) {
-        #contact h2 {
-          font-size: 2rem;
-        }
-      }
-
-      @media (max-width: 320px) {
-        #contact h2 {
-          font-size: 2rem;
-        }
-      }
+@media (max-width: 375px) {
+  #contact-section h2 {
+    font-size: 2rem;
+    margin-left: 0;
+  }
+}
     </style>
 
     <!--十一、CSS 底部导航栏 -->
@@ -5764,7 +5680,7 @@
       <div class="logo">
         <svg
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="144"
           height="39"
           viewBox="0 0 2305 629"
@@ -6186,7 +6102,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
                         alt="Series A 四合一激光焊接机"
                       />
                     </a>
@@ -6202,7 +6118,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
                         alt="Series A Pro 1500-3000W激光焊接机"
                       />
                     </a>
@@ -6218,7 +6134,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
                         alt="Series A Ultra 大功率激光焊接机"
                       />
                     </a>
@@ -6234,7 +6150,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
                         alt="Robot 4 in 1 四合一焊接设备"
                       />
                     </a>
@@ -6250,7 +6166,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-workstation/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
                         alt="R Workstation 1500-3000W 移动焊接机"
                       />
                     </a>
@@ -6266,7 +6182,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-mobile/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
                         alt="R Mobile 协作机器人焊接设备"
                       />
                     </a>
@@ -6289,7 +6205,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/residential/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
                         alt="Residential 家用除锈激光清洗机"
                       />
                     </a>
@@ -6305,7 +6221,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/commercial/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
                         alt="Commercial cc"
                       />
                     </a>
@@ -6321,7 +6237,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/industrial/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
                         alt="Industrial 大功率激光清洗机"
                       />
                     </a>
@@ -6343,7 +6259,7 @@
                       href="https://www.senrytech.com/products/laser-marking/series-p/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
                         alt="便携台式激光打标机"
                       />
                     </a>
@@ -6359,7 +6275,7 @@
                       href="https://www.senrytech.com/products/laser-marking/series-d/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
                         alt="台式激光打标机"
                       />
                     </a>
@@ -6828,7 +6744,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
                       alt="Series A 四合一激光焊接机"
                     />
                     <p>Series A</p>
@@ -6840,7 +6756,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
                       alt="Series A Pro 1500-3000W激光焊接机"
                     />
                     <p>Series A Pro</p>
@@ -6852,7 +6768,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
                       alt="Series A Ultra 大功率激光焊接机"
                     />
                     <p>Series A Ultra</p>
@@ -6864,7 +6780,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
                       alt="Robot 4 in 1 四合一焊接设备"
                     />
                     <p>R 4in1</p>
@@ -6876,7 +6792,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-workstation/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
                       alt="R Workstation 1500-3000W 移动焊接机"
                     />
                     <p>R Workstation</p>
@@ -6888,7 +6804,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-mobile/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
                       alt="R Mobile 协作机器人焊接设备"
                     />
                     <p>R Mobile</p>
@@ -6905,7 +6821,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/residential/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
                       alt="Residential 家用除锈激光清洗机"
                     />
                     <p>Residential</p>
@@ -6917,7 +6833,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/commercial/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
                       alt="Commercial 家用除锈激光清洗机"
                     />
                     <p>Commercial</p>
@@ -6929,7 +6845,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/industrial/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
                       alt="Industrial 大功率激光清洗机"
                     />
                     <p>Industrial</p>
@@ -6946,7 +6862,7 @@
                     href="https://www.senrytech.com/products/laser-marking/series-p/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
                       alt="便携台式激光打标机"
                     />
                     <p>Series P</p>
@@ -6958,7 +6874,7 @@
                     href="https://www.senrytech.com/products/laser-marking/series-d/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
                       alt="台式激光打标机"
                     />
                     <p>Series D</p>
@@ -7975,7 +7891,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/automatic-back-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/automatic-back-cutting.png"
                 alt="Senrytech薄板加工光纤激光切割机自动回切技术"
                 loading="lazy"
               />
@@ -7994,7 +7910,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/automatic-nesting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/automatic-nesting.png"
                 alt="Senrytech加固床身光纤激光切割机自动排样技术"
                 loading="lazy"
               />
@@ -8013,7 +7929,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/avoid-cutting-interference.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/avoid-cutting-interference.png"
                 alt="Senrytech中型企业光纤激光切割机避让切割技术"
                 loading="lazy"
               />
@@ -8032,7 +7948,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/bevel-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/bevel-cutting.png"
                 alt="Senrytech正装管材切割机坡口切割技术"
                 loading="lazy"
               />
@@ -8051,7 +7967,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/disc-centering.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/disc-centering.png"
                 alt="Senrytech 10秒交换上料光纤激光切割机圆盘寻中技术技术"
                 loading="lazy"
               />
@@ -8070,7 +7986,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/double-y-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/double-y-cutting.png"
                 alt="Senrytech双上料台激光切割机双Y切割技术"
                 loading="lazy"
               />
@@ -8089,7 +8005,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/envelope-line.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/envelope-line.png"
                 alt="Senrytech高速上料激光切割设备包络线路技术"
                 loading="lazy"
               />
@@ -8108,7 +8024,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/flying-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/flying-cutting.png"
                 alt="Senrytech批量管材加工设备飞行切割技术"
                 loading="lazy"
               />
@@ -8127,7 +8043,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/four-point-edge-finding.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/four-point-edge-finding.png"
                 alt="Senrytech节省占地激光切割设备四点寻边技术"
                 loading="lazy"
               />
@@ -8146,7 +8062,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-punching.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-punching.png"
                 alt="Senrytech智能穿孔技术"
                 loading="lazy"
               />
@@ -8165,7 +8081,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-tool-retraction.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/intelligent-tool-retraction.png"
                 alt="Senrytech智能收刀技术"
                 loading="lazy"
               />
@@ -8184,7 +8100,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/lightning-punching.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/lightning-punching.png"
                 alt="Senrytech闪电穿孔技术"
                 loading="lazy"
               />
@@ -8203,7 +8119,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/one-click-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/one-click-cutting.png"
                 alt="Senrytech一键切断技术"
                 loading="lazy"
               />
@@ -8222,7 +8138,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/one-stroke-flying-cutting.png"
                 alt="Senrytech一笔飞切技术"
                 loading="lazy"
               />
@@ -8241,7 +8157,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/pipe-end-alignment.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/pipe-end-alignment.png"
                 alt="Senrytech管头对齐技术"
                 loading="lazy"
               />
@@ -8260,7 +8176,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/prevent-cutting-voids.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/prevent-cutting-voids.png"
                 alt="Senrytech防止切空技术"
                 loading="lazy"
               />
@@ -8279,7 +8195,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/punching-slag-removal.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/punching-slag-removal.png"
                 alt="Senrytech穿孔除渣技术"
                 loading="lazy"
               />
@@ -8298,7 +8214,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/scan-code-guidance.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/scan-code-guidance.png"
                 alt="Senrytech扫码导图技术"
                 loading="lazy"
               />
@@ -8317,7 +8233,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/sensory-free-punching.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/sensory-free-punching.png"
                 alt="Senrytech无感穿孔技术"
                 loading="lazy"
               />
@@ -8336,7 +8252,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/single-sided-centering.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/single-sided-centering.png"
                 alt="Senrytech单面寻中技术"
                 loading="lazy"
               />
@@ -8355,7 +8271,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/special-steel-centering.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/special-steel-centering.png"
                 alt="Senrytech特殊钢寻中技术"
                 loading="lazy"
               />
@@ -8374,7 +8290,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/traceless-micro-connection.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/traceless-micro-connection.png"
                 alt="Senrytech无痕微联技术"
                 loading="lazy"
               />
@@ -8393,7 +8309,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/vibration-suppression.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/vibration-suppression.png"
                 alt="Senrytech振动抑制技术"
                 loading="lazy"
               />
@@ -8412,7 +8328,7 @@
      "
             >
               <img
-                src="http://senrytech.github.io/img/index/core-advantage/high-clear/zero-tail-material-cutting.png"
+                src="https://senrytech.github.io/img/index/core-advantage/high-clear/zero-tail-material-cutting.png"
                 alt="Senrytech零尾料切技术"
                 loading="lazy"
               />
@@ -8521,7 +8437,7 @@
     </div>
 
     <!-- 十二，代码，联系咨询-->
-    <section class="py-16 bg-primary/5" id="contact">
+    <section class="py-16 bg-primary/5" id="contact-section">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
           <div class="text-center mb-12">
@@ -8613,7 +8529,7 @@
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="https://senrytech.github.io/img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
@@ -8729,14 +8645,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="https://senrytech.github.io/img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="https://senrytech.github.io/img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>
@@ -9066,194 +8982,96 @@
     </script>
 
     <!-- 十一，全系列产品板块交互-->
-    <script>
-      // 作用：实现产品分类切换（副标题背景跟随）、产品卡片横向滚动、箭头禁用状态控制
-      // 依赖：页面DOM加载完成后执行（避免DOM未渲染导致查询失败）
-      document.addEventListener("DOMContentLoaded", () => {
-        // —— 4.1 初始化产品板块所需变量 ——
-        const subtitleBar = document.querySelector(".product-subtitle-bar"); // 副标题容器
-        const subtitleItems = document.querySelectorAll(".subtitle-item"); // 所有分类副标题
-        const activeBg = document.querySelector(".subtitle-active-bg"); // 副标题激活背景（跟随用）
-        const productDisplay = document.getElementById("productScroll"); // 产品卡片容器
-        const scrollContainer = document.querySelector(".product-scroll-wrap"); // 产品滚动容器
-        const productItems = document.querySelectorAll(".product-item"); // 所有产品卡片
-        const prevBtn = document.getElementById("productPrevBtn"); // 产品左滚动箭头
-        const nextBtn = document.getElementById("productNextBtn"); // 产品右滚动箭头
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const subtitleBar = document.querySelector(".product-subtitle-bar");
+  const subtitleItems = document.querySelectorAll(".subtitle-item");
+  const activeBg = document.querySelector(".subtitle-active-bg");
+  const productScroll = document.getElementById("productScroll");
+  const scrollContainer = document.querySelector(".product-scroll-wrap");
+  const prevBtn = document.getElementById("productPrevBtn");
+  const nextBtn = document.getElementById("productNextBtn");
 
-        // —— 4.2 初始化参数（含默认值，避免报错） ——
-        let currentTab = "board"; // 当前激活的分类（默认：板材切割机）
-        // 卡片宽度=单张卡片宽度+间距（默认364px，容错处理：若卡片不存在则用默认值）
-        let itemWidth = productItems[0]
-          ? productItems[0].offsetWidth + 24
-          : 364;
-        const itemCount = subtitleItems.length; // 分类数量（用于计算背景宽度）
-        let barTotalWidth = 0; // 副标题容器总宽度（动态计算）
-        let barPaddingX = 0; // 副标题容器左右内边距（动态计算）
-        let equalWidth = 0; // 单个分类项的宽度（用于背景跟随）
+  if (!subtitleBar || !activeBg || subtitleItems.length === 0) return;
 
-        // —— 4.3 计算副标题激活背景宽度（补全缺失的宽度计算，修复背景不显示） ——
-        const calcEqualWidth = () => {
-          if (!subtitleBar || !activeBg) return; // 容错：容器/背景不存在则不执行
-          barTotalWidth = subtitleBar.getBoundingClientRect().width; // 获取容器实际宽度（电脑端适配不同屏幕）
-          // 获取容器左内边距（转为数字，默认0）
-          barPaddingX =
-            parseInt(window.getComputedStyle(subtitleBar).paddingLeft) || 0;
-          // 计算单个分类项宽度：（容器总宽-2倍内边距）/分类数量（电脑端均分更精准）
-          equalWidth = (barTotalWidth - 2 * barPaddingX) / itemCount;
-          activeBg.style.width = `${equalWidth}px`; // 【补全】填充宽度数值，背景终于显示
-          activeBg.style.transition =
-            "left 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)"; // 电脑端加缓动，避免背景跳变
-        };
+  let activeItem = subtitleItems[0];
 
-        // —— 4.4 初始化副标题激活背景位置（补全缺失的偏移计算，修复背景不跟随） ——
-        const initActiveBg = () => {
-          calcEqualWidth(); // 先计算宽度
-          if (!activeBg || subtitleItems.length === 0) return; // 容错
-          // 找到默认激活的分类索引（若无则取0）
-          const activeIndex =
-            Array.from(subtitleItems).findIndex((item) =>
-              item.classList.contains("active")
-            ) || 0;
-          // 【补全】填充左偏移数值：内边距+索引×单个分类宽度（电脑端定位精准）
-          activeBg.style.left = `${barPaddingX + activeIndex * equalWidth}px`;
-          currentTab = subtitleItems[activeIndex].dataset.tab; // 更新当前分类
-          switchTab(currentTab); // 切换到默认分类的产品
-        };
+  // 统一更新滑块 + 切换产品
+  function updateActiveSlider(item) {
+    const barRect = subtitleBar.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    const paddingLeft = parseFloat(getComputedStyle(subtitleBar).paddingLeft);
+    const left = itemRect.left - barRect.left + subtitleBar.scrollLeft - paddingLeft;
+    const width = item.offsetWidth;
+    activeBg.style.left = left + "px";
+    activeBg.style.width = width + "px";
 
-        // —— 4.5 计算产品卡片滚动步长（电脑端动态适配，避免单次滚动过量） ——
-        const initItemWidth = () => {
-          // 找到当前显示的卡片（非hidden类）
-          const visibleItem = document.querySelector(
-            ".product-item:not(.hidden)"
-          );
-          if (visibleItem && scrollContainer) {
-            // 获取卡片容器的间距（默认24px，电脑端间距可能更大，动态获取更精准）
-            const containerGap =
-              parseInt(getComputedStyle(productDisplay).gap) || 24;
-            itemWidth = visibleItem.offsetWidth + containerGap; // 基础步长=卡片宽+间距
+    const tab = item.dataset.tab;
+    document.querySelectorAll(".product-item").forEach(el => {
+      el.classList.toggle("hidden", el.dataset.tab !== tab);
+    });
+  }
 
-            // 【电脑端优化】步长不超过滚动容器可视宽度的70%（避免宽屏单次滚动“跳太多”）
-            const containerWidth = scrollContainer.clientWidth;
-            itemWidth = Math.min(itemWidth, containerWidth * 0.7);
-          }
-        };
+  // 初始化
+  subtitleItems.forEach(item => {
+    if (item.classList.contains("active")) activeItem = item;
+  });
+  updateActiveSlider(activeItem);
 
-        // —— 4.6 产品分类切换逻辑（电脑端重置滚动加平滑，避免生硬跳回左侧） ——
-        const switchTab = (tabName) => {
-          currentTab = tabName; // 更新当前分类
-          // 循环所有卡片：匹配分类则显示，否则隐藏
-          productItems.forEach((item) => {
-            const itemTab = item.getAttribute("data-tab");
-            item.classList.toggle("hidden", itemTab !== tabName); // hidden类控制显示/隐藏
-          });
+  // ==============================================
+  // 鼠标滑入 → 只临时显示白色，不保留 active
+  // ==============================================
+  subtitleItems.forEach(item => {
+    item.addEventListener("mouseenter", () => {
+      if (window.innerWidth > 1024) {
+        // 清除所有白色文字
+        subtitleItems.forEach(i => i.classList.remove("active"));
+        // 当前滑到的变白色
+        item.classList.add("active");
+        updateActiveSlider(item);
+      }
+    });
+  });
 
-          // 【电脑端优化】重置滚动加平滑动画（替代原生硬的scrollLeft=0）
-          if (scrollContainer) {
-            scrollContainer.scrollTo({
-              left: 0,
-              behavior: "smooth",
-              timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)", // 苹果风格缓动，电脑端更丝滑
-            });
-          }
+  // ==============================================
+  // 点击 → 确认选中
+  // ==============================================
+  subtitleItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      subtitleItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+      activeItem = item;
+      updateActiveSlider(item);
 
-          updateBtnState(); // 更新箭头禁用状态
-          initItemWidth(); // 重新计算当前分类下的卡片宽度
-        };
+      if (scrollContainer) {
+        scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+      }
+    });
+  });
 
-        // —— 4.7 副标题hover切换（含背景跟随，补全背景位置计算） ——
-        const hoverSubtitle = (item, index) => {
-          // 重置所有副标题状态：移除激活类
-          subtitleItems.forEach((i) => i.classList.remove("active"));
-          // 激活当前hover的副标题
-          item.classList.add("active");
-          // 【补全】移动激活背景到当前分类（电脑端hover反馈更流畅）
-          if (activeBg) {
-            activeBg.style.left = `${barPaddingX + index * equalWidth}px`;
-          }
-          // 切换到当前分类的产品
-          switchTab(item.dataset.tab);
-        };
+  // 滚动/窗口变化 重算
+  subtitleBar.addEventListener("scroll", () => updateActiveSlider(activeItem));
+  window.addEventListener("resize", () => updateActiveSlider(activeItem));
 
-        // 为每个副标题添加hover事件（电脑端支持鼠标enter/leave，优化交互）
-        subtitleItems.forEach((item, index) => {
-          item.addEventListener("mouseenter", () => hoverSubtitle(item, index));
-          // 【电脑端优化】添加mouseleave时保持当前激活（避免hover离开后背景错位）
-          item.addEventListener("mouseleave", () => {
-            const activeItem = document.querySelector(".subtitle-item.active");
-            if (activeItem) {
-              const activeIdx = Array.from(subtitleItems).indexOf(activeItem);
-              if (activeBg)
-                activeBg.style.left = `${barPaddingX + activeIdx * equalWidth}px`;
-            }
-          });
-        });
-
-        // —— 4.8 产品卡片滚动控制（核心：电脑端优化滚动动画） ——
-        const updateBtnState = () => {
-          if (!scrollContainer || !prevBtn || !nextBtn) return; // 容错：容器不存在则不执行
-          // 左箭头：滚动到最左侧（≤10px误差）则禁用
-          prevBtn.disabled = scrollContainer.scrollLeft <= 10;
-          // 右箭头：滚动到最右侧（≤10px误差）则禁用
-          nextBtn.disabled =
-            scrollContainer.scrollLeft >=
-            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
-
-          // 【电脑端优化】禁用时加半透明+指针反馈（避免生硬的灰色禁用，更细腻）
-          prevBtn.style.opacity = prevBtn.disabled ? "0.5" : "1";
-          nextBtn.style.opacity = nextBtn.disabled ? "0.5" : "1";
-          prevBtn.style.cursor = prevBtn.disabled ? "not-allowed" : "pointer";
-          nextBtn.style.cursor = nextBtn.disabled ? "not-allowed" : "pointer";
-          // 箭头状态过渡（电脑端视觉反馈更流畅）
-          prevBtn.style.transition = "opacity 0.2s ease";
-          nextBtn.style.transition = "opacity 0.2s ease";
-        };
-
-        // 【核心修复】右箭头点击：电脑端加苹果风格缓动（解决滚动生硬）
-        nextBtn.addEventListener("click", () => {
-          if (!scrollContainer) return;
-          scrollContainer.scrollBy({
-            left: itemWidth,
-            behavior: "smooth",
-            // 苹果标志性缓动曲线：电脑端滚动“先柔后顺”，避免默认smooth的生硬感
-            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          });
-        });
-
-        // 【核心修复】左箭头点击：与右箭头保持动画一致性（电脑端交互统一）
-        prevBtn.addEventListener("click", () => {
-          if (!scrollContainer) return;
-          scrollContainer.scrollBy({
-            left: -itemWidth,
-            behavior: "smooth",
-            timingFunction: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          });
-        });
-
-        // 【电脑端优化】滚动时加防抖（避免高频触发导致的电脑端卡顿）
-        let scrollDebounce;
-        scrollContainer.addEventListener("scroll", () => {
-          clearTimeout(scrollDebounce);
-          scrollDebounce = setTimeout(updateBtnState, 30); // 30ms防抖，平衡流畅度与性能
-        });
-
-        // —— 4.9 页面初始化（执行顺序：先定位背景→计算宽度→更新箭头） ——
-        initActiveBg(); // 初始化副标题背景位置（补全后电脑端背景正常显示）
-        initItemWidth(); // 初始化卡片滚动步长（电脑端步长更精准）
-        updateBtnState(); // 初始化箭头禁用状态
-
-        // —— 4.10 窗口缩放适配（电脑端多屏幕适配，避免布局错乱） ——
-        let resizeDebounce;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeDebounce);
-          resizeDebounce = setTimeout(() => {
-            calcEqualWidth(); // 重新计算副标题背景宽度（电脑端窗口缩放后适配）
-            initActiveBg(); // 重新定位背景
-            initItemWidth(); // 重新计算卡片步长（电脑端窗口缩放后步长适配）
-            updateBtnState(); // 重新更新箭头状态
-          }, 100); // 100ms防抖，避免电脑端窗口缩放时频繁计算
-        });
-      });
-    </script>
+  // ==================== 原有滚动按钮 ====================
+  function updateBtnState() {
+    if (!scrollContainer || !prevBtn || !nextBtn) return;
+    prevBtn.disabled = scrollContainer.scrollLeft <= 10;
+    nextBtn.disabled = scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
+    prevBtn.style.opacity = prevBtn.disabled ? 0.5 : 1;
+    nextBtn.style.opacity = nextBtn.disabled ? 0.5 : 1;
+  }
+  let itemWidth = document.querySelector(".product-item:not(.hidden)")?.offsetWidth + 24 || 360;
+  nextBtn?.addEventListener("click", () => {
+    scrollContainer.scrollBy({ left: itemWidth, behavior: "smooth" });
+  });
+  prevBtn?.addEventListener("click", () => {
+    scrollContainer.scrollBy({ left: -itemWidth, behavior: "smooth" });
+  });
+  scrollContainer?.addEventListener("scroll", updateBtnState);
+  updateBtnState();
+});
+</script>
 
     <!-- 十一，购买优势板块-->
     <script>
@@ -9336,37 +9154,37 @@
           thicknesses: [
             {
               thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-6mm-tube.webp",
               alt: "碳钢板材 6mm厚度 实物图",
             },
             {
               thickness: "14mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-14mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-14mm-final.webp",
               alt: "碳钢板材 14mm厚度 高清图",
             },
             {
               thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-20mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-20mm-final.webp",
               alt: "碳钢板材 20mm厚度 细节图",
             },
             {
               thickness: "40mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-40mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-40mm-final.webp",
               alt: "碳钢板材 40mm厚度 产品图",
             },
             {
               thickness: "50mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-50mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-50mm-final.webp",
               alt: "碳钢板材 50mm厚度 实物展示图",
             },
             {
               thickness: "70mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-70mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-70mm-final.webp",
               alt: "碳钢板材 70mm厚度 高清细节图",
             },
             {
               thickness: "100mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/carbon-steel-100mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/carbon-steel-100mm-final.webp",
               alt: "碳钢板材 100mm厚度 产品实物图",
             },
           ],
@@ -9376,37 +9194,37 @@
           thicknesses: [
             {
               thickness: "2mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-2mm-tube.webp",
               alt: "不锈钢板材 2mm厚度 实物图",
             },
             {
               thickness: "5mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-5mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-5mm-final.webp",
               alt: "不锈钢板材 5mm厚度 高清图",
             },
             {
               thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-6mm-2-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-6mm-2-final.webp",
               alt: "不锈钢板材 6mm厚度 细节图",
             },
             {
               thickness: "8mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-8mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-8mm-final.webp",
               alt: "不锈钢板材 8mm厚度 产品图",
             },
             {
               thickness: "10mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-10mm-3-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-10mm-3-final.webp",
               alt: "不锈钢板材 10mm厚度 实物展示图",
             },
             {
               thickness: "12mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-12mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-12mm-final.webp",
               alt: "不锈钢板材 12mm厚度 高清细节图",
             },
             {
               thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/stainless-steel-20mm.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/stainless-steel-20mm.webp",
               alt: "不锈钢板材 20mm厚度 产品实物图",
             },
           ],
@@ -9416,37 +9234,37 @@
           thicknesses: [
             {
               thickness: "3mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-3mm-final.webp",
               alt: "铝合金板材 3mm厚度 实物图",
             },
             {
               thickness: "6mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-6mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-6mm-final.webp",
               alt: "铝合金板材 6mm厚度 高清图",
             },
             {
               thickness: "7mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-7mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-7mm-final.webp",
               alt: "铝合金板材 7mm厚度 细节图",
             },
             {
               thickness: "15mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-15mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-15mm-final.webp",
               alt: "铝合金板材 15mm厚度 产品图",
             },
             {
               thickness: "20mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-20mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-20mm-final.webp",
               alt: "铝合金板材 20mm厚度 实物展示图",
             },
             {
               thickness: "25mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-25mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-25mm-final.webp",
               alt: "铝合金板材 25mm厚度 高清细节图",
             },
             {
               thickness: "30mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/aluminium-30mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/aluminium-30mm-final.webp",
               alt: "铝合金板材 30mm厚度 产品实物图",
             },
           ],
@@ -9456,22 +9274,22 @@
           thicknesses: [
             {
               thickness: "3mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/copper-3mm-final.webp",
               alt: "黄铜 3mm厚度 实物图",
             },
             {
               thickness: "5mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/copper-5mm-final.webp",
               alt: "黄铜 5mm厚度 实物图",
             },
             {
               thickness: "8mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/copper-8mm-final.webp",
               alt: "黄铜 8mm厚度 实物图",
             },
             {
               thickness: "10mm",
-              src: "http://senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp",
+              src: "https://senrytech.github.io/img/index/cutting-sample/copper-10mm-final.webp",
               alt: "黄铜 10mm厚度 实物图",
             },
           ],

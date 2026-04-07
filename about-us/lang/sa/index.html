@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      content="Senrytech 15年激光设备研发经验，从2008年成立到全球30+国家服务，专注高精度激光切割/焊接/打标设备，ISO9001认证企业"
+      content="Senrytech 15سنوات من الخبرة في مجال البحث والتطوير في مجال معدات الليزر，من2008أنشئت في عام 2010 إلى العالم30+الخدمة الوطنية，التركيز على القطع بالليزر عالي الدقة/لحام/معدات وضع العلامات，ISO9001مؤسسة معتمدة"
       name="description"
     />
     <meta
-      content="Senrytech 公司介绍,激光设备制造商发展史,15年激光研发经验,ISO9001激光设备企业"
+      content="Senrytech مقدمة الشركة,تاريخ تطور الشركات المصنعة لمعدات الليزر,15سنوات من الخبرة في مجال البحث والتطوير بالليزر,ISO9001شركة معدات الليزر"
       name="keywords"
     />
     <link rel="canonical" href="https://www.senrytech.com/about-us/lang/sa/" />
-    <title>Senrytech - 关于我们</title>
+    <title>Senrytech - معلومات عنا</title>
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500&display=swap"
@@ -43,27 +43,48 @@
 
     <!-- 一、CSS 全局基础样式 -->
     <style>
+      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
+      /* 全局锁死：禁止任何横向溢出 */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100vw; /* 永远不超过视口宽度 */
+        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        box-sizing: border-box;
+      }
+
+      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      /* 1.2 图标字体强制声明 */
       .social-icons .icon i,
       .footer-contact .contact-icon i {
         font-family: "FontAwesome" !important;
       }
 
+      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
         display: none !important;
       }
 
+      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
       .body-fixed {
-        position: fixed;
-        width: 100%;
-        overflow-y: auto;
+        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
+        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
+        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
       }
 
       @media (max-width: 320px) {
@@ -112,11 +133,11 @@
     <!--二、CSS 导航栏-->
     <style>
       .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2.8rem;
+        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
+        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
+        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
+        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
+        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
 
         background: linear-gradient(
           135deg,
@@ -124,18 +145,15 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgba(245, 245, 247, 1) 100%
         );
-
-        z-index: 1000;
-
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        padding: 0 2rem;
-        box-sizing: border-box;
-
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
+        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
+        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
+        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
+        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
+        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
+        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
+        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
       }
 
       .navbar.scrolled {
@@ -145,10 +163,8 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgba(245, 245, 247, 0.8) 100%
         );
-
         backdrop-filter: blur(15px) saturate(115%);
         -webkit-backdrop-filter: blur(15px) saturate(115%);
-
         box-shadow: 0 2px 12px rgba(245, 245, 257, 0.3);
       }
 
@@ -162,8 +178,7 @@
 
       .navbar .logo svg {
         width: auto;
-        height: 100%;
-        max-height: 20px;
+        height: 50%;
         object-fit: contain;
         fill: #1b4c42;
         transition: all 0.5s ease;
@@ -172,7 +187,6 @@
       .navbar .logo:hover svg {
         fill: #2d7d71;
         transform: scale(1.05);
-
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
 
@@ -182,21 +196,20 @@
 
       .navbar a {
         color: #1d1d1f;
-        text-decoration: none;
         font-size: 0.75rem;
         font-weight: 400;
         transition: color 0.5s ease;
+        text-decoration: none;
       }
 
       .navbar a:hover {
-        color: #1d1d1f;
         font-weight: 700;
       }
 
       .navbar .btn {
         padding: 0.4rem 1.2rem;
         border-radius: 9999px;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         font-weight: 400;
         cursor: pointer;
         border: none;
@@ -207,6 +220,15 @@
         background-color: transparent;
         color: #1d1d1f;
       }
+
+      .language-btn i,
+      .inquiry-btn i {
+        font-family: "FontAwesome" !important;
+
+        font-size: 0.875rem;
+        color: #1d1d1f;
+      }
+
       .lang-dropdown {
         position: relative;
         display: inline-block;
@@ -253,11 +275,6 @@
         font-weight: 500;
       }
 
-      .navbar .inquiry-btn {
-        background-color: #0071e3;
-        color: #f7f5f5 !important;
-      }
-
       .nav-item {
         position: relative;
         height: 100%;
@@ -284,7 +301,6 @@
         overflow-y: hidden;
         overflow-x: hidden;
         box-sizing: border-box;
-
         max-height: 0;
         opacity: 0;
         padding: 0;
@@ -305,14 +321,14 @@
       .dropdown-inner {
         display: flex;
         width: 100%;
-        max-width: 1600px;
+        max-width: 100rem;
         margin: 0 auto;
         padding: 0 4rem;
         gap: 5rem;
       }
 
       .dropdown-category {
-        width: 240px;
+        width: 15rem;
         flex-shrink: 0;
         max-height: calc(100vh - 120px);
         overflow-y: auto;
@@ -359,7 +375,7 @@
       .content-item h3 {
         font-size: 1rem;
         color: #1d1d1f;
-        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
         padding-bottom: 0.8rem;
         border-bottom: 1px solid #eee;
       }
@@ -391,13 +407,11 @@
         margin-bottom: 0.8rem;
         border-radius: 1.5rem;
         background: #f0f0f0;
-
         box-shadow:
           0 4px 12px rgba(0, 0, 0, 0.1),
           0 2px 4px rgba(0, 0, 0, 0.08);
         transform: translateZ(0);
         backface-visibility: hidden;
-
         transition: box-shadow 0.3s ease;
       }
 
@@ -424,44 +438,36 @@
       .navbar-right {
         display: flex;
         align-items: center;
-
-        justify-content: space-between;
-
-        width: 120px;
-
+        justify-content: center;
+        width: 10rem;
         flex-shrink: 0;
       }
 
+      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
-        display: none;
-        background: transparent;
+        padding: 0.4rem 1.2rem;
+        background-color: transparent;
         border: none;
         cursor: pointer;
-        padding: 0.8rem 0;
-        z-index: 1002;
+        display: none; /* 默认隐藏，仅移动端显示 */
+        align-items: center;
+        justify-content: center;
+        color: #1d1d1f !important;
+        transition: color 0.2s ease;
       }
 
-      .hamburger-line {
-        display: block;
-        width: 22px;
-        height: 2px;
-        background-color: #1d1d1f;
-        margin: 0.4rem 0;
-        transition: all 0.3s ease;
+      .hamburger-btn:hover {
+        color: #1b4c42 !important;
       }
 
-      .hamburger-btn.active .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translate(0.4rem, 0.4rem);
-      }
-      .hamburger-btn.active .hamburger-line:nth-child(2) {
-        opacity: 0;
-      }
-      .hamburger-btn.active .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(0.4rem, -0.4rem);
+      .hamburger-btn i {
+        font-family: "FontAwesome" !important;
+        font-size: 0.875rem;
+        color: inherit; /* 继承按钮颜色 */
       }
 
       .sidebar-overlay {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
@@ -485,8 +491,7 @@
         position: fixed;
         top: 0;
         right: 0;
-        width: 85%;
-        max-width: 380px;
+        width: 80%;
         height: 100vh;
         background: linear-gradient(
           135deg,
@@ -865,64 +870,6 @@
 
         .sidebar-submenu-content {
           max-height: calc(100vh - 1rem) !important;
-          overflow-y: hidden;
-        }
-
-        .sidebar-menu {
-          width: 85%;
-        }
-
-        .sidebar-menu-link {
-          padding: 1rem 1rem;
-          font-size: 0.8rem;
-        }
-
-        .sidebar-submenu-link {
-          padding: 0.6rem 0.8rem;
-          font-size: 0.8rem;
-        }
-
-        .submenu-content-title {
-          font-size: 1rem;
-        }
-      }
-
-      @media (min-width: 321px) and (max-width: 375px) {
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important;
-          padding: 0 !important;
-          width: 100% !important;
-        }
-
-        .sidebar-menu.active
-          .sidebar-submenu-content
-          .submenu-product-list
-          .submenu-product-card {
-          width: calc((100% - 1rem) / 2) !important;
-          min-width: 50px !important;
-          flex-shrink: 0 !important;
-          box-sizing: border-box !important;
-        }
-
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(100vh - 25rem) !important;
-          overflow-y: auto !important;
-          padding-right: 1rem !important;
-          gap: 1rem;
-        }
-
-        .productSubmenuContent img {
-          height: 100px !important;
-          width: 100% !important;
-          object-fit: contain !important;
-          background-color: #f0f0f0 !important;
-          border-radius: 0.8rem !important;
-        }
-
-        .sidebar-submenu-content {
-          max-height: calc(100vh - 20rem) !important;
           overflow-y: hidden;
         }
 
@@ -3543,6 +3490,7 @@
         margin-bottom: 16px;
         color: #d1d1d6;
       }
+
       .footer-column ul {
         list-style: none;
         padding: 0;
@@ -3555,8 +3503,10 @@
         text-decoration: none;
         transition: color 0.2s;
       }
+
       .footer-column a:hover {
-        color: #d1d1d6;
+        color: #1b4c42;
+        transform: translateX(3px);
       }
 
       .footer-contact .contact-list {

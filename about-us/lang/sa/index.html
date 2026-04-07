@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ar-SA">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
       content="Senrytech مقدمة الشركة,تاريخ تطور الشركات المصنعة لمعدات الليزر,15سنوات من الخبرة في مجال البحث والتطوير بالليزر,ISO9001شركة معدات الليزر"
       name="keywords"
     />
-    <link rel="canonical" href="https://www.senrytech.com/about-us/lang/sa/" />
+    <link rel="canonical" href="https://www.senrytech.com/about-us/lang/cn/" />
     <title>Senrytech - معلومات عنا</title>
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -127,6 +127,42 @@
         html {
           font-size: 18px;
         }
+      }
+    </style>
+
+    <style>
+      @keyframes titleFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .title-fade-active {
+        animation: titleFadeUp 1.5s ease forwards;
+        pointer-events: none;
+        transition: none !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .product-main-title,
+      .submenu-content-title,
+      .content-item h3 {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        will-change: opacity, transform;
       }
     </style>
 
@@ -2157,25 +2193,25 @@
           #ffffff 70%,
           #ffffff 100%
         );
-
-        padding: 6rem 0 6rem 0;
+        padding: 6rem 0;
+        /* 核心修复：取消固定高度，让容器自适应内容 */
         overflow: hidden;
       }
 
       .timeline-container {
         max-width: 1400px;
         margin: 0 auto;
-
-        padding: 6rem 0rem 0 0;
+        padding: 3rem 2rem;
         position: relative;
-        height: 75rem;
+        /* 核心修复：删除固定 height:75rem，改为自适应 */
+        height: auto;
+        min-height: unset;
       }
 
       .timeline-container::before {
         content: "";
         position: absolute;
-
-        top: 1px;
+        top: 0;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
@@ -2196,17 +2232,22 @@
           opacity 0.6s ease,
           transform 0.6s ease;
         z-index: 2;
+        /* 核心修复：允许内容自动撑开高度 */
+        height: auto;
       }
+
       .timeline-item.left {
         padding-right: 50%;
         text-align: right;
         transform: translateX(-30px);
       }
+
       .timeline-item.right {
         padding-left: 50%;
         text-align: left;
         transform: translateX(30px);
       }
+
       .timeline-item.active {
         opacity: 1;
         transform: translateX(0);
@@ -2214,7 +2255,7 @@
 
       .timeline-dot {
         position: absolute;
-        top: 0;
+        top: 1.2rem;
         left: 50%;
         transform: translateX(-50%);
         width: 20px;
@@ -2227,6 +2268,7 @@
           box-shadow 0.5s ease,
           transform 0.5s ease;
       }
+
       .timeline-item:hover .timeline-dot {
         transform: translateX(-50%) scale(1.2);
         box-shadow: 0 0 0 8px rgba(0, 113, 227, 0.1);
@@ -2239,16 +2281,23 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         transition: transform 0.4s ease;
         margin: 0 1rem;
+        /* 核心修复：文字自动换行、不溢出、高度自适应 */
+        height: auto;
+        word-break: break-word;
+        white-space: normal;
       }
+
       .timeline-item:hover .timeline-content {
         transform: translateY(-5px);
       }
+
       .timeline-content h3 {
         font-size: 1.1rem;
         font-weight: 500;
         color: #000000;
         margin-bottom: 0.5rem;
       }
+
       .timeline-content .timeline-year {
         font-size: 0.85rem;
         color: #0071e3;
@@ -2256,14 +2305,21 @@
         display: inline-block;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
       }
+
       .timeline-content p {
         font-size: 0.9rem;
         color: #1d1d1f;
         line-height: 1.6;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        /* 核心修复：允许段落自动换行，不限制高度 */
+        height: auto;
       }
 
       @media (max-width: 768px) {
+        .timeline-container {
+          padding: 2rem 1.5rem;
+        }
+
         .timeline-container::before {
           left: 20px;
           transform: none;
@@ -2279,8 +2335,10 @@
 
         .timeline-dot {
           left: 20px;
+          top: 1.2rem;
           transform: none;
         }
+
         .timeline-item:hover .timeline-dot {
           transform: scale(1.2);
         }
@@ -2559,13 +2617,13 @@
           #ffffff 70%,
           #ffffff 100%
         );
-        padding: 6rem 0 6rem 0;
+        padding: 6rem 0;
         overflow: hidden;
       }
       .staff-welfare {
         max-width: 1400px;
         margin: 0 auto;
-        padding: 0;
+        padding: 0 2rem;
       }
 
       .staff-elfare-title {
@@ -2589,15 +2647,17 @@
 
       .welfare-list {
         display: grid;
-        grid-template-columns: repeat(3, minmax(300px, 1fr));
-        gap: 2.5rem;
-        margin-top: 4rem;
+        /* 核心修复：固定最大列宽，防止太宽 */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        max-width: 1200px;
+        margin: 4rem auto 0;
+        gap: 2rem;
       }
 
       .welfare-card {
         background-color: #fff;
         border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
+        padding: 2rem 1.5rem;
         text-align: center;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         transition:
@@ -2607,6 +2667,9 @@
         opacity: 0;
         transform: translateY(30px);
         transition-delay: calc(var(--card-index) * 0.2s);
+        /* 核心修复：限制卡片最大宽度，不让文字撑太宽 */
+        max-width: 380px;
+        margin: 0 auto;
       }
 
       .welfare-card.active {
@@ -2661,16 +2724,26 @@
         font-size: 0.9rem;
         color: #424245;
         line-height: 1.6;
+        /* 核心修复：文字自动换行，不溢出 */
+        word-break: break-word;
+        white-space: normal;
+      }
+
+      @media (max-width: 1024px) {
+        .welfare-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       @media (max-width: 768px) {
         .welfare-list {
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          grid-template-columns: 1fr;
           gap: 1.8rem;
         }
 
         .welfare-card {
           padding: 2rem 1.5rem;
+          max-width: 100%;
         }
 
         .welfare-card h3 {
@@ -3600,7 +3673,7 @@
   </head>
 
   <body>
-    <!-- 二，代码 导航栏 -->
+    <!-- اثنين，شفرة شريط التنقل -->
     <nav class="navbar">
       <div class="logo">
         <svg
@@ -3617,83 +3690,82 @@
           />
         </svg>
       </div>
-
-      <a href="https://www.senrytech.com/" class="nav-link">首页</a>
-
+      <a href="https://www.senrytech.com/" class="nav-link">الصفحة الأولى</a>
+      <!-- ألق نظرة فاحصة على المجموعة الكاملة من المنتجات-إضافة هيكل القائمة المنسدلة -->
       <div class="nav-item">
         <a href="https://www.senrytech.com/products/" class="nav-link"
-          >产品中心</a
+          >مركز المنتجات</a
         >
-        <!-- 半屏二级菜单（新增内部分栏结构） -->
+        <!-- القائمة الثانوية بنصف الشاشة（وأضاف هيكل العمود الداخلي） -->
         <div class="dropdown-menu">
           <div class="dropdown-inner">
-            <!-- 左侧：分类列表 -->
+            <!-- الجانب الأيسر：قائمة الفئة -->
             <div class="dropdown-category">
               <div class="category-item active" data-target="board">
                 <a
                   href="https://www.senrytech.com/products/laser-sheet-cutting/"
-                  >板材切割机</a
+                  >آلة قطع الألواح</a
                 >
               </div>
               <div class="category-item" data-target="tube">
                 <a href="https://www.senrytech.com/products/laser-tube-cutting/"
-                  >管材切割机</a
+                  >ماكينة قطع الأنابيب</a
                 >
               </div>
               <div class="category-item" data-target="board-tube">
                 <a href="https://www.senrytech.com/products/laser-sheet-tube/"
-                  >板管一体机</a
+                  >آلة متكاملة للوحة والأنبوب</a
                 >
               </div>
               <div class="category-item" data-target="welding">
                 <a href="https://www.senrytech.com/products/laser-welding/"
-                  >激光焊接机</a
+                  >ماكينة لحام بالليزر</a
                 >
               </div>
               <div class="category-item" data-target="cleaning">
                 <a href="https://www.senrytech.com/products/laser-cleaning/"
-                  >激光清洗机</a
+                  >ماكينة تنظيف بالليزر</a
                 >
               </div>
               <div class="category-item" data-target="marking">
                 <a href="https://www.senrytech.com/products/laser-marking/"
-                  >激光打标机</a
+                  >آلة وضع العلامات بالليزر</a
                 >
               </div>
             </div>
 
-            <!-- 右侧：对应分类的内容区 -->
+            <!-- الجانب الأيمن：منطقة المحتوى المقابلة للفئة -->
             <div class="dropdown-content">
-              <!-- 1. 板材切割机内容（默认显示） -->
+              <!-- 1. محتوى آلة قطع اللوحة（يتم عرضه بشكل افتراضي） -->
               <div class="content-item active" id="board">
-                <h3>激光板材切割机系列</h3>
+                <h3>سلسلة آلات قطع الألواح بالليزر</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A -->
+                  <!-- منتج1：Senrytech A -->
                   <div class="product-card">
-                    <!-- 图片加链接：对应板材切割机下的Senrytech A详情页 -->
+                    <!-- رابط الصورة زائد：المقابلة لآلة قطع اللوحةSenrytech Aصفحة التفاصيل -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                        alt="Senrytech A 经济款光纤激光切割机"
+                        alt="Senrytech A ماكينة قطع ألياف الليزر اقتصادية"
                       />
                     </a>
-                    <!-- 文字加链接：与图片跳转地址一致 -->
+                    <!-- نص زائد الرابط：متوافق مع عنوان القفز الصورة -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <p>Senrytech A</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech B -->
+                  <!-- منتج2：Senrytech B -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                        alt="Senrytech B 中厚板光纤激光切割机"
+                        alt="Senrytech B ماكينة قطع الصفائح الليفية بالليزر المتوسطة والسميكة"
                       />
                     </a>
                     <a
@@ -3702,14 +3774,14 @@
                       <p>Senrytech B</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech B Plus -->
+                  <!-- منتج3：Senrytech B Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                        alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                        alt="Senrytech B Plus آلة قطع الألياف بالليزر الجانبية"
                       />
                     </a>
                     <a
@@ -3718,14 +3790,14 @@
                       <p>Senrytech B Plus</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B Pro -->
+                  <!-- منتج4：Senrytech B Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                        alt="Senrytech B Pro 2.0Gآلة القطع بليزر الألياف المتسارعة"
                       />
                     </a>
                     <a
@@ -3734,14 +3806,14 @@
                       <p>Senrytech B Pro</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B ProMax -->
+                  <!-- منتج5：Senrytech B ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                        alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                        alt="Senrytech B ProMax آلة القطع بليزر الألياف القياسية الأوروبية"
                       />
                     </a>
                     <a
@@ -3756,7 +3828,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                        alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                        alt="Senrytech B Ultra ماكينة قطع ألياف الليزر الأوتوماتيكية بالكامل للتحميل والتفريغ"
                       />
                     </a>
                     <a
@@ -3771,7 +3843,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
-                        alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                        alt="Senrytech C آلة القطع بليزر ألياف الألمنيوم ذات التغذية الأوتوماتيكية"
                       />
                     </a>
                     <a
@@ -3786,7 +3858,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech C Pro 铝卷光纤激光切割机"
+                        alt="Senrytech C Pro آلة قطع ألياف الألمنيوم بالليزر"
                       />
                     </a>
                     <a
@@ -3801,7 +3873,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
-                        alt="Senrytech G 12000W-60000W光纤激光切割机"
+                        alt="Senrytech G 12000W-60000Wآلة قطع الألياف بالليزر"
                       />
                     </a>
                     <a
@@ -3816,7 +3888,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
-                        alt="Senrytech M 小型精密光纤激光切割机"
+                        alt="Senrytech M آلة قطع ألياف الليزر الدقيقة الدقيقة"
                       />
                     </a>
                     <a
@@ -3831,7 +3903,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
-                        alt="Senrytech S 型钢光纤激光切割机"
+                        alt="Senrytech S آلة قطع ألياف الحديد بالليزر"
                       />
                     </a>
                     <a
@@ -3843,18 +3915,18 @@
                 </div>
               </div>
 
-              <!-- 2. 管材切割机内容（默认隐藏） -->
+              <!-- 2. محتوى آلة قطع الأنابيب（مخفي بشكل افتراضي） -->
               <div class="content-item" id="tube">
-                <h3>激光管材切割机系列</h3>
+                <h3>سلسلة آلات قطع الأنابيب بالليزر</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A2 -->
+                  <!-- منتج1：Senrytech A2 -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 高性价比管材切割机"
+                        alt="Senrytech A2 آلة قطع الأنابيب فعالة من حيث التكلفة"
                       />
                     </a>
                     <a
@@ -3863,14 +3935,14 @@
                       <p>Senrytech A2</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech A2 Plus -->
+                  <!-- منتج2：Senrytech A2 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Plus 高功率电机管材切割机"
+                        alt="Senrytech A2 Plus آلة قطع الأنابيب بمحرك عالي الطاقة"
                       />
                     </a>
                     <a
@@ -3879,14 +3951,14 @@
                       <p>Senrytech A2 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech A2 Ultra -->
+                  <!-- منتج3：Senrytech A2 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                        alt="Senrytech A2 Ultra آلة قطع الأنابيب ذات تشاك مزدوج"
                       />
                     </a>
                     <a
@@ -3895,14 +3967,14 @@
                       <p>Senrytech A2 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B3 Plus -->
+                  <!-- منتج4：Senrytech B3 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Plus 三卡盘管材切割机"
+                        alt="Senrytech B3 Plus آلة قطع الأنابيب ذات الثلاثة تشاك"
                       />
                     </a>
                     <a
@@ -3911,14 +3983,14 @@
                       <p>Senrytech B3 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B3 Ultra -->
+                  <!-- منتج5：Senrytech B3 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                        alt="Senrytech B3 Ultra آلة قطع الأنابيب المثبتة على الجانب بثلاثة ظرف"
                       />
                     </a>
                     <a
@@ -3927,14 +3999,14 @@
                       <p>Senrytech B3 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品6：Senrytech C4 Ultra -->
+                  <!-- منتج6：Senrytech C4 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                        alt="Senrytech C4 Ultra آلة قطع الأنابيب ذات الأربعة ظرف"
                       />
                     </a>
                     <a
@@ -3946,18 +4018,18 @@
                 </div>
               </div>
 
-              <!-- 3. 板管一体机内容（默认隐藏） -->
+              <!-- 3. محتويات اللوحة والأنبوب آلة متكاملة（مخفي بشكل افتراضي） -->
               <div class="content-item" id="board-tube">
-                <h3>激光板管一体机系列</h3>
+                <h3>لوحة الليزر وأنبوب سلسلة آلة الكل في واحد</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech BT -->
+                  <!-- منتج1：Senrytech BT -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                        alt="Senrytech BT 高性价比板管一体机"
+                        alt="Senrytech BT آلة متكاملة للألواح والأنابيب فعالة من حيث التكلفة"
                       />
                     </a>
                     <a
@@ -3966,14 +4038,14 @@
                       <p>Senrytech BT</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech BT Pro -->
+                  <!-- منتج2：Senrytech BT Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Pro 中小批量板管加工设备"
+                        alt="Senrytech BT Pro معدات معالجة الألواح والأنابيب الصغيرة والمتوسطة"
                       />
                     </a>
                     <a
@@ -3982,14 +4054,14 @@
                       <p>Senrytech BT Pro</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech BT ProMax -->
+                  <!-- منتج3：Senrytech BT ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                        alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                        alt="Senrytech BT ProMax آلة قطع الصفائح المعدنية الكاملة والأنابيب"
                       />
                     </a>
                     <a
@@ -3998,14 +4070,14 @@
                       <p>Senrytech BT ProMax</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech BT Ultra -->
+                  <!-- منتج4：Senrytech BT Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                        alt="Senrytech BT Ultra آلة التحميل والتفريغ الأوتوماتيكية بالكامل لقطع الألواح والأنابيب"
                       />
                     </a>
                     <a
@@ -4017,18 +4089,18 @@
                 </div>
               </div>
 
-              <!-- 4. 焊接机内容（默认隐藏） -->
+              <!-- 4. محتوى آلة اللحام（مخفي بشكل افتراضي） -->
               <div class="content-item" id="welding">
-                <h3>激光焊接机系列</h3>
+                <h3>سلسلة ماكينات اللحام بالليزر</h3>
                 <div class="product-list">
-                  <!-- 焊接机：Series A -->
+                  <!-- آلة لحام：Series A -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                        alt="Series A 四合一激光焊接机"
+                        alt="Series A ماكينة لحام ليزر اربعة في واحد"
                       />
                     </a>
                     <a
@@ -4037,14 +4109,14 @@
                       <p>Series A</p>
                     </a>
                   </div>
-                  <!-- 焊接机：Series A Pro -->
+                  <!-- آلة لحام：Series A Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                        alt="Series A Pro 1500-3000W激光焊接机"
+                        alt="Series A Pro 1500-3000Wماكينة لحام بالليزر"
                       />
                     </a>
                     <a
@@ -4060,7 +4132,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                        alt="Series A Ultra 大功率激光焊接机"
+                        alt="Series A Ultra ماكينة لحام ليزر عالية الطاقة"
                       />
                     </a>
                     <a
@@ -4076,7 +4148,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                        alt="Robot 4 in 1 四合一焊接设备"
+                        alt="Robot 4 in 1 معدات اللحام أربعة في واحد"
                       />
                     </a>
                     <a
@@ -4092,7 +4164,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                        alt="R Workstation 1500-3000W 移动焊接机"
+                        alt="R Workstation 1500-3000W ماكينة لحام متنقلة"
                       />
                     </a>
                     <a
@@ -4108,7 +4180,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                        alt="R Mobile 协作机器人焊接设备"
+                        alt="R Mobile معدات لحام الروبوت التعاونية"
                       />
                     </a>
                     <a
@@ -4120,18 +4192,18 @@
                 </div>
               </div>
 
-              <!-- 5. 清洗内容（默认隐藏） -->
+              <!-- 5. محتوى نظيف（مخفي بشكل افتراضي） -->
               <div class="content-item" id="cleaning">
-                <h3>激光清洗机系列</h3>
+                <h3>سلسلة آلة التنظيف بالليزر</h3>
                 <div class="product-list">
-                  <!-- 清洗机：家用 -->
+                  <!-- آلة التنظيف：الاستخدام المنزلي -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-cleaning/residential/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                        alt="Residential 家用除锈激光清洗机"
+                        alt="Residential ماكينة تنظيف بالليزر لإزالة الصدأ المنزلي"
                       />
                     </a>
                     <a
@@ -4163,7 +4235,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                        alt="Industrial 大功率激光清洗机"
+                        alt="Industrial آلة تنظيف بالليزر عالية الطاقة"
                       />
                     </a>
                     <a
@@ -4175,9 +4247,9 @@
                 </div>
               </div>
 
-              <!-- 6. 打标机内容（默认隐藏） -->
+              <!-- 6. وضع علامة على محتوى الجهاز（مخفي بشكل افتراضي） -->
               <div class="content-item" id="marking">
-                <h3>激光打标机系列</h3>
+                <h3>سلسلة آلة الوسم بالليزر</h3>
                 <div class="product-list">
                   <div class="product-card">
                     <a
@@ -4185,7 +4257,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                        alt="便携台式激光打标机"
+                        alt="آلة وسم الليزر المحمولة لسطح المكتب"
                       />
                     </a>
                     <a
@@ -4201,7 +4273,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                        alt="台式激光打标机"
+                        alt="ماكينة وضع العلامات بالليزر على سطح المكتب"
                       />
                     </a>
                     <a
@@ -4216,44 +4288,39 @@
           </div>
         </div>
       </div>
-
       <a href="https://www.senrytech.com/solutions/" class="nav-link"
-        >选型方案</a
+        >خطة الاختيار</a
       >
-
       <a
         href="https://www.senrytech.com/pitfall-avoidance-guide/"
         class="nav-link"
-        >避坑指南</a
+        >دليل لتجنب المزالق</a
       >
-
-      <a href="https://www.senrytech.com/news/" class="nav-link">新闻动态</a>
-
+      <a href="https://www.senrytech.com/news/" class="nav-link">أخبار</a>
       <a href="https://www.senrytech.com/about-us/" class="nav-link"
-        >关于我们</a
+        >معلومات عنا</a
       >
-
-      <a href="https://www.senrytech.com/join-us/" class="nav-link">加入我们</a>
-
+      <a href="https://www.senrytech.com/join-us/" class="nav-link"
+        >انضم إلينا</a
+      >
       <a href="https://www.senrytech.com/contact-us/" class="nav-link"
-        >联系我们</a
+        >اتصل بنا</a
       >
-
       <div class="navbar-right">
         <div class="lang-dropdown" id="langDropdown">
-          <!-- 语言按钮 -->
+          <!-- زر تشغيل اللغة（احتفظ بالأصل“وسط/EN”أسلوب） -->
           <button class="btn language-btn">
             <i class="fa fa-globe"></i>
-            <!-- Font Awesome 地球图标 -->
+            <!-- Font Awesome أيقونة الأرض -->
           </button>
-          <!-- 展开语言链接 -->
+          <!-- قائمة وصلات الصفحة الرئيسية متعددة اللغات -->
           <ul class="lang-dropdown-list">
             <li>
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/cn/"
                 lang="zh"
-                class="lang-link active"
-                >中文</a
+                class="lang-link"
+                >الصينية</a
               >
             </li>
             <li>
@@ -4261,7 +4328,7 @@
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                 lang="en"
                 class="lang-link"
-                >英语</a
+                >إنجليزي</a
               >
             </li>
             <li>
@@ -4269,15 +4336,15 @@
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/de/"
                 lang="de"
                 class="lang-link"
-                >德语</a
+                >الألمانية</a
               >
             </li>
             <li>
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/es/"
                 lang="es"
-                class="lang-link"
-                >西班牙语</a
+                class="lang-link active"
+                >الأسبانية</a
               >
             </li>
             <li>
@@ -4285,7 +4352,7 @@
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/fr/"
                 lang="fr"
                 class="lang-link"
-                >法语</a
+                >فرنسي</a
               >
             </li>
             <li>
@@ -4293,30 +4360,29 @@
                 href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ru/"
                 lang="ru"
                 class="lang-link"
-                >俄语</a
+                >الروسية</a
               >
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/ar/"
+                href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/lang/sa/"
                 lang="ar"
-                class="lang-link"
-                >阿拉伯语</a
+                class="lang-link active"
+                >عربي</a
               >
             </li>
           </ul>
         </div>
 
-        <!-- 导航栏询价 -->
+        <!-- سؤال/انظر زر المصنع（ظرف/أيقونة المصنع，اختر واحدة） - إضافة ارتباط تشعبي -->
         <a href="https://www.senrytech.com/contact-us" target="_blank">
-          <!-- href填实际跳转地址，target="_blank"可选（新标签页打开） -->
+          <!-- hrefاملأ عنوان الانتقال الفعلي，target="_blank"خياري（يتم فتح علامة تبويب جديدة） -->
           <button class="btn inquiry-btn">
             <i class="fa fa-envelope"></i>
-            <!-- 询价：信封图标 -->
+            <!-- سؤال：رمز المغلف -->
           </button>
         </a>
-
-        <!-- 移动端 菜单展开汉堡 -->
+        <!-- جديد：زر برغر（شاشة عرض صغيرة فقط） -->
         <button class="hamburger-btn" id="hamburgerBtn">
           <i class="fa fa-bars"></i>
           <!-- 核心：用FA汉堡图标替代线条 -->
@@ -4324,37 +4390,37 @@
       </div>
     </nav>
 
-    <!-- 新增：手机移动端的侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
+    <!-- جديد：حاوية القائمة الجانبية المتنقلة（مخفي بشكل افتراضي，انقر على الهامبرغر على الشاشة الصغيرة للتوسيع） -->
     <div class="sidebar-menu" id="sidebarMenu">
-      <!-- 侧边栏头部（LOGO+关闭按钮） -->
+      <!-- رأس الشريط الجانبي（LOGO+زر الإغلاق） -->
       <div class="sidebar-header">
         <div class="sidebar-logo">Senrytech</div>
         <button class="sidebar-close-btn" id="sidebarCloseBtn">×</button>
       </div>
-      <!-- 侧边栏菜单列表 -->
+      <!-- قائمة القائمة الجانبية -->
       <ul class="sidebar-menu-list">
-        <!-- 首页（无下拉） -->
+        <!-- الصفحة الأولى（لا القائمة المنسدلة） -->
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/" class="sidebar-menu-link">
-            首页
+            الصفحة الأولى
           </a>
         </li>
-        <!-- 产品中心（带下拉子菜单） -->
+        <!-- مركز المنتجات（مع القائمة الفرعية المنسدلة） -->
         <li class="sidebar-menu-item has-submenu">
           <div class="sidebar-menu-link submenu-trigger">
-            产品中心
+            مركز المنتجات
             <i class="sidebar-arrow fa fa-chevron-down"></i>
-            <!-- 箭头图标 -->
+            <!-- رمز السهم -->
           </div>
-          <!-- 产品子菜单（默认隐藏） -->
+          <!-- القائمة الفرعية للمنتج（مخفي بشكل افتراضي） -->
           <ul class="sidebar-submenu" id="productSubmenu">
-            <!-- 子菜单项：对应原有分类 -->
+            <!-- عنصر القائمة الفرعية：يتوافق مع التصنيف الأصلي -->
             <li class="sidebar-submenu-item" data-target="board">
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/"
                 class="sidebar-submenu-link"
               >
-                板材切割机
+                آلة قطع الألواح
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="tube">
@@ -4362,7 +4428,7 @@
                 href="https://www.senrytech.com/products/laser-tube-cutting/"
                 class="sidebar-submenu-link"
               >
-                管材切割机
+                ماكينة قطع الأنابيب
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="board-tube">
@@ -4370,7 +4436,7 @@
                 href="https://www.senrytech.com/products/laser-sheet-tube/"
                 class="sidebar-submenu-link"
               >
-                板管一体机
+                آلة متكاملة للوحة والأنبوب
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="welding">
@@ -4378,7 +4444,7 @@
                 href="https://www.senrytech.com/products/laser-welding/"
                 class="sidebar-submenu-link"
               >
-                激光焊接机
+                ماكينة لحام بالليزر
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="cleaning">
@@ -4386,7 +4452,7 @@
                 href="https://www.senrytech.com/products/laser-cleaning/"
                 class="sidebar-submenu-link"
               >
-                激光清洗机
+                ماكينة تنظيف بالليزر
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="marking">
@@ -4394,153 +4460,157 @@
                 href="https://www.senrytech.com/products/laser-marking/"
                 class="sidebar-submenu-link"
               >
-                激光打标机
+                آلة وضع العلامات بالليزر
               </a>
             </li>
           </ul>
-          <!-- 产品子菜单内容（三列小图，默认隐藏） -->
+          <!-- محتوى القائمة الفرعية للمنتج（ثلاثة أعمدة من الصور المصغرة，مخفي بشكل افتراضي） -->
           <div class="sidebar-submenu-content" id="productSubmenuContent">
-            <!-- 板材切割机内容（默认显示） -->
+            <!-- محتوى آلة قطع اللوحة（يتم عرضه بشكل افتراضي） -->
             <div class="submenu-content-item active" id="boardContent">
-              <h4 class="submenu-content-title">激光板材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                سلسلة آلات قطع الألواح بالليزر
+              </h4>
               <div class="submenu-product-list">
-                <!-- 产品1：Senrytech A -->
+                <!-- منتج1：Senrytech A -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                      alt="Senrytech A 经济款光纤激光切割机"
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                      alt="Senrytech A ماكينة قطع ألياف الليزر اقتصادية"
                     />
                     <p>Senrytech A</p>
                   </a>
                 </div>
-                <!-- 产品2：Senrytech B -->
+                <!-- منتج2：Senrytech B -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                      alt="Senrytech B 中厚板光纤激光切割机"
+                      alt="Senrytech B ماكينة قطع الصفائح الليفية بالليزر المتوسطة والسميكة"
                     />
                     <p>Senrytech B</p>
                   </a>
                 </div>
-                <!-- 产品3：Senrytech B Plus -->
+                <!-- منتج3：Senrytech B Plus -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                      alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                      alt="Senrytech B Plus آلة قطع الألياف بالليزر الجانبية"
                     />
                     <p>Senrytech B Plus</p>
                   </a>
                 </div>
-                <!-- 产品4：Senrytech B Pro -->
+                <!-- منتج4：Senrytech B Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                      alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                      alt="Senrytech B Pro 2.0Gآلة القطع بليزر الألياف المتسارعة"
                     />
                     <p>Senrytech B Pro</p>
                   </a>
                 </div>
-                <!-- 产品5：Senrytech B ProMax -->
+                <!-- منتج5：Senrytech B ProMax -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                      alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                      alt="Senrytech B ProMax آلة القطع بليزر الألياف القياسية الأوروبية"
                     />
                     <p>Senrytech B ProMax</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech B Ultra -->
+                <!-- منتج6：Senrytech B Ultra -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                      alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                      alt="Senrytech B Ultra ماكينة قطع ألياف الليزر الأوتوماتيكية بالكامل للتحميل والتفريغ"
                     />
                     <p>Senrytech B Ultra</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C -->
+                <!-- منتج6：Senrytech C -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
-                      alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                      alt="Senrytech C آلة القطع بليزر ألياف الألمنيوم ذات التغذية الأوتوماتيكية"
                     />
                     <p>Senrytech C</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C Pro -->
+                <!-- منتج6：Senrytech C Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c-pro/banner/senrytech-c-laser-coil-sheet-cutting-2.png"
-                      alt="Senrytech C Pro 铝卷光纤激光切割机"
+                      alt="Senrytech C Pro آلة قطع ألياف الألمنيوم بالليزر"
                     />
                     <p>Senrytech C Pro</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech G -->
+                <!-- منتج6：Senrytech G -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-2.png"
-                      alt="Senrytech G 12000W-60000W光纤激光切割机"
+                      alt="Senrytech G 12000W-60000Wآلة قطع الألياف بالليزر"
                     />
                     <p>Senrytech G</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech M -->
+                <!-- منتج6：Senrytech M -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-2.webp"
-                      alt="Senrytech M 小型精密光纤激光切割机"
+                      alt="Senrytech M آلة قطع ألياف الليزر الدقيقة الدقيقة"
                     />
                     <p>Senrytech M</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech S -->
+                <!-- منتج6：Senrytech S -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/s/banner/senrytech-s-profile-steel-cutting-2.webp"
-                      alt="Senrytech S 型钢光纤激光切割机"
+                      alt="Senrytech S آلة قطع ألياف الحديد بالليزر"
                     />
                     <p>Senrytech S</p>
                   </a>
                 </div>
               </div>
             </div>
-            <!-- 管材切割机内容（默认隐藏） -->
+            <!-- محتوى آلة قطع الأنابيب（مخفي بشكل افتراضي） -->
             <div class="submenu-content-item" id="tubeContent">
-              <h4 class="submenu-content-title">激光管材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                سلسلة آلات قطع الأنابيب بالليزر
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -4548,7 +4618,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 高性价比管材切割机"
+                      alt="Senrytech A2 آلة قطع الأنابيب فعالة من حيث التكلفة"
                     />
                     <p>Senrytech A2</p>
                   </a>
@@ -4559,7 +4629,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Plus 高功率电机管材切割机"
+                      alt="Senrytech A2 Plus آلة قطع الأنابيب بمحرك عالي الطاقة"
                     />
                     <p>Senrytech A2 Plus</p>
                   </a>
@@ -4570,7 +4640,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                      alt="Senrytech A2 Ultra آلة قطع الأنابيب ذات تشاك مزدوج"
                     />
                     <p>Senrytech A2 Ultra</p>
                   </a>
@@ -4581,7 +4651,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Plus 三卡盘管材切割机"
+                      alt="Senrytech B3 Plus آلة قطع الأنابيب ذات الثلاثة تشاك"
                     />
                     <p>Senrytech B3 Plus</p>
                   </a>
@@ -4592,7 +4662,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                      alt="Senrytech B3 Ultra آلة قطع الأنابيب المثبتة على الجانب بثلاثة ظرف"
                     />
                     <p>Senrytech B3 Ultra</p>
                   </a>
@@ -4603,7 +4673,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                      alt="Senrytech C4 Ultra آلة قطع الأنابيب ذات الأربعة ظرف"
                     />
                     <p>Senrytech C4 Ultra</p>
                   </a>
@@ -4612,7 +4682,9 @@
             </div>
 
             <div class="submenu-content-item" id="board-tubeContent">
-              <h4 class="submenu-content-title">板管一体机系列</h4>
+              <h4 class="submenu-content-title">
+                سلسلة الآلات المتكاملة للألواح والأنبوب
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -4620,7 +4692,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                      alt="Senrytech BT 高性价比板管一体机"
+                      alt="Senrytech BT آلة متكاملة للألواح والأنابيب فعالة من حيث التكلفة"
                     />
                     <p>Senrytech BT</p>
                   </a>
@@ -4632,7 +4704,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Pro 中小批量板管加工设备"
+                      alt="Senrytech BT Pro معدات معالجة الألواح والأنابيب الصغيرة والمتوسطة"
                     />
                     <p>Senrytech BT Pro</p>
                   </a>
@@ -4644,7 +4716,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                      alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                      alt="Senrytech BT ProMax آلة قطع الصفائح المعدنية الكاملة والأنابيب"
                     />
                     <p>Senrytech BT ProMax</p>
                   </a>
@@ -4656,7 +4728,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                      alt="Senrytech BT Ultra آلة التحميل والتفريغ الأوتوماتيكية بالكامل لقطع الألواح والأنابيب"
                     />
                     <p>Senrytech BT Ultra</p>
                   </a>
@@ -4665,7 +4737,9 @@
             </div>
 
             <div class="submenu-content-item" id="weldingContent">
-              <h4 class="submenu-content-title">激光焊接机系列</h4>
+              <h4 class="submenu-content-title">
+                سلسلة ماكينات اللحام بالليزر
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -4673,7 +4747,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                      alt="Series A 四合一激光焊接机"
+                      alt="Series A ماكينة لحام ليزر اربعة في واحد"
                     />
                     <p>Series A</p>
                   </a>
@@ -4685,7 +4759,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                      alt="Series A Pro 1500-3000W激光焊接机"
+                      alt="Series A Pro 1500-3000Wماكينة لحام بالليزر"
                     />
                     <p>Series A Pro</p>
                   </a>
@@ -4697,7 +4771,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                      alt="Series A Ultra 大功率激光焊接机"
+                      alt="Series A Ultra ماكينة لحام ليزر عالية الطاقة"
                     />
                     <p>Series A Ultra</p>
                   </a>
@@ -4709,7 +4783,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                      alt="Robot 4 in 1 四合一焊接设备"
+                      alt="Robot 4 in 1 معدات اللحام أربعة في واحد"
                     />
                     <p>R 4in1</p>
                   </a>
@@ -4721,7 +4795,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                      alt="R Workstation 1500-3000W 移动焊接机"
+                      alt="R Workstation 1500-3000W ماكينة لحام متنقلة"
                     />
                     <p>R Workstation</p>
                   </a>
@@ -4733,7 +4807,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                      alt="R Mobile 协作机器人焊接设备"
+                      alt="R Mobile معدات لحام الروبوت التعاونية"
                     />
                     <p>R Mobile</p>
                   </a>
@@ -4742,7 +4816,7 @@
             </div>
 
             <div class="submenu-content-item" id="cleaningContent">
-              <h4 class="submenu-content-title">激光清洗机系列</h4>
+              <h4 class="submenu-content-title">سلسلة آلة التنظيف بالليزر</h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -4750,7 +4824,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                      alt="Residential 家用除锈激光清洗机"
+                      alt="Residential ماكينة تنظيف بالليزر لإزالة الصدأ المنزلي"
                     />
                     <p>Residential</p>
                   </a>
@@ -4762,7 +4836,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
-                      alt="Commercial 家用除锈激光清洗机"
+                      alt="Commercial ماكينة تنظيف بالليزر لإزالة الصدأ المنزلي"
                     />
                     <p>Commercial</p>
                   </a>
@@ -4774,7 +4848,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                      alt="Industrial 大功率激光清洗机"
+                      alt="Industrial آلة تنظيف بالليزر عالية الطاقة"
                     />
                     <p>Industrial</p>
                   </a>
@@ -4783,7 +4857,7 @@
             </div>
 
             <div class="submenu-content-item" id="markingContent">
-              <h4 class="submenu-content-title">激光打标机系列</h4>
+              <h4 class="submenu-content-title">سلسلة آلة الوسم بالليزر</h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -4791,7 +4865,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                      alt="便携台式激光打标机"
+                      alt="آلة وسم الليزر المحمولة لسطح المكتب"
                     />
                     <p>Series P</p>
                   </a>
@@ -4803,7 +4877,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                      alt="台式激光打标机"
+                      alt="ماكينة وضع العلامات بالليزر على سطح المكتب"
                     />
                     <p>Series D</p>
                   </a>
@@ -4812,13 +4886,13 @@
             </div>
           </div>
         </li>
-        <!-- 其他菜单项（无下拉） -->
+        <!-- عناصر القائمة الأخرى（لا القائمة المنسدلة） -->
         <li class="sidebar-menu-item">
           <a
             href="https://www.senrytech.com/solutions/"
             class="sidebar-menu-link"
           >
-            选型方案
+            خطة الاختيار
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -4826,12 +4900,12 @@
             href="https://www.senrytech.com/pitfall-avoidance-guide/"
             class="sidebar-menu-link"
           >
-            避坑指南
+            دليل لتجنب المزالق
           </a>
         </li>
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
-            新闻动态
+            أخبار
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -4839,7 +4913,7 @@
             href="https://www.senrytech.com/about-us/"
             class="sidebar-menu-link"
           >
-            关于我们
+            معلومات عنا
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -4847,140 +4921,164 @@
             href="https://www.senrytech.com/contact-us/"
             class="sidebar-menu-link"
           >
-            联系我们
+            اتصل بنا
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
+    <!-- جديد：طبقة قناع القائمة الجانبية（انقر على المساحة الفارغة لإغلاق القائمة，مخفي بشكل افتراضي） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 三，代码 纯图文Banner（无文字/无动画） -->
+    <!-- ثلاثة，شفرة الرسومات والنص النقيBanner（لا يوجد نص/لا الرسوم المتحركة） -->
     <div class="simple-banner">
-      <!-- 替换src为你的Banner图片地址，alt为图片描述（优化SEO） -->
+      <!-- يستبدلsrcلكBannerعنوان الصورة，altوصف الصورة（تحسينSEO） -->
       <img
         src="https://senrytech.github.io/img/about-us/senrytech-about-us-banner.webp"
-        alt="Senrytech 关于我们"
+        alt="Senrytech معلومات عنا"
         loading="lazy"
       />
     </div>
 
-    <!-- 四，关于我们中间内容（保留所有原有内容，新增底层圆角背景） -->
+    <!-- أربعة，حول المحتوى بيننا（احتفظ بكل المحتوى الأصلي，تمت إضافة خلفية مستديرة سفلية） -->
     <section class="about-section">
       <div class="about-container">
-        <!-- 新增：苹果风格底层圆角背景（置于最下层，不影响原有内容） -->
+        <!-- جديد：التفاح نمط أسفل زوايا خلفية مدورة（ضع في الأسفل，لا يؤثر على المحتوى الأصلي） -->
         <div class="about-bg-round"></div>
 
-        <!-- 1. 企业简介模块（原有内容完全保留，仅新增层级控制） -->
+        <!-- 1. وحدة ملف تعريف الشركة（تم الاحتفاظ بالمحتوى الأصلي بالكامل，أضف التحكم في المستوى فقط） -->
         <div class="about-hero">
           <div class="about-hero-text">
-            <h2>关于 Senrytech</h2>
+            <h2>عن Senrytech</h2>
             <p>
-              2008 年的晨光里，Senrytech 与激光切割设备的故事，始于一个朴素初心
-              —<b>让金属与光的相遇更从容</b>。
+              2008 في ضوء الصباح من السنة，Senrytech قصص عن معدات القطع
+              بالليزر，بدأت من نية بسيطة —<b
+                >اجعل اللقاء بين المعدن والضوء أكثر استرخاءً</b
+              >。
             </p>
             <p>
-              彼时，中小制造企业正被行业痛点困住：进口设备价高难攀，普通设备精度不足，适配性差的问题更让企业耗费大量试错成本。于是我们笃定：不做冰冷的设备搬运者，要做懂制造、懂需求的解决方案提供者。
+              في ذلك الوقت，شركات التصنيع الصغيرة والمتوسطة الحجم محاصرة بنقاط
+              الألم في الصناعة：المعدات المستوردة باهظة الثمن，المعدات العادية
+              تفتقر إلى الدقة，تؤدي مشكلة ضعف القدرة على التكيف إلى إنفاق
+              الشركات الكثير من تكاليف التجربة والخطأ.。لذلك نحن مصممون：لا تكن
+              محركًا للمعدات الباردة，لفهم التصنيع、مزود الحلول الذي يفهم
+              الاحتياجات。
             </p>
             <p>
-              我们蹲守车间，摸透碳钢、不锈钢、铝合金的材质脾性，将其织入设备与方案的适配逻辑，让每一台设备都成为生产场景的
-              “恰好选项”。
+              نبقى في ورشة العمل，تعرف على الفولاذ الكربوني、الفولاذ المقاوم
+              للصدأ、خصائص مادة سبائك الألومنيوم，قم بدمجها في منطق التكيف
+              للمعدات والحلول，اجعل كل قطعة من المعدات جزءًا من مشهد الإنتاج
+              “فقط الخيار”。
             </p>
             <p>
-              从本地厂房到全球 30 余国车间，5000
-              多家企业的生产节奏里，都藏着这份初心的温度：帮初创厂省掉试错成本，助外贸单缩短交货周期，让金属在激光下精准舒展成理想形状。
+              من المصنع المحلي إلى العالمية 30 ورشة يو قوه，5000 في إيقاع
+              الإنتاج للعديد من الشركات，أنها جميعا تحتوي على دفء النية
+              الأصلية：مساعدة الشركات الناشئة على توفير تكاليف التجربة
+              والخطأ，مساعدة طلبات التجارة الخارجية على تقصير دورة التسليم，دع
+              المعدن يتمدد بدقة إلى الشكل المثالي تحت الليزر。
             </p>
             <p>
-              一路深耕，我们实现自主核心技术落地、完成设备智能化升级，搭建起全球化服务网络。
+              الحرث على طول الطريق，نحن ندرك تنفيذ التقنيات الأساسية
+              المستقلة、ترقية ذكية للمعدات الكاملة，بناء شبكة خدمات عالمية。
             </p>
             <p>
-              我们不做 “搬运”，只做 “联结”—
-              联结设备精度与生产温度，联结需求细碎与方案周全。未来，Senrytech
-              仍会带着这份初心，让全球每一家制造企业，都能轻松邂逅
-              “光与金属的恰好相逢”。
+              نحن لا نفعل “يحمل”，فقط افعل “اقتران”— ربط دقة المعدات ودرجة حرارة
+              الإنتاج，الجمع بين الاحتياجات التفصيلية والخطط
+              الشاملة。مستقبل，Senrytech وسأظل أحمل هذه النية الأصلية，دع كل
+              شركة تصنيع في العالم，يمكننا أن نلتقي ببعضنا البعض بسهولة “اللقاء
+              المثالي بين الضوء والمعدن”。
             </p>
           </div>
 
-          <!-- 原有：吉祥物图片容器 -->
+          <!-- إبداعي：حاوية صورة التميمة -->
           <div class="about-mascot-img">
             <img
               src="https://senrytech.github.io/img/index/about-us/senrytech-mascot.png"
-              alt="Senrytech 吉祥物"
+              alt="Senrytech جالب الحظ"
             />
           </div>
 
-          <!-- 原有：企业环境图片容器 -->
+          <!-- إبداعي：حاوية صور بيئة المؤسسة -->
           <div class="about-hero-img">
             <img
               src="https://senrytech.github.io/img/index/about-us/senrytech-factory.png"
-              alt="Senrytech 企业环境"
+              alt="Senrytech بيئة الشركات"
             />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 五. 核价值观模块 -->
+    <!-- خمسة. وحدة القيم الأساسية -->
     <section class="advantages-section">
       <div class="advantages-container">
-        <h3 class="about-section-title">我们的价值观</h3>
+        <h3 class="about-section-title">قيمنا</h3>
         <div class="advantages-list">
-          <!-- 1. 企业使命：新增“汽车零部件客户定制案例” -->
+          <!-- 1. مهمة الشركة：جديد“حالة تخصيص العملاء لقطع غيار السيارات” -->
           <div class="advantage-card">
             <div class="advantage-icon">
               <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
             </div>
-            <h3>企业使命</h3>
+            <h3>مهمة الشركة</h3>
             <p>
-              始终致力于打造契合工业场景、兼具卓越品质与合理价格的激光加工设备，以产品精准触达行业客户的核心需求。
-              <!-- 行动描述：具体客户+解决的问题+成果 -->
+              ملتزمون دائمًا بإنشاء منتجات تناسب المشهد الصناعي、معدات المعالجة
+              بالليزر بجودة ممتازة وسعر معقول，الوصول بدقة إلى الاحتياجات
+              الأساسية لعملاء الصناعة من خلال المنتجات。
+              <!-- وصف العمل：عملاء محددين+تم حل المشكلة+الإنجازات -->
               <span class="action-desc"
-                >▸
-                案例：为德国某汽车零部件客户定制激光焊接设备，3周完成核心参数调试，将其零件焊接不良率从8%降至3%。</span
+                >▸ قضية：معدات لحام بالليزر مخصصة لأحد عملاء قطع غيار السيارات
+                الألمانية，3الانتهاء أسبوعيًا من تصحيح أخطاء المعلمات
+                الأساسية，تقليل معدل عيوب اللحام لأجزائه من8%وصولا الى3%。</span
               >
             </p>
           </div>
 
-          <!-- 2. 企业愿景：新增“东南亚客户培训案例” -->
+          <!-- 2. رؤية الشركة：جديد“حالة تدريب العملاء في جنوب شرق آسيا” -->
           <div class="advantage-card">
             <div class="advantage-icon">
               <i class="fa fa-industry" aria-hidden="true"></i>
             </div>
-            <h3>企业愿景</h3>
+            <h3>رؤية الشركة</h3>
             <p>
-              让每一位从业者都能成为产业创新的创造者。
-              <!-- 行动描述：覆盖区域+具体行动+培训成果 -->
+              دع كل ممارس يصبح خالق الابتكار الصناعي。
+              <!-- وصف العمل：منطقة التغطية+إجراءات محددة+نتائج التدريب -->
               <span class="action-desc"
-                >▸
-                落地：2023年为东南亚5+工厂操作员提供免费激光设备操作培训，输出20+持证专业操作员，助力当地工厂技术升级。</span
+                >▸ الهبوط：2023جنوب شرق آسيا5+يوفر مشغلو المصنع تدريبًا مجانيًا
+                على تشغيل معدات الليزر，الإخراج20+مشغل محترف معتمد，مساعدة
+                المصانع المحلية في التطوير التكنولوجي。</span
               >
             </p>
           </div>
 
-          <!-- 3. 企业价值观：为3条子口号分别匹配案例 -->
+          <!-- 3. قيم الشركات：ل3حالات مطابقة شعار Tiaozi على التوالي -->
           <div class="advantage-card">
             <div class="advantage-icon">
               <i class="fa fa-globe" aria-hidden="true"></i>
             </div>
-            <h3>企业价值观</h3>
+            <h3>قيم الشركات</h3>
             <p>
-              客户为友，共生共赢<br />
+              العملاء أصدقاء，التكافل والفوز<br />
               <span class="action-desc"
-                >▸
-                行动：2022年美国客户因订单紧急需提前交货，团队72小时连续调试设备，最终按时发货，避免其生产线停工损失。</span
+                >▸ فعل：2022وفي عام 2018، طلب العملاء الأمريكيون التسليم المبكر
+                بسبب الطلبات العاجلة.，فريق72ساعات من التصحيح المستمر
+                للمعدات，وأخيرا شحنها في الوقت المحدد，تجنب خسارة اغلاق خط
+                الإنتاج。</span
               ><br />
 
-              信念为基，价值同行<br />
+              على أساس الإيمان，نظير القيمة<br />
               <span class="action-desc"
-                >▸
-                行动：面对激光打标精度难题，研发团队连续15天优化算法，将设备精度从0.05mm提升至0.01mm，突破行业小尺寸打标瓶颈。</span
+                >▸ فعل：مواجهة مشكلة دقة وضع العلامات بالليزر，يستمر فريق البحث
+                والتطوير15خوارزمية تحسين اليوم，تغيير دقة المعدات من0.05mmتمت
+                ترقيته إلى0.01mm，اختراق عنق الزجاجة لوضع العلامات الصغيرة الحجم
+                في الصناعة。</span
               ><br />
 
-              乐观向远，笃行成果<br />
+              متفائل وبعيد المدى，نتائج العمل الشاق<br />
               <span class="action-desc"
-                >▸
-                行动：与日本电子客户合作5年，每年根据其新品研发需求迭代设备功能，助力客户新品市场份额提升12%。</span
+                >▸ فعل：العمل مع عملاء الإلكترونيات اليابانيين5سنة，تعمل معدات
+                التكرار كل عام وفقًا لاحتياجات البحث والتطوير الخاصة بالمنتج
+                الجديد，مساعدة العملاء على زيادة حصتهم في السوق من المنتجات
+                الجديدة12%。</span
               >
             </p>
           </div>
@@ -4988,85 +5086,104 @@
       </div>
     </section>
 
-    <!-- 六. 团队展示模块 -->
+    <!-- ستة. وحدة عرض الفريق -->
     <section class="team-section">
       <div class="about-team">
-        <h3 class="about-section-title">核心团队</h3>
+        <h3 class="about-section-title">الفريق الأساسي</h3>
         <div class="team-list">
-          <!-- 秦博睿 - 研发项目总监 -->
+          <!-- تشين بوروي - مدير مشروع البحث والتطوير -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="https://senrytech.github.io/img/about-us/senrytech-R-D.png" alt="秦博睿" />
+              <img
+                src="https://senrytech.github.io/img/about-us/senrytech-R-D.png"
+                alt="تشين بوروي"
+              />
             </div>
             <div class="team-info">
-              <h3>秦博睿</h3>
-              <p>研发项目总监</p>
+              <h3>تشين بوروي</h3>
+              <p>مدير مشروع البحث والتطوير</p>
               <p class="team-qualification">
-                核心资质：10 年激光切割设备研发项目管理经验，主导 3
-                款高功率激光切割机产品迭代；牵头制定 2
-                项激光切割设备模块化设计企业标准。
+                المؤهلات الأساسية：10 سنوات من الخبرة في إدارة مشاريع البحث
+                والتطوير لمعدات القطع بالليزر，الرائدة 3 تكرار المنتج لآلة القطع
+                بالليزر عالية الطاقة；أخذ زمام المبادرة في الصياغة 2 عناصر
+                معايير مؤسسة التصميم المعياري لمعدات القطع بالليزر。
               </p>
               <p class="team-philosophy">
-                个人理念：好设备是磨出来的，每一个研发细节都得抠到极致才算过关。
+                الفلسفة الشخصية：يتم تصنيع المعدات الجيدة عن طريق الطحن，يجب
+                العمل على كل تفاصيل البحث والتطوير إلى أقصى الحدود لاجتياز
+                الاختبار.。
               </p>
             </div>
           </div>
 
-          <!-- 董振邦 - 运营总监 -->
+          <!-- دونغ زينبانج - مدير العمليات -->
           <div class="team-card">
             <div class="team-avatar">
               <img
                 src="https://senrytech.github.io/img/about-us/senrytech-operation.webp"
-                alt="董振邦"
+                alt="دونغ زينبانج"
               />
             </div>
             <div class="team-info">
-              <h3>董振邦</h3>
-              <p>运营总监</p>
+              <h3>دونغ زينبانج</h3>
+              <p>مدير العمليات</p>
               <p class="team-qualification">
-                核心资质：8
-                年工业设备行业运营管理经验，搭建激光切割机线上线下一体化分销体系；通过精益运营将设备交付周期缩短
-                20%。
+                المؤهلات الأساسية：8 سنوات من الخبرة في الإدارة التشغيلية في
+                صناعة المعدات الصناعية，إنشاء نظام توزيع متكامل عبر الإنترنت
+                وغير متصل لآلات القطع بالليزر；تقصير دورة تسليم المعدات من خلال
+                العمليات الهزيلة 20%。
               </p>
               <p class="team-philosophy">
-                个人理念：把复杂的运营流程做简单，客户和团队才能都省心。
+                الفلسفة الشخصية：تبسيط العمليات التشغيلية المعقدة，يمكن لكل من
+                العملاء والفريق أن يقلقوا بشكل أقل。
               </p>
             </div>
           </div>
 
-          <!-- 林佩 - 财务总监 -->
+          <!-- لين بي - المدير المالي -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="https://senrytech.github.io/img/about-us/senrytech-finance.png" alt="林佩" />
+              <img
+                src="https://senrytech.github.io/img/about-us/senrytech-finance.png"
+                alt="لين بي"
+              />
             </div>
             <div class="team-info">
-              <h3>林佩</h3>
-              <p>财务总监</p>
+              <h3>لين بي</h3>
+              <p>المدير المالي</p>
               <p class="team-qualification">
-                核心资质：10
-                年工业贸易行业财务管理经验，擅长激光设备进出口成本核算与税务筹划；建立设备销售全流程财务风控体系。
+                المؤهلات الأساسية：10 سنوات من الخبرة في الإدارة المالية في مجال
+                التجارة الصناعية，جيد في محاسبة تكاليف استيراد وتصدير معدات
+                الليزر والتخطيط الضريبي；إنشاء نظام متكامل للتحكم في المخاطر
+                المالية لمبيعات المعدات。
               </p>
               <p class="team-philosophy">
-                个人理念：算好每一笔账，既要省钱，更要让公司的钱花在刀刃上。
+                الفلسفة الشخصية：احسب كل حساب，تريد توفير المال，والأهم من ذلك
+                هو السماح بإنفاق أموال الشركة بحكمة.。
               </p>
             </div>
           </div>
 
-          <!-- 孙雅婷 - 市场营销总监 -->
+          <!-- صن ياتينج - مدير التسويق -->
           <div class="team-card">
             <div class="team-avatar">
-              <img src="https://senrytech.github.io/img/about-us/senrytech-marketing.png" alt="孙雅婷" />
+              <img
+                src="https://senrytech.github.io/img/about-us/senrytech-marketing.png"
+                alt="صن ياتينج"
+              />
             </div>
             <div class="team-info">
-              <h3>孙雅婷</h3>
-              <p>市场营销总监</p>
+              <h3>صن ياتينج</h3>
+              <p>مدير التسويق</p>
               <p class="team-qualification">
-                核心资质：7 年工业激光设备品牌营销经验，主导 3
-                场行业大型展会策划并实现订单转化率提升 35%；打造
-                “精准切割方案服务商” 品牌定位。
+                المؤهلات الأساسية：7 سنوات من الخبرة في تسويق العلامات التجارية
+                لمعدات الليزر الصناعية，الرائدة 3 تخطيط وتنفيذ معارض صناعية
+                واسعة النطاق لزيادة معدلات تحويل الطلبات 35%；يبني “مزود خدمة
+                حلول القطع الدقيقة” تحديد المواقع العلامة التجارية。
               </p>
               <p class="team-philosophy">
-                个人理念：不只是卖设备，更要帮客户找到最适合的切割解决方案。
+                الفلسفة الشخصية：ليس فقط بيع المعدات，نحتاج أيضًا إلى مساعدة
+                العملاء في العثور على حل القطع الأكثر ملاءمة.。
               </p>
             </div>
           </div>
@@ -5074,79 +5191,89 @@
       </div>
     </section>
 
-    <!-- 七. 发展历程 -->
+    <!-- سبعة. تاريخ التنمية -->
     <section class="timeline-section">
       <div class="timeline-title-wrap">
-        <h3 class="about-section-title">发展历程</h3>
+        <h3 class="about-section-title">تاريخ التنمية</h3>
       </div>
       <div class="timeline-container">
         <div class="timeline-item left">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>公司成立</h3>
+            <h3>تأسست الشركة</h3>
             <span class="timeline-year">2008</span>
             <p>
-              Senrytech
-              在济南成立，初期专注于激光机设备的生产与研发，推出首款Senrytech激光机。
+              Senrytech أنشئت في جينان，ركزت في البداية على الإنتاج والبحث
+              والتطوير لمعدات آلات الليزر，أطلقت الأولىSenrytechماكينة ليزر。
             </p>
           </div>
         </div>
         <div class="timeline-item right">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>首款整机上市</h3>
+            <h3>تم إطلاق أول آلة كاملة</h3>
             <span class="timeline-year">2017</span>
             <p>
-              发布首款自主研发的激光板材切割机 A
-              系列，切入中小企业市场，当年实现销售额突破8000万元。
+              تم إطلاق أول آلة قطع صفائح الليزر ذاتية التطوير A مسلسل，أدخل سوق
+              الشركات الصغيرة والمتوسطة，تحقيق اختراق المبيعات في ذلك
+              العام8000عشرة آلاف يوان。
             </p>
           </div>
         </div>
         <div class="timeline-item left">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>生产基地投产</h3>
+            <h3>قاعدة الإنتاج وضعت موضع التنفيذ</h3>
             <span class="timeline-year">2019</span>
             <p>
-              自建2000㎡生产基地投产，实现规模化生产，产品故障率降至5%以下，获得ISO9001质量体系认证。
+              بنيت ذاتيا2000㎡قاعدة الإنتاج وضعت موضع التنفيذ，تحقيق الإنتاج على
+              نطاق واسع，يتم تقليل معدل فشل المنتج إلى5%ما يلي，يحصلISO9001شهادة
+              نظام الجودة。
             </p>
           </div>
         </div>
         <div class="timeline-item right">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>首款6万瓦整机上线</h3>
+            <h3>أولاً6آلة Wanwa الكاملة متاحة على الإنترنت</h3>
             <span class="timeline-year">2021</span>
-            <p>发布首台自主研发的激光板材地轨切割机G，超大功率6万瓦。</p>
+            <p>
+              تم إطلاق أول آلة قطع قضبان أرضية الألواح الليزرية ذاتية
+              التطويرG，قوة عظمى6وانوا。
+            </p>
           </div>
         </div>
         <div class="timeline-item left">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <h3>技术突破</h3>
+            <h3>اختراق تكنولوجي</h3>
             <span class="timeline-year">2030</span>
             <p>
-              全力研发即将推出搭载AI智能切割系统的 A 系列，预期切割效率提升30%。
+              تشارك بشكل كامل في البحث والتطوير وسيتم إطلاقها قريباAIنظام القطع
+              الذكي A مسلسل，التحسن المتوقع في كفاءة القطع30%。
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 八. 新世界模块 -->
+    <!-- ثمانية. وحدة العالم الجديد -->
     <section>
       <div class="about-section new-world-section">
-        <!-- 背景图容器（全屏，带遮罩） -->
+        <!-- حاوية صورة الخلفية（ملء الشاشة，مع قناع） -->
         <div class="new-world-bg">
-          <!-- 数据卡片容器（三列布局，居中显示） -->
+          <!-- حاوية بطاقة البيانات（تخطيط ثلاثة أعمدة，عرض مركزي） -->
           <div class="new-world-stats">
-            <!-- 给stat-number加data属性：目标值+单位，初始值0 -->
+            <!-- يعطيstat-numberيضيفdataملكية：القيمة المستهدفة+وحدة，القيمة الأولية0 -->
             <div class="new-world-stat-item" style="--card-index: 0">
-              <div class="stat-number" data-target="6000+" data-unit="台">
+              <div class="stat-number" data-target="6000+" data-unit="برج">
                 0
               </div>
               <div class="stat-desc">
-                年产量:即便处于订单高峰期，也能确保你的采购需求按时排产、如期交付，彻底杜绝生产线因缺设备而停工的风险
+                الناتج السنوي:حتى خلال فترة ذروة النظام，ويمكنه أيضًا التأكد من
+                جدولة احتياجاتك الشرائية في الوقت المحدد.、سلمت في الموعد
+                المحدد，القضاء تمامًا على مخاطر إغلاق خطوط الإنتاج بسبب نقص
+                المعدات
               </div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 1">
@@ -5154,13 +5281,19 @@
                 0
               </div>
               <div class="stat-desc">
-                新时代工厂:可同时开启多条标准化生产线，实现精细化分工与全流程品控，为你提供品质稳定、性能一致的激光切割设备
+                مصنع العصر الجديد:يمكن فتح خطوط إنتاج موحدة متعددة في نفس
+                الوقت，تحقيق التقسيم الدقيق للعمل ومراقبة الجودة الكاملة
+                للعملية，توفر لك جودة مستقرة、معدات القطع بالليزر ذات الأداء
+                المتسق
               </div>
             </div>
             <div class="new-world-stat-item" style="--card-index: 2">
               <div class="stat-number" data-target="30+" data-unit="+">0</div>
               <div class="stat-desc">
-                国家和地区:产品通过多国市场准入认证，适配不同地区的工业用电标准与工艺需求，全球范围内都能为你提供及时的售后技术支持
+                البلدان والمناطق:لقد حصلت المنتجات على شهادة الوصول إلى الأسواق
+                متعددة البلدان，التكيف مع معايير الكهرباء الصناعية ومتطلبات
+                العملية في مناطق مختلفة，يمكننا أن نقدم لك الدعم الفني لما بعد
+                البيع في الوقت المناسب في جميع أنحاء العالم
               </div>
             </div>
           </div>
@@ -5168,195 +5301,228 @@
       </div>
     </section>
 
-    <!-- 九. 员工福利 -->
+    <!-- تسعة. فوائد الموظفين -->
     <section class="staff-container">
       <div class="staff-welfare">
-        <!-- 1. 板块标题：必须放在 .welfare-list 外面！ -->
-        <h2 class="staff-elfare-title">员工福利 · 用心关怀每一位伙伴</h2>
+        <!-- 1. عنوان القسم：يجب أن توضع .welfare-list الخارج！ -->
+        <h2 class="staff-elfare-title">
+          فوائد الموظفين · رعاية كل شريك مع القلب
+        </h2>
 
-        <!-- 2. 福利内容区：标题移出后，Grid布局才会正常生效 -->
+        <!-- 2. منطقة محتوى الرفاهية：بعد إزالة العنوان，Gridسوف يصبح التخطيط ساري المفعول بشكل طبيعي -->
         <div class="welfare-list">
-          <!-- 1. 基础保障类 -->
+          <!-- 1. نوع الحماية الأساسية -->
           <div class="welfare-card" style="--card-index: 0">
             <div class="welfare-icon">
               <i class="fa fa-shield" aria-hidden="true"></i>
             </div>
-            <h3>基础保障</h3>
+            <h3>الحماية الأساسية</h3>
             <p>
-              全额缴纳五险一金（养老/医疗/失业/工伤/生育+住房公积金），额外补充商业意外险，覆盖工作与生活双重保障。
+              ادفع بالكامل خمسة تأمينات وصندوق إسكان
+              واحد（مَعاش/طبي/البطالة/إصابة العمل/خصوبة+صندوق الادخار
+              السكني），تأمين إضافي تكميلي ضد الحوادث التجارية，تغطي كلا من
+              حماية العمل والحياة。
             </p>
           </div>
 
-          <!-- 2. 健康关怀类 -->
+          <!-- 2. الرعاية الصحية -->
           <div class="welfare-card" style="--card-index: 1">
             <div class="welfare-icon">
               <i class="fa fa-heartbeat" aria-hidden="true"></i>
             </div>
-            <h3>健康守护</h3>
+            <h3>حماية الصحة</h3>
             <p>
-              年度免费体检（含肿瘤筛查、心脑血管检测等深度项目），家属可享员工专属折扣；每月组织健康讲座（颈椎护理、心理健康等）。
+              الفحص البدني السنوي مجانا（بما في ذلك فحص الأورام、اختبارات القلب
+              والأوعية الدموية والدماغية وغيرها من المشاريع المتعمقة），يتمتع
+              أفراد العائلة بخصومات حصرية للموظفين；تنظيم محاضرات صحية
+              شهرية（رعاية العمود الفقري العنقي、الصحة العقلية الخ）。
             </p>
           </div>
 
-          <!-- 3. 工作生活平衡类 -->
+          <!-- 3. التوازن بين الحياة والعمل -->
           <div class="welfare-card" style="--card-index: 2">
             <div class="welfare-icon">
               <i class="fa fa-balance-scale" aria-hidden="true"></i>
             </div>
-            <h3>平衡生活</h3>
+            <h3>حياة متوازنة</h3>
             <p>
-              严格执行双休制度，不强制加班；带薪年假（入职即享5天，每满1年增加1天，上限15天）；法定节假日提前1小时下班。
+              التنفيذ الصارم لنظام عطلة نهاية الأسبوع，لا يوجد عمل إضافي
+              إلزامي；إجازة سنوية مدفوعة الأجر（استمتع عند الانضمام5سماء，كل
+              كامل1الزيادة السنوية1سماء，الحد الأعلى15سماء）；العطل القانونية
+              مقدما1ساعات من العمل。
             </p>
           </div>
 
-          <!-- 4. 家庭关怀类 -->
+          <!-- 4. رعاية الأسرة -->
           <div class="welfare-card" style="--card-index: 3">
             <div class="welfare-icon">
               <i class="fa fa-baby" aria-hidden="true"></i>
             </div>
-            <h3>家庭支持</h3>
+            <h3>دعم الأسرة</h3>
             <p>
-              女性员工产假延长至188天（超法定标准），男性员工陪产假15天；子女升学/就医可申请弹性工作；春节、中秋等节日发放家庭慰问礼。
+              تمديد إجازة الأمومة للموظفات إلى188سماء（تتجاوز المعايير
+              القانونية），إجازة أبوة للموظفين الذكور15سماء；مزيد من الدراسات
+              للأطفال/عند طلب العلاج الطبي، يمكنك التقدم بطلب للحصول على عمل
+              مرن；مهرجان الربيع、توزيع هدايا العزاء العائلي في عيد منتصف الخريف
+              والمهرجانات الأخرى。
             </p>
           </div>
 
-          <!-- 5. 成长发展类 -->
+          <!-- 5. النمو والتنمية -->
           <div class="welfare-card" style="--card-index: 4">
             <div class="welfare-icon">
               <i class="fa fa-graduation-cap" aria-hidden="true"></i>
             </div>
-            <h3>成长赋能</h3>
+            <h3>تمكين النمو</h3>
             <p>
-              每年5000元/人的培训基金（可用于外部课程、行业会议）；师徒制带教（新人专属导师）；内部技术分享会（每月2场）。
+              كل عام5000يوان/صندوق التدريب البشري（متاح للدورات الخارجية、مؤتمر
+              الصناعة）；تدريس الماجستير المتدرب（مدرس حصري للمبتدئين）；جلسة
+              مشاركة التكنولوجيا الداخلية（كل شهر2مجال）。
             </p>
           </div>
 
-          <!-- 6. 日常关怀类 -->
+          <!-- 6. الرعاية اليومية -->
           <div class="welfare-card" style="--card-index: 5">
             <div class="welfare-icon">
               <i class="fa fa-coffee" aria-hidden="true"></i>
             </div>
-            <h3>日常温暖</h3>
+            <h3>الدفء اليومي</h3>
             <p>
-              工作日免费下午茶（咖啡、奶茶+点心/水果）；员工生日专属蛋糕+购物卡；季度团队建设（户外拓展、轰趴、露营等）。
+              شاي بعد الظهر مجانًا في أيام الأسبوع（قهوة、شاي
+              الحليب+حَلوَى/الفاكهة）；كعكة عيد ميلاد الموظف+بطاقة التسوق；بناء
+              الفريق ربع سنوي（التنمية في الهواء الطلق、حفلة منزلية、التخييم
+              الخ.）。
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 十. 信任背书模块（Trust Endorsement） -->
+    <!-- عشرة. وحدة تأييد الثقة（Trust Endorsement） -->
     <section class="trust-section">
       <div class="trust-container">
-        <!-- 1. 模块标题 -->
-        <h3 class="trust-section-title">全球客户与合作案例</h3>
+        <!-- 1. عنوان الوحدة -->
+        <h3 class="trust-section-title">العملاء العالميين وحالات التعاون</h3>
 
-        <!-- 2. 合作伙伴Logo墙 -->
+        <!-- 2. الشركاءLogoحائط -->
         <div class="trust-logo-wrapper">
-          <h4 class="trust-logo-title">服务全球30+国家客户</h4>
+          <h4 class="trust-logo-title">خدمة العالم30+العملاء الوطنيين</h4>
           <div class="trust-logo-list">
-            <!-- Logo 1：德国汽车零部件客户 -->
+            <!-- Logo 1：عملاء قطع غيار السيارات الألمانية -->
             <div class="trust-logo-card" data-logo-index="0">
               <div class="trust-logo-img">
-                <!-- 占位图：实际项目替换为客户Logo，建议用SVG确保清晰 -->
+                <!-- صورة العنصر النائب：تم استبدال المشروع الفعلي بالعميلLogo，يوصى باستخدامهSVGضمان الوضوح -->
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-cases-1 (1).webp"
-                  alt="德国汽车零部件客户Logo"
+                  alt="عملاء قطع غيار السيارات الألمانيةLogo"
                 />
               </div>
-              <p class="trust-logo-desc">德国 · 汽车零部件行业</p>
+              <p class="trust-logo-desc">ألمانيا · صناعة قطع غيار السيارات</p>
             </div>
 
-            <!-- Logo 2：美国电子设备客户 -->
+            <!-- Logo 2：عملاء المعدات الإلكترونية في الولايات المتحدة -->
             <div class="trust-logo-card" data-logo-index="1">
               <div class="trust-logo-img">
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-cases-1 (2).webp"
-                  alt="美国电子设备客户Logo"
+                  alt="عملاء المعدات الإلكترونية في الولايات المتحدةLogo"
                 />
               </div>
-              <p class="trust-logo-desc">美国 · 电子设备行业</p>
+              <p class="trust-logo-desc">
+                الولايات المتحدة الأمريكية · صناعة المعدات الالكترونية
+              </p>
             </div>
 
-            <!-- Logo 3：日本精密仪器客户 -->
+            <!-- Logo 3：عملاء الأجهزة الدقيقة اليابانية -->
             <div class="trust-logo-card" data-logo-index="2">
               <div class="trust-logo-img">
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-cases-1 (3).webp"
-                  alt="日本精密仪器客户Logo"
+                  alt="عملاء الأجهزة الدقيقة اليابانيةLogo"
                 />
               </div>
-              <p class="trust-logo-desc">日本 · 精密仪器行业</p>
+              <p class="trust-logo-desc">اليابان · صناعة الأدوات الدقيقة</p>
             </div>
 
-            <!-- Logo 4：东南亚家电客户 -->
+            <!-- Logo 4：عملاء الأجهزة المنزلية في جنوب شرق آسيا -->
             <div class="trust-logo-card" data-logo-index="3">
               <div class="trust-logo-img">
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-cases-1 (4).webp"
-                  alt="东南亚家电客户Logo"
+                  alt="عملاء الأجهزة المنزلية في جنوب شرق آسياLogo"
                 />
               </div>
-              <p class="trust-logo-desc">东南亚 · 家电制造行业</p>
+              <p class="trust-logo-desc">
+                جنوب شرق آسيا · صناعة تصنيع الأجهزة المنزلية
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- 3. 短案例展示（1-2个核心案例） -->
+        <!-- 3. عرض حالة قصيرة（1-2الحالات الأساسية） -->
         <div class="trust-case-wrapper">
-          <h4 class="trust-case-title">合作案例精选</h4>
+          <h4 class="trust-case-title">حالات تعاون مختارة</h4>
           <div class="trust-case-list">
-            <!-- 案例1：德国汽车配件厂激光焊接设备 -->
+            <!-- قضية1：مصنع قطع غيار السيارات الألماني معدات اللحام بالليزر -->
             <div class="trust-case-card" data-case-index="0">
               <div class="trust-case-img">
-                <!-- 脱敏实景图：客户工厂设备使用场景 -->
+                <!-- إزالة التحسس الصورة الحقيقية：سيناريوهات استخدام معدات مصنع العملاء -->
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-machine-welding.webp"
-                  alt="德国客户工厂激光设备应用场景"
+                  alt="سيناريوهات تطبيق معدات الليزر في مصانع العملاء الألمانية"
                 />
               </div>
               <div class="trust-case-content">
                 <h5 class="trust-case-name">
-                  德国某汽车配件厂 · 激光焊接设备定制
+                  مصنع قطع غيار سيارات ألماني · تخصيص معدات اللحام بالليزر
                 </h5>
                 <p class="trust-case-problem">
-                  <strong>客户需求：</strong
-                  >解决汽车底盘部件焊接精度低、不良率高（原不良率18%）、生产效率不足的问题，需适配其现有生产线节拍。
+                  <strong>احتياجات العملاء：</strong>حل مشكلة انخفاض دقة اللحام
+                  لأجزاء هيكل السيارة、ارتفاع معدل معيبة（المعدل المعيب
+                  الأصلي18%）、مشكلة عدم كفاية كفاءة الإنتاج，تحتاج إلى التكيف
+                  مع إيقاع خط الإنتاج الحالي。
                 </p>
                 <p class="trust-case-solution">
-                  <strong>我们的方案：</strong
-                  >定制高功率激光焊接设备，优化焊接路径算法，添加实时质量检测模块，同步提供3天现场调试培训。
+                  <strong>الحل لدينا：</strong>معدات لحام ليزر عالية الطاقة
+                  مخصصة，خوارزمية مسار اللحام الأمثل，إضافة وحدة الكشف عن الجودة
+                  في الوقت الحقيقي，المقدمة في وقت واحد3أيام التدريب على التشغيل
+                  في الموقع。
                 </p>
                 <p class="trust-case-result">
-                  <strong>最终成果：</strong
-                  >生产效率提升25%，焊接不良率降至3%，设备稳定运行18个月零故障，后续追加2台设备订单。
+                  <strong>النتيجة النهائية：</strong>تحسين كفاءة الإنتاج25%，يتم
+                  تقليل معدل عيوب اللحام إلى3%，المعدات تعمل بشكل مستقر18صفر فشل
+                  شهريا，إضافة لاحقة2طلب المعدات。
                 </p>
               </div>
             </div>
 
-            <!-- 案例2：美国电子企业激光打标设备（可选，按需增减） -->
+            <!-- قضية2：معدات وضع العلامات بالليزر لشركات الإلكترونيات الأمريكية（خياري，زيادة أو نقصان حسب الحاجة） -->
             <div class="trust-case-card" data-case-index="1">
               <div class="trust-case-img">
                 <img
                   src="https://senrytech.github.io/img/about-us/senrytech-machine-marking.webp"
-                  alt="美国客户电子元件激光打标场景"
+                  alt="مشهد وضع العلامات بالليزر على المكونات الإلكترونية للعملاء الأمريكيين"
                 />
               </div>
               <div class="trust-case-content">
                 <h5 class="trust-case-name">
-                  美国某电子企业 · 微型元件激光打标设备
+                  شركة الكترونيات أمريكية · معدات وضع العلامات بالليزر للمكونات
+                  الدقيقة
                 </h5>
                 <p class="trust-case-problem">
-                  <strong>客户需求：</strong
-                  >为手机芯片封装件做超小尺寸（0.5mm×0.3mm）激光打标，要求打标精度≤0.01mm，且不损伤芯片表面。
+                  <strong>احتياجات العملاء：</strong>تصنيع أحجام صغيرة جدًا لحزم
+                  شرائح الهاتف المحمول（0.5mm×0.3mm）وضع العلامات بالليزر，دقة
+                  وضع العلامات مطلوبة≤0.01mm，دون الإضرار بسطح الشريحة。
                 </p>
                 <p class="trust-case-solution">
-                  <strong>我们的方案：</strong
-                  >采用紫外激光光源，搭配高分辨率振镜系统，开发专属打标参数库，提供1对1技术支持。
+                  <strong>الحل لدينا：</strong>باستخدام مصدر ضوء الليزر للأشعة
+                  فوق البنفسجية，مجهزة بنظام الجلفانومتر عالي الدقة，تطوير مكتبة
+                  معلمات العلامات الحصرية，إمداد1يمين1الدعم الفني。
                 </p>
                 <p class="trust-case-result">
-                  <strong>最终成果：</strong
-                  >打标精度达0.008mm，良率100%，助力客户通过苹果供应链认证，年合作量超50台。
+                  <strong>النتيجة النهائية：</strong>تصل دقة وضع
+                  العلامات0.008mm，أَثْمَر100%，مساعدة العملاء على اجتياز شهادة
+                  سلسلة التوريد من Apple，يتجاوز حجم التعاون السنوي50برج。
                 </p>
               </div>
             </div>
@@ -5365,7 +5531,7 @@
       </div>
     </section>
 
-    <!-- 十二，代码，联系咨询-->
+    <!-- اثني عشر，شفرة，اتصل بنا-->
     <section class="py-16 bg-primary/5" id="contact-section">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
@@ -5373,41 +5539,43 @@
             <h2
               class="text-black text-[clamp(2rem,5vw,3.5rem)] font-normal tracking-tight text-shadow-lg mb-4 font-['SF_Pro_Display',-apple-system,BlinkMacSystemFont,'Segoe_UI',Roboto,sans-serif]"
             >
-              准备好用高精度激光设备<br />升级你的生产制造了吗？
+              جاهز لاستخدام معدات الليزر عالية الدقة<br />هل قمت بترقية التصنيع
+              الخاص بك؟？
             </h2>
             <p
               class="text-[#1d1d1f]/80 text-[clamp(1rem,2vw,1.125rem)] max-w-2xl mx-auto font-light leading-relaxed mt-2"
             >
-              填写下方表单，我们的专业顾问将在24小时内与您联系
+              املأ النموذج أدناه，سيكون مستشارونا المحترفون في24الاتصال بك في
+              غضون ساعات
             </p>
           </div>
 
           <div class="bg-white p-8 rounded-xl shadow-md">
-            <!-- 1. form标签必须有闭合 -->
+            <!-- 1. formيجب أن يكون الملصق مغلقًا -->
             <form
               id="laserForm"
               name="laser-consult"
               onsubmit="sendEmail(event); return false;"
             >
-              <!-- 姓名/公司输入框 -->
+              <!-- اسم/صندوق إدخال الشركة -->
               <div class="mb-6">
                 <label for="name" class="block text-gray-700 mb-2"
-                  >姓名或者公司？</label
+                  >الاسم أو الشركة？</label
                 >
                 <input
                   type="text"
                   id="name"
                   name="sender_name"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  placeholder="请输入姓名或公司名称"
+                  placeholder="الرجاء إدخال اسمك أو اسم الشركة"
                   required
                 />
               </div>
 
-              <!-- 联系电话/邮箱输入框 -->
+              <!-- رقم الاتصال/مربع إدخال البريد الإلكتروني -->
               <div class="mb-6">
                 <label for="contact" class="block text-gray-700 mb-2"
-                  >联系电话或者邮件？</label
+                  >رقم الاتصال أو البريد الإلكتروني？</label
                 >
                 <input
                   type="text"
@@ -5429,11 +5597,11 @@
                   name="sender_message"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md"
                   rows="4"
-                  placeholder="请输入需求"
+                  placeholder="الرجاء إدخال الاحتياجات الخاصة بك"
                 ></textarea>
               </div>
 
-              <!-- 提交区域 -->
+              <!-- إرسال المنطقة -->
               <div>
                 <div id="submitTip" class="mb-4 text-center"></div>
                 <button
@@ -5441,20 +5609,20 @@
                   id="submitBtn"
                   class="w-full bg-primary hover:bg-primary/90 text-white py-3 px-4 rounded-md"
                 >
-                  提交咨询
+                  إرسال الاستفسار
                 </button>
               </div>
             </form>
-            <!-- 关键：闭合form标签 -->
+            <!-- مفتاح：إنهاءformملصق -->
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 十三，底部导航栏 -->
+    <!-- أحد عشر，شفرة شريط التنقل السفلي-->
     <footer class="footer-new">
       <div class="footer-container">
-        <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
+        <!-- 1. الجانب الأيسر：منطقة العلامة التجارية（Logo+مقدمة+وسائل التواصل الاجتماعي） -->
         <div class="footer-brand">
           <div class="brand-logo">
             <img
@@ -5464,104 +5632,155 @@
             <span class="brand-name">Senrytech</span>
           </div>
           <p class="brand-desc">
-            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工解决方案。
+            الشركة المصنعة لمعدات القطع بالليزر المهنية，ملتزمون بتوفير جودة
+            عالية للصناعات التحويلية العالمية、حل اختيار المعالجة بالليزر فعال
+            من حيث التكلفة。
           </p>
           <div class="social-icons">
-            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
-            <a class="icon" href="#" title="Facebook">
+            <!-- تصحيح：يزيل text-white/80 انتظر الأنماط غير المتوافقة，استخدم بدلا من ذلك footer مطابقة الألوان العالمية；احتياطي transition تفاعل -->
+            <a
+              class="icon"
+              href="https://www.facebook.com/profile.php?id=61572514366742"
+              title="Facebook"
+            >
               <i class="fa fa-facebook text-xl"></i>
-              <!-- 4.7.0 支持的默认前缀 fa -->
+              <!-- 4.7.0 البادئات الافتراضية المدعومة fa -->
             </a>
-            <a class="icon" href="#" title="Instagram">
+            <a
+              class="icon"
+              href="https://www.instagram.com/senrytech/"
+              title="Instagram"
+            >
               <i class="fa fa-instagram text-xl"></i>
             </a>
-            <a class="icon" href="#" title="YouTube">
+            <a
+              class="icon"
+              href="https://www.youtube.com/@senrytech"
+              title="YouTube"
+            >
               <i class="fa fa-youtube-play text-xl"></i>
             </a>
           </div>
         </div>
 
-        <!-- 2. 中间：产品中心 -->
+        <!-- 2. وسط：مركز المنتجات -->
         <div class="footer-column">
-          <h3>产品中心</h3>
+          <h3>مركز المنتجات</h3>
           <ul>
-            <li><a href="#">板材切割机</a></li>
-            <li><a href="#">管材切割机</a></li>
-            <li><a href="#">板管一体机</a></li>
-            <li><a href="#">激光焊接机</a></li>
-            <li><a href="#">激光清洗机</a></li>
-            <li><a href="#">激光打标机</a></li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-cutting/"
+                >آلة قطع الألواح</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-tube-cutting/"
+                >ماكينة قطع الأنابيب</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-tube/"
+                >آلة متكاملة للوحة والأنبوب</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-welding/"
+                >ماكينة لحام بالليزر</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-cleaning/"
+                >ماكينة تنظيف بالليزر</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-marking/"
+                >آلة وضع العلامات بالليزر</a
+              >
+            </li>
           </ul>
         </div>
 
-        <!-- 3. 右侧：关于我们 -->
+        <!-- 3. الجانب الأيمن：معلومات عنا -->
         <div class="footer-column">
-          <h3>关于我们</h3>
+          <h3>معلومات عنا</h3>
           <ul>
-            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">企业责任</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">核心团队</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">发展历程</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">员工福利</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">合作案例</a></li>
+            <li>
+              <a href="https://www.senrytech.com/about-us/">ملف الشركة</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/solutions/">خطة الاختيار</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
+                >دليل لتجنب المزالق</a
+              >
+            </li>
+            <li><a href="https://www.senrytech.com/news/">أخبار</a></li>
+            <li><a href="https://www.senrytech.com/join-us/">انضم إلينا</a></li>
+            <li>
+              <a href="https://www.senrytech.com/contact-us/">اتصل بنا</a>
+            </li>
           </ul>
         </div>
 
-        <!-- 4. 最右侧：联系我们+二维码 -->
+        <!-- 4. أقصى اليمين：اتصل بنا+رمز الاستجابة السريعة -->
         <div class="footer-column footer-contact">
-          <h3>联系我们</h3>
+          <h3>اتصل بنا</h3>
           <ul class="contact-list">
-            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
+            <!-- تصحيح1：رمز العنوان - 4.7.0 الرمز المقابل هو fa-map-marker（لا أحد alt لاحقة），تم تغيير البادئة إلى fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-              <span>中国·济南市历城区舜华路街道综合产业工业园</span>
+              <span
+                >الصين · المنطقة الصناعية الشاملة، شارع طريق شونهوا، منطقة
+                ليتشنغ، مدينة جينان</span
+              >
             </li>
-            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
+            <!-- تصحيح2：رمز الهاتف - 4.7.0 الرمز المقابل هو fa-phone，تم تغيير البادئة إلى fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-phone"></i></span>
               <span>+86 134 6557 5719</span>
             </li>
-            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
+            <!-- تصحيح3：رمز صندوق البريد - 4.7.0 الرمز المقابل هو fa-envelope，تم تغيير البادئة إلى fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-envelope"></i></span>
               <span>info@senrytech.com</span>
             </li>
-            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
+            <!-- تصحيح4：أيقونة الوقت - 4.7.0 الرمز المقابل هو fa-clock-o（يحضر o لاحقة），تم تغيير البادئة إلى fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
-              <span>周一至周六: 9:00-18:00</span>
+              <span>من الاثنين إلى السبت: 9:00-18:00</span>
             </li>
           </ul>
-          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
+          <!-- تجديد：إذا كان هناك وحدة رمز الاستجابة السريعة，يمكن إضافتها هنا（احتفظ بالتصميم الأصلي） -->
           <div class="wechat-qrcode">
-            <h4>微信咨询</h4>
+            <h4>استشارة ويتشات</h4>
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
                   src="https://senrytech.github.io/img/qr-code/before-sales.jpg"
-                  alt="售前客服咨询"
+                  alt="استشارة خدمة العملاء قبل البيع"
                 />
-                <p>售前客服咨询</p>
+                <p>استشارة خدمة العملاء قبل البيع</p>
               </div>
               <div class="qrcode-item">
                 <img
                   src="https://senrytech.github.io/img/qr-code/after-sales.jpg"
-                  alt="微信二维码2"
+                  alt="رمز الاستجابة السريعة WeChat2"
                 />
-                <p>售后客户咨询</p>
+                <p>استشارة العملاء بعد البيع</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 底部版权信息（补充完整结构） -->
+      <!-- معلومات حقوق الطبع والنشر في الأسفل（تكملة الهيكل الكامل） -->
       <div class="footer-bottom">
-        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
+        <div class="bottom-left">© 2024 Senrytech. جميع الحقوق محفوظة</div>
         <div class="bottom-right">
-          <a href="#">隐私政策</a>
-          <a href="#">服务条款</a>
-          <a href="#">网站地图</a>
+          <a href="https://www.senrytech.com/privacy-policy/">سياسة الخصوصية</a>
+          <a href="https://www.senrytech.com/service-terms">شروط الخدمة</a>
+          <a href="#">خريطة الموقع</a>
         </div>
       </div>
     </footer>

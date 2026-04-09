@@ -1,18 +1,21 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-      content="Senrytech激光是专业激光切割机厂家，专注研发生产全系列激光切割设备，涵盖板材激光切割机、管材激光切割机等多品类机型，厂家直供、品质可靠，满足各行业高精度切割需求。"
+      content="SenrytechLaser is a professional laser cutting machine manufacturer，Focus on R&D and production of a full range of laser cutting equipment，Covers sheet laser cutting machines、Pipe laser cutting machines and other types of machines，Direct supply from factory、Reliable quality，Meet the high-precision cutting needs of various industries。"
       name="description"
     />
     <meta
-      content="Senrytech激光,激光切割机厂家,激光切割设备,板材激光切割机,管材激光切割机,全系列激光切割设备"
+      content="Senrytechlaser,Laser cutting machine manufacturers,Laser cutting equipment,Plate laser cutting machine,Pipe laser cutting machine,Full range of laser cutting equipment"
       name="keywords"
     />
-    <title>Senrytech激光 - 专业激光切割机厂家 | 全系列激光切割设备首页</title>
-    <link rel="canonical" href="https://www.senrytech.com/solutions/lang/cn/" />
+    <title>
+      Senrytechlaser - Professional laser cutting machine manufacturer | Full
+      range of laser cutting equipment home page
+    </title>
+    <link rel="canonical" href="https://www.senrytech.com/solutions/" />
     <!-- 引入思源黑体字体文件 -->
     <link
       href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
@@ -25,7 +28,6 @@
     />
     <!-- 一、CSS 全局基础样式 -->
     <style>
-      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
@@ -33,40 +35,35 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
-      /* 全局锁死：禁止任何横向溢出 */
       html,
       body {
         margin: 0;
         padding: 0;
         width: 100%;
-        max-width: 100vw; /* 永远不超过视口宽度 */
-        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        max-width: 100vw;
+        overflow-x: hidden;
         box-sizing: border-box;
       }
 
-      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
       *,
       *::before,
       *::after {
         box-sizing: inherit;
       }
 
-      /* 1.2 图标字体强制声明 */
       .social-icons .icon i,
       .footer-contact .contact-icon i {
         font-family: "FontAwesome" !important;
       }
 
-      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
         display: none !important;
       }
 
-      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
       .body-fixed {
-        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
-        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
-        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+        position: fixed;
+        width: 100%;
+        overflow-y: auto;
       }
 
       @media (max-width: 320px) {
@@ -151,11 +148,11 @@
     <!--二、CSS 导航栏-->
     <style>
       .navbar {
-        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
-        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
-        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
-        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
-        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
 
         background: linear-gradient(
           135deg,
@@ -163,15 +160,15 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgba(245, 245, 247, 1) 100%
         );
-        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
-        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
-        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
-        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
-        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
-        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
-        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
       }
 
       .navbar.scrolled {
@@ -461,13 +458,12 @@
         flex-shrink: 0;
       }
 
-      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
         padding: 0.4rem 1.2rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        display: none; /* 默认隐藏，仅移动端显示 */
+        display: none;
         align-items: center;
         justify-content: center;
         color: #1d1d1f !important;
@@ -481,7 +477,7 @@
       .hamburger-btn i {
         font-family: "FontAwesome" !important;
         font-size: 0.875rem;
-        color: inherit; /* 继承按钮颜色 */
+        color: inherit;
       }
 
       .sidebar-overlay {
@@ -971,7 +967,6 @@
 
     <!--三，激光设备胶囊导航栏-->
     <style>
-      /* 胶囊导航整体容器：居中+间距 */
       .laser-capsule-nav {
         width: 100%;
         padding-top: 2rem;
@@ -981,14 +976,13 @@
         box-sizing: border-box;
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
         );
-        position: sticky; /* 粘性定位：滚动到阈值时固定 */
-        top: 1rem; /* 吸附在顶部导航栏下方（顶部导航栏高度是2.8rem） */
-        z-index: 999; /* 确保在其他内容上方（低于顶部导航的1000，避免遮挡） */
+        position: sticky;
+        top: 1rem;
+        z-index: 999;
       }
       .capsule-container {
         display: flex;
@@ -996,48 +990,45 @@
         align-items: center;
         gap: 12px;
         justify-content: center;
-        flex-wrap: nowrap; /* 默认不换行，小屏自动适配 */
+        flex-wrap: nowrap;
         width: 90%;
         max-width: 1920px;
         margin: 0 auto;
-        overflow-x: auto; /* 小屏横向滚动，不挤变形 */
-        scrollbar-width: none; /* 隐藏火狐滚动条 */
-        -ms-overflow-style: none; /* 隐藏IE滚动条 */
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
-      /* 隐藏谷歌滚动条 */
+
       .capsule-container::-webkit-scrollbar {
         display: none;
       }
 
-      /* 苹果风格胶囊按钮：核心样式 */
       .capsule-item {
         display: inline-block;
         padding: 8px 16px;
         background: linear-gradient(145deg, #f0f0f2, #e0e0e2);
         box-shadow:
           0 1px 2px rgba(0, 0, 0, 0.05),
-          /* 最底层阴影 */ 0 3px 6px rgba(0, 0, 0, 0.08),
-          /* 中层阴影 */ 0 2px 0 rgba(255, 255, 255, 0.6),
-          /* 顶部高光，模拟倒角 */ 0 0px 0 rgba(0, 0, 0, 0.1); /* 底部暗线，模拟厚度 */
-        color: #1d1d1f; /* 深灰文字 */
+          0 3px 6px rgba(0, 0, 0, 0.08),
+          0 2px 0 rgba(255, 255, 255, 0.6),
+          0 0px 0 rgba(0, 0, 0, 0.1);
+        color: #1d1d1f;
         text-decoration: none;
-        border-radius: 9999px; /* 圆形胶囊 */
+        border-radius: 9999px;
         font-size: 14px;
         font-weight: 600;
-        transition: all 0.3s ease; /* 动画过渡 */
-        white-space: nowrap; /* 文字不换行 */
+        transition: all 0.3s ease;
+        white-space: nowrap;
         border: 1px solid transparent;
       }
-      /* hover 动画：苹果风格悬浮效果 */
+
       .capsule-item:hover {
         background: #0071e3;
-        color: #ffffff; /* 深灰文字 */
+        color: #ffffff;
         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
-      /* 媒体适配：8个节点 0-320/321-375/376-425/426-768/769-1024/1025-1440/1441-2560/>2561 */
-      /* 0-320px */
       @media (max-width: 320px) {
         .capsule-item {
           padding: 6px 10px;
@@ -1046,11 +1037,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 321-375px */
+
       @media (min-width: 321px) and (max-width: 375px) {
         .capsule-item {
           padding: 6px 12px;
@@ -1059,11 +1050,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 376-425px */
+
       @media (min-width: 376px) and (max-width: 425px) {
         .capsule-item {
           padding: 7px 14px;
@@ -1072,11 +1063,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 426-768px (平板竖屏) */
+
       @media (min-width: 426px) and (max-width: 768px) {
         .capsule-item {
           padding: 7px 15px;
@@ -1085,11 +1076,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 769-1024px (平板横屏/小电脑) */
+
       @media (min-width: 769px) and (max-width: 1024px) {
         .capsule-item {
           padding: 8px 16px;
@@ -1098,11 +1089,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 1025-1440px (主流电脑) */
+
       @media (min-width: 1025px) and (max-width: 1440px) {
         .capsule-item {
           padding: 9px 18px;
@@ -1112,7 +1103,7 @@
           gap: 14px;
         }
       }
-      /* 1441-2560px (大屏/2K) */
+
       @media (min-width: 1441px) and (max-width: 2560px) {
         .capsule-item {
           padding: 10px 20px;
@@ -1123,7 +1114,7 @@
           max-width: 2000px;
         }
       }
-      /* >2561px (超高清/4K) */
+
       @media (min-width: 2561px) {
         .capsule-item {
           padding: 12px 24px;
@@ -1146,14 +1137,12 @@
         padding-right: 2rem;
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
         );
       }
 
-      /* 主标题样式 - 苹果风格轻量级标题 */
       .selector-title {
         font-size: 2rem;
         font-weight: 600;
@@ -1165,61 +1154,51 @@
         animation: fadeUp 0.8s ease forwards;
       }
 
-      /* 机型组容器 */
       .machine-group {
         margin-bottom: 4rem;
       }
 
-      /* 副标题样式 */
       .group-subtitle {
         font-size: 1.25rem;
         font-weight: 500;
         color: #1d1d1f;
         margin-bottom: 2rem;
         padding-left: 1rem;
-        border-left: 3px solid #0071e3; /* 苹果蓝强调色 */
+        border-left: 3px solid #0071e3;
       }
 
-      /* 机型列表容器 - 重构：统一网格布局基础，大屏多列，小屏单列 */
       .machine-list {
         display: flex;
         align-items: center;
-        justify-content: flex-start; /* 从左开始排 */
-        flex-wrap: nowrap; /* 强制不换行，核心！ */
-        gap: 1rem; /* 统一间距 */
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 1rem;
         width: 100%;
         padding-bottom: 1rem;
-        overflow-x: auto; /* 小屏时可以横向滚动 */
+        overflow-x: auto;
         scrollbar-width: none;
       }
 
-      /* 机型卡片样式 - 苹果风格卡片 */
       .machine-card {
-        /* 原有样式 */
         width: 100%;
         max-width: 14rem;
         margin: 0 auto;
         text-align: center;
         transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
         cursor: pointer;
-        background: linear-gradient(
-          145deg,
-          #f0f0f2,
-          #e0e0e2
-        ); /* 模拟键帽的双色塑料感 */
+        background: linear-gradient(145deg, #f0f0f2, #e0e0e2);
         border-radius: 1.25rem;
         padding: 1.25rem 1rem;
-        /* 立体核心：多层阴影模拟厚度 */
+
         box-shadow:
           0 1px 2px rgba(0, 0, 0, 0.05),
-          /* 最底层阴影 */ 0 3px 6px rgba(0, 0, 0, 0.08),
-          /* 中层阴影 */ inset 0 2px 0 rgba(255, 255, 255, 0.6),
-          /* 顶部高光，模拟倒角 */ inset 0 -2px 0 rgba(0, 0, 0, 0.1); /* 底部暗线，模拟厚度 */
+          0 3px 6px rgba(0, 0, 0, 0.08),
+          inset 0 2px 0 rgba(255, 255, 255, 0.6),
+          inset 0 -2px 0 rgba(0, 0, 0, 0.1);
         position: relative;
         overflow: hidden;
       }
 
-      /* 模拟键盘键帽的“边缘反光” */
       .machine-card::before {
         content: "";
         position: absolute;
@@ -1237,20 +1216,19 @@
       }
 
       .machine-card:hover {
-        transform: translateY(2px) scale(0.98); /* 向下压+轻微缩小，模拟键帽按下 */
+        transform: translateY(2px) scale(0.98);
         box-shadow:
           0 1px 1px rgba(0, 0, 0, 0.1),
-          /* 阴影变浅，模拟下陷 */ inset 0 1px 2px rgba(0, 0, 0, 0.1); /* 内阴影加深，模拟按压 */
+          inset 0 1px 2px rgba(0, 0, 0, 0.1);
       }
 
       .machine-card:active {
-        transform: translateY(4px) scale(0.96); /* 点击时再压深一点 */
+        transform: translateY(4px) scale(0.96);
         box-shadow:
           0 0 0 rgba(0, 0, 0, 0),
           inset 0 2px 4px rgba(0, 0, 0, 0.15);
       }
 
-      /* 机型图片容器 */
       .machine-img {
         width: 100%;
         height: 10rem;
@@ -1274,7 +1252,6 @@
         transform: scale(1.5);
       }
 
-      /* 机型名称 */
       .machine-name {
         font-size: 1rem;
         font-weight: 300;
@@ -1282,48 +1259,41 @@
         margin-bottom: 0.5rem;
       }
 
-      /* 机型特点 - 渐变色文字 */
       .machine-feature {
         font-size: 0.875rem;
-        background: linear-gradient(
-          90deg,
-          #01509e,
-          #04be32
-        ); /* 苹果蓝+苹果绿渐变 */
+        background: linear-gradient(90deg, #01509e, #04be32);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         line-height: 1.4;
       }
 
-      /* 升级箭头样式 - 小屏显示，大屏隐藏 */
       .upgrade-arrow {
         color: #0071e3;
         font-size: 1.5rem;
         font-weight: bold;
         opacity: 0.7;
         animation: arrowPulse 2s infinite ease-in-out;
-        text-align: center; /* 箭头居中 */
-      }
-      /* —— 产品卡片链接样式（新增） —— */
-      .machine-card-link {
-        text-decoration: none; /* 去掉下划线 */
-        color: inherit; /* 继承父级文字颜色 */
-        width: 15rem; /* 宽度：15rem（对应240px，适配现有REM基准） */
-        height: auto; /* 高度自适应（推荐，避免固定高度导致内容溢出）；如需固定高度可改为：height: 20rem; */
-        display: block; /* 转为块级元素，确保width/height生效 */
-        box-sizing: border-box; /* 继承全局盒模型规则，避免padding影响宽高 */
-        margin: 0 auto; /* 可选：水平居中，适配产品卡片居中布局 */
-      }
-      /* 标题父容器：相对定位（作为吉祥物绝对定位的参考） */
-      .title-box {
-        position: relative; /* 核心：让子元素绝对定位以它为基准 */
-        text-align: center; /* 标题居中（保持你原有页面布局） */
-        margin: 0 auto;
-        max-width: 1200px; /* 适配大屏，可根据页面调整 */
+        text-align: center;
       }
 
-      /* 原有标题样式：轻微调整行高/内边距，给图片留出空间 */
+      .machine-card-link {
+        text-decoration: none;
+        color: inherit;
+        width: 15rem;
+        height: auto;
+        display: block;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+      .title-box {
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        max-width: 1200px;
+      }
+
       .selector-title {
         font-size: 2rem;
         font-weight: 600;
@@ -1332,23 +1302,21 @@
         opacity: 0;
         transform: translateY(20px);
         animation: fadeUp 0.8s ease forwards;
-        line-height: 1.4; /* 加大行高，避免图片遮挡文字 */
-        padding-right: 60px; /* 右侧留空，适配图片位置，可微调 */
+        line-height: 1.4;
+        padding-right: 60px;
       }
 
-      /* 吉祥物图片：绝对定位实现“倚靠”效果 */
       .title-mascot {
-        position: absolute; /* 核心：脱离文档流，相对父容器定位 */
-        top: -100px; /* 向上偏移，靠在标题上方，可微调 */
-        right: 50%; /* 水平居中偏移，配合translateX右移 */
-        transform: translateX(425px); /* 精调水平位置，实现“倚靠”，可微调 */
-        width: 200px; /* 图片宽度，根据实际需求调整，建议小尺寸更精致 */
-        height: auto; /* 高度自适应，防止图片变形 */
-        z-index: 2; /* 层级高于标题，确保图片在最上层 */
-        transition: all 0.3s ease; /* 可选：hover轻微动效，更生动 */
+        position: absolute;
+        top: -100px;
+        right: 50%;
+        transform: translateX(425px);
+        width: 200px;
+        height: auto;
+        z-index: 2;
+        transition: all 0.3s ease;
       }
 
-      /* 价格/定位标签 */
       .machine-tag {
         position: absolute;
         top: 12px;
@@ -1361,46 +1329,34 @@
         z-index: 10;
       }
 
-      /* 不同定位的颜色 */
       .machine-tag.entry {
-        background: linear-gradient(
-          135deg,
-          #009e5f,
-          #00b86f
-        ); /* 经济款：品牌绿 */
+        background: linear-gradient(135deg, #009e5f, #00b86f);
       }
       .machine-tag.mid {
-        background: linear-gradient(135deg, #165dff, #4080ff); /* 中端：蓝色 */
+        background: linear-gradient(135deg, #165dff, #4080ff);
       }
       .machine-tag.premium {
-        background: linear-gradient(135deg, #ff7d00, #ffb547); /* 高端：橙色 */
+        background: linear-gradient(135deg, #ff7d00, #ffb547);
       }
       .machine-tag.ultra {
-        background: linear-gradient(135deg, #f53f3f, #ff7875); /* 旗舰：红色 */
+        background: linear-gradient(135deg, #f53f3f, #ff7875);
       }
       .machine-tag.special {
-        background: linear-gradient(
-          135deg,
-          #722ed1,
-          #b37feb
-        ); /* 特殊款：紫色 */
+        background: linear-gradient(135deg, #722ed1, #b37feb);
       }
 
-      /* 卡片容器需要加相对定位 */
       .machine-card {
-        position: relative; /* 关键：让标签绝对定位生效 */
-        /* 你原有的样式保持不变 */
+        position: relative;
       }
 
-      /* 响应式适配：小屏缩小图片，调整位置，避免遮挡 */
       @media (max-width: 768px) {
         .selector-title {
-          padding-right: 40px; /* 小屏减少右侧留空 */
+          padding-right: 40px;
           font-size: 1.75rem;
         }
         .title-mascot {
-          width: 40px; /* 小屏缩小图片 */
-          transform: translateX(80px); /* 小屏微调水平位置 */
+          width: 40px;
+          transform: translateX(80px);
         }
         .title-box:hover .title-mascot {
           transform: translateX(80px) rotate(5deg);
@@ -1420,7 +1376,6 @@
         }
       }
 
-      /* 箭头动画 */
       @keyframes arrowPulse {
         0%,
         100% {
@@ -1433,7 +1388,6 @@
         }
       }
 
-      /* 标题渐入动画 */
       @keyframes fadeUp {
         to {
           opacity: 1;
@@ -1441,7 +1395,6 @@
         }
       }
 
-      /* 卡片加载动画 */
       @keyframes cardFadeIn {
         from {
           opacity: 0;
@@ -1453,7 +1406,6 @@
         }
       }
 
-      /* 为每个卡片添加延迟动画 */
       .machine-card {
         opacity: 0;
         transform: translateY(15px);
@@ -1482,8 +1434,6 @@
         animation-delay: 0.7s;
       }
 
-      /* ========== 响应式适配 - 核心：缩小各尺寸下的gap，优化间距 ========== */
-      /* 超小屏 (≤320px) - 1列布局 */
       @media (max-width: 320px) {
         .selector-section {
           padding: 2rem 1rem;
@@ -1511,7 +1461,6 @@
         }
       }
 
-      /* 小屏手机 (321px ~ 375px) - 1列布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .selector-section {
           padding: 2.5rem 1.25rem;
@@ -1535,7 +1484,6 @@
         }
       }
 
-      /* 大屏手机 (376px ~ 425px) - 1列布局 */
       @media (min-width: 376px) and (max-width: 425px) {
         .machine-card {
           max-width: 12rem;
@@ -1548,14 +1496,13 @@
         }
       }
 
-      /* 平板 (426px ~ 768px) - 2列布局（小屏多行多列） */
       @media (min-width: 426px) and (max-width: 768px) {
         .selector-section {
           padding: 3rem 2rem;
         }
         .machine-list {
-          grid-template-columns: repeat(2, 1fr); /* 2列 */
-          gap: 1.2rem; /* 核心：平板间距从2rem→1.2rem */
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 13rem;
@@ -1565,18 +1512,16 @@
         }
       }
 
-      /* 小屏电脑 (769px ~ 1023px) - 3列布局（多行多列） */
       @media (min-width: 769px) and (max-width: 1023px) {
         .machine-list {
-          grid-template-columns: repeat(3, 1fr); /* 3列 */
-          gap: 1.2rem; /* 核心：小屏电脑间距从2rem→1.2rem */
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 15rem;
         }
       }
 
-      /* 大屏桌面 (1024px ~ 1440px) - 5列布局（1行5列） */
       @media (min-width: 1024px) and (max-width: 1440px) {
         .selector-section {
           max-width: 1600px;
@@ -1584,8 +1529,8 @@
           padding: 5rem 3rem;
         }
         .machine-list {
-          grid-template-columns: repeat(5, 1fr); /* 1行5列 */
-          gap: 1.2rem; /* 核心：大屏桌面间距从默认1rem微调为1.2rem（避免过挤） */
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 14rem;
@@ -1599,7 +1544,6 @@
         }
       }
 
-      /* 超大屏 (≥1441px) - 6列布局（1行6列） */
       @media (min-width: 1441px) {
         .selector-section {
           max-width: 1920px;
@@ -1607,8 +1551,8 @@
           padding: 5rem 4rem;
         }
         .machine-list {
-          grid-template-columns: repeat(6, 1fr); /* 1行6列 */
-          gap: 1.5rem; /* 核心：超大屏间距从2rem→1.5rem */
+          grid-template-columns: repeat(6, 1fr);
+          gap: 1.5rem;
         }
         .machine-card {
           max-width: 16rem;
@@ -1807,7 +1751,7 @@
   </head>
 
   <body>
-    <!-- 二，代码 导航栏 -->
+    <!-- two，code Navigation bar -->
     <nav class="navbar">
       <div class="logo">
         <svg
@@ -1825,82 +1769,82 @@
         </svg>
       </div>
 
-      <a href="https://www.senrytech.com/" class="nav-link">首页</a>
+      <a href="https://www.senrytech.com/" class="nav-link">front page</a>
 
       <div class="nav-item">
         <a href="https://www.senrytech.com/products/" class="nav-link"
-          >产品中心</a
+          >Product Center</a
         >
-        <!-- 半屏二级菜单（新增内部分栏结构） -->
+        <!-- Half screen secondary menu（Added internal column structure） -->
         <div class="dropdown-menu">
           <div class="dropdown-inner">
-            <!-- 左侧：分类列表 -->
+            <!-- left side：Category list -->
             <div class="dropdown-category">
               <div class="category-item active" data-target="board">
                 <a
                   href="https://www.senrytech.com/products/laser-sheet-cutting/"
-                  >板材切割机</a
+                  >Plate cutting machine</a
                 >
               </div>
               <div class="category-item" data-target="tube">
                 <a href="https://www.senrytech.com/products/laser-tube-cutting/"
-                  >管材切割机</a
+                  >Pipe cutting machine</a
                 >
               </div>
               <div class="category-item" data-target="board-tube">
                 <a href="https://www.senrytech.com/products/laser-sheet-tube/"
-                  >板管一体机</a
+                  >Plate and tube integrated machine</a
                 >
               </div>
               <div class="category-item" data-target="welding">
                 <a href="https://www.senrytech.com/products/laser-welding/"
-                  >激光焊接机</a
+                  >Laser welding machine</a
                 >
               </div>
               <div class="category-item" data-target="cleaning">
                 <a href="https://www.senrytech.com/products/laser-cleaning/"
-                  >激光清洗机</a
+                  >Laser cleaning machine</a
                 >
               </div>
               <div class="category-item" data-target="marking">
                 <a href="https://www.senrytech.com/products/laser-marking/"
-                  >激光打标机</a
+                  >Laser marking machine</a
                 >
               </div>
             </div>
 
-            <!-- 右侧：对应分类的内容区 -->
+            <!-- right side：Content area corresponding to the category -->
             <div class="dropdown-content">
-              <!-- 1. 板材切割机内容（默认显示） -->
+              <!-- 1. Plate cutting machine content（Displayed by default） -->
               <div class="content-item active" id="board">
-                <h3>激光板材切割机系列</h3>
+                <h3>Laser sheet cutting machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A -->
+                  <!-- product1：Senrytech A -->
                   <div class="product-card">
-                    <!-- 图片加链接：对应板材切割机下的Senrytech A详情页 -->
+                    <!-- Picture plus link：Corresponding to the plate cutting machineSenrytech ADetails page -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                        alt="Senrytech A 经济款光纤激光切割机"
+                        alt="Senrytech A Economical fiber laser cutting machine"
                       />
                     </a>
-                    <!-- 文字加链接：与图片跳转地址一致 -->
+                    <!-- text plus link：Consistent with the image jump address -->
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                     >
                       <p>Senrytech A</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech B -->
+                  <!-- product2：Senrytech B -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                        alt="Senrytech B 中厚板光纤激光切割机"
+                        alt="Senrytech B Medium and thick plate fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1909,14 +1853,14 @@
                       <p>Senrytech B</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech B Plus -->
+                  <!-- product3：Senrytech B Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                        alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                        alt="Senrytech B Plus Side cutting fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1925,14 +1869,14 @@
                       <p>Senrytech B Plus</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B Pro -->
+                  <!-- product4：Senrytech B Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                        alt="Senrytech B Pro 2.0GAccelerated fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1941,14 +1885,14 @@
                       <p>Senrytech B Pro</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B ProMax -->
+                  <!-- product5：Senrytech B ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                        alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                        alt="Senrytech B ProMax European standard fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1963,7 +1907,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                        alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                        alt="Senrytech B Ultra Fully automatic loading and unloading fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1978,7 +1922,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
-                        alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                        alt="Senrytech C Automatic feeding aluminum coil fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -1993,7 +1937,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
-                        alt="Senrytech C Pro 铝卷光纤激光切割机"
+                        alt="Senrytech C Pro Aluminum coil fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -2008,7 +1952,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
-                        alt="Senrytech G 12000W-60000W光纤激光切割机"
+                        alt="Senrytech G 12000W-60000WFiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -2023,7 +1967,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
-                        alt="Senrytech M 小型精密光纤激光切割机"
+                        alt="Senrytech M Small precision fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -2038,7 +1982,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
-                        alt="Senrytech S 型钢光纤激光切割机"
+                        alt="Senrytech S Steel fiber laser cutting machine"
                       />
                     </a>
                     <a
@@ -2050,18 +1994,18 @@
                 </div>
               </div>
 
-              <!-- 2. 管材切割机内容（默认隐藏） -->
+              <!-- 2. Pipe cutting machine content（Hidden by default） -->
               <div class="content-item" id="tube">
-                <h3>激光管材切割机系列</h3>
+                <h3>Laser pipe cutting machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech A2 -->
+                  <!-- product1：Senrytech A2 -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 高性价比管材切割机"
+                        alt="Senrytech A2 Cost-effective pipe cutting machine"
                       />
                     </a>
                     <a
@@ -2070,14 +2014,14 @@
                       <p>Senrytech A2</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech A2 Plus -->
+                  <!-- product2：Senrytech A2 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Plus 高功率电机管材切割机"
+                        alt="Senrytech A2 Plus High power motor pipe cutting machine"
                       />
                     </a>
                     <a
@@ -2086,14 +2030,14 @@
                       <p>Senrytech A2 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech A2 Ultra -->
+                  <!-- product3：Senrytech A2 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                        alt="Senrytech A2 Ultra Double chuck pipe cutting machine"
                       />
                     </a>
                     <a
@@ -2102,14 +2046,14 @@
                       <p>Senrytech A2 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech B3 Plus -->
+                  <!-- product4：Senrytech B3 Plus -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Plus 三卡盘管材切割机"
+                        alt="Senrytech B3 Plus Three chuck pipe cutting machine"
                       />
                     </a>
                     <a
@@ -2118,14 +2062,14 @@
                       <p>Senrytech B3 Plus</p>
                     </a>
                   </div>
-                  <!-- 产品5：Senrytech B3 Ultra -->
+                  <!-- product5：Senrytech B3 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                        alt="Senrytech B3 Ultra Three-chuck side-mounted pipe cutting machine"
                       />
                     </a>
                     <a
@@ -2134,14 +2078,14 @@
                       <p>Senrytech B3 Ultra</p>
                     </a>
                   </div>
-                  <!-- 产品6：Senrytech C4 Ultra -->
+                  <!-- product6：Senrytech C4 Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                        alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                        alt="Senrytech C4 Ultra Four-Chuck Pipe Cutting Machine"
                       />
                     </a>
                     <a
@@ -2153,18 +2097,18 @@
                 </div>
               </div>
 
-              <!-- 3. 板管一体机内容（默认隐藏） -->
+              <!-- 3. Contents of plate and tube integrated machine（Hidden by default） -->
               <div class="content-item" id="board-tube">
-                <h3>激光板管一体机系列</h3>
+                <h3>Laser plate and tube all-in-one machine series</h3>
                 <div class="product-list">
-                  <!-- 产品1：Senrytech BT -->
+                  <!-- product1：Senrytech BT -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                        alt="Senrytech BT 高性价比板管一体机"
+                        alt="Senrytech BT Cost-effective plate and tube integrated machine"
                       />
                     </a>
                     <a
@@ -2173,14 +2117,14 @@
                       <p>Senrytech BT</p>
                     </a>
                   </div>
-                  <!-- 产品2：Senrytech BT Pro -->
+                  <!-- product2：Senrytech BT Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Pro 中小批量板管加工设备"
+                        alt="Senrytech BT Pro Small and medium batch plate and tube processing equipment"
                       />
                     </a>
                     <a
@@ -2189,14 +2133,14 @@
                       <p>Senrytech BT Pro</p>
                     </a>
                   </div>
-                  <!-- 产品3：Senrytech BT ProMax -->
+                  <!-- product3：Senrytech BT ProMax -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                        alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                        alt="Senrytech BT ProMax Full sheet metal surrounded plate and tube cutting machine"
                       />
                     </a>
                     <a
@@ -2205,14 +2149,14 @@
                       <p>Senrytech BT ProMax</p>
                     </a>
                   </div>
-                  <!-- 产品4：Senrytech BT Ultra -->
+                  <!-- product4：Senrytech BT Ultra -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                        alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                        alt="Senrytech BT Ultra Fully automatic loading and unloading plate and tube cutting machine"
                       />
                     </a>
                     <a
@@ -2224,18 +2168,18 @@
                 </div>
               </div>
 
-              <!-- 4. 焊接机内容（默认隐藏） -->
+              <!-- 4. Welding machine content（Hidden by default） -->
               <div class="content-item" id="welding">
-                <h3>激光焊接机系列</h3>
+                <h3>Laser welding machine series</h3>
                 <div class="product-list">
-                  <!-- 焊接机：Series A -->
+                  <!-- welding machine：Series A -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                        alt="Series A 四合一激光焊接机"
+                        alt="Series A Four-in-one laser welding machine"
                       />
                     </a>
                     <a
@@ -2244,14 +2188,14 @@
                       <p>Series A</p>
                     </a>
                   </div>
-                  <!-- 焊接机：Series A Pro -->
+                  <!-- welding machine：Series A Pro -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                        alt="Series A Pro 1500-3000W激光焊接机"
+                        alt="Series A Pro 1500-3000WLaser welding machine"
                       />
                     </a>
                     <a
@@ -2267,7 +2211,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                        alt="Series A Ultra 大功率激光焊接机"
+                        alt="Series A Ultra High power laser welding machine"
                       />
                     </a>
                     <a
@@ -2283,7 +2227,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                        alt="Robot 4 in 1 四合一焊接设备"
+                        alt="Robot 4 in 1 Four-in-one welding equipment"
                       />
                     </a>
                     <a
@@ -2299,7 +2243,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                        alt="R Workstation 1500-3000W 移动焊接机"
+                        alt="R Workstation 1500-3000W Mobile welding machine"
                       />
                     </a>
                     <a
@@ -2315,7 +2259,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                        alt="R Mobile 协作机器人焊接设备"
+                        alt="R Mobile Collaborative robot welding equipment"
                       />
                     </a>
                     <a
@@ -2327,18 +2271,18 @@
                 </div>
               </div>
 
-              <!-- 5. 清洗内容（默认隐藏） -->
+              <!-- 5. Clean content（Hidden by default） -->
               <div class="content-item" id="cleaning">
-                <h3>激光清洗机系列</h3>
+                <h3>Laser cleaning machine series</h3>
                 <div class="product-list">
-                  <!-- 清洗机：家用 -->
+                  <!-- cleaning machine：Household use -->
                   <div class="product-card">
                     <a
                       href="https://www.senrytech.com/products/laser-cleaning/residential/"
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                        alt="Residential 家用除锈激光清洗机"
+                        alt="Residential Household rust removal laser cleaning machine"
                       />
                     </a>
                     <a
@@ -2370,7 +2314,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                        alt="Industrial 大功率激光清洗机"
+                        alt="Industrial High power laser cleaning machine"
                       />
                     </a>
                     <a
@@ -2382,9 +2326,9 @@
                 </div>
               </div>
 
-              <!-- 6. 打标机内容（默认隐藏） -->
+              <!-- 6. Marking machine content（Hidden by default） -->
               <div class="content-item" id="marking">
-                <h3>激光打标机系列</h3>
+                <h3>Laser marking machine series</h3>
                 <div class="product-list">
                   <div class="product-card">
                     <a
@@ -2392,7 +2336,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                        alt="便携台式激光打标机"
+                        alt="Portable desktop laser marking machine"
                       />
                     </a>
                     <a
@@ -2408,7 +2352,7 @@
                     >
                       <img
                         src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                        alt="台式激光打标机"
+                        alt="Desktop laser marking machine"
                       />
                     </a>
                     <a
@@ -2425,50 +2369,50 @@
       </div>
 
       <a href="https://www.senrytech.com/solutions/" class="nav-link"
-        >选型方案</a
+        >Selection plan</a
       >
 
       <a
         href="https://www.senrytech.com/pitfall-avoidance-guide/"
         class="nav-link"
-        >避坑指南</a
+        >A Guide to Avoiding Pitfalls</a
       >
 
-      <a href="https://www.senrytech.com/news/" class="nav-link">新闻动态</a>
+      <a href="https://www.senrytech.com/news/" class="nav-link">News</a>
 
       <a href="https://www.senrytech.com/about-us/" class="nav-link"
-        >关于我们</a
+        >about Us</a
       >
 
-      <a href="https://www.senrytech.com/join-us/" class="nav-link">加入我们</a>
+      <a href="https://www.senrytech.com/join-us/" class="nav-link">Join us</a>
 
       <a href="https://www.senrytech.com/contact-us/" class="nav-link"
-        >联系我们</a
+        >Contact us</a
       >
 
       <div class="navbar-right">
         <div class="lang-dropdown" id="langDropdown">
-          <!-- 语言按钮 -->
+          <!-- Language button -->
           <button class="btn language-btn">
             <i class="fa fa-globe"></i>
-            <!-- Font Awesome 地球图标 -->
+            <!-- Font Awesome Earth icon -->
           </button>
-          <!-- 展开语言链接 -->
+          <!-- Expand language link -->
           <ul class="lang-dropdown-list">
             <li>
               <a
                 href="https://www.senrytech.com/solutions/lang/cn/"
                 lang="zh"
-                class="lang-link active"
-                >中文</a
+                class="lang-link"
+                >Chinese</a
               >
             </li>
             <li>
               <a
                 href="https://www.senrytech.com/solutions/"
                 lang="en"
-                class="lang-link"
-                >英语</a
+                class="lang-link active"
+                >English</a
               >
             </li>
             <li>
@@ -2476,7 +2420,7 @@
                 href="https://www.senrytech.com/solutions/lang/de/"
                 lang="de"
                 class="lang-link"
-                >德语</a
+                >German</a
               >
             </li>
             <li>
@@ -2484,7 +2428,7 @@
                 href="https://www.senrytech.com/solutions/lang/es/"
                 lang="es"
                 class="lang-link"
-                >西班牙语</a
+                >spanish</a
               >
             </li>
             <li>
@@ -2492,7 +2436,7 @@
                 href="https://www.senrytech.com/solutions/lang/fr/"
                 lang="fr"
                 class="lang-link"
-                >法语</a
+                >French</a
               >
             </li>
             <li>
@@ -2500,68 +2444,68 @@
                 href="https://www.senrytech.com/solutions/lang/ru/"
                 lang="ru"
                 class="lang-link"
-                >俄语</a
+                >Russian</a
               >
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/solutions/lang/ar/"
+                href="https://www.senrytech.com/solutions/lang/sa/"
                 lang="ar"
                 class="lang-link"
-                >阿拉伯语</a
+                >Arabic</a
               >
             </li>
           </ul>
         </div>
 
-        <!-- 导航栏询价 -->
+        <!-- Navigation bar inquiry -->
         <a href="https://www.senrytech.com/contact-us" target="_blank">
-          <!-- href填实际跳转地址，target="_blank"可选（新标签页打开） -->
+          <!-- hrefFill in the actual jump address，target="_blank"Optional（New tab opens） -->
           <button class="btn inquiry-btn">
             <i class="fa fa-envelope"></i>
-            <!-- 询价：信封图标 -->
+            <!-- Inquiry：Envelope icon -->
           </button>
         </a>
 
-        <!-- 移动端 菜单展开汉堡 -->
+        <!-- Mobile terminal menu expand burger -->
         <button class="hamburger-btn" id="hamburgerBtn">
           <i class="fa fa-bars"></i>
-          <!-- 核心：用FA汉堡图标替代线条 -->
+          <!-- core：useFABurger icon alternative line -->
         </button>
       </div>
     </nav>
 
-    <!-- 新增：手机移动端的侧边菜单容器（默认隐藏，小屏幕点击汉堡展开） -->
+    <!-- New：Mobile side menu container（Hidden by default，Click on the hamburger on the small screen to expand） -->
     <div class="sidebar-menu" id="sidebarMenu">
-      <!-- 侧边栏头部（LOGO+关闭按钮） -->
+      <!-- Sidebar header（LOGO+close button） -->
       <div class="sidebar-header">
         <div class="sidebar-logo">Senrytech</div>
         <button class="sidebar-close-btn" id="sidebarCloseBtn">×</button>
       </div>
-      <!-- 侧边栏菜单列表 -->
+      <!-- Sidebar menu list -->
       <ul class="sidebar-menu-list">
-        <!-- 首页（无下拉） -->
+        <!-- front page（No drop-down） -->
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/" class="sidebar-menu-link">
-            首页
+            front page
           </a>
         </li>
-        <!-- 产品中心（带下拉子菜单） -->
+        <!-- Product Center（With drop-down submenu） -->
         <li class="sidebar-menu-item has-submenu">
           <div class="sidebar-menu-link submenu-trigger">
-            产品中心
+            Product Center
             <i class="sidebar-arrow fa fa-chevron-down"></i>
-            <!-- 箭头图标 -->
+            <!-- arrow icon -->
           </div>
-          <!-- 产品子菜单（默认隐藏） -->
+          <!-- Product submenu（Hidden by default） -->
           <ul class="sidebar-submenu" id="productSubmenu">
-            <!-- 子菜单项：对应原有分类 -->
+            <!-- submenu item：Corresponds to the original classification -->
             <li class="sidebar-submenu-item" data-target="board">
               <a
                 href="https://www.senrytech.com/products/laser-sheet-cutting/"
                 class="sidebar-submenu-link"
               >
-                板材切割机
+                Plate cutting machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="tube">
@@ -2569,7 +2513,7 @@
                 href="https://www.senrytech.com/products/laser-tube-cutting/"
                 class="sidebar-submenu-link"
               >
-                管材切割机
+                Pipe cutting machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="board-tube">
@@ -2577,7 +2521,7 @@
                 href="https://www.senrytech.com/products/laser-sheet-tube/"
                 class="sidebar-submenu-link"
               >
-                板管一体机
+                Plate and tube integrated machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="welding">
@@ -2585,7 +2529,7 @@
                 href="https://www.senrytech.com/products/laser-welding/"
                 class="sidebar-submenu-link"
               >
-                激光焊接机
+                Laser welding machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="cleaning">
@@ -2593,7 +2537,7 @@
                 href="https://www.senrytech.com/products/laser-cleaning/"
                 class="sidebar-submenu-link"
               >
-                激光清洗机
+                Laser cleaning machine
               </a>
             </li>
             <li class="sidebar-submenu-item" data-target="marking">
@@ -2601,153 +2545,157 @@
                 href="https://www.senrytech.com/products/laser-marking/"
                 class="sidebar-submenu-link"
               >
-                激光打标机
+                Laser marking machine
               </a>
             </li>
           </ul>
-          <!-- 产品子菜单内容（三列小图，默认隐藏） -->
+          <!-- Product submenu content（Three columns of thumbnails，Hidden by default） -->
           <div class="sidebar-submenu-content" id="productSubmenuContent">
-            <!-- 板材切割机内容（默认显示） -->
+            <!-- Plate cutting machine content（Displayed by default） -->
             <div class="submenu-content-item active" id="boardContent">
-              <h4 class="submenu-content-title">激光板材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser sheet cutting machine series
+              </h4>
               <div class="submenu-product-list">
-                <!-- 产品1：Senrytech A -->
+                <!-- product1：Senrytech A -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                      alt="Senrytech A 经济款光纤激光切割机"
+                      alt="Senrytech A Economical fiber laser cutting machine"
                     />
                     <p>Senrytech A</p>
                   </a>
                 </div>
-                <!-- 产品2：Senrytech B -->
+                <!-- product2：Senrytech B -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                      alt="Senrytech B 中厚板光纤激光切割机"
+                      alt="Senrytech B Medium and thick plate fiber laser cutting machine"
                     />
                     <p>Senrytech B</p>
                   </a>
                 </div>
-                <!-- 产品3：Senrytech B Plus -->
+                <!-- product3：Senrytech B Plus -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                      alt="Senrytech B Plus 侧面开料光纤激光切割机"
+                      alt="Senrytech B Plus Side cutting fiber laser cutting machine"
                     />
                     <p>Senrytech B Plus</p>
                   </a>
                 </div>
-                <!-- 产品4：Senrytech B Pro -->
+                <!-- product4：Senrytech B Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                      alt="Senrytech B Pro 2.0G加速度光纤激光切割机"
+                      alt="Senrytech B Pro 2.0GAccelerated fiber laser cutting machine"
                     />
                     <p>Senrytech B Pro</p>
                   </a>
                 </div>
-                <!-- 产品5：Senrytech B ProMax -->
+                <!-- product5：Senrytech B ProMax -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                      alt="Senrytech B ProMax 欧洲标准光纤激光切割机"
+                      alt="Senrytech B ProMax European standard fiber laser cutting machine"
                     />
                     <p>Senrytech B ProMax</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech B Ultra -->
+                <!-- product6：Senrytech B Ultra -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                      alt="Senrytech B Ultra 全自动上下料光纤激光切割机"
+                      alt="Senrytech B Ultra Fully automatic loading and unloading fiber laser cutting machine"
                     />
                     <p>Senrytech B Ultra</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C -->
+                <!-- product6：Senrytech C -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
-                      alt="Senrytech C 自动上料铝卷光纤激光切割机"
+                      alt="Senrytech C Automatic feeding aluminum coil fiber laser cutting machine"
                     />
                     <p>Senrytech C</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech C Pro -->
+                <!-- product6：Senrytech C Pro -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c-pro/banner/senrytech-c-laser-coil-sheet-cutting-2.png"
-                      alt="Senrytech C Pro 铝卷光纤激光切割机"
+                      alt="Senrytech C Pro Aluminum coil fiber laser cutting machine"
                     />
                     <p>Senrytech C Pro</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech G -->
+                <!-- product6：Senrytech G -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-2.png"
-                      alt="Senrytech G 12000W-60000W光纤激光切割机"
+                      alt="Senrytech G 12000W-60000WFiber laser cutting machine"
                     />
                     <p>Senrytech G</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech M -->
+                <!-- product6：Senrytech M -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-2.webp"
-                      alt="Senrytech M 小型精密光纤激光切割机"
+                      alt="Senrytech M Small precision fiber laser cutting machine"
                     />
                     <p>Senrytech M</p>
                   </a>
                 </div>
-                <!-- 产品6：Senrytech S -->
+                <!-- product6：Senrytech S -->
                 <div class="submenu-product-card">
                   <a
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/s/banner/senrytech-s-profile-steel-cutting-2.webp"
-                      alt="Senrytech S 型钢光纤激光切割机"
+                      alt="Senrytech S Steel fiber laser cutting machine"
                     />
                     <p>Senrytech S</p>
                   </a>
                 </div>
               </div>
             </div>
-            <!-- 管材切割机内容（默认隐藏） -->
+            <!-- Pipe cutting machine content（Hidden by default） -->
             <div class="submenu-content-item" id="tubeContent">
-              <h4 class="submenu-content-title">激光管材切割机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser pipe cutting machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -2755,7 +2703,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 高性价比管材切割机"
+                      alt="Senrytech A2 Cost-effective pipe cutting machine"
                     />
                     <p>Senrytech A2</p>
                   </a>
@@ -2766,7 +2714,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Plus 高功率电机管材切割机"
+                      alt="Senrytech A2 Plus High power motor pipe cutting machine"
                     />
                     <p>Senrytech A2 Plus</p>
                   </a>
@@ -2777,7 +2725,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech A2 Ultra 双卡盘管材切割机"
+                      alt="Senrytech A2 Ultra Double chuck pipe cutting machine"
                     />
                     <p>Senrytech A2 Ultra</p>
                   </a>
@@ -2788,7 +2736,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Plus 三卡盘管材切割机"
+                      alt="Senrytech B3 Plus Three chuck pipe cutting machine"
                     />
                     <p>Senrytech B3 Plus</p>
                   </a>
@@ -2799,7 +2747,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech B3 Ultra 三卡盘侧挂式管材切割机"
+                      alt="Senrytech B3 Ultra Three-chuck side-mounted pipe cutting machine"
                     />
                     <p>Senrytech B3 Ultra</p>
                   </a>
@@ -2810,7 +2758,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                      alt="Senrytech C4 Ultra 四卡盘管材切割机"
+                      alt="Senrytech C4 Ultra Four-Chuck Pipe Cutting Machine"
                     />
                     <p>Senrytech C4 Ultra</p>
                   </a>
@@ -2819,7 +2767,9 @@
             </div>
 
             <div class="submenu-content-item" id="board-tubeContent">
-              <h4 class="submenu-content-title">板管一体机系列</h4>
+              <h4 class="submenu-content-title">
+                Plate and tube integrated machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -2827,7 +2777,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                      alt="Senrytech BT 高性价比板管一体机"
+                      alt="Senrytech BT Cost-effective plate and tube integrated machine"
                     />
                     <p>Senrytech BT</p>
                   </a>
@@ -2839,7 +2789,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Pro 中小批量板管加工设备"
+                      alt="Senrytech BT Pro Small and medium batch plate and tube processing equipment"
                     />
                     <p>Senrytech BT Pro</p>
                   </a>
@@ -2851,7 +2801,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                      alt="Senrytech BT ProMax 全钣金包围板管切割机"
+                      alt="Senrytech BT ProMax Full sheet metal surrounded plate and tube cutting machine"
                     />
                     <p>Senrytech BT ProMax</p>
                   </a>
@@ -2863,7 +2813,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                      alt="Senrytech BT Ultra 全自动上下料板管切割机"
+                      alt="Senrytech BT Ultra Fully automatic loading and unloading plate and tube cutting machine"
                     />
                     <p>Senrytech BT Ultra</p>
                   </a>
@@ -2872,7 +2822,9 @@
             </div>
 
             <div class="submenu-content-item" id="weldingContent">
-              <h4 class="submenu-content-title">激光焊接机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser welding machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -2880,7 +2832,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                      alt="Series A 四合一激光焊接机"
+                      alt="Series A Four-in-one laser welding machine"
                     />
                     <p>Series A</p>
                   </a>
@@ -2892,7 +2844,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                      alt="Series A Pro 1500-3000W激光焊接机"
+                      alt="Series A Pro 1500-3000WLaser welding machine"
                     />
                     <p>Series A Pro</p>
                   </a>
@@ -2904,7 +2856,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                      alt="Series A Ultra 大功率激光焊接机"
+                      alt="Series A Ultra High power laser welding machine"
                     />
                     <p>Series A Ultra</p>
                   </a>
@@ -2916,7 +2868,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                      alt="Robot 4 in 1 四合一焊接设备"
+                      alt="Robot 4 in 1 Four-in-one welding equipment"
                     />
                     <p>R 4in1</p>
                   </a>
@@ -2928,7 +2880,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                      alt="R Workstation 1500-3000W 移动焊接机"
+                      alt="R Workstation 1500-3000W Mobile welding machine"
                     />
                     <p>R Workstation</p>
                   </a>
@@ -2940,7 +2892,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                      alt="R Mobile 协作机器人焊接设备"
+                      alt="R Mobile Collaborative robot welding equipment"
                     />
                     <p>R Mobile</p>
                   </a>
@@ -2949,7 +2901,9 @@
             </div>
 
             <div class="submenu-content-item" id="cleaningContent">
-              <h4 class="submenu-content-title">激光清洗机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser cleaning machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -2957,7 +2911,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                      alt="Residential 家用除锈激光清洗机"
+                      alt="Residential Household rust removal laser cleaning machine"
                     />
                     <p>Residential</p>
                   </a>
@@ -2969,7 +2923,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
-                      alt="Commercial 家用除锈激光清洗机"
+                      alt="Commercial Household rust removal laser cleaning machine"
                     />
                     <p>Commercial</p>
                   </a>
@@ -2981,7 +2935,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                      alt="Industrial 大功率激光清洗机"
+                      alt="Industrial High power laser cleaning machine"
                     />
                     <p>Industrial</p>
                   </a>
@@ -2990,7 +2944,9 @@
             </div>
 
             <div class="submenu-content-item" id="markingContent">
-              <h4 class="submenu-content-title">激光打标机系列</h4>
+              <h4 class="submenu-content-title">
+                Laser marking machine series
+              </h4>
               <div class="submenu-product-list">
                 <div class="submenu-product-card">
                   <a
@@ -2998,7 +2954,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                      alt="便携台式激光打标机"
+                      alt="Portable desktop laser marking machine"
                     />
                     <p>Series P</p>
                   </a>
@@ -3010,7 +2966,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                      alt="台式激光打标机"
+                      alt="Desktop laser marking machine"
                     />
                     <p>Series D</p>
                   </a>
@@ -3019,13 +2975,13 @@
             </div>
           </div>
         </li>
-        <!-- 其他菜单项（无下拉） -->
+        <!-- Other menu items（No drop-down） -->
         <li class="sidebar-menu-item">
           <a
             href="https://www.senrytech.com/solutions/"
             class="sidebar-menu-link"
           >
-            选型方案
+            Selection plan
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -3033,12 +2989,12 @@
             href="https://www.senrytech.com/pitfall-avoidance-guide/"
             class="sidebar-menu-link"
           >
-            避坑指南
+            A Guide to Avoiding Pitfalls
           </a>
         </li>
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
-            新闻动态
+            News
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -3046,7 +3002,7 @@
             href="https://www.senrytech.com/about-us/"
             class="sidebar-menu-link"
           >
-            关于我们
+            about Us
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -3054,87 +3010,98 @@
             href="https://www.senrytech.com/contact-us/"
             class="sidebar-menu-link"
           >
-            联系我们
+            Contact us
           </a>
         </li>
       </ul>
     </div>
 
-    <!-- 新增：侧边菜单遮罩层（点击空白收起菜单，默认隐藏） -->
+    <!-- New：Side menu mask layer（Click on the blank space to close the menu，Hidden by default） -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- 板块3. 激光设备胶囊导航栏-->
+    <!-- plate3. Laser equipment capsule navigation bar-->
     <section class="laser-capsule-nav">
       <div class="capsule-container">
-        <a href="#sheet-cut" class="capsule-item">激光板材切割机</a>
-        <a href="#pipe-cut" class="capsule-item">激光管材切割机</a>
-        <a href="#sheet-pipe" class="capsule-item">板管一体机</a>
-        <a href="#weld" class="capsule-item">激光焊接机</a>
-        <a href="#clean" class="capsule-item">激光清洗机</a>
-        <a href="#mark" class="capsule-item">激光打标机</a>
+        <a href="#sheet-cut" class="capsule-item"
+          >Laser sheet cutting machine</a
+        >
+        <a href="#pipe-cut" class="capsule-item">Laser pipe cutting machine</a>
+        <a href="#sheet-pipe" class="capsule-item"
+          >Plate and tube integrated machine</a
+        >
+        <a href="#weld" class="capsule-item">Laser welding machine</a>
+        <a href="#clean" class="capsule-item">Laser cleaning machine</a>
+        <a href="#mark" class="capsule-item">Laser marking machine</a>
       </div>
     </section>
 
-    <!-- 板块4：激光切割机快速选型 -->
+    <!-- plate4：Quick selection of laser cutting machine -->
     <section id="sheet-cut" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech激光板材切割机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechLaser sheet cutting machine
+        </h2>
         <img
-          src="../img/contact-us/senrytech-mascot-2.png"
-          alt="mascot"
+          src="https://senrytech.github.io/img/contact-us/senrytech-mascot-2.png"
+          alt="Senrytech mascot"
           class="title-mascot"
         />
-        <!-- 吉祥物图片 -->
+        <!-- Mascot pictures -->
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-tag entry">best selling</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                  alt="Senrytech A Economical laser cutting equipment"
                 />
               </div>
               <h4 class="machine-name">Senrytech A</h4>
-              <p class="machine-feature">经济之选，正牌三大件，成本低</p>
+              <p class="machine-feature">
+                Economical choice，Three genuine items，low cost
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">高评分</div>
+              <div class="machine-tag entry">high rating</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                  alt="Senrytech B Reinforced bed fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B</h4>
-              <p class="machine-feature">中厚板利器，加固床身，耐用性拉满</p>
+              <p class="machine-feature">
+                Medium and thick plate tool，Reinforced bed，Excellent
+                durability
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
             class="machine-card-link"
@@ -3142,19 +3109,22 @@
             <div class="machine-card">
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech B PRO Automatic loading fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B Pro</h4>
-              <p class="machine-feature">半自动双台上料，10 秒交换，效率翻倍</p>
+              <p class="machine-feature">
+                Semi-automatic double table loading，10 Second exchange，Double
+                efficiency
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型4 -->
+          <!-- model4 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
             class="machine-card-link"
@@ -3162,80 +3132,90 @@
             <div class="machine-card">
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
-                  alt="Senrytech D 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                  alt="Senrytech B PROMAX Sheet metal fully surrounded fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B ProMax</h4>
-              <p class="machine-feature">全包围防护，安全合规，适配海外</p>
+              <p class="machine-feature">
+                Fully enclosed protection，Security Compliance，Adapt to
+                overseas
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型5 -->
+          <!-- model5 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-tag entry">Flagship model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
-                  alt="Senrytech E 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                  alt="Senrytech B ULTRA Fully automatic loading and unloading fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B Ultra</h4>
-              <p class="machine-feature">全自动上下料，无人值守，性能天花板</p>
+              <p class="machine-feature">
+                Fully automatic loading and unloading，unattended，performance
+                ceiling
+              </p>
             </div>
           </a>
         </div>
       </div>
 
-      <!-- 特殊机型组 -->
+      <!-- Special model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">特殊机型</h3>
+        <h3 class="group-subtitle">Special model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">紧凑款</div>
+              <div class="machine-tag entry">Compact</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                  alt="Senrytech B PLUS Space-saving fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B Plus</h4>
-              <p class="machine-feature">侧开式包围，省空间，灵活上料</p>
+              <p class="machine-feature">
+                Side opening surround，Save space，Flexible loading
+              </p>
             </div>
           </a>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">铝卷分切</div>
+              <div class="machine-tag entry">Aluminum coil slitting</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                  alt="Senrytech C  Metal coil laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech C</h4>
-              <p class="machine-feature">铝卷分切，0.5–2mm，高效分卷</p>
+              <p class="machine-feature">
+                Aluminum coil slitting，0.5–2mm，Efficient volume division
+              </p>
             </div>
           </a>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
             class="machine-card-link"
@@ -3243,48 +3223,56 @@
             <div class="machine-card">
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                  alt="Senrytech C PRO Metal coil laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech C Pro</h4>
-              <p class="machine-feature">铝卷分切 + 安全包围，防护升级</p>
+              <p class="machine-feature">
+                Aluminum coil slitting + security siege，Protection upgrade
+              </p>
             </div>
           </a>
 
-          <!-- 机型4 -->
+          <!-- model4 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">超长地轨</div>
+              <div class="machine-tag entry">Extra long ground rail</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
-                  alt="Senrytech D 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                  alt="Senrytech G Ground rail fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech G</h4>
-              <p class="machine-feature">超长地轨，12–14 米，专治超长工件</p>
+              <p class="machine-feature">
+                Extra long ground rail，12–14 rice，Specially designed to handle
+                extra-long workpieces
+              </p>
             </div>
           </a>
 
-          <!-- 机型5 -->
+          <!-- model5 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">精密款</div>
+              <div class="machine-tag entry">Precision model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
-                  alt="Senrytech E 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                  alt="Senrytech M Precision fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech M</h4>
-              <p class="machine-feature">精密迷你款，±8μm 精度，专攻精密件</p>
+              <p class="machine-feature">
+                Precision mini model，±8μm Accuracy，Specializing in precision
+                parts
+              </p>
             </div>
           </a>
 
@@ -3293,216 +3281,249 @@
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">型钢专用款</div>
+              <div class="machine-tag entry">
+                Special model for section steel
+              </div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
-                  alt="Senrytech E 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                  alt="Senrytech S Steel fiber laser cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech S</h4>
-              <p class="machine-feature">型钢专家，C/H/ 槽钢专用，专业切割</p>
+              <p class="machine-feature">
+                Section steel expert，C/H/ Special for channel
+                steel，Professional cutting
+              </p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 板块5：激光管材切割机快速选型 -->
+    <!-- plate5：Quick selection of laser pipe cutting machine -->
     <section id="pipe-cut" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech激光管材切割机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechLaser pipe cutting machine
+        </h2>
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-tag entry">best selling</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech A2 2Chuck pipe cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A2</h4>
               <p class="machine-feature">
-                正装两卡盘，经济款，小口径轻薄管首选
+                Formal two chucks，Economy model，The first choice for small
+                diameter and thin tubes
               </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">高评分</div>
+              <div class="machine-tag entry">high rating</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech A2 PLUS Medium thick pipe cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A2 Plus</h4>
               <p class="machine-feature">
-                正装两卡盘，升级床身加固 + 高功率，中厚管高效加工
+                Formal two chucks，Upgrade bed reinforcement + High
+                power，Efficient processing of medium-thick pipes
               </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">旗舰款-零尾料</div>
+              <div class="machine-tag entry">Flagship model-Zero tailings</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech B3 PLUS Three chuck pipe cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B3 Plus</h4>
               <p class="machine-feature">
-                正装三卡盘，可实现零尾料，中高阶批量切割
+                Formal three chucks，Zero tailings can be achieved，Mid- to
+                high-end batch cutting
               </p>
             </div>
           </a>
         </div>
       </div>
 
-      <!-- 特殊机型组 -->
+      <!-- Special model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">特殊机型</h3>
+        <h3 class="group-subtitle">Special model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">两卡侧挂款</div>
+              <div class="machine-tag entry">Two cards with side payment</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech A2 Ultra Side-mounted pipe cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A2 Ultra</h4>
-              <p class="machine-feature">侧挂双卡盘，适配特殊管材</p>
+              <p class="machine-feature">
+                Side mounted double chuck，Suitable for special pipes
+              </p>
             </div>
           </a>
 
-          <!-- 机型2 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">三卡侧挂款</div>
+              <div class="machine-tag entry">
+                Three card side hanging payment
+              </div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech B3 Ultra Three-chuck side-mounted pipe cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech B3 Ultra</h4>
-              <p class="machine-feature">侧挂三卡盘，兼顾特殊加工与效率</p>
+              <p class="machine-feature">
+                Side mounted three chuck，Taking into account special processing
+                and efficiency
+              </p>
             </div>
           </a>
 
-          <!-- 机型3 -->
+          <div class="upgrade-arrow">→</div>
+
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">四卡侧挂款</div>
+              <div class="machine-tag entry">
+                Four card side hanging payment
+              </div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
+                  alt="Senrytech C4 Ultra Four-Chuck Pipe Cutting Machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech C4 Ultra</h4>
-              <p class="machine-feature">侧挂四卡盘定制化，大批次高效作业</p>
+              <p class="machine-feature">
+                Side-mounted four-cartridge customization，High-efficiency
+                operations in large batches
+              </p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 板块6：板管一体机快速选型 -->
+    <!-- plate6：Quick selection of plate and tube integrated machine -->
     <section id="sheet-pipe" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech板管一体机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechPlate and tube integrated machine
+        </h2>
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-tag entry">best selling</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
+                  alt="Senrytech BT Cost-effective plate and tube integrated machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech BT</h4>
-              <p class="machine-feature">高性价比板管一体机，入门生产首选</p>
+              <p class="machine-feature">
+                Cost-effective plate and tube integrated machine，First choice
+                for entry-level production
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">高评分</div>
+              <div class="machine-tag entry">high rating</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
+                  alt="Senrytech BT Pro Efficient production of plate and tube integrated machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech BT Pro</h4>
-              <p class="machine-feature">高效进阶，新增板材交换平台</p>
+              <p class="machine-feature">
+                Efficient advancement，Added new plate exchange platform
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
             class="machine-card-link"
@@ -3510,285 +3531,312 @@
             <div class="machine-card">
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
+                  alt="Senrytech BT Promax Industrial protective grade plate and tube machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech BT Promax</h4>
-              <p class="machine-feature">全钣金包围，防尘降噪更安全</p>
+              <p class="machine-feature">
+                Fully surrounded by sheet metal，Dustproof and noise reduction
+                are safer
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型4 -->
+          <!-- model4 -->
           <a
             href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-tag entry">Flagship model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
-                  alt="Senrytech D 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
+                  alt="Senrytech BT Ultra Fully automatic plate and tube cutting machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech BT Ultra</h4>
-              <p class="machine-feature">全自动上下料，24 小时无人化生产</p>
+              <p class="machine-feature">
+                Fully automatic loading and unloading，24 Hourly unmanned
+                production
+              </p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 板块7：激光焊接机快速选型 -->
+    <!-- plate7：Quick selection of laser welding machine -->
     <section id="weld" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech激光焊接机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechLaser welding machine
+        </h2>
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/series-a/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-tag entry">best selling</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                  alt="Senrytech A welding/cutting/Clean slag/Rust removal four-in-one laser welding machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A</h4>
               <p class="machine-feature">
-                焊接/切割/清洗/焊缝除渣四合一，小微企业入门首选
+                welding/cutting/Clean/Four-in-one weld slag removal，The first
+                choice for entry-level small and micro enterprises
               </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">高评分</div>
+              <div class="machine-tag entry">high rating</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                  alt="Senrytech A Pro Double wire feed laser welding machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A Pro</h4>
-              <p class="machine-feature">1500-3000W 三档可调，专业焊接机</p>
+              <p class="machine-feature">
+                1500-3000W Three levels adjustable，Professional welding machine
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">旗舰款</div>
+              <div class="machine-tag entry">Flagship model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                  alt="Senrytech A Ultra High power laser welding machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech A Ultra</h4>
               <p class="machine-feature">
-                超高功率，突破厚板焊接极限，工业级焊接机
+                Ultra high power，Breaking through the limits of thick plate
+                welding，Industrial grade welding machine
               </p>
             </div>
           </a>
         </div>
       </div>
 
-      <!-- 特殊机型组 -->
+      <!-- Special model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">特殊机型</h3>
+        <h3 class="group-subtitle">Special model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">升级款</div>
+              <div class="machine-tag entry">Upgraded model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                  alt="Senrytech R 4in1 Laser welding machine for small and micro enterprises"
                 />
               </div>
               <h4 class="machine-name">Senrytech R 4in1</h4>
-              <p class="machine-feature">升级机器人手臂，四合一款</p>
+              <p class="machine-feature">Upgraded robot arm，4-in-1</p>
             </div>
           </a>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/r-workstation/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">新品上市</div>
+              <div class="machine-tag entry">New product launch</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                  alt="Senrytech R Workstation Mobile laser welding workstation"
                 />
               </div>
               <h4 class="machine-name">Senrytech R Workstation</h4>
-              <p class="machine-feature">整体移动工作站，灵活部署柔性生产</p>
+              <p class="machine-feature">
+                Overall mobile workstation，Flexible deployment of flexible
+                production
+              </p>
             </div>
           </a>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-welding/r-mobile/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">新品上市</div>
+              <div class="machine-tag entry">New product launch</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                  alt="Senrytech R Mobile Collaborative robot laser welding machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech R Mobile</h4>
-              <p class="machine-feature">机器人协作，24 小时无人化批量生产</p>
+              <p class="machine-feature">
+                Robot collaboration，24 Hourly unmanned mass production
+              </p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 板块8：激光清洗机快速选型 -->
+    <!-- plate8：Quick selection of laser cleaning machines -->
     <section id="clean" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech激光清洗机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechLaser cleaning machine
+        </h2>
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-cleaning/residential/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">家用款</div>
+              <div class="machine-tag entry">Household model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                  alt="Senrytech Residential Household laser cleaning machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech Residential</h4>
-              <p class="machine-feature">背包式，适合家用除锈清洗等</p>
+              <p class="machine-feature">
+                Backpack，Suitable for household rust removal and cleaning, etc.
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-cleaning/commercial/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">商用款</div>
+              <div class="machine-tag entry">Commercial model</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                  alt="Senrytech Commercial Trolley box laser cleaning machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech Commercial</h4>
-              <p class="machine-feature">拉杆箱式，适合商用方便携带</p>
+              <p class="machine-feature">
+                Trolley box type，Suitable for commercial use and easy to carry
+              </p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型3 -->
+          <!-- model3 -->
           <a
             href="https://www.senrytech.com/products/laser-cleaning/industrial/"
             class="machine-card-link"
           >
             <div class="machine-card">
-              <div class="machine-tag entry">工业款</div>
+              <div class="machine-tag entry">Industrial style</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
-                  alt="Senrytech C 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                  alt="Senrytech Industria High power laser cleaning machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech Industrial</h4>
-              <p class="machine-feature">工业级激光清洗机</p>
+              <p class="machine-feature">
+                Industrial grade laser cleaning machine
+              </p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 板块9：激光打标机快速选型 -->
+    <!-- plate9：Quick selection of laser marking machine -->
     <section id="mark" class="selector-section">
       <div class="title-box">
-        <h2 class="selector-title">一图读懂Senrytech激光打标机</h2>
+        <h2 class="selector-title">
+          One picture to understandSenrytechLaser marking machine
+        </h2>
       </div>
 
-      <!-- 常规机型组 -->
+      <!-- Regular model group -->
       <div class="machine-group">
-        <h3 class="group-subtitle">常规机型</h3>
+        <h3 class="group-subtitle">Regular model</h3>
         <div class="machine-list regular-list">
-          <!-- 机型1 -->
+          <!-- model1 -->
           <a
             href="https://www.senrytech.com/products/laser-marking/series-p/"
             class="machine-card-link"
           >
-            <!-- 新增超链接标签 -->
+            <!-- Add hyperlink tag -->
             <div class="machine-card">
-              <div class="machine-tag entry">最畅销</div>
+              <div class="machine-tag entry">best selling</div>
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
-                  alt="Senrytech A 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                  alt="Senrytech P Portable desktop laser marking machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech P</h4>
-              <p class="machine-feature">便携台式打标机</p>
+              <p class="machine-feature">Portable desktop marking machine</p>
             </div>
           </a>
 
-          <!-- 升级箭头 -->
+          <!-- upgrade arrow -->
           <div class="upgrade-arrow">→</div>
 
-          <!-- 机型2 -->
+          <!-- model2 -->
           <a
             href="https://www.senrytech.com/products/laser-marking/series-d/"
             class="machine-card-link"
@@ -3796,22 +3844,22 @@
             <div class="machine-card">
               <div class="machine-img">
                 <img
-                  src="../img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
-                  alt="Senrytech B 激光切割机"
+                  src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                  alt="Senrytech D Desktop laser marking machine"
                 />
               </div>
               <h4 class="machine-name">Senrytech D</h4>
-              <p class="machine-feature">台式打标机</p>
+              <p class="machine-feature">Desktop marking machine</p>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- 十一，代码 底部导航栏-->
+    <!-- eleven，code Bottom navigation bar-->
     <footer class="footer-new">
       <div class="footer-container">
-        <!-- 1. 左侧：品牌区（Logo+简介+社交媒体） -->
+        <!-- 1. left side：Brand area（Logo+Introduction+social media） -->
         <div class="footer-brand">
           <div class="brand-logo">
             <img
@@ -3821,17 +3869,19 @@
             <span class="brand-name">Senrytech</span>
           </div>
           <p class="brand-desc">
-            专业激光切割设备制造商，致力于为全球制造业提供高品质、高性价比的激光加工选型方案。
+            Professional laser cutting equipment manufacturer，Committed to
+            providing high quality to global manufacturing
+            industries、Cost-effective laser processing selection solution。
           </p>
           <div class="social-icons">
-            <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
+            <!-- Correction：Remove text-white/80 Wait for incompatible styles，Use instead footer global color matching；reserve transition interaction -->
             <a
               class="icon"
               href="https://www.facebook.com/profile.php?id=61572514366742"
               title="Facebook"
             >
               <i class="fa fa-facebook text-xl"></i>
-              <!-- 4.7.0 支持的默认前缀 fa -->
+              <!-- 4.7.0 Supported default prefixes fa -->
             </a>
             <a
               class="icon"
@@ -3850,118 +3900,130 @@
           </div>
         </div>
 
-        <!-- 2. 中间：产品中心 -->
+        <!-- 2. middle：Product Center -->
         <div class="footer-column">
-          <h3>产品中心</h3>
+          <h3>Product Center</h3>
           <ul>
             <li>
               <a href="https://www.senrytech.com/laser-sheet-cutting/"
-                >板材切割机</a
+                >Plate cutting machine</a
               >
             </li>
             <li>
               <a href="https://www.senrytech.com/laser-tube-cutting/"
-                >管材切割机</a
+                >Pipe cutting machine</a
               >
             </li>
             <li>
               <a href="https://www.senrytech.com/laser-sheet-tube/"
-                >板管一体机</a
+                >Plate and tube integrated machine</a
               >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-welding/">激光焊接机</a>
+              <a href="https://www.senrytech.com/laser-welding/"
+                >Laser welding machine</a
+              >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-cleaning/">激光清洗机</a>
+              <a href="https://www.senrytech.com/laser-cleaning/"
+                >Laser cleaning machine</a
+              >
             </li>
             <li>
-              <a href="https://www.senrytech.com/laser-marking/">激光打标机</a>
+              <a href="https://www.senrytech.com/laser-marking/"
+                >Laser marking machine</a
+              >
             </li>
           </ul>
         </div>
 
-        <!-- 3. 右侧：关于我们 -->
+        <!-- 3. right side：about Us -->
         <div class="footer-column">
-          <h3>关于我们</h3>
+          <h3>about Us</h3>
           <ul>
-            <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
-            <li><a href="https://www.senrytech.com/solutions/">选型方案</a></li>
+            <li>
+              <a href="https://www.senrytech.com/about-us/">Company Profile</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/solutions/">Selection plan</a>
+            </li>
             <li>
               <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
-                >避坑指南</a
+                >A Guide to Avoiding Pitfalls</a
               >
             </li>
-            <li><a href="https://www.senrytech.com/news/">新闻动态</a></li>
-            <li><a href="https://www.senrytech.com/join-us/">加入我们</a></li>
+            <li><a href="https://www.senrytech.com/news/">News</a></li>
+            <li><a href="https://www.senrytech.com/join-us/">Join us</a></li>
             <li>
-              <a href="https://www.senrytech.com/contact-us/">联系我们</a>
+              <a href="https://www.senrytech.com/contact-us/">Contact us</a>
             </li>
           </ul>
         </div>
 
-        <!-- 4. 最右侧：联系我们+二维码 -->
+        <!-- 4. rightmost：Contact us+QR code -->
         <div class="footer-column footer-contact">
-          <h3>联系我们</h3>
+          <h3>Contact us</h3>
           <ul class="contact-list">
-            <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
+            <!-- Correction1：address icon - 4.7.0 The corresponding icon is fa-map-marker（none alt suffix），The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-              <span>中国 · 济南市历城区舜华路街道综合产业工业园</span>
+              <span
+                >China · Comprehensive Industrial Park, Shunhua Road Street,
+                Licheng District, Jinan City</span
+              >
             </li>
-            <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
+            <!-- Correction2：phone icon - 4.7.0 The corresponding icon is fa-phone，The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-phone"></i></span>
               <span>+86 134 6557 5719</span>
             </li>
-            <!-- 修正3：邮箱图标 - 4.7.0 对应图标为 fa-envelope，前缀改为 fa -->
+            <!-- Correction3：Mailbox icon - 4.7.0 The corresponding icon is fa-envelope，The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-envelope"></i></span>
               <span>info@senrytech.com</span>
             </li>
-            <!-- 修正4：时间图标 - 4.7.0 对应图标为 fa-clock-o（带 o 后缀），前缀改为 fa -->
+            <!-- Correction4：time icon - 4.7.0 The corresponding icon is fa-clock-o（bring o suffix），The prefix is ​​changed to fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
-              <span>周一至周六: 9:00-18:00</span>
+              <span>Monday to Saturday: 9:00-18:00</span>
             </li>
           </ul>
-          <!-- 补充：若有二维码模块，可在此处添加（保持原设计） -->
+          <!-- Replenish：If there is a QR code module，Can be added here（Keep the original design） -->
           <div class="wechat-qrcode">
-            <h4>微信咨询</h4>
+            <h4>WeChat consultation</h4>
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
                   src="https://senrytech.github.io/img/qr-code/before-sales.jpg"
-                  alt="售前客服咨询"
+                  alt="Pre-sales customer service consultation"
                 />
-                <p>售前客服咨询</p>
+                <p>Pre-sales customer service consultation</p>
               </div>
               <div class="qrcode-item">
                 <img
                   src="https://senrytech.github.io/img/qr-code/after-sales.jpg"
-                  alt="微信二维码2"
+                  alt="WeChat QR code2"
                 />
-                <p>售后客户咨询</p>
+                <p>After-sales customer consultation</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 底部版权信息（补充完整结构） -->
+      <!-- Copyright information at the bottom（Supplement the complete structure） -->
       <div class="footer-bottom">
-        <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
+        <div class="bottom-left">© 2024 Senrytech. All rights reserved</div>
         <div class="bottom-right">
-          <a href="https://www.senrytech.com/privacy-policy/">隐私政策</a>
-          <a href="https://www.senrytech.com/service-terms">服务条款</a>
-          <a href="#">网站地图</a>
+          <a href="https://www.senrytech.com/privacy-policy/">privacy policy</a>
+          <a href="https://www.senrytech.com/service-terms">Terms of Service</a>
+          <a href="#">Sitemap</a>
         </div>
       </div>
     </footer>
 
     <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
     <script>
-      /* ================================== 二、导航栏滚动透视效果 ================================== */
       // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
       // 触发时机：页面滚动事件（scroll）
       window.addEventListener("scroll", function () {
@@ -4096,7 +4158,6 @@
         }
       });
 
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
       // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
       // 触发时机：分类项的mouseenter事件
 
@@ -4126,7 +4187,6 @@
         });
       });
 
-      /* ================================== 三、BANNER轮播模块（含圆点指示器） ================================== */
       // 作用：实现BANNER图自动切换、手动控制（箭头）、圆点指示器联动
       // 核心逻辑：通过索引控制轮播图/文字/圆点的激活状态，支持循环切换
 
@@ -4209,7 +4269,6 @@
         startAutoSlide(); // 重新启动定时器
       });
 
-      /* ================================== 四、全系列产品板块交互（分类+滚动） ================================== */
       // 作用：实现产品分类切换（副标题背景跟随）、产品卡片横向滚动、箭头禁用状态控制
       // 依赖：页面DOM加载完成后执行（避免DOM未渲染导致查询失败）
       document.addEventListener("DOMContentLoaded", () => {
@@ -4397,7 +4456,6 @@
         });
       });
 
-      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
       // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
       document.addEventListener("DOMContentLoaded", () => {
         // —— 5.1 初始化优势板块滚动所需变量 ——
@@ -4467,7 +4525,6 @@
         updateBtnState();
       });
 
-      /* ================================== 六、切割样品模块（纯图片，无文字） ================================== */
       // 1. 材质数据配置（保持原数据不变）
       const materialData = {
         carbon: {

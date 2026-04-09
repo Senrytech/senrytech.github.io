@@ -28,7 +28,6 @@
     />
     <!-- 一、CSS 全局基础样式 -->
     <style>
-      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
@@ -36,40 +35,35 @@
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
-      /* 全局锁死：禁止任何横向溢出 */
       html,
       body {
         margin: 0;
         padding: 0;
         width: 100%;
-        max-width: 100vw; /* 永远不超过视口宽度 */
-        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        max-width: 100vw;
+        overflow-x: hidden;
         box-sizing: border-box;
       }
 
-      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
       *,
       *::before,
       *::after {
         box-sizing: inherit;
       }
 
-      /* 1.2 图标字体强制声明 */
       .social-icons .icon i,
       .footer-contact .contact-icon i {
         font-family: "FontAwesome" !important;
       }
 
-      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
         display: none !important;
       }
 
-      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
       .body-fixed {
-        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
-        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
-        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+        position: fixed;
+        width: 100%;
+        overflow-y: auto;
       }
 
       @media (max-width: 320px) {
@@ -154,11 +148,11 @@
     <!--二、CSS 导航栏-->
     <style>
       .navbar {
-        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
-        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
-        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
-        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
-        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.8rem;
 
         background: linear-gradient(
           135deg,
@@ -166,15 +160,15 @@
           rgba(248, 248, 250, 0.8) 50%,
           rgba(245, 245, 247, 1) 100%
         );
-        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
-        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
-        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
-        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
-        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
-        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
-        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
+        z-index: 1000;
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+        box-sizing: border-box;
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
       }
 
       .navbar.scrolled {
@@ -464,13 +458,12 @@
         flex-shrink: 0;
       }
 
-      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
         padding: 0.4rem 1.2rem;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        display: none; /* 默认隐藏，仅移动端显示 */
+        display: none;
         align-items: center;
         justify-content: center;
         color: #1d1d1f !important;
@@ -484,7 +477,7 @@
       .hamburger-btn i {
         font-family: "FontAwesome" !important;
         font-size: 0.875rem;
-        color: inherit; /* 继承按钮颜色 */
+        color: inherit;
       }
 
       .sidebar-overlay {
@@ -974,7 +967,6 @@
 
     <!--三，激光设备胶囊导航栏-->
     <style>
-      /* 胶囊导航整体容器：居中+间距 */
       .laser-capsule-nav {
         width: 100%;
         padding-top: 2rem;
@@ -984,14 +976,13 @@
         box-sizing: border-box;
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
         );
-        position: sticky; /* 粘性定位：滚动到阈值时固定 */
-        top: 1rem; /* 吸附在顶部导航栏下方（顶部导航栏高度是2.8rem） */
-        z-index: 999; /* 确保在其他内容上方（低于顶部导航的1000，避免遮挡） */
+        position: sticky;
+        top: 1rem;
+        z-index: 999;
       }
       .capsule-container {
         display: flex;
@@ -999,48 +990,45 @@
         align-items: center;
         gap: 12px;
         justify-content: center;
-        flex-wrap: nowrap; /* 默认不换行，小屏自动适配 */
+        flex-wrap: nowrap;
         width: 90%;
         max-width: 1920px;
         margin: 0 auto;
-        overflow-x: auto; /* 小屏横向滚动，不挤变形 */
-        scrollbar-width: none; /* 隐藏火狐滚动条 */
-        -ms-overflow-style: none; /* 隐藏IE滚动条 */
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
-      /* 隐藏谷歌滚动条 */
+
       .capsule-container::-webkit-scrollbar {
         display: none;
       }
 
-      /* 苹果风格胶囊按钮：核心样式 */
       .capsule-item {
         display: inline-block;
         padding: 8px 16px;
         background: linear-gradient(145deg, #f0f0f2, #e0e0e2);
         box-shadow:
           0 1px 2px rgba(0, 0, 0, 0.05),
-          /* 最底层阴影 */ 0 3px 6px rgba(0, 0, 0, 0.08),
-          /* 中层阴影 */ 0 2px 0 rgba(255, 255, 255, 0.6),
-          /* 顶部高光，模拟倒角 */ 0 0px 0 rgba(0, 0, 0, 0.1); /* 底部暗线，模拟厚度 */
-        color: #1d1d1f; /* 深灰文字 */
+          0 3px 6px rgba(0, 0, 0, 0.08),
+          0 2px 0 rgba(255, 255, 255, 0.6),
+          0 0px 0 rgba(0, 0, 0, 0.1);
+        color: #1d1d1f;
         text-decoration: none;
-        border-radius: 9999px; /* 圆形胶囊 */
+        border-radius: 9999px;
         font-size: 14px;
         font-weight: 600;
-        transition: all 0.3s ease; /* 动画过渡 */
-        white-space: nowrap; /* 文字不换行 */
+        transition: all 0.3s ease;
+        white-space: nowrap;
         border: 1px solid transparent;
       }
-      /* hover 动画：苹果风格悬浮效果 */
+
       .capsule-item:hover {
         background: #0071e3;
-        color: #ffffff; /* 深灰文字 */
+        color: #ffffff;
         transform: translateY(-2px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
 
-      /* 媒体适配：8个节点 0-320/321-375/376-425/426-768/769-1024/1025-1440/1441-2560/>2561 */
-      /* 0-320px */
       @media (max-width: 320px) {
         .capsule-item {
           padding: 6px 10px;
@@ -1049,11 +1037,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 321-375px */
+
       @media (min-width: 321px) and (max-width: 375px) {
         .capsule-item {
           padding: 6px 12px;
@@ -1062,11 +1050,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 376-425px */
+
       @media (min-width: 376px) and (max-width: 425px) {
         .capsule-item {
           padding: 7px 14px;
@@ -1075,11 +1063,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 426-768px (平板竖屏) */
+
       @media (min-width: 426px) and (max-width: 768px) {
         .capsule-item {
           padding: 7px 15px;
@@ -1088,11 +1076,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 769-1024px (平板横屏/小电脑) */
+
       @media (min-width: 769px) and (max-width: 1024px) {
         .capsule-item {
           padding: 8px 16px;
@@ -1101,11 +1089,11 @@
         }
         .capsule-container {
           display: grid;
-          grid-template-columns: 1fr 1fr; /* 两列等分 */
+          grid-template-columns: 1fr 1fr;
           height: auto;
         }
       }
-      /* 1025-1440px (主流电脑) */
+
       @media (min-width: 1025px) and (max-width: 1440px) {
         .capsule-item {
           padding: 9px 18px;
@@ -1115,7 +1103,7 @@
           gap: 14px;
         }
       }
-      /* 1441-2560px (大屏/2K) */
+
       @media (min-width: 1441px) and (max-width: 2560px) {
         .capsule-item {
           padding: 10px 20px;
@@ -1126,7 +1114,7 @@
           max-width: 2000px;
         }
       }
-      /* >2561px (超高清/4K) */
+
       @media (min-width: 2561px) {
         .capsule-item {
           padding: 12px 24px;
@@ -1149,14 +1137,12 @@
         padding-right: 2rem;
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
         );
       }
 
-      /* 主标题样式 - 苹果风格轻量级标题 */
       .selector-title {
         font-size: 2rem;
         font-weight: 600;
@@ -1168,61 +1154,51 @@
         animation: fadeUp 0.8s ease forwards;
       }
 
-      /* 机型组容器 */
       .machine-group {
         margin-bottom: 4rem;
       }
 
-      /* 副标题样式 */
       .group-subtitle {
         font-size: 1.25rem;
         font-weight: 500;
         color: #1d1d1f;
         margin-bottom: 2rem;
         padding-left: 1rem;
-        border-left: 3px solid #0071e3; /* 苹果蓝强调色 */
+        border-left: 3px solid #0071e3;
       }
 
-      /* 机型列表容器 - 重构：统一网格布局基础，大屏多列，小屏单列 */
       .machine-list {
         display: flex;
         align-items: center;
-        justify-content: flex-start; /* 从左开始排 */
-        flex-wrap: nowrap; /* 强制不换行，核心！ */
-        gap: 1rem; /* 统一间距 */
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 1rem;
         width: 100%;
         padding-bottom: 1rem;
-        overflow-x: auto; /* 小屏时可以横向滚动 */
+        overflow-x: auto;
         scrollbar-width: none;
       }
 
-      /* 机型卡片样式 - 苹果风格卡片 */
       .machine-card {
-        /* 原有样式 */
         width: 100%;
         max-width: 14rem;
         margin: 0 auto;
         text-align: center;
         transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
         cursor: pointer;
-        background: linear-gradient(
-          145deg,
-          #f0f0f2,
-          #e0e0e2
-        ); /* 模拟键帽的双色塑料感 */
+        background: linear-gradient(145deg, #f0f0f2, #e0e0e2);
         border-radius: 1.25rem;
         padding: 1.25rem 1rem;
-        /* 立体核心：多层阴影模拟厚度 */
+
         box-shadow:
           0 1px 2px rgba(0, 0, 0, 0.05),
-          /* 最底层阴影 */ 0 3px 6px rgba(0, 0, 0, 0.08),
-          /* 中层阴影 */ inset 0 2px 0 rgba(255, 255, 255, 0.6),
-          /* 顶部高光，模拟倒角 */ inset 0 -2px 0 rgba(0, 0, 0, 0.1); /* 底部暗线，模拟厚度 */
+          0 3px 6px rgba(0, 0, 0, 0.08),
+          inset 0 2px 0 rgba(255, 255, 255, 0.6),
+          inset 0 -2px 0 rgba(0, 0, 0, 0.1);
         position: relative;
         overflow: hidden;
       }
 
-      /* 模拟键盘键帽的“边缘反光” */
       .machine-card::before {
         content: "";
         position: absolute;
@@ -1240,20 +1216,19 @@
       }
 
       .machine-card:hover {
-        transform: translateY(2px) scale(0.98); /* 向下压+轻微缩小，模拟键帽按下 */
+        transform: translateY(2px) scale(0.98);
         box-shadow:
           0 1px 1px rgba(0, 0, 0, 0.1),
-          /* 阴影变浅，模拟下陷 */ inset 0 1px 2px rgba(0, 0, 0, 0.1); /* 内阴影加深，模拟按压 */
+          inset 0 1px 2px rgba(0, 0, 0, 0.1);
       }
 
       .machine-card:active {
-        transform: translateY(4px) scale(0.96); /* 点击时再压深一点 */
+        transform: translateY(4px) scale(0.96);
         box-shadow:
           0 0 0 rgba(0, 0, 0, 0),
           inset 0 2px 4px rgba(0, 0, 0, 0.15);
       }
 
-      /* 机型图片容器 */
       .machine-img {
         width: 100%;
         height: 10rem;
@@ -1277,7 +1252,6 @@
         transform: scale(1.5);
       }
 
-      /* 机型名称 */
       .machine-name {
         font-size: 1rem;
         font-weight: 300;
@@ -1285,48 +1259,41 @@
         margin-bottom: 0.5rem;
       }
 
-      /* 机型特点 - 渐变色文字 */
       .machine-feature {
         font-size: 0.875rem;
-        background: linear-gradient(
-          90deg,
-          #01509e,
-          #04be32
-        ); /* 苹果蓝+苹果绿渐变 */
+        background: linear-gradient(90deg, #01509e, #04be32);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         line-height: 1.4;
       }
 
-      /* 升级箭头样式 - 小屏显示，大屏隐藏 */
       .upgrade-arrow {
         color: #0071e3;
         font-size: 1.5rem;
         font-weight: bold;
         opacity: 0.7;
         animation: arrowPulse 2s infinite ease-in-out;
-        text-align: center; /* 箭头居中 */
-      }
-      /* —— 产品卡片链接样式（新增） —— */
-      .machine-card-link {
-        text-decoration: none; /* 去掉下划线 */
-        color: inherit; /* 继承父级文字颜色 */
-        width: 15rem; /* 宽度：15rem（对应240px，适配现有REM基准） */
-        height: auto; /* 高度自适应（推荐，避免固定高度导致内容溢出）；如需固定高度可改为：height: 20rem; */
-        display: block; /* 转为块级元素，确保width/height生效 */
-        box-sizing: border-box; /* 继承全局盒模型规则，避免padding影响宽高 */
-        margin: 0 auto; /* 可选：水平居中，适配产品卡片居中布局 */
-      }
-      /* 标题父容器：相对定位（作为吉祥物绝对定位的参考） */
-      .title-box {
-        position: relative; /* 核心：让子元素绝对定位以它为基准 */
-        text-align: center; /* 标题居中（保持你原有页面布局） */
-        margin: 0 auto;
-        max-width: 1200px; /* 适配大屏，可根据页面调整 */
+        text-align: center;
       }
 
-      /* 原有标题样式：轻微调整行高/内边距，给图片留出空间 */
+      .machine-card-link {
+        text-decoration: none;
+        color: inherit;
+        width: 15rem;
+        height: auto;
+        display: block;
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+
+      .title-box {
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        max-width: 1200px;
+      }
+
       .selector-title {
         font-size: 2rem;
         font-weight: 600;
@@ -1335,23 +1302,21 @@
         opacity: 0;
         transform: translateY(20px);
         animation: fadeUp 0.8s ease forwards;
-        line-height: 1.4; /* 加大行高，避免图片遮挡文字 */
-        padding-right: 60px; /* 右侧留空，适配图片位置，可微调 */
+        line-height: 1.4;
+        padding-right: 60px;
       }
 
-      /* 吉祥物图片：绝对定位实现“倚靠”效果 */
       .title-mascot {
-        position: absolute; /* 核心：脱离文档流，相对父容器定位 */
-        top: -100px; /* 向上偏移，靠在标题上方，可微调 */
-        right: 50%; /* 水平居中偏移，配合translateX右移 */
-        transform: translateX(425px); /* 精调水平位置，实现“倚靠”，可微调 */
-        width: 200px; /* 图片宽度，根据实际需求调整，建议小尺寸更精致 */
-        height: auto; /* 高度自适应，防止图片变形 */
-        z-index: 2; /* 层级高于标题，确保图片在最上层 */
-        transition: all 0.3s ease; /* 可选：hover轻微动效，更生动 */
+        position: absolute;
+        top: -100px;
+        right: 50%;
+        transform: translateX(425px);
+        width: 200px;
+        height: auto;
+        z-index: 2;
+        transition: all 0.3s ease;
       }
 
-      /* 价格/定位标签 */
       .machine-tag {
         position: absolute;
         top: 12px;
@@ -1364,46 +1329,34 @@
         z-index: 10;
       }
 
-      /* 不同定位的颜色 */
       .machine-tag.entry {
-        background: linear-gradient(
-          135deg,
-          #009e5f,
-          #00b86f
-        ); /* 经济款：品牌绿 */
+        background: linear-gradient(135deg, #009e5f, #00b86f);
       }
       .machine-tag.mid {
-        background: linear-gradient(135deg, #165dff, #4080ff); /* 中端：蓝色 */
+        background: linear-gradient(135deg, #165dff, #4080ff);
       }
       .machine-tag.premium {
-        background: linear-gradient(135deg, #ff7d00, #ffb547); /* 高端：橙色 */
+        background: linear-gradient(135deg, #ff7d00, #ffb547);
       }
       .machine-tag.ultra {
-        background: linear-gradient(135deg, #f53f3f, #ff7875); /* 旗舰：红色 */
+        background: linear-gradient(135deg, #f53f3f, #ff7875);
       }
       .machine-tag.special {
-        background: linear-gradient(
-          135deg,
-          #722ed1,
-          #b37feb
-        ); /* 特殊款：紫色 */
+        background: linear-gradient(135deg, #722ed1, #b37feb);
       }
 
-      /* 卡片容器需要加相对定位 */
       .machine-card {
-        position: relative; /* 关键：让标签绝对定位生效 */
-        /* 你原有的样式保持不变 */
+        position: relative;
       }
 
-      /* 响应式适配：小屏缩小图片，调整位置，避免遮挡 */
       @media (max-width: 768px) {
         .selector-title {
-          padding-right: 40px; /* 小屏减少右侧留空 */
+          padding-right: 40px;
           font-size: 1.75rem;
         }
         .title-mascot {
-          width: 40px; /* 小屏缩小图片 */
-          transform: translateX(80px); /* 小屏微调水平位置 */
+          width: 40px;
+          transform: translateX(80px);
         }
         .title-box:hover .title-mascot {
           transform: translateX(80px) rotate(5deg);
@@ -1423,7 +1376,6 @@
         }
       }
 
-      /* 箭头动画 */
       @keyframes arrowPulse {
         0%,
         100% {
@@ -1436,7 +1388,6 @@
         }
       }
 
-      /* 标题渐入动画 */
       @keyframes fadeUp {
         to {
           opacity: 1;
@@ -1444,7 +1395,6 @@
         }
       }
 
-      /* 卡片加载动画 */
       @keyframes cardFadeIn {
         from {
           opacity: 0;
@@ -1456,7 +1406,6 @@
         }
       }
 
-      /* 为每个卡片添加延迟动画 */
       .machine-card {
         opacity: 0;
         transform: translateY(15px);
@@ -1485,8 +1434,6 @@
         animation-delay: 0.7s;
       }
 
-      /* ========== 响应式适配 - 核心：缩小各尺寸下的gap，优化间距 ========== */
-      /* 超小屏 (≤320px) - 1列布局 */
       @media (max-width: 320px) {
         .selector-section {
           padding: 2rem 1rem;
@@ -1514,7 +1461,6 @@
         }
       }
 
-      /* 小屏手机 (321px ~ 375px) - 1列布局 */
       @media (min-width: 321px) and (max-width: 375px) {
         .selector-section {
           padding: 2.5rem 1.25rem;
@@ -1538,7 +1484,6 @@
         }
       }
 
-      /* 大屏手机 (376px ~ 425px) - 1列布局 */
       @media (min-width: 376px) and (max-width: 425px) {
         .machine-card {
           max-width: 12rem;
@@ -1551,14 +1496,13 @@
         }
       }
 
-      /* 平板 (426px ~ 768px) - 2列布局（小屏多行多列） */
       @media (min-width: 426px) and (max-width: 768px) {
         .selector-section {
           padding: 3rem 2rem;
         }
         .machine-list {
-          grid-template-columns: repeat(2, 1fr); /* 2列 */
-          gap: 1.2rem; /* 核心：平板间距从2rem→1.2rem */
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 13rem;
@@ -1568,18 +1512,16 @@
         }
       }
 
-      /* 小屏电脑 (769px ~ 1023px) - 3列布局（多行多列） */
       @media (min-width: 769px) and (max-width: 1023px) {
         .machine-list {
-          grid-template-columns: repeat(3, 1fr); /* 3列 */
-          gap: 1.2rem; /* 核心：小屏电脑间距从2rem→1.2rem */
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 15rem;
         }
       }
 
-      /* 大屏桌面 (1024px ~ 1440px) - 5列布局（1行5列） */
       @media (min-width: 1024px) and (max-width: 1440px) {
         .selector-section {
           max-width: 1600px;
@@ -1587,8 +1529,8 @@
           padding: 5rem 3rem;
         }
         .machine-list {
-          grid-template-columns: repeat(5, 1fr); /* 1行5列 */
-          gap: 1.2rem; /* 核心：大屏桌面间距从默认1rem微调为1.2rem（避免过挤） */
+          grid-template-columns: repeat(5, 1fr);
+          gap: 1.2rem;
         }
         .machine-card {
           max-width: 14rem;
@@ -1602,7 +1544,6 @@
         }
       }
 
-      /* 超大屏 (≥1441px) - 6列布局（1行6列） */
       @media (min-width: 1441px) {
         .selector-section {
           max-width: 1920px;
@@ -1610,8 +1551,8 @@
           padding: 5rem 4rem;
         }
         .machine-list {
-          grid-template-columns: repeat(6, 1fr); /* 1行6列 */
-          gap: 1.5rem; /* 核心：超大屏间距从2rem→1.5rem */
+          grid-template-columns: repeat(6, 1fr);
+          gap: 1.5rem;
         }
         .machine-card {
           max-width: 16rem;
@@ -1810,7 +1751,6 @@
   </head>
 
   <body>
-    <!-- zwei，Code Navigationsleiste -->
     <nav class="navbar">
       <div class="logo">
         <svg
@@ -2510,7 +2450,7 @@
             </li>
             <li>
               <a
-                href="https://www.senrytech.com/solutions/lang/ar/"
+                href="https://www.senrytech.com/solutions/lang/sa/"
                 lang="ar"
                 class="lang-link"
                 >Arabisch</a
@@ -2697,7 +2637,7 @@
                   >
                     <img
                       src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
-                      alt="Senrytech C Automatische Zuführung von Aluminiumspulen-Faserlaserschneidemaschine"
+                      alt="Senrytech C Automatische Zufuhr-Aluminium-Coil-Faser-Laserschneidemaschine"
                     />
                     <p>Senrytech C</p>
                   </a>
@@ -3471,6 +3411,8 @@
             </div>
           </a>
 
+          <div class="upgrade-arrow">→</div>
+
           <!-- Modell2 -->
           <a
             href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
@@ -3493,6 +3435,8 @@
               </p>
             </div>
           </a>
+
+          <div class="upgrade-arrow">→</div>
 
           <!-- Modell3 -->
           <a
@@ -4098,7 +4042,6 @@
 
     <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
     <script>
-      /* ================================== 二、导航栏滚动透视效果 ================================== */
       // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
       // 触发时机：页面滚动事件（scroll）
       window.addEventListener("scroll", function () {
@@ -4233,7 +4176,6 @@
         }
       });
 
-      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
       // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
       // 触发时机：分类项的mouseenter事件
 
@@ -4263,7 +4205,6 @@
         });
       });
 
-      /* ================================== 三、BANNER轮播模块（含圆点指示器） ================================== */
       // 作用：实现BANNER图自动切换、手动控制（箭头）、圆点指示器联动
       // 核心逻辑：通过索引控制轮播图/文字/圆点的激活状态，支持循环切换
 
@@ -4346,7 +4287,6 @@
         startAutoSlide(); // 重新启动定时器
       });
 
-      /* ================================== 四、全系列产品板块交互（分类+滚动） ================================== */
       // 作用：实现产品分类切换（副标题背景跟随）、产品卡片横向滚动、箭头禁用状态控制
       // 依赖：页面DOM加载完成后执行（避免DOM未渲染导致查询失败）
       document.addEventListener("DOMContentLoaded", () => {
@@ -4534,7 +4474,6 @@
         });
       });
 
-      /* ================================== 五、购买优势板块交互（箭头滚动+分类） ================================== */
       // 作用：实现卡片横向滚动、箭头禁用状态控制，与第3板块交互逻辑完全一致
       document.addEventListener("DOMContentLoaded", () => {
         // —— 5.1 初始化优势板块滚动所需变量 ——
@@ -4604,7 +4543,6 @@
         updateBtnState();
       });
 
-      /* ================================== 六、切割样品模块（纯图片，无文字） ================================== */
       // 1. 材质数据配置（保持原数据不变）
       const materialData = {
         carbon: {

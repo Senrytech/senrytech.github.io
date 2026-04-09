@@ -14,7 +14,7 @@
     <title>激光设备伺服电机选型避坑指南 | 森睿激光 Senrytech</title>
     <link
       rel="canonical"
-      href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/cn/"
     />
     <!-- 引入思源黑体字体文件 -->
     <link
@@ -26,28 +26,43 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
     />
+    <!-- 一、CSS 全局基础样式 -->
     <style>
-      /* ================================== 一、全局基础样式 ================================== */
-      /* 模块说明：重置浏览器默认表现，统一全局字体、盒模型及复用工具类，确保多设备基础样式一致性 */
-
       /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
       * {
         margin: 0;
         padding: 0;
-        box-sizing: border-box; /* 统一盒模型规则：padding/margin不额外增加元素宽高 */
-        /* 字体优先级：优先加载类SF Pro的Public Sans，降级为思源黑体，保证多场景显示统一 */
+        box-sizing: border-box;
         font-family: "Public Sans", "Noto Sans SC", sans-serif;
       }
 
-      /* 1.2 图标字体强制声明（解决：全局字体覆盖Font Awesome图标字体的问题） */
-      .social-icons .icon i,
-      .footer-contact .contact-icon i {
-        font-family: "FontAwesome" !important; /* !important 强制优先级，确保图标正常渲染 */
+      /* 全局锁死：禁止任何横向溢出 */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100vw; /* 永远不超过视口宽度 */
+        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        box-sizing: border-box;
       }
 
-      /* 1.3 全局复用工具类：元素隐藏类（用途：控制任意元素显示/隐藏，全局通用） */
+      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      /* 1.2 图标字体强制声明 */
+      .social-icons .icon i,
+      .footer-contact .contact-icon i {
+        font-family: "FontAwesome" !important;
+      }
+
+      /* 1.3 全局复用工具类：元素隐藏类 */
       .hidden {
-        display: none !important; /* !important 避免被其他样式覆盖，确保隐藏效果稳定 */
+        display: none !important;
       }
 
       /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
@@ -57,30 +72,67 @@
         overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
       }
 
-      /* ================================== 标题滚动向上淡出动画 ================================== */
-      /* 1. 重定义“向上淡出”动画：结束时保留30%透明度+轻微向上位移（不消失） */
+      @media (max-width: 320px) {
+        html {
+          font-size: 12px;
+        }
+      }
+
+      @media (min-width: 321px) and (max-width: 375px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+        html {
+          font-size: 15px;
+        }
+      }
+
+      @media (min-width: 426px) and (max-width: 768px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 2560px) {
+        html {
+          font-size: 18px;
+        }
+      }
+    </style>
+
+    <style>
       @keyframes titleFadeUp {
         from {
-          opacity: 0; /* 初始：完全显示 */
-          transform: translateY(0); /* 初始：无位移 */
+          opacity: 0;
+          transform: translateY(0);
         }
         to {
-          opacity: 1; /* 关键：结束时保留30%透明度（不消失），可根据需求调整0.2~0.5 */
-          transform: translateY(
-            0
-          ); /* 关键：轻微向上位移（10px，原20px太夸张），更自然 */
+          opacity: 1;
+          transform: translateY(0);
         }
       }
 
-      /* 2. 动画激活类：保留原逻辑，确保动画执行后维持结束状态 */
       .title-fade-active {
-        animation: titleFadeUp 1.5s ease forwards; /* forwards必须保留，维持结束状态 */
-        pointer-events: none; /* 避免透明后误触 */
-        transition: none !important; /* 禁用过渡，避免与动画冲突 */
+        animation: titleFadeUp 1.5s ease forwards;
+        pointer-events: none;
+        transition: none !important;
       }
 
-      /* 3. 标题初始状态：确保所有标题默认显示，且支持动画过渡 */
-      /* 目标标题范围：所有h1-h6 + 自定义标题类（如.product-main-title） */
       h1,
       h2,
       h3,
@@ -90,1029 +142,610 @@
       .product-main-title,
       .submenu-content-title,
       .content-item h3 {
-        opacity: 1; /* 默认显示 */
-        transform: translateY(0); /* 默认无位移 */
+        opacity: 1;
+        transform: translateY(0);
         transition:
           opacity 0.3s ease,
-          transform 0.3s ease; /* 初始状态过渡（可选，优化视觉） */
-        will-change: opacity, transform; /* 提前告知浏览器优化渲染 */
-      }
-
-      /* ================================== 一、全局基础样式-REM（1:16基准核心：1rem基准=16px） ================================== */
-      /* 子模块说明：根据屏幕宽度动态调整html的font-size，让1rem在不同设备下对应合理物理像素，提升响应式精度 */
-
-      /* 1.1 Mobile S（≤320px，最小手机屏：如早期iPhone SE） */
-      /* 调整逻辑：1rem=12px（接近16px的75%），避免小屏中1rem过小导致文字模糊不可读 */
-      @media (max-width: 320px) {
-        html {
-          font-size: 12px; /* 原8.53px→12px：优化小屏文字清晰度，例：24px=2rem */
-        }
-      }
-
-      /* 1.2 Mobile M（321px ~ 375px，主流小屏：如iPhone 8/SE 2020） */
-      /* 调整逻辑：1rem=14px（接近16px的87.5%），平衡小屏元素大小与16px基准的过渡衔接 */
-      @media (min-width: 321px) and (max-width: 375px) {
-        html {
-          font-size: 14px; /* 原10px→14px：避免小屏元素过小，同时向16px基准过渡 */
-        }
-      }
-
-      /* 1.3 Mobile L（376px ~ 425px，大屏手机：如iPhone 12/13 mini） */
-      /* 调整逻辑：1rem=15px（接近16px的93.75%），进一步贴近16px基准，避免大屏手机元素断层 */
-      @media (min-width: 376px) and (max-width: 425px) {
-        html {
-          font-size: 15px; /* 原11.33px→15px：缩小与16px基准的差距，优化大屏手机布局 */
-        }
-      }
-
-      /* 1.4 Tablet（426px ~ 768px，平板屏：如iPad mini/iPad Air） */
-      /* 调整逻辑：1rem=16px（完全达成1:16基准），平板视觉空间充足，无需缩小基准值 */
-      @media (min-width: 426px) and (max-width: 768px) {
-        html {
-          font-size: 16px; /* 原14px→16px：平板屏空间足够，直接启用1:16核心基准 */
-        }
-      }
-
-      /* 1.5 Laptop（769px ~ 1024px，笔记本屏：核心目标屏，如13寸MacBook） */
-      /* 调整逻辑：1rem=16px（严格遵循1:16基准），笔记本为主要使用场景，保持布局一致性 */
-      @media (min-width: 769px) and (max-width: 1024px) {
-        html {
-          font-size: 16px; /* 原15px→16px：核心场景严格对齐1:16基准，确保设计还原度 */
-        }
-      }
-
-      /* 1.6 Laptop L + 2K屏（1025px ~ 2559px，大屏桌面：如15寸MacBook Pro/2K显示器） */
-      /* 调整逻辑：1rem=16px（维持基准），2K屏虽大，但16px基准已足够，避免元素过大导致布局空洞 */
-      @media (min-width: 1025px) and (max-width: 2559px) {
-        html {
-          font-size: 16px; /* 不变：2K屏无需放大基准，16px=1rem可避免布局松散 */
-        }
-      }
-
-      /* 1.7 4K屏（≥2560px，超高清屏：如32寸4K显示器/5K iMac） */
-      /* 调整逻辑：1rem=18px（可选微调），4K屏尺寸大，适度放大基准值让元素更协调（仍接近1:16逻辑） */
-      @media (min-width: 2560px) {
-        html {
-          font-size: 18px; /* 原16px→18px（可选）：4K屏专属优化，避免元素过小影响交互 */
-        }
+          transform 0.3s ease;
+        will-change: opacity, transform;
       }
     </style>
 
     <!--二、CSS 导航栏-->
     <style>
-      /* —— 2.1 导航栏容器基础样式（核心：控制导航整体布局与固定效果） —— */
       .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2.8rem;
-        /* 调整为低饱和工业灰蓝基底，透明度降低更沉稳，适配BANNER常见的科技蓝/金属灰风格 */
+        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
+        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
+        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
+        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
+        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 1) 100%
         );
-        /* 边框调整为低饱和蓝灰色，弱化存在感但保留轮廓，更贴合激光设备的金属质感 */
-        z-index: 1000;
-        /* 过渡包含所有质感属性，保证滚动平滑 */
-        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
-        padding: 0 2rem;
-        box-sizing: border-box;
-        /* 阴影优化：更浅的灰度+更低的不透明度，工业哑光质感更突出 */
-        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3);
+        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
+        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
+        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
+        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
+        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
+        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
+        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
       }
 
-      /* —— 2.5 导航栏滚动交互效果（滚动后添加半透明+模糊，提升层次感） —— */
       .navbar.scrolled {
-        /* 滚动后背景加深，采用偏深蓝的工业灰，增强层次感但不压抑 */
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 0.8) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
         );
-        /* 滚动后模糊度提升，饱和度微调增强质感 */
         backdrop-filter: blur(15px) saturate(115%);
         -webkit-backdrop-filter: blur(15px) saturate(115%);
-        /* 滚动后阴影加深，强化悬浮感 */
         box-shadow: 0 2px 12px rgba(245, 245, 257, 0.3);
       }
 
-      /* —— 2.2 导航栏LOGO样式（品牌标识，与普通导航项区分） —— */
       .navbar .logo {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100%; /* 让 LOGO 容器和导航栏等高 */
+        height: 100%;
         cursor: pointer;
       }
 
-      /* 给 SVG 本身加自适应样式 */
       .navbar .logo svg {
         width: auto;
-        height: 100%;
-        max-height: 20px;
+        height: 50%;
         object-fit: contain;
-        fill: #1b4c42; /* 原始填充色（你的 SVG 现有颜色） */
-        transition: all 0.5s ease; /* 过渡动画，让效果更丝滑 */
+        fill: #1b4c42;
+        transition: all 0.5s ease;
       }
-      /* hover 效果：颜色变浅 + 轻微缩放 */
+
       .navbar .logo:hover svg {
-        fill: #2d7d71; /* hover 时的填充色（比原始色浅，更醒目） */
-        transform: scale(1.05); /* 轻微放大 5%，增强视觉反馈 */
-        /* 可选：加阴影增强层次感 */
+        fill: #2d7d71;
+        transform: scale(1.05);
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
 
-      /* 可选：点击激活效果（如果需要） */
       .navbar .logo:active svg {
-        transform: scale(1.05); /* 点击时轻微缩小，模拟按压感 */
+        transform: scale(1.05);
       }
-      /* —— 2.3 导航栏普通链接样式（非LOGO/按钮的导航项） —— */
+
       .navbar a {
-        color: #1d1d1f; /* 其他标题颜色 */
-        text-decoration: none; /* 去掉默认下划线，提升精致感 */
-        font-size: 0.75rem; /* 统一小型化字号，适配窄导航高度 */
-        font-weight: 400; /* 字体偏细，符合苹果风格轻量化设计 */
-        transition: color 0.5s ease; /* hover时颜色过渡，增强交互感 */
-      }
-      /* 链接hover状态：文字变浅灰，提示可交互 */
-      .navbar a:hover {
         color: #1d1d1f;
+        font-size: 0.75rem;
+        font-weight: 400;
+        transition: color 0.5s ease;
+        text-decoration: none;
+      }
+
+      .navbar a:hover {
         font-weight: 700;
       }
 
-      /* —— 2.4 导航栏功能按钮样式（语言切换/询价按钮，统一基础样式） —— */
       .navbar .btn {
-        padding: 0.4rem 1.2rem; /* 按钮内边距：上下0.4rem、左右1.2rem，保证点击区域 */
-        border-radius: 9999px; /* 超圆圆角，符合现代设计风格 */
-        font-size: 0.7rem; /* 按钮文字字号与导航链接统一，视觉协调 */
-        font-weight: 400; /* 字体偏细，避免与导航风格冲突 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
-        border: none; /* 清除默认边框，避免样式干扰 */
-        transition: background-color 0.2s ease; /* 背景色过渡，增强交互细腻度 */
-      }
-      /* 2.4.1 语言切换按钮（透明边框+浅白文字，适配深背景） */
-      .language-btn {
-        background-color: transparent; /* 透明背景，突出导航背景 */
-        color: #1d1d1f; /* 文字浅白色，与导航文字一致 */
-      }
-      .lang-dropdown {
-        position: relative; /* 作为下拉菜单的定位容器 */
-        display: inline-block; /* 与询价按钮、汉堡按钮同排显示 */
-        z-index: 1001; /* 层级高于导航栏，避免被遮挡 */
-        margin-right: 0.5rem; /* 与询价按钮保持间距 */
-      }
-
-      /* 下拉菜单默认隐藏 */
-      .lang-dropdown-list {
-        position: absolute;
-        top: 100%; /* 紧贴语言按钮下方 */
-        right: 0; /* 与语言按钮右对齐 */
-        background: linear-gradient(
-          135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.8) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 0.8) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
-            /* 浅灰2 + 0.9透明度 */
-        );
-        border-radius: 8px; /* 匹配按钮圆角风格 */
-        padding: 8px 0;
-        margin: 0;
-        list-style: none;
-        display: none; /* 默认隐藏 */
-        min-width: 100px; /* 保证语言文字不换行 */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影区分层级 */
-      }
-
-      /* 下拉语言链接样式 */
-      .lang-dropdown-list .lang-link {
-        display: block;
-        padding: 8px 16px;
-        color: #1d1d1f; /* 与导航文字颜色一致 */
-        text-decoration: none;
-        font-size: 0.75rem; /* 匹配导航文字字号 */
-        text-align: right; /* 与下拉菜单右对齐 */
+        padding: 0.4rem 1.2rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 400;
+        cursor: pointer;
+        border: none;
         transition: background-color 0.2s ease;
       }
 
-      /* 语言链接hover效果 */
-      .lang-dropdown-list .lang-link:hover {
-        background-color: rgba(255, 255, 255, 0.1); /* 浅白背景加深 */
-        border-radius: 4px; /* 轻微圆角增强质感 */
+      .language-btn {
+        background-color: transparent;
+        color: #1d1d1f;
       }
 
-      /* 当前语言高亮（匹配当前页面） */
+      .language-btn i,
+      .inquiry-btn i {
+        font-family: "FontAwesome" !important;
+
+        font-size: 0.875rem;
+        color: #1d1d1f;
+      }
+
+      .lang-dropdown {
+        position: relative;
+        display: inline-block;
+        z-index: 1001;
+        margin-right: 0.5rem;
+      }
+
+      .lang-dropdown-list {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 1) 100%
+        );
+        border-radius: 8px;
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        display: none;
+        min-width: 100px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .lang-dropdown-list .lang-link {
+        display: block;
+        padding: 8px 16px;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 0.75rem;
+        text-align: right;
+        transition: background-color 0.2s ease;
+      }
+
+      .lang-dropdown-list .lang-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
       .lang-dropdown-list .lang-link.active {
-        color: #1b4c42; /* 品牌蓝色突出当前语言 */
+        color: #1b4c42;
         font-weight: 500;
       }
-      /* 2.4.2 询价按钮（蓝色背景+浅白文字，突出核心转化功能） */
-      .navbar .inquiry-btn {
-        background-color: #0071e3;
-        color: #f7f5f5 !important; /* 浅白色，若仍被覆盖可加 !important */
-      }
 
-      /* —— 2.6 下拉菜单父容器 —— */
       .nav-item {
-        position: relative; /* 作为下拉菜单的绝对定位上下文，确保菜单位置准确 */
-        height: 100%; /* 继承导航栏高度，保证hover触发区域完整 */
+        position: relative;
+        height: 100%;
         display: flex;
-        align-items: center; /* 导航项文字垂直居中，视觉协调 */
+        align-items: center;
       }
 
-      /* —— 2.7 下拉菜单容器样式（桌面端，默认隐藏，hover展开） —— */
       .dropdown-menu {
-        position: fixed; /* 固定定位：避免随导航滚动偏移，宽度占满屏幕 */
-        top: 2.8rem; /* 紧贴导航栏底部（导航栏高度45px），无间隙 */
+        position: fixed;
+        top: 2.8rem;
         left: 0;
         right: 0;
         width: 100%;
-        max-width: 100vw; /* 限制最大宽度为屏幕宽度，避免超宽溢出 */
+        max-width: 100vw;
         background: linear-gradient(
           135deg,
-          /* 左上到右下 */ rgba(255, 255, 255, 0.95) 0%,
-          /* 白色 + 0.9透明度 */ rgba(248, 248, 250, 1) 50%,
-          /* 浅灰1 + 0.9透明度 */ rgba(245, 245, 247, 1) 100%
-            /* 浅灰2 + 0.9透明度 */
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(248, 248, 250, 1) 50%,
+          rgba(245, 245, 247, 1) 100%
         );
-        box-shadow: 0 1px 3px rgba(29, 29, 31, 0.5); /* 极淡阴影，避免厚重感 */
-        z-index: 1001; /* 层级高于导航栏（1000），确保菜单显示在最上层 */
-        border-radius: 0; /* 取消圆角，与屏幕边缘贴合，增强全屏感 */
-        overflow-y: hidden; /* 隐藏超出高度的内容，配合max-height实现展开动画 */
+        box-shadow: 0 1px 3px rgba(29, 29, 31, 0.5);
+        z-index: 1001;
+        border-radius: 0;
+        overflow-y: hidden;
         overflow-x: hidden;
         box-sizing: border-box;
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
 
-        /* 默认隐藏状态：高度0+透明+无内边距，确保完全不可见 */
-        max-height: 0; /* 高度压缩为0，核心隐藏逻辑，勿修改（避免误触发） */
-        opacity: 0; /* 透明度0，视觉隐藏 */
-        padding: 0; /* 隐藏时取消内边距，避免空白占位 */
-
-        /* 展开/隐藏过渡动画：高度、透明度、内边距同步变化，确保流畅 */
         transition:
           max-height 0.3s ease,
           opacity 0.3s ease,
           padding 0.3s ease;
       }
 
-      /* —— 2.8 下拉菜单展开/隐藏控制（hover父容器触发，桌面端核心交互） —— */
       .nav-item:hover .dropdown-menu {
-        max-height: 55rem; /* 足够大的高度（大于实际内容高度），避免滚动 */
-        opacity: 1; /* 透明度1，完全显示 */
-        padding: 2.4rem 0; /* 恢复上下内边距，给内容留呼吸空间 */
-        display: block; /* 兼容部分浏览器，确保hover时正常显示 */
+        max-height: 55rem;
+        opacity: 1;
+        padding: 2.4rem 0;
+        display: block;
       }
 
-      /* —— 2.9 下拉菜单内部容器（分左右栏：左侧分类栏+右侧产品内容区） —— */
       .dropdown-inner {
-        display: flex; /* 左右栏横向排列，实现双栏布局 */
-        width: 100%; /* 占满下拉菜单宽度 */
-        max-width: 1600px; /* 限制内部内容最大宽度，避免超宽屏幕内容过散 */
-        margin: 0 auto; /* 内部内容水平居中，适配宽屏 */
-        padding: 0 4rem; /* 左右留白，避免内容贴屏幕边缘 */
-        gap: 5rem; /* 左右栏之间的间距，提升布局层次感 */
+        display: flex;
+        width: 100%;
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 0 4rem;
+        gap: 5rem;
       }
 
-      /* —— 2.10 下拉菜单左侧分类栏（固定宽度，展示产品分类） —— */
       .dropdown-category {
-        width: 240px; /* 固定宽度，确保分类栏不被压缩，布局稳定 */
-        flex-shrink: 0; /* 禁止收缩，保持宽度不变 */
-        max-height: calc(
-          100vh - 120px
-        ); /* 限制最大高度：屏幕高度 - 导航栏/内边距高度，避免超出屏幕 */
-        overflow-y: auto; /* 分类过多时显示垂直滚动条，避免内容溢出 */
+        width: 15rem;
+        flex-shrink: 0;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
       }
 
-      /* —— 2.11 左侧目录（左侧单个分类，可hover/激活） —— */
       .category-item {
-        padding: 1rem 1.6rem; /* 内边距：上下1.2rem、左右1.6rem，保证点击区域 */
-        border-radius: 10rem; /* 椭圆背景，增强精致感 */
-        margin-bottom: 1rem; /* 分类项之间的间距，避免拥挤 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可交互 */
-        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 背景色过渡，曲线更细腻 */
-        position: relative; /* 为内部a标签提供层级铺垫，避免被背景遮挡 */
+        padding: 1rem 1.6rem;
+        border-radius: 10rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        position: relative;
       }
-      /* 分类项hover/激活状态：背景加深+文字加粗，突出当前项 */
+
       .category-item:hover,
       .category-item.active {
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.08
-        ); /* 浅白半透明背景，与深背景区分 */
-        font-weight: 500; /* 文字加粗，增强视觉识别度 */
+        background-color: rgba(0, 0, 0, 0.08);
+        font-weight: 500;
       }
 
-      /* —— 2.12 分类项内部链接样式（左侧目录） —— */
-      /* 核心：用更具体的选择器提升优先级，覆盖导航栏a标签的白色小字号样式 */
       .navbar .dropdown-category .category-item a {
-        color: #1d1d1f; /* 链接基础色：浅白色，与分类栏背景区分 */
-        font-size: 1rem; /* 链接字号放大，确保可读性 */
-        text-align: center; /* 文字水平居中 */
-        text-decoration: none; /* 去掉下划线 */
-        display: block; /* 链接占满分类项宽度，hover区域完整 */
-        transition: none; /* 取消颜色过渡，避免hover时文字闪烁 */
+        color: #1d1d1f;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        transition: none;
         position: relative;
-        z-index: 1; /* 确保文字在最上层，不被背景覆盖 */
+        z-index: 1;
       }
-      /* hover/激活时强制浅白色，用!important彻底锁死样式，避免冲突 */
+
       .navbar .dropdown-category .category-item:hover a,
       .navbar .dropdown-category .category-item.active a {
         color: #1d1d1f !important;
       }
 
-      /* —— 2.13 下拉菜单右侧内容区（产品列表容器，随分类切换显示） —— */
       .dropdown-content {
-        flex: 1; /* 占满剩余宽度，与左侧分类栏形成自适应布局 */
-        max-height: calc(
-          100vh - 120px
-        ); /* 限制最大高度，与左侧分类栏视觉统一 */
-        overflow-y: auto; /* 内容超出时显示垂直滚动条，避免遮挡 */
-        padding-right: 1rem; /* 给滚动条预留空间，避免产品卡片被挤压 */
+        flex: 1;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding-right: 1rem;
       }
 
-      /* —— 2.14 内容区标题样式（如“激光板材切割机系列”，区分分类层级） —— */
       .content-item h3 {
-        font-size: 1rem; /* 标题字号，与分类项链接区分 */
-        color: #1d1d1f; /* 标题颜色：浅白色，突出层级 */
-        margin-bottom: 24px; /* 与下方产品列表的间距，避免拥挤 */
-        padding-bottom: 0.8rem; /* 下划线上方留白，增强视觉层次 */
-        border-bottom: 1px solid #eee; /* 浅灰色下划线，分隔标题与内容 */
+        font-size: 1rem;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #eee;
       }
 
-      /* —— 2.15 内容区产品列表容器（产品卡片横向排列，自动换行） —— */
       .product-list {
-        display: flex; /* 产品卡片横向排列 */
-        flex-wrap: wrap; /* 超出宽度时自动换行，适配不同屏幕 */
-        gap: 1.4rem; /* 产品卡片之间的间距，保证布局呼吸感 */
-        padding-bottom: 1rem; /* 列表底部留白，避免最后一行产品贴滚动条 */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.4rem;
+        padding-bottom: 1rem;
       }
 
-      /* —— 2.16 产品卡片基础样式（下拉菜单内，统一卡片布局） —— */
       .product-card {
-        width: calc(
-          (100% - 7.2rem) / 4
-        ); /* 4列布局：总间距1.4rem×3=4.2rem？原7.2rem需核对，确保4列均匀分布 */
-        text-align: center; /* 卡片内内容（图片+文字）水平居中 */
-        transition: transform 0.2s ease; /* 悬浮时上浮动画，增强交互感 */
-        padding: 0.2rem 0; /* 卡片上下留白，避免图片贴边 */
-        position: relative; /* 为卡片内后续添加按钮预留定位上下文 */
-        overflow: hidden; /* 防止图片圆角被父容器截断，确保圆角效果 */
+        width: calc((100% - 7.2rem) / 4);
+        text-align: center;
+        transition: transform 0.2s ease;
+        padding: 0.2rem 0;
+        position: relative;
+        overflow: hidden;
       }
-      /* 卡片悬浮效果：轻微上浮，提升层次感 */
+
       .product-card:hover {
         transform: translateY(-5px);
       }
 
-      /* —— 2.17 产品卡片图片样式（统一尺寸与视觉效果） —— */
       .product-card img {
-        width: 100%; /* 图片占满卡片宽度 */
-        height: 160px; /* 固定高度，确保所有卡片图片对齐，避免布局错乱 */
-        object-fit: cover; /* 保持图片比例，裁剪多余部分（避免拉伸变形） */
-        margin-bottom: 0.8rem; /* 图片与文字的间距，视觉分隔 */
-        border-radius: 1.5rem; /* 苹果风格大圆角，提升精致感 */
-        background: #f0f0f0; /* 图片加载失败时的占位背景色，避免空白 */
-
-        /* 阴影效果：增强图片立体感 */
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        margin-bottom: 0.8rem;
+        border-radius: 1.5rem;
+        background: #f0f0f0;
         box-shadow:
           0 4px 12px rgba(0, 0, 0, 0.1),
-          /* 主阴影：增强层次感 */ 0 2px 4px rgba(0, 0, 0, 0.08); /* 次阴影：增加柔和度 */
-        transform: translateZ(0); /* 触发硬件加速，优化圆角边缘锯齿 */
-        backface-visibility: hidden; /* 解决部分浏览器圆角锯齿问题 */
-
-        /* 图片悬浮阴影过渡，增强交互 */
+          0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: translateZ(0);
+        backface-visibility: hidden;
         transition: box-shadow 0.3s ease;
       }
-      /* 图片悬浮效果：阴影加深，强化立体感 */
+
       .product-card:hover img {
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       }
 
-      /* —— 2.18 产品卡片文字样式（产品名称，简洁展示） —— */
       .product-card p {
-        font-size: 0.9rem; /* 产品名称字号，确保简洁不换行 */
-        color: #1d1d1f; /* 文字颜色：浅白色，与背景区分 */
-        line-height: 1.5; /* 行高，提升可读性 */
-        padding: 0 0.5rem; /* 文字左右留白，避免超出卡片边界 */
+        font-size: 0.9rem;
+        color: #1d1d1f;
+        line-height: 1.5;
+        padding: 0 0.5rem;
       }
 
-      /* —— 2.19 内容区切换控制（默认隐藏所有内容，激活分类时显示对应内容） —— */
       .content-item {
-        display: none; /* 默认隐藏所有内容区，避免初始混乱 */
-        height: 100%; /* 占满右侧内容区高度，避免布局塌陷 */
+        display: none;
+        height: 100%;
       }
-      /* 激活状态：显示对应分类的产品内容 */
+
       .content-item.active {
         display: block;
       }
 
-      /* —— 2.20 导航栏按钮组容器（语言切换+询价+汉堡按钮的父容器，控制布局） —— */
       .navbar-right {
         display: flex;
         align-items: center;
-        /* 关键：让三个按钮在容器内等距分布 */
-        justify-content: space-between;
-        /* 给按钮组一个固定宽度，让 space-between 生效 */
-        width: 120px; /* 可根据实际按钮大小微调 */
-        /* 禁止收缩，避免被挤压 */
+        justify-content: center;
+        width: 10rem;
         flex-shrink: 0;
       }
 
-      /* —— 2.21 汉堡按钮样式（移动端核心交互，默认隐藏，小屏幕显示） —— */
+      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
       .hamburger-btn {
-        display: none; /* 默认隐藏，仅在小屏幕通过媒体查询显示 */
-        background: transparent; /* 透明背景，融入导航风格 */
-        border: none; /* 清除默认边框 */
-        cursor: pointer; /* 鼠标悬浮显示指针，提示可点击 */
-        padding: 0.8rem 0; /* 上下内边距，保证点击区域 */
-        z-index: 1002; /* 层级高于侧边菜单（1000），确保点击优先 */
-      }
-      /* 汉堡按钮线条样式（三横线） */
-      .hamburger-line {
-        display: block;
-        width: 22px; /* 固定线条宽度，确保按钮识别度（不转REM，避免过小） */
-        height: 2px; /* 固定线条高度，细线条更精致（不转REM） */
-        background-color: #1d1d1f; /* 线条浅白色，与导航文字一致 */
-        margin: 0.4rem 0; /* 线条之间的间距 */
-        transition: all 0.3s ease; /* 点击时线条旋转过渡，实现“汉堡→关闭”动画 */
-      }
-      /* 汉堡按钮激活状态（变为关闭图标：上线下沉旋转、中线隐藏、下线上浮旋转） */
-      .hamburger-btn.active .hamburger-line:nth-child(1) {
-        transform: rotate(45deg) translate(0.4rem, 0.4rem);
-      }
-      .hamburger-btn.active .hamburger-line:nth-child(2) {
-        opacity: 0; /* 中线隐藏 */
-      }
-      .hamburger-btn.active .hamburger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(0.4rem, -0.4rem); /* 原-4rem为笔误，修正为-0.4rem */
+        padding: 0.4rem 1.2rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: none; /* 默认隐藏，仅移动端显示 */
+        align-items: center;
+        justify-content: center;
+        color: #1d1d1f !important;
+        transition: color 0.2s ease;
       }
 
-      /* —— 2.22 侧边菜单遮罩层（移动端，默认隐藏，打开菜单时显示） —— */
+      .hamburger-btn:hover {
+        color: #1b4c42 !important;
+      }
+
+      .hamburger-btn i {
+        font-family: "FontAwesome" !important;
+        font-size: 0.875rem;
+        color: inherit; /* 继承按钮颜色 */
+      }
+
       .sidebar-overlay {
-        position: fixed; /* 全屏遮罩，覆盖整个视口 */
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明，弱化背景内容 */
-        backdrop-filter: blur(2px); /* 轻微模糊，增强玻璃拟态 */
-        z-index: 999; /* 层级低于侧边菜单（1000），确保菜单显示在遮罩上层 */
-        opacity: 0; /* 默认透明，隐藏状态 */
-        visibility: hidden; /* 默认不可见，避免遮挡点击 */
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
         transition:
           opacity 0.3s ease,
-          visibility 0.3s ease; /* 显示/隐藏过渡，确保流畅 */
+          visibility 0.3s ease;
       }
-      /* 激活状态：显示遮罩 */
+
       .sidebar-overlay.active {
         opacity: 1;
         visibility: visible;
       }
 
-      /* —— 2.23 侧边菜单容器（移动端，默认隐藏，右侧滑出） —— */
       .sidebar-menu {
         position: fixed;
         top: 0;
         right: 0;
-        width: 85%; /* 小屏幕占85%宽度，Tablet占70%，通过媒体查询调整 */
-        max-width: 380px; /* 限制最大宽度，避免宽屏移动端菜单过宽 */
-        height: 100vh; /* 占满屏幕高度 */
+        width: 80%;
+        height: 100vh;
         background: linear-gradient(
           135deg,
-          /* 从左上到右下 */ #ffffff 0%,
+          #ffffff 0%,
           #f8f8fa 50%,
           #f5f5f7 100%
         );
-        backdrop-filter: blur(10px); /* 背景模糊，增强玻璃拟态 */
-        -webkit-backdrop-filter: blur(10px); /* 兼容Safari */
-        z-index: 1000; /* 层级高于遮罩层（999），确保菜单显示优先 */
-        transform: translateX(100%); /* 初始在屏幕右侧外，隐藏状态 */
-        transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); /* 滑入/滑出过渡，曲线更流畅 */
-        overflow-y: auto; /* 菜单内容过多时可滚动 */
-        padding-top: 6rem; /* 顶部留白，避开头部LOGO+关闭按钮区域 */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        overflow-y: auto;
+        padding-top: 6rem;
         box-sizing: border-box;
       }
-      /* 激活状态：滑入屏幕 */
+
       .sidebar-menu.active {
         transform: translateX(0);
       }
 
-      /* —— 2.24 侧边栏头部（LOGO+关闭按钮，固定在顶部） —— */
       .sidebar-header {
-        position: absolute; /* 固定在侧边栏顶部，不随滚动移动 */
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 45px; /* 与导航栏高度一致，视觉统一 */
+        height: 45px;
         display: flex;
-        justify-content: space-between; /* LOGO居左，关闭按钮居右 */
-        align-items: center; /* 内容垂直居中 */
-        padding: 0 2rem; /* 左右留白，避免内容贴边 */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 浅灰色下边框，分隔头部与菜单 */
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
-      /* 侧边栏LOGO */
+
       .sidebar-logo {
-        font-size: 1rem; /* 与导航栏LOGO字号一致 */
+        font-size: 1rem;
         font-weight: 500;
         color: #1d1d1f;
       }
-      /* 侧边栏关闭按钮 */
+
       .sidebar-close-btn {
         background: transparent;
         border: none;
         color: #1d1d1f;
-        font-size: 2rem; /* 大号关闭图标，确保易点击 */
+        font-size: 2rem;
         cursor: pointer;
       }
 
-      /* —— 2.25 侧边栏菜单列表（一级菜单容器，无默认列表样式） —— */
       .sidebar-menu-list {
-        list-style: none; /* 清除默认列表圆点 */
-        padding: 0 2rem; /* 左右留白，避免内容贴边 */
-        margin: 0; /* 清除默认margin */
-      }
-      /* 侧边栏一级菜单项（单个一级菜单，如“产品中心”） */
-      .sidebar-menu-item {
-        margin-bottom: 0.4rem; /* 菜单项之间的间距，避免拥挤 */
+        list-style: none;
+        padding: 0 2rem;
+        margin: 0;
       }
 
-      /* —— 2.26 侧边栏一级菜单链接（带箭头，控制二级菜单展开/隐藏） —— */
+      .sidebar-menu-item {
+        margin-bottom: 0.4rem;
+      }
+
       .sidebar-menu-link {
         display: flex;
-        justify-content: space-between; /* 文字居左，箭头居右 */
-        align-items: center; /* 内容垂直居中 */
-        padding: 1.4rem 1.6rem; /* 内边距，保证点击区域 */
-        color: #1d1d1f; /* 文字浅白色 */
-        text-decoration: none; /* 去掉下划线 */
-        font-size: 1rem; /* 字号，确保可读性 */
-        border-radius: 1rem; /* 圆角，增强精致感 */
-        transition: background-color 0.2s ease; /* 背景色过渡，增强交互 */
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 1.6rem;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 1rem;
+        transition: background-color 0.2s ease;
       }
-      /* 一级菜单链接hover状态：背景加深，突出当前项 */
+
       .sidebar-menu-link:hover {
         background-color: rgba(255, 255, 255, 0.08);
       }
 
-      /* —— 2.27 侧边栏箭头样式（一级菜单右侧，指示二级菜单展开状态） —— */
       .sidebar-arrow {
-        font-size: 1rem; /* 箭头字号，与一级菜单文字协调 */
-        transition: transform 0.3s ease; /* 旋转过渡，显示展开/收起状态 */
+        font-size: 1rem;
+        transition: transform 0.3s ease;
       }
-      /* 二级菜单展开时，箭头旋转180度（向下→向上） */
+
       .sidebar-menu-item.has-submenu.active .sidebar-arrow {
         transform: rotate(180deg);
       }
 
-      /* —— 2.28 侧边栏二级菜单（产品分类列表，默认隐藏） —— */
       .sidebar-submenu {
-        list-style: none; /* 清除默认列表样式 */
-        padding: 0 1.6rem; /* 左右留白，与一级菜单对齐 */
+        list-style: none;
+        padding: 0 1.6rem;
         margin: 0;
-        max-height: 0; /* 默认高度0，隐藏状态 */
-        overflow: hidden; /* 隐藏超出内容 */
-        transition: max-height 0.3s ease; /* 展开/收起过渡，确保流畅 */
-      }
-      /* 一级菜单激活时，显示二级菜单 */
-      .sidebar-menu-item.has-submenu.active .sidebar-submenu {
-        max-height: 500px; /* 足够大的高度，容纳所有分类 */
-        padding: 0.8rem 1.6rem 1.6rem; /* 上下内边距，给分类项留空间 */
-      }
-      /* 二级菜单项（单个分类，如“激光板材切割机”） */
-      .sidebar-submenu-item {
-        margin-bottom: 0.4rem; /* 菜单项之间的间距 */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
       }
 
-      /* —— 2.29 侧边栏二级菜单链接（分类链接，带右箭头指示） —— */
+      .sidebar-menu-item.has-submenu.active .sidebar-submenu {
+        max-height: 500px;
+        padding: 0.8rem 1.6rem 1.6rem;
+      }
+
+      .sidebar-submenu-item {
+        margin-bottom: 0.4rem;
+      }
+
       .sidebar-submenu-link {
-        display: block; /* 链接占满父容器宽度，确保点击区域完整 */
-        padding: 1.2rem 1.6rem; /* 内边距，保证点击区域 */
-        color: #1d1d1f; /* 文字浅灰色，与一级菜单区分层级 */
-        text-decoration: none; /* 去掉下划线 */
-        font-size: 1rem; /* 字号，确保可读性 */
-        border-radius: 0.8rem; /* 圆角，增强精致感 */
-        transition: background-color 0.2s ease; /* 背景色过渡，增强交互 */
-        position: relative; /* 为右箭头提供定位上下文 */
-        padding-right: 2.4rem; /* 右侧留白，给箭头留空间 */
+        display: block;
+        padding: 1.2rem 1.6rem;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 0.8rem;
+        transition: background-color 0.2s ease;
+        position: relative;
+        padding-right: 2.4rem;
       }
-      /* 二级菜单链接右箭头（通过伪元素添加，避免额外标签） */
+
       .sidebar-submenu-link::after {
-        content: "→"; /* 箭头符号 */
+        content: "→";
         position: absolute;
-        right: 1.6rem; /* 箭头居右，与文字间距1.6rem */
+        right: 1.6rem;
         top: 50%;
-        transform: translateY(-50%); /* 箭头垂直居中 */
-        font-size: 1.2rem; /* 箭头字号，略大于文字 */
-        color: #1d1d1f; /* 箭头颜色，与文字一致 */
-        opacity: 0.7; /* 箭头半透明，弱化视觉权重 */
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #1d1d1f;
+        opacity: 0.7;
       }
-      /* 二级菜单链接hover/激活状态：背景加深+文字变白，突出当前项 */
+
       .sidebar-submenu-link:hover,
       .sidebar-submenu-item.active .sidebar-submenu-link {
         background-color: rgba(255, 255, 255, 0.1);
         color: #1d1d1f;
       }
 
-      /* —— 2.30 侧边栏三级内容区（产品列表，默认隐藏，激活分类时显示） —— */
       .sidebar-submenu-content {
-        padding: 0 1.6rem 1.6rem; /* 左右下留白，与二级菜单对齐 */
-        display: none; /* 默认隐藏 */
-        max-height: 0; /* 默认高度0，避免空白占位 */
-        overflow: hidden; /* 隐藏超出内容 */
-        transition: max-height 0.3s ease; /* 展开/收起过渡 */
+        padding: 0 1.6rem 1.6rem;
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
       }
 
-      /* —— 2.31 三级内容区显示控制（一级菜单展开+二级分类激活时，显示对应产品） —— */
       .sidebar-menu-item.has-submenu.active
         .sidebar-submenu-item.active
         ~ .sidebar-submenu-content {
-        display: block; /* 显示对应产品内容 */
-        max-height: calc(
-          100vh - 20rem
-        ); /* 限制最大高度：屏幕高度 - 顶部留白，避免超出屏幕 */
+        display: block;
+        max-height: calc(100vh - 20rem);
       }
 
-      /* —— 2.32 三级内容区标题（产品分类标题，如“激光板材切割机系列”） —— */
       .submenu-content-title {
-        font-size: 1.6rem; /* 标题字号，突出层级 */
-        color: #1d1d1f; /* 文字浅白色 */
-        margin: 0 0 1.6rem; /* 与下方产品列表的间距 */
-        padding-bottom: 0.8rem; /* 下划线上方留白 */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 浅灰色下划线，分隔标题与内容 */
+        font-size: 1.6rem;
+        color: #1d1d1f;
+        margin: 0 0 1.6rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
-      /* —— 2.33 三级内容区产品卡片（移动端适配，小尺寸卡片） —— */
       .submenu-product-card {
-        transition: transform 0.2s ease; /* 悬浮上浮动画 */
+        transition: transform 0.2s ease;
       }
-      /* 产品卡片悬浮效果：轻微上浮 */
+
       .submenu-product-card:hover {
         transform: translateY(-0.3rem);
       }
 
-      /* —— 2.34 三级内容区产品图片（适配移动端小卡片） —— */
       .submenu-product-card img {
-        width: 100%; /* 图片占满卡片宽度 */
-        height: 8rem; /* 固定高度，适配侧边栏小卡片 */
-        object-fit: cover; /* 保持图片比例，避免拉伸 */
-        border-radius: 0.8rem; /* 圆角，与卡片风格统一 */
-        background-color: #f0f0f0; /* 加载占位背景色 */
-        margin-bottom: 0.8rem; /* 图片与文字的间距 */
+        width: 100%;
+        height: 8rem;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        background-color: #f0f0f0;
+        margin-bottom: 0.8rem;
       }
 
-      /* —— 2.35 三级内容区产品文字（产品名称，适配移动端） —— */
       .submenu-product-card p {
-        font-size: 0.8rem; /* 字号缩小，适配小卡片 */
-        color: #1d1d1f; /* 文字浅白色 */
-        margin: 0; /* 清除默认margin */
+        font-size: 0.8rem;
+        color: #1d1d1f;
+        margin: 0;
       }
 
-      /* —— 2.36 三级内容区切换控制（默认隐藏所有产品内容，激活分类时显示） —— */
       .submenu-content-item {
-        display: none; /* 默认隐藏 */
+        display: none;
       }
-      /* 激活状态：显示对应分类的产品内容 */
+
       .submenu-content-item.active {
         display: block;
       }
 
-      /* —— 2.37 核心：导航栏 - 媒体查询适配（按屏幕尺寸切换导航样式：桌面→平板→移动端） —— */
-      /* 1. Laptop及以上（1024px+：Laptop、Laptop L、4K）：隐藏汉堡/侧边栏，显示桌面端导航+下拉菜单 */
       @media (min-width: 1024px) {
         .hamburger-btn,
         .sidebar-menu,
         .sidebar-overlay {
-          display: none !important; /* 强制隐藏移动端元素 */
+          display: none !important;
         }
 
         .navbar {
-          justify-content: center; /* 导航项水平居中 */
-          gap: 2rem; /* 恢复导航项间距 */
-          padding: 0 2rem; /* 左右留白 */
+          justify-content: center;
+          gap: 2rem;
+          padding: 0 2rem;
         }
         .navbar .nav-link,
         .navbar .dropdown-menu {
-          display: flex; /* 恢复桌面端导航链接和下拉菜单显示 */
+          display: flex;
         }
       }
 
-      /* 2. Tablet到Laptop之间（769px~1023px）：显示汉堡按钮，隐藏部分导航链接 */
       @media (min-width: 769px) and (max-width: 1023px) {
-        /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
         .navbar .nav-link,
         .navbar .dropdown-menu {
-          display: none; /* 隐藏桌面端导航链接和下拉菜单 */
+          display: none;
         }
         .hamburger-btn {
-          display: block !important; /* 强制显示汉堡按钮 */
+          display: block !important;
         }
 
-        /* 3.2 导航栏布局调整：LOGO居左，按钮组居右 */
         .navbar {
           justify-content: space-between;
           align-items: center;
-          gap: 0; /* 清除间距，避免挤压 */
-          padding: 0 1rem; /* 缩小左右留白，适配小屏幕 */
+          gap: 0;
+          padding: 0 1rem;
         }
 
-        /* 3.3 按钮组布局：按钮+汉堡横向排列 */
         .navbar-right {
           display: flex;
           align-items: center;
-          gap: 0.5rem; /* 按钮之间的基础间距，子断点再调整 */
+          gap: 0.5rem;
         }
 
-        /* 3.4 按钮尺寸适配：缩小内边距和字号，适配小屏幕 */
         .navbar .btn {
           padding: 0.3rem 0.8rem;
           font-size: 0.8rem;
         }
 
-        /* 3.5 侧边栏宽度基础设置：Tablet占90% */
         .sidebar-menu {
           width: 100%;
         }
 
-        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
-          padding: 0 !important; /* 清除多余内边距 */
-          width: 100% !important; /* 占满父容器宽度 */
-        }
-
-        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
-        .sidebar-menu.active
-          .sidebar-submenu-content
-          .submenu-product-list
-          .submenu-product-card {
-          width: calc((100% - 1rem) / 2) !important;
-          min-width: 50px !important; /* 保底宽度，避免挤压 */
-          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
-          box-sizing: border-box !important; /* 确保padding不影响宽度 */
-        }
-
-        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(
-            80vh - 1rem
-          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
-          overflow-y: auto !important; /* 强制开启滚动 */
-          padding-right: 1rem !important; /* 给滚动条留空间 */
-          gap: 1rem; /* 缩小间距，适配窄屏 */
-        }
-
-        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
-        .productSubmenuContent img {
-          height: 100px !important;
-          width: 100% !important;
-          object-fit: contain !important; /* 完整显示图片，不裁剪 */
-          background-color: #f0f0f0 !important;
-          border-radius: 0.8rem !important;
-        }
-
-        /* 4.0 父容器滚动优化：避免双重滚动条 */
-        .sidebar-submenu-content {
-          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
-          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
-        }
-      }
-
-      /* 3. Tablet及以下（=426到≤768px：Tablet、Mobile L、Mobile M、Mobile S）：显示汉堡/侧边栏，隐藏桌面端导航 */
-      @media (max-width: 768px) {
-        /* 3.1 基础逻辑：隐藏桌面端导航，显示移动端元素 */
-        .navbar .nav-link,
-        .navbar .dropdown-menu {
-          display: none; /* 隐藏桌面端导航链接和下拉菜单 */
-        }
-        .hamburger-btn {
-          display: block !important; /* 强制显示汉堡按钮 */
-        }
-
-        /* 3.2 导航栏布局调整：LOGO居左，按钮组居右 */
-        .navbar {
-          justify-content: space-between;
-          align-items: center;
-          gap: 0; /* 清除间距，避免挤压 */
-          padding: 0 1rem; /* 缩小左右留白，适配小屏幕 */
-        }
-
-        /* 3.3 按钮组布局：按钮+汉堡横向排列 */
-        .navbar-right {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem; /* 按钮之间的基础间距，子断点再调整 */
-        }
-
-        /* 3.4 按钮尺寸适配：缩小内边距和字号，适配小屏幕 */
-        .navbar .btn {
-          padding: 0.3rem 0.8rem;
-          font-size: 0.8rem;
-        }
-
-        /* 3.5 侧边栏宽度基础设置：Tablet占70% */
-        .sidebar-menu {
-          width: 80%;
-        }
-
-        /* 3.6. 产品列表容器：强制flex+换行，确保两列布局 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
-          padding: 0 !important; /* 清除多余内边距 */
-          width: 100% !important; /* 占满父容器宽度 */
-        }
-
-        /* 3.7 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
-        .sidebar-menu.active
-          .sidebar-submenu-content
-          .submenu-product-list
-          .submenu-product-card {
-          width: calc((100% - 1rem) / 2) !important;
-          min-width: 50px !important; /* 保底宽度，避免挤压 */
-          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
-          box-sizing: border-box !important; /* 确保padding不影响宽度 */
-        }
-
-        /* 3.8 产品列表滚动：限制高度，开启垂直滚动 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(
-            80vh - 1rem
-          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
-          overflow-y: auto !important; /* 强制开启滚动 */
-          padding-right: 1rem !important; /* 给滚动条留空间 */
-          gap: 1rem; /* 缩小间距，适配窄屏 */
-        }
-
-        /* 3.9 产品图片统一：固定高度+完整显示，避免裁剪 */
-        .productSubmenuContent img {
-          height: 100px !important;
-          width: 100% !important;
-          object-fit: contain !important; /* 完整显示图片，不裁剪 */
-          background-color: #f0f0f0 !important;
-          border-radius: 0.8rem !important;
-        }
-
-        /* 4.0 父容器滚动优化：避免双重滚动条 */
-        .sidebar-submenu-content {
-          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
-          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
-        }
-      }
-
-      /* —— 子断点：Mobile L（376px ~ 425px）优化 —— */
-      @media (min-width: 376px) and (max-width: 425px) {
-        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important; /* 两列间距，与宽度计算匹配，横向图片之间的距离 */
-          padding: 0 !important; /* 清除多余内边距 */
-          width: 100% !important; /* 占满父容器宽度 */
-        }
-
-        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
-        .sidebar-menu.active
-          .sidebar-submenu-content
-          .submenu-product-list
-          .submenu-product-card {
-          width: calc((100% - 1rem) / 2) !important;
-          min-width: 50px !important; /* 保底宽度，避免挤压 */
-          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
-          box-sizing: border-box !important; /* 确保padding不影响宽度 */
-        }
-
-        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(
-            80vh - 1rem
-          ) !important; /* 屏幕高度-顶部留白，避免超出 - 所有图片高度显示是否完整 */
-          overflow-y: auto !important; /* 强制开启滚动 */
-          padding-right: 1rem !important; /* 给滚动条留空间 */
-          gap: 1rem; /* 缩小间距，适配窄屏 */
-        }
-
-        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
-        .productSubmenuContent img {
-          height: 100px !important;
-          width: 100% !important;
-          object-fit: contain !important; /* 完整显示图片，不裁剪 */
-          background-color: #f0f0f0 !important;
-          border-radius: 0.8rem !important;
-        }
-
-        /* 5. 父容器滚动优化：避免双重滚动条 */
-        .sidebar-submenu-content {
-          max-height: calc(100vh - 1rem) !important; /* 父容器高度兜底 */
-          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
-        }
-
-        /* 6. 侧边栏宽度：占85%，提升可视面积 */
-        .sidebar-menu {
-          width: 85%;
-        }
-
-        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
-        .sidebar-menu-link {
-          padding: 1rem 1rem;
-          font-size: 0.8rem;
-        }
-
-        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
-        .sidebar-submenu-link {
-          padding: 0.6rem 0.8rem;
-          font-size: 0.8rem;
-        }
-
-        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
-        .submenu-content-title {
-          font-size: 1rem;
-        }
-      }
-
-      /* —— 子断点：Mobile M（321px ~ 375px）优化 —— */
-      @media (min-width: 321px) and (max-width: 375px) {
-        /* 1. 产品列表容器：强制flex+换行，确保两列布局 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          display: flex !important;
-          flex-wrap: wrap !important;
-          gap: 1rem !important; /* 两列间距，与宽度计算匹配 */
-          padding: 0 !important; /* 清除多余内边距 */
-          width: 100% !important; /* 占满父容器宽度 */
-        }
-
-        /* 2. 产品卡片宽度：两列均匀分布（总宽度-间距，再平分） */
-        .sidebar-menu.active
-          .sidebar-submenu-content
-          .submenu-product-list
-          .submenu-product-card {
-          width: calc((100% - 1rem) / 2) !important;
-          min-width: 50px !important; /* 保底宽度，避免挤压 */
-          flex-shrink: 0 !important; /* 禁止收缩，保持宽度稳定 */
-          box-sizing: border-box !important; /* 确保padding不影响宽度 */
-        }
-
-        /* 3. 产品列表滚动：限制高度，开启垂直滚动 */
-        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(
-            100vh - 25rem
-          ) !important; /* 屏幕高度-顶部留白，避免超出 */
-          overflow-y: auto !important; /* 强制开启滚动 */
-          padding-right: 1rem !important; /* 给滚动条留空间 */
-          gap: 1rem; /* 缩小间距，适配窄屏 */
-        }
-
-        /* 4. 产品图片统一：固定高度+完整显示，避免裁剪 */
-        .productSubmenuContent img {
-          height: 100px !important;
-          width: 100% !important;
-          object-fit: contain !important; /* 完整显示图片，不裁剪 */
-          background-color: #f0f0f0 !important;
-          border-radius: 0.8rem !important;
-        }
-
-        /* 5. 父容器滚动优化：避免双重滚动条 */
-        .sidebar-submenu-content {
-          max-height: calc(100vh - 20rem) !important; /* 父容器高度兜底 */
-          overflow-y: hidden; /* 父容器不滚动，仅子列表滚动 */
-        }
-
-        /* 6. 侧边栏宽度：占85%，提升可视面积 */
-        .sidebar-menu {
-          width: 85%;
-        }
-
-        /* 7. 一级菜单链接：缩小内边距和字号，适配窄屏 */
-        .sidebar-menu-link {
-          padding: 1rem 1rem;
-          font-size: 0.8rem;
-        }
-
-        /* 8. 二级菜单链接：缩小内边距和字号，适配窄屏 */
-        .sidebar-submenu-link {
-          padding: 0.6rem 0.8rem;
-          font-size: 0.8rem;
-        }
-
-        /* 9. 三级内容区标题：缩小字号，适配窄屏 */
-        .submenu-content-title {
-          font-size: 1rem;
-        }
-      }
-
-      /* —— 子断点：Mobile S（≤320px）优化（最小手机屏，极致适配） —— */
-      @media (max-width: 320px) {
-        /* 1. 产品列表容器：同Mobile M，确保两列布局 */
         .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
           display: flex !important;
           flex-wrap: wrap !important;
@@ -1121,7 +754,6 @@
           width: 100% !important;
         }
 
-        /* 2. 产品卡片宽度：同Mobile M，两列均匀分布 */
         .sidebar-menu.active
           .sidebar-submenu-content
           .submenu-product-list
@@ -1132,15 +764,13 @@
           box-sizing: border-box !important;
         }
 
-        /* 3. 产品列表滚动：同Mobile M，限制高度+开启滚动 */
         .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
-          max-height: calc(100vh - 25rem) !important;
+          max-height: calc(80vh - 1rem) !important;
           overflow-y: auto !important;
           padding-right: 1rem !important;
           gap: 1rem;
         }
 
-        /* 4. 产品图片统一：同Mobile M，完整显示 */
         .productSubmenuContent img {
           height: 100px !important;
           width: 100% !important;
@@ -1149,30 +779,193 @@
           border-radius: 0.8rem !important;
         }
 
-        /* 5. 父容器滚动优化：同Mobile M，避免双重滚动 */
         .sidebar-submenu-content {
-          max-height: calc(100vh - 20rem) !important;
+          max-height: calc(100vh - 1rem) !important;
+          overflow-y: hidden;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none;
+        }
+        .hamburger-btn {
+          display: block !important;
+        }
+
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          gap: 0;
+          padding: 0 1rem;
+        }
+
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-menu {
+          width: 80%;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(80vh - 1rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important;
+          overflow-y: hidden;
+        }
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(80vh - 1rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important;
           overflow-y: hidden;
         }
 
-        /* 6. 侧边栏宽度：占85%，最大化可视面积 */
         .sidebar-menu {
           width: 85%;
         }
 
-        /* 7. 一级菜单链接：同Mobile M，缩小尺寸 */
         .sidebar-menu-link {
           padding: 1rem 1rem;
           font-size: 0.8rem;
         }
 
-        /* 8. 二级菜单链接：同Mobile M，缩小尺寸 */
         .sidebar-submenu-link {
           padding: 0.6rem 0.8rem;
           font-size: 0.8rem;
         }
 
-        /* 9. 三级内容区标题：同Mobile M，缩小字号 */
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(100vh - 25rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important;
+          overflow-y: hidden;
+        }
+
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
         .submenu-content-title {
           font-size: 1rem;
         }
@@ -1398,25 +1191,22 @@
 
     <!--十一、CSS 底部导航栏 -->
     <style>
-      /* 底部导航整体样式（匹配参考图深灰背景） */
       .footer-new {
-        background-color: #1d1d1f; /* 参考图的深灰背景色 */
+        background-color: #1d1d1f;
         color: #f5f5f7;
         padding: 15rem 1rem;
         font-size: 12px;
       }
 
-      /* 内容容器：四列布局 */
       .footer-container {
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap; /* 小屏幕自动换行 */
+        flex-wrap: wrap;
         gap: 30px;
       }
 
-      /* 1. 品牌区样式 */
       .footer-brand {
         flex: 1;
         min-width: 220px;
@@ -1446,25 +1236,23 @@
         gap: 12px;
       }
       .social-icons .icon {
-        color: #d1d1d6; /* 与文字色统一 */
+        color: #d1d1d6;
         text-decoration: none;
-        font-size: 16px; /* 图标大小适中 */
-        width: 28px; /* 固定宽高，确保图标对齐 */
+        font-size: 16px;
+        width: 28px;
         height: 28px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 4px; /* 轻微圆角，更精致 */
-        transition: background-color 0.2s; /* hover效果更柔和 */
+        border-radius: 4px;
+        transition: background-color 0.2s;
       }
 
-      /* 2. hover效果（商务低调反馈） */
       .social-icons .icon:hover {
         color: #d1d1d6;
-        background-color: rgba(255, 255, 255, 0.15); /* 淡背景加深，不突兀 */
+        background-color: rgba(255, 255, 255, 0.15);
       }
 
-      /* 2. 产品中心/关于我们 列样式 */
       .footer-column {
         flex: 1;
         min-width: 150px;
@@ -1475,6 +1263,7 @@
         margin-bottom: 16px;
         color: #d1d1d6;
       }
+
       .footer-column ul {
         list-style: none;
         padding: 0;
@@ -1487,11 +1276,12 @@
         text-decoration: none;
         transition: color 0.2s;
       }
+
       .footer-column a:hover {
-        color: #d1d1d6;
+        color: #1b4c42;
+        transform: translateX(3px);
       }
 
-      /* 3. 联系我们列样式 */
       .footer-contact .contact-list {
         margin-bottom: 20px;
       }
@@ -1503,13 +1293,13 @@
         color: #d1d1d6;
       }
       .footer-contact .contact-icon {
-        width: 18px; /* 固定图标宽度，确保文字对齐 */
-        text-align: center; /* 图标居中 */
-        color: #d1d1d6; /* 与文字同色，保持统一 */
-        font-size: 14px; /* 图标大小与文字匹配 */
+        width: 18px;
+        text-align: center;
+        color: #d1d1d6;
+        font-size: 14px;
       }
       .footer-contact .contact-icon i {
-        vertical-align: middle; /* 图标与文字垂直居中对齐 */
+        vertical-align: middle;
       }
       .wechat-qrcode h4 {
         font-size: 14px;
@@ -1537,7 +1327,6 @@
         margin: 0;
       }
 
-      /* 底部版权+政策样式 */
       .footer-bottom {
         max-width: 1200px;
         margin: 30px auto 0;
@@ -1560,35 +1349,24 @@
         color: #d1d1d6;
       }
 
-      /* ================================== 底部导航栏 - 媒体查询适配 ================================== */
-      /* 适配逻辑：按屏幕从小到大排序，仅修改当前断点需优化的属性，复用基础样式 */
-
-      /* 1. Mobile S（≤320px）：html基准12px | 核心：极致紧凑布局 */
       @media (max-width: 320px) {
       }
 
-      /* 2. Mobile M（321px~375px）：html基准14px | 核心：小屏过渡布局 */
       @media (min-width: 321px) and (max-width: 375px) {
       }
 
-      /* 3. Mobile L（376px~425px）：html基准15px | 核心：大屏手机适配 */
       @media (min-width: 376px) and (max-width: 425px) {
       }
 
-      /* 4. Tablet（426px~768px）：html基准16px | 核心：平板横向布局 */
       @media (min-width: 426px) and (max-width: 768px) {
       }
 
-      /* 5. Laptop（769px~1024px）：html基准16px | 核心：笔记本屏适配 */
       @media (min-width: 769px) and (max-width: 1024px) {
       }
 
-      /* 6. Laptop L + 2K屏（1025px~2559px）：html基准16px | 核心：设计基准区间，无需调整 */
       @media (min-width: 1025px) and (max-width: 2559px) {
-        /* 与基础样式完全一致，复用基础属性，保持视觉统一 */
       }
 
-      /* 7. 4K屏（≥2560px）：html基准16px | 核心：超高清屏放大元素，避免视觉过小 */
       @media (min-width: 2560px) {
       }
     </style>
@@ -1600,7 +1378,7 @@
       <div class="logo">
         <svg
           version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
+          xmlns="https://www.w3.org/2000/svg"
           width="144"
           height="39"
           viewBox="0 0 2305 629"
@@ -1612,8 +1390,9 @@
           />
         </svg>
       </div>
+
       <a href="https://www.senrytech.com/" class="nav-link">首页</a>
-      <!-- 全系列产品细细看-添加下拉菜单结构 -->
+
       <div class="nav-item">
         <a href="https://www.senrytech.com/products/" class="nav-link"
           >产品中心</a
@@ -2021,7 +1800,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
                         alt="Series A 四合一激光焊接机"
                       />
                     </a>
@@ -2037,7 +1816,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
                         alt="Series A Pro 1500-3000W激光焊接机"
                       />
                     </a>
@@ -2053,7 +1832,7 @@
                       href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
                         alt="Series A Ultra 大功率激光焊接机"
                       />
                     </a>
@@ -2069,7 +1848,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
                         alt="Robot 4 in 1 四合一焊接设备"
                       />
                     </a>
@@ -2085,7 +1864,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-workstation/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
                         alt="R Workstation 1500-3000W 移动焊接机"
                       />
                     </a>
@@ -2101,7 +1880,7 @@
                       href="https://www.senrytech.com/products/laser-welding/r-mobile/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
                         alt="R Mobile 协作机器人焊接设备"
                       />
                     </a>
@@ -2124,7 +1903,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/residential/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
                         alt="Residential 家用除锈激光清洗机"
                       />
                     </a>
@@ -2140,7 +1919,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/commercial/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
                         alt="Commercial cc"
                       />
                     </a>
@@ -2156,7 +1935,7 @@
                       href="https://www.senrytech.com/products/laser-cleaning/industrial/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
                         alt="Industrial 大功率激光清洗机"
                       />
                     </a>
@@ -2178,7 +1957,7 @@
                       href="https://www.senrytech.com/products/laser-marking/series-p/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
                         alt="便携台式激光打标机"
                       />
                     </a>
@@ -2194,7 +1973,7 @@
                       href="https://www.senrytech.com/products/laser-marking/series-d/"
                     >
                       <img
-                        src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
                         alt="台式激光打标机"
                       />
                     </a>
@@ -2210,59 +1989,98 @@
           </div>
         </div>
       </div>
+
       <a href="https://www.senrytech.com/solutions/" class="nav-link"
         >选型方案</a
       >
+
       <a
         href="https://www.senrytech.com/pitfall-avoidance-guide/"
         class="nav-link"
         >避坑指南</a
       >
+
       <a href="https://www.senrytech.com/news/" class="nav-link">新闻动态</a>
-      <a href="https://www.senrytech.com/download/" class="nav-link"
-        >资料下载</a
-      >
+
       <a href="https://www.senrytech.com/about-us/" class="nav-link"
         >关于我们</a
       >
+
       <a href="https://www.senrytech.com/join-us/" class="nav-link">加入我们</a>
+
       <a href="https://www.senrytech.com/contact-us/" class="nav-link"
         >联系我们</a
       >
+
       <div class="navbar-right">
         <div class="lang-dropdown" id="langDropdown">
-          <!-- 语言触发按钮（保留原“中/EN”样式） -->
+          <!-- 语言按钮 -->
           <button class="btn language-btn">
             <i class="fa fa-globe"></i>
             <!-- Font Awesome 地球图标 -->
           </button>
-          <!-- 多语言首页链接列表 -->
+          <!-- 展开语言链接 -->
           <ul class="lang-dropdown-list">
-            <li><a href="/index.html" lang="zh" class="lang-link">中文</a></li>
             <li>
-              <a href="https://www.senrytech.com/en" lang="en" class="lang-link"
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/cn/"
+                lang="zh"
+                class="lang-link active"
+                >中文</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/"
+                lang="en"
+                class="lang-link"
                 >英语</a
               >
             </li>
             <li>
-              <a href="/de/index.html" lang="de" class="lang-link">德语</a>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/de/"
+                lang="de"
+                class="lang-link"
+                >德语</a
+              >
             </li>
             <li>
-              <a href="/es/index.html" lang="es" class="lang-link">西班牙语</a>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/es/"
+                lang="es"
+                class="lang-link"
+                >西班牙语</a
+              >
             </li>
             <li>
-              <a href="/fr/index.html" lang="fr" class="lang-link">法语</a>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/fr/"
+                lang="fr"
+                class="lang-link"
+                >法语</a
+              >
             </li>
             <li>
-              <a href="/ru/index.html" lang="ru" class="lang-link">俄语</a>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/ru/"
+                lang="ru"
+                class="lang-link"
+                >俄语</a
+              >
             </li>
             <li>
-              <a href="/ar/index.html" lang="ar" class="lang-link">阿拉伯语</a>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/sa/"
+                lang="ar"
+                class="lang-link"
+                >阿拉伯语</a
+              >
             </li>
           </ul>
         </div>
 
-        <!-- 询价/看厂按钮（信封/工厂图标，二选一） - 新增超链接 -->
+        <!-- 导航栏询价 -->
         <a href="https://www.senrytech.com/contact-us" target="_blank">
           <!-- href填实际跳转地址，target="_blank"可选（新标签页打开） -->
           <button class="btn inquiry-btn">
@@ -2270,11 +2088,11 @@
             <!-- 询价：信封图标 -->
           </button>
         </a>
-        <!-- 新增：汉堡按钮（仅小屏幕显示） -->
+
+        <!-- 移动端 菜单展开汉堡 -->
         <button class="hamburger-btn" id="hamburgerBtn">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
+          <i class="fa fa-bars"></i>
+          <!-- 核心：用FA汉堡图标替代线条 -->
         </button>
       </div>
     </nav>
@@ -2365,7 +2183,7 @@
                     href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
                   >
                     <img
-                      src="./img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
                       alt="Senrytech A 经济款光纤激光切割机"
                     />
                     <p>Senrytech A</p>
@@ -2627,7 +2445,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
                       alt="Series A 四合一激光焊接机"
                     />
                     <p>Series A</p>
@@ -2639,7 +2457,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
                       alt="Series A Pro 1500-3000W激光焊接机"
                     />
                     <p>Series A Pro</p>
@@ -2651,7 +2469,7 @@
                     href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
                       alt="Series A Ultra 大功率激光焊接机"
                     />
                     <p>Series A Ultra</p>
@@ -2663,7 +2481,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
                       alt="Robot 4 in 1 四合一焊接设备"
                     />
                     <p>R 4in1</p>
@@ -2675,7 +2493,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-workstation/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
                       alt="R Workstation 1500-3000W 移动焊接机"
                     />
                     <p>R Workstation</p>
@@ -2687,7 +2505,7 @@
                     href="https://www.senrytech.com/products/laser-welding/r-mobile/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
                       alt="R Mobile 协作机器人焊接设备"
                     />
                     <p>R Mobile</p>
@@ -2704,7 +2522,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/residential/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
                       alt="Residential 家用除锈激光清洗机"
                     />
                     <p>Residential</p>
@@ -2716,7 +2534,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/commercial/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
                       alt="Commercial 家用除锈激光清洗机"
                     />
                     <p>Commercial</p>
@@ -2728,7 +2546,7 @@
                     href="https://www.senrytech.com/products/laser-cleaning/industrial/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
                       alt="Industrial 大功率激光清洗机"
                     />
                     <p>Industrial</p>
@@ -2745,7 +2563,7 @@
                     href="https://www.senrytech.com/products/laser-marking/series-p/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
                       alt="便携台式激光打标机"
                     />
                     <p>Series P</p>
@@ -2757,7 +2575,7 @@
                     href="https://www.senrytech.com/products/laser-marking/series-d/"
                   >
                     <img
-                      src="http://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
                       alt="台式激光打标机"
                     />
                     <p>Series D</p>
@@ -2787,14 +2605,6 @@
         <li class="sidebar-menu-item">
           <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
             新闻动态
-          </a>
-        </li>
-        <li class="sidebar-menu-item">
-          <a
-            href="https://www.senrytech.com/download/"
-            class="sidebar-menu-link"
-          >
-            资料下载
           </a>
         </li>
         <li class="sidebar-menu-item">
@@ -2976,7 +2786,11 @@
 
         <!-- 返回按钮 -->
         <div class="vs-back-wrap">
-          <a href="#guide-list" class="vs-back-btn">← 返回避坑指南列表</a>
+          <a
+            href="https://www.senrytech.com/pitfall-avoidance-guide/"
+            class="vs-back-btn"
+            >← 返回避坑指南列表</a
+          >
         </div>
       </div>
     </section>
@@ -2988,7 +2802,7 @@
         <div class="footer-brand">
           <div class="brand-logo">
             <img
-              src="http://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              src="https://senrytech.github.io/img/logo/Senrytech-logo.jpg"
               alt="Senrytech Logo"
             />
             <span class="brand-name">Senrytech</span>
@@ -2998,14 +2812,26 @@
           </p>
           <div class="social-icons">
             <!-- 修正：移除 text-white/80 等不兼容样式，改用 footer 全局配色；保留 transition 交互 -->
-            <a class="icon" href="#" title="Facebook">
+            <a
+              class="icon"
+              href="https://www.facebook.com/profile.php?id=61572514366742"
+              title="Facebook"
+            >
               <i class="fa fa-facebook text-xl"></i>
               <!-- 4.7.0 支持的默认前缀 fa -->
             </a>
-            <a class="icon" href="#" title="Instagram">
+            <a
+              class="icon"
+              href="https://www.instagram.com/senrytech/"
+              title="Instagram"
+            >
               <i class="fa fa-instagram text-xl"></i>
             </a>
-            <a class="icon" href="#" title="YouTube">
+            <a
+              class="icon"
+              href="https://www.youtube.com/@senrytech"
+              title="YouTube"
+            >
               <i class="fa fa-youtube-play text-xl"></i>
             </a>
           </div>
@@ -3015,12 +2841,30 @@
         <div class="footer-column">
           <h3>产品中心</h3>
           <ul>
-            <li><a href="#">板材切割机</a></li>
-            <li><a href="#">管材切割机</a></li>
-            <li><a href="#">板管一体机</a></li>
-            <li><a href="#">激光焊接机</a></li>
-            <li><a href="#">激光清洗机</a></li>
-            <li><a href="#">激光打标机</a></li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-cutting/"
+                >板材切割机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-tube-cutting/"
+                >管材切割机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-tube/"
+                >板管一体机</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-welding/">激光焊接机</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-cleaning/">激光清洗机</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-marking/">激光打标机</a>
+            </li>
           </ul>
         </div>
 
@@ -3029,11 +2873,17 @@
           <h3>关于我们</h3>
           <ul>
             <li><a href="https://www.senrytech.com/about-us/">公司简介</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">企业责任</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">核心团队</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">发展历程</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">员工福利</a></li>
-            <li><a href="https://www.senrytech.com/about-us/">合作案例</a></li>
+            <li><a href="https://www.senrytech.com/solutions/">选型方案</a></li>
+            <li>
+              <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
+                >避坑指南</a
+              >
+            </li>
+            <li><a href="https://www.senrytech.com/news/">新闻动态</a></li>
+            <li><a href="https://www.senrytech.com/join-us/">加入我们</a></li>
+            <li>
+              <a href="https://www.senrytech.com/contact-us/">联系我们</a>
+            </li>
           </ul>
         </div>
 
@@ -3044,7 +2894,7 @@
             <!-- 修正1：地址图标 - 4.7.0 对应图标为 fa-map-marker（无 alt 后缀），前缀改为 fa -->
             <li>
               <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-              <span>中国·济南市历城区舜华路街道综合产业工业园</span>
+              <span>中国 · 济南市历城区舜华路街道综合产业工业园</span>
             </li>
             <!-- 修正2：电话图标 - 4.7.0 对应图标为 fa-phone，前缀改为 fa -->
             <li>
@@ -3068,14 +2918,14 @@
             <div class="qrcode-group">
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  src="https://senrytech.github.io/img/qr-code/before-sales.jpg"
                   alt="售前客服咨询"
                 />
                 <p>售前客服咨询</p>
               </div>
               <div class="qrcode-item">
                 <img
-                  src="http://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  src="https://senrytech.github.io/img/qr-code/after-sales.jpg"
                   alt="微信二维码2"
                 />
                 <p>售后客户咨询</p>
@@ -3089,8 +2939,8 @@
       <div class="footer-bottom">
         <div class="bottom-left">© 2024 Senrytech. 保留所有权利</div>
         <div class="bottom-right">
-          <a href="#">隐私政策</a>
-          <a href="#">服务条款</a>
+          <a href="https://www.senrytech.com/privacy-policy/">隐私政策</a>
+          <a href="https://www.senrytech.com/service-terms">服务条款</a>
           <a href="#">网站地图</a>
         </div>
       </div>
@@ -3341,13 +3191,13 @@
 
       // 语言与首页路径的映射（需与你的实际文件路径一致）
       const langHomePathMap = {
-        zh: "/index.html", // 中文首页
-        en: "/en/index.html", // 英语首页
-        de: "/de/index.html", // 德语首页
-        es: "/es/index.html", // 西班牙语首页
-        fr: "/fr/index.html", // 法语首页
-        ru: "/ru/index.html", // 俄语首页
-        ar: "/ar/index.html", // 阿拉伯语首页
+        zh: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/cn/", // 中文首页
+        en: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/", // 英语首页
+        de: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/de/", // 德语首页
+        es: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/es/", // 西班牙语首页
+        fr: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/fr/", // 法语首页
+        ru: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/ru/", // 俄语首页
+        ar: "https://www.senrytech.com/pitfall-avoidance-guide/stabilizer/lang/sa/", // 阿拉伯语首页
       };
 
       // 匹配当前路径，给对应语言链接添加高亮样式

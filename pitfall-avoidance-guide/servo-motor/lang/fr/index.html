@@ -1,0 +1,3529 @@
+<!doctype html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="Guide d'évitement des fosses de protection de sécurité pour machine de découpe laser : porte de sécurité, capot de protection, verre de protection laser, dispositif de verrouillage,CEl'attestation,CLASS 1Les niveaux de sécurité, l'installation et la maintenance, ainsi que les dangers cachés courants, sont expliqués clairement et immédiatement pour garantir la sécurité du personnel et de l'équipement."
+      name="description"
+    />
+    <meta
+      content="Protection de sécurité de la machine de découpe laser,Verre de protection laser,couvercle de protection de porte de sécurité,Verrouillage de sécurité laser,CECertification de sécurité,CLASS1sécurité laser,Laser Senrui Senrytech"
+      name="keywords"
+    />
+    <title>
+      Guide d'évitement des fosses de protection de sécurité pour machine de
+      découpe Laser (porte de sécurité·verre de protection·CEattestation) |
+      Laser Senrui Senrytech
+    </title>
+    <link
+      rel="canonical"
+      href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/fr/"
+    />
+    <!-- 引入思源黑体字体文件 -->
+    <link
+      href="https://fonts.loli.net/css2?family=Public+Sans:wght@400;500&family=Noto+Sans+SC:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 引入Font Awesome图标库（商务图标依赖） -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <!-- 一、CSS 全局基础样式 -->
+    <style>
+      /* 1.1 全局样式重置 + 盒模型/字体统一（核心：消除浏览器默认差异） */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Public Sans", "Noto Sans SC", sans-serif;
+      }
+
+      /* 全局锁死：禁止任何横向溢出 */
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100vw; /* 永远不超过视口宽度 */
+        overflow-x: hidden; /* 隐藏所有横向溢出内容 */
+        box-sizing: border-box;
+      }
+
+      /* 所有元素继承盒模型，避免 padding/border 撑宽 */
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      /* 1.2 图标字体强制声明 */
+      .social-icons .icon i,
+      .footer-contact .contact-icon i {
+        font-family: "FontAwesome" !important;
+      }
+
+      /* 1.3 全局复用工具类：元素隐藏类 */
+      .hidden {
+        display: none !important;
+      }
+
+      /* 1.4 全局复用工具类：页面固定类（用途：弹出卡片/弹窗时使用，禁止背景滚动且保留滚动条占位） */
+      .body-fixed {
+        position: fixed; /* 固定页面位置，防止背景随滚动移动 */
+        width: 100%; /* 保持页面宽度，避免滚动条消失导致页面抖动 */
+        overflow-y: auto; /* 关键：保留右侧滚动条占位，维持页面布局稳定性 */
+      }
+
+      @media (max-width: 320px) {
+        html {
+          font-size: 12px;
+        }
+      }
+
+      @media (min-width: 321px) and (max-width: 375px) {
+        html {
+          font-size: 14px;
+        }
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+        html {
+          font-size: 15px;
+        }
+      }
+
+      @media (min-width: 426px) and (max-width: 768px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 1025px) and (max-width: 2559px) {
+        html {
+          font-size: 16px;
+        }
+      }
+
+      @media (min-width: 2560px) {
+        html {
+          font-size: 18px;
+        }
+      }
+    </style>
+
+    <style>
+      @keyframes titleFadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .title-fade-active {
+        animation: titleFadeUp 1.5s ease forwards;
+        pointer-events: none;
+        transition: none !important;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .product-main-title,
+      .submenu-content-title,
+      .content-item h3 {
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        will-change: opacity, transform;
+      }
+    </style>
+
+    <!--二、CSS 导航栏-->
+    <style>
+      .navbar {
+        position: fixed; /* 导航栏固定在屏幕上，滚动页面时它不会跑，一直停在顶部 */
+        top: 0; /* FIX三件套：导航栏紧贴屏幕最上边 */
+        left: 0; /* FIX三件套：导航栏紧贴屏幕最左边 */
+        width: 100%; /* FIX三件套：导航栏宽度占满整个屏幕 */
+        height: 2.8rem; /* 简单说就是导航栏的高度固定 */
+
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 1) 100%
+        );
+        z-index: 1000; /* 导航栏的层级很高（1000），不会被其他元素（比如图片、文字）盖住 */
+        transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1); /* 导航栏的任何样式变化（比如背景、阴影）都会有0.4秒的过渡动画，动画节奏是先慢后快再慢，更丝滑 */
+        display: flex; /* 导航栏里的元素（比如logo、菜单、按钮）用弹性布局排列 */
+        justify-content: space-between; /* 导航栏里的元素左右两端对齐（比如logo靠左，按钮靠右） */
+        align-items: center; /* 导航栏里的元素垂直方向居中（不会上下歪） */
+        gap: 2rem; /* 导航栏里的元素之间留2个基准字体大小的空隙 */
+        padding: 0 2rem; /* 导航栏内部左右各留2个基准字体大小的内边距（元素不会贴边） */
+        box-sizing: border-box; /* 计算导航栏宽度时，把内边距和边框都算进去（不会因为padding撑宽导航栏） */
+        box-shadow: 0 1px 8px rgb(245, 245, 257, 0.3); /* 导航栏底部加了一层浅阴影：水平偏移0，垂直偏移1px，模糊8px，颜色是浅透的蓝灰色，让导航栏有一点点悬浮的立体感 */
+      }
+
+      .navbar.scrolled {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 0.8) 100%
+        );
+        backdrop-filter: blur(15px) saturate(115%);
+        -webkit-backdrop-filter: blur(15px) saturate(115%);
+        box-shadow: 0 2px 12px rgba(245, 245, 257, 0.3);
+      }
+
+      .navbar .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .navbar .logo svg {
+        width: auto;
+        height: 50%;
+        object-fit: contain;
+        fill: #1b4c42;
+        transition: all 0.5s ease;
+      }
+
+      .navbar .logo:hover svg {
+        fill: #2d7d71;
+        transform: scale(1.05);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      .navbar .logo:active svg {
+        transform: scale(1.05);
+      }
+
+      .navbar a {
+        color: #1d1d1f;
+        font-size: 0.75rem;
+        font-weight: 400;
+        transition: color 0.5s ease;
+        text-decoration: none;
+      }
+
+      .navbar a:hover {
+        font-weight: 700;
+      }
+
+      .navbar .btn {
+        padding: 0.4rem 1.2rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 400;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .language-btn {
+        background-color: transparent;
+        color: #1d1d1f;
+      }
+
+      .language-btn i,
+      .inquiry-btn i {
+        font-family: "FontAwesome" !important;
+
+        font-size: 0.875rem;
+        color: #1d1d1f;
+      }
+
+      .lang-dropdown {
+        position: relative;
+        display: inline-block;
+        z-index: 1001;
+        margin-right: 0.5rem;
+      }
+
+      .lang-dropdown-list {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(248, 248, 250, 0.8) 50%,
+          rgba(245, 245, 247, 1) 100%
+        );
+        border-radius: 8px;
+        padding: 8px 0;
+        margin: 0;
+        list-style: none;
+        display: none;
+        min-width: 100px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .lang-dropdown-list .lang-link {
+        display: block;
+        padding: 8px 16px;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 0.75rem;
+        text-align: right;
+        transition: background-color 0.2s ease;
+      }
+
+      .lang-dropdown-list .lang-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .lang-dropdown-list .lang-link.active {
+        color: #1b4c42;
+        font-weight: 500;
+      }
+
+      .nav-item {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+
+      .dropdown-menu {
+        position: fixed;
+        top: 2.8rem;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100vw;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(248, 248, 250, 1) 50%,
+          rgba(245, 245, 247, 1) 100%
+        );
+        box-shadow: 0 1px 3px rgba(29, 29, 31, 0.5);
+        z-index: 1001;
+        border-radius: 0;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
+
+        transition:
+          max-height 0.3s ease,
+          opacity 0.3s ease,
+          padding 0.3s ease;
+      }
+
+      .nav-item:hover .dropdown-menu {
+        max-height: 55rem;
+        opacity: 1;
+        padding: 2.4rem 0;
+        display: block;
+      }
+
+      .dropdown-inner {
+        display: flex;
+        width: 100%;
+        max-width: 100rem;
+        margin: 0 auto;
+        padding: 0 4rem;
+        gap: 5rem;
+      }
+
+      .dropdown-category {
+        width: 15rem;
+        flex-shrink: 0;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+      }
+
+      .category-item {
+        padding: 1rem 1.6rem;
+        border-radius: 10rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        position: relative;
+      }
+
+      .category-item:hover,
+      .category-item.active {
+        background-color: rgba(0, 0, 0, 0.08);
+        font-weight: 500;
+      }
+
+      .navbar .dropdown-category .category-item a {
+        color: #1d1d1f;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        transition: none;
+        position: relative;
+        z-index: 1;
+      }
+
+      .navbar .dropdown-category .category-item:hover a,
+      .navbar .dropdown-category .category-item.active a {
+        color: #1d1d1f !important;
+      }
+
+      .dropdown-content {
+        flex: 1;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding-right: 1rem;
+      }
+
+      .content-item h3 {
+        font-size: 1rem;
+        color: #1d1d1f;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .product-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.4rem;
+        padding-bottom: 1rem;
+      }
+
+      .product-card {
+        width: calc((100% - 7.2rem) / 4);
+        text-align: center;
+        transition: transform 0.2s ease;
+        padding: 0.2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        margin-bottom: 0.8rem;
+        border-radius: 1.5rem;
+        background: #f0f0f0;
+        box-shadow:
+          0 4px 12px rgba(0, 0, 0, 0.1),
+          0 2px 4px rgba(0, 0, 0, 0.08);
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .product-card:hover img {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card p {
+        font-size: 0.9rem;
+        color: #1d1d1f;
+        line-height: 1.5;
+        padding: 0 0.5rem;
+      }
+
+      .content-item {
+        display: none;
+        height: 100%;
+      }
+
+      .content-item.active {
+        display: block;
+      }
+
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 10rem;
+        flex-shrink: 0;
+      }
+
+      /* 修正汉堡按钮样式 - 补全缺失的样式规则 */
+      .hamburger-btn {
+        padding: 0.4rem 1.2rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: none; /* 默认隐藏，仅移动端显示 */
+        align-items: center;
+        justify-content: center;
+        color: #1d1d1f !important;
+        transition: color 0.2s ease;
+      }
+
+      .hamburger-btn:hover {
+        color: #1b4c42 !important;
+      }
+
+      .hamburger-btn i {
+        font-family: "FontAwesome" !important;
+        font-size: 0.875rem;
+        color: inherit; /* 继承按钮颜色 */
+      }
+
+      .sidebar-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
+      }
+
+      .sidebar-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .sidebar-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #f8f8fa 50%,
+          #f5f5f7 100%
+        );
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        overflow-y: auto;
+        padding-top: 6rem;
+        box-sizing: border-box;
+      }
+
+      .sidebar-menu.active {
+        transform: translateX(0);
+      }
+
+      .sidebar-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 45px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .sidebar-logo {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #1d1d1f;
+      }
+
+      .sidebar-close-btn {
+        background: transparent;
+        border: none;
+        color: #1d1d1f;
+        font-size: 2rem;
+        cursor: pointer;
+      }
+
+      .sidebar-menu-list {
+        list-style: none;
+        padding: 0 2rem;
+        margin: 0;
+      }
+
+      .sidebar-menu-item {
+        margin-bottom: 0.4rem;
+      }
+
+      .sidebar-menu-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 1.6rem;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 1rem;
+        transition: background-color 0.2s ease;
+      }
+
+      .sidebar-menu-link:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .sidebar-arrow {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .sidebar-menu-item.has-submenu.active .sidebar-arrow {
+        transform: rotate(180deg);
+      }
+
+      .sidebar-submenu {
+        list-style: none;
+        padding: 0 1.6rem;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .sidebar-menu-item.has-submenu.active .sidebar-submenu {
+        max-height: 500px;
+        padding: 0.8rem 1.6rem 1.6rem;
+      }
+
+      .sidebar-submenu-item {
+        margin-bottom: 0.4rem;
+      }
+
+      .sidebar-submenu-link {
+        display: block;
+        padding: 1.2rem 1.6rem;
+        color: #1d1d1f;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 0.8rem;
+        transition: background-color 0.2s ease;
+        position: relative;
+        padding-right: 2.4rem;
+      }
+
+      .sidebar-submenu-link::after {
+        content: "→";
+        position: absolute;
+        right: 1.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: #1d1d1f;
+        opacity: 0.7;
+      }
+
+      .sidebar-submenu-link:hover,
+      .sidebar-submenu-item.active .sidebar-submenu-link {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #1d1d1f;
+      }
+
+      .sidebar-submenu-content {
+        padding: 0 1.6rem 1.6rem;
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .sidebar-menu-item.has-submenu.active
+        .sidebar-submenu-item.active
+        ~ .sidebar-submenu-content {
+        display: block;
+        max-height: calc(100vh - 20rem);
+      }
+
+      .submenu-content-title {
+        font-size: 1.6rem;
+        color: #1d1d1f;
+        margin: 0 0 1.6rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .submenu-product-card {
+        transition: transform 0.2s ease;
+      }
+
+      .submenu-product-card:hover {
+        transform: translateY(-0.3rem);
+      }
+
+      .submenu-product-card img {
+        width: 100%;
+        height: 8rem;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        background-color: #f0f0f0;
+        margin-bottom: 0.8rem;
+      }
+
+      .submenu-product-card p {
+        font-size: 0.8rem;
+        color: #1d1d1f;
+        margin: 0;
+      }
+
+      .submenu-content-item {
+        display: none;
+      }
+
+      .submenu-content-item.active {
+        display: block;
+      }
+
+      @media (min-width: 1024px) {
+        .hamburger-btn,
+        .sidebar-menu,
+        .sidebar-overlay {
+          display: none !important;
+        }
+
+        .navbar {
+          justify-content: center;
+          gap: 2rem;
+          padding: 0 2rem;
+        }
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 769px) and (max-width: 1023px) {
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none;
+        }
+        .hamburger-btn {
+          display: block !important;
+        }
+
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          gap: 0;
+          padding: 0 1rem;
+        }
+
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-menu {
+          width: 100%;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(80vh - 1rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important;
+          overflow-y: hidden;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar .nav-link,
+        .navbar .dropdown-menu {
+          display: none;
+        }
+        .hamburger-btn {
+          display: block !important;
+        }
+
+        .navbar {
+          justify-content: space-between;
+          align-items: center;
+          gap: 0;
+          padding: 0 1rem;
+        }
+
+        .navbar-right {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        .navbar .btn {
+          padding: 0.3rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-menu {
+          width: 80%;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(80vh - 1rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important;
+          overflow-y: hidden;
+        }
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(80vh - 1rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 1rem) !important;
+          overflow-y: hidden;
+        }
+
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          display: flex !important;
+          flex-wrap: wrap !important;
+          gap: 1rem !important;
+          padding: 0 !important;
+          width: 100% !important;
+        }
+
+        .sidebar-menu.active
+          .sidebar-submenu-content
+          .submenu-product-list
+          .submenu-product-card {
+          width: calc((100% - 1rem) / 2) !important;
+          min-width: 50px !important;
+          flex-shrink: 0 !important;
+          box-sizing: border-box !important;
+        }
+
+        .sidebar-menu.active .sidebar-submenu-content .submenu-product-list {
+          max-height: calc(100vh - 25rem) !important;
+          overflow-y: auto !important;
+          padding-right: 1rem !important;
+          gap: 1rem;
+        }
+
+        .productSubmenuContent img {
+          height: 100px !important;
+          width: 100% !important;
+          object-fit: contain !important;
+          background-color: #f0f0f0 !important;
+          border-radius: 0.8rem !important;
+        }
+
+        .sidebar-submenu-content {
+          max-height: calc(100vh - 20rem) !important;
+          overflow-y: hidden;
+        }
+
+        .sidebar-menu {
+          width: 85%;
+        }
+
+        .sidebar-menu-link {
+          padding: 1rem 1rem;
+          font-size: 0.8rem;
+        }
+
+        .sidebar-submenu-link {
+          padding: 0.6rem 0.8rem;
+          font-size: 0.8rem;
+        }
+
+        .submenu-content-title {
+          font-size: 1rem;
+        }
+      }
+    </style>
+
+    <style>
+      .pv-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .pv-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .pv-title h1 {
+        font-size: 26px;
+        color: #222;
+        margin-bottom: 10px;
+        line-height: 1.4;
+      }
+      .pv-title p {
+        font-size: 16px;
+        color: #666;
+        line-height: 1.6;
+      }
+      .pv-block {
+        margin-bottom: 40px;
+      }
+      .pv-block h2 {
+        font-size: 22px;
+        color: #0066cc;
+        margin-bottom: 20px;
+        padding-left: 10px;
+        border-left: 4px solid #0066cc;
+      }
+      .pv-item {
+        margin-bottom: 22px;
+      }
+      .pv-item h3 {
+        font-size: 18px;
+        color: #222;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      .pv-item p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.8;
+        margin: 0;
+      }
+      .pv-item strong {
+        color: #0066cc;
+        font-weight: bold;
+      }
+      .pv-summary {
+        background: #e6f7ff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        border-left: 4px solid #0066cc;
+        margin-bottom: 30px;
+      }
+      .pv-summary h2 {
+        font-size: 20px;
+        color: #0056b3;
+        margin-bottom: 15px;
+      }
+      .pv-summary p {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.8;
+        margin-bottom: 6px;
+      }
+      .pv-back-wrap {
+        text-align: leftx;
+        margin-top: 20px;
+      }
+      .pv-back-btn {
+        display: inline-block;
+        background: #0066cc;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      .pv-back-btn:hover {
+        background: #0056b3;
+      }
+
+      /* 0-320 */
+      @media (min-width: 0) and (max-width: 320px) {
+        .pv-title h1 {
+          font-size: 20px;
+        }
+        .pv-block h2 {
+          font-size: 19px;
+        }
+        .pv-item h3 {
+          font-size: 16px;
+        }
+        .pv-item p {
+          font-size: 14px;
+        }
+        .pv-summary {
+          padding: 20px;
+        }
+        .pv-back-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+      }
+      /* 321-375 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .pv-title h1 {
+          font-size: 21px;
+        }
+        .pv-block h2 {
+          font-size: 20px;
+        }
+        .pv-item p {
+          font-size: 14px;
+        }
+      }
+      /* 376-425 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .pv-title h1 {
+          font-size: 22px;
+        }
+      }
+      /* 426-768 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .laser-proportional-valve-guide {
+          padding: 25px 20px;
+        }
+      }
+      /* 769-1024 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .laser-proportional-valve-guide {
+          padding: 35px 25px;
+        }
+      }
+      /* 1025-1440 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .laser-proportional-valve-guide {
+          padding: 40px 30px;
+        }
+      }
+      /* 1441-2560 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .laser-proportional-valve-guide {
+          padding: 45px 40px;
+        }
+        .pv-title h1 {
+          font-size: 28px;
+        }
+        .pv-block h2 {
+          font-size: 24px;
+        }
+        .pv-item h3 {
+          font-size: 19px;
+        }
+        .pv-item p {
+          font-size: 16px;
+          line-height: 1.85;
+        }
+        .pv-summary h2 {
+          font-size: 22px;
+        }
+        .pv-summary p {
+          font-size: 16px;
+        }
+        .pv-back-btn {
+          padding: 14px 32px;
+          font-size: 17px;
+        }
+      }
+      /* >2561 */
+      @media (min-width: 2561px) {
+        .laser-proportional-valve-guide {
+          padding: 50px;
+        }
+        .pv-container {
+          max-width: 1600px;
+        }
+        .pv-title h1 {
+          font-size: 32px;
+        }
+        .pv-block h2 {
+          font-size: 26px;
+        }
+        .pv-item h3 {
+          font-size: 21px;
+        }
+        .pv-item p {
+          font-size: 18px;
+          line-height: 1.9;
+        }
+        .pv-summary {
+          padding: 35px 40px;
+        }
+        .pv-summary h2 {
+          font-size: 24px;
+        }
+        .pv-summary p {
+          font-size: 17px;
+        }
+        .pv-back-btn {
+          padding: 16px 36px;
+          font-size: 18px;
+        }
+      }
+    </style>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* 主板块 - 与伺服模板完全统一 */
+      .server-guide {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 4rem 2rem;
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* 标题样式 */
+      .server-guide h2 {
+        text-align: center;
+        color: #111;
+        font-size: 22px;
+        margin-bottom: 8px;
+        border-left: 6px solid #0066cc;
+        padding-left: 12px;
+      }
+
+      .server-guide .tips {
+        text-align: center;
+        color: #666;
+        margin-bottom: 24px;
+        font-size: 13px;
+      }
+
+      /* ========== 表格独立滚动容器（核心：页面无横向滚动） ========== */
+      .table-scroll-container {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f5f5f5;
+        margin-bottom: 30px;
+        border-radius: 8px;
+      }
+
+      /* 自定义滚动条美化 */
+      .table-scroll-container::-webkit-scrollbar {
+        height: 6px;
+      }
+      .table-scroll-container::-webkit-scrollbar-track {
+        background: #f5f5f5;
+        border-radius: 3px;
+      }
+      .table-scroll-container::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+      }
+      .table-scroll-container::-webkit-scrollbar-thumb:hover {
+        background: #999;
+      }
+
+      /* 星级表格样式 */
+      .star-table {
+        width: 100%;
+        min-width: 600px;
+        border-collapse: collapse;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      }
+
+      .star-table th {
+        background: #0066cc;
+        color: #fff;
+        padding: 10px 8px;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .star-table td {
+        padding: 10px 8px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .star-table tr:hover {
+        background: #f7fafe;
+      }
+
+      /* 星级样式 */
+      .star {
+        color: #ff9900;
+        font-size: 15px;
+      }
+
+      /* 验机步骤 */
+      .check-step {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      }
+
+      .check-step h3 {
+        color: #c0392b;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .check-step li {
+        margin: 8px 0;
+        font-size: 14px;
+        position: relative;
+        padding-left: 24px;
+        list-style: none;
+      }
+
+      .check-step li::before {
+        content: "✅";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      /* 套路警示 */
+      .warning {
+        background: #fff5f5;
+        border-left: 6px solid #e74c3c;
+        padding: 16px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #c0392b;
+        line-height: 1.6;
+      }
+
+      /* 动画 */
+      .fadeIn {
+        animation: fadeIn 0.6s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==================== 你指定的8档精准媒体适配 ==================== */
+      /* 1. 0-320px 超小手机 */
+      @media (max-width: 320px) {
+        .server-guide {
+          margin: 16px auto;
+          padding: 25px 12px;
+        }
+        .server-guide h2 {
+          font-size: 16px;
+          padding-left: 8px;
+          border-left-width: 4px;
+        }
+        .server-guide .tips {
+          font-size: 11px;
+        }
+        .star-table th {
+          padding: 6px 4px;
+          font-size: 11px;
+        }
+        .star-table td {
+          padding: 6px 4px;
+          font-size: 10px;
+        }
+        .star {
+          font-size: 13px;
+        }
+        .check-step {
+          padding: 12px;
+        }
+        .check-step h3 {
+          font-size: 14px;
+        }
+        .check-step li {
+          font-size: 12px;
+        }
+        .warning {
+          font-size: 11px;
+          padding: 10px;
+        }
+      }
+
+      /* 2. 321-375px 小屏手机 */
+      @media (min-width: 321px) and (max-width: 375px) {
+        .server-guide {
+          margin: 18px auto;
+          padding: 50px 14px;
+        }
+        .server-guide h2 {
+          font-size: 17px;
+        }
+        .star-table th {
+          padding: 7px 5px;
+          font-size: 11px;
+        }
+        .star-table td {
+          padding: 7px 5px;
+          font-size: 10px;
+        }
+        .check-step h3 {
+          font-size: 15px;
+        }
+      }
+
+      /* 3. 376-425px 大屏手机 */
+      @media (min-width: 376px) and (max-width: 425px) {
+        .server-guide {
+          margin: 20px auto;
+        }
+        .server-guide h2 {
+          font-size: 18px;
+        }
+        .star-table th {
+          padding: 8px 6px;
+          font-size: 12px;
+        }
+        .star-table td {
+          padding: 8px 6px;
+          font-size: 11px;
+        }
+      }
+
+      /* 4. 426-768px 平板 */
+      @media (min-width: 426px) and (max-width: 768px) {
+        .server-guide h2 {
+          font-size: 19px;
+        }
+        .check-step h3 {
+          font-size: 16px;
+        }
+      }
+
+      /* 5. 769-1024px 笔记本 */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .server-guide {
+          max-width: 900px;
+        }
+      }
+
+      /* 6. 1025-1440px 桌面屏 */
+      @media (min-width: 1025px) and (max-width: 1440px) {
+        .server-guide {
+          max-width: 1000px;
+        }
+      }
+
+      /* 7. 1441-2560px 2K屏 */
+      @media (min-width: 1441px) and (max-width: 2560px) {
+        .server-guide {
+          max-width: 1100px;
+          margin: 45px auto;
+        }
+        .server-guide h2 {
+          font-size: 24px;
+        }
+        .star-table th {
+          padding: 12px 10px;
+          font-size: 15px;
+        }
+        .star-table td {
+          padding: 12px 10px;
+          font-size: 14px;
+        }
+      }
+
+      /* 8. >2561px 4K/超高清屏 */
+      @media (min-width: 2561px) {
+        .server-guide {
+          max-width: 1200px;
+          margin: 50px auto;
+        }
+        .server-guide h2 {
+          font-size: 26px;
+        }
+        .star-table th {
+          padding: 14px 12px;
+          font-size: 16px;
+        }
+        .star-table td {
+          padding: 14px 12px;
+          font-size: 15px;
+        }
+      }
+    </style>
+
+    <!--十一、CSS 底部导航栏 -->
+    <style>
+      .footer-new {
+        background-color: #1d1d1f;
+        color: #f5f5f7;
+        padding: 15rem 1rem;
+        font-size: 12px;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 30px;
+      }
+
+      .footer-brand {
+        flex: 1;
+        min-width: 220px;
+      }
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .brand-logo img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+      }
+      .brand-name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .brand-desc {
+        color: #d1d1d6;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .social-icons {
+        display: flex;
+        gap: 12px;
+      }
+      .social-icons .icon {
+        color: #d1d1d6;
+        text-decoration: none;
+        font-size: 16px;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+      }
+
+      .social-icons .icon:hover {
+        color: #d1d1d6;
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 150px;
+      }
+      .footer-column h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 16px;
+        color: #d1d1d6;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-column li {
+        margin-bottom: 10px;
+      }
+      .footer-column a {
+        color: #d1d1d6;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .footer-column a:hover {
+        color: #1b4c42;
+        transform: translateX(3px);
+      }
+
+      .footer-contact .contact-list {
+        margin-bottom: 20px;
+      }
+      .footer-contact .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 10px;
+        color: #d1d1d6;
+      }
+      .footer-contact .contact-icon {
+        width: 18px;
+        text-align: center;
+        color: #d1d1d6;
+        font-size: 14px;
+      }
+      .footer-contact .contact-icon i {
+        vertical-align: middle;
+      }
+      .wechat-qrcode h4 {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 12px;
+        color: #d1d1d6;
+      }
+      .qrcode-group {
+        display: flex;
+        gap: 16px;
+      }
+      .qrcode-item {
+        text-align: center;
+      }
+      .qrcode-item img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin-bottom: 6px;
+        border: 1px solid #444;
+      }
+      .qrcode-item p {
+        color: #d1d1d6;
+        font-size: 12px;
+        margin: 0;
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 30px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #444;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 12px;
+        color: #d1d1d6;
+      }
+      .footer-bottom .bottom-right a {
+        color: #d1d1d6;
+        text-decoration: none;
+        margin: 0 8px;
+      }
+      .footer-bottom .bottom-right a:hover {
+        color: #d1d1d6;
+      }
+
+      @media (max-width: 320px) {
+      }
+
+      @media (min-width: 321px) and (max-width: 375px) {
+      }
+
+      @media (min-width: 376px) and (max-width: 425px) {
+      }
+
+      @media (min-width: 426px) and (max-width: 768px) {
+      }
+
+      @media (min-width: 769px) and (max-width: 1024px) {
+      }
+
+      @media (min-width: 1025px) and (max-width: 2559px) {
+      }
+
+      @media (min-width: 2560px) {
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- deux，code Barre de navigation -->
+    <nav class="navbar">
+      <div class="logo">
+        <svg
+          version="1.1"
+          xmlns="https://www.w3.org/2000/svg"
+          width="144"
+          height="39"
+          viewBox="0 0 2305 629"
+        >
+          <path
+            d="M0 0 C18.48 0 36.96 0 56 0 C56.33 70.95 56.66 141.9 57 215 C60.63 210.71 64.26 206.42 68 202 C91.55298775 175.16054885 119.972833 158.74273619 156 156 C186.11221555 154.44573394 215.70468564 157.84192595 239.62890625 177.78515625 C257.47745526 194.4575241 268.09072161 218.88240199 269.0918504 243.23420048 C269.12508335 245.695924 269.12855615 248.15586213 269.12025452 250.61779785 C269.12110894 251.55568319 269.12196337 252.49356853 269.12284368 253.45987463 C269.12448384 256.58589972 269.11900117 259.71187052 269.11352539 262.83789062 C269.11324318 265.08534748 269.11340192 267.33280443 269.1139679 269.58026123 C269.11425453 275.67051045 269.10837931 281.76073993 269.10139394 287.85098457 C269.09513824 294.21978785 269.09455484 300.58859159 269.09336853 306.95739746 C269.09061463 317.64347718 269.08437047 328.32954912 269.07543945 339.015625 C269.0662524 350.01953088 269.05917789 361.0234348 269.05493164 372.02734375 C269.05466892 372.70627695 269.05440619 373.38521016 269.05413551 374.08471709 C269.05283042 377.49092025 269.05156672 380.89712343 269.05032361 384.30332661 C269.03996656 412.53555723 269.02153665 440.76777557 269 469 C250.52 469 232.04 469 213 469 C212.9906543 462.70244629 212.98130859 456.40489258 212.97167969 449.91650391 C212.93786796 429.07749929 212.88249487 408.23859279 212.81609726 387.39966774 C212.77637575 374.76872179 212.74394832 362.13783752 212.72900391 349.50683594 C212.71595163 338.49100184 212.68889603 327.47530386 212.64538693 316.45954645 C212.62285243 310.6328179 212.6070845 304.80625673 212.60811615 298.97948074 C212.60886751 293.48171329 212.59072709 287.98431473 212.55883217 282.48664284 C212.55039678 280.4817492 212.5485393 278.47681388 212.55419731 276.47191048 C212.60916704 253.97624644 209.23982585 232.92821924 193 216 C180.52594118 204.58434617 165.45168018 201.18001691 149.0078125 201.65625 C131.41076112 202.5911977 116.40016948 211.05750352 103 222 C102.24847656 222.60972656 101.49695312 223.21945312 100.72265625 223.84765625 C95.98570211 227.83906291 91.90947168 232.20310223 88 237 C86.82244141 238.43859375 86.82244141 238.43859375 85.62109375 239.90625 C70.57569384 258.646299 61.62198074 280.25590407 58 304 C57.83193848 305.05184982 57.66387695 306.10369965 57.49072266 307.18742371 C56.66934543 313.86425258 56.82114017 320.60363954 56.79467773 327.3203125 C56.78508613 328.86827346 56.77507532 330.41623186 56.76467896 331.96418762 C56.73776267 336.14744838 56.71668167 340.33072026 56.69667697 344.51401901 C56.67473502 348.89291129 56.64738668 353.27176979 56.62062073 357.65063477 C56.57080443 365.93414456 56.52582478 374.21767323 56.48259836 382.50121975 C56.43313115 391.93534724 56.37824834 401.36944082 56.32291877 410.80353546 C56.20926865 430.20232683 56.10310778 449.60114954 56 469 C37.52 469 19.04 469 0 469 C-0.33 454.81 -0.66 440.62 -1 426 C-3.31 428.64 -5.62 431.28 -8 434 C-35.75245451 459.97562053 -72.45003302 471.21685919 -109.875 471.25 C-110.56185883 471.25067474 -111.24871765 471.25134949 -111.95639038 471.25204468 C-123.20639894 471.23454346 -134.01504768 470.54810766 -145 468 C-145.73927734 467.83371094 -146.47855469 467.66742188 -147.24023438 467.49609375 C-171.25961763 461.92936973 -191.73621063 450.35779286 -210 434 C-211.32451172 432.87464844 -211.32451172 432.87464844 -212.67578125 431.7265625 C-219.25465236 426.05829719 -224.60565317 419.77605673 -230 413 C-230.75539063 412.05640625 -231.51078125 411.1128125 -232.2890625 410.140625 C-232.85367187 409.43421875 -233.41828125 408.7278125 -234 408 C-234.4125 408.67804688 -234.825 409.35609375 -235.25 410.0546875 C-254.59927081 441.23811054 -283.79446645 461.57234611 -319.24707031 470.5703125 C-323.47274839 471.55859174 -327.70824262 472.36309537 -332 473 C-332.62092529 473.0928125 -333.24185059 473.185625 -333.8815918 473.28125 C-373.83471499 478.52530226 -416.58178866 470.39529617 -448.9453125 445.7578125 C-450.61406546 444.42962137 -452.27239127 443.08808506 -453.9140625 441.7265625 C-455.89276641 440.08875889 -457.94512563 438.54115578 -460 437 C-460.33 446.24 -460.66 455.48 -461 465 C-472.31776652 469.03640624 -483.33578772 472.53703249 -495.125 474.875 C-496.65048462 475.17893677 -496.65048462 475.17893677 -498.20678711 475.48901367 C-522.00692175 479.99394889 -551.44596635 481.25388484 -575 475 C-575.73444336 474.80664062 -576.46888672 474.61328125 -577.22558594 474.4140625 C-594.64034626 469.6181574 -609.9989503 461.58237183 -623 449 C-623.90492187 448.12472656 -624.80984375 447.24945313 -625.7421875 446.34765625 C-647.15870397 424.18253814 -651.18294082 394.51229339 -651.11352539 364.9621582 C-651.11324282 363.26597597 -651.11340261 361.56979361 -651.1139679 359.87361145 C-651.11425315 355.30001766 -651.10840057 350.72645044 -651.10139394 346.15286279 C-651.09511494 341.36160942 -651.09455302 336.57035535 -651.09336853 331.77909851 C-651.09026857 322.72005457 -651.08207327 313.6610228 -651.07201904 304.6019842 C-651.05871892 292.35069102 -651.05334721 280.09939448 -651.04751682 267.84809589 C-651.03813241 248.56538816 -651.01820459 229.28270609 -651 210 C-676.41 210 -701.82 210 -728 210 C-729.485 214.95 -729.485 214.95 -731 220 C-731.61684051 221.78647321 -732.25287704 223.56665872 -732.92260742 225.33398438 C-733.2717923 226.26044266 -733.62097717 227.18690094 -733.98074341 228.14143372 C-734.35190277 229.11569809 -734.72306213 230.08996246 -735.10546875 231.09375 C-735.50144257 232.14128952 -735.89741638 233.18882904 -736.3053894 234.26811218 C-737.59610171 237.68001103 -738.89171897 241.09002331 -740.1875 244.5 C-741.09522706 246.89614314 -742.00269464 249.29238458 -742.90991211 251.6887207 C-745.60148141 258.79443141 -748.29967275 265.89761356 -751 273 C-751.37459351 273.98546814 -751.74918701 274.97093628 -752.13513184 275.98626709 C-755.73497366 285.4554342 -759.34202174 294.92184122 -762.953125 304.38671875 C-767.41704068 316.08704566 -771.86521385 327.7933441 -776.3125 339.5 C-777.11596557 341.61482794 -777.91943237 343.72965541 -778.72290039 345.84448242 C-780.34088785 350.10332721 -781.9587929 354.3622033 -783.57666016 358.62109375 C-786.3665321 365.96503167 -789.1570611 373.30871986 -791.94779968 380.65232849 C-793.91916129 385.83981363 -795.89034751 391.02736523 -797.86108398 396.21508789 C-801.47627504 405.73110405 -805.09303454 415.24651268 -808.71629333 424.75946045 C-817.06922912 446.69056343 -825.40364029 468.6266524 -833.53659058 490.64045715 C-834.45379201 493.12218251 -835.37335069 495.60303376 -836.29248047 498.08404541 C-837.0484789 500.13128028 -837.79854609 502.18064434 -838.54882812 504.22998047 C-843.57555364 517.89328998 -849.33801133 529.94086022 -859 541 C-859.54011719 541.68320312 -860.08023437 542.36640625 -860.63671875 543.0703125 C-873.11332603 558.47726096 -892.42186564 566.62772602 -911.80102539 568.82348633 C-931.85725161 570.43341767 -954.63163004 570.18418498 -973 561 C-973 542.52 -973 524.04 -973 505 C-964 508 -964 508 -960.2265625 509.31640625 C-942.26770852 515.52993599 -921.38106704 518.93372875 -903.5 510.3125 C-896.44149699 503.78338472 -892.58246687 495.84076559 -889 487 C-888.70863159 486.33956192 -888.41726318 485.67912384 -888.11706543 484.99867249 C-885.68169209 478.87806587 -886.09425367 475.35877212 -888.57421875 469.3671875 C-888.88420303 468.55445374 -889.19418732 467.74171997 -889.51356506 466.90435791 C-890.54563577 464.21704662 -891.61639872 461.54696729 -892.6875 458.875 C-893.43075328 456.96051612 -894.17125734 455.04496293 -894.90917969 453.12841797 C-896.46392229 449.10259599 -898.03399285 445.08326856 -899.61669922 441.06835938 C-901.90699909 435.25193869 -904.15113486 429.41874127 -906.37890625 423.578125 C-906.73707428 422.63943069 -907.09524231 421.70073639 -907.46426392 420.7335968 C-908.19187195 418.82654794 -908.91940056 416.91946876 -909.64685059 415.01235962 C-911.14213816 411.098626 -912.64545191 407.18799347 -914.14834595 403.2771759 C-919.46622042 389.43454994 -924.71000671 375.5644703 -929.9375 361.6875 C-937.15400062 342.53339597 -944.40030455 323.39098642 -951.67724609 304.25976562 C-952.45802059 302.20703611 -953.23878217 300.15430168 -954.01953125 298.1015625 C-954.41150696 297.07101746 -954.80348267 296.04047241 -955.20733643 294.97869873 C-958.48066943 286.37058317 -961.74704896 277.75984117 -965.01171875 269.1484375 C-965.52178858 267.80309513 -966.03185938 266.45775313 -966.54193115 265.1124115 C-968.78090586 259.20678471 -971.01955628 253.3010354 -973.25732327 247.39495087 C-974.39126688 244.40249687 -975.52576864 241.41025446 -976.66015625 238.41796875 C-977.07069748 237.33393768 -977.48123871 236.24990662 -977.90422058 235.13302612 C-978.47382256 233.63088058 -978.47382256 233.63088058 -979.05493164 232.09838867 C-979.38401016 231.2299382 -979.71308868 230.36148773 -980.05213928 229.46672058 C-980.70996307 227.7547945 -981.40242182 226.05593505 -982.12156677 224.36885071 C-983 222 -983 222 -983 219 C-1019.18640828 215.48797424 -1051.95679293 219.51217431 -1081 243 C-1082.20462891 243.97259766 -1082.20462891 243.97259766 -1083.43359375 244.96484375 C-1089.41222811 250.03165866 -1094.21060762 255.81960149 -1099 262 C-1099.73089844 262.91523438 -1100.46179687 263.83046875 -1101.21484375 264.7734375 C-1106.48107177 271.52975815 -1111.09961361 278.54932638 -1115.23332214 286.04966736 C-1116.58634884 288.50155972 -1117.95374018 290.92497705 -1119.42366982 293.30887032 C-1130.36767486 311.07091168 -1130.56411711 327.88597686 -1130.31726241 348.03492808 C-1130.27600649 352.37373066 -1130.29822755 356.71225481 -1130.31306458 361.05116272 C-1130.33171451 369.22843866 -1130.29514658 377.4044491 -1130.23759204 385.58150536 C-1130.16292157 396.65850011 -1130.17587317 407.73539428 -1130.18332005 418.81258106 C-1130.19275547 436.20914413 -1130.08713683 453.60303114 -1130 471 C-1160.69 471 -1191.38 471 -1223 471 C-1223.04898438 456.44777344 -1223.09796875 441.89554687 -1223.1484375 426.90234375 C-1223.18383001 417.67382224 -1223.21971388 408.44530695 -1223.2578125 399.21679688 C-1223.31817013 384.57447742 -1223.37654303 369.93216964 -1223.421875 355.28979492 C-1223.45490337 344.62451087 -1223.49479391 333.95927786 -1223.54279006 323.29405028 C-1223.56794756 317.65134233 -1223.58976013 312.00866778 -1223.60334396 306.36591911 C-1223.61626243 301.04472295 -1223.63842036 295.72364195 -1223.66738319 290.40250969 C-1223.67638305 288.45924126 -1223.68213123 286.51595432 -1223.68421364 284.57266617 C-1223.71387551 261.07744614 -1225.79033039 237.11193869 -1242.73828125 219.06640625 C-1254.4436652 208.37184993 -1269.48956488 203.43778029 -1285.19140625 203.81640625 C-1304.49372807 205.07817138 -1320.46402769 213.63578586 -1335 226 C-1335.68707031 226.55300781 -1336.37414063 227.10601562 -1337.08203125 227.67578125 C-1342.87210465 232.46087149 -1347.41551528 238.07568348 -1352 244 C-1353.00546875 245.26457031 -1353.00546875 245.26457031 -1354.03125 246.5546875 C-1373.74071245 272.2864857 -1380.07426071 303.19832635 -1380.20532227 334.99658203 C-1380.21492026 336.4857255 -1380.22493141 337.97486636 -1380.23532104 339.46400452 C-1380.26216827 343.47773028 -1380.28328602 347.49146757 -1380.30332303 351.50523233 C-1380.3253083 355.71061159 -1380.35263517 359.91595617 -1380.37937927 364.12130737 C-1380.42913765 372.07183996 -1380.47413845 380.02239197 -1380.51740164 387.97296226 C-1380.56691879 397.02987667 -1380.62178286 406.08675627 -1380.67708123 415.14363694 C-1380.79064227 433.76239364 -1380.8968312 452.38118261 -1381 471 C-1399.48 471 -1417.96 471 -1437 471 C-1437.33 454.17 -1437.66 437.34 -1438 420 C-1441.3 424.29 -1444.6 428.58 -1448 433 C-1449.99678588 435.28722747 -1451.91557589 437.44496568 -1454.0625 439.5625 C-1454.59649414 440.09004883 -1455.13048828 440.61759766 -1455.68066406 441.16113281 C-1476.14707308 460.74124719 -1503.131316 472.86423639 -1531 477 C-1531.62092529 477.0928125 -1532.24185059 477.185625 -1532.8815918 477.28125 C-1540.32808851 478.25864087 -1547.81327947 478.24258787 -1555.3125 478.25 C-1556.02042694 478.25100708 -1556.72835388 478.25201416 -1557.45773315 478.25305176 C-1569.18279489 478.24180327 -1580.52220022 477.51571892 -1592 475 C-1593.00039307 474.7831958 -1593.00039307 474.7831958 -1594.02099609 474.56201172 C-1631.17745485 466.20111407 -1662.43731035 444.05508306 -1683.06640625 412.08984375 C-1685 409 -1685 409 -1686 407 C-1686.59425781 408.13695312 -1687.18851563 409.27390625 -1687.80078125 410.4453125 C-1704.52921215 441.85512015 -1730.37052549 464.85397473 -1764.68554688 475.328125 C-1768.93488146 476.56168711 -1773.20442847 477.68911206 -1777.5 478.75 C-1778.68964355 479.04825684 -1778.68964355 479.04825684 -1779.90332031 479.35253906 C-1793.99763854 482.64064932 -1808.27113436 483.38304435 -1822.6875 483.3125 C-1823.85863846 483.30976578 -1823.85863846 483.30976578 -1825.05343628 483.30697632 C-1860.14962521 483.16971591 -1895.85615034 475.58769025 -1923 452 C-1923.80824219 451.32453125 -1924.61648438 450.6490625 -1925.44921875 449.953125 C-1953.32371295 425.97318336 -1966.0081274 392.90247122 -1969 357 C-1969 347.76 -1969 338.52 -1969 329 C-1947.88 329 -1926.76 329 -1905 329 C-1904.67 337.58 -1904.34 346.16 -1904 355 C-1901.27359757 377.0982092 -1894.69853122 396.30448856 -1877 411 C-1855.36627516 427.62496316 -1830.66371072 431.60942241 -1804 428.49609375 C-1786.65446578 425.9881677 -1769.2788958 418.80797913 -1758 405 C-1744.58940648 386.84643194 -1738.24875487 366.65579301 -1740 344 C-1743.37017384 322.29779776 -1757.6691021 304.68535431 -1775 292 C-1797.55264242 275.73160121 -1822.16530662 264.13734738 -1848 254.0625 C-1873.83121784 243.96071473 -1898.86677322 231.11419438 -1920 213 C-1921.26650391 211.93652344 -1921.26650391 211.93652344 -1922.55859375 210.8515625 C-1942.46160547 193.64989559 -1955.82934428 169.22738959 -1957.875 142.76171875 C-1959.36228232 109.90207509 -1952.80256263 76.69882594 -1930.25 51.5625 C-1929.53328125 50.80066406 -1928.8165625 50.03882813 -1928.078125 49.25390625 C-1925.94417557 46.99460897 -1925.94417557 46.99460897 -1923.94140625 44.41015625 C-1904.70709679 20.53174793 -1870.63793472 7.7880014 -1841.11476135 4.20918274 C-1834.86343959 3.59082994 -1828.52822682 3.75484996 -1822.25 3.75 C-1821.0763237 3.74898788 -1821.0763237 3.74898788 -1819.87893677 3.74795532 C-1807.69057641 3.76464594 -1795.9289134 4.29450095 -1784 7 C-1783.25621094 7.16097168 -1782.51242187 7.32194336 -1781.74609375 7.48779297 C-1764.46491394 11.34493452 -1748.56441405 18.55171919 -1735 30 C-1734.26652344 30.58394531 -1733.53304687 31.16789062 -1732.77734375 31.76953125 C-1727.36737174 36.22051015 -1723.1378658 41.36853991 -1719 47 C-1717.84177734 48.56814453 -1717.84177734 48.56814453 -1716.66015625 50.16796875 C-1702.93053614 69.4097 -1694.05256249 91.56019162 -1690.125 114.8125 C-1690.00447266 115.51600586 -1689.88394531 116.21951172 -1689.75976562 116.94433594 C-1688.66054385 124.41699575 -1689 131.23201133 -1689 139 C-1710.12 139 -1731.24 139 -1753 139 C-1753 134.71 -1753 130.42 -1753 126 C-1754.99879167 106.95887937 -1762.58614866 89.10317795 -1776.71875 75.83984375 C-1792.95745618 62.74321599 -1811.99333101 58.64784603 -1832.48828125 60.27734375 C-1851.72524063 62.37483153 -1868.22333857 69.42023958 -1881.0078125 84.34375 C-1892.11577255 99.1543634 -1894.63470621 117.48186665 -1892.60546875 135.50390625 C-1889.75697405 151.65762779 -1881.57801545 166.0250831 -1868.19091797 175.63476562 C-1847.43587659 189.81002916 -1823.72621429 199.16256495 -1800.58984375 208.625 C-1774.47160341 219.32348886 -1748.78260044 231.76673261 -1727 250 C-1726.43522949 250.46615723 -1725.87045898 250.93231445 -1725.28857422 251.41259766 C-1717.08192239 258.19744873 -1709.39299052 265.33543023 -1702 273 C-1701.84442627 272.45698242 -1701.68885254 271.91396484 -1701.52856445 271.35449219 C-1695.15337466 249.24135682 -1687.09229926 228.66530109 -1672 211 C-1671.56961426 210.49130371 -1671.13922852 209.98260742 -1670.69580078 209.45849609 C-1645.47512821 179.95489136 -1610.04746756 163.808477 -1571.74291992 160.19628906 C-1555.05181772 159.00183903 -1538.38854158 159.59405931 -1522 163 C-1521.33645508 163.13390137 -1520.67291016 163.26780273 -1519.98925781 163.40576172 C-1498.8567277 167.84197987 -1480.02267746 178.77108673 -1464 193 C-1463.15824219 193.74636719 -1462.31648438 194.49273437 -1461.44921875 195.26171875 C-1456.53750055 199.88316433 -1452.50219939 204.80042576 -1448.75 210.375 C-1448.36191162 210.95072754 -1447.97382324 211.52645508 -1447.57397461 212.11962891 C-1443.8341683 217.89378207 -1441.12898122 223.74203756 -1438 230 C-1437.67 208.22 -1437.34 186.44 -1437 164 C-1418.52 164 -1400.04 164 -1381 164 C-1380.67 181.82 -1380.34 199.64 -1380 218 C-1374.555 211.565 -1374.555 211.565 -1369 205 C-1346.64835936 179.52952578 -1320.20114686 162.74785811 -1286 159 C-1279.98520463 158.61833124 -1273.96217586 158.61057923 -1267.9375 158.625 C-1267.1218457 158.62521149 -1266.30619141 158.62542297 -1265.46582031 158.62564087 C-1239.0649391 158.69393464 -1214.47849669 163.9514192 -1195 183 C-1194.29230469 183.680625 -1193.58460938 184.36125 -1192.85546875 185.0625 C-1188.18662849 189.62674303 -1188.18662849 189.62674303 -1187 192 C-1186.67 182.76 -1186.34 173.52 -1186 164 C-1167.52 164 -1149.04 164 -1130 164 C-1129.67 188.42 -1129.34 212.84 -1129 238 C-1126.36 234.04 -1123.72 230.08 -1121 226 C-1096.03990657 191.2597792 -1061.51469259 167.81537817 -1019.07275391 160.49511719 C-1006.70577835 158.5845945 -994.51235031 157.50318609 -982 158 C-982 158.99 -982 159.98 -982 161 C-969.46 161 -956.92 161 -944 161 C-938.47700185 174.95798578 -933.33421287 189.03172982 -928.27249146 203.16275024 C-925.84117438 209.94961911 -923.4001214 216.73298656 -920.95703125 223.515625 C-920.58283837 224.55461913 -920.58283837 224.55461913 -920.20108604 225.61460304 C-915.06302321 239.87493702 -909.82354769 254.09710428 -904.5625 268.3125 C-896.19299391 290.93309797 -887.99767947 313.61243195 -879.86657715 336.31950474 C-878.68245295 339.62596731 -877.49774266 342.93221944 -876.3125 346.23828125 C-876.08353027 346.87696325 -875.85456055 347.51564526 -875.61865234 348.17368126 C-870.7760968 361.67448014 -865.83147182 375.13696667 -860.80688477 388.57104492 C-860.40947083 389.63860771 -860.40947083 389.63860771 -860.00402832 390.72773743 C-859.31198483 392.58621768 -858.61624416 394.44332009 -857.92016602 396.30029297 C-857 399 -857 399 -857 401 C-854.41225456 399.70612728 -854.39984157 398.84583912 -853.48217773 396.15014648 C-853.19614685 395.32216049 -852.91011597 394.4941745 -852.61541748 393.64109802 C-852.30791565 392.72699661 -852.00041382 391.8128952 -851.68359375 390.87109375 C-851.19176605 389.43921471 -851.19176605 389.43921471 -850.69000244 387.97840881 C-849.97616484 385.89798112 -849.2656298 383.81641808 -848.55795288 381.73388672 C-846.6420991 376.09742037 -844.70177255 370.46936397 -842.765625 364.83984375 C-842.36731979 363.67943573 -841.96901459 362.51902771 -841.55863953 361.32345581 C-837.67581525 350.0224161 -833.69191495 338.75841032 -829.6875 327.5 C-828.27388994 323.52113469 -826.86125329 319.5419247 -825.44921875 315.5625 C-825.09178085 314.55518326 -824.73434296 313.54786652 -824.36607361 312.51002502 C-819.87827057 299.85142082 -815.44109008 287.17504913 -811 274.5 C-804.37194575 255.58549409 -797.71333438 236.68223873 -791.01370239 217.79296875 C-784.30401716 198.87534826 -777.64449941 179.94064199 -771 161 C-750.54 161 -730.08 161 -709 161 C-709.33 162.32 -709.66 163.64 -710 165 C-680.795 165.495 -680.795 165.495 -651 166 C-651 130.69 -651 95.38 -651 59 C-632.52 59 -614.04 59 -595 59 C-595 94.31 -595 129.62 -595 166 C-558.04 166 -521.08 166 -483 166 C-483 180.52 -483 195.04 -483 210 C-519.96 210 -556.92 210 -595 210 C-594.90933969 240.76178688 -594.90933969 240.76178688 -594.79101562 271.5234375 C-594.73659958 284.0742052 -594.68518351 296.62493265 -594.65356445 309.17578125 C-594.63051885 318.31791571 -594.59704798 327.45994387 -594.55129844 336.60199392 C-594.52745444 341.43817596 -594.50866803 346.27425332 -594.50238609 351.11049271 C-594.49629508 355.67253077 -594.476152 360.23430126 -594.44572449 364.79623985 C-594.43700814 366.46094968 -594.43320822 368.12569457 -594.43499184 369.79042625 C-594.44758946 386.99026896 -592.434554 404.24194559 -579.953125 417.3203125 C-565.22059916 429.99028473 -541.8797664 427.98620115 -523.81738281 426.7890625 C-510.06936567 425.64230846 -497.1223438 422.83577873 -484.00097656 418.61669922 C-482.01432982 418.00441644 -480.02094916 417.4856852 -478 417 C-478.54527344 416.20980469 -479.09054687 415.41960937 -479.65234375 414.60546875 C-506.82715672 374.34513469 -512.63533163 322.53686223 -504 275.40234375 C-499.44338247 252.0402062 -491.10783886 229.66574819 -476 211 C-475.55253418 210.44715332 -475.10506836 209.89430664 -474.64404297 209.32470703 C-450.0352346 179.17048347 -416.16118427 161.11482062 -377.48974609 156.71435547 C-339.78661454 152.92574311 -302.12141226 158.78848508 -272 183 C-268.55836044 185.89647627 -265.25274667 188.89403793 -262 192 C-261.38898438 192.54785156 -260.77796875 193.09570312 -260.1484375 193.66015625 C-250.85660485 202.29434778 -244.69228661 213.81676167 -239 225 C-238.39865234 224.00033203 -238.39865234 224.00033203 -237.78515625 222.98046875 C-233.37305929 215.82706892 -228.4531678 209.3863302 -223 203 C-222.39027344 202.26652344 -221.78054688 201.53304687 -221.15234375 200.77734375 C-197.79307657 173.1612625 -161.65176935 156.39706443 -126.01904297 153.2109375 C-89.33304773 150.64772386 -47.6642361 156.07578743 -18.6484375 180.76953125 C-12.50504543 186.23410068 -6.80936385 192.19063615 -1 198 C-0.67 132.66 -0.34 67.32 0 0 Z M-1004 161 C-1001.72469435 168.72112012 -1001.72469435 168.72112012 -999.09887695 176.26611328 C-998.75875076 177.16629181 -998.41862457 178.06647034 -998.06819153 178.993927 C-997.71182114 179.92663422 -997.35545074 180.85934143 -996.98828125 181.8203125 C-996.61519333 182.80498505 -996.24210541 183.78965759 -995.85771179 184.8041687 C-994.67919847 187.91234758 -993.49593566 191.01869242 -992.3125 194.125 C-991.50684522 196.24727581 -990.7015037 198.36967057 -989.89648438 200.4921875 C-987.93460668 205.6628381 -985.96883883 210.83199628 -984 216 C-983.67 216 -983.34 216 -983 216 C-983 197.85 -983 179.7 -983 161 C-989.93 161 -996.86 161 -1004 161 Z M-743 166 C-743 180.19 -743 194.38 -743 209 C-738.05 209 -733.1 209 -728 209 C-725.71924785 203.03766803 -723.44064348 197.07452159 -721.1640625 191.1105957 C-720.38861751 189.0800943 -719.61257669 187.04982033 -718.8359375 185.01977539 C-717.72240532 182.10882614 -716.61098932 179.19707679 -715.5 176.28515625 C-715.15001953 175.3716188 -714.80003906 174.45808136 -714.43945312 173.51686096 C-713.95895508 172.25566689 -713.95895508 172.25566689 -713.46875 170.96899414 C-713.18451172 170.22508926 -712.90027344 169.48118439 -712.60742188 168.71473694 C-711.94434911 167.14608953 -711.94434911 167.14608953 -712 166 C-722.23 166 -732.46 166 -743 166 Z M-1185 198 C-1185 287.76 -1185 377.52 -1185 470 C-1179.72 470 -1174.44 470 -1169 470 C-1168.93143911 440.9547049 -1168.87840761 411.90941774 -1168.84680401 382.86405778 C-1168.84305227 379.42849607 -1168.83916926 375.99293452 -1168.83520508 372.55737305 C-1168.83402468 371.53151294 -1168.83402468 371.53151294 -1168.83282044 370.48492838 C-1168.81979615 359.43727656 -1168.79615888 348.38967198 -1168.76854161 337.3420481 C-1168.74040426 325.99100186 -1168.7240305 314.63999045 -1168.71773452 303.28890711 C-1168.71383393 296.91956205 -1168.70470817 290.55032383 -1168.68280983 284.18101311 C-1168.66233594 278.17695164 -1168.65618816 272.17304028 -1168.66067696 266.16894722 C-1168.65985662 263.97409879 -1168.65395638 261.77924495 -1168.64238358 259.58442688 C-1168.52850898 236.85893441 -1172.53228988 217.89498988 -1184 198 C-1184.33 198 -1184.66 198 -1185 198 Z M-176.3046875 234.42578125 C-198.43886174 260.04802575 -199.92338152 298.17599089 -197.7890625 330.16113281 C-195.33841839 358.11147145 -186.06745326 381.90563149 -165 401 C-146.14919011 416.38326961 -124.13642445 422.6397756 -100 421 C-78.85108475 418.56339774 -59.95640278 410.62609347 -46 394 C-34.94668488 378.73483699 -32 360.45147305 -32 342 C-21.44 342 -10.88 342 0 342 C0 315.27 0 288.54 0 261 C-19.8 260.505 -19.8 260.505 -40 260 C-40.99 254.39 -41.98 248.78 -43 243 C-48.17236166 228.05762188 -56.28320087 218.4155804 -70.46313477 211.4753418 C-108.67760089 193.57628267 -148.35408439 205.00658713 -176.3046875 234.42578125 Z M-422.1015625 228.125 C-430.66351449 237.9490724 -443 257.36254107 -443 271 C-391.85 271 -340.7 271 -288 271 C-291.83932115 250.52362054 -297.10173272 229.2973802 -314.75 216.3125 C-347.92262839 194.39664941 -394.39834423 200.11282391 -422.1015625 228.125 Z M1 204 C1 222.48 1 240.96 1 260 C7.27 260 13.54 260 20 260 C19.21713059 239.64539529 14.36544335 220.6916453 2 204 C1.67 204 1.34 204 1 204 Z M-1618 229 C-1628.03863861 239.57582329 -1642 259.48301607 -1642 275 C-1591.18 275 -1540.36 275 -1488 275 C-1488.88551212 265.0892842 -1488.88551212 265.0892842 -1491.125 255.625 C-1491.34381836 254.9023999 -1491.56263672 254.1797998 -1491.78808594 253.43530273 C-1496.87973273 237.43474971 -1506.74512363 223.99720214 -1521.44921875 215.6015625 C-1552.30710217 200.38018503 -1592.81925178 205.16671657 -1618 229 Z M-240 229 C-251.53393574 253.23882943 -258.3067308 278.15586758 -258.0625 305.125 C-258.041875 308.38375 -258.02125 311.6425 -258 315 C-247.11 315 -236.22 315 -225 315 C-225 285.99884574 -227.61069329 256.00892734 -239 229 C-239.33 229 -239.66 229 -240 229 Z M-1436 241 C-1436 266.74 -1436 292.48 -1436 319 C-1432.04 319 -1428.08 319 -1424 319 C-1423.67539846 278.47906518 -1423.67539846 278.47906518 -1436 241 Z M-1701 278 C-1702.52506172 282.92875309 -1703.52726143 287.72960394 -1704.10546875 292.86328125 C-1704.18935349 293.59879715 -1704.27323822 294.33431305 -1704.35966492 295.09211731 C-1705.21041182 303.1221247 -1705.3532755 311.11897873 -1705.3125 319.1875 C-1705.31067719 319.94491486 -1705.30885437 320.70232971 -1705.30697632 321.48269653 C-1705.25585121 334.1762118 -1704.52069659 346.5280101 -1702 359 C-1701.75056641 360.25176025 -1701.75056641 360.25176025 -1701.49609375 361.52880859 C-1696.94446315 383.6816676 -1696.94446315 383.6816676 -1686 403 C-1682.91820595 394.66399971 -1680.48686547 386.40466033 -1678.75 377.6875 C-1678.58725586 376.87700195 -1678.42451172 376.06650391 -1678.25683594 375.23144531 C-1672.27551197 343.9279133 -1676.55972108 312.93711096 -1694 286 C-1696.82625694 281.86616954 -1696.82625694 281.86616954 -1700 278 C-1700.33 278 -1700.66 278 -1701 278 Z M-446 316 C-446 342.66759364 -443.1897729 371.39315484 -426 393 C-425.42894531 393.74636719 -424.85789062 394.49273437 -424.26953125 395.26171875 C-410.75995521 411.76702167 -389.00984913 421.4399974 -368.12280273 423.81689453 C-344.56847755 425.84860746 -322.18585198 421.71276312 -303.4375 406.5 C-291.61123896 395.46772822 -284.97417228 379.79337825 -283 364 C-273.1 364 -263.2 364 -253 364 C-254.21378922 357.18034417 -254.21378922 357.18034417 -255.45263672 350.36523438 C-257.42870391 338.88503237 -258.0186221 327.77653484 -259 316 C-320.71 316 -382.42 316 -446 316 Z M-1645 320 C-1645 350.57117971 -1640.94051729 381.57898832 -1618.73046875 404.32421875 C-1600.47369566 421.69617247 -1577.11478966 428.55988158 -1552.38964844 428.35375977 C-1533.51297348 427.83957349 -1513.36549519 422.09618285 -1500 408 C-1491.05737685 397.23735179 -1482 382.45349756 -1482 368 C-1467.15 368 -1452.3 368 -1437 368 C-1437 352.16 -1437 336.32 -1437 320 C-1505.64 320 -1574.28 320 -1645 320 Z M1 343 C1 368.74 1 394.48 1 421 C4.91334777 417.08665223 7.69898712 413.72434054 10.4375 409.0625 C10.82510498 408.40717285 11.21270996 407.7518457 11.61206055 407.07666016 C15.35273019 400.61331684 18.35847018 393.99276146 21 387 C21.37898438 386.00097656 21.75796875 385.00195312 22.1484375 383.97265625 C24.46785323 377.19752083 25.71150201 370.37614632 26.75 363.3125 C26.87785889 362.4455249 27.00571777 361.5785498 27.13745117 360.68530273 C27.95380123 354.63305229 28 349.26974765 28 343 C19.09 343 10.18 343 1 343 Z M-251 365 C-247.86718124 379.09768444 -242.42735985 390.76559253 -235 403 C-234.34 403 -233.68 403 -233 403 C-229.5596218 395.12153393 -226.59734073 387.31994808 -224.625 378.9375 C-224.45774414 378.23633057 -224.29048828 377.53516113 -224.11816406 376.81274414 C-223.19415038 372.67107637 -223 369.33084329 -223 365 C-232.24 365 -241.48 365 -251 365 Z M-1436 369 C-1436 383.19 -1436 397.38 -1436 412 C-1426.2997305 402.2997305 -1422.80588651 382.09565576 -1422 369 C-1426.62 369 -1431.24 369 -1436 369 Z M-469.625 414 C-470.62789062 414.556875 -471.63078125 415.11375 -472.6640625 415.6875 C-473.43492188 416.120625 -474.20578125 416.55375 -475 417 C-473.38419835 420.87792397 -470.75734641 423.71078788 -467.9375 426.75 C-467.47794922 427.25660156 -467.01839844 427.76320313 -466.54492188 428.28515625 C-465.38757425 429.54617231 -464.19649813 430.77606893 -463 432 C-462.67 432 -462.34 432 -462 432 C-462 425.07 -462 418.14 -462 411 C-465.0271098 411 -467.00416068 412.53720596 -469.625 414 Z "
+            fill="#1B4C43"
+            transform="translate(1998,36)"
+          />
+        </svg>
+      </div>
+
+      <a href="https://www.senrytech.com/" class="nav-link">première page</a>
+
+      <div class="nav-item">
+        <a href="https://www.senrytech.com/products/" class="nav-link"
+          >Centre de produits</a
+        >
+        <!-- Menu secondaire demi-écran（Structure de colonnes interne ajoutée） -->
+        <div class="dropdown-menu">
+          <div class="dropdown-inner">
+            <!-- côté gauche：Liste des catégories -->
+            <div class="dropdown-category">
+              <div class="category-item active" data-target="board">
+                <a
+                  href="https://www.senrytech.com/products/laser-sheet-cutting/"
+                  >Machine de découpe de plaques</a
+                >
+              </div>
+              <div class="category-item" data-target="tube">
+                <a href="https://www.senrytech.com/products/laser-tube-cutting/"
+                  >Machine de découpe de tuyaux</a
+                >
+              </div>
+              <div class="category-item" data-target="board-tube">
+                <a href="https://www.senrytech.com/products/laser-sheet-tube/"
+                  >Machine intégrée à plaques et tubes</a
+                >
+              </div>
+              <div class="category-item" data-target="welding">
+                <a href="https://www.senrytech.com/products/laser-welding/"
+                  >Machine à souder au laser</a
+                >
+              </div>
+              <div class="category-item" data-target="cleaning">
+                <a href="https://www.senrytech.com/products/laser-cleaning/"
+                  >Machine de nettoyage laser</a
+                >
+              </div>
+              <div class="category-item" data-target="marking">
+                <a href="https://www.senrytech.com/products/laser-marking/"
+                  >Machine de marquage laser</a
+                >
+              </div>
+            </div>
+
+            <!-- côté droit：Zone de contenu correspondant à la catégorie -->
+            <div class="dropdown-content">
+              <!-- 1. Contenu de la machine de découpe de plaques（Affiché par défaut） -->
+              <div class="content-item active" id="board">
+                <h3>Série de machines de découpe de tôles laser</h3>
+                <div class="product-list">
+                  <!-- produit1：Senrytech A -->
+                  <div class="product-card">
+                    <!-- Photo et lien：Correspondant à la machine de découpe de plaquesSenrytech APage de détails -->
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                        alt="Senrytech A Machine de découpe laser fibre économique"
+                      />
+                    </a>
+                    <!-- texte et lien：Conforme à l'adresse de saut d'image -->
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                    >
+                      <p>Senrytech A</p>
+                    </a>
+                  </div>
+                  <!-- produit2：Senrytech B -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                        alt="Senrytech B Machine de découpe laser à fibre pour plaques moyennes et épaisses"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                    >
+                      <p>Senrytech B</p>
+                    </a>
+                  </div>
+                  <!-- produit3：Senrytech B Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                        alt="Senrytech B Plus Machine de découpe laser à fibre de coupe latérale"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                    >
+                      <p>Senrytech B Plus</p>
+                    </a>
+                  </div>
+                  <!-- produit4：Senrytech B Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                        alt="Senrytech B Pro 2.0GMachine de découpe laser fibre accélérée"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                    >
+                      <p>Senrytech B Pro</p>
+                    </a>
+                  </div>
+                  <!-- produit5：Senrytech B ProMax -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                        alt="Senrytech B ProMax Machine de découpe laser à fibre standard européenne"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                    >
+                      <p>Senrytech B ProMax</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                        alt="Senrytech B Ultra Machine de découpe laser à fibre entièrement automatique de chargement et de déchargement"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                    >
+                      <p>Senrytech B Ultra</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c/senrytech-c-laser-coil-cutting.webp"
+                        alt="Senrytech C Machine de découpe laser à fibre de bobine d'aluminium à alimentation automatique"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                    >
+                      <p>Senrytech C</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/c-pro/senrytech-c-pro-laser-sheet-cutting.webp"
+                        alt="Senrytech C Pro Machine de découpe laser à fibre de bobine d'aluminium"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                    >
+                      <p>Senrytech C Pro</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/g/senrytech-g-laser-sheet-cutting.webp"
+                        alt="Senrytech G 12000W-60000WMachine de découpe laser fibre"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                    >
+                      <p>Senrytech G</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/m/senrytech-m-laser-sheet-cutting.webp"
+                        alt="Senrytech M Petite machine de découpe laser à fibre de précision"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                    >
+                      <p>Senrytech M</p>
+                    </a>
+                  </div>
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/s/senrytech-s-laser-sheet-cutting.webp"
+                        alt="Senrytech S Machine de découpe laser à fibre d'acier"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                    >
+                      <p>Senrytech S</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. Contenu de la machine de découpe de tuyaux（Masqué par défaut） -->
+              <div class="content-item" id="tube">
+                <h3>Série de machines de découpe de tubes laser</h3>
+                <div class="product-list">
+                  <!-- produit1：Senrytech A2 -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 Machine de découpe de tuyaux économique"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                    >
+                      <p>Senrytech A2</p>
+                    </a>
+                  </div>
+                  <!-- produit2：Senrytech A2 Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 Plus Machine de découpe de tuyaux à moteur haute puissance"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                    >
+                      <p>Senrytech A2 Plus</p>
+                    </a>
+                  </div>
+                  <!-- produit3：Senrytech A2 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech A2 Ultra Machine de découpe de tuyaux à double mandrin"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                    >
+                      <p>Senrytech A2 Ultra</p>
+                    </a>
+                  </div>
+                  <!-- produit4：Senrytech B3 Plus -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech B3 Plus Machine de découpe de tuyaux à trois mandrins"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                    >
+                      <p>Senrytech B3 Plus</p>
+                    </a>
+                  </div>
+                  <!-- produit5：Senrytech B3 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech B3 Ultra Machine de découpe de tubes latérale à trois mandrins"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                    >
+                      <p>Senrytech B3 Ultra</p>
+                    </a>
+                  </div>
+                  <!-- produit6：Senrytech C4 Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
+                        alt="Senrytech C4 Ultra Machine de découpe de tuyaux à quatre mandrins"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                    >
+                      <p>Senrytech C4 Ultra</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3. Contenu de la machine intégrée à plaques et tubes（Masqué par défaut） -->
+              <div class="content-item" id="board-tube">
+                <h3>Série de machines tout-en-un à plaques et tubes laser</h3>
+                <div class="product-list">
+                  <!-- produit1：Senrytech BT -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
+                        alt="Senrytech BT Machine intégrée économique pour plaques et tubes"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                    >
+                      <p>Senrytech BT</p>
+                    </a>
+                  </div>
+                  <!-- produit2：Senrytech BT Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
+                        alt="Senrytech BT Pro Équipement de traitement de plaques et de tubes pour petits et moyens lots"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <p>Senrytech BT Pro</p>
+                    </a>
+                  </div>
+                  <!-- produit3：Senrytech BT ProMax -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
+                        alt="Senrytech BT ProMax Machine de découpe de plaques et de tubes entièrement entourés de tôle"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                    >
+                      <p>Senrytech BT ProMax</p>
+                    </a>
+                  </div>
+                  <!-- produit4：Senrytech BT Ultra -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
+                        alt="Senrytech BT Ultra Machine de découpe de plaques et de tubes entièrement automatique de chargement et de déchargement"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                    >
+                      <p>Senrytech BT Ultra</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4. Contenu de la machine à souder（Masqué par défaut） -->
+              <div class="content-item" id="welding">
+                <h3>Série de machines à souder au laser</h3>
+                <div class="product-list">
+                  <!-- machine à souder：Series A -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                        alt="Series A Machine de soudage laser quatre en un"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a/"
+                    >
+                      <p>Series A</p>
+                    </a>
+                  </div>
+                  <!-- machine à souder：Series A Pro -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                        alt="Series A Pro 1500-3000WMachine à souder au laser"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                    >
+                      <p>Series A Pro</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                        alt="Series A Ultra Machine de soudage laser haute puissance"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                    >
+                      <p>Series A Ultra</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                        alt="Robot 4 in 1 Équipement de soudage quatre en un"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                    >
+                      <p>R 4in1</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                        alt="R Workstation 1500-3000W Poste à souder mobile"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                    >
+                      <p>R Workstation</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                        alt="R Mobile Équipement de soudage robotisé collaboratif"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                    >
+                      <p>R Mobile</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Contenu propre（Masqué par défaut） -->
+              <div class="content-item" id="cleaning">
+                <h3>Série de machines de nettoyage laser</h3>
+                <div class="product-list">
+                  <!-- machine de nettoyage：Usage domestique -->
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/residential/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                        alt="Residential Machine de nettoyage laser pour l'élimination de la rouille domestique"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/residential/"
+                    >
+                      <p>Residential</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                        alt="Commercial cc"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                    >
+                      <p>Commercial</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/industrial/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                        alt="Industrial Machine de nettoyage laser haute puissance"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-welding/industrial/"
+                    >
+                      <p>Industrial</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 6. Contenu de la machine de marquage（Masqué par défaut） -->
+              <div class="content-item" id="marking">
+                <h3>Série de machines de marquage laser</h3>
+                <div class="product-list">
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-p/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                        alt="Machine de marquage laser de bureau portable"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-p/"
+                    >
+                      <p>Series P</p>
+                    </a>
+                  </div>
+
+                  <div class="product-card">
+                    <a
+                      href="https://www.senrytech.com/products/laser-marking/series-d/"
+                    >
+                      <img
+                        src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                        alt="Machine de marquage laser de bureau"
+                      />
+                    </a>
+                    <a
+                      href="https://www.senrytech.com/products/laser-cleaning/series-d/"
+                    >
+                      <p>Series D</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://www.senrytech.com/solutions/" class="nav-link"
+        >Plan de sélection</a
+      >
+
+      <a
+        href="https://www.senrytech.com/pitfall-avoidance-guide/"
+        class="nav-link"
+        >Un guide pour éviter les pièges</a
+      >
+
+      <a href="https://www.senrytech.com/news/" class="nav-link">Nouvelles</a>
+
+      <a href="https://www.senrytech.com/about-us/" class="nav-link"
+        >à propos de nous</a
+      >
+
+      <a href="https://www.senrytech.com/join-us/" class="nav-link"
+        >Rejoignez-nous</a
+      >
+
+      <a href="https://www.senrytech.com/contact-us/" class="nav-link"
+        >Contactez-nous</a
+      >
+
+      <div class="navbar-right">
+        <div class="lang-dropdown" id="langDropdown">
+          <!-- Bouton de langue -->
+          <button class="btn language-btn">
+            <i class="fa fa-globe"></i>
+            <!-- Font Awesome Icône de la Terre -->
+          </button>
+          <!-- Développer le lien linguistique -->
+          <ul class="lang-dropdown-list">
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/cn/"
+                lang="zh"
+                class="lang-link"
+                >Chinois</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/"
+                lang="en"
+                class="lang-link"
+                >Anglais</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/de/"
+                lang="de"
+                class="lang-link"
+                >Allemand</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/es/"
+                lang="es"
+                class="lang-link"
+                >Espagnol</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/fr/"
+                lang="fr"
+                class="lang-link active"
+                >Français</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/ru/"
+                lang="ru"
+                class="lang-link"
+                >russe</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/sa/"
+                lang="ar"
+                class="lang-link"
+                >arabe</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Demande de la barre de navigation -->
+        <a href="https://www.senrytech.com/contact-us" target="_blank">
+          <!-- hrefRemplissez l'adresse de saut réelle，target="_blank"Facultatif（Un nouvel onglet s'ouvre） -->
+          <button class="btn inquiry-btn">
+            <i class="fa fa-envelope"></i>
+            <!-- Enquête：Icône d'enveloppe -->
+          </button>
+        </a>
+
+        <!-- Terminal mobile menu agrandir burger -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+          <i class="fa fa-bars"></i>
+          <!-- cœur：utiliserFALigne alternative d’icône de hamburger -->
+        </button>
+      </div>
+    </nav>
+
+    <!-- Nouveau：Conteneur de menu latéral mobile（Masqué par défaut，Cliquez sur le hamburger sur le petit écran pour l'agrandir） -->
+    <div class="sidebar-menu" id="sidebarMenu">
+      <!-- En-tête de la barre latérale（LOGO+bouton fermer） -->
+      <div class="sidebar-header">
+        <div class="sidebar-logo">Senrytech</div>
+        <button class="sidebar-close-btn" id="sidebarCloseBtn">×</button>
+      </div>
+      <!-- Liste du menu de la barre latérale -->
+      <ul class="sidebar-menu-list">
+        <!-- première page（Pas de liste déroulante） -->
+        <li class="sidebar-menu-item">
+          <a href="https://www.senrytech.com/" class="sidebar-menu-link">
+            première page
+          </a>
+        </li>
+        <!-- Centre de produits（Avec sous-menu déroulant） -->
+        <li class="sidebar-menu-item has-submenu">
+          <div class="sidebar-menu-link submenu-trigger">
+            Centre de produits
+            <i class="sidebar-arrow fa fa-chevron-down"></i>
+            <!-- icône de flèche -->
+          </div>
+          <!-- Sous-menu produit（Masqué par défaut） -->
+          <ul class="sidebar-submenu" id="productSubmenu">
+            <!-- élément de sous-menu：Correspond au classement d'origine -->
+            <li class="sidebar-submenu-item" data-target="board">
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-cutting/"
+                class="sidebar-submenu-link"
+              >
+                Machine de découpe de plaques
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="tube">
+              <a
+                href="https://www.senrytech.com/products/laser-tube-cutting/"
+                class="sidebar-submenu-link"
+              >
+                Machine de découpe de tuyaux
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="board-tube">
+              <a
+                href="https://www.senrytech.com/products/laser-sheet-tube/"
+                class="sidebar-submenu-link"
+              >
+                Machine intégrée à plaques et tubes
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="welding">
+              <a
+                href="https://www.senrytech.com/products/laser-welding/"
+                class="sidebar-submenu-link"
+              >
+                Machine à souder au laser
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="cleaning">
+              <a
+                href="https://www.senrytech.com/products/laser-cleaning/"
+                class="sidebar-submenu-link"
+              >
+                Machine de nettoyage laser
+              </a>
+            </li>
+            <li class="sidebar-submenu-item" data-target="marking">
+              <a
+                href="https://www.senrytech.com/products/laser-marking/"
+                class="sidebar-submenu-link"
+              >
+                Machine de marquage laser
+              </a>
+            </li>
+          </ul>
+          <!-- Contenu du sous-menu du produit（Trois colonnes de vignettes，Masqué par défaut） -->
+          <div class="sidebar-submenu-content" id="productSubmenuContent">
+            <!-- Contenu de la machine de découpe de plaques（Affiché par défaut） -->
+            <div class="submenu-content-item active" id="boardContent">
+              <h4 class="submenu-content-title">
+                Série de machines de découpe de tôles laser
+              </h4>
+              <div class="submenu-product-list">
+                <!-- produit1：Senrytech A -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-a/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/a/senrytech-a-sheet-cutting-2.webp"
+                      alt="Senrytech A Machine de découpe laser fibre économique"
+                    />
+                    <p>Senrytech A</p>
+                  </a>
+                </div>
+                <!-- produit2：Senrytech B -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b/senrytech-b-sheet-cutting.webp"
+                      alt="Senrytech B Machine de découpe laser à fibre pour plaques moyennes et épaisses"
+                    />
+                    <p>Senrytech B</p>
+                  </a>
+                </div>
+                <!-- produit3：Senrytech B Plus -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-plus/senrytech-b-plus-laser-sheet-cutting.webp"
+                      alt="Senrytech B Plus Machine de découpe laser à fibre de coupe latérale"
+                    />
+                    <p>Senrytech B Plus</p>
+                  </a>
+                </div>
+                <!-- produit4：Senrytech B Pro -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-pro/senrytech-b-pro-laser-sheet-cutting.webp"
+                      alt="Senrytech B Pro 2.0GMachine de découpe laser fibre accélérée"
+                    />
+                    <p>Senrytech B Pro</p>
+                  </a>
+                </div>
+                <!-- produit5：Senrytech B ProMax -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-promax/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-promax/senrytech-b-promax-laser-sheet-cutting.webp"
+                      alt="Senrytech B ProMax Machine de découpe laser à fibre standard européenne"
+                    />
+                    <p>Senrytech B ProMax</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech B Ultra -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-b-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-cutting/b-ultra/senrytech-b-ultra-laser-sheet-cutting.webp"
+                      alt="Senrytech B Ultra Machine de découpe laser à fibre entièrement automatique de chargement et de déchargement"
+                    />
+                    <p>Senrytech B Ultra</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech C -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/c/banner/senrytech-c-laser-coil-sheet-cutting-2.webp"
+                      alt="Senrytech C Machine de découpe laser à fibre de bobine d'aluminium à alimentation automatique"
+                    />
+                    <p>Senrytech C</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech C Pro -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-c-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/c-pro/banner/senrytech-c-laser-coil-sheet-cutting-2.png"
+                      alt="Senrytech C Pro Machine de découpe laser à fibre de bobine d'aluminium"
+                    />
+                    <p>Senrytech C Pro</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech G -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-g/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/g/banner/senrytech-g-laser-sheet-cutting-2.png"
+                      alt="Senrytech G 12000W-60000WMachine de découpe laser fibre"
+                    />
+                    <p>Senrytech G</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech M -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-m/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/m/banner/senrytech-m-laser-sheet-cutting-2.webp"
+                      alt="Senrytech M Petite machine de découpe laser à fibre de précision"
+                    />
+                    <p>Senrytech M</p>
+                  </a>
+                </div>
+                <!-- produit6：Senrytech S -->
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-cutting/series-s/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/products/laser-sheet-cutting/s/banner/senrytech-s-profile-steel-cutting-2.webp"
+                      alt="Senrytech S Machine de découpe laser à fibre d'acier"
+                    />
+                    <p>Senrytech S</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- Contenu de la machine de découpe de tuyaux（Masqué par défaut） -->
+            <div class="submenu-content-item" id="tubeContent">
+              <h4 class="submenu-content-title">
+                Série de machines de découpe de tubes laser
+              </h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2/senrytech-a-2-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 Machine de découpe de tuyaux économique"
+                    />
+                    <p>Senrytech A2</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-plus/senrytech-a-2-plus-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 Plus Machine de découpe de tuyaux à moteur haute puissance"
+                    />
+                    <p>Senrytech A2 Plus</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-a-2-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/a-2-ultra/senrytech-a-2-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech A2 Ultra Machine de découpe de tuyaux à double mandrin"
+                    />
+                    <p>Senrytech A2 Ultra</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-plus/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-plus/senrytech-b-3-plus-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech B3 Plus Machine de découpe de tuyaux à trois mandrins"
+                    />
+                    <p>Senrytech B3 Plus</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-b-3-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/b-3-ultra/senrytech-b-3-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech B3 Ultra Machine de découpe de tubes latérale à trois mandrins"
+                    />
+                    <p>Senrytech B3 Ultra</p>
+                  </a>
+                </div>
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-tube-cutting/series-c-4-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-tube-cutting/c-4-ultra/senrytech-c-4-ultra-laser-tube-cutting-banner-400.webp"
+                      alt="Senrytech C4 Ultra Machine de découpe de tuyaux à quatre mandrins"
+                    />
+                    <p>Senrytech C4 Ultra</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="board-tubeContent">
+              <h4 class="submenu-content-title">
+                Série de machines intégrées à plaques et tubes
+              </h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt/senrytech-bt-sheet-tube-cutting.webp"
+                      alt="Senrytech BT Machine intégrée économique pour plaques et tubes"
+                    />
+                    <p>Senrytech BT</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-pro/senrytech-bt-pro-sheet-tube-cutting.webp"
+                      alt="Senrytech BT Pro Équipement de traitement de plaques et de tubes pour petits et moyens lots"
+                    />
+                    <p>Senrytech BT Pro</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-promax/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-promax/senrytech-bt-promax-sheet-tube-cutting.webp"
+                      alt="Senrytech BT ProMax Machine de découpe de plaques et de tubes entièrement entourés de tôle"
+                    />
+                    <p>Senrytech BT ProMax</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-sheet-tube/series-bt-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-sheet-tube-cutting/bt-ultra/senrytech-bt-ultra-sheet-tube-cutting.webp"
+                      alt="Senrytech BT Ultra Machine de découpe de plaques et de tubes entièrement automatique de chargement et de déchargement"
+                    />
+                    <p>Senrytech BT Ultra</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="weldingContent">
+              <h4 class="submenu-content-title">
+                Série de machines à souder au laser
+              </h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a/senrytech-laser-welding-series-a.webp"
+                      alt="Series A Machine de soudage laser quatre en un"
+                    />
+                    <p>Series A</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a-pro/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-pro/senrytech-laser-welding-series-a-pro.webp"
+                      alt="Series A Pro 1500-3000WMachine à souder au laser"
+                    />
+                    <p>Series A Pro</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/series-a-ultra/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/series-a-ultra/senrytech-laser-welding-series-a-ultra.webp"
+                      alt="Series A Ultra Machine de soudage laser haute puissance"
+                    />
+                    <p>Series A Ultra</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-4-in-1/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-4-in-1/senrytech-laser-welding-r-4-in-1.webp"
+                      alt="Robot 4 in 1 Équipement de soudage quatre en un"
+                    />
+                    <p>R 4in1</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-workstation/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-workstation/senrytech-laser-welding-r-workstation.webp"
+                      alt="R Workstation 1500-3000W Poste à souder mobile"
+                    />
+                    <p>R Workstation</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-welding/r-mobile/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-welding/r-mobile/senrytech-laser-welding-r-mobile.webp"
+                      alt="R Mobile Équipement de soudage robotisé collaboratif"
+                    />
+                    <p>R Mobile</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="cleaningContent">
+              <h4 class="submenu-content-title">
+                Série de machines de nettoyage laser
+              </h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/residential/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/residential/senrytech-laser-cleaning-residential.webp"
+                      alt="Residential Machine de nettoyage laser pour l'élimination de la rouille domestique"
+                    />
+                    <p>Residential</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/commercial/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/commercial/senrytech-laser-cleaning-commercial-2.webp"
+                      alt="Commercial Machine de nettoyage laser pour l'élimination de la rouille domestique"
+                    />
+                    <p>Commercial</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-cleaning/industrial/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-cleaning/industrial/senrytech-laser-cleaning-industrial-2.webp"
+                      alt="Industrial Machine de nettoyage laser haute puissance"
+                    />
+                    <p>Industrial</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="submenu-content-item" id="markingContent">
+              <h4 class="submenu-content-title">
+                Série de machines de marquage laser
+              </h4>
+              <div class="submenu-product-list">
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-p/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-p/senrytech-laser-marking-series-p.webp"
+                      alt="Machine de marquage laser de bureau portable"
+                    />
+                    <p>Series P</p>
+                  </a>
+                </div>
+
+                <div class="submenu-product-card">
+                  <a
+                    href="https://www.senrytech.com/products/laser-marking/series-d/"
+                  >
+                    <img
+                      src="https://senrytech.github.io/img/index/product/laser-marking/series-d/senrytech-laser-marking-series-d.webp"
+                      alt="Machine de marquage laser de bureau"
+                    />
+                    <p>Series D</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- Autres éléments de menu（Pas de liste déroulante） -->
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/solutions/"
+            class="sidebar-menu-link"
+          >
+            Plan de sélection
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/pitfall-avoidance-guide/"
+            class="sidebar-menu-link"
+          >
+            Un guide pour éviter les pièges
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="https://www.senrytech.com/news/" class="sidebar-menu-link">
+            Nouvelles
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/about-us/"
+            class="sidebar-menu-link"
+          >
+            à propos de nous
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a
+            href="https://www.senrytech.com/contact-us/"
+            class="sidebar-menu-link"
+          >
+            Contactez-nous
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Nouveau：Calque de masque du menu latéral（Cliquez sur l'espace vide pour fermer le menu，Masqué par défaut） -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <section class="server-guide">
+      <h2>
+        Aperçu de l'étoile de la marque servo de la machine de découpe laser +
+        Guide d'inspection client et de prévention des piqûres
+      </h2>
+      <p class="tips">
+        Vous n’avez pas besoin de connaître la technologie pour acheter une
+        machine laser，Il suffit de regarder cette page
+      </p>
+
+      <!-- conteneur de défilement de table -->
+      <div class="table-scroll-container">
+        <table class="star-table">
+          <tr>
+            <th>Série de marque</th>
+            <th>Taux d'échec</th>
+            <th>prix de référence</th>
+            <th>Classement complet par étoiles</th>
+            <th>Convient aux clients</th>
+          </tr>
+          <tr>
+            <td>Yaskawa Σ-7/Σ-X</td>
+            <td>extrêmement faible</td>
+            <td>haut</td>
+            <td class="star">★★★★★</td>
+            <td>24hProduction/Robuste/Haute précision</td>
+          </tr>
+          <tr>
+            <td>FANUC αi-B</td>
+            <td>extrêmement faible</td>
+            <td>haut</td>
+            <td class="star">★★★★★</td>
+            <td>Grand comptoir/Machine lourde</td>
+          </tr>
+          <tr>
+            <td>Siemens S120</td>
+            <td>très faible</td>
+            <td>haut</td>
+            <td class="star">★★★★☆</td>
+            <td>Synchronisation multi-axes haut de gamme</td>
+          </tr>
+          <tr>
+            <td>Schneider Lexium32</td>
+            <td>Faible</td>
+            <td>Moyen à élevé</td>
+            <td class="star">★★★★</td>
+            <td>Le système européen est stable/Moyen à haut de gamme</td>
+          </tr>
+          <tr>
+            <td>Fuji ALPHA7</td>
+            <td>Faible</td>
+            <td>milieu</td>
+            <td class="star">★★★★</td>
+            <td>
+              Le premier choix pour un rapport qualité/prix milieu de gamme
+            </td>
+          </tr>
+          <tr>
+            <td>Schneider Lexium18</td>
+            <td>moyen faible</td>
+            <td>milieu</td>
+            <td class="star">★★★☆</td>
+            <td>Type économique européen</td>
+          </tr>
+          <tr>
+            <td>Huichuan IS650</td>
+            <td>moyen</td>
+            <td>moyen faible</td>
+            <td class="star">★★★</td>
+            <td>Meilleur national/Rentabilité</td>
+          </tr>
+          <tr>
+            <td>Delta A3/B3</td>
+            <td>en général</td>
+            <td>Faible</td>
+            <td class="star">★★</td>
+            <td>commencer/charge légère</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Inspection client4jeu de jambes -->
+      <div class="check-step fadeIn">
+        <h3>
+          📌 Le client achète une machine et inspecte le servo：4Distinguer le
+          vrai du faux étape par étape（30Apprenez en quelques secondes）
+        </h3>
+        <ul>
+          <li>
+            <strong>regarde les étiquettes：</strong>police claire、Lisse et
+            sans rides，Pas d'autocollants faits maison
+          </li>
+          <li>
+            <strong>Regardez les vis：</strong>Aucune marque de torsion、Pas de
+            rayures、Aucune usure brillante
+          </li>
+          <li>
+            <strong>Regardez le numéro de série：</strong>Ne gratte pas、Ne pas
+            broyer、Ne peignez pas，Peut être officiellement garanti
+          </li>
+          <li>
+            <strong>Voir l'ensemble：</strong>4La marque du servo est la
+            même、Nouveau et ancien cohérent、Ne mélangez pas et n'assortissez
+            pas
+          </li>
+        </ul>
+      </div>
+
+      <!-- Avertissement de routine du concessionnaire -->
+      <div class="warning">
+        <strong>⚠️ Avertissement de routine de l’industrie：</strong><br />
+        1. Machines laser à faible coût couramment utilisées<b
+          >Rénover/Démontage/Servo qui gratte</b
+        >，avant3Le mois n'est pas un problème，Fréquemment cassé dans la
+        période ultérieure<br />
+        2. Garantie du magasin ≠ Garantie d'usine d'origine，code à gratter =
+        Aucune garantie officielle<br />
+        3. Servo neuf d'origine<b
+          >Impossible d'être exceptionnellement bon marché</b
+        >
+      </div>
+
+      <!-- bouton retour -->
+      <div class="pv-back-wrap">
+        <a
+          href="https://www.senrytech.com/pitfall-avoidance-guide/"
+          class="pv-back-btn"
+          >← Retour à la liste des guides d'évitement des stands</a
+        >
+      </div>
+    </section>
+
+    <!-- onze，code Barre de navigation inférieure-->
+    <footer class="footer-new">
+      <div class="footer-container">
+        <!-- 1. côté gauche：Zone de marque（Logo+Introduction+réseaux sociaux） -->
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <img
+              src="https://senrytech.github.io/img/logo/Senrytech-logo.jpg"
+              alt="Senrytech Logo"
+            />
+            <span class="brand-name">Senrytech</span>
+          </div>
+          <p class="brand-desc">
+            Fabricant professionnel d'équipement de découpe laser，Engagé à
+            fournir une haute qualité aux industries manufacturières
+            mondiales、Solution de sélection de traitement laser rentable。
+          </p>
+          <div class="social-icons">
+            <!-- Correction：Retirer text-white/80 Attendez les styles incompatibles，Utiliser à la place footer correspondance globale des couleurs；réserve transition interaction -->
+            <a
+              class="icon"
+              href="https://www.facebook.com/profile.php?id=61572514366742"
+              title="Facebook"
+            >
+              <i class="fa fa-facebook text-xl"></i>
+              <!-- 4.7.0 Préfixes par défaut pris en charge fa -->
+            </a>
+            <a
+              class="icon"
+              href="https://www.instagram.com/senrytech/"
+              title="Instagram"
+            >
+              <i class="fa fa-instagram text-xl"></i>
+            </a>
+            <a
+              class="icon"
+              href="https://www.youtube.com/@senrytech"
+              title="YouTube"
+            >
+              <i class="fa fa-youtube-play text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. milieu：Centre de produits -->
+        <div class="footer-column">
+          <h3>Centre de produits</h3>
+          <ul>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-cutting/"
+                >Machine de découpe de plaques</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-tube-cutting/"
+                >Machine de découpe de tuyaux</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-sheet-tube/"
+                >Machine intégrée à plaques et tubes</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-welding/"
+                >Machine à souder au laser</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-cleaning/"
+                >Machine de nettoyage laser</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/laser-marking/"
+                >Machine de marquage laser</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- 3. côté droit：à propos de nous -->
+        <div class="footer-column">
+          <h3>à propos de nous</h3>
+          <ul>
+            <li>
+              <a href="https://www.senrytech.com/about-us/"
+                >Profil de l'entreprise</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/solutions/"
+                >Plan de sélection</a
+              >
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
+                >Un guide pour éviter les pièges</a
+              >
+            </li>
+            <li><a href="https://www.senrytech.com/news/">Nouvelles</a></li>
+            <li>
+              <a href="https://www.senrytech.com/join-us/">Rejoignez-nous</a>
+            </li>
+            <li>
+              <a href="https://www.senrytech.com/contact-us/">Contactez-nous</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 4. le plus à droite：Contactez-nous+Code QR -->
+        <div class="footer-column footer-contact">
+          <h3>Contactez-nous</h3>
+          <ul class="contact-list">
+            <!-- Correction1：icône d'adresse - 4.7.0 L'icône correspondante est fa-map-marker（aucun alt suffixe），Le préfixe est remplacé par fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
+              <span
+                >Chine · Parc industriel complet, rue Shunhua Road, district de
+                Licheng, ville de Jinan</span
+              >
+            </li>
+            <!-- Correction2：icône de téléphone - 4.7.0 L'icône correspondante est fa-phone，Le préfixe est remplacé par fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-phone"></i></span>
+              <span>+86 134 6557 5719</span>
+            </li>
+            <!-- Correction3：Icône de boîte aux lettres - 4.7.0 L'icône correspondante est fa-envelope，Le préfixe est remplacé par fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-envelope"></i></span>
+              <span>info@senrytech.com</span>
+            </li>
+            <!-- Correction4：icône de temps - 4.7.0 L'icône correspondante est fa-clock-o（apporter o suffixe），Le préfixe est remplacé par fa -->
+            <li>
+              <span class="contact-icon"><i class="fa fa-clock-o"></i></span>
+              <span>Du lundi au samedi: 9:00-18:00</span>
+            </li>
+          </ul>
+          <!-- Remplir：S'il existe un module de code QR，Peut être ajouté ici（Conserver le design original） -->
+          <div class="wechat-qrcode">
+            <h4>Consultation WeChat</h4>
+            <div class="qrcode-group">
+              <div class="qrcode-item">
+                <img
+                  src="https://senrytech.github.io/img/qr-code/before-sales.jpg"
+                  alt="Consultation du service client avant-vente"
+                />
+                <p>Consultation du service client avant-vente</p>
+              </div>
+              <div class="qrcode-item">
+                <img
+                  src="https://senrytech.github.io/img/qr-code/after-sales.jpg"
+                  alt="Code QR WeChat2"
+                />
+                <p>Consultation client après-vente</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informations sur les droits d'auteur en bas（Compléter la structure complète） -->
+      <div class="footer-bottom">
+        <div class="bottom-left">© 2024 Senrytech. Tous droits réservés</div>
+        <div class="bottom-right">
+          <a href="https://www.senrytech.com/privacy-policy/"
+            >politique de confidentialité</a
+          >
+          <a href="https://www.senrytech.com/service-terms"
+            >Conditions d'utilisation</a
+          >
+          <a href="#">Plan du site</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript：按页面交互功能模块化拆分，含导航/轮播/分类/产品滚动 -->
+    <script>
+      /* ================================== 二、导航栏滚动透视效果 ================================== */
+      // 作用：页面滚动时，为导航栏添加/移除半透明模糊效果，增强视觉层次
+      // 触发时机：页面滚动事件（scroll）
+      window.addEventListener("scroll", function () {
+        // 获取导航栏DOM元素（仅需查询1次，避免重复DOM操作）
+        const navbar = document.querySelector(".navbar");
+        // 逻辑判断：滚动距离>0时显示透视效果，否则恢复初始样式
+        if (window.scrollY > 0) {
+          navbar.classList.add("scrolled"); // 添加透视样式类
+        } else {
+          navbar.classList.remove("scrolled"); // 移除透视样式类
+        }
+      });
+
+      // 等待DOM加载完成
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 获取元素
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const sidebarMenu = document.getElementById("sidebarMenu");
+        const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
+        const sidebarOverlay = document.getElementById("sidebarOverlay");
+        const submenuTrigger = document.querySelector(".submenu-trigger"); // 产品中心展开/收起触发器
+        const hasSubmenuItem = document.querySelector(
+          ".sidebar-menu-item.has-submenu"
+        ); // 产品中心父项
+        const productSubmenuItems = document.querySelectorAll(
+          ".sidebar-submenu-item"
+        ); // 产品分类项
+        const submenuContentItems = document.querySelectorAll(
+          ".submenu-content-item"
+        ); // 产品内容项（boardContent等）
+        const submenuContent = document.getElementById("productSubmenuContent"); // 产品内容总容器
+        const body = document.body;
+
+        // 2. 汉堡按钮：展开/收起侧边菜单
+        function toggleSidebar() {
+          sidebarMenu.classList.toggle("active");
+          sidebarOverlay.classList.toggle("active");
+          hamburgerBtn.classList.toggle("active");
+          // 禁止背景滚动
+          body.classList.toggle("body-fixed");
+
+          // 【新增】侧边菜单收起时，同步收起产品内容（避免残留）
+          if (!sidebarMenu.classList.contains("active")) {
+            resetProductSubmenu();
+          }
+        }
+        hamburgerBtn.addEventListener("click", toggleSidebar);
+        sidebarCloseBtn.addEventListener("click", toggleSidebar);
+        sidebarOverlay.addEventListener("click", toggleSidebar); // 点击遮罩层收起
+
+        // 3. 产品中心：点击展开/收起【分类列表】+ 同步控制产品内容
+        submenuTrigger.addEventListener("click", function () {
+          // 切换分类列表的展开/收起状态
+          hasSubmenuItem.classList.toggle("active");
+
+          // 【核心修复】判断分类列表是否收起，同步处理产品内容
+          if (!hasSubmenuItem.classList.contains("active")) {
+            resetProductSubmenu(); // 收起时重置产品内容
+          } else {
+            // 展开时仅显示分类列表，不默认展开任何产品内容（符合原需求）
+            submenuContent.style.display = "none";
+            submenuContent.style.maxHeight = "0";
+          }
+        });
+
+        // 4. 产品分类切换：点击分类项，显示对应产品内容
+        productSubmenuItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // 步骤1：重置所有分类项的active状态
+            productSubmenuItems.forEach((i) => i.classList.remove("active"));
+            this.classList.add("active"); // 标记当前分类为激活
+
+            // 步骤2：获取目标内容ID（确保data-target和内容ID匹配，如data-target="board" → ID="boardContent"）
+            const targetId = this.getAttribute("data-target") + "Content";
+            const targetContent = document.getElementById(targetId);
+            if (!targetContent) return; // 防止ID不匹配导致报错
+
+            // 步骤3：隐藏所有产品内容项，显示当前项
+            submenuContentItems.forEach((content) => {
+              content.style.display = "none";
+            });
+            targetContent.style.display = "block";
+
+            // 步骤4：显示产品内容总容器（展开动画）
+            submenuContent.style.display = "block";
+            // 用setTimeout确保display生效后再设置maxHeight，触发过渡动画
+            setTimeout(() => {
+              submenuContent.style.maxHeight = "calc(100vh - 200px)";
+            }, 10);
+
+            // （可选）滚动到产品内容区域
+            targetContent.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          });
+        });
+
+        // 5. 侧边菜单滚动：同步导航栏模糊效果
+        window.addEventListener("scroll", function () {
+          const navbar = document.querySelector(".navbar");
+          navbar.classList.toggle("scrolled", window.scrollY > 50);
+        });
+
+        // 6. 窗口 resize 时：自动收起侧边菜单+产品内容（避免适配异常）
+        window.addEventListener("resize", function () {
+          if (
+            window.innerWidth >= 1024 &&
+            sidebarMenu.classList.contains("active")
+          ) {
+            toggleSidebar(); // 收起侧边菜单
+            resetProductSubmenu(); // 同步收起产品内容
+          }
+        });
+
+        // 【新增】统一重置产品内容的工具函数（避免重复代码）
+        function resetProductSubmenu() {
+          // 1. 隐藏所有产品内容项（boardContent等）
+          submenuContentItems.forEach((content) => {
+            content.style.display = "none";
+          });
+          // 2. 收起产品内容总容器（先置maxHeight为0，再隐藏display）
+          submenuContent.style.maxHeight = "0";
+          // 用setTimeout确保过渡动画完成后再隐藏display，避免闪烁
+          setTimeout(() => {
+            submenuContent.style.display = "none";
+          }, 300); // 延迟时间需与CSS中submenuContent的transition-duration一致
+          // 3. 重置产品分类项的active状态
+          productSubmenuItems.forEach((i) => i.classList.remove("active"));
+        }
+      });
+
+      /* ================================== 三.一、下拉菜单分类切换（hover触发） ================================== */
+      // 作用：鼠标hover左侧分类项时，切换右侧对应的产品内容区，实现联动显示
+      // 触发时机：分类项的mouseenter事件
+
+      // —— 3.1 初始化分类切换所需变量 ——
+      const categoryItems = document.querySelectorAll(".category-item"); // 左侧所有分类项
+      const contentItems = document.querySelectorAll(".content-item"); // 右侧所有内容区
+
+      // —— 3.2 绑定分类项hover事件 ——
+      categoryItems.forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          // 1. 重置所有分类项状态：移除激活类
+          categoryItems.forEach((catItem) =>
+            catItem.classList.remove("active")
+          );
+          // 2. 激活当前hover的分类项
+          this.classList.add("active");
+
+          // 3. 获取当前分类项对应的目标内容区ID（从data-target属性读取）
+          const targetId = this.getAttribute("data-target");
+          // 4. 重置所有内容区状态：隐藏所有内容
+          contentItems.forEach((content) => content.classList.remove("active"));
+          // 5. 显示目标内容区（容错处理：防止ID不存在导致报错）
+          const targetContent = document.getElementById(targetId);
+          if (targetContent) {
+            targetContent.classList.add("active");
+          }
+        });
+      });
+    </script>
+
+    <script>
+      // ================================== 标题滚动向上淡出动画 - 最终修复版 ==================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. 目标标题：保持与CSS一致（所有h1-h6 + 自定义标题类）
+        const titleElements = document.querySelectorAll(
+          "h1, h2, h3, h4, h5, h6, .product-main-title, .submenu-content-title, .content-item h3"
+        );
+
+        // 2. 核心滚动逻辑：优化触发时机 + 排除不可见元素 + 精准恢复
+        function handleTitleScroll() {
+          const viewportHeight = window.innerHeight; // 视口高度（屏幕可见区域）
+
+          titleElements.forEach((title) => {
+            // 关键：排除隐藏元素（如下拉菜单/侧边栏中的标题，避免无效计算）
+            if (!title.offsetParent) return; // offsetParent为null表示元素不可见，直接跳过
+
+            const titleRect = title.getBoundingClientRect(); // 标题相对于视口的位置
+            const titleHeight = titleRect.height; // 标题自身高度（用于精准判断滚出时机）
+
+            // ✅ 条件1：向下滚动时，标题“开始滚出视口底部”就触发动画（视觉上最自然）
+            // 逻辑：标题底部 < 视口高度 + 标题顶部 > 0 → 标题部分滚出底部（非完全隐藏）
+            // 补充：标题顶部 > 视口高度 → 标题完全滚出底部（避免漏触发）
+            if (
+              (titleRect.bottom < viewportHeight && titleRect.top > 0) ||
+              titleRect.top > viewportHeight
+            ) {
+              title.classList.add("title-fade-active");
+            }
+
+            // ✅ 条件2：向上滚动时，标题“开始进入视口”就恢复显示（避免延迟）
+            // 逻辑：标题顶部 < 视口高度 + 标题底部 > 0 → 标题部分/完全进入视口
+            else if (titleRect.top < viewportHeight && titleRect.bottom > 0) {
+              title.classList.remove("title-fade-active");
+            }
+          });
+        }
+
+        // 3. 初始化：页面加载时执行一次（处理初始就滚出视口的标题）
+        handleTitleScroll();
+
+        // 4. 滚动监听：保留性能优化，同时确保滚动时实时触发
+        window.addEventListener("scroll", function () {
+          // 使用requestAnimationFrame确保动画流畅（与屏幕刷新率同步）
+          window.requestAnimationFrame(handleTitleScroll);
+        });
+
+        // 5. 窗口 resize 时重新计算（避免窗口缩放后触发条件失效）
+        window.addEventListener("resize", handleTitleScroll);
+      });
+    </script>
+
+    <script>
+      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
+      const langDropdown = document.getElementById("langDropdown");
+      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
+      const langTrigger = langDropdown.querySelector(".language-btn");
+
+      // 点击语言按钮，切换下拉菜单显示状态
+      langTrigger.addEventListener("click", (e) => {
+        e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
+        langMenu.style.display =
+          langMenu.style.display === "block" ? "none" : "block";
+      });
+
+      // 点击页面其他区域，关闭下拉菜单
+      document.addEventListener("click", () => {
+        if (langMenu.style.display === "block") {
+          langMenu.style.display = "none";
+        }
+      });
+
+      // 2. 当前语言自动高亮（根据页面URL匹配）
+      const currentPath = window.location.pathname;
+      const langLinks = document.querySelectorAll(".lang-link");
+
+      // 语言与首页路径的映射（需与你的实际文件路径一致）
+      const langHomePathMap = {
+        zh: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/cn/", // 中文首页
+        en: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/", // 英语首页
+        de: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/de/", // 德语首页
+        es: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/es/", // 西班牙语首页
+        fr: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/fr/", // 法语首页
+        ru: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/ru/", // 俄语首页
+        ar: "https://www.senrytech.com/pitfall-avoidance-guide/servo-motor/lang/sa/", // 阿拉伯语首页
+      };
+
+      // 匹配当前路径，给对应语言链接添加高亮样式
+      langLinks.forEach((link) => {
+        const lang = link.getAttribute("lang");
+        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
+        if (
+          currentPath === langHomePathMap[lang] ||
+          (lang === "zh" && currentPath === "/")
+        ) {
+          link.classList.add("active");
+        }
+      });
+    </script>
+
+    <script>
+      // 进入视口动画
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          document.querySelector(".fadeIn").style.opacity = 1;
+        }, 300);
+      });
+    </script>
+  </body>
+</html>

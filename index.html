@@ -8963,7 +8963,9 @@ Based on nested optimization algorithm and material boundary identification tech
               <a href="https://www.senrytech.com/about-us/">Company Profile</a>
             </li>
             <li>
-              <a href="https://www.senrytech.com/solutions/">Selection Scheme</a>
+              <a href="https://www.senrytech.com/solutions/"
+                >Selection Scheme</a
+              >
             </li>
             <li>
               <a href="https://www.senrytech.com/pitfall-avoidance-guide/"
@@ -10190,12 +10192,10 @@ Based on nested optimization algorithm and material boundary identification tech
 
     <!-- 十一， 语言下拉菜单-->
     <script>
-      // 1. 语言下拉菜单：点击触发显示/隐藏 - 语言切换
-      const langDropdown = document.getElementById("langDropdown");
-      const langMenu = langDropdown.querySelector(".lang-dropdown-list");
-      const langTrigger = langDropdown.querySelector(".language-btn");
+      // 1. 点击语言按钮，切换下拉菜单显示状态
+      const langTrigger = document.getElementById("langDropdown");
+      const langMenu = document.querySelector(".lang-dropdown-list");
 
-      // 点击语言按钮，切换下拉菜单显示状态
       langTrigger.addEventListener("click", (e) => {
         e.stopPropagation(); // 阻止事件冒泡，避免点击菜单时关闭
         langMenu.style.display =
@@ -10209,29 +10209,46 @@ Based on nested optimization algorithm and material boundary identification tech
         }
       });
 
-      // 2. 当前语言自动高亮（根据页面URL匹配）
+      // 2. 当前语言自动高亮（根据页面URL匹配，修复版）
       const currentPath = window.location.pathname;
       const langLinks = document.querySelectorAll(".lang-link");
 
       // 语言与首页路径的映射（需与你的实际文件路径一致）
       const langHomePathMap = {
-        zh: "https://www.senrytech.com/lang/cn/", // 中文首页
-        en: "https://www.senrytech.com/", // 英语首页
-        de: "https://www.senrytech.com/lang/de/", // 德语首页
-        es: "https://www.senrytech.com/lang/es/", // 西班牙语首页
-        fr: "https://www.senrytech.com/lang/fr/", // 法语首页
-        ru: "https://www.senrytech.com/lang/ru/", // 俄语首页
-        ar: "https://www.senrytech.com/lang/ar/", // 阿拉伯语首页
+        zh: "/lang/cn/", // 中文首页
+        en: "/", // 英语首页
+        de: "/lang/de/", // 德语首页
+        es: "/lang/es/", // 西班牙语首页
+        fr: "/lang/fr/", // 法语首页
+        ru: "/lang/ru/", // 俄语首页
+        ar: "/lang/ar/", // 阿拉伯语首页
       };
 
-      // 匹配当前路径，给对应语言链接添加高亮样式
+      // 第一步：先给所有语言移除active，重置状态（关键修复！）
+      langLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+
+      // 第二步：匹配当前路径，给对应语言链接添加高亮样式
       langLinks.forEach((link) => {
         const lang = link.getAttribute("lang");
-        // 匹配路径（兼容“/index.html”和根路径“/”两种情况）
-        if (
-          currentPath === langHomePathMap[lang] ||
-          (lang === "zh" && currentPath === "/")
-        ) {
+        const langPath = langHomePathMap[lang];
+
+        if (!langPath) return; // 跳过未配置的语言
+
+        // 匹配逻辑：1. 完全匹配语言首页 2. 匹配根路径（兼容中文/英文默认）
+        const isMatch =
+          currentPath === langPath ||
+          (lang === "zh" && currentPath.startsWith("/lang/cn/")) || // 中文子页面也高亮
+          (lang === "en" &&
+            (currentPath === "/" || !currentPath.startsWith("/lang/"))) || // 英文所有非语言页都高亮
+          (lang === "de" && currentPath.startsWith("/lang/de/")) || // 德语子页面也高亮
+          (lang === "es" && currentPath.startsWith("/lang/es/")) || // 西班牙语子页面也高亮
+          (lang === "fr" && currentPath.startsWith("/lang/fr/")) || // 法语子页面也高亮
+          (lang === "ru" && currentPath.startsWith("/lang/ru/")) || // 俄语子页面也高亮
+          (lang === "ar" && currentPath.startsWith("/lang/ar/")); // 阿拉伯语子页面也高亮
+
+        if (isMatch) {
           link.classList.add("active");
         }
       });

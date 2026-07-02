@@ -360,12 +360,31 @@
         font-weight: 500;
       }
 
-      .nav-item {
-        position: relative;
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
+      /* 清除ul原生默认样式 */
+.nav-menu {
+  display: flex;    /* 关键：li横向一排 */
+  align-items: center;
+  gap: 2rem;        /* 菜单之间间距，和你原来navbar gap统一 */
+  list-style: none; /* 去掉列表黑点 */
+  margin: 0;
+  padding: 0;
+  height: 100%;     /* 占满navbar高度，垂直居中生效 */
+}
+
+/* 替代原来div.nav-item的样式，转移给li */
+.nav-menu > li {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* li内部a链接保持原有样式不变 */
+.nav-menu > li > a.nav-link {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
 
       .dropdown-menu {
         position: fixed;
@@ -396,12 +415,15 @@
           padding 0.3s ease;
       }
 
-      .nav-item:hover .dropdown-menu {
-        max-height: 55rem;
-        opacity: 1;
-        padding: 2.4rem 0;
-        display: block;
-      }
+      /* 新有效规则，放到.nav-menu样式下方 */
+.nav-menu > li:hover .dropdown-menu {
+  max-height: 55rem;
+  opacity: 1;
+  padding: 2.4rem 0;
+  display: block;
+  /* 解决fixed下拉和li之间鼠标断层，防止刚移过去就消失 */
+  pointer-events: auto;
+}
 
       .dropdown-inner {
         display: flex;
